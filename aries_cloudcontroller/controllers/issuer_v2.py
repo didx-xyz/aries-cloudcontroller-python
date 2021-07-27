@@ -61,7 +61,7 @@ class IssuerV2Controller(BaseController):
         return await self.admin_POST(f"{self.base_url}/create", json_data=body)
 
     # Send holder a credential, automating the entire flow
-    async def send_credential2(
+    async def send_credential(
         self,
         connection_id,
         schema_id,
