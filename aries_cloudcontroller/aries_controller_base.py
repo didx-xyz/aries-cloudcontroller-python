@@ -109,8 +109,14 @@ class AriesAgentControllerBase(AbstractAsyncContextManager):
     async def __aenter__(self):
         return self
 
-    async def __aexit__(self, exc_type, exc_value, exc_traceback):
+    # async def __anext__(self):
+    #     return self
+
+    async def close(self):
         await self.terminate()
+
+    async def __aexit__(self, exc_type, exc_value, exc_traceback):
+        return self.terminate()
 
     def init_webhook_server(self):
         raise NotImplementedError
