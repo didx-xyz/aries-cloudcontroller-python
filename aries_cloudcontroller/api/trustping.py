@@ -24,6 +24,7 @@ class TrustpingApi(Consumer):
     @returns.json
     @json
     @post("/connections/{conn_id}/send-ping")
-    def send_ping(self, *, conn_id: str, body: Body(type=PingRequest) = {}) -> PingRequestResponse:
+    def send_ping(
+        self, *, conn_id: str, body: Body(type=PingRequest) = {}
+    ) -> PingRequestResponse:
         """Send a trust ping to a connection"""
-

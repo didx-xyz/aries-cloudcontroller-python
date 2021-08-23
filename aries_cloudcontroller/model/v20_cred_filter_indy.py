@@ -60,7 +60,9 @@ class V20CredFilterIndy(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of cred_def_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of cred_def_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("issuer_did")
@@ -71,7 +73,9 @@ class V20CredFilterIndy(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of issuer_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of issuer_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("schema_id")
@@ -82,7 +86,9 @@ class V20CredFilterIndy(BaseModel):
 
         pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of schema_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of schema_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("schema_issuer_did")
@@ -93,7 +99,9 @@ class V20CredFilterIndy(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of schema_issuer_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of schema_issuer_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("schema_version")
@@ -104,7 +112,9 @@ class V20CredFilterIndy(BaseModel):
 
         pattern = r"^[0-9.]+$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of schema_version does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of schema_version does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

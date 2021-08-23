@@ -68,7 +68,9 @@ class ConnectionStaticRequest(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of my_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of my_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("their_did")
@@ -79,7 +81,9 @@ class ConnectionStaticRequest(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of their_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of their_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("their_endpoint")
@@ -90,7 +94,9 @@ class ConnectionStaticRequest(BaseModel):
 
         pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&amp;#]+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of their_endpoint does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of their_endpoint does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

@@ -56,9 +56,13 @@ class ConnectionStaticResult(BaseModel):
     @validator("mv_verkey")
     def mv_verkey_pattern(cls, value):
 
-        pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        pattern = (
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        )
         if not re.match(pattern, value):
-            raise ValueError(f"Value of mv_verkey does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of mv_verkey does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("my_did")
@@ -66,7 +70,9 @@ class ConnectionStaticResult(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of my_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of my_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("my_endpoint")
@@ -74,7 +80,9 @@ class ConnectionStaticResult(BaseModel):
 
         pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&amp;#]+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of my_endpoint does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of my_endpoint does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("their_did")
@@ -82,15 +90,21 @@ class ConnectionStaticResult(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of their_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of their_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("their_verkey")
     def their_verkey_pattern(cls, value):
 
-        pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        pattern = (
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        )
         if not re.match(pattern, value):
-            raise ValueError(f"Value of their_verkey does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of their_verkey does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

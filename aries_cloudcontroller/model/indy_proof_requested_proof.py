@@ -8,9 +8,15 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.indy_proof_requested_proof_predicate import IndyProofRequestedProofPredicate
-from aries_cloudcontroller.model.indy_proof_requested_proof_revealed_attr import IndyProofRequestedProofRevealedAttr
-from aries_cloudcontroller.model.indy_proof_requested_proof_revealed_attr_group import IndyProofRequestedProofRevealedAttrGroup
+from aries_cloudcontroller.model.indy_proof_requested_proof_predicate import (
+    IndyProofRequestedProofPredicate,
+)
+from aries_cloudcontroller.model.indy_proof_requested_proof_revealed_attr import (
+    IndyProofRequestedProofRevealedAttr,
+)
+from aries_cloudcontroller.model.indy_proof_requested_proof_revealed_attr_group import (
+    IndyProofRequestedProofRevealedAttrGroup,
+)
 
 
 class IndyProofRequestedProof(BaseModel):
@@ -27,7 +33,9 @@ class IndyProofRequestedProof(BaseModel):
     """
 
     predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = None
-    revealed_attr_groups: Optional[Dict[str, IndyProofRequestedProofRevealedAttrGroup]] = None
+    revealed_attr_groups: Optional[
+        Dict[str, IndyProofRequestedProofRevealedAttrGroup]
+    ] = None
     revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = None
     self_attested_attrs: Optional[Dict[str, Any]] = None
     unrevealed_attrs: Optional[Dict[str, Any]] = None
@@ -36,7 +44,9 @@ class IndyProofRequestedProof(BaseModel):
         self,
         *,
         predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = None,
-        revealed_attr_groups: Optional[Dict[str, IndyProofRequestedProofRevealedAttrGroup]] = None,
+        revealed_attr_groups: Optional[
+            Dict[str, IndyProofRequestedProofRevealedAttrGroup]
+        ] = None,
         revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = None,
         self_attested_attrs: Optional[Dict[str, Any]] = None,
         unrevealed_attrs: Optional[Dict[str, Any]] = None,

@@ -8,7 +8,9 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.credential_status_options import CredentialStatusOptions
+from aries_cloudcontroller.model.credential_status_options import (
+    CredentialStatusOptions,
+)
 
 
 class LDProofVCDetailOptions(BaseModel):
@@ -28,7 +30,9 @@ class LDProofVCDetailOptions(BaseModel):
     proof_type: str = Field(..., alias="proofType")
     challenge: Optional[str] = None
     created: Optional[str] = None
-    credential_status: Optional[CredentialStatusOptions] = Field(None, alias="credentialStatus")
+    credential_status: Optional[CredentialStatusOptions] = Field(
+        None, alias="credentialStatus"
+    )
     domain: Optional[str] = None
     proof_purpose: Optional[str] = Field(None, alias="proofPurpose")
 
@@ -61,7 +65,9 @@ class LDProofVCDetailOptions(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of created does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of created does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

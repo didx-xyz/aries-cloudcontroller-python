@@ -44,7 +44,9 @@ class DIFOptions(BaseModel):
 
         pattern = r"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of challenge does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of challenge does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

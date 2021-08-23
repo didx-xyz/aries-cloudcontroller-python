@@ -40,7 +40,9 @@ class GetDIDEndpointResponse(BaseModel):
 
         pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&amp;#]+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of endpoint does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of endpoint does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

@@ -27,7 +27,9 @@ class V20PresRequest(BaseModel):
     """
 
     formats: List[V20PresFormat]
-    request_presentationsattach: List[AttachDecorator] = Field(..., alias="request_presentations~attach")
+    request_presentationsattach: List[AttachDecorator] = Field(
+        ..., alias="request_presentations~attach"
+    )
     id: Optional[str] = Field(None, alias="@id")
     type: Optional[str] = Field(None, alias="@type")
     comment: Optional[str] = None

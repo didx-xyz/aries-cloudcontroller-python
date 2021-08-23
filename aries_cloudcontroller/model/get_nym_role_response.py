@@ -19,12 +19,25 @@ class GetNymRoleResponse(BaseModel):
         role: Ledger role [Optional].
     """
 
-    role: Optional[Literal["STEWARD", "TRUSTEE", "ENDORSER", "NETWORK_MONITOR", "USER", "ROLE_REMOVE"]] = None
+    role: Optional[
+        Literal[
+            "STEWARD", "TRUSTEE", "ENDORSER", "NETWORK_MONITOR", "USER", "ROLE_REMOVE"
+        ]
+    ] = None
 
     def __init__(
         self,
         *,
-        role: Optional[Literal["STEWARD", "TRUSTEE", "ENDORSER", "NETWORK_MONITOR", "USER", "ROLE_REMOVE"]] = None,
+        role: Optional[
+            Literal[
+                "STEWARD",
+                "TRUSTEE",
+                "ENDORSER",
+                "NETWORK_MONITOR",
+                "USER",
+                "ROLE_REMOVE",
+            ]
+        ] = None,
         **kwargs,
     ):
         super().__init__(

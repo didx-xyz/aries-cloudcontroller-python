@@ -65,7 +65,9 @@ class ConnRecord(BaseModel):
         accept: Optional[Literal["manual", "auto"]] = None,
         alias: Optional[str] = None,
         connection_id: Optional[str] = None,
-        connection_protocol: Optional[Literal["connections/1.0", "didexchange/1.0"]] = None,
+        connection_protocol: Optional[
+            Literal["connections/1.0", "didexchange/1.0"]
+        ] = None,
         created_at: Optional[str] = None,
         error_msg: Optional[str] = None,
         inbound_connection_id: Optional[str] = None,
@@ -80,7 +82,9 @@ class ConnRecord(BaseModel):
         their_did: Optional[str] = None,
         their_label: Optional[str] = None,
         their_public_did: Optional[str] = None,
-        their_role: Optional[Literal["invitee", "requester", "inviter", "responder"]] = None,
+        their_role: Optional[
+            Literal["invitee", "requester", "inviter", "responder"]
+        ] = None,
         updated_at: Optional[str] = None,
         **kwargs,
     ):
@@ -116,7 +120,9 @@ class ConnRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of created_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of created_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("invitation_key")
@@ -125,9 +131,13 @@ class ConnRecord(BaseModel):
         if value is None:
             return
 
-        pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        pattern = (
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        )
         if not re.match(pattern, value):
-            raise ValueError(f"Value of invitation_key does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of invitation_key does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("my_did")
@@ -138,7 +148,9 @@ class ConnRecord(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of my_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of my_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("their_did")
@@ -149,7 +161,9 @@ class ConnRecord(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of their_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of their_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("updated_at")
@@ -160,7 +174,9 @@ class ConnRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of updated_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of updated_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

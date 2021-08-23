@@ -32,7 +32,13 @@ class EndorseTransactionApi(Consumer):
     @returns.json
     @json
     @post("/transactions/create-request")
-    def create_request(self, *, tran_id: Query, endorser_write_txn: Query = None, body: Body(type=Date) = {}) -> TransactionRecord:
+    def create_request(
+        self,
+        *,
+        tran_id: Query,
+        endorser_write_txn: Query = None,
+        body: Body(type=Date) = {}
+    ) -> TransactionRecord:
         """For author to send a transaction request"""
 
     @returns.json
@@ -62,16 +68,19 @@ class EndorseTransactionApi(Consumer):
 
     @returns.json
     @post("/transactions/{conn_id}/set-endorser-info")
-    def set_endorser_info(self, *, conn_id: str, endorser_did: Query, endorser_name: Query = None) -> EndorserInfo:
+    def set_endorser_info(
+        self, *, conn_id: str, endorser_did: Query, endorser_name: Query = None
+    ) -> EndorserInfo:
         """Set Endorser Info"""
 
     @returns.json
     @post("/transactions/{conn_id}/set-endorser-role")
-    def set_endorser_role(self, *, conn_id: str, transaction_my_job: Query = None) -> TransactionJobs:
+    def set_endorser_role(
+        self, *, conn_id: str, transaction_my_job: Query = None
+    ) -> TransactionJobs:
         """Set transaction jobs"""
 
     @returns.json
     @post("/transactions/{tran_id}/write")
     def write_transaction(self, *, tran_id: str) -> TransactionRecord:
         """For Author / Endorser to write an endorsed transaction to the ledger"""
-

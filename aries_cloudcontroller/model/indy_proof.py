@@ -10,7 +10,9 @@ from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_proof_identifier import IndyProofIdentifier
 from aries_cloudcontroller.model.indy_proof_proof import IndyProofProof
-from aries_cloudcontroller.model.indy_proof_requested_proof import IndyProofRequestedProof
+from aries_cloudcontroller.model.indy_proof_requested_proof import (
+    IndyProofRequestedProof,
+)
 
 
 class IndyProof(BaseModel):

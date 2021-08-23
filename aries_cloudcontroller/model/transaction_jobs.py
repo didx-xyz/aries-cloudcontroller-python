@@ -20,14 +20,22 @@ class TransactionJobs(BaseModel):
         transaction_their_job: Their transaction related job [Optional].
     """
 
-    transaction_my_job: Optional[Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]] = None
-    transaction_their_job: Optional[Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]] = None
+    transaction_my_job: Optional[
+        Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
+    ] = None
+    transaction_their_job: Optional[
+        Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
+    ] = None
 
     def __init__(
         self,
         *,
-        transaction_my_job: Optional[Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]] = None,
-        transaction_their_job: Optional[Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]] = None,
+        transaction_my_job: Optional[
+            Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
+        ] = None,
+        transaction_their_job: Optional[
+            Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
+        ] = None,
         **kwargs,
     ):
         super().__init__(

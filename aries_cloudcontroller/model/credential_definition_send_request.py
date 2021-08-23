@@ -51,7 +51,9 @@ class CredentialDefinitionSendRequest(BaseModel):
             return
 
         if value > 32768:
-            raise ValueError(f"revocation_registry_size must be less than 32768, currently {value}")
+            raise ValueError(
+                f"revocation_registry_size must be less than 32768, currently {value}"
+            )
         return value
 
     @validator("revocation_registry_size")
@@ -61,7 +63,9 @@ class CredentialDefinitionSendRequest(BaseModel):
             return
 
         if value < 4:
-            raise ValueError(f"revocation_registry_size must be greater than 4, currently {value}")
+            raise ValueError(
+                f"revocation_registry_size must be greater than 4, currently {value}"
+            )
         return value
 
     @validator("schema_id")
@@ -72,7 +76,9 @@ class CredentialDefinitionSendRequest(BaseModel):
 
         pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of schema_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of schema_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

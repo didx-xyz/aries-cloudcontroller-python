@@ -8,7 +8,9 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.v20_cred_ex_record_by_format import V20CredExRecordByFormat
+from aries_cloudcontroller.model.v20_cred_ex_record_by_format import (
+    V20CredExRecordByFormat,
+)
 from aries_cloudcontroller.model.v20_cred_issue import V20CredIssue
 from aries_cloudcontroller.model.v20_cred_offer import V20CredOffer
 from aries_cloudcontroller.model.v20_cred_preview import V20CredPreview
@@ -60,7 +62,19 @@ class V20CredExRecord(BaseModel):
     initiator: Optional[Literal["self", "external"]] = None
     parent_thread_id: Optional[str] = None
     role: Optional[Literal["issuer", "holder"]] = None
-    state: Optional[Literal["proposal-sent", "proposal-received", "offer-sent", "offer-received", "request-sent", "request-received", "credential-issued", "credential-received", "done"]] = None
+    state: Optional[
+        Literal[
+            "proposal-sent",
+            "proposal-received",
+            "offer-sent",
+            "offer-received",
+            "request-sent",
+            "request-received",
+            "credential-issued",
+            "credential-received",
+            "done",
+        ]
+    ] = None
     thread_id: Optional[str] = None
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
@@ -84,7 +98,19 @@ class V20CredExRecord(BaseModel):
         initiator: Optional[Literal["self", "external"]] = None,
         parent_thread_id: Optional[str] = None,
         role: Optional[Literal["issuer", "holder"]] = None,
-        state: Optional[Literal["proposal-sent", "proposal-received", "offer-sent", "offer-received", "request-sent", "request-received", "credential-issued", "credential-received", "done"]] = None,
+        state: Optional[
+            Literal[
+                "proposal-sent",
+                "proposal-received",
+                "offer-sent",
+                "offer-received",
+                "request-sent",
+                "request-received",
+                "credential-issued",
+                "credential-received",
+                "done",
+            ]
+        ] = None,
         thread_id: Optional[str] = None,
         trace: Optional[bool] = None,
         updated_at: Optional[str] = None,
@@ -122,7 +148,9 @@ class V20CredExRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of created_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of created_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("updated_at")
@@ -133,7 +161,9 @@ class V20CredExRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of updated_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of updated_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

@@ -9,7 +9,9 @@ from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_cred_info import IndyCredInfo
-from aries_cloudcontroller.model.indy_non_revocation_interval import IndyNonRevocationInterval
+from aries_cloudcontroller.model.indy_non_revocation_interval import (
+    IndyNonRevocationInterval,
+)
 
 
 class IndyCredPrecis(BaseModel):

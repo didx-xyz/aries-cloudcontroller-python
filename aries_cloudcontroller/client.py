@@ -55,12 +55,18 @@ class Client(AbstractAsyncContextManager):
     trustping: TrustpingApi
     wallet: WalletApi
 
-    def __init__(self, base_url: str, client: uplink.AiohttpClient, *, extra_service_params: Dict = {}):
+    def __init__(
+        self,
+        base_url: str,
+        client: uplink.AiohttpClient,
+        *,
+        extra_service_params: Dict = {}
+    ):
         self.base_url = base_url
         service_params = {
             **extra_service_params,
             "base_url": base_url,
-            "client": client
+            "client": client,
         }
 
         self.action_menu = ActionMenuApi(**service_params)

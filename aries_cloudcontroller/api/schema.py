@@ -25,7 +25,14 @@ from aries_cloudcontroller.model.txn_or_schema_send_result import TxnOrSchemaSen
 class SchemaApi(Consumer):
     @returns.json
     @get("/schemas/created")
-    def get_created_schemas(self, *, schema_id: Query = None, schema_issuer_did: Query = None, schema_name: Query = None, schema_version: Query = None) -> SchemasCreatedResult:
+    def get_created_schemas(
+        self,
+        *,
+        schema_id: Query = None,
+        schema_issuer_did: Query = None,
+        schema_name: Query = None,
+        schema_version: Query = None
+    ) -> SchemasCreatedResult:
         """Search for matching schema that agent originated"""
 
     @returns.json
@@ -36,6 +43,11 @@ class SchemaApi(Consumer):
     @returns.json
     @json
     @post("/schemas")
-    def publish_schema(self, *, conn_id: Query = None, create_transaction_for_endorser: Query = None, body: Body(type=SchemaSendRequest) = {}) -> TxnOrSchemaSendResult:
+    def publish_schema(
+        self,
+        *,
+        conn_id: Query = None,
+        create_transaction_for_endorser: Query = None,
+        body: Body(type=SchemaSendRequest) = {}
+    ) -> TxnOrSchemaSendResult:
         """Sends a schema to the ledger"""
-

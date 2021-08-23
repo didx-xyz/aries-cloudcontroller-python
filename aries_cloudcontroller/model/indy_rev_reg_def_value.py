@@ -8,7 +8,9 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.indy_rev_reg_def_value_public_keys import IndyRevRegDefValuePublicKeys
+from aries_cloudcontroller.model.indy_rev_reg_def_value_public_keys import (
+    IndyRevRegDefValuePublicKeys,
+)
 
 
 class IndyRevRegDefValue(BaseModel):
@@ -24,16 +26,22 @@ class IndyRevRegDefValue(BaseModel):
         tails_location: Tails file location [Optional].
     """
 
-    issuance_type: Optional[Literal["ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"]] = Field(None, alias="issuanceType")
+    issuance_type: Optional[
+        Literal["ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"]
+    ] = Field(None, alias="issuanceType")
     max_cred_num: Optional[int] = Field(None, alias="maxCredNum")
-    public_keys: Optional[IndyRevRegDefValuePublicKeys] = Field(None, alias="publicKeys")
+    public_keys: Optional[IndyRevRegDefValuePublicKeys] = Field(
+        None, alias="publicKeys"
+    )
     tails_hash: Optional[str] = Field(None, alias="tailsHash")
     tails_location: Optional[str] = Field(None, alias="tailsLocation")
 
     def __init__(
         self,
         *,
-        issuance_type: Optional[Literal["ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"]] = None,
+        issuance_type: Optional[
+            Literal["ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"]
+        ] = None,
         max_cred_num: Optional[int] = None,
         public_keys: Optional[IndyRevRegDefValuePublicKeys] = None,
         tails_hash: Optional[str] = None,
@@ -65,9 +73,13 @@ class IndyRevRegDefValue(BaseModel):
         if value is None:
             return
 
-        pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        pattern = (
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        )
         if not re.match(pattern, value):
-            raise ValueError(f"Value of tails_hash does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of tails_hash does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

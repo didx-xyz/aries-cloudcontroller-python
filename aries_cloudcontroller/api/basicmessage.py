@@ -25,4 +25,3 @@ class BasicmessageApi(Consumer):
     @post("/connections/{conn_id}/send-message")
     def send_message(self, *, conn_id: str, body: Body(type=SendMessage) = {}) -> Dict:
         """Send a basic message to a connection"""
-

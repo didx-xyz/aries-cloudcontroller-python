@@ -69,7 +69,9 @@ class Credential(BaseModel):
 
         pattern = r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of expiration_date does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of expiration_date does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("id")
@@ -88,7 +90,9 @@ class Credential(BaseModel):
 
         pattern = r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of issuance_date does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of issuance_date does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

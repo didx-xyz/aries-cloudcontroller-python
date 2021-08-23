@@ -64,4 +64,3 @@ class ServerApi(Consumer):
     @get("/shutdown")
     def shutdown_server(self) -> Dict:
         """Shut down server"""
-

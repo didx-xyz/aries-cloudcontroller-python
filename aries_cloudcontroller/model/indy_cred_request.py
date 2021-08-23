@@ -53,7 +53,9 @@ class IndyCredRequest(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of cred_def_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of cred_def_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("nonce")
@@ -61,7 +63,9 @@ class IndyCredRequest(BaseModel):
 
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of nonce does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of nonce does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("prover_did")
@@ -72,7 +76,9 @@ class IndyCredRequest(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of prover_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of prover_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

@@ -69,7 +69,9 @@ class LinkedDataProof(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of created does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of created does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("domain")
@@ -80,7 +82,9 @@ class LinkedDataProof(BaseModel):
 
         pattern = r"\w+:(\\/?\\/?)[^\s]+"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of domain does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of domain does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("verification_method")
@@ -88,7 +92,9 @@ class LinkedDataProof(BaseModel):
 
         pattern = r"\w+:(\\/?\\/?)[^\s]+"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of verification_method does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of verification_method does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

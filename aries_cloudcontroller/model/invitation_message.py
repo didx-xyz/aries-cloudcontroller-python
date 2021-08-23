@@ -29,7 +29,9 @@ class InvitationMessage(BaseModel):
     type: Optional[str] = Field(None, alias="@type")
     handshake_protocols: Optional[List[str]] = None
     label: Optional[str] = None
-    requestsattach: Optional[List[AttachDecorator]] = Field(None, alias="requests~attach")
+    requestsattach: Optional[List[AttachDecorator]] = Field(
+        None, alias="requests~attach"
+    )
     services: Optional[List[Dict]] = None
 
     def __init__(

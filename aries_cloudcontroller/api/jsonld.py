@@ -34,4 +34,3 @@ class JsonldApi(Consumer):
     @post("/jsonld/verify")
     def verify(self, *, body: Body(type=VerifyRequest) = {}) -> VerifyResponse:
         """Verify a JSON-LD structure."""
-

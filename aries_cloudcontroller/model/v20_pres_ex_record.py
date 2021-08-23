@@ -9,7 +9,9 @@ from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.v20_pres import V20Pres
-from aries_cloudcontroller.model.v20_pres_ex_record_by_format import V20PresExRecordByFormat
+from aries_cloudcontroller.model.v20_pres_ex_record_by_format import (
+    V20PresExRecordByFormat,
+)
 from aries_cloudcontroller.model.v20_pres_proposal import V20PresProposal
 from aries_cloudcontroller.model.v20_pres_request import V20PresRequest
 
@@ -49,7 +51,18 @@ class V20PresExRecord(BaseModel):
     pres_proposal: Optional[V20PresProposal] = None
     pres_request: Optional[V20PresRequest] = None
     role: Optional[Literal["prover", "verifier"]] = None
-    state: Optional[Literal["proposal-sent", "proposal-received", "request-sent", "request-received", "presentation-sent", "presentation-received", "done", "abandoned"]] = None
+    state: Optional[
+        Literal[
+            "proposal-sent",
+            "proposal-received",
+            "request-sent",
+            "request-received",
+            "presentation-sent",
+            "presentation-received",
+            "done",
+            "abandoned",
+        ]
+    ] = None
     thread_id: Optional[str] = None
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
@@ -69,7 +82,18 @@ class V20PresExRecord(BaseModel):
         pres_proposal: Optional[V20PresProposal] = None,
         pres_request: Optional[V20PresRequest] = None,
         role: Optional[Literal["prover", "verifier"]] = None,
-        state: Optional[Literal["proposal-sent", "proposal-received", "request-sent", "request-received", "presentation-sent", "presentation-received", "done", "abandoned"]] = None,
+        state: Optional[
+            Literal[
+                "proposal-sent",
+                "proposal-received",
+                "request-sent",
+                "request-received",
+                "presentation-sent",
+                "presentation-received",
+                "done",
+                "abandoned",
+            ]
+        ] = None,
         thread_id: Optional[str] = None,
         trace: Optional[bool] = None,
         updated_at: Optional[str] = None,
@@ -104,7 +128,9 @@ class V20PresExRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of created_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of created_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("updated_at")
@@ -115,7 +141,9 @@ class V20PresExRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of updated_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of updated_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

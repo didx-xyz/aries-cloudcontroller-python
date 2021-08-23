@@ -10,7 +10,9 @@ from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.v20_cred_ex_record import V20CredExRecord
 from aries_cloudcontroller.model.v20_cred_ex_record_indy import V20CredExRecordIndy
-from aries_cloudcontroller.model.v20_cred_ex_record_ld_proof import V20CredExRecordLDProof
+from aries_cloudcontroller.model.v20_cred_ex_record_ld_proof import (
+    V20CredExRecordLDProof,
+)
 
 
 class V20CredExRecordDetail(BaseModel):

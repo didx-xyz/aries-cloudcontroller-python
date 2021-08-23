@@ -23,7 +23,9 @@ class PresentationRequest(BaseModel):
         comment: Human-readable comment [Optional].
     """
 
-    request_presentationsattach: List[AttachDecorator] = Field(..., alias="request_presentations~attach")
+    request_presentationsattach: List[AttachDecorator] = Field(
+        ..., alias="request_presentations~attach"
+    )
     id: Optional[str] = Field(None, alias="@id")
     type: Optional[str] = Field(None, alias="@type")
     comment: Optional[str] = None

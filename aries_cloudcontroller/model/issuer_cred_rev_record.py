@@ -68,7 +68,9 @@ class IssuerCredRevRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of created_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of created_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("cred_def_id")
@@ -79,7 +81,9 @@ class IssuerCredRevRecord(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of cred_def_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of cred_def_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("cred_rev_id")
@@ -90,7 +94,9 @@ class IssuerCredRevRecord(BaseModel):
 
         pattern = r"^[1-9][0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of cred_rev_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of cred_rev_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("rev_reg_id")
@@ -101,7 +107,9 @@ class IssuerCredRevRecord(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of rev_reg_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of rev_reg_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("updated_at")
@@ -112,7 +120,9 @@ class IssuerCredRevRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of updated_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of updated_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

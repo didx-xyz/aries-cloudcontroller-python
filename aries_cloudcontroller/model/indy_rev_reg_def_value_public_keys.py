@@ -8,7 +8,9 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.indy_rev_reg_def_value_public_keys_accum_key import IndyRevRegDefValuePublicKeysAccumKey
+from aries_cloudcontroller.model.indy_rev_reg_def_value_public_keys_accum_key import (
+    IndyRevRegDefValuePublicKeysAccumKey,
+)
 
 
 class IndyRevRegDefValuePublicKeys(BaseModel):
@@ -20,7 +22,9 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
         accum_key: The accum_key of this IndyRevRegDefValuePublicKeys [Optional].
     """
 
-    accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = Field(None, alias="accumKey")
+    accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = Field(
+        None, alias="accumKey"
+    )
 
     def __init__(
         self,

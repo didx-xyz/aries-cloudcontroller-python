@@ -26,7 +26,9 @@ class V20Pres(BaseModel):
     """
 
     formats: List[V20PresFormat]
-    presentationsattach: List[AttachDecorator] = Field(..., alias="presentations~attach")
+    presentationsattach: List[AttachDecorator] = Field(
+        ..., alias="presentations~attach"
+    )
     id: Optional[str] = Field(None, alias="@id")
     type: Optional[str] = Field(None, alias="@type")
     comment: Optional[str] = None

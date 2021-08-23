@@ -106,7 +106,9 @@ class IssuerRevRegRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of created_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of created_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("cred_def_id")
@@ -117,7 +119,9 @@ class IssuerRevRegRecord(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of cred_def_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of cred_def_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("issuer_did")
@@ -128,7 +132,9 @@ class IssuerRevRegRecord(BaseModel):
 
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of issuer_did does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of issuer_did does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("revoc_reg_id")
@@ -139,7 +145,9 @@ class IssuerRevRegRecord(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of revoc_reg_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of revoc_reg_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("tails_hash")
@@ -148,9 +156,13 @@ class IssuerRevRegRecord(BaseModel):
         if value is None:
             return
 
-        pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        pattern = (
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        )
         if not re.match(pattern, value):
-            raise ValueError(f"Value of tails_hash does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of tails_hash does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("updated_at")
@@ -161,7 +173,9 @@ class IssuerRevRegRecord(BaseModel):
 
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of updated_at does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of updated_at does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

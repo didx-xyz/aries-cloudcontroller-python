@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.credential_preview import CredentialPreview
 
 
@@ -17,8 +17,8 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
     Do not edit the class manually.
 
     V10CredentialConnFreeOfferRequest - a model defined in OpenAPI
-        cred_def_id: Credential definition identifier. 
-        credential_preview: The credential_preview of this V10CredentialConnFreeOfferRequest. 
+        cred_def_id: Credential definition identifier.
+        credential_preview: The credential_preview of this V10CredentialConnFreeOfferRequest.
         auto_issue: Whether to respond automatically to credential requests, creating and issuing requested credentials [Optional].
         auto_remove: Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting) [Optional].
         comment: Human-readable comment [Optional].
@@ -51,13 +51,19 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
             credential_preview=credential_preview,
             trace=trace,
             **kwargs,
-        ) 
+        )
 
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError("Value of cred_def_id does not match regex pattern ('^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$')")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                "Value of cred_def_id does not match regex pattern ('^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$')"
+            )
         return value
+
 
 V10CredentialConnFreeOfferRequest.update_forward_refs()

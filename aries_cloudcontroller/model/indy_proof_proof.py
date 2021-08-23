@@ -8,8 +8,12 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.indy_proof_proof_aggregated_proof import IndyProofProofAggregatedProof
-from aries_cloudcontroller.model.indy_proof_proof_proofs_proof import IndyProofProofProofsProof
+from aries_cloudcontroller.model.indy_proof_proof_aggregated_proof import (
+    IndyProofProofAggregatedProof,
+)
+from aries_cloudcontroller.model.indy_proof_proof_proofs_proof import (
+    IndyProofProofProofsProof,
+)
 
 
 class IndyProofProof(BaseModel):

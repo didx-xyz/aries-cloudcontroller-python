@@ -24,4 +24,3 @@ class ResolverApi(Consumer):
     @get("/resolver/resolve/{did}")
     def get_did(self, *, did: str) -> ResolutionResult:
         """Retrieve doc for requested did"""
-

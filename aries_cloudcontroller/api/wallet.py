@@ -37,7 +37,15 @@ class WalletApi(Consumer):
 
     @returns.json
     @get("/wallet/did")
-    def get_dids(self, *, did: Query = None, key_type: Query = None, method: Query = None, posture: Query = None, verkey: Query = None) -> DIDList:
+    def get_dids(
+        self,
+        *,
+        did: Query = None,
+        key_type: Query = None,
+        method: Query = None,
+        posture: Query = None,
+        verkey: Query = None
+    ) -> DIDList:
         """List wallet DIDs"""
 
     @returns.json
@@ -60,4 +68,3 @@ class WalletApi(Consumer):
     @post("/wallet/did/public")
     def set_public_did(self, *, did: Query) -> DIDResult:
         """Assign the current public DID"""
-

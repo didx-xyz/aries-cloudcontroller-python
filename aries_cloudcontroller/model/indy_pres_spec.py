@@ -8,8 +8,12 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.indy_requested_creds_requested_attr import IndyRequestedCredsRequestedAttr
-from aries_cloudcontroller.model.indy_requested_creds_requested_pred import IndyRequestedCredsRequestedPred
+from aries_cloudcontroller.model.indy_requested_creds_requested_attr import (
+    IndyRequestedCredsRequestedAttr,
+)
+from aries_cloudcontroller.model.indy_requested_creds_requested_pred import (
+    IndyRequestedCredsRequestedPred,
+)
 
 
 class IndyPresSpec(BaseModel):

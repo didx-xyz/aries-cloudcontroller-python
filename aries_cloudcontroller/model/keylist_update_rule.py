@@ -39,9 +39,13 @@ class KeylistUpdateRule(BaseModel):
     @validator("recipient_key")
     def recipient_key_pattern(cls, value):
 
-        pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        pattern = (
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
+        )
         if not re.match(pattern, value):
-            raise ValueError(f"Value of recipient_key does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of recipient_key does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

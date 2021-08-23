@@ -35,7 +35,9 @@ class ActionMenuApi(Consumer):
     @returns.json
     @json
     @post("/action-menu/{conn_id}/perform")
-    def perform_action(self, *, conn_id: str, body: Body(type=PerformRequest) = {}) -> Dict:
+    def perform_action(
+        self, *, conn_id: str, body: Body(type=PerformRequest) = {}
+    ) -> Dict:
         """Perform an action associated with the active menu"""
 
     @returns.json
@@ -48,4 +50,3 @@ class ActionMenuApi(Consumer):
     @post("/action-menu/{conn_id}/send-menu")
     def send_menu(self, *, conn_id: str, body: Body(type=SendMenu) = {}) -> Dict:
         """Send an action menu to a connection"""
-

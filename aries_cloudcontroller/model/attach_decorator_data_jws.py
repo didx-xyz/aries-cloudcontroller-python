@@ -8,8 +8,12 @@ import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
-from aries_cloudcontroller.model.attach_decorator_data1_jws import AttachDecoratorData1JWS
-from aries_cloudcontroller.model.attach_decorator_data_jws_header import AttachDecoratorDataJWSHeader
+from aries_cloudcontroller.model.attach_decorator_data1_jws import (
+    AttachDecoratorData1JWS,
+)
+from aries_cloudcontroller.model.attach_decorator_data_jws_header import (
+    AttachDecoratorDataJWSHeader,
+)
 
 
 class AttachDecoratorDataJWS(BaseModel):
@@ -54,7 +58,9 @@ class AttachDecoratorDataJWS(BaseModel):
 
         pattern = r"^[-_a-zA-Z0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of protected does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of protected does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("signature")
@@ -65,7 +71,9 @@ class AttachDecoratorDataJWS(BaseModel):
 
         pattern = r"^[-_a-zA-Z0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of signature does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of signature does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

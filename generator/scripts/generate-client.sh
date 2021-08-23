@@ -11,3 +11,5 @@ java  -ea -server -Duser.timezone=UTC -jar "$(pwd)/../../openapi-generator/modul
 
 # Copy 
 cp -r ../generated/aries_cloudcontroller/ ../aries_cloudcontroller/
+
+black ..

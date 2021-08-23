@@ -57,7 +57,9 @@ class AttachDecoratorData(BaseModel):
 
         pattern = r"^[a-zA-Z0-9+\/]*&#x3D;{0,2}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of base64 does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of base64 does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("sha256")
@@ -68,7 +70,9 @@ class AttachDecoratorData(BaseModel):
 
         pattern = r"^[a-fA-F0-9+\/]{64}$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of sha256 does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of sha256 does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

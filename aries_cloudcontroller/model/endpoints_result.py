@@ -44,7 +44,9 @@ class EndpointsResult(BaseModel):
 
         pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&amp;#]+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of my_endpoint does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of my_endpoint does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("their_endpoint")
@@ -55,7 +57,9 @@ class EndpointsResult(BaseModel):
 
         pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&amp;#]+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of their_endpoint does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of their_endpoint does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

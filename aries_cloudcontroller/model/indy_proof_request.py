@@ -10,7 +10,9 @@ from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_proof_req_attr_spec import IndyProofReqAttrSpec
 from aries_cloudcontroller.model.indy_proof_req_pred_spec import IndyProofReqPredSpec
-from aries_cloudcontroller.model.indy_proof_request_non_revoked import IndyProofRequestNonRevoked
+from aries_cloudcontroller.model.indy_proof_request_non_revoked import (
+    IndyProofRequestNonRevoked,
+)
 
 
 class IndyProofRequest(BaseModel):
@@ -63,7 +65,9 @@ class IndyProofRequest(BaseModel):
 
         pattern = r"^[1-9][0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of nonce does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of nonce does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("version")
@@ -74,7 +78,9 @@ class IndyProofRequest(BaseModel):
 
         pattern = r"^[0-9.]+$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of version does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of version does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

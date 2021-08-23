@@ -52,7 +52,9 @@ class IndyProofIdentifier(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of cred_def_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of cred_def_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("rev_reg_id")
@@ -63,7 +65,9 @@ class IndyProofIdentifier(BaseModel):
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of rev_reg_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of rev_reg_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("schema_id")
@@ -74,7 +78,9 @@ class IndyProofIdentifier(BaseModel):
 
         pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of schema_id does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of schema_id does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("timestamp")

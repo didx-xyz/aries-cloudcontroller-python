@@ -48,7 +48,9 @@ class Generated(BaseModel):
 
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of master_secret does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of master_secret does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("number")
@@ -59,7 +61,9 @@ class Generated(BaseModel):
 
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of number does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of number does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("remainder")
@@ -70,7 +74,9 @@ class Generated(BaseModel):
 
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of remainder does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of remainder does not match regex pattern ('{pattern}')"
+            )
         return value
 
 

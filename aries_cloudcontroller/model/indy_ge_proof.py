@@ -61,7 +61,9 @@ class IndyGEProof(BaseModel):
 
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
-            raise ValueError(f"Value of alpha does not match regex pattern ('{pattern}')")
+            raise ValueError(
+                f"Value of alpha does not match regex pattern ('{pattern}')"
+            )
         return value
 
     @validator("mj")
