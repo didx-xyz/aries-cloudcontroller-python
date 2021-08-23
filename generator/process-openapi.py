@@ -36,7 +36,7 @@ class OpenAPICleaner:
             self.no_missing_external_doc_urls(child)
 
         if "externalDocs" in value and "url" not in value["externalDocs"]:
-            value["externalDocs"]["url"] = "http://example.com/replace/me"
+            value["externalDocs"]["url"] = "https://example.com/replace/me"
 
     @no_missing_external_doc_urls.register
     def _(self, value: list):

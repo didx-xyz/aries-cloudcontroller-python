@@ -2,7 +2,7 @@ import logging
 import re
 import pytest
 
-from aries_cloudcontroller.agent import AcaPyClient
+from aries_cloudcontroller.acapy_client import AcaPyClient
 
 LOGGER = logging.getLogger(__name__)
 
