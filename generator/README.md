@@ -13,7 +13,9 @@ git checkout feature/new-uplink-generator
 mvn -B --no-snapshot-updates clean package -DskipTests=true -Dmaven.javadoc.skip=true -Djacoco.skip=true
 
 # Generate client
-cd aries-cloudcontroller/generator
+cd aries-cloudcontroller
+pip install -r requirements.tsx
+cd generator
 ./scripts/generate-client.sh
 ```
 
