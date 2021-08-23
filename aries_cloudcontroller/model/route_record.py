@@ -38,7 +38,7 @@ class RouteRecord(BaseModel):
     def __init__(
         self,
         *,
-        recipient_key: str,
+        recipient_key: str = None,
         connection_id: Optional[str] = None,
         created_at: Optional[str] = None,
         record_id: Optional[str] = None,

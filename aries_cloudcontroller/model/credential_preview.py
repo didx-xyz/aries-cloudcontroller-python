@@ -27,7 +27,7 @@ class CredentialPreview(BaseModel):
     def __init__(
         self,
         *,
-        attributes: List[CredAttrSpec],
+        attributes: List[CredAttrSpec] = None,
         type: Optional[str] = None,
         **kwargs,
     ):

@@ -35,12 +35,12 @@ class ConnectionStaticResult(BaseModel):
     def __init__(
         self,
         *,
-        mv_verkey: str,
-        my_did: str,
-        my_endpoint: str,
-        record: ConnRecord,
-        their_did: str,
-        their_verkey: str,
+        mv_verkey: str = None,
+        my_did: str = None,
+        my_endpoint: str = None,
+        record: ConnRecord = None,
+        their_did: str = None,
+        their_verkey: str = None,
         **kwargs,
     ):
         super().__init__(

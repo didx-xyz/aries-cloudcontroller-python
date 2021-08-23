@@ -34,8 +34,8 @@ class V20PresProposal(BaseModel):
     def __init__(
         self,
         *,
-        formats: List[V20PresFormat],
-        proposalsattach: List[AttachDecorator],
+        formats: List[V20PresFormat] = None,
+        proposalsattach: List[AttachDecorator] = None,
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

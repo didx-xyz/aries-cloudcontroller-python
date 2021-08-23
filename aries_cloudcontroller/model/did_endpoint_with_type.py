@@ -28,7 +28,7 @@ class DIDEndpointWithType(BaseModel):
     def __init__(
         self,
         *,
-        did: str,
+        did: str = None,
         endpoint: Optional[str] = None,
         endpoint_type: Optional[Literal["Endpoint", "Profile", "LinkedDomains"]] = None,
         **kwargs,

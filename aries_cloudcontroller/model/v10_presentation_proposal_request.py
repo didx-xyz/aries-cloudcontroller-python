@@ -33,8 +33,8 @@ class V10PresentationProposalRequest(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str,
-        presentation_proposal: IndyPresPreview,
+        connection_id: str = None,
+        presentation_proposal: IndyPresPreview = None,
         auto_present: Optional[bool] = None,
         comment: Optional[str] = None,
         trace: Optional[bool] = None,

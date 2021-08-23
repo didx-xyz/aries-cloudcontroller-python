@@ -31,7 +31,7 @@ class MenuJson(BaseModel):
     def __init__(
         self,
         *,
-        options: List[MenuOption],
+        options: List[MenuOption] = None,
         description: Optional[str] = None,
         errormsg: Optional[str] = None,
         title: Optional[str] = None,

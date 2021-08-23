@@ -35,9 +35,9 @@ class IndyProofReqPredSpec(BaseModel):
     def __init__(
         self,
         *,
-        name: str,
-        p_type: Literal["&lt;", "&lt;&#x3D;", "&gt;&#x3D;", "&gt;"],
-        p_value: int,
+        name: str = None,
+        p_type: Literal["&lt;", "&lt;&#x3D;", "&gt;&#x3D;", "&gt;"] = None,
+        p_value: int = None,
         non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None,
         restrictions: Optional[List[Dict[str, str]]] = None,
         **kwargs,

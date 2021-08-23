@@ -38,8 +38,8 @@ class V20CredOfferRequest(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str,
-        filter: V20CredFilter,
+        connection_id: str = None,
+        filter: V20CredFilter = None,
         auto_issue: Optional[bool] = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,

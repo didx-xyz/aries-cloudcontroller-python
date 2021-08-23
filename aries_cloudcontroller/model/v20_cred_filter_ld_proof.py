@@ -25,7 +25,7 @@ class V20CredFilterLDProof(BaseModel):
     def __init__(
         self,
         *,
-        ld_proof: LDProofVCDetail,
+        ld_proof: LDProofVCDetail = None,
         **kwargs,
     ):
         super().__init__(

@@ -34,8 +34,8 @@ class WalletRecord(BaseModel):
     def __init__(
         self,
         *,
-        key_management_mode: Literal["managed", "unmanaged"],
-        wallet_id: str,
+        key_management_mode: Literal["managed", "unmanaged"] = None,
+        wallet_id: str = None,
         created_at: Optional[str] = None,
         settings: Optional[Dict[str, Any]] = None,
         state: Optional[str] = None,

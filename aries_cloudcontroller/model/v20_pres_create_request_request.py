@@ -31,7 +31,7 @@ class V20PresCreateRequestRequest(BaseModel):
     def __init__(
         self,
         *,
-        presentation_request: V20PresRequestByFormat,
+        presentation_request: V20PresRequestByFormat = None,
         comment: Optional[str] = None,
         trace: Optional[bool] = None,
         **kwargs,

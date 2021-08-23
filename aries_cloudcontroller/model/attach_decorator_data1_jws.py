@@ -31,8 +31,8 @@ class AttachDecoratorData1JWS(BaseModel):
     def __init__(
         self,
         *,
-        header: AttachDecoratorDataJWSHeader,
-        signature: str,
+        header: AttachDecoratorDataJWSHeader = None,
+        signature: str = None,
         protected: Optional[str] = None,
         **kwargs,
     ):

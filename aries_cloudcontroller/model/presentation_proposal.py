@@ -31,7 +31,7 @@ class PresentationProposal(BaseModel):
     def __init__(
         self,
         *,
-        presentation_proposal: IndyPresPreview,
+        presentation_proposal: IndyPresPreview = None,
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

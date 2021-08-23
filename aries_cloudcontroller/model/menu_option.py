@@ -33,8 +33,8 @@ class MenuOption(BaseModel):
     def __init__(
         self,
         *,
-        name: str,
-        title: str,
+        name: str = None,
+        title: str = None,
         description: Optional[str] = None,
         disabled: Optional[bool] = None,
         form: Optional[MenuForm] = None,

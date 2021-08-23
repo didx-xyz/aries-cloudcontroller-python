@@ -26,8 +26,8 @@ class KeylistUpdateRule(BaseModel):
     def __init__(
         self,
         *,
-        action: Literal["add", "remove"],
-        recipient_key: str,
+        action: Literal["add", "remove"] = None,
+        recipient_key: str = None,
         **kwargs,
     ):
         super().__init__(

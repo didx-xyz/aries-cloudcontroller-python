@@ -27,7 +27,7 @@ class VerifyRequest(BaseModel):
     def __init__(
         self,
         *,
-        doc: SignedDoc,
+        doc: SignedDoc = None,
         verkey: Optional[str] = None,
         **kwargs,
     ):

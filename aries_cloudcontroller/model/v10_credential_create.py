@@ -43,7 +43,7 @@ class V10CredentialCreate(BaseModel):
     def __init__(
         self,
         *,
-        credential_proposal: CredentialPreview,
+        credential_proposal: CredentialPreview = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,
         cred_def_id: Optional[str] = None,

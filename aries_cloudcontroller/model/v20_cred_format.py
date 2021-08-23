@@ -26,8 +26,8 @@ class V20CredFormat(BaseModel):
     def __init__(
         self,
         *,
-        attach_id: str,
-        format: str,
+        attach_id: str = None,
+        format: str = None,
         **kwargs,
     ):
         super().__init__(

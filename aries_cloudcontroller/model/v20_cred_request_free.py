@@ -35,8 +35,8 @@ class V20CredRequestFree(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str,
-        filter: V20CredFilterLDProof,
+        connection_id: str = None,
+        filter: V20CredFilterLDProof = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,
         holder_did: Optional[str] = None,

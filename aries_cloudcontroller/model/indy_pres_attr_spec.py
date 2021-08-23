@@ -32,7 +32,7 @@ class IndyPresAttrSpec(BaseModel):
     def __init__(
         self,
         *,
-        name: str,
+        name: str = None,
         cred_def_id: Optional[str] = None,
         mime_type: Optional[str] = None,
         referent: Optional[str] = None,

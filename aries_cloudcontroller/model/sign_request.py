@@ -27,8 +27,8 @@ class SignRequest(BaseModel):
     def __init__(
         self,
         *,
-        doc: Doc,
-        verkey: str,
+        doc: Doc = None,
+        verkey: str = None,
         **kwargs,
     ):
         super().__init__(

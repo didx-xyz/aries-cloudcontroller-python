@@ -32,10 +32,10 @@ class IndyCredRequest(BaseModel):
     def __init__(
         self,
         *,
-        blinded_ms: Dict[str, Any],
-        blinded_ms_correctness_proof: Dict[str, Any],
-        cred_def_id: str,
-        nonce: str,
+        blinded_ms: Dict[str, Any] = None,
+        blinded_ms_correctness_proof: Dict[str, Any] = None,
+        cred_def_id: str = None,
+        nonce: str = None,
         prover_did: Optional[str] = None,
         **kwargs,
     ):

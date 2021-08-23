@@ -25,7 +25,7 @@ class SendMenu(BaseModel):
     def __init__(
         self,
         *,
-        menu: MenuJson,
+        menu: MenuJson = None,
         **kwargs,
     ):
         super().__init__(

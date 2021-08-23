@@ -35,8 +35,8 @@ class V20PresProposalRequest(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str,
-        presentation_proposal: V20PresProposalByFormat,
+        connection_id: str = None,
+        presentation_proposal: V20PresProposalByFormat = None,
         auto_present: Optional[bool] = None,
         comment: Optional[str] = None,
         trace: Optional[bool] = None,

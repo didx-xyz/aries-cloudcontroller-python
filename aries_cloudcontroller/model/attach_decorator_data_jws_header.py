@@ -24,7 +24,7 @@ class AttachDecoratorDataJWSHeader(BaseModel):
     def __init__(
         self,
         *,
-        kid: str,
+        kid: str = None,
         **kwargs,
     ):
         super().__init__(

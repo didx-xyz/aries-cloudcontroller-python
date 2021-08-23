@@ -38,8 +38,8 @@ class V20PresRequest(BaseModel):
     def __init__(
         self,
         *,
-        formats: List[V20PresFormat],
-        request_presentationsattach: List[AttachDecorator],
+        formats: List[V20PresFormat] = None,
+        request_presentationsattach: List[AttachDecorator] = None,
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

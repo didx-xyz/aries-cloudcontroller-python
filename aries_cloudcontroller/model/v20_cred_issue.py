@@ -36,8 +36,8 @@ class V20CredIssue(BaseModel):
     def __init__(
         self,
         *,
-        credentialsattach: List[AttachDecorator],
-        formats: List[V20CredFormat],
+        credentialsattach: List[AttachDecorator] = None,
+        formats: List[V20CredFormat] = None,
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

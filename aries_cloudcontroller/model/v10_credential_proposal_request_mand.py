@@ -45,8 +45,8 @@ class V10CredentialProposalRequestMand(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str,
-        credential_proposal: CredentialPreview,
+        connection_id: str = None,
+        credential_proposal: CredentialPreview = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,
         cred_def_id: Optional[str] = None,

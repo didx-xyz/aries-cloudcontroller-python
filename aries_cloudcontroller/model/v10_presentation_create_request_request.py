@@ -29,7 +29,7 @@ class V10PresentationCreateRequestRequest(BaseModel):
     def __init__(
         self,
         *,
-        proof_request: IndyProofRequest,
+        proof_request: IndyProofRequest = None,
         comment: Optional[str] = None,
         trace: Optional[bool] = None,
         **kwargs,

@@ -24,7 +24,7 @@ class Date(BaseModel):
     def __init__(
         self,
         *,
-        expires_time: datetime,
+        expires_time: datetime = None,
         **kwargs,
     ):
         super().__init__(

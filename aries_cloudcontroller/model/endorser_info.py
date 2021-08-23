@@ -26,7 +26,7 @@ class EndorserInfo(BaseModel):
     def __init__(
         self,
         *,
-        endorser_did: str,
+        endorser_did: str = None,
         endorser_name: Optional[str] = None,
         **kwargs,
     ):

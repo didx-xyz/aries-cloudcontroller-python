@@ -35,7 +35,7 @@ class Menu(BaseModel):
     def __init__(
         self,
         *,
-        options: List[MenuOption],
+        options: List[MenuOption] = None,
         id: Optional[str] = None,
         type: Optional[str] = None,
         description: Optional[str] = None,

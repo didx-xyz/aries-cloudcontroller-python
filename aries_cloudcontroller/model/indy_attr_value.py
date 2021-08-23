@@ -26,8 +26,8 @@ class IndyAttrValue(BaseModel):
     def __init__(
         self,
         *,
-        encoded: str,
-        raw: str,
+        encoded: str = None,
+        raw: str = None,
         **kwargs,
     ):
         super().__init__(

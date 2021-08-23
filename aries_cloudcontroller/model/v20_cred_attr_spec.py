@@ -28,8 +28,8 @@ class V20CredAttrSpec(BaseModel):
     def __init__(
         self,
         *,
-        name: str,
-        value: str,
+        name: str = None,
+        value: str = None,
         mime_type: Optional[str] = None,
         **kwargs,
     ):

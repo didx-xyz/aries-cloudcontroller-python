@@ -45,7 +45,7 @@ class V10CredentialProposalRequestOpt(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str,
+        connection_id: str = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,
         cred_def_id: Optional[str] = None,

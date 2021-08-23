@@ -31,8 +31,8 @@ class V10PresentationSendRequestRequest(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str,
-        proof_request: IndyProofRequest,
+        connection_id: str = None,
+        proof_request: IndyProofRequest = None,
         comment: Optional[str] = None,
         trace: Optional[bool] = None,
         **kwargs,

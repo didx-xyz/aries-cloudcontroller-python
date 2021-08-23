@@ -30,8 +30,8 @@ class IndyPresPreview(BaseModel):
     def __init__(
         self,
         *,
-        attributes: List[IndyPresAttrSpec],
-        predicates: List[IndyPresPredSpec],
+        attributes: List[IndyPresAttrSpec] = None,
+        predicates: List[IndyPresPredSpec] = None,
         type: Optional[str] = None,
         **kwargs,
     ):

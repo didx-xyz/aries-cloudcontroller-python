@@ -24,7 +24,7 @@ class V10PresentationProblemReportRequest(BaseModel):
     def __init__(
         self,
         *,
-        description: str,
+        description: str = None,
         **kwargs,
     ):
         super().__init__(

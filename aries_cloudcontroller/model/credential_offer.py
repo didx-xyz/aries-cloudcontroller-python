@@ -34,7 +34,7 @@ class CredentialOffer(BaseModel):
     def __init__(
         self,
         *,
-        offersattach: List[AttachDecorator],
+        offersattach: List[AttachDecorator] = None,
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

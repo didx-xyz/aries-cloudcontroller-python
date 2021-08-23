@@ -24,7 +24,7 @@ class CredentialStatusOptions(BaseModel):
     def __init__(
         self,
         *,
-        type: str,
+        type: str = None,
         **kwargs,
     ):
         super().__init__(
