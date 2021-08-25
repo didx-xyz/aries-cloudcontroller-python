@@ -20,14 +20,14 @@ class IndyProofReqPredSpec(BaseModel):
 
     IndyProofReqPredSpec - a model defined in OpenAPI
         name: Attribute name.
-        p_type: Predicate type (&#39;&lt;&#39;, &#39;&lt;&#x3D;&#39;, &#39;&gt;&#x3D;&#39;, or &#39;&gt;&#39;).
+        p_type: Predicate type ('<', '<=', '>=', or '>').
         p_value: Threshold value.
         non_revoked: The non_revoked of this IndyProofReqPredSpec [Optional].
         restrictions: If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::&lt;attribute-name&gt;::value where &lt;attribute-name&gt; represents a credential attribute name [Optional].
     """
 
     name: str
-    p_type: Literal["&lt;", "&lt;&#x3D;", "&gt;&#x3D;", "&gt;"]
+    p_type: Literal["<", "<=", ">=", ">"]
     p_value: int
     non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None
     restrictions: Optional[List[Dict[str, str]]] = None
@@ -36,7 +36,7 @@ class IndyProofReqPredSpec(BaseModel):
         self,
         *,
         name: str = None,
-        p_type: Literal["&lt;", "&lt;&#x3D;", "&gt;&#x3D;", "&gt;"] = None,
+        p_type: Literal["<", "<=", ">=", ">"] = None,
         p_value: int = None,
         non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None,
         restrictions: Optional[List[Dict[str, str]]] = None,

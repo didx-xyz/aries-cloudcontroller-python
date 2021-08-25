@@ -17,13 +17,13 @@ class IndyPresPredSpec(BaseModel):
 
     IndyPresPredSpec - a model defined in OpenAPI
         name: Attribute name.
-        predicate: Predicate type (&#39;&lt;&#39;, &#39;&lt;&#x3D;&#39;, &#39;&gt;&#x3D;&#39;, or &#39;&gt;&#39;).
+        predicate: Predicate type ('<', '<=', '>=', or '>').
         threshold: Threshold value.
         cred_def_id: Credential definition identifier [Optional].
     """
 
     name: str
-    predicate: Literal["&lt;", "&lt;&#x3D;", "&gt;&#x3D;", "&gt;"]
+    predicate: Literal["<", "<=", ">=", ">"]
     threshold: int
     cred_def_id: Optional[str] = None
 
@@ -31,7 +31,7 @@ class IndyPresPredSpec(BaseModel):
         self,
         *,
         name: str = None,
-        predicate: Literal["&lt;", "&lt;&#x3D;", "&gt;&#x3D;", "&gt;"] = None,
+        predicate: Literal["<", "<=", ">=", ">"] = None,
         threshold: int = None,
         cred_def_id: Optional[str] = None,
         **kwargs,
