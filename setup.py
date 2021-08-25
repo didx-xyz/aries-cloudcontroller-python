@@ -18,7 +18,7 @@ def parse_requirements(filename: str):
 if __name__ == "__main__":
     setup(
         name=PACKAGE_NAME,
-        version="0.3.0a5",
+        version="0.3.0a6",
         description="A simple python package for controlling an aries agent through the admin-api interface",
         long_description=long_description,
         long_description_content_type="text/markdown",
@@ -28,7 +28,6 @@ if __name__ == "__main__":
         package_data={
             "aries_cloudcontroller": [
                 "requirements.txt",
-                "aries_cloudcontroller/py.typed",
             ]
         },
         install_requires=parse_requirements("requirements.txt"),

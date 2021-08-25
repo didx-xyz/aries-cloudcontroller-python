@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List  # noqa: F401
+from typing import Dict, List, Optional  # noqa: F401
 
 from aries_cloudcontroller.model.did_create import DIDCreate
 from aries_cloudcontroller.model.did_endpoint import DIDEndpoint
@@ -24,20 +24,74 @@ from aries_cloudcontroller.model.did_result import DIDResult
 
 
 class WalletApi(Consumer):
+    async def create_did(self, *, body: Optional[DIDCreate] = None) -> DIDResult:
+        """Create a local DID"""
+        return await self.__create_did(
+            body=body,
+        )
+
+    async def get_did_endpoint(self, *, did: str) -> DIDEndpoint:
+        """Query DID endpoint in wallet"""
+        return await self.__get_did_endpoint(
+            did=did,
+        )
+
+    async def get_dids(
+        self,
+        *,
+        did: Optional[str] = None,
+        key_type: Optional[str] = None,
+        method: Optional[str] = None,
+        posture: Optional[str] = None,
+        verkey: Optional[str] = None
+    ) -> DIDList:
+        """List wallet DIDs"""
+        return await self.__get_dids(
+            did=did,
+            key_type=key_type,
+            method=method,
+            posture=posture,
+            verkey=verkey,
+        )
+
+    async def get_public_did(self) -> DIDResult:
+        """Fetch the current public DID"""
+        return await self.__get_public_did()
+
+    async def rotate_keypair(self, *, did: str) -> Dict:
+        """Rotate keypair for a DID not posted to the ledger"""
+        return await self.__rotate_keypair(
+            did=did,
+        )
+
+    async def set_did_endpoint(
+        self, *, body: Optional[DIDEndpointWithType] = None
+    ) -> Dict:
+        """Update endpoint in wallet and on ledger if posted to it"""
+        return await self.__set_did_endpoint(
+            body=body,
+        )
+
+    async def set_public_did(self, *, did: str) -> DIDResult:
+        """Assign the current public DID"""
+        return await self.__set_public_did(
+            did=did,
+        )
+
     @returns.json
     @json
     @post("/wallet/did/create")
-    def create_did(self, *, body: Body(type=DIDCreate) = {}) -> DIDResult:
-        """Create a local DID"""
+    def __create_did(self, *, body: Body(type=DIDCreate) = {}) -> DIDResult:
+        """Internal uplink method for create_did"""
 
     @returns.json
     @get("/wallet/get-did-endpoint")
-    def get_did_endpoint(self, *, did: Query) -> DIDEndpoint:
-        """Query DID endpoint in wallet"""
+    def __get_did_endpoint(self, *, did: Query) -> DIDEndpoint:
+        """Internal uplink method for get_did_endpoint"""
 
     @returns.json
     @get("/wallet/did")
-    def get_dids(
+    def __get_dids(
         self,
         *,
         did: Query = None,
@@ -46,25 +100,25 @@ class WalletApi(Consumer):
         posture: Query = None,
         verkey: Query = None
     ) -> DIDList:
-        """List wallet DIDs"""
+        """Internal uplink method for get_dids"""
 
     @returns.json
     @get("/wallet/did/public")
-    def get_public_did(self) -> DIDResult:
-        """Fetch the current public DID"""
+    def __get_public_did(self) -> DIDResult:
+        """Internal uplink method for get_public_did"""
 
     @returns.json
     @patch("/wallet/did/local/rotate-keypair")
-    def rotate_keypair(self, *, did: Query) -> Dict:
-        """Rotate keypair for a DID not posted to the ledger"""
+    def __rotate_keypair(self, *, did: Query) -> Dict:
+        """Internal uplink method for rotate_keypair"""
 
     @returns.json
     @json
     @post("/wallet/set-did-endpoint")
-    def set_did_endpoint(self, *, body: Body(type=DIDEndpointWithType) = {}) -> Dict:
-        """Update endpoint in wallet and on ledger if posted to it"""
+    def __set_did_endpoint(self, *, body: Body(type=DIDEndpointWithType) = {}) -> Dict:
+        """Internal uplink method for set_did_endpoint"""
 
     @returns.json
     @post("/wallet/did/public")
-    def set_public_did(self, *, did: Query) -> DIDResult:
-        """Assign the current public DID"""
+    def __set_public_did(self, *, did: Query) -> DIDResult:
+        """Internal uplink method for set_public_did"""

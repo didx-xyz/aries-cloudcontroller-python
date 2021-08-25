@@ -1,6 +1,4 @@
-from aries_cloudcontroller.acapy_client import (
-    AcaPyClient
-)
+from aries_cloudcontroller.acapy_client import AcaPyClient
 
 from aries_cloudcontroller.api import (
     ActionMenuApi,

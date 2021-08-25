@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List  # noqa: F401
+from typing import Dict, List, Optional  # noqa: F401
 
 from aries_cloudcontroller.model.v20_cred_bound_offer_request import (
     V20CredBoundOfferRequest,
@@ -39,27 +39,143 @@ from aries_cloudcontroller.model.v20_issue_cred_schema_core import (
 
 
 class IssueCredentialV20Api(Consumer):
+    async def create_credential(
+        self, *, body: Optional[V20IssueCredSchemaCore] = None
+    ) -> V20CredExRecord:
+        """Create credential from attribute values"""
+        return await self.__create_credential(
+            body=body,
+        )
+
+    async def delete_record(self, *, cred_ex_id: str) -> Dict:
+        """Remove an existing credential exchange record"""
+        return await self.__delete_record(
+            cred_ex_id=cred_ex_id,
+        )
+
+    async def get_record(self, *, cred_ex_id: str) -> V20CredExRecordDetail:
+        """Fetch a single credential exchange record"""
+        return await self.__get_record(
+            cred_ex_id=cred_ex_id,
+        )
+
+    async def get_records(
+        self,
+        *,
+        connection_id: Optional[str] = None,
+        role: Optional[str] = None,
+        state: Optional[str] = None,
+        thread_id: Optional[str] = None
+    ) -> V20CredExRecordListResult:
+        """Fetch all credential exchange records"""
+        return await self.__get_records(
+            connection_id=connection_id,
+            role=role,
+            state=state,
+            thread_id=thread_id,
+        )
+
+    async def issue_credential(
+        self, *, cred_ex_id: str, body: Optional[V20CredIssueRequest] = None
+    ) -> V20CredExRecordDetail:
+        """Send holder a credential"""
+        return await self.__issue_credential(
+            cred_ex_id=cred_ex_id,
+            body=body,
+        )
+
+    async def issue_credential_automated(
+        self, *, body: Optional[V20CredSendRequest] = None
+    ) -> V20CredExRecord:
+        """Send holder a credential, automating entire flow"""
+        return await self.__issue_credential_automated(
+            body=body,
+        )
+
+    async def report_problem(
+        self,
+        *,
+        cred_ex_id: str,
+        body: Optional[V20CredIssueProblemReportRequest] = None
+    ) -> Dict:
+        """Send a problem report for credential exchange"""
+        return await self.__report_problem(
+            cred_ex_id=cred_ex_id,
+            body=body,
+        )
+
+    async def send_offer(
+        self, *, cred_ex_id: str, body: Optional[V20CredBoundOfferRequest] = None
+    ) -> V20CredExRecord:
+        """Send holder a credential offer in reference to a proposal with preview"""
+        return await self.__send_offer(
+            cred_ex_id=cred_ex_id,
+            body=body,
+        )
+
+    async def send_offer_free(
+        self, *, body: Optional[V20CredOfferRequest] = None
+    ) -> V20CredExRecord:
+        """Send holder a credential offer, independent of any proposal"""
+        return await self.__send_offer_free(
+            body=body,
+        )
+
+    async def send_proposal(
+        self, *, body: Optional[V20IssueCredSchemaCore] = None
+    ) -> V20CredExRecord:
+        """Send issuer a credential proposal"""
+        return await self.__send_proposal(
+            body=body,
+        )
+
+    async def send_request(
+        self, *, cred_ex_id: str, body: Optional[V20CredRequestRequest] = None
+    ) -> V20CredExRecord:
+        """Send issuer a credential request"""
+        return await self.__send_request(
+            cred_ex_id=cred_ex_id,
+            body=body,
+        )
+
+    async def send_request_free(
+        self, *, body: Optional[V20CredRequestFree] = None
+    ) -> V20CredExRecord:
+        """Send issuer a credential request not bound to an existing thread. Indy credentials cannot start at a request"""
+        return await self.__send_request_free(
+            body=body,
+        )
+
+    async def store_credential(
+        self, *, cred_ex_id: str, body: Optional[V20CredStoreRequest] = None
+    ) -> V20CredExRecordDetail:
+        """Store a received credential"""
+        return await self.__store_credential(
+            cred_ex_id=cred_ex_id,
+            body=body,
+        )
+
     @returns.json
     @json
     @post("/issue-credential-2.0/create")
-    def create_credential(
+    def __create_credential(
         self, *, body: Body(type=V20IssueCredSchemaCore) = {}
     ) -> V20CredExRecord:
-        """Create credential from attribute values"""
+        """Internal uplink method for create_credential"""
 
     @returns.json
     @delete("/issue-credential-2.0/records/{cred_ex_id}")
-    def delete_record(self, *, cred_ex_id: str) -> Dict:
-        """Remove an existing credential exchange record"""
+    def __delete_record(self, *, cred_ex_id: str) -> Dict:
+        """Internal uplink method for delete_record"""
 
     @returns.json
     @get("/issue-credential-2.0/records/{cred_ex_id}")
-    def get_record(self, *, cred_ex_id: str) -> V20CredExRecordDetail:
-        """Fetch a single credential exchange record"""
+    def __get_record(self, *, cred_ex_id: str) -> V20CredExRecordDetail:
+        """Internal uplink method for get_record"""
 
     @returns.json
     @get("/issue-credential-2.0/records")
-    def get_records(
+    def __get_records(
         self,
         *,
         connection_id: Query = None,
@@ -67,76 +183,76 @@ class IssueCredentialV20Api(Consumer):
         state: Query = None,
         thread_id: Query = None
     ) -> V20CredExRecordListResult:
-        """Fetch all credential exchange records"""
+        """Internal uplink method for get_records"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/records/{cred_ex_id}/issue")
-    def issue_credential(
+    def __issue_credential(
         self, *, cred_ex_id: str, body: Body(type=V20CredIssueRequest) = {}
     ) -> V20CredExRecordDetail:
-        """Send holder a credential"""
+        """Internal uplink method for issue_credential"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/send")
-    def issue_credential_automated(
+    def __issue_credential_automated(
         self, *, body: Body(type=V20CredSendRequest) = {}
     ) -> V20CredExRecord:
-        """Send holder a credential, automating entire flow"""
+        """Internal uplink method for issue_credential_automated"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/records/{cred_ex_id}/problem-report")
-    def report_problem(
+    def __report_problem(
         self, *, cred_ex_id: str, body: Body(type=V20CredIssueProblemReportRequest) = {}
     ) -> Dict:
-        """Send a problem report for credential exchange"""
+        """Internal uplink method for report_problem"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/records/{cred_ex_id}/send-offer")
-    def send_offer(
+    def __send_offer(
         self, *, cred_ex_id: str, body: Body(type=V20CredBoundOfferRequest) = {}
     ) -> V20CredExRecord:
-        """Send holder a credential offer in reference to a proposal with preview"""
+        """Internal uplink method for send_offer"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/send-offer")
-    def send_offer_free(
+    def __send_offer_free(
         self, *, body: Body(type=V20CredOfferRequest) = {}
     ) -> V20CredExRecord:
-        """Send holder a credential offer, independent of any proposal"""
+        """Internal uplink method for send_offer_free"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/send-proposal")
-    def send_proposal(
+    def __send_proposal(
         self, *, body: Body(type=V20IssueCredSchemaCore) = {}
     ) -> V20CredExRecord:
-        """Send issuer a credential proposal"""
+        """Internal uplink method for send_proposal"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/records/{cred_ex_id}/send-request")
-    def send_request(
+    def __send_request(
         self, *, cred_ex_id: str, body: Body(type=V20CredRequestRequest) = {}
     ) -> V20CredExRecord:
-        """Send issuer a credential request"""
+        """Internal uplink method for send_request"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/send-request")
-    def send_request_free(
+    def __send_request_free(
         self, *, body: Body(type=V20CredRequestFree) = {}
     ) -> V20CredExRecord:
-        """Send issuer a credential request not bound to an existing thread. Indy credentials cannot start at a request"""
+        """Internal uplink method for send_request_free"""
 
     @returns.json
     @json
     @post("/issue-credential-2.0/records/{cred_ex_id}/store")
-    def store_credential(
+    def __store_credential(
         self, *, cred_ex_id: str, body: Body(type=V20CredStoreRequest) = {}
     ) -> V20CredExRecordDetail:
-        """Store a received credential"""
+        """Internal uplink method for store_credential"""

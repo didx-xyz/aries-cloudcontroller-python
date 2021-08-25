@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List  # noqa: F401
+from typing import Dict, List, Optional  # noqa: F401
 
 from aries_cloudcontroller.model.credential_definition_get_result import (
     CredentialDefinitionGetResult,
@@ -31,9 +31,49 @@ from aries_cloudcontroller.model.txn_or_credential_definition_send_result import
 
 
 class CredentialDefinitionApi(Consumer):
+    async def get_created_cred_defs(
+        self,
+        *,
+        cred_def_id: Optional[str] = None,
+        issuer_did: Optional[str] = None,
+        schema_id: Optional[str] = None,
+        schema_issuer_did: Optional[str] = None,
+        schema_name: Optional[str] = None,
+        schema_version: Optional[str] = None
+    ) -> CredentialDefinitionsCreatedResult:
+        """Search for matching credential definitions that agent originated"""
+        return await self.__get_created_cred_defs(
+            cred_def_id=cred_def_id,
+            issuer_did=issuer_did,
+            schema_id=schema_id,
+            schema_issuer_did=schema_issuer_did,
+            schema_name=schema_name,
+            schema_version=schema_version,
+        )
+
+    async def get_cred_def(self, *, cred_def_id: str) -> CredentialDefinitionGetResult:
+        """Gets a credential definition from the ledger"""
+        return await self.__get_cred_def(
+            cred_def_id=cred_def_id,
+        )
+
+    async def publish_cred_def(
+        self,
+        *,
+        conn_id: Optional[str] = None,
+        create_transaction_for_endorser: Optional[bool] = None,
+        body: Optional[CredentialDefinitionSendRequest] = None
+    ) -> TxnOrCredentialDefinitionSendResult:
+        """Sends a credential definition to the ledger"""
+        return await self.__publish_cred_def(
+            conn_id=conn_id,
+            create_transaction_for_endorser=create_transaction_for_endorser,
+            body=body,
+        )
+
     @returns.json
     @get("/credential-definitions/created")
-    def get_created_cred_defs(
+    def __get_created_cred_defs(
         self,
         *,
         cred_def_id: Query = None,
@@ -43,21 +83,21 @@ class CredentialDefinitionApi(Consumer):
         schema_name: Query = None,
         schema_version: Query = None
     ) -> CredentialDefinitionsCreatedResult:
-        """Search for matching credential definitions that agent originated"""
+        """Internal uplink method for get_created_cred_defs"""
 
     @returns.json
     @get("/credential-definitions/{cred_def_id}")
-    def get_cred_def(self, *, cred_def_id: str) -> CredentialDefinitionGetResult:
-        """Gets a credential definition from the ledger"""
+    def __get_cred_def(self, *, cred_def_id: str) -> CredentialDefinitionGetResult:
+        """Internal uplink method for get_cred_def"""
 
     @returns.json
     @json
     @post("/credential-definitions")
-    def publish_cred_def(
+    def __publish_cred_def(
         self,
         *,
         conn_id: Query = None,
         create_transaction_for_endorser: Query = None,
         body: Body(type=CredentialDefinitionSendRequest) = {}
     ) -> TxnOrCredentialDefinitionSendResult:
-        """Sends a credential definition to the ledger"""
+        """Internal uplink method for publish_cred_def"""

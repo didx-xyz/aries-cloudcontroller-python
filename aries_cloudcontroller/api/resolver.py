@@ -14,13 +14,19 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List  # noqa: F401
+from typing import Dict, List, Optional  # noqa: F401
 
 from aries_cloudcontroller.model.resolution_result import ResolutionResult
 
 
 class ResolverApi(Consumer):
+    async def get_did(self, *, did: str) -> ResolutionResult:
+        """Retrieve doc for requested did"""
+        return await self.__get_did(
+            did=did,
+        )
+
     @returns.json
     @get("/resolver/resolve/{did}")
-    def get_did(self, *, did: str) -> ResolutionResult:
-        """Retrieve doc for requested did"""
+    def __get_did(self, *, did: str) -> ResolutionResult:
+        """Internal uplink method for get_did"""
