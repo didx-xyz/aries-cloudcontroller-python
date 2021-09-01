@@ -36,5 +36,8 @@ class KeylistQueryPaginate(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 KeylistQueryPaginate.update_forward_refs()

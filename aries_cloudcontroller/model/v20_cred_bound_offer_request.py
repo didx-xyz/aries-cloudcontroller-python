@@ -38,5 +38,8 @@ class V20CredBoundOfferRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20CredBoundOfferRequest.update_forward_refs()

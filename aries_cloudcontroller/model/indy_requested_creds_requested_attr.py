@@ -36,5 +36,8 @@ class IndyRequestedCredsRequestedAttr(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyRequestedCredsRequestedAttr.update_forward_refs()

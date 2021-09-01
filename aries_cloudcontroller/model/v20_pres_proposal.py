@@ -50,5 +50,8 @@ class V20PresProposal(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20PresProposal.update_forward_refs()

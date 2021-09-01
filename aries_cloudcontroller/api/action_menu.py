@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional  # noqa: F401
+from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.model.action_menu_fetch_result import ActionMenuFetchResult
 from aries_cloudcontroller.model.perform_request import PerformRequest

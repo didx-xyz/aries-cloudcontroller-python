@@ -70,5 +70,8 @@ class AttachDecorator(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 AttachDecorator.update_forward_refs()

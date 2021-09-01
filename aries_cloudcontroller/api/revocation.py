@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional  # noqa: F401
+from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.model.clear_pending_revocations_request import (
     ClearPendingRevocationsRequest,
@@ -109,7 +109,7 @@ class RevocationApi(Consumer):
         rev_reg_id: str,
         conn_id: Optional[str] = None,
         create_transaction_for_endorser: Optional[bool] = None
-    ) -> TxnOrRevRegResult:
+    ) -> Union[RevRegResult, TxnOrRevRegResult]:
         """Send revocation registry definition to ledger"""
         return await self.__publish_rev_reg_def(
             rev_reg_id=rev_reg_id,
@@ -137,7 +137,7 @@ class RevocationApi(Consumer):
         conn_id: Optional[str] = None,
         create_transaction_for_endorser: Optional[bool] = None,
         body: Optional[PublishRevocations] = None
-    ) -> TxnOrPublishRevocationsResult:
+    ) -> Union[PublishRevocations, TxnOrPublishRevocationsResult]:
         """Publish pending revocations to ledger"""
         return await self.__publish_revocations(
             conn_id=conn_id,
@@ -236,7 +236,7 @@ class RevocationApi(Consumer):
         rev_reg_id: str,
         conn_id: Query = None,
         create_transaction_for_endorser: Query = None
-    ) -> TxnOrRevRegResult:
+    ) -> Union[RevRegResult, TxnOrRevRegResult]:
         """Internal uplink method for publish_rev_reg_def"""
 
     @returns.json
@@ -259,7 +259,7 @@ class RevocationApi(Consumer):
         conn_id: Query = None,
         create_transaction_for_endorser: Query = None,
         body: Body(type=PublishRevocations) = {}
-    ) -> TxnOrPublishRevocationsResult:
+    ) -> Union[PublishRevocations, TxnOrPublishRevocationsResult]:
         """Internal uplink method for publish_revocations"""
 
     @returns.json

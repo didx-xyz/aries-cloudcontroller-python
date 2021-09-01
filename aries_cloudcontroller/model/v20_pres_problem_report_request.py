@@ -32,5 +32,8 @@ class V20PresProblemReportRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20PresProblemReportRequest.update_forward_refs()

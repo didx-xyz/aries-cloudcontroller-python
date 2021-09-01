@@ -44,5 +44,8 @@ class AdminStatus(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 AdminStatus.update_forward_refs()

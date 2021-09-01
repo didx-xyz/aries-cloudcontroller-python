@@ -70,5 +70,8 @@ class LDProofVCDetailOptions(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 LDProofVCDetailOptions.update_forward_refs()

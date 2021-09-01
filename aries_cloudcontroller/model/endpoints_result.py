@@ -62,5 +62,8 @@ class EndpointsResult(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 EndpointsResult.update_forward_refs()

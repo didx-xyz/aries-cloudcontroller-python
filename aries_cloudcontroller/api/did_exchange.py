@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional  # noqa: F401
+from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.model.conn_record import ConnRecord
 from aries_cloudcontroller.model.didx_request import DIDXRequest

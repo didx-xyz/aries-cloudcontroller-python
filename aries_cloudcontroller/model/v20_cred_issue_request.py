@@ -32,5 +32,8 @@ class V20CredIssueRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20CredIssueRequest.update_forward_refs()

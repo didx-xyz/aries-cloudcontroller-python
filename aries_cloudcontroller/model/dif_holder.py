@@ -36,5 +36,8 @@ class DIFHolder(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 DIFHolder.update_forward_refs()

@@ -33,5 +33,8 @@ class DIDList(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 DIDList.update_forward_refs()

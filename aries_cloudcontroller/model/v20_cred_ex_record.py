@@ -166,5 +166,8 @@ class V20CredExRecord(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20CredExRecord.update_forward_refs()

@@ -32,5 +32,8 @@ class QueryResult(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 QueryResult.update_forward_refs()

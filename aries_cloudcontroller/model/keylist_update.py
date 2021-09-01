@@ -41,5 +41,8 @@ class KeylistUpdate(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 KeylistUpdate.update_forward_refs()

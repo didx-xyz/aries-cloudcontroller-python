@@ -44,5 +44,8 @@ class IndyCredPrecis(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyCredPrecis.update_forward_refs()

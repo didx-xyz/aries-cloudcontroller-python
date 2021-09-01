@@ -78,5 +78,8 @@ class V20CredExRecordLDProof(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20CredExRecordLDProof.update_forward_refs()

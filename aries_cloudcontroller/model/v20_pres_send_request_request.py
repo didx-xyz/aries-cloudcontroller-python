@@ -47,5 +47,8 @@ class V20PresSendRequestRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20PresSendRequestRequest.update_forward_refs()

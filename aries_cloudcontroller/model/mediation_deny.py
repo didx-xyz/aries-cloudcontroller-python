@@ -44,5 +44,8 @@ class MediationDeny(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 MediationDeny.update_forward_refs()

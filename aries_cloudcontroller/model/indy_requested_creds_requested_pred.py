@@ -56,5 +56,8 @@ class IndyRequestedCredsRequestedPred(BaseModel):
             raise ValueError(f"timestamp must be greater than 0, currently {value}")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyRequestedCredsRequestedPred.update_forward_refs()

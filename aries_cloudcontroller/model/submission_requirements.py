@@ -60,5 +60,8 @@ class SubmissionRequirements(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 SubmissionRequirements.update_forward_refs()

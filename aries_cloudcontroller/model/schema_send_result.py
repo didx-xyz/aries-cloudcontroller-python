@@ -17,18 +17,18 @@ class SchemaSendResult(BaseModel):
     Do not edit the class manually.
 
     SchemaSendResult - a model defined in OpenAPI
+        schema_: Schema definition.
         schema_id: Schema identifier.
-        schema_: Schema definition [Optional].
     """
 
+    schema_: ModelSchema = Field(..., alias="schema")
     schema_id: str
-    schema_: Optional[ModelSchema] = Field(None, alias="schema")
 
     def __init__(
         self,
         *,
+        schema_: ModelSchema = None,
         schema_id: str = None,
-        schema_: Optional[ModelSchema] = None,
         **kwargs,
     ):
         super().__init__(
@@ -46,6 +46,9 @@ class SchemaSendResult(BaseModel):
                 f"Value of schema_id does not match regex pattern ('{pattern}')"
             )
         return value
+
+    class Config:
+        allow_population_by_field_name = True
 
 
 SchemaSendResult.update_forward_refs()

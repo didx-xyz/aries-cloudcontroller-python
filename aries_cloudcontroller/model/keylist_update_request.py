@@ -33,5 +33,8 @@ class KeylistUpdateRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 KeylistUpdateRequest.update_forward_refs()

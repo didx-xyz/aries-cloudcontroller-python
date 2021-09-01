@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional  # noqa: F401
+from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.model.date import Date
 from aries_cloudcontroller.model.endorser_info import EndorserInfo

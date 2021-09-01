@@ -64,5 +64,8 @@ class W3CCredentialsListRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 W3CCredentialsListRequest.update_forward_refs()

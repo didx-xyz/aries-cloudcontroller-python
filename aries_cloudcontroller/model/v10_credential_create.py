@@ -134,5 +134,8 @@ class V10CredentialCreate(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V10CredentialCreate.update_forward_refs()

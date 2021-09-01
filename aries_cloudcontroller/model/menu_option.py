@@ -49,5 +49,8 @@ class MenuOption(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 MenuOption.update_forward_refs()

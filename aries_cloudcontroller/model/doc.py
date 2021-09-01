@@ -37,5 +37,8 @@ class Doc(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 Doc.update_forward_refs()

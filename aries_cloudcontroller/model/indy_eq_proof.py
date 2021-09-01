@@ -98,5 +98,8 @@ class IndyEQProof(BaseModel):
             raise ValueError(f"Value of v does not match regex pattern ('{pattern}')")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyEQProof.update_forward_refs()

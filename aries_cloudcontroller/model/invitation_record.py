@@ -87,5 +87,8 @@ class InvitationRecord(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 InvitationRecord.update_forward_refs()

@@ -40,5 +40,8 @@ class IndyGEProofPred(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyGEProofPred.update_forward_refs()

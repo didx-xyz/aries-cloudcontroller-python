@@ -40,5 +40,8 @@ class AttachDecoratorDataJWSHeader(BaseModel):
             raise ValueError(f"Value of kid does not match regex pattern ('{pattern}')")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 AttachDecoratorDataJWSHeader.update_forward_refs()

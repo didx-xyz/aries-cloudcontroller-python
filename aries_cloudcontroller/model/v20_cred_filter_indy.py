@@ -117,5 +117,8 @@ class V20CredFilterIndy(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20CredFilterIndy.update_forward_refs()

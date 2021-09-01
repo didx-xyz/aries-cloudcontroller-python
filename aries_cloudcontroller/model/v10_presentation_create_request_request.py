@@ -41,5 +41,8 @@ class V10PresentationCreateRequestRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V10PresentationCreateRequestRequest.update_forward_refs()

@@ -32,5 +32,8 @@ class SchemasCreatedResult(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 SchemasCreatedResult.update_forward_refs()

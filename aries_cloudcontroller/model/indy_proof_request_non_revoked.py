@@ -76,5 +76,8 @@ class IndyProofRequestNonRevoked(BaseModel):
             raise ValueError(f"to must be greater than 0, currently {value}")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyProofRequestNonRevoked.update_forward_refs()

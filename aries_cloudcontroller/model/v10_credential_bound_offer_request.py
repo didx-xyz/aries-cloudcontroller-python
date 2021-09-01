@@ -33,5 +33,8 @@ class V10CredentialBoundOfferRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V10CredentialBoundOfferRequest.update_forward_refs()

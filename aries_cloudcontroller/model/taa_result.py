@@ -33,5 +33,8 @@ class TAAResult(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 TAAResult.update_forward_refs()

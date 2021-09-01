@@ -82,5 +82,8 @@ class IndyRevRegDefValue(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyRevRegDefValue.update_forward_refs()

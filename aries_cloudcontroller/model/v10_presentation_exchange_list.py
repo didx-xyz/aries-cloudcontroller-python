@@ -35,5 +35,8 @@ class V10PresentationExchangeList(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V10PresentationExchangeList.update_forward_refs()

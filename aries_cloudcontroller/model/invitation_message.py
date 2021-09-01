@@ -55,5 +55,8 @@ class InvitationMessage(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 InvitationMessage.update_forward_refs()

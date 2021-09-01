@@ -32,5 +32,8 @@ class V10PresentationProblemReportRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V10PresentationProblemReportRequest.update_forward_refs()

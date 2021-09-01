@@ -66,5 +66,8 @@ class AttachDecoratorData1JWS(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 AttachDecoratorData1JWS.update_forward_refs()

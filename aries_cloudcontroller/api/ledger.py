@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional  # noqa: F401
+from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.model.get_did_endpoint_response import GetDIDEndpointResponse
 from aries_cloudcontroller.model.get_did_verkey_response import GetDIDVerkeyResponse

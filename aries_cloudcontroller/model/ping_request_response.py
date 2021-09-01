@@ -32,5 +32,8 @@ class PingRequestResponse(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 PingRequestResponse.update_forward_refs()

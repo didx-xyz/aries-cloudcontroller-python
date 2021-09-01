@@ -95,5 +95,8 @@ class CredDefValuePrimary(BaseModel):
             raise ValueError(f"Value of z does not match regex pattern ('{pattern}')")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 CredDefValuePrimary.update_forward_refs()

@@ -36,5 +36,8 @@ class V20CredFormat(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20CredFormat.update_forward_refs()

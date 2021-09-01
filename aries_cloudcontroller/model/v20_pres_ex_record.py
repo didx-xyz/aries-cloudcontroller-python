@@ -146,5 +146,8 @@ class V20PresExRecord(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20PresExRecord.update_forward_refs()

@@ -32,5 +32,8 @@ class CredentialStatusOptions(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 CredentialStatusOptions.update_forward_refs()

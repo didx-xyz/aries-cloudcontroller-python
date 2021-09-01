@@ -33,5 +33,8 @@ class VCRecordList(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 VCRecordList.update_forward_refs()

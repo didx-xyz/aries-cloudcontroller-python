@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional  # noqa: F401
+from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.model.create_wallet_request import CreateWalletRequest
 from aries_cloudcontroller.model.create_wallet_response import CreateWalletResponse

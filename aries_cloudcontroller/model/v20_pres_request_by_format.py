@@ -38,5 +38,8 @@ class V20PresRequestByFormat(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20PresRequestByFormat.update_forward_refs()

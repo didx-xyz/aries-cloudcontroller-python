@@ -69,5 +69,8 @@ class RevRegCreateRequest(BaseModel):
             raise ValueError(f"max_cred_num must be greater than 4, currently {value}")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 RevRegCreateRequest.update_forward_refs()

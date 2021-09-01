@@ -45,5 +45,8 @@ class MenuJson(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 MenuJson.update_forward_refs()

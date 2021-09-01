@@ -40,5 +40,8 @@ class TxnOrCredentialDefinitionSendResult(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 TxnOrCredentialDefinitionSendResult.update_forward_refs()

@@ -48,5 +48,8 @@ class IndyRevRegEntry(BaseModel):
             raise ValueError(f"Value of ver does not match regex pattern ('{pattern}')")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyRevRegEntry.update_forward_refs()

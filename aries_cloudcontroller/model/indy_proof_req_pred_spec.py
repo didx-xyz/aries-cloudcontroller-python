@@ -51,5 +51,8 @@ class IndyProofReqPredSpec(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyProofReqPredSpec.update_forward_refs()

@@ -36,5 +36,8 @@ class VerifyResponse(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 VerifyResponse.update_forward_refs()

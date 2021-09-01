@@ -50,5 +50,8 @@ class CredentialOffer(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 CredentialOffer.update_forward_refs()

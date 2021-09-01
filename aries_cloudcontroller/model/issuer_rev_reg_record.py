@@ -178,5 +178,8 @@ class IssuerRevRegRecord(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IssuerRevRegRecord.update_forward_refs()

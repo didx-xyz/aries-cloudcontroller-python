@@ -138,5 +138,8 @@ class V10CredentialProposalRequestOpt(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V10CredentialProposalRequestOpt.update_forward_refs()

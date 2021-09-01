@@ -32,5 +32,8 @@ class Date(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 Date.update_forward_refs()

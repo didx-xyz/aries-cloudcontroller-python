@@ -38,5 +38,8 @@ class CredDefValue(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 CredDefValue.update_forward_refs()

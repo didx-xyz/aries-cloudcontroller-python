@@ -37,5 +37,8 @@ class CredentialPreview(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 CredentialPreview.update_forward_refs()

@@ -32,5 +32,8 @@ class CreateWalletTokenResponse(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 CreateWalletTokenResponse.update_forward_refs()

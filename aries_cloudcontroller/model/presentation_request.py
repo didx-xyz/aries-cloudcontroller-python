@@ -47,5 +47,8 @@ class PresentationRequest(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 PresentationRequest.update_forward_refs()

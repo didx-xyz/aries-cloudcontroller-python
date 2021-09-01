@@ -33,5 +33,8 @@ class MediationList(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 MediationList.update_forward_refs()

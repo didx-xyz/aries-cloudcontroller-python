@@ -40,5 +40,8 @@ class AMLRecord(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 AMLRecord.update_forward_refs()

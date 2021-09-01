@@ -56,5 +56,8 @@ class TAAAcceptance(BaseModel):
             raise ValueError(f"time must be greater than 0, currently {value}")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 TAAAcceptance.update_forward_refs()

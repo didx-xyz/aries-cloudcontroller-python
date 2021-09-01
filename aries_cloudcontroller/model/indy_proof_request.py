@@ -83,5 +83,8 @@ class IndyProofRequest(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyProofRequest.update_forward_refs()

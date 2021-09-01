@@ -71,5 +71,8 @@ class ReceiveInvitationRequest(BaseModel):
             raise ValueError(f"Value of did does not match regex pattern ('{pattern}')")
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 ReceiveInvitationRequest.update_forward_refs()

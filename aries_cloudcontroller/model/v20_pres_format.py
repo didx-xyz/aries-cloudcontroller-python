@@ -36,5 +36,8 @@ class V20PresFormat(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20PresFormat.update_forward_refs()

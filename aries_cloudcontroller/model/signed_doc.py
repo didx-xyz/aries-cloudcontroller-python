@@ -33,5 +33,8 @@ class SignedDoc(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 SignedDoc.update_forward_refs()

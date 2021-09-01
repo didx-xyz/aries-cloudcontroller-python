@@ -33,5 +33,8 @@ class V20CredFilterLDProof(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 V20CredFilterLDProof.update_forward_refs()

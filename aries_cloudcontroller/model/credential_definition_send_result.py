@@ -16,15 +16,15 @@ class CredentialDefinitionSendResult(BaseModel):
     Do not edit the class manually.
 
     CredentialDefinitionSendResult - a model defined in OpenAPI
-        credential_definition_id: Credential definition identifier [Optional].
+        credential_definition_id: Credential definition identifier.
     """
 
-    credential_definition_id: Optional[str] = None
+    credential_definition_id: str
 
     def __init__(
         self,
         *,
-        credential_definition_id: Optional[str] = None,
+        credential_definition_id: str = None,
         **kwargs,
     ):
         super().__init__(
@@ -34,9 +34,6 @@ class CredentialDefinitionSendResult(BaseModel):
 
     @validator("credential_definition_id")
     def credential_definition_id_pattern(cls, value):
-        # Property is optional
-        if value is None:
-            return
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
@@ -44,6 +41,9 @@ class CredentialDefinitionSendResult(BaseModel):
                 f"Value of credential_definition_id does not match regex pattern ('{pattern}')"
             )
         return value
+
+    class Config:
+        allow_population_by_field_name = True
 
 
 CredentialDefinitionSendResult.update_forward_refs()

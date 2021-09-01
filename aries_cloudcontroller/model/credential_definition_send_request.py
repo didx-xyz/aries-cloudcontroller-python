@@ -81,5 +81,8 @@ class CredentialDefinitionSendRequest(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 CredentialDefinitionSendRequest.update_forward_refs()

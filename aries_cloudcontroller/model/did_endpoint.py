@@ -57,5 +57,8 @@ class DIDEndpoint(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 DIDEndpoint.update_forward_refs()

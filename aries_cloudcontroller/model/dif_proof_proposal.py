@@ -33,5 +33,8 @@ class DIFProofProposal(BaseModel):
             **kwargs,
         )
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 DIFProofProposal.update_forward_refs()

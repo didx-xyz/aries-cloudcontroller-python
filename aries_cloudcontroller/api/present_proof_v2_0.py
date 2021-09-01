@@ -14,7 +14,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional  # noqa: F401
+from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.model.admin_api_message_tracing import AdminAPIMessageTracing
 from aries_cloudcontroller.model.indy_cred_precis import IndyCredPrecis

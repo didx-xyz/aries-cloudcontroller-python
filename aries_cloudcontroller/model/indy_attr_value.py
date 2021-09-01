@@ -46,5 +46,8 @@ class IndyAttrValue(BaseModel):
             )
         return value
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 IndyAttrValue.update_forward_refs()

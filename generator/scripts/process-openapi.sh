@@ -10,3 +10,6 @@ ${CONTAINER_RUNTIME} run --name ${CONTAINER_NAME} --rm -it \
     -v "$(pwd)/../data/operation-id-map.yml:/app/operation-id-map.yml:z" \
     -v "$(pwd)/../process-openapi.py:/app/process-openapi.py:z" \
     ${CONTAINER_NAME} python /app/process-openapi.py
+
+# Apply the patches required
+cd .. && git apply --verbose data/openapi.patch
