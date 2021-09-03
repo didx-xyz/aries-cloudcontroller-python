@@ -1,3 +1,4 @@
+from typing import Optional
 from aiohttp.client import ClientSession
 
 from aries_cloudcontroller.client import Client
@@ -9,9 +10,9 @@ class AcaPyClient(Client):
         self,
         base_url: str,
         *,
-        api_key: str = None,
-        admin_insecure: bool = False,
-        tenant_jwt: str = None,
+        api_key: Optional[str] = None,
+        admin_insecure: Optional[bool] = False,
+        tenant_jwt: Optional[str] = None,
     ):
 
         if not api_key and not admin_insecure:

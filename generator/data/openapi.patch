@@ -2,47 +2,39 @@ diff --git a/generator/data/openapi.yml b/generator/data/openapi.yml
 index 4582107..eea7e2d 100644
 --- a/generator/data/openapi.yml
 +++ b/generator/data/openapi.yml
-@@ -705,7 +705,9 @@ paths:
+@@ -705,7 +705,7 @@ paths:
            content:
              application/json:
                schema:
 -                $ref: '#/components/schemas/TxnOrCredentialDefinitionSendResult'
-+                oneOf:
-+                 - $ref: '#/components/schemas/CredentialDefinitionSendResult'
-+                 - $ref: '#/components/schemas/TxnOrCredentialDefinitionSendResult'
++                $ref: '#/components/schemas/CredentialDefinitionSendResult'
        x-codegen-request-body-name: body
        operationId: publish_cred_def
    /credential-definitions/created:
-@@ -3263,7 +3265,9 @@ paths:
+@@ -3263,7 +3263,7 @@ paths:
            content:
              application/json:
                schema:
 -                $ref: '#/components/schemas/TxnOrPublishRevocationsResult'
-+                oneOf:
-+                 - $ref: '#/components/schemas/PublishRevocations'
-+                 - $ref: '#/components/schemas/TxnOrPublishRevocationsResult'
++                $ref: '#/components/schemas/PublishRevocations'
        x-codegen-request-body-name: body
        operationId: publish_revocations
    /revocation/registries/created:
-@@ -3374,7 +3378,9 @@ paths:
+@@ -3374,7 +3374,7 @@ paths:
            content:
              application/json:
                schema:
 -                $ref: '#/components/schemas/TxnOrRevRegResult'
-+                oneOf:
-+                  - $ref: '#/components/schemas/RevRegResult'
-+                  - $ref: '#/components/schemas/TxnOrRevRegResult'
++                $ref: '#/components/schemas/RevRegResult'
        operationId: publish_rev_reg_def
    /revocation/registry/{rev_reg_id}/entry:
      post:
-@@ -3551,7 +3557,9 @@ paths:
+@@ -3551,7 +3551,7 @@ paths:
            content:
              application/json:
                schema:
 -                $ref: '#/components/schemas/TxnOrSchemaSendResult'
-+                oneOf:
-+                  - $ref: '#/components/schemas/SchemaSendResult'
-+                  - $ref: '#/components/schemas/TxnOrSchemaSendResult'
++                $ref: '#/components/schemas/SchemaSendResult'
        x-codegen-request-body-name: body
        operationId: publish_schema
    /schemas/created:
