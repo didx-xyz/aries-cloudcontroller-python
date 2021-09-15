@@ -26,13 +26,12 @@ from aries_cloudcontroller.model.v20_cred_offer_conn_free_request import V20Cred
 from aries_cloudcontroller.model.v20_cred_offer_request import V20CredOfferRequest
 from aries_cloudcontroller.model.v20_cred_request_free import V20CredRequestFree
 from aries_cloudcontroller.model.v20_cred_request_request import V20CredRequestRequest
-from aries_cloudcontroller.model.v20_cred_send_request import V20CredSendRequest
 from aries_cloudcontroller.model.v20_cred_store_request import V20CredStoreRequest
 
 
 class IssueCredentialV20Api(Consumer):
 
-    async def create_credential(self, *, body: Optional[] = None) -> V20CredExRecord:
+    async def create_credential(self, *, body: Optional[dict] = None) -> V20CredExRecord:
         """Create credential from attribute values"""
         return await self.__create_credential(
             body=body,
@@ -127,7 +126,7 @@ class IssueCredentialV20Api(Consumer):
     @returns.json
     @json
     @post("/issue-credential-2.0/create")
-    def __create_credential(self, *, body: Body(type=) = {}) -> V20CredExRecord:
+    def __create_credential(self, *, body: Body = {}) -> V20CredExRecord:
         """Internal uplink method for create_credential"""
 
     @returns.json
