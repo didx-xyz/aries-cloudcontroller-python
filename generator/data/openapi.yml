@@ -7608,10 +7608,7 @@ components:
         mechanism:
           type: string
         time:
-          maximum: 18446744073709551615
-          minimum: 0
           type: integer
-          format: uint64
           example: 1629715147
     TAAInfo:
       type: object

@@ -36,34 +36,17 @@ cd aries-cloudcontroller/generator
 
 # Fix the openapi file (add missing operation ids from data/operation-id-map.yml)
 ./scripts/process-openapi.sh
+
+# Apply manual patches to the openapi file
+./scripts/apply-patch.sh
 ```
 
-### Manual modifications
+## Updating the patch file
 
-The code is set up to require the least amount of manual modifications. However, sometimes it's easier to manually fix some issues. The goal is to make those manual modifications to the open api file, not the generated code.
+1. Make changes to the OpenAPI file and then run:
 
-#### `connection_protocol` enum
+```sh
+cd aries-cloudcontroller/generator
 
-Fixed in main, not part of 0.7.0. Replace line 4220-4235 in `data/openapi.yml`
-
-```diff
-# line 4220-4235
--          - c
--          - o
--          - n
--          - e
--          - t
--          - i
--          - s
--          - /
--          - "1"
--          - "."
--          - "0"
--          - d
--          - x
--          - h
--          - a
--          - g
-+          - connections/1.0
-+          - didexchange/1.0
+./scripts/create-patch.sh
 ```

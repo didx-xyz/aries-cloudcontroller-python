@@ -1,5 +1,5 @@
 diff --git a/generator/data/openapi.yml b/generator/data/openapi.yml
-index 4582107..0186d58 100644
+index 4582107..54bbbf4 100644
 --- a/generator/data/openapi.yml
 +++ b/generator/data/openapi.yml
 @@ -705,7 +705,7 @@ paths:
@@ -89,16 +89,18 @@ index 4582107..0186d58 100644
        type: object
        properties:
          schema:
-@@ -7620,7 +7611,7 @@ components:
-           maximum: 18446744073709551615
-           minimum: 0
+@@ -7617,10 +7608,7 @@ components:
+         mechanism:
+           type: string
+         time:
+-          maximum: 18446744073709551615
+-          minimum: 0
            type: integer
 -          format: int32
-+          format: uint64
            example: 1629715147
      TAAInfo:
        type: object
-@@ -7765,6 +7756,7 @@ components:
+@@ -7765,6 +7753,7 @@ components:
            example: 2021-08-23 10:39:07+00:00
      TxnOrCredentialDefinitionSendResult:
        type: object
@@ -106,7 +108,7 @@ index 4582107..0186d58 100644
        properties:
          sent:
            $ref: '#/components/schemas/CredentialDefinitionSendResult'
-@@ -7775,6 +7767,7 @@ components:
+@@ -7775,6 +7764,7 @@ components:
            - $ref: '#/components/schemas/TransactionRecord'
      TxnOrPublishRevocationsResult:
        type: object
@@ -114,7 +116,7 @@ index 4582107..0186d58 100644
        properties:
          sent:
            $ref: '#/components/schemas/PublishRevocations'
-@@ -7785,6 +7778,7 @@ components:
+@@ -7785,6 +7775,7 @@ components:
            - $ref: '#/components/schemas/TransactionRecord'
      TxnOrRevRegResult:
        type: object
@@ -122,7 +124,7 @@ index 4582107..0186d58 100644
        properties:
          sent:
            $ref: '#/components/schemas/RevRegResult'
-@@ -7795,6 +7789,7 @@ components:
+@@ -7795,6 +7786,7 @@ components:
            - $ref: '#/components/schemas/TransactionRecord'
      TxnOrSchemaSendResult:
        type: object
