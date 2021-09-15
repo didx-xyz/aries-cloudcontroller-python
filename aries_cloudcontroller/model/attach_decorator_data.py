@@ -55,7 +55,7 @@ class AttachDecoratorData(BaseModel):
         if value is None:
             return
 
-        pattern = r"^[a-zA-Z0-9+\/]*&#x3D;{0,2}$"
+        pattern = r"^[a-zA-Z0-9+\/]*={0,2}$"
         if not re.match(pattern, value):
             raise ValueError(
                 f"Value of base64 does not match regex pattern ('{pattern}')"
