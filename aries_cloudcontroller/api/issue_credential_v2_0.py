@@ -121,7 +121,7 @@ class IssueCredentialV20Api(Consumer):
         )
 
     async def send_proposal(
-        self, *, body: Optional[V20IssueCredSchemaCore] = None
+        self, *, body: Optional[V20CredSendRequest] = None
     ) -> V20CredExRecord:
         """Send issuer a credential proposal"""
         return await self.__send_proposal(
@@ -228,7 +228,7 @@ class IssueCredentialV20Api(Consumer):
     @json
     @post("/issue-credential-2.0/send-proposal")
     def __send_proposal(
-        self, *, body: Body(type=V20IssueCredSchemaCore) = {}
+        self, *, body: Body(type=V20CredSendRequest) = {}
     ) -> V20CredExRecord:
         """Internal uplink method for send_proposal"""
 

@@ -1446,7 +1446,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/V20IssueCredSchemaCore'
+              $ref: '#/components/schemas/V20CredSendRequest'
         required: false
       responses:
         200:

@@ -1,5 +1,5 @@
 diff --git a/generator/data/openapi.yml b/generator/data/openapi.yml
-index 4582107..fbc80b8 100644
+index 4582107..110b7a5 100644
 --- a/generator/data/openapi.yml
 +++ b/generator/data/openapi.yml
 @@ -705,7 +705,7 @@ paths:
@@ -11,6 +11,15 @@ index 4582107..fbc80b8 100644
        x-codegen-request-body-name: body
        operationId: publish_cred_def
    /credential-definitions/created:
+@@ -1446,7 +1446,7 @@ paths:
+         content:
+           application/json:
+             schema:
+-              $ref: '#/components/schemas/V20IssueCredSchemaCore'
++              $ref: '#/components/schemas/V20CredSendRequest'
+         required: false
+       responses:
+         200:
 @@ -3263,7 +3263,7 @@ paths:
            content:
              application/json:
