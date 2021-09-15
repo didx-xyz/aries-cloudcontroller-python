@@ -28,7 +28,7 @@ class CredentialDefinition(BaseModel):
     id: Optional[str] = None
     schema_id: Optional[str] = Field(None, alias="schemaId")
     tag: Optional[str] = None
-    type: Optional[Dict[str, Any]] = None
+    type: Optional[Literal["CL"]] = None
     value: Optional[CredDefValue] = None
     ver: Optional[str] = None
 
@@ -38,7 +38,7 @@ class CredentialDefinition(BaseModel):
         id: Optional[str] = None,
         schema_id: Optional[str] = None,
         tag: Optional[str] = None,
-        type: Optional[Dict[str, Any]] = None,
+        type: Optional[Literal["CL"]] = None,
         value: Optional[CredDefValue] = None,
         ver: Optional[str] = None,
         **kwargs,

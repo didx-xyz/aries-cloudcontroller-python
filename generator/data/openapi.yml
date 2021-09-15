@@ -4965,7 +4965,8 @@ components:
           description: Tag within credential definition identifier
           example: tag
         type:
-          type: object
+          enum:
+            - CL
           description: 'Signature type: CL for Camenisch-Lysyanskaya'
           example: CL
         value:
