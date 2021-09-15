@@ -144,6 +144,9 @@ paths:
   /issue-credential/create:
     post:
       operationId: create_credential
+  /issue-credential/create-offer:
+    post:
+      operationId: create_offer
   /issue-credential/records:
     get:
       operationId: get_records
@@ -382,6 +385,9 @@ paths:
   /schemas/{schema_id}:
     get:
       operationId: get_schema
+  /schemas/{schema_id}/write_record:
+    post:
+      operationId: write_record
   /shutdown:
     get:
       operationId: shutdown_server

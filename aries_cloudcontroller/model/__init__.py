@@ -261,6 +261,9 @@ from aries_cloudcontroller.model.update_wallet_request import UpdateWalletReques
 from aries_cloudcontroller.model.v10_credential_bound_offer_request import (
     V10CredentialBoundOfferRequest,
 )
+from aries_cloudcontroller.model.v10_credential_conn_free_offer_request import (
+    V10CredentialConnFreeOfferRequest,
+)
 from aries_cloudcontroller.model.v10_credential_create import V10CredentialCreate
 from aries_cloudcontroller.model.v10_credential_exchange import V10CredentialExchange
 from aries_cloudcontroller.model.v10_credential_exchange_list_result import (
@@ -306,6 +309,7 @@ from aries_cloudcontroller.model.v20_cred_attr_spec import V20CredAttrSpec
 from aries_cloudcontroller.model.v20_cred_bound_offer_request import (
     V20CredBoundOfferRequest,
 )
+from aries_cloudcontroller.model.v20_cred_ex_free import V20CredExFree
 from aries_cloudcontroller.model.v20_cred_ex_record import V20CredExRecord
 from aries_cloudcontroller.model.v20_cred_ex_record_by_format import (
     V20CredExRecordByFormat,
@@ -328,13 +332,15 @@ from aries_cloudcontroller.model.v20_cred_issue_problem_report_request import (
 )
 from aries_cloudcontroller.model.v20_cred_issue_request import V20CredIssueRequest
 from aries_cloudcontroller.model.v20_cred_offer import V20CredOffer
+from aries_cloudcontroller.model.v20_cred_offer_conn_free_request import (
+    V20CredOfferConnFreeRequest,
+)
 from aries_cloudcontroller.model.v20_cred_offer_request import V20CredOfferRequest
 from aries_cloudcontroller.model.v20_cred_preview import V20CredPreview
 from aries_cloudcontroller.model.v20_cred_proposal import V20CredProposal
 from aries_cloudcontroller.model.v20_cred_request import V20CredRequest
 from aries_cloudcontroller.model.v20_cred_request_free import V20CredRequestFree
 from aries_cloudcontroller.model.v20_cred_request_request import V20CredRequestRequest
-from aries_cloudcontroller.model.v20_cred_send_request import V20CredSendRequest
 from aries_cloudcontroller.model.v20_cred_store_request import V20CredStoreRequest
 from aries_cloudcontroller.model.v20_issue_cred_schema_core import (
     V20IssueCredSchemaCore,
@@ -563,6 +569,7 @@ __all__ = [
     "TxnOrSchemaSendResult",
     "UpdateWalletRequest",
     "V10CredentialBoundOfferRequest",
+    "V10CredentialConnFreeOfferRequest",
     "V10CredentialCreate",
     "V10CredentialExchange",
     "V10CredentialExchangeListResult",
@@ -580,6 +587,7 @@ __all__ = [
     "V10PresentationSendRequestRequest",
     "V20CredAttrSpec",
     "V20CredBoundOfferRequest",
+    "V20CredExFree",
     "V20CredExRecord",
     "V20CredExRecordByFormat",
     "V20CredExRecordDetail",
@@ -594,13 +602,13 @@ __all__ = [
     "V20CredIssueProblemReportRequest",
     "V20CredIssueRequest",
     "V20CredOffer",
+    "V20CredOfferConnFreeRequest",
     "V20CredOfferRequest",
     "V20CredPreview",
     "V20CredProposal",
     "V20CredRequest",
     "V20CredRequestFree",
     "V20CredRequestRequest",
-    "V20CredSendRequest",
     "V20CredStoreRequest",
     "V20IssueCredSchemaCore",
     "V20Pres",

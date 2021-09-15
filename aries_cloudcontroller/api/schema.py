@@ -58,6 +58,12 @@ class SchemaApi(Consumer):
             body=body,
         )
 
+    async def write_record(self, *, schema_id: str) -> SchemaGetResult:
+        """Writes a schema non-secret record to the wallet"""
+        return await self.__write_record(
+            schema_id=schema_id,
+        )
+
     @returns.json
     @get("/schemas/created")
     def __get_created_schemas(
@@ -86,3 +92,8 @@ class SchemaApi(Consumer):
         body: Body(type=SchemaSendRequest) = {}
     ) -> SchemaSendResult:
         """Internal uplink method for publish_schema"""
+
+    @returns.json
+    @post("/schemas/{schema_id}/write_record")
+    def __write_record(self, *, schema_id: str) -> SchemaGetResult:
+        """Internal uplink method for write_record"""

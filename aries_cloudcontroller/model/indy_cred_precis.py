@@ -22,25 +22,25 @@ class IndyCredPrecis(BaseModel):
     IndyCredPrecis - a model defined in OpenAPI
         cred_info: Credential info [Optional].
         interval: Non-revocation interval from presentation request [Optional].
-        pres_referents: The pres_referents of this IndyCredPrecis [Optional].
+        presentation_referents: The presentation_referents of this IndyCredPrecis [Optional].
     """
 
     cred_info: Optional[IndyCredInfo] = None
     interval: Optional[IndyNonRevocationInterval] = None
-    pres_referents: Optional[List[str]] = None
+    presentation_referents: Optional[List[str]] = None
 
     def __init__(
         self,
         *,
         cred_info: Optional[IndyCredInfo] = None,
         interval: Optional[IndyNonRevocationInterval] = None,
-        pres_referents: Optional[List[str]] = None,
+        presentation_referents: Optional[List[str]] = None,
         **kwargs,
     ):
         super().__init__(
             cred_info=cred_info,
             interval=interval,
-            pres_referents=pres_referents,
+            presentation_referents=presentation_referents,
             **kwargs,
         )
 

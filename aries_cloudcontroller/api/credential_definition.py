@@ -30,6 +30,14 @@ from aries_cloudcontroller.model.credential_definitions_created_result import (
 
 
 class CredentialDefinitionApi(Consumer):
+    async def credential_definitions_cred_def_id_write_record_post(
+        self, *, cred_def_id: str
+    ) -> CredentialDefinitionGetResult:
+        """Writes a credential definition non-secret record to the wallet"""
+        return await self.__credential_definitions_cred_def_id_write_record_post(
+            cred_def_id=cred_def_id,
+        )
+
     async def get_created_cred_defs(
         self,
         *,
@@ -69,6 +77,13 @@ class CredentialDefinitionApi(Consumer):
             create_transaction_for_endorser=create_transaction_for_endorser,
             body=body,
         )
+
+    @returns.json
+    @post("/credential-definitions/{cred_def_id}/write_record")
+    def __credential_definitions_cred_def_id_write_record_post(
+        self, *, cred_def_id: str
+    ) -> CredentialDefinitionGetResult:
+        """Internal uplink method for credential_definitions_cred_def_id_write_record_post"""
 
     @returns.json
     @get("/credential-definitions/created")

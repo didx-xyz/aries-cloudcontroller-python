@@ -1,5 +1,5 @@
 diff --git a/generator/data/openapi.yml b/generator/data/openapi.yml
-index 4582107..110b7a5 100644
+index 81a975a..a7d9cd9 100644
 --- a/generator/data/openapi.yml
 +++ b/generator/data/openapi.yml
 @@ -705,7 +705,7 @@ paths:
@@ -11,16 +11,7 @@ index 4582107..110b7a5 100644
        x-codegen-request-body-name: body
        operationId: publish_cred_def
    /credential-definitions/created:
-@@ -1446,7 +1446,7 @@ paths:
-         content:
-           application/json:
-             schema:
--              $ref: '#/components/schemas/V20IssueCredSchemaCore'
-+              $ref: '#/components/schemas/V20CredSendRequest'
-         required: false
-       responses:
-         200:
-@@ -3263,7 +3263,7 @@ paths:
+@@ -3322,7 +3322,7 @@ paths:
            content:
              application/json:
                schema:
@@ -29,7 +20,7 @@ index 4582107..110b7a5 100644
        x-codegen-request-body-name: body
        operationId: publish_revocations
    /revocation/registries/created:
-@@ -3374,7 +3374,7 @@ paths:
+@@ -3433,7 +3433,7 @@ paths:
            content:
              application/json:
                schema:
@@ -38,7 +29,7 @@ index 4582107..110b7a5 100644
        operationId: publish_rev_reg_def
    /revocation/registry/{rev_reg_id}/entry:
      post:
-@@ -3551,7 +3551,7 @@ paths:
+@@ -3610,7 +3610,7 @@ paths:
            content:
              application/json:
                schema:
@@ -47,32 +38,7 @@ index 4582107..110b7a5 100644
        x-codegen-request-body-name: body
        operationId: publish_schema
    /schemas/created:
-@@ -4373,22 +4373,8 @@ components:
-           description: Connection protocol used
-           example: connections/1.0
-           enum:
--          - c
--          - o
--          - n
--          - e
--          - t
--          - i
--          - s
--          - /
--          - '1'
--          - .
--          - '0'
--          - d
--          - x
--          - h
--          - a
--          - g
-+          - connections/1.0
-+          - didexchange/1.0
-         created_at:
-           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
-           type: string
-@@ -4979,7 +4965,8 @@ components:
+@@ -5045,7 +5045,8 @@ components:
            description: Tag within credential definition identifier
            example: tag
          type:
@@ -82,7 +48,7 @@ index 4582107..110b7a5 100644
            description: 'Signature type: CL for Camenisch-Lysyanskaya'
            example: CL
          value:
-@@ -5021,6 +5008,8 @@ components:
+@@ -5087,6 +5088,8 @@ components:
            example: default
      CredentialDefinitionSendResult:
        type: object
@@ -91,7 +57,7 @@ index 4582107..110b7a5 100644
        properties:
          credential_definition_id:
            pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
-@@ -7328,6 +7317,8 @@ components:
+@@ -7394,6 +7397,8 @@ components:
            example: 0
      RevRegResult:
        type: object
@@ -100,7 +66,7 @@ index 4582107..110b7a5 100644
        properties:
          result:
            $ref: '#/components/schemas/IssuerRevRegRecord'
-@@ -7479,6 +7470,7 @@ components:
+@@ -7545,6 +7550,7 @@ components:
      SchemaSendResult:
        required:
        - schema_id
@@ -108,7 +74,7 @@ index 4582107..110b7a5 100644
        type: object
        properties:
          schema:
-@@ -7617,10 +7609,7 @@ components:
+@@ -7683,10 +7689,7 @@ components:
          mechanism:
            type: string
          time:
@@ -116,18 +82,18 @@ index 4582107..110b7a5 100644
 -          minimum: 0
            type: integer
 -          format: int32
-           example: 1629715147
+           example: 1640995199
      TAAInfo:
        type: object
-@@ -7765,6 +7754,7 @@ components:
-           example: 2021-08-23 10:39:07+00:00
+@@ -7831,6 +7834,7 @@ components:
+           example: 2021-12-31 23:59:59+00:00
      TxnOrCredentialDefinitionSendResult:
        type: object
 +      additionalProperties: false
        properties:
          sent:
            $ref: '#/components/schemas/CredentialDefinitionSendResult'
-@@ -7775,6 +7765,7 @@ components:
+@@ -7841,6 +7845,7 @@ components:
            - $ref: '#/components/schemas/TransactionRecord'
      TxnOrPublishRevocationsResult:
        type: object
@@ -135,7 +101,7 @@ index 4582107..110b7a5 100644
        properties:
          sent:
            $ref: '#/components/schemas/PublishRevocations'
-@@ -7785,6 +7776,7 @@ components:
+@@ -7851,6 +7856,7 @@ components:
            - $ref: '#/components/schemas/TransactionRecord'
      TxnOrRevRegResult:
        type: object
@@ -143,7 +109,7 @@ index 4582107..110b7a5 100644
        properties:
          sent:
            $ref: '#/components/schemas/RevRegResult'
-@@ -7795,6 +7787,7 @@ components:
+@@ -7861,6 +7867,7 @@ components:
            - $ref: '#/components/schemas/TransactionRecord'
      TxnOrSchemaSendResult:
        type: object

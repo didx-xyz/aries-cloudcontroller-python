@@ -35,8 +35,8 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
     def __init__(
         self,
         *,
-        cred_def_id: str,
-        credential_preview: CredentialPreview,
+        cred_def_id: str = None,
+        credential_preview: CredentialPreview = None,
         auto_issue: Optional[bool] = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,
@@ -56,14 +56,15 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
 
-        if not re.match(
-            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
-            value,
-        ):
+        pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
+        if not re.match(pattern, value):
             raise ValueError(
-                "Value of cred_def_id does not match regex pattern ('^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$')"
+                f"Value of cred_def_id does not match regex pattern ('{pattern}')"
             )
         return value
+
+    class Config:
+        allow_population_by_field_name = True
 
 
 V10CredentialConnFreeOfferRequest.update_forward_refs()

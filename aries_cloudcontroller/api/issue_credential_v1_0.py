@@ -18,6 +18,9 @@ from typing import Dict, List, Optional, Union  # noqa: F401
 from aries_cloudcontroller.model.v10_credential_bound_offer_request import (
     V10CredentialBoundOfferRequest,
 )
+from aries_cloudcontroller.model.v10_credential_conn_free_offer_request import (
+    V10CredentialConnFreeOfferRequest,
+)
 from aries_cloudcontroller.model.v10_credential_create import V10CredentialCreate
 from aries_cloudcontroller.model.v10_credential_exchange import V10CredentialExchange
 from aries_cloudcontroller.model.v10_credential_exchange_list_result import (
@@ -49,6 +52,14 @@ class IssueCredentialV10Api(Consumer):
     ) -> V10CredentialExchange:
         """Send holder a credential, automating entire flow"""
         return await self.__create_credential(
+            body=body,
+        )
+
+    async def create_offer(
+        self, *, body: Optional[V10CredentialConnFreeOfferRequest] = None
+    ) -> V10CredentialExchange:
+        """Create a credential offer, independent of any proposal or connection"""
+        return await self.__create_offer(
             body=body,
         )
 
@@ -156,6 +167,14 @@ class IssueCredentialV10Api(Consumer):
         self, *, body: Body(type=V10CredentialCreate) = {}
     ) -> V10CredentialExchange:
         """Internal uplink method for create_credential"""
+
+    @returns.json
+    @json
+    @post("/issue-credential/create-offer")
+    def __create_offer(
+        self, *, body: Body(type=V10CredentialConnFreeOfferRequest) = {}
+    ) -> V10CredentialExchange:
+        """Internal uplink method for create_offer"""
 
     @returns.json
     @delete("/issue-credential/records/{cred_ex_id}")

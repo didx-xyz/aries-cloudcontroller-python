@@ -78,7 +78,7 @@ class ConnectionStaticResult(BaseModel):
     @validator("my_endpoint")
     def my_endpoint_pattern(cls, value):
 
-        pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$"
+        pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$"
         if not re.match(pattern, value):
             raise ValueError(
                 f"Value of my_endpoint does not match regex pattern ('{pattern}')"

@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.7.0
+  version: v0.7.1
 servers:
 - url: /
 security:
@@ -262,15 +262,15 @@ paths:
         schema:
           type: string
           enum:
+          - error
+          - completed
+          - active
+          - abandoned
+          - start
           - request
           - invitation
           - response
-          - active
-          - abandoned
           - init
-          - completed
-          - start
-          - error
       - name: their_did
         in: query
         description: Their DID
@@ -454,7 +454,7 @@ paths:
         in: query
         description: My URL endpoint
         schema:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
@@ -485,7 +485,7 @@ paths:
         in: query
         description: My URL endpoint
         schema:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       responses:
         200:
@@ -778,6 +778,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/CredentialDefinitionGetResult'
       operationId: get_cred_def
+  /credential-definitions/{cred_def_id}/write_record:
+    post:
+      tags:
+      - credential-definition
+      summary: Writes a credential definition non-secret record to the wallet
+      parameters:
+      - name: cred_def_id
+        in: path
+        description: Credential definition identifier
+        required: true
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialDefinitionGetResult'
   /credential/mime-types/{credential_id}:
     get:
       tags:
@@ -1002,7 +1022,7 @@ paths:
         in: query
         description: My URL endpoint
         schema:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
@@ -1048,7 +1068,7 @@ paths:
         in: query
         description: My URL endpoint
         schema:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       requestBody:
         content:
@@ -1081,7 +1101,7 @@ paths:
         in: query
         description: My URL endpoint
         schema:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
@@ -1118,7 +1138,7 @@ paths:
         in: query
         description: My URL endpoint
         schema:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       responses:
         200:
@@ -1167,6 +1187,25 @@ paths:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
       operationId: create_credential
+  /issue-credential-2.0/create-offer:
+    post:
+      tags:
+      - issue-credential v2.0
+      summary: Create a credential offer, independent of any proposal or connection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V20CredOfferConnFreeRequest'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V20CredExRecord'
+      x-codegen-request-body-name: body
   /issue-credential-2.0/records:
     get:
       tags:
@@ -1406,7 +1445,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/V20CredSendRequest'
+              $ref: '#/components/schemas/V20CredExFree'
         required: false
       responses:
         200:
@@ -1446,7 +1485,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/V20CredSendRequest'
+              $ref: '#/components/schemas/V20CredExFree'
         required: false
       responses:
         200:
@@ -1498,6 +1537,26 @@ paths:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
       operationId: create_credential
+  /issue-credential/create-offer:
+    post:
+      tags:
+      - issue-credential v1.0
+      summary: Create a credential offer, independent of any proposal or connection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V10CredentialConnFreeOfferRequest'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V10CredentialExchange'
+      x-codegen-request-body-name: body
+      operationId: create_offer
   /issue-credential/records:
     get:
       tags:
@@ -3612,6 +3671,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/SchemaGetResult'
       operationId: get_schema
+  /schemas/{schema_id}/write_record:
+    post:
+      tags:
+      - schema
+      summary: Writes a schema non-secret record to the wallet
+      parameters:
+      - name: schema_id
+        in: path
+        description: Schema identifier
+        required: true
+        schema:
+          pattern: ^[1-9][0-9]*|[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaGetResult'
+      operationId: write_record
   /shutdown:
     get:
       tags:
@@ -4208,7 +4288,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Hint regarding last modification datetime, in ISO-8601 format
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         mime-type:
           type: string
           description: MIME type
@@ -4379,7 +4459,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         error_msg:
           type: string
           description: Error message
@@ -4458,7 +4538,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     ConnectionInvitation:
       type: object
       properties:
@@ -4552,7 +4632,7 @@ components:
           description: Remote DID
           example: WgWxqztrNooG92RXvxSTWv
         their_endpoint:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
           description: URL endpoint for other party
           example: https://myhost:8021
@@ -4586,7 +4666,7 @@ components:
           description: Local DID
           example: WgWxqztrNooG92RXvxSTWv
         my_endpoint:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
           description: My URL endpoint
           example: https://myhost:8021
@@ -4740,7 +4820,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         key_management_mode:
           type: string
           description: Mode regarding management of wallet key
@@ -4763,7 +4843,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         wallet_id:
           type: string
           description: Wallet record ID
@@ -5186,7 +5266,7 @@ components:
           description: DID of interest
           example: WgWxqztrNooG92RXvxSTWv
         endpoint:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
           description: Endpoint to set (omit to delete)
           example: https://myhost:8021
@@ -5201,7 +5281,7 @@ components:
           description: DID of interest
           example: WgWxqztrNooG92RXvxSTWv
         endpoint:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
           description: Endpoint to set (omit to delete)
           example: https://myhost:8021
@@ -5381,12 +5461,12 @@ components:
       type: object
       properties:
         my_endpoint:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
           description: My endpoint
           example: https://myhost:8021
         their_endpoint:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
           description: Their endpoint
           example: https://myhost:8021
@@ -5455,7 +5535,7 @@ components:
       type: object
       properties:
         endpoint:
-          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
           description: Full verification key
           nullable: true
@@ -5575,7 +5655,7 @@ components:
           description: Non-revocation interval from presentation request
           allOf:
           - $ref: '#/components/schemas/IndyNonRevocationInterval'
-        pres_referents:
+        presentation_referents:
           type: array
           items:
             type: string
@@ -5789,14 +5869,14 @@ components:
           type: integer
           description: Earliest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
     IndyPresAttrSpec:
       required:
       - name
@@ -5959,7 +6039,7 @@ components:
           description: Timestamp epoch
           format: int32
           nullable: true
-          example: 1629715147
+          example: 1640995199
     IndyProofProof:
       type: object
       properties:
@@ -6039,14 +6119,14 @@ components:
           type: integer
           description: Earliest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
     IndyProofReqPredSpec:
       required:
       - name
@@ -6096,14 +6176,14 @@ components:
           type: integer
           description: Earliest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
     IndyProofRequest:
       type: object
       properties:
@@ -6145,14 +6225,14 @@ components:
           type: integer
           description: Earliest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
           format: int32
-          example: 1629715147
+          example: 1640995199
     IndyProofRequestedProof:
       type: object
       properties:
@@ -6244,7 +6324,7 @@ components:
           type: integer
           description: Epoch timestamp of interest for non-revocation proof
           format: int32
-          example: 1629715147
+          example: 1640995199
     IndyRevRegDef:
       type: object
       properties:
@@ -6462,7 +6542,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         invi_msg_id:
           type: string
           description: Invitation message identifier
@@ -6491,7 +6571,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     InvitationResult:
       type: object
       properties:
@@ -6514,7 +6594,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -6546,7 +6626,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     IssuerRevRegRecord:
       type: object
       properties:
@@ -6554,7 +6634,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -6628,7 +6708,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     Keylist:
       type: object
       properties:
@@ -6774,7 +6854,7 @@ components:
           type: string
           description: The date and time of the proof (with a maximum accuracy in
             seconds). Defaults to current system time
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         credentialStatus:
           type: object
           description: The credential status mechanism to use for the credential.
@@ -6816,7 +6896,7 @@ components:
           type: string
           description: The string value of an ISO8601 combined date and time string
             generated by the Signature Algorithm
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         domain:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
@@ -6928,7 +7008,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         endpoint:
           type: string
         mediation_id:
@@ -6957,7 +7037,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     Menu:
       required:
       - options
@@ -7377,7 +7457,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         recipient_key:
           type: string
         record_id:
@@ -7392,7 +7472,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         wallet_id:
           type: string
     Schema:
@@ -7610,7 +7690,7 @@ components:
           type: string
         time:
           type: integer
-          example: 1629715147
+          example: 1640995199
     TAAInfo:
       type: object
       properties:
@@ -7676,7 +7756,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         endorser_write_txn:
           type: boolean
           description: If True, Endorser will write the transaction after endorsing
@@ -7751,7 +7831,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     TxnOrCredentialDefinitionSendResult:
       type: object
       additionalProperties: false
@@ -7838,6 +7918,34 @@ components:
           description: Optional counter-proposal
           allOf:
           - $ref: '#/components/schemas/CredentialProposal'
+    V10CredentialConnFreeOfferRequest:
+      required:
+      - cred_def_id
+      - credential_preview
+      type: object
+      properties:
+        auto_issue:
+          type: boolean
+          description: Whether to respond automatically to credential requests, creating
+            and issuing requested credentials
+        auto_remove:
+          type: boolean
+          description: Whether to remove the credential exchange record on completion
+            (overrides --preserve-exchange-records configuration setting)
+        comment:
+          type: string
+          description: Human-readable comment
+          nullable: true
+        cred_def_id:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+          description: Credential definition identifier
+          example: WgWxqztrNooG92RXvxSTWv:3:CL:20:tag
+        credential_preview:
+          $ref: '#/components/schemas/CredentialPreview'
+        trace:
+          type: boolean
+          description: Record trace information, based on agent configuration
     V10CredentialCreate:
       required:
       - credential_proposal
@@ -7909,7 +8017,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         credential:
           type: object
           description: Credential as stored
@@ -8005,7 +8113,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     V10CredentialExchangeListResult:
       type: object
       properties:
@@ -8203,7 +8311,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         error_msg:
           type: string
           description: Error message
@@ -8261,7 +8369,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         verified:
           type: string
           description: 'Whether presentation is verified: true or false'
@@ -8361,6 +8469,35 @@ components:
           description: Credential specification criteria by format
           allOf:
           - $ref: '#/components/schemas/V20CredFilter'
+    V20CredExFree:
+      required:
+      - connection_id
+      - filter
+      type: object
+      properties:
+        auto_remove:
+          type: boolean
+          description: Whether to remove the credential exchange record on completion
+            (overrides --preserve-exchange-records configuration setting)
+        comment:
+          type: string
+          description: Human-readable comment
+          nullable: true
+        connection_id:
+          type: string
+          description: Connection identifier
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        credential_preview:
+          $ref: '#/components/schemas/V20CredPreview'
+        filter:
+          type: object
+          description: Credential specification criteria by format
+          allOf:
+          - $ref: '#/components/schemas/V20CredFilter'
+        trace:
+          type: boolean
+          description: Record trace information, based on agent configuration
     V20CredExRecord:
       type: object
       properties:
@@ -8391,7 +8528,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         cred_ex_id:
           type: string
           description: Credential exchange identifier
@@ -8468,7 +8605,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     V20CredExRecordByFormat:
       type: object
       properties:
@@ -8503,7 +8640,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         cred_ex_id:
           type: string
           description: Corresponding v2.0 credential exchange record identifier
@@ -8538,7 +8675,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     V20CredExRecordLDProof:
       type: object
       properties:
@@ -8546,7 +8683,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         cred_ex_id:
           type: string
           description: Corresponding v2.0 credential exchange record identifier
@@ -8567,7 +8704,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
     V20CredExRecordListResult:
       type: object
       properties:
@@ -8727,6 +8864,33 @@ components:
           type: string
           description: Issuer-unique identifier to coordinate credential replacement
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    V20CredOfferConnFreeRequest:
+      required:
+      - filter
+      type: object
+      properties:
+        auto_issue:
+          type: boolean
+          description: Whether to respond automatically to credential requests, creating
+            and issuing requested credentials
+        auto_remove:
+          type: boolean
+          description: Whether to remove the credential exchange record on completion
+            (overrides --preserve-exchange-records configuration setting)
+        comment:
+          type: string
+          description: Human-readable comment
+          nullable: true
+        credential_preview:
+          $ref: '#/components/schemas/V20CredPreview'
+        filter:
+          type: object
+          description: Credential specification criteria by format
+          allOf:
+          - $ref: '#/components/schemas/V20CredFilter'
+        trace:
+          type: boolean
+          description: Record trace information, based on agent configuration
     V20CredOfferRequest:
       required:
       - connection_id
@@ -8877,35 +9041,6 @@ components:
           description: Holder DID to substitute for the credentialSubject.id
           nullable: true
           example: did:key:ahsdkjahsdkjhaskjdhakjshdkajhsdkjahs
-    V20CredSendRequest:
-      required:
-      - connection_id
-      - filter
-      type: object
-      properties:
-        auto_remove:
-          type: boolean
-          description: Whether to remove the credential exchange record on completion
-            (overrides --preserve-exchange-records configuration setting)
-        comment:
-          type: string
-          description: Human-readable comment
-          nullable: true
-        connection_id:
-          type: string
-          description: Connection identifier
-          format: uuid
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        credential_preview:
-          $ref: '#/components/schemas/V20CredPreview'
-        filter:
-          type: object
-          description: Credential specification criteria by format
-          allOf:
-          - $ref: '#/components/schemas/V20CredFilter'
-        trace:
-          type: boolean
-          description: Record trace information, based on agent configuration
     V20CredStoreRequest:
       type: object
       properties:
@@ -8998,7 +9133,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         error_msg:
           type: string
           description: Error message
@@ -9059,7 +9194,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         verified:
           type: string
           description: 'Whether presentation is verified: ''true'' or ''false'''
@@ -9261,7 +9396,7 @@ components:
         contexts:
           type: array
           items:
-            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
             type: string
             description: Context
             example: https://myhost:8021
@@ -9346,7 +9481,7 @@ components:
         contexts:
           type: array
           items:
-            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
             type: string
             description: Credential context to match
             example: https://myhost:8021
@@ -9370,7 +9505,7 @@ components:
           type: array
           description: Schema identifiers, all of which to match
           items:
-            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
             type: string
             description: Credential schema identifier
             example: https://myhost:8021
@@ -9389,7 +9524,7 @@ components:
         types:
           type: array
           items:
-            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+            pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
             type: string
             description: Credential type to match
             example: https://myhost:8021
@@ -9413,7 +9548,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         key_management_mode:
           type: string
           description: Mode regarding management of wallet key
@@ -9432,7 +9567,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-08-23 10:39:07+00:00
+          example: 2021-12-31 23:59:59+00:00
         wallet_id:
           type: string
           description: Wallet record ID
