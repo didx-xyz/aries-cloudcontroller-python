@@ -35,47 +35,6 @@ class IndyProofReqPredSpecNonRevoked(BaseModel):
             to=to,
             **kwargs,
         )
-
-    @validator("from_")
-    def from__max(cls, value):
-        # Property is optional
-        if value is None:
-            return
-
-        if value > -1:
-            raise ValueError(f"from_ must be less than -1, currently {value}")
-        return value
-
-    @validator("from_")
-    def from__min(cls, value):
-        # Property is optional
-        if value is None:
-            return
-
-        if value < 0:
-            raise ValueError(f"from_ must be greater than 0, currently {value}")
-        return value
-
-    @validator("to")
-    def to_max(cls, value):
-        # Property is optional
-        if value is None:
-            return
-
-        if value > -1:
-            raise ValueError(f"to must be less than -1, currently {value}")
-        return value
-
-    @validator("to")
-    def to_min(cls, value):
-        # Property is optional
-        if value is None:
-            return
-
-        if value < 0:
-            raise ValueError(f"to must be greater than 0, currently {value}")
-        return value
-
     class Config:
         allow_population_by_field_name = True
 
