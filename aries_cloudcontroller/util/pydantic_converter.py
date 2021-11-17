@@ -70,11 +70,12 @@ class _PydanticResponseBody(Converter):
         # workaround because uplink doesn't support Union types
         # see https://github.com/prkumar/uplink/issues/233
         if typing.get_origin(self._model) is Union:
-            class Container(BaseModel):
+
+            class UnionContainer(BaseModel):
                 v: self._model
 
             data = {"v": data}
-            return Container.parse_obj(data).v
+            return UnionContainer.parse_obj(data).v
 
         return self._model.parse_obj(data)
 
