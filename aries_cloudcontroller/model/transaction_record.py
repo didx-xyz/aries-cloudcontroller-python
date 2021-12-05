@@ -22,6 +22,7 @@ class TransactionRecord(BaseModel):
         endorser_write_txn: If True, Endorser will write the transaction after endorsing it [Optional].
         formats: The formats of this TransactionRecord [Optional].
         messages_attach: The messages_attach of this TransactionRecord [Optional].
+        meta_data: The meta_data of this TransactionRecord [Optional].
         signature_request: The signature_request of this TransactionRecord [Optional].
         signature_response: The signature_response of this TransactionRecord [Optional].
         state: Current record state [Optional].
@@ -38,6 +39,7 @@ class TransactionRecord(BaseModel):
     endorser_write_txn: Optional[bool] = None
     formats: Optional[List[Dict[str, str]]] = None
     messages_attach: Optional[List[Dict]] = None
+    meta_data: Optional[Dict[str, Any]] = None
     signature_request: Optional[List[Dict]] = None
     signature_response: Optional[List[Dict]] = None
     state: Optional[str] = None
@@ -56,6 +58,7 @@ class TransactionRecord(BaseModel):
         endorser_write_txn: Optional[bool] = None,
         formats: Optional[List[Dict[str, str]]] = None,
         messages_attach: Optional[List[Dict]] = None,
+        meta_data: Optional[Dict[str, Any]] = None,
         signature_request: Optional[List[Dict]] = None,
         signature_response: Optional[List[Dict]] = None,
         state: Optional[str] = None,
@@ -73,6 +76,7 @@ class TransactionRecord(BaseModel):
             endorser_write_txn=endorser_write_txn,
             formats=formats,
             messages_attach=messages_attach,
+            meta_data=meta_data,
             signature_request=signature_request,
             signature_response=signature_response,
             state=state,

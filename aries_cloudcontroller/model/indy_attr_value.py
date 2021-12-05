@@ -39,7 +39,7 @@ class IndyAttrValue(BaseModel):
     @validator("encoded")
     def encoded_pattern(cls, value):
 
-        pattern = r"^[0-9]*$"
+        pattern = r"^-?[0-9]*$"
         if not re.match(pattern, value):
             raise ValueError(
                 f"Value of encoded does not match regex pattern ('{pattern}')"

@@ -234,6 +234,9 @@ from aries_cloudcontroller.model.schema_input_descriptor import SchemaInputDescr
 from aries_cloudcontroller.model.schema_send_request import SchemaSendRequest
 from aries_cloudcontroller.model.schema_send_result import SchemaSendResult
 from aries_cloudcontroller.model.schemas_created_result import SchemasCreatedResult
+from aries_cloudcontroller.model.schemas_input_descriptor_filter import (
+    SchemasInputDescriptorFilter,
+)
 from aries_cloudcontroller.model.send_menu import SendMenu
 from aries_cloudcontroller.model.send_message import SendMessage
 from aries_cloudcontroller.model.sign_request import SignRequest
@@ -548,6 +551,7 @@ __all__ = [
     "SchemaSendRequest",
     "SchemaSendResult",
     "SchemasCreatedResult",
+    "SchemasInputDescriptorFilter",
     "SendMenu",
     "SendMessage",
     "SignRequest",
