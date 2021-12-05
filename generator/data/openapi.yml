@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.7.1
+  version: v0.7.2
 servers:
 - url: /
 security:
@@ -262,14 +262,14 @@ paths:
         schema:
           type: string
           enum:
-          - error
-          - completed
           - active
-          - abandoned
+          - response
           - start
           - request
           - invitation
-          - response
+          - error
+          - completed
+          - abandoned
           - init
       - name: their_did
         in: query
@@ -705,9 +705,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/CredentialDefinitionSendResult'
-                - $ref: '#/components/schemas/TxnOrCredentialDefinitionSendResult'
+                $ref: '#/components/schemas/TxnOrCredentialDefinitionSendResult'
       x-codegen-request-body-name: body
       operationId: publish_cred_def
   /credential-definitions/created:
@@ -3301,17 +3299,6 @@ paths:
       tags:
       - revocation
       summary: Publish pending revocations to ledger
-      parameters:
-      - name: conn_id
-        in: query
-        description: Connection identifier
-        schema:
-          type: string
-      - name: create_transaction_for_endorser
-        in: query
-        description: Create Transaction For Endorser's signature
-        schema:
-          type: boolean
       requestBody:
         content:
           application/json:
@@ -3324,9 +3311,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/PublishRevocations'
-                - $ref: '#/components/schemas/TxnOrPublishRevocationsResult'
+                $ref: '#/components/schemas/TxnOrPublishRevocationsResult'
       x-codegen-request-body-name: body
       operationId: publish_revocations
   /revocation/registries/created:
@@ -3437,9 +3422,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/RevRegResult'
-                - $ref: '#/components/schemas/TxnOrRevRegResult'
+                $ref: '#/components/schemas/TxnOrRevRegResult'
       operationId: publish_rev_reg_def
   /revocation/registry/{rev_reg_id}/entry:
     post:
@@ -3616,9 +3599,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/SchemaSendResult'
-                - $ref: '#/components/schemas/TxnOrSchemaSendResult'
+                $ref: '#/components/schemas/TxnOrSchemaSendResult'
       x-codegen-request-body-name: body
       operationId: publish_schema
   /schemas/created:
@@ -4655,19 +4636,14 @@ components:
           description: Remote verification key
     ConnectionStaticResult:
       required:
-      - mv_verkey
       - my_did
       - my_endpoint
+      - my_verkey
       - record
       - their_did
       - their_verkey
       type: object
       properties:
-        mv_verkey:
-          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
-          type: string
-          description: My verification key
-          example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
         my_did:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -4678,6 +4654,11 @@ components:
           type: string
           description: My URL endpoint
           example: https://myhost:8021
+        my_verkey:
+          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+          type: string
+          description: My verification key
+          example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
         record:
           $ref: '#/components/schemas/ConnRecord'
         their_did:
@@ -5053,8 +5034,7 @@ components:
           description: Tag within credential definition identifier
           example: tag
         type:
-          enum:
-          - CL
+          type: object
           description: 'Signature type: CL for Camenisch-Lysyanskaya'
           example: CL
         value:
@@ -5096,8 +5076,6 @@ components:
           example: default
     CredentialDefinitionSendResult:
       type: object
-      required:
-      - credential_definition_id
       properties:
         credential_definition_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
@@ -5413,6 +5391,29 @@ components:
             - <record id_2>
             <input descriptor id_2>:
             - <record id>
+        reveal_doc:
+          type: object
+          properties: {}
+          description: reveal doc [JSON-LD frame] dict used to derive the credential
+            when selective disclosure is required
+          example:
+            '@context':
+            - https://www.w3.org/2018/credentials/v1
+            - https://w3id.org/security/bbs/v1
+            '@explicit': true
+            '@requireAll': true
+            credentialSubject:
+              '@explicit': true
+              '@requireAll': true
+              Observation:
+              - effectiveDateTime: {}
+                '@explicit': true
+                '@requireAll': true
+            issuanceDate: {}
+            issuer: {}
+            type:
+            - VerifiableCredential
+            - LabReport
     DIFProofProposal:
       type: object
       properties:
@@ -5580,10 +5581,10 @@ components:
       type: object
       properties:
         encoded:
-          pattern: ^[0-9]*$
+          pattern: ^-?[0-9]*$
           type: string
           description: Attribute encoded value
-          example: '0'
+          example: -1
         raw:
           type: string
           description: Attribute raw value
@@ -5775,9 +5776,9 @@ components:
         revealed_attrs:
           type: object
           additionalProperties:
-            pattern: ^[0-9]*$
+            pattern: ^-?[0-9]*$
             type: string
-            example: '0'
+            example: -1
         v:
           pattern: ^[0-9]*$
           type: string
@@ -5872,12 +5873,14 @@ components:
       type: object
       properties:
         from:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
           format: int32
           example: 1640995199
         to:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
@@ -6039,6 +6042,7 @@ components:
           description: Schema identifier
           example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
         timestamp:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Timestamp epoch
@@ -6119,14 +6123,18 @@ components:
       type: object
       properties:
         from:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
+          format: int32
           example: 1640995199
         to:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
+          format: int32
           example: 1640995199
     IndyProofReqPredSpec:
       required:
@@ -6172,16 +6180,23 @@ components:
       type: object
       properties:
         from:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
+          format: int32
           example: 1640995199
         to:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
+          format: int32
           example: 1640995199
     IndyProofRequest:
+      required:
+      - requested_attributes
+      - requested_predicates
       type: object
       properties:
         name:
@@ -6217,14 +6232,18 @@ components:
       type: object
       properties:
         from:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
+          format: int32
           example: 1640995199
         to:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
+          format: int32
           example: 1640995199
     IndyProofRequestedProof:
       type: object
@@ -6265,10 +6284,10 @@ components:
       type: object
       properties:
         encoded:
-          pattern: ^[0-9]*$
+          pattern: ^-?[0-9]*$
           type: string
           description: Encoded value
-          example: '0'
+          example: -1
         raw:
           type: string
           description: Raw value
@@ -6312,6 +6331,7 @@ components:
             a UUID)
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         timestamp:
+          maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Epoch timestamp of interest for non-revocation proof
@@ -6443,9 +6463,18 @@ components:
           type: string
           description: Purpose
         schema:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchemaInputDescriptor'
+          type: object
+          description: Accepts a list of schema or a dict containing filters like
+            oneof_filter.
+          example:
+            oneOf:
+            - - uri: https://www.w3.org/Test1#Test1
+              - uri: https://www.w3.org/Test2#Test2
+            - oneof_filter:
+              - - uri: https://www.w3.org/Test1#Test1
+              - - uri: https://www.w3.org/Test2#Test2
+          allOf:
+          - $ref: '#/components/schemas/SchemasInputDescriptorFilter'
     IntroModuleResponse:
       type: object
     InvitationCreateRequest:
@@ -7280,10 +7309,10 @@ components:
       type: object
       properties:
         encoded:
-          pattern: ^[0-9]*$
+          pattern: ^-?[0-9]*$
           type: string
           description: Encoded value
-          example: '0'
+          example: -1
         raw:
           type: string
           description: Raw value
@@ -7389,8 +7418,6 @@ components:
           example: 0
     RevRegResult:
       type: object
-      required:
-      - result
       properties:
         result:
           $ref: '#/components/schemas/IssuerRevRegRecord'
@@ -7542,7 +7569,6 @@ components:
     SchemaSendResult:
       required:
       - schema_id
-      - schema
       type: object
       properties:
         schema:
@@ -7565,6 +7591,18 @@ components:
             type: string
             description: Schema identifiers
             example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+    SchemasInputDescriptorFilter:
+      type: object
+      properties:
+        oneof_filter:
+          type: boolean
+          description: oneOf
+        uri_groups:
+          type: array
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SchemaInputDescriptor'
     SendMenu:
       required:
       - menu
@@ -7681,7 +7719,10 @@ components:
         mechanism:
           type: string
         time:
+          maximum: 18446744073709551615
+          minimum: 0
           type: integer
+          format: int32
           example: 1640995199
     TAAInfo:
       type: object
@@ -7778,6 +7819,16 @@ components:
                   {"mechanism": "manual","taaDigest": "f50fe2c2ab977006761d36bd6f23e4c6a7e0fc2feb9f62","time":
                   1597708800,}}'
               mime-type: application/json
+        meta_data:
+          type: object
+          properties: {}
+          example:
+            context:
+              param1: param1_value
+              param2: param2_value
+            post_process:
+            - topic: topic_value
+              other: other_value
         signature_request:
           type: array
           items:
@@ -7826,7 +7877,6 @@ components:
           example: 2021-12-31 23:59:59+00:00
     TxnOrCredentialDefinitionSendResult:
       type: object
-      additionalProperties: false
       properties:
         sent:
           $ref: '#/components/schemas/CredentialDefinitionSendResult'
@@ -7837,7 +7887,6 @@ components:
           - $ref: '#/components/schemas/TransactionRecord'
     TxnOrPublishRevocationsResult:
       type: object
-      additionalProperties: false
       properties:
         sent:
           $ref: '#/components/schemas/PublishRevocations'
@@ -7848,7 +7897,6 @@ components:
           - $ref: '#/components/schemas/TransactionRecord'
     TxnOrRevRegResult:
       type: object
-      additionalProperties: false
       properties:
         sent:
           $ref: '#/components/schemas/RevRegResult'
@@ -7859,7 +7907,6 @@ components:
           - $ref: '#/components/schemas/TransactionRecord'
     TxnOrSchemaSendResult:
       type: object
-      additionalProperties: false
       properties:
         sent:
           type: object
