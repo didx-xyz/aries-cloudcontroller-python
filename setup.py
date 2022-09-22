@@ -1,7 +1,7 @@
 """Module setup."""
 
 import os
-from setuptools import setup, find_packages
+from setuptools import setup
 
 PACKAGE_NAME = "aries_cloudcontroller"
 
