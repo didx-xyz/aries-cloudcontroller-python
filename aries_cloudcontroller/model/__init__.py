@@ -212,6 +212,7 @@ from aries_cloudcontroller.model.menu_form_param import MenuFormParam
 from aries_cloudcontroller.model.menu_json import MenuJson
 from aries_cloudcontroller.model.menu_option import MenuOption
 from aries_cloudcontroller.model.model_schema import ModelSchema
+from aries_cloudcontroller.model.oob_record import OobRecord
 from aries_cloudcontroller.model.perform_request import PerformRequest
 from aries_cloudcontroller.model.ping_request import PingRequest
 from aries_cloudcontroller.model.ping_request_response import PingRequestResponse
@@ -251,6 +252,7 @@ from aries_cloudcontroller.model.schemas_input_descriptor_filter import (
 )
 from aries_cloudcontroller.model.send_menu import SendMenu
 from aries_cloudcontroller.model.send_message import SendMessage
+from aries_cloudcontroller.model.service_decorator import ServiceDecorator
 from aries_cloudcontroller.model.sign_request import SignRequest
 from aries_cloudcontroller.model.sign_response import SignResponse
 from aries_cloudcontroller.model.signature_options import SignatureOptions
@@ -567,6 +569,7 @@ __all__ = [
     "MenuJson",
     "MenuOption",
     "ModelSchema",
+    "OobRecord",
     "PerformRequest",
     "PingRequest",
     "PingRequestResponse",
@@ -598,6 +601,7 @@ __all__ = [
     "SchemasInputDescriptorFilter",
     "SendMenu",
     "SendMessage",
+    "ServiceDecorator",
     "SignRequest",
     "SignResponse",
     "SignatureOptions",
