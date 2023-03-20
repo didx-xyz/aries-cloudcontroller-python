@@ -14,7 +14,7 @@ mvn -B --no-snapshot-updates clean package -DskipTests=true -Dmaven.javadoc.skip
 
 # Generate client
 cd aries-cloudcontroller-python
-pip install -r requirements.tsx
+pip install -r requirements.txt
 cd generator
 ./scripts/generate-client.sh
 ```
