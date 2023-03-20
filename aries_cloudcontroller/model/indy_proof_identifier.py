@@ -84,6 +84,16 @@ class IndyProofIdentifier(BaseModel):
         return value
 
     @validator("timestamp")
+    def timestamp_max(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value > -1:
+            raise ValueError(f"timestamp must be less than -1, currently {value}")
+        return value
+
+    @validator("timestamp")
     def timestamp_min(cls, value):
         # Property is optional
         if value is None:

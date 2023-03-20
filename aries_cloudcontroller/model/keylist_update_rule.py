@@ -38,7 +38,6 @@ class KeylistUpdateRule(BaseModel):
 
     @validator("recipient_key")
     def recipient_key_pattern(cls, value):
-
         pattern = (
             r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
         )

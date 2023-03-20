@@ -17,15 +17,15 @@ class RevRegResult(BaseModel):
     Do not edit the class manually.
 
     RevRegResult - a model defined in OpenAPI
-        result: The result of this RevRegResult.
+        result: The result of this RevRegResult [Optional].
     """
 
-    result: IssuerRevRegRecord
+    result: Optional[IssuerRevRegRecord] = None
 
     def __init__(
         self,
         *,
-        result: IssuerRevRegRecord = None,
+        result: Optional[IssuerRevRegRecord] = None,
         **kwargs,
     ):
         super().__init__(

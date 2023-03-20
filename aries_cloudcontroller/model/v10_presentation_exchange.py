@@ -37,6 +37,7 @@ class V10PresentationExchange(BaseModel):
         trace: Record trace information, based on agent configuration [Optional].
         updated_at: Time of last record update [Optional].
         verified: Whether presentation is verified: true or false [Optional].
+        verified_msgs: The verified_msgs of this V10PresentationExchange [Optional].
     """
 
     auto_present: Optional[bool] = None
@@ -56,6 +57,7 @@ class V10PresentationExchange(BaseModel):
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
     verified: Optional[Literal["true", "false"]] = None
+    verified_msgs: Optional[List[str]] = None
 
     def __init__(
         self,
@@ -77,6 +79,7 @@ class V10PresentationExchange(BaseModel):
         trace: Optional[bool] = None,
         updated_at: Optional[str] = None,
         verified: Optional[Literal["true", "false"]] = None,
+        verified_msgs: Optional[List[str]] = None,
         **kwargs,
     ):
         super().__init__(
@@ -97,6 +100,7 @@ class V10PresentationExchange(BaseModel):
             trace=trace,
             updated_at=updated_at,
             verified=verified,
+            verified_msgs=verified_msgs,
             **kwargs,
         )
 

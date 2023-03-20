@@ -36,6 +36,26 @@ class TAAAcceptance(BaseModel):
             **kwargs,
         )
 
+    @validator("time")
+    def time_max(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value > -1:
+            raise ValueError(f"time must be less than -1, currently {value}")
+        return value
+
+    @validator("time")
+    def time_min(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value < 0:
+            raise ValueError(f"time must be greater than 0, currently {value}")
+        return value
+
     class Config:
         allow_population_by_field_name = True
 

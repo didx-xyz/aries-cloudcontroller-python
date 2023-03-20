@@ -19,6 +19,7 @@ class InvitationMessage(BaseModel):
     InvitationMessage - a model defined in OpenAPI
         id: Message identifier [Optional].
         type: Message type [Optional].
+        accept: List of mime type in order of preference [Optional].
         handshake_protocols: The handshake_protocols of this InvitationMessage [Optional].
         label: Optional label [Optional].
         requestsattach: Optional request attachment [Optional].
@@ -27,27 +28,30 @@ class InvitationMessage(BaseModel):
 
     id: Optional[str] = Field(None, alias="@id")
     type: Optional[str] = Field(None, alias="@type")
+    accept: Optional[List[str]] = None
     handshake_protocols: Optional[List[str]] = None
     label: Optional[str] = None
     requestsattach: Optional[List[AttachDecorator]] = Field(
         None, alias="requests~attach"
     )
-    services: Optional[List[Union[Dict, str]]] = None
+    services: Optional[List[Dict]] = None
 
     def __init__(
         self,
         *,
         id: Optional[str] = None,
         type: Optional[str] = None,
+        accept: Optional[List[str]] = None,
         handshake_protocols: Optional[List[str]] = None,
         label: Optional[str] = None,
         requestsattach: Optional[List[AttachDecorator]] = None,
-        services: Optional[List[Union[Dict, str]]] = None,
+        services: Optional[List[Dict]] = None,
         **kwargs,
     ):
         super().__init__(
             id=id,
             type=type,
+            accept=accept,
             handshake_protocols=handshake_protocols,
             label=label,
             requestsattach=requestsattach,

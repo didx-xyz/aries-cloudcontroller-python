@@ -42,7 +42,6 @@ class SchemaSendRequest(BaseModel):
 
     @validator("schema_version")
     def schema_version_pattern(cls, value):
-
         pattern = r"^[0-9.]+$"
         if not re.match(pattern, value):
             raise ValueError(
