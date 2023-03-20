@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.7.5
+  version: v0.8.0
 servers:
 - url: /
 security:
@@ -94,7 +94,6 @@ tags:
   description: did resolver interface.
   externalDocs:
     description: Specification
-    url: https://example.com/replace/me
 - name: revocation
   description: Revocation registry management
   externalDocs:
@@ -130,12 +129,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActionMenuModulesResult'
-      operationId: close_active_menu
   /action-menu/{conn_id}/fetch:
     post:
       tags:
@@ -150,12 +148,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActionMenuFetchResult'
-      operationId: fetch_active_menu
   /action-menu/{conn_id}/perform:
     post:
       tags:
@@ -170,19 +167,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/PerformRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActionMenuModulesResult'
       x-codegen-request-body-name: body
-      operationId: perform_action
   /action-menu/{conn_id}/request:
     post:
       tags:
@@ -197,12 +193,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActionMenuModulesResult'
-      operationId: request_active_menu
   /action-menu/{conn_id}/send-menu:
     post:
       tags:
@@ -217,19 +212,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/SendMenu'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActionMenuModulesResult'
       x-codegen-request-body-name: body
-      operationId: send_menu
   /connections:
     get:
       tags:
@@ -275,13 +269,13 @@ paths:
           enum:
           - error
           - active
-          - response
-          - request
-          - completed
           - start
+          - completed
           - invitation
-          - abandoned
+          - request
           - init
+          - abandoned
+          - response
       - name: their_did
         in: query
         description: Their DID
@@ -306,12 +300,11 @@ paths:
           - responder
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionList'
-      operationId: get_connections
   /connections/create-invitation:
     post:
       tags:
@@ -340,19 +333,18 @@ paths:
           type: boolean
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/CreateInvitationRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvitationResult'
       x-codegen-request-body-name: body
-      operationId: create_invitation
   /connections/create-static:
     post:
       tags:
@@ -360,19 +352,18 @@ paths:
       summary: Create a new static connection
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/ConnectionStaticRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionStaticResult'
       x-codegen-request-body-name: body
-      operationId: create_static_connection
   /connections/receive-invitation:
     post:
       tags:
@@ -397,19 +388,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/ReceiveInvitationRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
       x-codegen-request-body-name: body
-      operationId: receive_invitation
   /connections/{conn_id}:
     get:
       tags:
@@ -424,12 +414,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
-      operationId: get_connection
     delete:
       tags:
       - connection
@@ -443,12 +432,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionModuleResponse'
-      operationId: delete_connection
   /connections/{conn_id}/accept-invitation:
     post:
       tags:
@@ -480,12 +468,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
-      operationId: accept_invitation
   /connections/{conn_id}/accept-request:
     post:
       tags:
@@ -506,12 +493,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
-      operationId: accept_request
   /connections/{conn_id}/endpoints:
     get:
       tags:
@@ -526,12 +512,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EndpointsResult'
-      operationId: get_connection_endpoint
   /connections/{conn_id}/establish-inbound/{ref_id}:
     post:
       tags:
@@ -552,12 +537,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionModuleResponse'
-      operationId: establish_inbound
   /connections/{conn_id}/metadata:
     get:
       tags:
@@ -577,12 +561,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionMetadata'
-      operationId: get_metadata
     post:
       tags:
       - connection
@@ -596,19 +579,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/ConnectionMetadataSetRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionMetadata'
       x-codegen-request-body-name: body
-      operationId: set_metadata
   /connections/{conn_id}/send-message:
     post:
       tags:
@@ -623,19 +605,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/SendMessage'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BasicMessageModuleResponse'
       x-codegen-request-body-name: body
-      operationId: send_message
   /connections/{conn_id}/send-ping:
     post:
       tags:
@@ -650,19 +631,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/PingRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PingRequestResponse'
       x-codegen-request-body-name: body
-      operationId: send_ping
   /connections/{conn_id}/start-introduction:
     post:
       tags:
@@ -688,12 +668,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/IntroModuleResponse'
-      operationId: start_introduction
   /credential-definitions:
     post:
       tags:
@@ -712,19 +691,18 @@ paths:
           type: boolean
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/CredentialDefinitionSendRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TxnOrCredentialDefinitionSendResult'
       x-codegen-request-body-name: body
-      operationId: publish_cred_def
   /credential-definitions/created:
     get:
       tags:
@@ -768,12 +746,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredentialDefinitionsCreatedResult'
-      operationId: get_created_cred_defs
   /credential-definitions/{cred_def_id}:
     get:
       tags:
@@ -789,12 +766,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredentialDefinitionGetResult'
-      operationId: get_cred_def
   /credential-definitions/{cred_def_id}/write_record:
     post:
       tags:
@@ -810,7 +786,7 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -829,12 +805,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttributeMimeTypesResult'
-      operationId: get_credential_mime_types
   /credential/revoked/{credential_id}:
     get:
       tags:
@@ -861,12 +836,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredRevokedResult'
-      operationId: get_revocation_status
   /credential/w3c/{credential_id}:
     get:
       tags:
@@ -881,12 +855,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VCRecord'
-      operationId: get_w3c_credential
     delete:
       tags:
       - credentials
@@ -900,12 +873,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HolderModuleResponse'
-      operationId: delete_w3c_credential
   /credential/{credential_id}:
     get:
       tags:
@@ -920,12 +892,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/IndyCredInfo'
-      operationId: get_record
     delete:
       tags:
       - credentials
@@ -939,12 +910,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HolderModuleResponse'
-      operationId: delete_record
   /credentials:
     get:
       tags:
@@ -971,12 +941,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredInfoList'
-      operationId: get_records
   /credentials/w3c:
     post:
       tags:
@@ -1003,19 +972,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/W3CCredentialsListRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VCRecordList'
       x-codegen-request-body-name: body
-      operationId: get_w3c_credentials
   /didexchange/create-request:
     post:
       tags:
@@ -1058,12 +1026,11 @@ paths:
           type: boolean
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
-      operationId: create_request
   /didexchange/receive-request:
     post:
       tags:
@@ -1094,19 +1061,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/DIDXRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
       x-codegen-request-body-name: body
-      operationId: receive_request
   /didexchange/{conn_id}/accept-invitation:
     post:
       tags:
@@ -1132,12 +1098,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
-      operationId: accept_invitation
   /didexchange/{conn_id}/accept-request:
     post:
       tags:
@@ -1164,12 +1129,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
-      operationId: accept_request
   /discover-features-2.0/queries:
     get:
       tags:
@@ -1194,7 +1158,7 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -1212,7 +1176,7 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -1241,11 +1205,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/V10DiscoveryExchangeResult'
+                $ref: '#/components/schemas/V10DiscoveryRecord'
   /discover-features/records:
     get:
       tags:
@@ -1259,7 +1223,7 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -1268,22 +1232,22 @@ paths:
     post:
       tags:
       - issue-credential v2.0
-      summary: Create credential from attribute values
+      summary: Create a credential record without sending (generally for use with
+        Out-Of-Band)
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20IssueCredSchemaCore'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
-      operationId: create_credential
   /issue-credential-2.0/create-offer:
     post:
       tags:
@@ -1291,13 +1255,13 @@ paths:
       summary: Create a credential offer, independent of any proposal or connection
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredOfferConnFreeRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -1348,12 +1312,11 @@ paths:
           format: uuid
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecordListResult'
-      operationId: get_records
   /issue-credential-2.0/records/{cred_ex_id}:
     get:
       tags:
@@ -1369,12 +1332,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecordDetail'
-      operationId: get_record
     delete:
       tags:
       - issue-credential v2.0
@@ -1389,12 +1351,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20IssueCredentialModuleResponse'
-      operationId: delete_record
   /issue-credential-2.0/records/{cred_ex_id}/issue:
     post:
       tags:
@@ -1410,19 +1371,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredIssueRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecordDetail'
       x-codegen-request-body-name: body
-      operationId: issue_credential
   /issue-credential-2.0/records/{cred_ex_id}/problem-report:
     post:
       tags:
@@ -1438,19 +1398,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredIssueProblemReportRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20IssueCredentialModuleResponse'
       x-codegen-request-body-name: body
-      operationId: report_problem
   /issue-credential-2.0/records/{cred_ex_id}/send-offer:
     post:
       tags:
@@ -1466,19 +1425,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredBoundOfferRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
-      operationId: send_offer
   /issue-credential-2.0/records/{cred_ex_id}/send-request:
     post:
       tags:
@@ -1494,19 +1452,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredRequestRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
-      operationId: send_request
   /issue-credential-2.0/records/{cred_ex_id}/store:
     post:
       tags:
@@ -1522,19 +1479,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredStoreRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecordDetail'
       x-codegen-request-body-name: body
-      operationId: store_credential
   /issue-credential-2.0/send:
     post:
       tags:
@@ -1542,19 +1498,18 @@ paths:
       summary: Send holder a credential, automating entire flow
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredExFree'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
-      operationId: issue_credential_automated
   /issue-credential-2.0/send-offer:
     post:
       tags:
@@ -1562,19 +1517,18 @@ paths:
       summary: Send holder a credential offer, independent of any proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredOfferRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
-      operationId: send_offer_free
   /issue-credential-2.0/send-proposal:
     post:
       tags:
@@ -1582,19 +1536,18 @@ paths:
       summary: Send issuer a credential proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredExFree'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
-      operationId: send_proposal
   /issue-credential-2.0/send-request:
     post:
       tags:
@@ -1603,39 +1556,38 @@ paths:
         credentials cannot start at a request
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20CredRequestFree'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
-      operationId: send_request_free
   /issue-credential/create:
     post:
       tags:
       - issue-credential v1.0
-      summary: Send holder a credential, automating entire flow
+      summary: Create a credential record without sending (generally for use with
+        Out-Of-Band)
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialCreate'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: create_credential
   /issue-credential/create-offer:
     post:
       tags:
@@ -1643,19 +1595,18 @@ paths:
       summary: Create a credential offer, independent of any proposal or connection
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialConnFreeOfferRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: create_offer
   /issue-credential/records:
     get:
       tags:
@@ -1701,12 +1652,11 @@ paths:
           format: uuid
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchangeListResult'
-      operationId: get_records
   /issue-credential/records/{cred_ex_id}:
     get:
       tags:
@@ -1722,12 +1672,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
-      operationId: get_record
     delete:
       tags:
       - issue-credential v1.0
@@ -1742,12 +1691,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/IssueCredentialModuleResponse'
-      operationId: delete_record
   /issue-credential/records/{cred_ex_id}/issue:
     post:
       tags:
@@ -1763,19 +1711,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialIssueRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: issue_credential
   /issue-credential/records/{cred_ex_id}/problem-report:
     post:
       tags:
@@ -1791,19 +1738,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialProblemReportRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/IssueCredentialModuleResponse'
       x-codegen-request-body-name: body
-      operationId: report_problem
   /issue-credential/records/{cred_ex_id}/send-offer:
     post:
       tags:
@@ -1819,19 +1765,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialBoundOfferRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: send_offer
   /issue-credential/records/{cred_ex_id}/send-request:
     post:
       tags:
@@ -1847,12 +1792,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
-      operationId: send_request
   /issue-credential/records/{cred_ex_id}/store:
     post:
       tags:
@@ -1868,19 +1812,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialStoreRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: store_credential
   /issue-credential/send:
     post:
       tags:
@@ -1888,19 +1831,18 @@ paths:
       summary: Send holder a credential, automating entire flow
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialProposalRequestMand'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: issue_credential_automated
   /issue-credential/send-offer:
     post:
       tags:
@@ -1908,19 +1850,18 @@ paths:
       summary: Send holder a credential offer, independent of any proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialFreeOfferRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: send_offer_free
   /issue-credential/send-proposal:
     post:
       tags:
@@ -1928,19 +1869,18 @@ paths:
       summary: Send issuer a credential proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10CredentialProposalRequestOpt'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
       x-codegen-request-body-name: body
-      operationId: send_proposal
   /jsonld/sign:
     post:
       tags:
@@ -1948,19 +1888,18 @@ paths:
       summary: Sign a JSON-LD structure and return it
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/SignRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignResponse'
       x-codegen-request-body-name: body
-      operationId: sign
   /jsonld/verify:
     post:
       tags:
@@ -1968,19 +1907,18 @@ paths:
       summary: Verify a JSON-LD structure.
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/VerifyRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VerifyResponse'
       x-codegen-request-body-name: body
-      operationId: verify
   /ledger/did-endpoint:
     get:
       tags:
@@ -2005,12 +1943,11 @@ paths:
           - LinkedDomains
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetDIDEndpointResponse'
-      operationId: get_did_endpoint
   /ledger/did-verkey:
     get:
       tags:
@@ -2026,12 +1963,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetDIDVerkeyResponse'
-      operationId: get_did_verkey
   /ledger/get-nym-role:
     get:
       tags:
@@ -2047,12 +1983,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetNymRoleResponse'
-      operationId: get_did_nym_role
   /ledger/multiple/config:
     get:
       tags:
@@ -2060,7 +1995,7 @@ paths:
       summary: Fetch the multiple ledger configuration currently in use
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -2072,7 +2007,7 @@ paths:
       summary: Fetch the current write ledger
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -2125,12 +2060,11 @@ paths:
           - reset
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TxnOrRegisterLedgerNymResponse'
-      operationId: register_nym
   /ledger/rotate-public-did-keypair:
     patch:
       tags:
@@ -2138,12 +2072,11 @@ paths:
       summary: Rotate key pair for public DID.
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LedgerModulesResult'
-      operationId: rotate_public_did_keypair
   /ledger/taa:
     get:
       tags:
@@ -2151,12 +2084,11 @@ paths:
       summary: Fetch the current transaction author agreement, if any
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TAAResult'
-      operationId: fetch_taa
   /ledger/taa/accept:
     post:
       tags:
@@ -2164,19 +2096,18 @@ paths:
       summary: Accept the transaction author agreement
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/TAAAccept'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LedgerModulesResult'
       x-codegen-request-body-name: body
-      operationId: accept_taa
   /mediation/default-mediator:
     get:
       tags:
@@ -2184,24 +2115,22 @@ paths:
       summary: Get default mediator
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationRecord'
-      operationId: get_default_mediator
     delete:
       tags:
       - mediation
       summary: Clear default mediator
       responses:
         201:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationRecord'
-      operationId: clear_default_mediator
   /mediation/keylists:
     get:
       tags:
@@ -2226,12 +2155,11 @@ paths:
           - server
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Keylist'
-      operationId: retrieve_keylists
   /mediation/keylists/{mediation_id}/send-keylist-query:
     post:
       tags:
@@ -2261,19 +2189,18 @@ paths:
           default: 0
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/KeylistQueryFilterRequest'
         required: false
       responses:
         201:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeylistQuery'
       x-codegen-request-body-name: body
-      operationId: send_keylist_query
   /mediation/keylists/{mediation_id}/send-keylist-update:
     post:
       tags:
@@ -2289,19 +2216,18 @@ paths:
           format: uuid
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/KeylistUpdateRequest'
         required: false
       responses:
         201:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeylistUpdate'
       x-codegen-request-body-name: body
-      operationId: send_keylist_update
   /mediation/request/{conn_id}:
     post:
       tags:
@@ -2316,19 +2242,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/MediationCreateRequest'
         required: false
       responses:
         201:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationRecord'
       x-codegen-request-body-name: body
-      operationId: request_mediation
   /mediation/requests:
     get:
       tags:
@@ -2374,12 +2299,11 @@ paths:
           - denied
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationList'
-      operationId: get_records
   /mediation/requests/{mediation_id}:
     get:
       tags:
@@ -2395,12 +2319,11 @@ paths:
           format: uuid
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationRecord'
-      operationId: get_record
     delete:
       tags:
       - mediation
@@ -2415,12 +2338,11 @@ paths:
           format: uuid
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationRecord'
-      operationId: delete_record
   /mediation/requests/{mediation_id}/deny:
     post:
       tags:
@@ -2436,19 +2358,18 @@ paths:
           format: uuid
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/AdminMediationDeny'
         required: false
       responses:
         201:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationDeny'
       x-codegen-request-body-name: body
-      operationId: deny_mediation_request
   /mediation/requests/{mediation_id}/grant:
     post:
       tags:
@@ -2464,12 +2385,37 @@ paths:
           format: uuid
       responses:
         201:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationGrant'
-      operationId: grant_mediation_request
+  /mediation/update-keylist/{conn_id}:
+    post:
+      tags:
+      - mediation
+      summary: Update keylist for a connection
+      parameters:
+      - name: conn_id
+        in: path
+        description: Connection identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/MediationIdMatchInfo'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeylistUpdate'
+      x-codegen-request-body-name: body
   /mediation/{mediation_id}/default-mediator:
     put:
       tags:
@@ -2485,12 +2431,11 @@ paths:
           format: uuid
       responses:
         201:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediationRecord'
-      operationId: set_default_mediator
   /multitenancy/wallet:
     post:
       tags:
@@ -2498,19 +2443,18 @@ paths:
       summary: Create a subwallet
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/CreateWalletRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateWalletResponse'
       x-codegen-request-body-name: body
-      operationId: create_wallet
   /multitenancy/wallet/{wallet_id}:
     get:
       tags:
@@ -2525,12 +2469,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletRecord'
-      operationId: get_wallet
     put:
       tags:
       - multitenancy
@@ -2544,19 +2487,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/UpdateWalletRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletRecord'
       x-codegen-request-body-name: body
-      operationId: update_wallet
   /multitenancy/wallet/{wallet_id}/remove:
     post:
       tags:
@@ -2571,19 +2513,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/RemoveWalletRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MultitenantModuleResponse'
       x-codegen-request-body-name: body
-      operationId: delete_wallet
   /multitenancy/wallet/{wallet_id}/token:
     post:
       tags:
@@ -2597,19 +2538,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/CreateWalletTokenRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateWalletTokenResponse'
       x-codegen-request-body-name: body
-      operationId: get_auth_token
   /multitenancy/wallets:
     get:
       tags:
@@ -2623,12 +2563,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletList'
-      operationId: get_wallets
   /out-of-band/create-invitation:
     post:
       tags:
@@ -2647,19 +2586,18 @@ paths:
           type: boolean
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/InvitationCreateRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvitationRecord'
       x-codegen-request-body-name: body
-      operationId: create_invitation
   /out-of-band/receive-invitation:
     post:
       tags:
@@ -2689,19 +2627,18 @@ paths:
           type: boolean
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/InvitationMessage'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OobRecord'
       x-codegen-request-body-name: body
-      operationId: receive_invitation
   /plugins:
     get:
       tags:
@@ -2709,12 +2646,11 @@ paths:
       summary: Fetch the list of loaded plugins
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdminModules'
-      operationId: get_plugins
   /present-proof-2.0/create-request:
     post:
       tags:
@@ -2722,19 +2658,18 @@ paths:
       summary: Creates a presentation request not bound to any proposal or connection
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20PresCreateRequestRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecord'
       x-codegen-request-body-name: body
-      operationId: create_proof_request
   /present-proof-2.0/records:
     get:
       tags:
@@ -2777,12 +2712,11 @@ paths:
           format: uuid
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecordList'
-      operationId: get_records
   /present-proof-2.0/records/{pres_ex_id}:
     get:
       tags:
@@ -2798,12 +2732,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecord'
-      operationId: get_record
     delete:
       tags:
       - present-proof v2.0
@@ -2818,12 +2751,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresentProofModuleResponse'
-      operationId: delete_record
   /present-proof-2.0/records/{pres_ex_id}/credentials:
     get:
       tags:
@@ -2862,14 +2794,13 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/IndyCredPrecis'
-      operationId: get_matching_credentials
   /present-proof-2.0/records/{pres_ex_id}/problem-report:
     post:
       tags:
@@ -2885,19 +2816,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20PresProblemReportRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresentProofModuleResponse'
       x-codegen-request-body-name: body
-      operationId: report_problem
   /present-proof-2.0/records/{pres_ex_id}/send-presentation:
     post:
       tags:
@@ -2913,19 +2843,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20PresSpecByFormatRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecord'
       x-codegen-request-body-name: body
-      operationId: send_presentation
   /present-proof-2.0/records/{pres_ex_id}/send-request:
     post:
       tags:
@@ -2941,19 +2870,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20PresentationSendRequestToProposal'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecord'
       x-codegen-request-body-name: body
-      operationId: send_request
   /present-proof-2.0/records/{pres_ex_id}/verify-presentation:
     post:
       tags:
@@ -2969,12 +2897,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecord'
-      operationId: verify_presentation
   /present-proof-2.0/send-proposal:
     post:
       tags:
@@ -2982,19 +2909,18 @@ paths:
       summary: Sends a presentation proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20PresProposalRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecord'
       x-codegen-request-body-name: body
-      operationId: send_proposal
   /present-proof-2.0/send-request:
     post:
       tags:
@@ -3002,19 +2928,18 @@ paths:
       summary: Sends a free presentation request not bound to any proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V20PresSendRequestRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20PresExRecord'
       x-codegen-request-body-name: body
-      operationId: send_request_free
   /present-proof/create-request:
     post:
       tags:
@@ -3022,19 +2947,18 @@ paths:
       summary: Creates a presentation request not bound to any proposal or connection
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10PresentationCreateRequestRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
       x-codegen-request-body-name: body
-      operationId: create_proof_request
   /present-proof/records:
     get:
       tags:
@@ -3078,12 +3002,11 @@ paths:
           format: uuid
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchangeList'
-      operationId: get_records
   /present-proof/records/{pres_ex_id}:
     get:
       tags:
@@ -3099,12 +3022,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
-      operationId: get_record
     delete:
       tags:
       - present-proof v1.0
@@ -3119,12 +3041,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentProofModuleResponse'
-      operationId: delete_record
   /present-proof/records/{pres_ex_id}/credentials:
     get:
       tags:
@@ -3163,14 +3084,13 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/IndyCredPrecis'
-      operationId: get_matching_credentials
   /present-proof/records/{pres_ex_id}/problem-report:
     post:
       tags:
@@ -3186,19 +3106,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10PresentationProblemReportRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentProofModuleResponse'
       x-codegen-request-body-name: body
-      operationId: report_problem
   /present-proof/records/{pres_ex_id}/send-presentation:
     post:
       tags:
@@ -3214,19 +3133,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/IndyPresSpec'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
       x-codegen-request-body-name: body
-      operationId: send_presentation
   /present-proof/records/{pres_ex_id}/send-request:
     post:
       tags:
@@ -3242,19 +3160,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10PresentationSendRequestToProposal'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
       x-codegen-request-body-name: body
-      operationId: send_request
   /present-proof/records/{pres_ex_id}/verify-presentation:
     post:
       tags:
@@ -3270,12 +3187,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
-      operationId: verify_presentation
   /present-proof/send-proposal:
     post:
       tags:
@@ -3283,19 +3199,18 @@ paths:
       summary: Sends a presentation proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10PresentationProposalRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
       x-codegen-request-body-name: body
-      operationId: send_proposal
   /present-proof/send-request:
     post:
       tags:
@@ -3303,19 +3218,18 @@ paths:
       summary: Sends a free presentation request not bound to any proposal
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/V10PresentationSendRequestRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
       x-codegen-request-body-name: body
-      operationId: send_request_free
   /resolver/resolve/{did}:
     get:
       tags:
@@ -3331,12 +3245,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResolutionResult'
-      operationId: get_did
   /revocation/active-registry/{cred_def_id}:
     get:
       tags:
@@ -3352,12 +3265,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegResult'
-      operationId: get_active_registry_for_cred_def
   /revocation/clear-pending-revocations:
     post:
       tags:
@@ -3365,19 +3277,18 @@ paths:
       summary: Clear pending revocations
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/ClearPendingRevocationsRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PublishRevocations'
       x-codegen-request-body-name: body
-      operationId: clear_pending_revocations
   /revocation/create-registry:
     post:
       tags:
@@ -3385,19 +3296,18 @@ paths:
       summary: Creates a new revocation registry
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/RevRegCreateRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegResult'
       x-codegen-request-body-name: body
-      operationId: create_registry
   /revocation/credential-record:
     get:
       tags:
@@ -3424,12 +3334,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredRevRecordResult'
-      operationId: get_revocation_status
   /revocation/publish-revocations:
     post:
       tags:
@@ -3437,19 +3346,18 @@ paths:
       summary: Publish pending revocations to ledger
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/PublishRevocations'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TxnOrPublishRevocationsResult'
       x-codegen-request-body-name: body
-      operationId: publish_revocations
   /revocation/registries/created:
     get:
       tags:
@@ -3475,12 +3383,36 @@ paths:
           - full
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegsCreated'
-      operationId: get_created_registries
+  /revocation/registry/delete-tails-file:
+    delete:
+      tags:
+      - revocation
+      summary: Delete the tail files
+      parameters:
+      - name: cred_def_id
+        in: query
+        description: Credential definition identifier
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+      - name: rev_reg_id
+        in: query
+        description: Revocation registry identifier
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TailsDeleteResponse'
   /revocation/registry/{rev_reg_id}:
     get:
       tags:
@@ -3496,12 +3428,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegResult'
-      operationId: get_registry
     patch:
       tags:
       - revocation
@@ -3516,19 +3447,18 @@ paths:
           type: string
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/RevRegUpdateTailsFileUri'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegResult'
       x-codegen-request-body-name: body
-      operationId: update_registry
   /revocation/registry/{rev_reg_id}/definition:
     post:
       tags:
@@ -3554,12 +3484,11 @@ paths:
           type: boolean
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TxnOrRevRegResult'
-      operationId: publish_rev_reg_def
   /revocation/registry/{rev_reg_id}/entry:
     post:
       tags:
@@ -3585,12 +3514,11 @@ paths:
           type: boolean
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegResult'
-      operationId: publish_rev_reg_entry
   /revocation/registry/{rev_reg_id}/fix-revocation-entry-state:
     put:
       tags:
@@ -3612,7 +3540,7 @@ paths:
           type: boolean
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -3632,12 +3560,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegIssuedResult'
-      operationId: get_registry_issued_credentials_count
   /revocation/registry/{rev_reg_id}/issued/details:
     get:
       tags:
@@ -3653,7 +3580,7 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -3673,7 +3600,7 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
@@ -3705,12 +3632,11 @@ paths:
           - full
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegResult'
-      operationId: set_registry_state
   /revocation/registry/{rev_reg_id}/tails-file:
     get:
       tags:
@@ -3732,7 +3658,6 @@ paths:
               schema:
                 type: string
                 format: binary
-      operationId: download_tails_file
     put:
       tags:
       - revocation
@@ -3747,12 +3672,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevocationModuleResponse'
-      operationId: upload_tails_file
   /revocation/revoke:
     post:
       tags:
@@ -3760,19 +3684,18 @@ paths:
       summary: Revoke an issued credential
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/RevokeRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevocationModuleResponse'
       x-codegen-request-body-name: body
-      operationId: revoke_credential
   /schemas:
     post:
       tags:
@@ -3791,19 +3714,18 @@ paths:
           type: boolean
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/SchemaSendRequest'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TxnOrSchemaSendResult'
       x-codegen-request-body-name: body
-      operationId: publish_schema
   /schemas/created:
     get:
       tags:
@@ -3835,12 +3757,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SchemasCreatedResult'
-      operationId: get_created_schemas
   /schemas/{schema_id}:
     get:
       tags:
@@ -3856,12 +3777,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SchemaGetResult'
-      operationId: get_schema
   /schemas/{schema_id}/write_record:
     post:
       tags:
@@ -3877,12 +3797,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SchemaGetResult'
-      operationId: write_record
   /shutdown:
     get:
       tags:
@@ -3890,12 +3809,11 @@ paths:
       summary: Shut down server
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdminShutdown'
-      operationId: shutdown_server
   /status:
     get:
       tags:
@@ -3903,12 +3821,11 @@ paths:
       summary: Fetch the server status
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdminStatus'
-      operationId: get_status
   /status/config:
     get:
       tags:
@@ -3916,12 +3833,11 @@ paths:
       summary: Fetch the server configuration
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdminConfig'
-      operationId: get_config
   /status/live:
     get:
       tags:
@@ -3929,12 +3845,11 @@ paths:
       summary: Liveliness check
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdminStatusLiveliness'
-      operationId: check_liveliness
   /status/ready:
     get:
       tags:
@@ -3942,12 +3857,11 @@ paths:
       summary: Readiness check
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdminStatusReadiness'
-      operationId: get_ready_state
   /status/reset:
     post:
       tags:
@@ -3955,12 +3869,11 @@ paths:
       summary: Reset statistics
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdminReset'
-      operationId: reset_statistics
   /transaction/{tran_id}/resend:
     post:
       tags:
@@ -3975,12 +3888,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
-      operationId: resend_transaction_request
   /transactions:
     get:
       tags:
@@ -3988,12 +3900,11 @@ paths:
       summary: Query transactions
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionList'
-      operationId: get_records
   /transactions/create-request:
     post:
       tags:
@@ -4013,19 +3924,18 @@ paths:
           type: boolean
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/Date'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
       x-codegen-request-body-name: body
-      operationId: create_request
   /transactions/{conn_id}/set-endorser-info:
     post:
       tags:
@@ -4051,12 +3961,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EndorserInfo'
-      operationId: set_endorser_info
   /transactions/{conn_id}/set-endorser-role:
     post:
       tags:
@@ -4080,12 +3989,11 @@ paths:
           - reset
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionJobs'
-      operationId: set_endorser_role
   /transactions/{tran_id}:
     get:
       tags:
@@ -4100,12 +4008,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
-      operationId: get_transaction
   /transactions/{tran_id}/cancel:
     post:
       tags:
@@ -4120,12 +4027,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
-      operationId: cancel_transaction
   /transactions/{tran_id}/endorse:
     post:
       tags:
@@ -4145,12 +4051,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
-      operationId: endorse_transaction
   /transactions/{tran_id}/refuse:
     post:
       tags:
@@ -4165,12 +4070,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
-      operationId: refuse_transaction
   /transactions/{tran_id}/write:
     post:
       tags:
@@ -4185,12 +4089,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
-      operationId: write_transaction
   /wallet/did:
     get:
       tags:
@@ -4201,7 +4104,7 @@ paths:
         in: query
         description: DID of interest
         schema:
-          pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: key_type
         in: query
@@ -4237,12 +4140,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DIDList'
-      operationId: get_dids
   /wallet/did/create:
     post:
       tags:
@@ -4250,19 +4152,18 @@ paths:
       summary: Create a local DID
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/DIDCreate'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DIDResult'
       x-codegen-request-body-name: body
-      operationId: create_did
   /wallet/did/local/rotate-keypair:
     patch:
       tags:
@@ -4278,12 +4179,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletModuleResponse'
-      operationId: rotate_keypair
   /wallet/did/public:
     get:
       tags:
@@ -4291,12 +4191,11 @@ paths:
       summary: Fetch the current public DID
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DIDResult'
-      operationId: get_public_did
     post:
       tags:
       - wallet
@@ -4319,14 +4218,18 @@ paths:
         description: Create Transaction For Endorser's signature
         schema:
           type: boolean
+      - name: mediation_id
+        in: query
+        description: Mediation identifier
+        schema:
+          type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DIDResult'
-      operationId: set_public_did
   /wallet/get-did-endpoint:
     get:
       tags:
@@ -4342,12 +4245,11 @@ paths:
           type: string
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DIDEndpoint'
-      operationId: get_did_endpoint
   /wallet/set-did-endpoint:
     post:
       tags:
@@ -4366,22 +4268,18 @@ paths:
           type: boolean
       requestBody:
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: '#/components/schemas/DIDEndpointWithType'
         required: false
       responses:
         200:
-          description: ''
+          description: ""
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletModuleResponse'
       x-codegen-request-body-name: body
-      operationId: set_did_endpoint
-  /features:
-    get:
-      operationId: get_features
 components:
   schemas:
     AMLRecord:
@@ -4402,7 +4300,7 @@ components:
           type: object
           description: Action menu
           allOf:
-          - $ref: '#/components/schemas/Menu'
+          - $ref: '#/definitions/Menu'
     ActionMenuModulesResult:
       type: object
     AdminConfig:
@@ -4502,7 +4400,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Hint regarding last modification datetime, in ISO-8601 format
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         mime-type:
           type: string
           description: MIME type
@@ -4517,14 +4415,13 @@ components:
           example: ey4uLn0=
         json:
           type: object
-          properties: {}
           description: JSON-serialized data
           example: '{"sample": "content"}'
         jws:
           type: object
           description: Detached Java Web Signature
           allOf:
-          - $ref: '#/components/schemas/AttachDecoratorDataJWS'
+          - $ref: '#/definitions/AttachDecoratorDataJWS'
         links:
           type: array
           description: List of hypertext links to data
@@ -4641,7 +4538,7 @@ components:
               pattern: ^[1-9][0-9]*$
               type: string
               description: Credential revocation identifier
-              example: '12345'
+              example: "12345"
           description: 'Credential revocation ids by revocation registry id: omit
             for all, specify null or empty list for all pending per revocation registry'
     ConnRecord:
@@ -4673,7 +4570,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         error_msg:
           type: string
           description: Error message
@@ -4752,7 +4649,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     ConnectionInvitation:
       type: object
       properties:
@@ -5042,7 +4939,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         key_management_mode:
           type: string
           description: Mode regarding management of wallet key
@@ -5065,7 +4962,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         wallet_id:
           type: string
           description: Wallet record ID
@@ -5111,33 +5008,33 @@ components:
           type: object
           description: Primary value for credential definition
           allOf:
-          - $ref: '#/components/schemas/CredDefValuePrimary'
+          - $ref: '#/definitions/CredDefValuePrimary'
         revocation:
           type: object
           description: Revocation value for credential definition
           allOf:
-          - $ref: '#/components/schemas/CredDefValueRevocation'
+          - $ref: '#/definitions/CredDefValueRevocation'
     CredDefValuePrimary:
       type: object
       properties:
         n:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         r:
           $ref: '#/components/schemas/Generated'
         rctxt:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         s:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         z:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
     CredDefValueRevocation:
       type: object
       properties:
@@ -5225,12 +5122,12 @@ components:
             type: object
         credentialSubject:
           type: object
-          example: ''
+          example: ""
         expirationDate:
           pattern: ^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$
           type: string
           description: The expiration date
-          example: 2010-01-01 19:23:24+00:00
+          example: 2010-01-01T19:23:24Z
         id:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
@@ -5239,7 +5136,7 @@ components:
           pattern: ^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$
           type: string
           description: The issuance date
-          example: 2010-01-01 19:23:24+00:00
+          example: 2010-01-01T19:23:24Z
         issuer:
           type: object
           description: The JSON-LD Verifiable Credential Issuer. Either string of
@@ -5249,13 +5146,13 @@ components:
           type: object
           description: The proof of the credential
           example:
-            created: 2019-12-11 03:50:55
+            created: 2019-12-11T03:50:55
             jws: eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ
             proofPurpose: assertionMethod
             type: Ed25519Signature2018
             verificationMethod: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
           allOf:
-          - $ref: '#/components/schemas/LinkedDataProof'
+          - $ref: '#/definitions/LinkedDataProof'
         type:
           type: array
           description: The JSON-LD type of the credential
@@ -5275,7 +5172,7 @@ components:
         schemaId:
           type: string
           description: Schema identifier within credential definition identifier
-          example: '20'
+          example: "20"
         tag:
           type: string
           description: Tag within credential definition identifier
@@ -5288,12 +5185,12 @@ components:
           type: object
           description: Credential definition primary and revocation values
           allOf:
-          - $ref: '#/components/schemas/CredDefValue'
+          - $ref: '#/definitions/CredDefValue'
         ver:
           pattern: ^[0-9.]+$
           type: string
           description: Node protocol version
-          example: '1.0'
+          example: "1.0"
     CredentialDefinitionGetResult:
       type: object
       properties:
@@ -5415,7 +5312,7 @@ components:
         schema_version:
           pattern: ^[0-9.]+$
           type: string
-          example: '1.0'
+          example: "1.0"
     CredentialStatusOptions:
       required:
       - type
@@ -5431,10 +5328,10 @@ components:
       type: object
       properties:
         did:
-          pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID of interest
-          example: WgWxqztrNooG92RXvxSTWv
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         key_type:
           type: string
           description: Key type associated with the DID
@@ -5446,9 +5343,6 @@ components:
           type: string
           description: Did method associated with the DID
           example: sov
-          enum:
-          - sov
-          - key
         posture:
           type: string
           description: Whether DID is current public DID, posted to ledger but not
@@ -5468,22 +5362,34 @@ components:
       properties:
         method:
           type: string
+          description: Method for the requested DID.Supported methods are 'key', 'sov',
+            and any other registered method.
           example: sov
-          enum:
-          - key
-          - sov
         options:
           type: object
-          description: To define a key type for a did:key
+          description: To define a key type and/or a did depending on chosen DID method.
           allOf:
-          - $ref: '#/components/schemas/DIDCreateOptions'
+          - $ref: '#/definitions/DIDCreateOptions'
+        seed:
+          type: string
+          description: Optional seed to use for DID, Must beenabled in configuration
+            before use.
+          example: 000000000000000000000000Trustee1
     DIDCreateOptions:
       required:
       - key_type
       type: object
       properties:
+        did:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          type: string
+          description: 'Specify final value of the did (including did:<method>: prefix)if
+            the method supports or requires so.'
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         key_type:
           type: string
+          description: Key type to use for the DID keypair. Validated with the chosen
+            DID method's supported key types.
           example: ed25519
           enum:
           - ed25519
@@ -5563,7 +5469,7 @@ components:
           type: object
           description: As signed attachment, DID Doc associated with DID
           allOf:
-          - $ref: '#/components/schemas/AttachDecorator'
+          - $ref: '#/definitions/AttachDecorator'
         label:
           type: string
           description: Label for DID exchange request
@@ -5688,7 +5594,7 @@ components:
           type: string
           description: Expiry Date
           format: date-time
-          example: 2021-03-29 05:22:19+00:00
+          example: 2021-03-29T05:22:19Z
     Disclose:
       required:
       - protocols
@@ -5741,7 +5647,7 @@ components:
           type: object
           description: Signature options
           allOf:
-          - $ref: '#/components/schemas/SignatureOptions'
+          - $ref: '#/definitions/SignatureOptions'
     EndorserInfo:
       required:
       - endorser_did
@@ -5818,15 +5724,15 @@ components:
         master_secret:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         number:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         remainder:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
     GetDIDEndpointResponse:
       type: object
       properties:
@@ -5892,12 +5798,12 @@ components:
           type: object
           description: Key correctness proof
           allOf:
-          - $ref: '#/components/schemas/IndyKeyCorrectnessProof'
+          - $ref: '#/definitions/IndyKeyCorrectnessProof'
         nonce:
           pattern: ^[0-9]*$
           type: string
           description: Nonce in credential abstract
-          example: '0'
+          example: "0"
         schema_id:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
@@ -5922,7 +5828,7 @@ components:
           type: string
           description: Credential revocation identifier
           nullable: true
-          example: '12345'
+          example: "12345"
         referent:
           type: string
           description: Wallet referent
@@ -5945,12 +5851,12 @@ components:
           type: object
           description: Credential info
           allOf:
-          - $ref: '#/components/schemas/IndyCredInfo'
+          - $ref: '#/definitions/IndyCredInfo'
         interval:
           type: object
           description: Non-revocation interval from presentation request
           allOf:
-          - $ref: '#/components/schemas/IndyNonRevocationInterval'
+          - $ref: '#/definitions/IndyNonRevocationInterval'
         presentation_referents:
           type: array
           items:
@@ -5963,6 +5869,7 @@ components:
       - blinded_ms_correctness_proof
       - cred_def_id
       - nonce
+      - prover_did
       type: object
       properties:
         blinded_ms:
@@ -5982,7 +5889,7 @@ components:
           pattern: ^[0-9]*$
           type: string
           description: Nonce in credential request
-          example: '0'
+          example: "0"
         prover_did:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -6032,7 +5939,7 @@ components:
             type: object
             description: Attribute value
             allOf:
-            - $ref: '#/components/schemas/IndyAttrValue'
+            - $ref: '#/definitions/IndyAttrValue'
           description: Credential attributes
         witness:
           type: object
@@ -6045,21 +5952,21 @@ components:
         a_prime:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         e:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         m:
           type: object
           additionalProperties:
             pattern: ^[0-9]*$
             type: string
-            example: '0'
+            example: "0"
         m2:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         revealed_attrs:
           type: object
           additionalProperties:
@@ -6069,18 +5976,18 @@ components:
         v:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
     IndyGEProof:
       type: object
       properties:
         alpha:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         mj:
           pattern: ^[0-9]*$
           type: string
-          example: '0'
+          example: "0"
         predicate:
           $ref: '#/components/schemas/IndyGEProofPred'
         r:
@@ -6088,19 +5995,19 @@ components:
           additionalProperties:
             pattern: ^[0-9]*$
             type: string
-            example: '0'
+            example: "0"
         t:
           type: object
           additionalProperties:
             pattern: ^[0-9]*$
             type: string
-            example: '0'
+            example: "0"
         u:
           type: object
           additionalProperties:
             pattern: ^[0-9]*$
             type: string
-            example: '0'
+            example: "0"
     IndyGEProofPred:
       type: object
       properties:
@@ -6130,7 +6037,7 @@ components:
           pattern: ^[0-9]*$
           type: string
           description: c in key correctness proof
-          example: '0'
+          example: "0"
         xr_cap:
           type: array
           description: xr_cap in key correctness proof
@@ -6144,7 +6051,7 @@ components:
           pattern: ^[0-9]*$
           type: string
           description: xz_cap in key correctness proof
-          example: '0'
+          example: "0"
     IndyNonRevocProof:
       type: object
       properties:
@@ -6193,7 +6100,7 @@ components:
         referent:
           type: string
           description: Credential referent
-          example: '0'
+          example: "0"
         value:
           type: string
           description: Attribute value
@@ -6284,7 +6191,7 @@ components:
           description: Indy equality proof
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/IndyEQProof'
+          - $ref: '#/definitions/IndyEQProof'
         ge_proofs:
           type: array
           description: Indy GE proofs
@@ -6303,12 +6210,12 @@ components:
           type: object
           description: Indy proof.proof content
           allOf:
-          - $ref: '#/components/schemas/IndyProofProof'
+          - $ref: '#/definitions/IndyProofProof'
         requested_proof:
           type: object
           description: Indy proof.requested_proof content
           allOf:
-          - $ref: '#/components/schemas/IndyProofRequestedProof'
+          - $ref: '#/definitions/IndyProofRequestedProof'
     IndyProofIdentifier:
       type: object
       properties:
@@ -6343,7 +6250,7 @@ components:
           type: object
           description: Indy proof aggregated proof
           allOf:
-          - $ref: '#/components/schemas/IndyProofProofAggregatedProof'
+          - $ref: '#/definitions/IndyProofProofAggregatedProof'
         proofs:
           type: array
           description: Indy proof proofs
@@ -6371,12 +6278,12 @@ components:
           description: Indy non-revocation proof
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/IndyNonRevocProof'
+          - $ref: '#/definitions/IndyNonRevocProof'
         primary_proof:
           type: object
           description: Indy primary proof
           allOf:
-          - $ref: '#/components/schemas/IndyPrimaryProof'
+          - $ref: '#/definitions/IndyPrimaryProof'
     IndyProofReqAttrSpec:
       type: object
       properties:
@@ -6394,7 +6301,7 @@ components:
           type: object
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/IndyProofReqAttrSpecNonRevoked'
+          - $ref: '#/definitions/IndyProofReqAttrSpecNonRevoked'
         restrictions:
           type: array
           description: 'If present, credential must satisfy one of given restrictions:
@@ -6438,7 +6345,7 @@ components:
           type: object
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/IndyProofReqPredSpecNonRevoked'
+          - $ref: '#/definitions/IndyProofReqPredSpecNonRevoked'
         p_type:
           type: string
           description: Predicate type ('<', '<=', '>=', or '>')
@@ -6494,12 +6401,12 @@ components:
           type: object
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/IndyProofRequestNonRevoked'
+          - $ref: '#/definitions/IndyProofRequestNonRevoked'
         nonce:
           pattern: ^[1-9][0-9]*$
           type: string
           description: Nonce
-          example: '1'
+          example: "1"
         requested_attributes:
           type: object
           additionalProperties:
@@ -6514,7 +6421,7 @@ components:
           pattern: ^[0-9.]+$
           type: string
           description: Proof request version
-          example: '1.0'
+          example: "1.0"
     IndyProofRequestNonRevoked:
       type: object
       properties:
@@ -6650,12 +6557,12 @@ components:
           type: object
           description: Revocation registry definition value
           allOf:
-          - $ref: '#/components/schemas/IndyRevRegDefValue'
+          - $ref: '#/definitions/IndyRevRegDefValue'
         ver:
           pattern: ^[0-9.]+$
           type: string
           description: Version of revocation registry definition
-          example: '1.0'
+          example: "1.0"
     IndyRevRegDefValue:
       type: object
       properties:
@@ -6675,7 +6582,7 @@ components:
           type: object
           description: Public keys
           allOf:
-          - $ref: '#/components/schemas/IndyRevRegDefValuePublicKeys'
+          - $ref: '#/definitions/IndyRevRegDefValuePublicKeys'
         tailsHash:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
@@ -6703,12 +6610,12 @@ components:
           type: object
           description: Revocation registry entry value
           allOf:
-          - $ref: '#/components/schemas/IndyRevRegEntryValue'
+          - $ref: '#/definitions/IndyRevRegEntryValue'
         ver:
           pattern: ^[0-9.]+$
           type: string
           description: Version of revocation registry entry
-          example: '1.0'
+          example: "1.0"
     IndyRevRegEntryValue:
       type: object
       properties:
@@ -6761,7 +6668,7 @@ components:
               - - uri: https://www.w3.org/Test1#Test1
               - - uri: https://www.w3.org/Test2#Test2
           allOf:
-          - $ref: '#/components/schemas/SchemasInputDescriptorFilter'
+          - $ref: '#/definitions/SchemasInputDescriptorFilter'
     IntroModuleResponse:
       type: object
     InvitationCreateRequest:
@@ -6808,7 +6715,7 @@ components:
         protocol_version:
           type: string
           description: OOB protocol version
-          example: '1.1'
+          example: "1.1"
         use_public_did:
           type: boolean
           description: Whether to use public DID in invitation
@@ -6838,6 +6745,12 @@ components:
             type: string
             description: Handshake protocol
             example: did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/didexchange/1.0
+        imageUrl:
+          type: string
+          description: Optional image URL for out-of-band invitation
+          format: url
+          nullable: true
+          example: http://192.168.56.101/img/logo.jpg
         label:
           type: string
           description: Optional label
@@ -6870,7 +6783,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         invi_msg_id:
           type: string
           description: Invitation message identifier
@@ -6879,7 +6792,7 @@ components:
           type: object
           description: Out of band invitation message
           allOf:
-          - $ref: '#/components/schemas/InvitationMessage'
+          - $ref: '#/definitions/InvitationMessage'
         invitation_id:
           type: string
           description: Invitation record identifier
@@ -6903,7 +6816,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     InvitationResult:
       type: object
       properties:
@@ -6926,7 +6839,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -6936,11 +6849,14 @@ components:
           type: string
           description: Credential exchange record identifier at credential issue
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_ex_version:
+          type: string
+          description: Credential exchange version
         cred_rev_id:
           pattern: ^[1-9][0-9]*$
           type: string
           description: Credential revocation identifier
-          example: '12345'
+          example: "12345"
         record_id:
           type: string
           description: Issuer credential revocation record identifier
@@ -6958,7 +6874,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     IssuerRevRegRecord:
       type: object
       properties:
@@ -6966,7 +6882,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -6992,7 +6908,7 @@ components:
             pending publication to ledger
           items:
             type: string
-            example: '23'
+            example: "23"
         record_id:
           type: string
           description: Issuer revocation registry record identifier
@@ -7007,12 +6923,12 @@ components:
           type: object
           description: Revocation registry definition
           allOf:
-          - $ref: '#/components/schemas/IndyRevRegDef'
+          - $ref: '#/definitions/IndyRevRegDef'
         revoc_reg_entry:
           type: object
           description: Revocation registry entry
           allOf:
-          - $ref: '#/components/schemas/IndyRevRegEntry'
+          - $ref: '#/definitions/IndyRevRegEntry'
         revoc_reg_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -7040,7 +6956,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     Keylist:
       type: object
       properties:
@@ -7071,7 +6987,7 @@ components:
           type: object
           description: Pagination info
           allOf:
-          - $ref: '#/components/schemas/KeylistQueryPaginate'
+          - $ref: '#/definitions/KeylistQueryPaginate'
     KeylistQueryFilterRequest:
       type: object
       properties:
@@ -7130,10 +7046,10 @@ components:
           - add
           - remove
         recipient_key:
-          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+          pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
           description: Key to remove or add
-          example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
+          example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
     LDProofVCDetail:
       required:
       - credential
@@ -7155,22 +7071,22 @@ components:
               - PermanentResident
               - Person
             description: Government of Example Permanent Resident Card.
-            identifier: '83627465'
-            issuanceDate: 2019-12-03 12:19:52+00:00
+            identifier: "83627465"
+            issuanceDate: 2019-12-03T12:19:52Z
             issuer: did:key:z6MkmjY8GnV5i9YTDtPETC2uUAW6ejw3nk5mXF5yci5ab7th
             name: Permanent Resident Card
             type:
             - VerifiableCredential
             - PermanentResidentCard
           allOf:
-          - $ref: '#/components/schemas/Credential'
+          - $ref: '#/definitions/Credential'
         options:
           type: object
           description: Options for specifying how the linked data proof is created.
           example:
             proofType: Ed25519Signature2018
           allOf:
-          - $ref: '#/components/schemas/LDProofVCDetailOptions'
+          - $ref: '#/definitions/LDProofVCDetailOptions'
     LDProofVCDetailOptions:
       required:
       - proofType
@@ -7186,14 +7102,14 @@ components:
           type: string
           description: The date and time of the proof (with a maximum accuracy in
             seconds). Defaults to current system time
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         credentialStatus:
           type: object
           description: The credential status mechanism to use for the credential.
             Omitting the property indicates the issued credential will not include
             a credential status
           allOf:
-          - $ref: '#/components/schemas/CredentialStatusOptions'
+          - $ref: '#/definitions/CredentialStatusOptions'
         domain:
           type: string
           description: The intended domain of validity for the proof
@@ -7255,7 +7171,7 @@ components:
           type: string
           description: The string value of an ISO8601 combined date and time string
             generated by the Signature Algorithm
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         domain:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
@@ -7347,6 +7263,14 @@ components:
           items:
             type: string
             description: Keys to use for forward message packaging
+    MediationIdMatchInfo:
+      type: object
+      properties:
+        mediation_id:
+          type: string
+          description: Mediation record identifier
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     MediationList:
       type: object
       properties:
@@ -7367,7 +7291,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         endpoint:
           type: string
         mediation_id:
@@ -7385,9 +7309,9 @@ components:
         routing_keys:
           type: array
           items:
-            pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+            pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$
             type: string
-            example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
+            example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
         state:
           type: string
           description: Current record state
@@ -7396,7 +7320,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     Menu:
       required:
       - options
@@ -7457,7 +7381,7 @@ components:
         default:
           type: string
           description: Default parameter value
-          example: '0'
+          example: "0"
         description:
           type: string
           description: Additional descriptive text for menu form parameter
@@ -7546,7 +7470,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         invi_msg_id:
           type: string
           description: Invitation message identifier
@@ -7555,7 +7479,7 @@ components:
           type: object
           description: Out of band invitation message
           allOf:
-          - $ref: '#/components/schemas/InvitationMessage'
+          - $ref: '#/definitions/InvitationMessage'
         oob_id:
           type: string
           description: Oob record identifier
@@ -7568,10 +7492,21 @@ components:
           type: string
           description: OOB Role
           example: receiver
+          enum:
+          - sender
+          - receiver
         state:
           type: string
           description: Out of band message exchange state
           example: await-response
+          enum:
+          - initial
+          - prepare-response
+          - await-response
+          - reuse-not-accepted
+          - reuse-accepted
+          - done
+          - deleted
         their_service:
           $ref: '#/components/schemas/ServiceDecorator'
         trace:
@@ -7581,7 +7516,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     PerformRequest:
       type: object
       properties:
@@ -7702,7 +7637,7 @@ components:
               pattern: ^[1-9][0-9]*$
               type: string
               description: Credential revocation identifier
-              example: '12345'
+              example: "12345"
           description: Credential revocation ids by revocation registry id
     Queries:
       type: object
@@ -7822,11 +7757,11 @@ components:
           example: MySecretKey123
     ResolutionResult:
       required:
-      - did_doc
+      - did_document
       - metadata
       type: object
       properties:
-        did_doc:
+        did_document:
           type: object
           properties: {}
           description: DID Document
@@ -7921,7 +7856,7 @@ components:
           pattern: ^[1-9][0-9]*$
           type: string
           description: Credential revocation identifier
-          example: '12345'
+          example: "12345"
         notify:
           type: boolean
           description: Send a notification to the credential recipient
@@ -7956,7 +7891,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         recipient_key:
           type: string
         record_id:
@@ -7971,7 +7906,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         wallet_id:
           type: string
     Schema:
@@ -8003,12 +7938,12 @@ components:
           pattern: ^[0-9.]+$
           type: string
           description: Node protocol version
-          example: '1.0'
+          example: "1.0"
         version:
           pattern: ^[0-9.]+$
           type: string
           description: Schema version
-          example: '1.0'
+          example: "1.0"
     SchemaGetResult:
       type: object
       properties:
@@ -8045,7 +7980,7 @@ components:
           pattern: ^[0-9.]+$
           type: string
           description: Schema version
-          example: '1.0'
+          example: "1.0"
     SchemaSendResult:
       required:
       - schema_id
@@ -8055,7 +7990,7 @@ components:
           type: object
           description: Schema definition
           allOf:
-          - $ref: '#/components/schemas/Schema'
+          - $ref: '#/definitions/Schema'
         schema_id:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
@@ -8092,7 +8027,7 @@ components:
           type: object
           description: Menu to send to connection
           allOf:
-          - $ref: '#/components/schemas/MenuJson'
+          - $ref: '#/definitions/MenuJson'
     SendMessage:
       type: object
       properties:
@@ -8172,7 +8107,7 @@ components:
           type: object
           description: Linked data proof
           allOf:
-          - $ref: '#/components/schemas/SignatureOptions'
+          - $ref: '#/definitions/SignatureOptions'
     SubmissionRequirements:
       type: object
       properties:
@@ -8255,6 +8190,11 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/TAAInfo'
+    TailsDeleteResponse:
+      type: object
+      properties:
+        message:
+          type: string
     TransactionJobs:
       type: object
       properties:
@@ -8286,7 +8226,7 @@ components:
         _type:
           type: string
           description: Transaction type
-          example: '101'
+          example: "101"
         connection_id:
           type: string
           description: The connection identifier for thie particular transaction record
@@ -8295,7 +8235,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         endorser_write_txn:
           type: boolean
           description: If True, Endorser will write the transaction after endorsing
@@ -8380,7 +8320,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     TxnOrCredentialDefinitionSendResult:
       type: object
       properties:
@@ -8390,7 +8330,7 @@ components:
           type: object
           description: Credential definition transaction to endorse
           allOf:
-          - $ref: '#/components/schemas/TransactionRecord'
+          - $ref: '#/definitions/TransactionRecord'
     TxnOrPublishRevocationsResult:
       type: object
       properties:
@@ -8400,7 +8340,7 @@ components:
           type: object
           description: Revocation registry revocations transaction to endorse
           allOf:
-          - $ref: '#/components/schemas/TransactionRecord'
+          - $ref: '#/definitions/TransactionRecord'
     TxnOrRegisterLedgerNymResponse:
       type: object
       properties:
@@ -8412,7 +8352,7 @@ components:
           type: object
           description: DID transaction to endorse
           allOf:
-          - $ref: '#/components/schemas/TransactionRecord'
+          - $ref: '#/definitions/TransactionRecord'
     TxnOrRevRegResult:
       type: object
       properties:
@@ -8422,7 +8362,7 @@ components:
           type: object
           description: Revocation registry definition transaction to endorse
           allOf:
-          - $ref: '#/components/schemas/TransactionRecord'
+          - $ref: '#/definitions/TransactionRecord'
     TxnOrSchemaSendResult:
       type: object
       properties:
@@ -8430,12 +8370,12 @@ components:
           type: object
           description: Content sent
           allOf:
-          - $ref: '#/components/schemas/SchemaSendResult'
+          - $ref: '#/definitions/SchemaSendResult'
         txn:
           type: object
           description: Schema transaction to endorse
           allOf:
-          - $ref: '#/components/schemas/TransactionRecord'
+          - $ref: '#/definitions/TransactionRecord'
     UpdateWalletRequest:
       type: object
       properties:
@@ -8474,7 +8414,7 @@ components:
           type: object
           description: Optional counter-proposal
           allOf:
-          - $ref: '#/components/schemas/CredentialProposal'
+          - $ref: '#/definitions/CredentialProposal'
     V10CredentialConnFreeOfferRequest:
       required:
       - cred_def_id
@@ -8546,7 +8486,7 @@ components:
           pattern: ^[0-9.]+$
           type: string
           description: Schema version
-          example: '1.0'
+          example: "1.0"
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -8574,12 +8514,12 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         credential:
           type: object
           description: Credential as stored
           allOf:
-          - $ref: '#/components/schemas/IndyCredInfo'
+          - $ref: '#/definitions/IndyCredInfo'
         credential_definition_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -8597,22 +8537,22 @@ components:
           type: object
           description: (Indy) credential offer
           allOf:
-          - $ref: '#/components/schemas/IndyCredAbstract'
+          - $ref: '#/definitions/IndyCredAbstract'
         credential_offer_dict:
           type: object
           description: Credential offer message
           allOf:
-          - $ref: '#/components/schemas/CredentialOffer'
+          - $ref: '#/definitions/CredentialOffer'
         credential_proposal_dict:
           type: object
           description: Credential proposal message
           allOf:
-          - $ref: '#/components/schemas/CredentialProposal'
+          - $ref: '#/definitions/CredentialProposal'
         credential_request:
           type: object
           description: (Indy) credential request
           allOf:
-          - $ref: '#/components/schemas/IndyCredRequest'
+          - $ref: '#/definitions/IndyCredRequest'
         credential_request_metadata:
           type: object
           properties: {}
@@ -8636,7 +8576,7 @@ components:
           type: object
           description: Credential as received, prior to storage in holder wallet
           allOf:
-          - $ref: '#/components/schemas/IndyCredential'
+          - $ref: '#/definitions/IndyCredential'
         revoc_reg_id:
           type: string
           description: Revocation registry identifier
@@ -8670,7 +8610,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     V10CredentialExchangeListResult:
       type: object
       properties:
@@ -8776,7 +8716,7 @@ components:
           pattern: ^[0-9.]+$
           type: string
           description: Schema version
-          example: '1.0'
+          example: "1.0"
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -8828,7 +8768,7 @@ components:
           pattern: ^[0-9.]+$
           type: string
           description: Schema version
-          example: '1.0'
+          example: "1.0"
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -8846,15 +8786,7 @@ components:
             type: object
             description: Discover Features v1.0 exchange record
             allOf:
-            - $ref: '#/components/schemas/V10DiscoveryRecord'
-    V10DiscoveryExchangeResult:
-      type: object
-      properties:
-        results:
-          type: object
-          description: Discover Features v1.0 exchange record
-          allOf:
-          - $ref: '#/components/schemas/V10DiscoveryRecord'
+            - $ref: '#/definitions/V10DiscoveryRecord'
     V10DiscoveryRecord:
       type: object
       properties:
@@ -8866,12 +8798,12 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         disclose:
           type: object
           description: Disclose message
           allOf:
-          - $ref: '#/components/schemas/Disclose'
+          - $ref: '#/definitions/Disclose'
         discovery_exchange_id:
           type: string
           description: Credential exchange identifier
@@ -8880,7 +8812,7 @@ components:
           type: object
           description: Query message
           allOf:
-          - $ref: '#/components/schemas/Query'
+          - $ref: '#/definitions/Query'
         state:
           type: string
           description: Current record state
@@ -8896,7 +8828,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     V10PresentProofModuleResponse:
       type: object
     V10PresentationCreateRequestRequest:
@@ -8935,7 +8867,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         error_msg:
           type: string
           description: Error message
@@ -8951,7 +8883,7 @@ components:
           type: object
           description: (Indy) presentation (also known as proof)
           allOf:
-          - $ref: '#/components/schemas/IndyProof'
+          - $ref: '#/definitions/IndyProof'
         presentation_exchange_id:
           type: string
           description: Presentation exchange identifier
@@ -8960,17 +8892,17 @@ components:
           type: object
           description: Presentation proposal message
           allOf:
-          - $ref: '#/components/schemas/PresentationProposal'
+          - $ref: '#/definitions/PresentationProposal'
         presentation_request:
           type: object
           description: (Indy) presentation request (also known as proof request)
           allOf:
-          - $ref: '#/components/schemas/IndyProofRequest'
+          - $ref: '#/definitions/IndyProofRequest'
         presentation_request_dict:
           type: object
           description: Presentation request message
           allOf:
-          - $ref: '#/components/schemas/PresentationRequest'
+          - $ref: '#/definitions/PresentationRequest'
         role:
           type: string
           description: 'Present-proof exchange role: prover or verifier'
@@ -8993,14 +8925,14 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         verified:
           type: string
           description: 'Whether presentation is verified: true or false'
-          example: 'true'
+          example: "true"
           enum:
-          - 'true'
-          - 'false'
+          - "true"
+          - "false"
         verified_msgs:
           type: array
           items:
@@ -9107,12 +9039,12 @@ components:
           type: object
           description: Optional content for counter-proposal
           allOf:
-          - $ref: '#/components/schemas/V20CredPreview'
+          - $ref: '#/definitions/V20CredPreview'
         filter:
           type: object
           description: Credential specification criteria by format
           allOf:
-          - $ref: '#/components/schemas/V20CredFilter'
+          - $ref: '#/definitions/V20CredFilter'
     V20CredExFree:
       required:
       - connection_id
@@ -9138,10 +9070,14 @@ components:
           type: object
           description: Credential specification criteria by format
           allOf:
-          - $ref: '#/components/schemas/V20CredFilter'
+          - $ref: '#/definitions/V20CredFilter'
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
+        verification_method:
+          type: string
+          description: For ld-proofs. Verification method for signing.
+          nullable: true
     V20CredExRecord:
       type: object
       properties:
@@ -9163,7 +9099,7 @@ components:
           description: Attachment content by format for proposal, offer, request,
             and issue
           allOf:
-          - $ref: '#/components/schemas/V20CredExRecordByFormat'
+          - $ref: '#/definitions/V20CredExRecordByFormat'
         connection_id:
           type: string
           description: Connection identifier
@@ -9172,7 +9108,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         cred_ex_id:
           type: string
           description: Credential exchange identifier
@@ -9181,27 +9117,27 @@ components:
           type: object
           description: Serialized credential issue message
           allOf:
-          - $ref: '#/components/schemas/V20CredIssue'
+          - $ref: '#/definitions/V20CredIssue'
         cred_offer:
           type: object
           description: Credential offer message
           allOf:
-          - $ref: '#/components/schemas/V20CredOffer'
+          - $ref: '#/definitions/V20CredOffer'
         cred_preview:
           type: object
           description: Credential preview from credential proposal
           allOf:
-          - $ref: '#/components/schemas/V20CredPreview'
+          - $ref: '#/definitions/V20CredPreview'
         cred_proposal:
           type: object
           description: Credential proposal message
           allOf:
-          - $ref: '#/components/schemas/V20CredProposal'
+          - $ref: '#/definitions/V20CredProposal'
         cred_request:
           type: object
           description: Serialized credential request message
           allOf:
-          - $ref: '#/components/schemas/V20CredRequest'
+          - $ref: '#/definitions/V20CredRequest'
         error_msg:
           type: string
           description: Error message
@@ -9240,6 +9176,7 @@ components:
           - done
           - credential-revoked
           - abandoned
+          - deleted
         thread_id:
           type: string
           description: Thread identifier
@@ -9251,7 +9188,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     V20CredExRecordByFormat:
       type: object
       properties:
@@ -9274,7 +9211,7 @@ components:
           type: object
           description: Credential exchange record
           allOf:
-          - $ref: '#/components/schemas/V20CredExRecord'
+          - $ref: '#/definitions/V20CredExRecord'
         indy:
           $ref: '#/components/schemas/V20CredExRecordIndy'
         ld_proof:
@@ -9286,7 +9223,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         cred_ex_id:
           type: string
           description: Corresponding v2.0 credential exchange record identifier
@@ -9307,7 +9244,7 @@ components:
           pattern: ^[1-9][0-9]*$
           type: string
           description: Credential revocation identifier within revocation registry
-          example: '12345'
+          example: "12345"
         rev_reg_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -9321,7 +9258,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     V20CredExRecordLDProof:
       type: object
       properties:
@@ -9329,7 +9266,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         cred_ex_id:
           type: string
           description: Corresponding v2.0 credential exchange record identifier
@@ -9350,7 +9287,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     V20CredExRecordListResult:
       type: object
       properties:
@@ -9366,12 +9303,12 @@ components:
           type: object
           description: Credential filter for indy
           allOf:
-          - $ref: '#/components/schemas/V20CredFilterIndy'
+          - $ref: '#/definitions/V20CredFilterIndy'
         ld_proof:
           type: object
           description: Credential filter for linked data proof
           allOf:
-          - $ref: '#/components/schemas/LDProofVCDetail'
+          - $ref: '#/definitions/LDProofVCDetail'
     V20CredFilterIndy:
       type: object
       properties:
@@ -9403,7 +9340,7 @@ components:
           pattern: ^[0-9.]+$
           type: string
           description: Schema version
-          example: '1.0'
+          example: "1.0"
     V20CredFilterLDProof:
       required:
       - ld_proof
@@ -9413,7 +9350,7 @@ components:
           type: object
           description: Credential filter for linked data proof
           allOf:
-          - $ref: '#/components/schemas/LDProofVCDetail'
+          - $ref: '#/definitions/LDProofVCDetail'
     V20CredFormat:
       required:
       - attach_id
@@ -9533,7 +9470,7 @@ components:
           type: object
           description: Credential specification criteria by format
           allOf:
-          - $ref: '#/components/schemas/V20CredFilter'
+          - $ref: '#/definitions/V20CredFilter'
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -9566,7 +9503,7 @@ components:
           type: object
           description: Credential specification criteria by format
           allOf:
-          - $ref: '#/components/schemas/V20CredFilter'
+          - $ref: '#/definitions/V20CredFilter'
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -9606,7 +9543,7 @@ components:
           type: object
           description: Credential preview
           allOf:
-          - $ref: '#/components/schemas/V20CredPreview'
+          - $ref: '#/definitions/V20CredPreview'
         filters~attach:
           type: array
           description: Credential filter per acceptable format on corresponding identifier
@@ -9669,7 +9606,7 @@ components:
           type: object
           description: Credential specification criteria by format
           allOf:
-          - $ref: '#/components/schemas/V20CredFilterLDProof'
+          - $ref: '#/definitions/V20CredFilterLDProof'
         holder_did:
           type: string
           description: Holder DID to substitute for the credentialSubject.id
@@ -9701,7 +9638,7 @@ components:
             type: object
             description: Discover Features v2.0 exchange record
             allOf:
-            - $ref: '#/components/schemas/V20DiscoveryRecord'
+            - $ref: '#/definitions/V20DiscoveryRecord'
     V20DiscoveryExchangeResult:
       type: object
       properties:
@@ -9709,7 +9646,7 @@ components:
           type: object
           description: Discover Features v2.0 exchange record
           allOf:
-          - $ref: '#/components/schemas/V20DiscoveryRecord'
+          - $ref: '#/definitions/V20DiscoveryRecord'
     V20DiscoveryRecord:
       type: object
       properties:
@@ -9721,12 +9658,12 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         disclosures:
           type: object
           description: Disclosures message
           allOf:
-          - $ref: '#/components/schemas/Disclosures'
+          - $ref: '#/definitions/Disclosures'
         discovery_exchange_id:
           type: string
           description: Credential exchange identifier
@@ -9735,7 +9672,7 @@ components:
           type: object
           description: Queries message
           allOf:
-          - $ref: '#/components/schemas/Queries'
+          - $ref: '#/definitions/Queries'
         state:
           type: string
           description: Current record state
@@ -9751,7 +9688,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
     V20IssueCredSchemaCore:
       required:
       - filter
@@ -9771,7 +9708,7 @@ components:
           type: object
           description: Credential specification criteria by format
           allOf:
-          - $ref: '#/components/schemas/V20CredFilter'
+          - $ref: '#/definitions/V20CredFilter'
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -9837,7 +9774,7 @@ components:
           type: object
           description: Attachment content by format for proposal, request, and presentation
           allOf:
-          - $ref: '#/components/schemas/V20PresExRecordByFormat'
+          - $ref: '#/definitions/V20PresExRecordByFormat'
         connection_id:
           type: string
           description: Connection identifier
@@ -9846,7 +9783,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         error_msg:
           type: string
           description: Error message
@@ -9862,7 +9799,7 @@ components:
           type: object
           description: Presentation message
           allOf:
-          - $ref: '#/components/schemas/V20Pres'
+          - $ref: '#/definitions/V20Pres'
         pres_ex_id:
           type: string
           description: Presentation exchange identifier
@@ -9871,12 +9808,12 @@ components:
           type: object
           description: Presentation proposal message
           allOf:
-          - $ref: '#/components/schemas/V20PresProposal'
+          - $ref: '#/definitions/V20PresProposal'
         pres_request:
           type: object
           description: Presentation request message
           allOf:
-          - $ref: '#/components/schemas/V20PresRequest'
+          - $ref: '#/definitions/V20PresRequest'
         role:
           type: string
           description: 'Present-proof exchange role: prover or verifier'
@@ -9896,6 +9833,7 @@ components:
           - presentation-received
           - done
           - abandoned
+          - deleted
         thread_id:
           type: string
           description: Thread identifier
@@ -9907,14 +9845,14 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         verified:
           type: string
           description: 'Whether presentation is verified: ''true'' or ''false'''
-          example: 'true'
+          example: "true"
           enum:
-          - 'true'
-          - 'false'
+          - "true"
+          - "false"
         verified_msgs:
           type: array
           items:
@@ -9995,12 +9933,12 @@ components:
           type: object
           description: Presentation proposal for DIF
           allOf:
-          - $ref: '#/components/schemas/DIFProofProposal'
+          - $ref: '#/definitions/DIFProofProposal'
         indy:
           type: object
           description: Presentation proposal for indy
           allOf:
-          - $ref: '#/components/schemas/IndyProofRequest'
+          - $ref: '#/definitions/IndyProofRequest'
     V20PresProposalRequest:
       required:
       - connection_id
@@ -10063,12 +10001,12 @@ components:
           type: object
           description: Presentation request for DIF
           allOf:
-          - $ref: '#/components/schemas/DIFProofRequest'
+          - $ref: '#/definitions/DIFProofRequest'
         indy:
           type: object
           description: Presentation request for indy
           allOf:
-          - $ref: '#/components/schemas/IndyProofRequest'
+          - $ref: '#/definitions/IndyProofRequest'
     V20PresSendRequestRequest:
       required:
       - connection_id
@@ -10101,12 +10039,12 @@ components:
           description: Optional Presentation specification for DIF, overrides the
             PresentionExchange record's PresRequest
           allOf:
-          - $ref: '#/components/schemas/DIFPresSpec'
+          - $ref: '#/definitions/DIFPresSpec'
         indy:
           type: object
           description: Presentation specification for indy
           allOf:
-          - $ref: '#/components/schemas/IndyPresSpec'
+          - $ref: '#/definitions/IndyPresSpec'
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -10194,7 +10132,7 @@ components:
           type: object
           description: Signed document
           allOf:
-          - $ref: '#/components/schemas/SignedDoc'
+          - $ref: '#/definitions/SignedDoc'
         verkey:
           type: string
           description: Verkey to use for doc verification
@@ -10281,7 +10219,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of record creation
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         key_management_mode:
           type: string
           description: Mode regarding management of wallet key
@@ -10300,7 +10238,7 @@ components:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
           description: Time of last record update
-          example: 2021-12-31 23:59:59+00:00
+          example: 2021-12-31T23:59:59Z
         wallet_id:
           type: string
           description: Wallet record ID
