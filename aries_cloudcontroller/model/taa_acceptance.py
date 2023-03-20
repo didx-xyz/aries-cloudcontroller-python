@@ -43,7 +43,9 @@ class TAAAcceptance(BaseModel):
             return
 
         if value > 18446744073709552000:
-            raise ValueError(f"time must be less than 18446744073709552000, currently {value}")
+            raise ValueError(
+                f"time must be less than 18446744073709552000, currently {value}"
+            )
         return value
 
     @validator("time")
