@@ -87,7 +87,6 @@ class Credential(BaseModel):
 
     @validator("issuance_date")
     def issuance_date_pattern(cls, value):
-
         pattern = r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$"
         if not re.match(pattern, value):
             raise ValueError(

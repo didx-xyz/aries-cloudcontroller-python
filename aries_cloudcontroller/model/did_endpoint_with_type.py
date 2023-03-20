@@ -42,7 +42,6 @@ class DIDEndpointWithType(BaseModel):
 
     @validator("did")
     def did_pattern(cls, value):
-
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
             raise ValueError(f"Value of did does not match regex pattern ('{pattern}')")

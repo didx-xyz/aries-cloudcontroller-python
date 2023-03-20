@@ -58,7 +58,6 @@ class AttachDecoratorData1JWS(BaseModel):
 
     @validator("signature")
     def signature_pattern(cls, value):
-
         pattern = r"^[-_a-zA-Z0-9]*$"
         if not re.match(pattern, value):
             raise ValueError(

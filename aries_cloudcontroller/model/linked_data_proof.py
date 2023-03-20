@@ -66,7 +66,6 @@ class LinkedDataProof(BaseModel):
 
     @validator("created")
     def created_pattern(cls, value):
-
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -89,7 +88,6 @@ class LinkedDataProof(BaseModel):
 
     @validator("verification_method")
     def verification_method_pattern(cls, value):
-
         pattern = r"\w+:(\\/?\\/?)[^\s]+"
         if not re.match(pattern, value):
             raise ValueError(
