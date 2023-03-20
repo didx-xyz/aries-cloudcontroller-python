@@ -17,12 +17,12 @@ from typing import Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
-from aries_cloudcontroller.model.conn_record import ConnRecord
 from aries_cloudcontroller.model.invitation_create_request import (
     InvitationCreateRequest,
 )
 from aries_cloudcontroller.model.invitation_message import InvitationMessage
 from aries_cloudcontroller.model.invitation_record import InvitationRecord
+from aries_cloudcontroller.model.oob_record import OobRecord
 
 
 class OutOfBandApi(Consumer):
@@ -48,7 +48,7 @@ class OutOfBandApi(Consumer):
         mediation_id: Optional[str] = None,
         use_existing_connection: Optional[bool] = None,
         body: Optional[InvitationMessage] = None
-    ) -> ConnRecord:
+    ) -> OobRecord:
         """Receive a new connection invitation"""
         return await self.__receive_invitation(
             alias=alias,
@@ -81,5 +81,5 @@ class OutOfBandApi(Consumer):
         mediation_id: Query = None,
         use_existing_connection: Query = None,
         body: Body(type=InvitationMessage) = {}
-    ) -> ConnRecord:
+    ) -> OobRecord:
         """Internal uplink method for receive_invitation"""

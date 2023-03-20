@@ -119,7 +119,7 @@ class RevocationApi(Consumer):
         rev_reg_id: str,
         conn_id: Optional[str] = None,
         create_transaction_for_endorser: Optional[bool] = None
-    ) -> Union[RevRegResult, TxnOrRevRegResult]:
+    ) -> TxnOrRevRegResult:
         """Send revocation registry definition to ledger"""
         return await self.__publish_rev_reg_def(
             rev_reg_id=rev_reg_id,
@@ -143,7 +143,7 @@ class RevocationApi(Consumer):
 
     async def publish_revocations(
         self, *, body: Optional[PublishRevocations] = None
-    ) -> Union[PublishRevocations, TxnOrPublishRevocationsResult]:
+    ) -> TxnOrPublishRevocationsResult:
         """Publish pending revocations to ledger"""
         return await self.__publish_revocations(
             body=body,
@@ -267,7 +267,7 @@ class RevocationApi(Consumer):
         rev_reg_id: str,
         conn_id: Query = None,
         create_transaction_for_endorser: Query = None
-    ) -> Union[RevRegResult, TxnOrRevRegResult]:
+    ) -> TxnOrRevRegResult:
         """Internal uplink method for publish_rev_reg_def"""
 
     @returns.json
@@ -286,7 +286,7 @@ class RevocationApi(Consumer):
     @post("/revocation/publish-revocations")
     def __publish_revocations(
         self, *, body: Body(type=PublishRevocations) = {}
-    ) -> Union[PublishRevocations, TxnOrPublishRevocationsResult]:
+    ) -> TxnOrPublishRevocationsResult:
         """Internal uplink method for publish_revocations"""
 
     @returns.json
