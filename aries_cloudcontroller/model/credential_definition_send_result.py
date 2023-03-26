@@ -34,7 +34,6 @@ class CredentialDefinitionSendResult(BaseModel):
 
     @validator("credential_definition_id")
     def credential_definition_id_pattern(cls, value):
-
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
             raise ValueError(
