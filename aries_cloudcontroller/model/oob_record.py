@@ -41,7 +41,7 @@ class OobRecord(BaseModel):
     created_at: Optional[str] = None
     our_recipient_key: Optional[str] = None
     role: Optional[str] = None
-    their_service: ServiceDecorator
+    their_service: Optional[ServiceDecorator] = None
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
 
@@ -57,7 +57,7 @@ class OobRecord(BaseModel):
         created_at: Optional[str] = None,
         our_recipient_key: Optional[str] = None,
         role: Optional[str] = None,
-        their_service: ServiceDecorator,
+        their_service: Optional[ServiceDecorator] = None,
         trace: Optional[bool] = None,
         updated_at: Optional[str] = None,
         **kwargs,
