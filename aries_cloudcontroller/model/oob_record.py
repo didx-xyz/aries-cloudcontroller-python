@@ -27,7 +27,7 @@ class OobRecord(BaseModel):
         created_at: Time of record creation [Optional].
         our_recipient_key: Recipient key used for oob invitation [Optional].
         role: OOB Role [Optional].
-        their_service: The their_service of this OobRecord.
+        their_service: The their_service of this OobRecord [Optional].
         trace: Record trace information, based on agent configuration [Optional].
         updated_at: Time of last record update [Optional].
     """
