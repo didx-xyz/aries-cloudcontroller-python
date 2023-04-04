@@ -64,6 +64,7 @@ class V20PresExRecord(BaseModel):
             "presentation-received",
             "done",
             "abandoned",
+            "deleted",
         ]
     ] = None
     thread_id: Optional[str] = None
@@ -97,6 +98,7 @@ class V20PresExRecord(BaseModel):
                 "presentation-received",
                 "done",
                 "abandoned",
+                "deleted",
             ]
         ] = None,
         thread_id: Optional[str] = None,
