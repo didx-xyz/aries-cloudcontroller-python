@@ -75,6 +75,7 @@ class V20CredExRecord(BaseModel):
             "done",
             "credential-revoked",
             "abandoned",
+            "deleted",
         ]
     ] = None
     thread_id: Optional[str] = None
@@ -113,6 +114,7 @@ class V20CredExRecord(BaseModel):
                 "done",
                 "credential-revoked",
                 "abandoned",
+                "deleted",
             ]
         ] = None,
         thread_id: Optional[str] = None,
