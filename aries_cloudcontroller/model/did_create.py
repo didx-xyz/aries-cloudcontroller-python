@@ -19,21 +19,25 @@ class DIDCreate(BaseModel):
     DIDCreate - a model defined in OpenAPI
         method: Method for the requested DID.Supported methods are &#39;key&#39;, &#39;sov&#39;, and any other registered method. [Optional].
         options: To define a key type and/or a did depending on chosen DID method. [Optional].
+        seed: Optional seed to use for DID, Must beenabled in configuration before use. [Optional].
     """
 
     method: Optional[Literal["key", "sov"]] = None
     options: Optional[DIDCreateOptions] = None
+    seed: Optional[str] = None
 
     def __init__(
         self,
         *,
         method: Optional[Literal["key", "sov"]] = None,
         options: Optional[DIDCreateOptions] = None,
+        seed: Optional[str] = None,
         **kwargs,
     ):
         super().__init__(
             method=method,
             options=options,
+            seed=seed,
             **kwargs,
         )
 
