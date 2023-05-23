@@ -17,8 +17,8 @@ class DIDCreate(BaseModel):
     Do not edit the class manually.
 
     DIDCreate - a model defined in OpenAPI
-        method: The method of this DIDCreate [Optional].
-        options: To define a key type for a did:key [Optional].
+        method: Method for the requested DID.Supported methods are &#39;key&#39;, &#39;sov&#39;, and any other registered method. [Optional].
+        options: To define a key type and/or a did depending on chosen DID method. [Optional].
     """
 
     method: Optional[Literal["key", "sov"]] = None
