@@ -19,6 +19,7 @@ class IssuerCredRevRecord(BaseModel):
         created_at: Time of record creation [Optional].
         cred_def_id: Credential definition identifier [Optional].
         cred_ex_id: Credential exchange record identifier at credential issue [Optional].
+        cred_ex_version: Credential exchange version [Optional].
         cred_rev_id: Credential revocation identifier [Optional].
         record_id: Issuer credential revocation record identifier [Optional].
         rev_reg_id: Revocation registry identifier [Optional].
@@ -29,6 +30,7 @@ class IssuerCredRevRecord(BaseModel):
     created_at: Optional[str] = None
     cred_def_id: Optional[str] = None
     cred_ex_id: Optional[str] = None
+    cred_ex_version: Optional[str] = None
     cred_rev_id: Optional[str] = None
     record_id: Optional[str] = None
     rev_reg_id: Optional[str] = None
@@ -41,6 +43,7 @@ class IssuerCredRevRecord(BaseModel):
         created_at: Optional[str] = None,
         cred_def_id: Optional[str] = None,
         cred_ex_id: Optional[str] = None,
+        cred_ex_version: Optional[str] = None,
         cred_rev_id: Optional[str] = None,
         record_id: Optional[str] = None,
         rev_reg_id: Optional[str] = None,
@@ -52,6 +55,7 @@ class IssuerCredRevRecord(BaseModel):
             created_at=created_at,
             cred_def_id=cred_def_id,
             cred_ex_id=cred_ex_id,
+            cred_ex_version=cred_ex_version,
             cred_rev_id=cred_rev_id,
             record_id=record_id,
             rev_reg_id=rev_reg_id,
