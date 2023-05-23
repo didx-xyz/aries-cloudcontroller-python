@@ -52,7 +52,7 @@ class IssueCredentialV10Api(Consumer):
     async def create_credential(
         self, *, body: Optional[V10CredentialCreate] = None
     ) -> V10CredentialExchange:
-        """Send holder a credential, automating entire flow"""
+        """Create a credential record without sending (generally for use with Out-Of-Band)"""
         return await self.__create_credential(
             body=body,
         )

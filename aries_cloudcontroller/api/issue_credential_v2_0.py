@@ -46,7 +46,7 @@ class IssueCredentialV20Api(Consumer):
     async def create_credential(
         self, *, body: Optional[V20IssueCredSchemaCore] = None
     ) -> V20CredExRecord:
-        """Create credential from attribute values"""
+        """Create a credential record without sending (generally for use with Out-Of-Band)"""
         return await self.__create_credential(
             body=body,
         )
