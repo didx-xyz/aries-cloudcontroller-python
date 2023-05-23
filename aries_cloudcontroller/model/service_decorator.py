@@ -16,20 +16,20 @@ class ServiceDecorator(BaseModel):
     Do not edit the class manually.
 
     ServiceDecorator - a model defined in OpenAPI
-        recipient_keys: List of recipient keys [Optional].
-        service_endpoint: Service endpoint at which to reach this agent [Optional].
+        recipient_keys: List of recipient keys.
+        service_endpoint: Service endpoint at which to reach this agent.
         routing_keys: List of routing keys [Optional].
     """
 
-    recipient_keys: Optional[List[str]] = Field(None, alias="recipientKeys")
-    service_endpoint: Optional[str] = Field(None, alias="serviceEndpoint")
+    recipient_keys: List[str] = Field(..., alias="recipientKeys")
+    service_endpoint: str = Field(..., alias="serviceEndpoint")
     routing_keys: Optional[List[str]] = Field(None, alias="routingKeys")
 
     def __init__(
         self,
         *,
-        recipient_keys: Optional[List[str]] = None,
-        service_endpoint: Optional[str] = None,
+        recipient_keys: List[str] = None,
+        service_endpoint: str = None,
         routing_keys: Optional[List[str]] = None,
         **kwargs,
     ):
