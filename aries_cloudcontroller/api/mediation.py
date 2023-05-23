@@ -28,6 +28,7 @@ from aries_cloudcontroller.model.keylist_update_request import KeylistUpdateRequ
 from aries_cloudcontroller.model.mediation_create_request import MediationCreateRequest
 from aries_cloudcontroller.model.mediation_deny import MediationDeny
 from aries_cloudcontroller.model.mediation_grant import MediationGrant
+from aries_cloudcontroller.model.mediation_id_match_info import MediationIdMatchInfo
 from aries_cloudcontroller.model.mediation_list import MediationList
 from aries_cloudcontroller.model.mediation_record import MediationRecord
 
