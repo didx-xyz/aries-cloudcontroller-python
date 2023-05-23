@@ -42,8 +42,8 @@ class IndyProofReqPredSpecNonRevoked(BaseModel):
         if value is None:
             return
 
-        if value > 2147483647:
-            raise ValueError(f"from_ must be less than 2147483647, currently {value}")
+        if value > 18446744073709551615:
+            raise ValueError(f"from_ must be less than 18446744073709551615, currently {value}")
         return value
 
     @validator("from_")
@@ -62,8 +62,8 @@ class IndyProofReqPredSpecNonRevoked(BaseModel):
         if value is None:
             return
 
-        if value > 2147483647:
-            raise ValueError(f"to must be less than 2147483647, currently {value}")
+        if value > 18446744073709551615:
+            raise ValueError(f"to must be less than 18446744073709551615, currently {value}")
         return value
 
     @validator("to")
