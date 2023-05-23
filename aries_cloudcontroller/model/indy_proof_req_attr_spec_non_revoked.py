@@ -43,7 +43,9 @@ class IndyProofReqAttrSpecNonRevoked(BaseModel):
             return
 
         if value > 18446744073709551615:
-            raise ValueError(f"from_ must be less than 18446744073709551615, currently {value}")
+            raise ValueError(
+                f"from_ must be less than 18446744073709551615, currently {value}"
+            )
         return value
 
     @validator("from_")
@@ -63,7 +65,9 @@ class IndyProofReqAttrSpecNonRevoked(BaseModel):
             return
 
         if value > 18446744073709551615:
-            raise ValueError(f"to must be less than 18446744073709551615, currently {value}")
+            raise ValueError(
+                f"to must be less than 18446744073709551615, currently {value}"
+            )
         return value
 
     @validator("to")
