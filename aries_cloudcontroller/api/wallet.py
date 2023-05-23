@@ -84,13 +84,15 @@ class WalletApi(Consumer):
         *,
         did: str,
         conn_id: Optional[str] = None,
-        create_transaction_for_endorser: Optional[bool] = None
+        create_transaction_for_endorser: Optional[bool] = None,
+        mediation_id: Optional[str] = None
     ) -> DIDResult:
         """Assign the current public DID"""
         return await self.__set_public_did(
             did=did,
             conn_id=conn_id,
             create_transaction_for_endorser=bool_query(create_transaction_for_endorser),
+            mediation_id=mediation_id,
         )
 
     @returns.json
@@ -146,6 +148,7 @@ class WalletApi(Consumer):
         *,
         did: Query,
         conn_id: Query = None,
-        create_transaction_for_endorser: Query = None
+        create_transaction_for_endorser: Query = None,
+        mediation_id: Query = None
     ) -> DIDResult:
         """Internal uplink method for set_public_did"""
