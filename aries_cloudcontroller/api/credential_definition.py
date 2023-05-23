@@ -23,9 +23,6 @@ from aries_cloudcontroller.model.credential_definition_get_result import (
 from aries_cloudcontroller.model.credential_definition_send_request import (
     CredentialDefinitionSendRequest,
 )
-from aries_cloudcontroller.model.credential_definition_send_result import (
-    CredentialDefinitionSendResult,
-)
 from aries_cloudcontroller.model.credential_definitions_created_result import (
     CredentialDefinitionsCreatedResult,
 )
@@ -75,7 +72,7 @@ class CredentialDefinitionApi(Consumer):
         conn_id: Optional[str] = None,
         create_transaction_for_endorser: Optional[bool] = None,
         body: Optional[CredentialDefinitionSendRequest] = None
-    ) -> Union[CredentialDefinitionSendResult, TxnOrCredentialDefinitionSendResult]:
+    ) -> TxnOrCredentialDefinitionSendResult:
         """Sends a credential definition to the ledger"""
         return await self.__publish_cred_def(
             conn_id=conn_id,
@@ -118,5 +115,5 @@ class CredentialDefinitionApi(Consumer):
         conn_id: Query = None,
         create_transaction_for_endorser: Query = None,
         body: Body(type=CredentialDefinitionSendRequest) = {}
-    ) -> Union[CredentialDefinitionSendResult, TxnOrCredentialDefinitionSendResult]:
+    ) -> TxnOrCredentialDefinitionSendResult:
         """Internal uplink method for publish_cred_def"""
