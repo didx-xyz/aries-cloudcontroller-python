@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -59,7 +59,7 @@ class WalletApi(Consumer):
         """Fetch the current public DID"""
         return await self.__get_public_did()
 
-    async def rotate_keypair(self, *, did: str) -> Dict:
+    async def rotate_keypair(self, *, did: str) -> Dict[str, Any]:
         """Rotate keypair for a DID not posted to the ledger"""
         return await self.__rotate_keypair(
             did=did,
@@ -71,7 +71,7 @@ class WalletApi(Consumer):
         conn_id: Optional[str] = None,
         create_transaction_for_endorser: Optional[bool] = None,
         body: Optional[DIDEndpointWithType] = None
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Update endpoint in wallet and on ledger if posted to it"""
         return await self.__set_did_endpoint(
             conn_id=conn_id,
@@ -126,7 +126,7 @@ class WalletApi(Consumer):
 
     @returns.json
     @patch("/wallet/did/local/rotate-keypair")
-    def __rotate_keypair(self, *, did: Query) -> Dict:
+    def __rotate_keypair(self, *, did: Query) -> Dict[str, Any]:
         """Internal uplink method for rotate_keypair"""
 
     @returns.json
@@ -138,7 +138,7 @@ class WalletApi(Consumer):
         conn_id: Query = None,
         create_transaction_for_endorser: Query = None,
         body: Body(type=DIDEndpointWithType) = {}
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Internal uplink method for set_did_endpoint"""
 
     @returns.json

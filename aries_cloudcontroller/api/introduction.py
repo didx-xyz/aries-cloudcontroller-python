@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -21,7 +21,7 @@ from aries_cloudcontroller.uplink_util import bool_query
 class IntroductionApi(Consumer):
     async def start_introduction(
         self, *, conn_id: str, target_connection_id: str, message: Optional[str] = None
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Start an introduction between two connections"""
         return await self.__start_introduction(
             conn_id=conn_id,
@@ -33,5 +33,5 @@ class IntroductionApi(Consumer):
     @post("/connections/{conn_id}/start-introduction")
     def __start_introduction(
         self, *, conn_id: str, target_connection_id: Query, message: Query = None
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Internal uplink method for start_introduction"""

@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -51,7 +51,7 @@ class PresentProofV10Api(Consumer):
             body=body,
         )
 
-    async def delete_record(self, *, pres_ex_id: str) -> Dict:
+    async def delete_record(self, *, pres_ex_id: str) -> Dict[str, Any]:
         """Remove an existing presentation exchange record"""
         return await self.__delete_record(
             pres_ex_id=pres_ex_id,
@@ -102,7 +102,7 @@ class PresentProofV10Api(Consumer):
         *,
         pres_ex_id: str,
         body: Optional[V10PresentationProblemReportRequest] = None
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Send a problem report for presentation exchange"""
         return await self.__report_problem(
             pres_ex_id=pres_ex_id,
@@ -162,7 +162,7 @@ class PresentProofV10Api(Consumer):
 
     @returns.json
     @delete("/present-proof/records/{pres_ex_id}")
-    def __delete_record(self, *, pres_ex_id: str) -> Dict:
+    def __delete_record(self, *, pres_ex_id: str) -> Dict[str, Any]:
         """Internal uplink method for delete_record"""
 
     @returns.json
@@ -203,7 +203,7 @@ class PresentProofV10Api(Consumer):
         *,
         pres_ex_id: str,
         body: Body(type=V10PresentationProblemReportRequest) = {}
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Internal uplink method for report_problem"""
 
     @returns.json

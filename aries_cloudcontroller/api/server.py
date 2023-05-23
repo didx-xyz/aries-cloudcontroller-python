@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -45,11 +45,11 @@ class ServerApi(Consumer):
         """Fetch the server status"""
         return await self.__get_status()
 
-    async def reset_statistics(self) -> Dict:
+    async def reset_statistics(self) -> Dict[str, Any]:
         """Reset statistics"""
         return await self.__reset_statistics()
 
-    async def shutdown_server(self) -> Dict:
+    async def shutdown_server(self) -> Dict[str, Any]:
         """Shut down server"""
         return await self.__shutdown_server()
 
@@ -80,10 +80,10 @@ class ServerApi(Consumer):
 
     @returns.json
     @post("/status/reset")
-    def __reset_statistics(self) -> Dict:
+    def __reset_statistics(self) -> Dict[str, Any]:
         """Internal uplink method for reset_statistics"""
 
     @returns.json
     @get("/shutdown")
-    def __shutdown_server(self) -> Dict:
+    def __shutdown_server(self) -> Dict[str, Any]:
         """Internal uplink method for shutdown_server"""

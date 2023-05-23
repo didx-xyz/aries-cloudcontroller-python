@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -186,7 +186,9 @@ class RevocationApi(Consumer):
             rev_reg_id=rev_reg_id,
         )
 
-    async def revoke_credential(self, *, body: Optional[RevokeRequest] = None) -> Dict:
+    async def revoke_credential(
+        self, *, body: Optional[RevokeRequest] = None
+    ) -> Dict[str, Any]:
         """Revoke an issued credential"""
         return await self.__revoke_credential(
             body=body,
@@ -208,7 +210,7 @@ class RevocationApi(Consumer):
             body=body,
         )
 
-    async def upload_tails_file(self, *, rev_reg_id: str) -> Dict:
+    async def upload_tails_file(self, *, rev_reg_id: str) -> Dict[str, Any]:
         """Upload local tails file to server"""
         return await self.__upload_tails_file(
             rev_reg_id=rev_reg_id,
@@ -330,7 +332,9 @@ class RevocationApi(Consumer):
     @returns.json
     @json
     @post("/revocation/revoke")
-    def __revoke_credential(self, *, body: Body(type=RevokeRequest) = {}) -> Dict:
+    def __revoke_credential(
+        self, *, body: Body(type=RevokeRequest) = {}
+    ) -> Dict[str, Any]:
         """Internal uplink method for revoke_credential"""
 
     @returns.json
@@ -348,5 +352,5 @@ class RevocationApi(Consumer):
 
     @returns.json
     @put("/revocation/registry/{rev_reg_id}/tails-file")
-    def __upload_tails_file(self, *, rev_reg_id: str) -> Dict:
+    def __upload_tails_file(self, *, rev_reg_id: str) -> Dict[str, Any]:
         """Internal uplink method for upload_tails_file"""

@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -27,10 +27,11 @@ from aries_cloudcontroller.model.txn_or_register_ledger_nym_response import (
     TxnOrRegisterLedgerNymResponse,
 )
 from aries_cloudcontroller.model.write_ledger_request import WriteLedgerRequest
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class LedgerApi(Consumer):
-    async def accept_taa(self, *, body: Optional[TAAAccept] = None) -> Dict:
+    async def accept_taa(self, *, body: Optional[TAAAccept] = None) -> Dict[str, Any]:
         """Accept the transaction author agreement"""
         return await self.__accept_taa(
             body=body,
@@ -89,14 +90,14 @@ class LedgerApi(Consumer):
             role=role,
         )
 
-    async def rotate_public_did_keypair(self) -> Dict:
+    async def rotate_public_did_keypair(self) -> Dict[str, Any]:
         """Rotate key pair for public DID."""
         return await self.__rotate_public_did_keypair()
 
     @returns.json
     @json
     @post("/ledger/taa/accept")
-    def __accept_taa(self, *, body: Body(type=TAAAccept) = {}) -> Dict:
+    def __accept_taa(self, *, body: Body(type=TAAAccept) = {}) -> Dict[str, Any]:
         """Internal uplink method for accept_taa"""
 
     @returns.json
@@ -147,5 +148,5 @@ class LedgerApi(Consumer):
 
     @returns.json
     @patch("/ledger/rotate-public-did-keypair")
-    def __rotate_public_did_keypair(self) -> Dict:
+    def __rotate_public_did_keypair(self) -> Dict[str, Any]:
         """Internal uplink method for rotate_public_did_keypair"""
