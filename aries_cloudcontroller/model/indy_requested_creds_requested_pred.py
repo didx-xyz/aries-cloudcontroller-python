@@ -42,8 +42,8 @@ class IndyRequestedCredsRequestedPred(BaseModel):
         if value is None:
             return
 
-        if value > -1:
-            raise ValueError(f"timestamp must be less than -1, currently {value}")
+        if value > 2147483647:
+            raise ValueError(f"timestamp must be less than 2147483647, currently {value}")
         return value
 
     @validator("timestamp")
