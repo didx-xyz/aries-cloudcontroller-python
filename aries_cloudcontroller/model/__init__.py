@@ -311,9 +311,6 @@ from aries_cloudcontroller.model.v10_credential_store_request import (
 from aries_cloudcontroller.model.v10_discovery_exchange_list_result import (
     V10DiscoveryExchangeListResult,
 )
-from aries_cloudcontroller.model.v10_discovery_exchange_result import (
-    V10DiscoveryExchangeResult,
-)
 from aries_cloudcontroller.model.v10_discovery_record import V10DiscoveryRecord
 from aries_cloudcontroller.model.v10_presentation_create_request_request import (
     V10PresentationCreateRequestRequest,
@@ -635,7 +632,6 @@ __all__ = [
     "V10CredentialProposalRequestOpt",
     "V10CredentialStoreRequest",
     "V10DiscoveryExchangeListResult",
-    "V10DiscoveryExchangeResult",
     "V10DiscoveryRecord",
     "V10PresentationCreateRequestRequest",
     "V10PresentationExchange",
