@@ -24,6 +24,7 @@ class V20CredExFree(BaseModel):
         comment: Human-readable comment [Optional].
         credential_preview: The credential_preview of this V20CredExFree [Optional].
         trace: Record trace information, based on agent configuration [Optional].
+        verification_method: For ld-proofs. Verification method for signing. [Optional].
     """
 
     connection_id: str
@@ -32,6 +33,7 @@ class V20CredExFree(BaseModel):
     comment: Optional[str] = None
     credential_preview: Optional[V20CredPreview] = None
     trace: Optional[bool] = None
+    verification_method: Optional[str] = None
 
     def __init__(
         self,
@@ -42,6 +44,7 @@ class V20CredExFree(BaseModel):
         comment: Optional[str] = None,
         credential_preview: Optional[V20CredPreview] = None,
         trace: Optional[bool] = None,
+        verification_method: Optional[str] = None,
         **kwargs,
     ):
         super().__init__(
@@ -51,6 +54,7 @@ class V20CredExFree(BaseModel):
             credential_preview=credential_preview,
             filter=filter,
             trace=trace,
+            verification_method=verification_method,
             **kwargs,
         )
 
