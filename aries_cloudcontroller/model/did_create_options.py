@@ -16,7 +16,7 @@ class DIDCreateOptions(BaseModel):
     Do not edit the class manually.
 
     DIDCreateOptions - a model defined in OpenAPI
-        key_type: The key_type of this DIDCreateOptions.
+        key_type: Key type to use for the DID keypair. Validated with the chosen DID method's supported key types..
     """
 
     key_type: Literal["ed25519", "bls12381g2"]
