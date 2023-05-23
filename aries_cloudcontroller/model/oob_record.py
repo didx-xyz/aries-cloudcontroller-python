@@ -35,12 +35,20 @@ class OobRecord(BaseModel):
     invi_msg_id: str
     invitation: InvitationMessage
     oob_id: str
-    state: str
+    state: Literal[
+        "initial",
+        "prepare-response",
+        "await-response",
+        "reuse-not-accepted",
+        "reuse-accepted",
+        "done",
+        "deleted",
+    ]
     attach_thread_id: Optional[str] = None
     connection_id: Optional[str] = None
     created_at: Optional[str] = None
     our_recipient_key: Optional[str] = None
-    role: Optional[str] = None
+    role: Optional[Literal["sender", "receiver"]] = None
     their_service: Optional[ServiceDecorator] = None
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
@@ -51,12 +59,20 @@ class OobRecord(BaseModel):
         invi_msg_id: str = None,
         invitation: InvitationMessage = None,
         oob_id: str = None,
-        state: str = None,
+        state: Literal[
+            "initial",
+            "prepare-response",
+            "await-response",
+            "reuse-not-accepted",
+            "reuse-accepted",
+            "done",
+            "deleted",
+        ] = None,
         attach_thread_id: Optional[str] = None,
         connection_id: Optional[str] = None,
         created_at: Optional[str] = None,
         our_recipient_key: Optional[str] = None,
-        role: Optional[str] = None,
+        role: Optional[Literal["sender", "receiver"]] = None,
         their_service: Optional[ServiceDecorator] = None,
         trace: Optional[bool] = None,
         updated_at: Optional[str] = None,
