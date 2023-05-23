@@ -39,6 +39,7 @@ from aries_cloudcontroller.model.rev_reg_wallet_updated_result import (
 )
 from aries_cloudcontroller.model.rev_regs_created import RevRegsCreated
 from aries_cloudcontroller.model.revoke_request import RevokeRequest
+from aries_cloudcontroller.model.tails_delete_response import TailsDeleteResponse
 from aries_cloudcontroller.model.txn_or_publish_revocations_result import (
     TxnOrPublishRevocationsResult,
 )
@@ -147,6 +148,15 @@ class RevocationApi(Consumer):
         """Publish pending revocations to ledger"""
         return await self.__publish_revocations(
             body=body,
+        )
+
+    async def revocation_registry_delete_tails_file_delete(
+        self, *, cred_def_id: Optional[str] = None, rev_reg_id: Optional[str] = None
+    ) -> TailsDeleteResponse:
+        """Delete the tail files"""
+        return await self.__revocation_registry_delete_tails_file_delete(
+            cred_def_id=cred_def_id,
+            rev_reg_id=rev_reg_id,
         )
 
     async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
@@ -288,6 +298,13 @@ class RevocationApi(Consumer):
         self, *, body: Body(type=PublishRevocations) = {}
     ) -> Union[PublishRevocations, TxnOrPublishRevocationsResult]:
         """Internal uplink method for publish_revocations"""
+
+    @returns.json
+    @delete("/revocation/registry/delete-tails-file")
+    def __revocation_registry_delete_tails_file_delete(
+        self, *, cred_def_id: Query = None, rev_reg_id: Query = None
+    ) -> TailsDeleteResponse:
+        """Internal uplink method for revocation_registry_delete_tails_file_delete"""
 
     @returns.json
     @put("/revocation/registry/{rev_reg_id}/fix-revocation-entry-state")
