@@ -21,6 +21,7 @@ class InvitationMessage(BaseModel):
         type: Message type [Optional].
         accept: List of mime type in order of preference [Optional].
         handshake_protocols: The handshake_protocols of this InvitationMessage [Optional].
+        image_url: Optional image URL for out-of-band invitation [Optional].
         label: Optional label [Optional].
         requestsattach: Optional request attachment [Optional].
         services: The services of this InvitationMessage [Optional].
@@ -30,6 +31,7 @@ class InvitationMessage(BaseModel):
     type: Optional[str] = Field(None, alias="@type")
     accept: Optional[List[str]] = None
     handshake_protocols: Optional[List[str]] = None
+    image_url: Optional[str] = Field(None, alias="imageUrl")
     label: Optional[str] = None
     requestsattach: Optional[List[AttachDecorator]] = Field(
         None, alias="requests~attach"
@@ -43,6 +45,7 @@ class InvitationMessage(BaseModel):
         type: Optional[str] = None,
         accept: Optional[List[str]] = None,
         handshake_protocols: Optional[List[str]] = None,
+        image_url: Optional[str] = None,
         label: Optional[str] = None,
         requestsattach: Optional[List[AttachDecorator]] = None,
         services: Optional[List[Union[Dict, str]]] = None,
@@ -53,6 +56,7 @@ class InvitationMessage(BaseModel):
             type=type,
             accept=accept,
             handshake_protocols=handshake_protocols,
+            image_url=image_url,
             label=label,
             requestsattach=requestsattach,
             services=services,
