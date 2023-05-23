@@ -85,6 +85,15 @@ class MediationApi(Consumer):
             mediation_id=mediation_id,
         )
 
+    async def mediation_update_keylist_conn_id_post(
+        self, *, conn_id: str, body: Optional[MediationIdMatchInfo] = None
+    ) -> KeylistUpdate:
+        """Update keylist for a connection"""
+        return await self.__mediation_update_keylist_conn_id_post(
+            conn_id=conn_id,
+            body=body,
+        )
+
     async def request_mediation(
         self, *, conn_id: str, body: Optional[MediationCreateRequest] = None
     ) -> MediationRecord:
@@ -178,6 +187,14 @@ class MediationApi(Consumer):
     @post("/mediation/requests/{mediation_id}/grant")
     def __grant_mediation_request(self, *, mediation_id: str) -> MediationGrant:
         """Internal uplink method for grant_mediation_request"""
+
+    @returns.json
+    @json
+    @post("/mediation/update-keylist/{conn_id}")
+    def __mediation_update_keylist_conn_id_post(
+        self, *, conn_id: str, body: Body(type=MediationIdMatchInfo) = {}
+    ) -> KeylistUpdate:
+        """Internal uplink method for mediation_update_keylist_conn_id_post"""
 
     @returns.json
     @json
