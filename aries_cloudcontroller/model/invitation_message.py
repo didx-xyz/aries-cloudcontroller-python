@@ -36,7 +36,7 @@ class InvitationMessage(BaseModel):
     requestsattach: Optional[List[AttachDecorator]] = Field(
         None, alias="requests~attach"
     )
-    services: Optional[List[Union[Dict, str]]] = None
+    services: Optional[List[Dict]] = None
 
     def __init__(
         self,
@@ -48,7 +48,7 @@ class InvitationMessage(BaseModel):
         image_url: Optional[str] = None,
         label: Optional[str] = None,
         requestsattach: Optional[List[AttachDecorator]] = None,
-        services: Optional[List[Union[Dict, str]]] = None,
+        services: Optional[List[Dict]] = None,
         **kwargs,
     ):
         super().__init__(
