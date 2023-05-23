@@ -1,2 +1,2 @@
-aiohttp>=3.7.4
-uplink[aiohttp, pydantic]==0.9.4
+aiohttp~=3.8.4
+uplink[aiohttp, pydantic]~=0.9.7
