@@ -264,6 +264,7 @@ from aries_cloudcontroller.model.taa_acceptance import TAAAcceptance
 from aries_cloudcontroller.model.taa_info import TAAInfo
 from aries_cloudcontroller.model.taa_record import TAARecord
 from aries_cloudcontroller.model.taa_result import TAAResult
+from aries_cloudcontroller.model.tails_delete_response import TailsDeleteResponse
 from aries_cloudcontroller.model.transaction_jobs import TransactionJobs
 from aries_cloudcontroller.model.transaction_list import TransactionList
 from aries_cloudcontroller.model.transaction_record import TransactionRecord
@@ -611,6 +612,7 @@ __all__ = [
     "TAAInfo",
     "TAARecord",
     "TAAResult",
+    "TailsDeleteResponse",
     "TransactionJobs",
     "TransactionList",
     "TransactionRecord",
