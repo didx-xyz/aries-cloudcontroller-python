@@ -40,7 +40,7 @@ valid_presentation = {
         "presentation_proposal": {"attributes": [], "predicates": []}
     },
     "presentation_request": {"requested_attributes": {}, "requested_predicates": {}},
-    "presentation_request_dict": {"request_presentationsattach": [{"data": {}}]},
+    "presentation_request_dict": {"request_presentations~attach": [{"data": {}}]},
     "role": "prover",
     "state": "verified",
     "thread_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
