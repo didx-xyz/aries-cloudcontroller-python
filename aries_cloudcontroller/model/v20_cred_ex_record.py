@@ -122,6 +122,22 @@ class V20CredExRecord(BaseModel):
         updated_at: Optional[str] = None,
         **kwargs,
     ):
+        # Manually handle the alias of `credentialsattach` in `V20CredIssue`
+        if isinstance(cred_issue, dict) and "credentials~attach" in cred_issue:
+            cred_issue["credentialsattach"] = cred_issue.pop("credentials~attach")
+
+        # Manually handle the alias of `offersattach` in `V20CredOffer`
+        if isinstance(cred_offer, dict) and "offers~attach" in cred_offer:
+            cred_offer["offersattach"] = cred_offer.pop("offers~attach")
+
+        # Manually handle the alias of `filtersattach` in `V20CredProposal`
+        if isinstance(cred_proposal, dict) and "filters~attach" in cred_proposal:
+            cred_proposal["filtersattach"] = cred_proposal.pop("filters~attach")
+
+        # Manually handle the alias of `requestsattach` in `V20CredRequest`
+        if isinstance(cred_request, dict) and "requests~attach" in cred_request:
+            cred_request["requestsattach"] = cred_request.pop("requests~attach")
+
         super().__init__(
             auto_issue=auto_issue,
             auto_offer=auto_offer,

@@ -108,6 +108,23 @@ class V20PresExRecord(BaseModel):
         verified_msgs: Optional[List[str]] = None,
         **kwargs,
     ):
+        # Manually handle the alias of `presentationsattach` in `V20Pres`
+        if isinstance(pres, dict) and "presentations~attach" in pres:
+            pres["presentationsattach"] = pres.pop("presentations~attach")
+
+        # Manually handle the alias of `proposalsattach` in `V20PresProposal`
+        if isinstance(pres_proposal, dict) and "proposals~attach" in pres_proposal:
+            pres_proposal["proposalsattach"] = pres_proposal.pop("proposals~attach")
+
+        # Manually handle the alias of `request_presentationsattach` in `V20PresRequest`
+        if (
+            isinstance(pres_request, dict)
+            and "request_presentations~attach" in pres_request
+        ):
+            pres_request["request_presentationsattach"] = pres_request.pop(
+                "request_presentations~attach"
+            )
+
         super().__init__(
             auto_present=auto_present,
             auto_verify=auto_verify,

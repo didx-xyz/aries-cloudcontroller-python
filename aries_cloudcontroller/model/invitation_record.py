@@ -52,6 +52,10 @@ class InvitationRecord(BaseModel):
         updated_at: Optional[str] = None,
         **kwargs,
     ):
+        # Manually handle the alias of `requestsattach` in `InvitationMessage`
+        if isinstance(invitation, dict) and "requests~attach" in invitation:
+            invitation["requestsattach"] = invitation.pop("requests~attach")
+
         super().__init__(
             created_at=created_at,
             invi_msg_id=invi_msg_id,

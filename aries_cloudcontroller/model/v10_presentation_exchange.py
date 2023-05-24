@@ -82,6 +82,16 @@ class V10PresentationExchange(BaseModel):
         verified_msgs: Optional[List[str]] = None,
         **kwargs,
     ):
+        # Manually handle the alias of `request_presentationsattach` in `PresentationRequest`
+        if presentation_request_dict:
+            if (
+                isinstance(presentation_request_dict, dict)
+                and "request_presentations~attach" in presentation_request_dict
+            ):
+                presentation_request_dict[
+                    "request_presentationsattach"
+                ] = presentation_request_dict.pop("request_presentations~attach")
+
         super().__init__(
             auto_present=auto_present,
             auto_verify=auto_verify,

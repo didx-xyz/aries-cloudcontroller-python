@@ -78,6 +78,10 @@ class OobRecord(BaseModel):
         updated_at: Optional[str] = None,
         **kwargs,
     ):
+        # Manually handle the alias of `requestsattach` in `InvitationMessage`
+        if isinstance(invitation, dict) and "requests~attach" in invitation:
+            invitation["requestsattach"] = invitation.pop("requests~attach")
+
         super().__init__(
             attach_thread_id=attach_thread_id,
             connection_id=connection_id,
