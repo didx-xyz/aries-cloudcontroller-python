@@ -109,14 +109,13 @@ class V10CredentialExchange(BaseModel):
         **kwargs,
     ):
         # Manually handle the alias of `offersattach` in `CredentialOffer`
-        if credential_offer_dict:
-            if (
-                isinstance(credential_offer_dict, dict)
-                and "offers~attach" in credential_offer_dict
-            ):
-                credential_offer_dict["offersattach"] = credential_offer_dict.pop(
-                    "offers~attach"
-                )
+        if (
+            isinstance(credential_offer_dict, dict)
+            and "offers~attach" in credential_offer_dict
+        ):
+            credential_offer_dict["offersattach"] = credential_offer_dict.pop(
+                "offers~attach"
+            )
 
         super().__init__(
             auto_issue=auto_issue,
