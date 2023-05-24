@@ -35,8 +35,8 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
     def __init__(
         self,
         *,
-        cred_def_id: str = None,
-        credential_preview: CredentialPreview = None,
+        cred_def_id: str,
+        credential_preview: CredentialPreview,
         auto_issue: Optional[bool] = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,

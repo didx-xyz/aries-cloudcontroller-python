@@ -34,8 +34,8 @@ class MenuFormParam(BaseModel):
     def __init__(
         self,
         *,
-        name: str = None,
-        title: str = None,
+        name: str,
+        title: str,
         default: Optional[str] = None,
         description: Optional[str] = None,
         required: Optional[bool] = None,

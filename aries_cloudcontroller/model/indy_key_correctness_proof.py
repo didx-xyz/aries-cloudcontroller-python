@@ -28,9 +28,9 @@ class IndyKeyCorrectnessProof(BaseModel):
     def __init__(
         self,
         *,
-        c: str = None,
-        xr_cap: List[List[str]] = None,
-        xz_cap: str = None,
+        c: str,
+        xr_cap: List[List[str]],
+        xz_cap: str,
         **kwargs,
     ):
         super().__init__(

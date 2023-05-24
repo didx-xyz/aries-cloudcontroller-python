@@ -34,7 +34,7 @@ class V20IssueCredSchemaCore(BaseModel):
     def __init__(
         self,
         *,
-        filter: V20CredFilter = None,
+        filter: V20CredFilter,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,
         credential_preview: Optional[V20CredPreview] = None,

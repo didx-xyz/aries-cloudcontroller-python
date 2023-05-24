@@ -39,8 +39,8 @@ class IndyProofRequest(BaseModel):
     def __init__(
         self,
         *,
-        requested_attributes: Dict[str, IndyProofReqAttrSpec] = None,
-        requested_predicates: Dict[str, IndyProofReqPredSpec] = None,
+        requested_attributes: Dict[str, IndyProofReqAttrSpec],
+        requested_predicates: Dict[str, IndyProofReqPredSpec],
         name: Optional[str] = None,
         non_revoked: Optional[IndyProofRequestNonRevoked] = None,
         nonce: Optional[str] = None,

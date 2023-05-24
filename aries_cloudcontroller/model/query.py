@@ -30,7 +30,7 @@ class Query(BaseModel):
     def __init__(
         self,
         *,
-        query: str = None,
+        query: str,
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

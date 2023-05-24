@@ -27,7 +27,7 @@ class V20CredPreview(BaseModel):
     def __init__(
         self,
         *,
-        attributes: List[V20CredAttrSpec] = None,
+        attributes: List[V20CredAttrSpec],
         type: Optional[str] = None,
         **kwargs,
     ):

@@ -39,7 +39,7 @@ class LDProofVCDetailOptions(BaseModel):
     def __init__(
         self,
         *,
-        proof_type: str = None,
+        proof_type: str,
         challenge: Optional[str] = None,
         created: Optional[str] = None,
         credential_status: Optional[CredentialStatusOptions] = None,

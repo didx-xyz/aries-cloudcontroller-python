@@ -30,8 +30,8 @@ class LDProofVCDetail(BaseModel):
     def __init__(
         self,
         *,
-        credential: Credential = None,
-        options: LDProofVCDetailOptions = None,
+        credential: Credential,
+        options: LDProofVCDetailOptions,
         **kwargs,
     ):
         super().__init__(

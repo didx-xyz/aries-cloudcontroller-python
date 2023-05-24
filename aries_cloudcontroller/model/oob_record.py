@@ -56,9 +56,9 @@ class OobRecord(BaseModel):
     def __init__(
         self,
         *,
-        invi_msg_id: str = None,
-        invitation: InvitationMessage = None,
-        oob_id: str = None,
+        invi_msg_id: str,
+        invitation: InvitationMessage,
+        oob_id: str,
         state: Literal[
             "initial",
             "prepare-response",
@@ -67,7 +67,7 @@ class OobRecord(BaseModel):
             "reuse-accepted",
             "done",
             "deleted",
-        ] = None,
+        ],
         attach_thread_id: Optional[str] = None,
         connection_id: Optional[str] = None,
         created_at: Optional[str] = None,

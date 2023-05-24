@@ -26,7 +26,7 @@ class DIDCreateOptions(BaseModel):
     def __init__(
         self,
         *,
-        key_type: Literal["ed25519", "bls12381g2"] = None,
+        key_type: Literal["ed25519", "bls12381g2"],
         did: Optional[str] = None,
         **kwargs,
     ):

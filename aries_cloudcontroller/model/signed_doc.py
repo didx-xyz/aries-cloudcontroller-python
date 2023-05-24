@@ -25,7 +25,7 @@ class SignedDoc(BaseModel):
     def __init__(
         self,
         *,
-        proof: SignatureOptions = None,
+        proof: SignatureOptions,
         **kwargs,
     ):
         super().__init__(

@@ -26,8 +26,8 @@ class ResolutionResult(BaseModel):
     def __init__(
         self,
         *,
-        did_document: Dict[str, Any] = None,
-        metadata: Dict[str, Any] = None,
+        did_document: Dict[str, Any],
+        metadata: Dict[str, Any],
         **kwargs,
     ):
         super().__init__(

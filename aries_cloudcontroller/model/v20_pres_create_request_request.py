@@ -33,7 +33,7 @@ class V20PresCreateRequestRequest(BaseModel):
     def __init__(
         self,
         *,
-        presentation_request: V20PresRequestByFormat = None,
+        presentation_request: V20PresRequestByFormat,
         auto_verify: Optional[bool] = None,
         comment: Optional[str] = None,
         trace: Optional[bool] = None,

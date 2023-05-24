@@ -27,7 +27,7 @@ class SchemaSendResult(BaseModel):
     def __init__(
         self,
         *,
-        schema_id: str = None,
+        schema_id: str,
         schema_: Optional[ModelSchema] = None,
         **kwargs,
     ):

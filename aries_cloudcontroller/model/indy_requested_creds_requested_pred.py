@@ -26,7 +26,7 @@ class IndyRequestedCredsRequestedPred(BaseModel):
     def __init__(
         self,
         *,
-        cred_id: str = None,
+        cred_id: str,
         timestamp: Optional[int] = None,
         **kwargs,
     ):

@@ -36,9 +36,9 @@ class IndyPresSpec(BaseModel):
     def __init__(
         self,
         *,
-        requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = None,
-        requested_predicates: Dict[str, IndyRequestedCredsRequestedPred] = None,
-        self_attested_attributes: Dict[str, str] = None,
+        requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr],
+        requested_predicates: Dict[str, IndyRequestedCredsRequestedPred],
+        self_attested_attributes: Dict[str, str],
         trace: Optional[bool] = None,
         **kwargs,
     ):

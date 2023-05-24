@@ -42,8 +42,8 @@ class MediationRecord(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str = None,
-        role: str = None,
+        connection_id: str,
+        role: str,
         created_at: Optional[str] = None,
         endpoint: Optional[str] = None,
         mediation_id: Optional[str] = None,

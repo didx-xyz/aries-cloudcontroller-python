@@ -35,8 +35,8 @@ class V20PresSendRequestRequest(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str = None,
-        presentation_request: V20PresRequestByFormat = None,
+        connection_id: str,
+        presentation_request: V20PresRequestByFormat,
         auto_verify: Optional[bool] = None,
         comment: Optional[str] = None,
         trace: Optional[bool] = None,

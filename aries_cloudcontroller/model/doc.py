@@ -27,8 +27,8 @@ class Doc(BaseModel):
     def __init__(
         self,
         *,
-        credential: Dict[str, Any] = None,
-        options: SignatureOptions = None,
+        credential: Dict[str, Any],
+        options: SignatureOptions,
         **kwargs,
     ):
         super().__init__(

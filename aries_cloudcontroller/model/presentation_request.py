@@ -33,7 +33,7 @@ class PresentationRequest(BaseModel):
     def __init__(
         self,
         *,
-        request_presentationsattach: List[AttachDecorator] = None,
+        request_presentationsattach: List[AttachDecorator],
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

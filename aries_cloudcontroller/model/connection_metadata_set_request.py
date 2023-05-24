@@ -24,7 +24,7 @@ class ConnectionMetadataSetRequest(BaseModel):
     def __init__(
         self,
         *,
-        metadata: Dict[str, Any] = None,
+        metadata: Dict[str, Any],
         **kwargs,
     ):
         super().__init__(

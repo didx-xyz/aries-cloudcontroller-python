@@ -33,7 +33,7 @@ class DIDXRequest(BaseModel):
     def __init__(
         self,
         *,
-        label: str = None,
+        label: str,
         id: Optional[str] = None,
         type: Optional[str] = None,
         did: Optional[str] = None,

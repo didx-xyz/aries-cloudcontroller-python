@@ -30,9 +30,9 @@ class IndyPresPredSpec(BaseModel):
     def __init__(
         self,
         *,
-        name: str = None,
-        predicate: Literal["<", "<=", ">=", ">"] = None,
-        threshold: int = None,
+        name: str,
+        predicate: Literal["<", "<=", ">=", ">"],
+        threshold: int,
         cred_def_id: Optional[str] = None,
         **kwargs,
     ):

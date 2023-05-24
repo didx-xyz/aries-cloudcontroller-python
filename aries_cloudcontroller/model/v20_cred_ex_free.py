@@ -38,8 +38,8 @@ class V20CredExFree(BaseModel):
     def __init__(
         self,
         *,
-        connection_id: str = None,
-        filter: V20CredFilter = None,
+        connection_id: str,
+        filter: V20CredFilter,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,
         credential_preview: Optional[V20CredPreview] = None,

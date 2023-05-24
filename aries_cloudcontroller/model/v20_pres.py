@@ -36,8 +36,8 @@ class V20Pres(BaseModel):
     def __init__(
         self,
         *,
-        formats: List[V20PresFormat] = None,
-        presentationsattach: List[AttachDecorator] = None,
+        formats: List[V20PresFormat],
+        presentationsattach: List[AttachDecorator],
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

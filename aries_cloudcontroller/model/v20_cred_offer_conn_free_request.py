@@ -36,7 +36,7 @@ class V20CredOfferConnFreeRequest(BaseModel):
     def __init__(
         self,
         *,
-        filter: V20CredFilter = None,
+        filter: V20CredFilter,
         auto_issue: Optional[bool] = None,
         auto_remove: Optional[bool] = None,
         comment: Optional[str] = None,

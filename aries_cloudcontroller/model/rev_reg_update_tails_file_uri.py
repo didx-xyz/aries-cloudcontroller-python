@@ -24,7 +24,7 @@ class RevRegUpdateTailsFileUri(BaseModel):
     def __init__(
         self,
         *,
-        tails_public_uri: str = None,
+        tails_public_uri: str,
         **kwargs,
     ):
         super().__init__(

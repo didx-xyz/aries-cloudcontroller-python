@@ -28,8 +28,8 @@ class CredAttrSpec(BaseModel):
     def __init__(
         self,
         *,
-        name: str = None,
-        value: str = None,
+        name: str,
+        value: str,
         mime_type: Optional[str] = None,
         **kwargs,
     ):

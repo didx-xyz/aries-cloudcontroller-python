@@ -28,7 +28,7 @@ class DIFProofRequest(BaseModel):
     def __init__(
         self,
         *,
-        presentation_definition: PresentationDefinition = None,
+        presentation_definition: PresentationDefinition,
         options: Optional[DIFOptions] = None,
         **kwargs,
     ):

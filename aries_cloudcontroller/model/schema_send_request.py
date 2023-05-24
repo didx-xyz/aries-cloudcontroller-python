@@ -28,9 +28,9 @@ class SchemaSendRequest(BaseModel):
     def __init__(
         self,
         *,
-        attributes: List[str] = None,
-        schema_name: str = None,
-        schema_version: str = None,
+        attributes: List[str],
+        schema_name: str,
+        schema_version: str,
         **kwargs,
     ):
         super().__init__(

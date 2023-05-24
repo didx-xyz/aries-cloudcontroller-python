@@ -26,8 +26,8 @@ class QueryItem(BaseModel):
     def __init__(
         self,
         *,
-        feature_type: Literal["protocol", "goal-code"] = None,
-        match: str = None,
+        feature_type: Literal["protocol", "goal-code"],
+        match: str,
         **kwargs,
     ):
         super().__init__(

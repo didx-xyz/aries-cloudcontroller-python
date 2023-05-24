@@ -28,8 +28,8 @@ class ServiceDecorator(BaseModel):
     def __init__(
         self,
         *,
-        recipient_keys: List[str] = None,
-        service_endpoint: str = None,
+        recipient_keys: List[str],
+        service_endpoint: str,
         routing_keys: Optional[List[str]] = None,
         **kwargs,
     ):

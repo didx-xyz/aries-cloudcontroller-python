@@ -25,7 +25,7 @@ class LedgerConfigList(BaseModel):
     def __init__(
         self,
         *,
-        ledger_config_list: List[LedgerConfigInstance] = None,
+        ledger_config_list: List[LedgerConfigInstance],
         **kwargs,
     ):
         super().__init__(

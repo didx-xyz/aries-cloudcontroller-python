@@ -39,8 +39,8 @@ class V20CredOffer(BaseModel):
     def __init__(
         self,
         *,
-        formats: List[V20CredFormat] = None,
-        offersattach: List[AttachDecorator] = None,
+        formats: List[V20CredFormat],
+        offersattach: List[AttachDecorator],
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

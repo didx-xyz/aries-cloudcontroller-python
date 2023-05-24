@@ -37,7 +37,7 @@ class AttachDecorator(BaseModel):
     def __init__(
         self,
         *,
-        data: AttachDecoratorData = None,
+        data: AttachDecoratorData,
         id: Optional[str] = None,
         byte_count: Optional[int] = None,
         description: Optional[str] = None,

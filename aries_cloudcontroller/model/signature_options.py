@@ -32,8 +32,8 @@ class SignatureOptions(BaseModel):
     def __init__(
         self,
         *,
-        proof_purpose: str = None,
-        verification_method: str = None,
+        proof_purpose: str,
+        verification_method: str,
         challenge: Optional[str] = None,
         domain: Optional[str] = None,
         type: Optional[str] = None,

@@ -26,7 +26,7 @@ class VerifyResponse(BaseModel):
     def __init__(
         self,
         *,
-        valid: bool = None,
+        valid: bool,
         error: Optional[str] = None,
         **kwargs,
     ):

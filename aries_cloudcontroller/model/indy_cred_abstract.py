@@ -33,10 +33,10 @@ class IndyCredAbstract(BaseModel):
     def __init__(
         self,
         *,
-        cred_def_id: str = None,
-        key_correctness_proof: IndyKeyCorrectnessProof = None,
-        nonce: str = None,
-        schema_id: str = None,
+        cred_def_id: str,
+        key_correctness_proof: IndyKeyCorrectnessProof,
+        nonce: str,
+        schema_id: str,
         **kwargs,
     ):
         super().__init__(

@@ -37,8 +37,8 @@ class V20CredProposal(BaseModel):
     def __init__(
         self,
         *,
-        filtersattach: List[AttachDecorator] = None,
-        formats: List[V20CredFormat] = None,
+        filtersattach: List[AttachDecorator],
+        formats: List[V20CredFormat],
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

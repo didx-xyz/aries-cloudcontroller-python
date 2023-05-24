@@ -26,8 +26,8 @@ class V20PresFormat(BaseModel):
     def __init__(
         self,
         *,
-        attach_id: str = None,
-        format: str = None,
+        attach_id: str,
+        format: str,
         **kwargs,
     ):
         super().__init__(

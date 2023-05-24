@@ -26,7 +26,7 @@ class IndyRequestedCredsRequestedAttr(BaseModel):
     def __init__(
         self,
         *,
-        cred_id: str = None,
+        cred_id: str,
         revealed: Optional[bool] = None,
         **kwargs,
     ):

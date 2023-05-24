@@ -29,7 +29,7 @@ class Disclose(BaseModel):
     def __init__(
         self,
         *,
-        protocols: List[ProtocolDescriptor] = None,
+        protocols: List[ProtocolDescriptor],
         id: Optional[str] = None,
         type: Optional[str] = None,
         **kwargs,

@@ -34,8 +34,8 @@ class V20CredRequest(BaseModel):
     def __init__(
         self,
         *,
-        formats: List[V20CredFormat] = None,
-        requestsattach: List[AttachDecorator] = None,
+        formats: List[V20CredFormat],
+        requestsattach: List[AttachDecorator],
         id: Optional[str] = None,
         type: Optional[str] = None,
         comment: Optional[str] = None,

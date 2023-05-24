@@ -26,7 +26,7 @@ class ProtocolDescriptor(BaseModel):
     def __init__(
         self,
         *,
-        pid: str = None,
+        pid: str,
         roles: Optional[List[str]] = None,
         **kwargs,
     ):

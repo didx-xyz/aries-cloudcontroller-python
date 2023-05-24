@@ -28,7 +28,7 @@ class Disclosures(BaseModel):
     def __init__(
         self,
         *,
-        disclosures: List[Dict] = None,
+        disclosures: List[Dict],
         id: Optional[str] = None,
         type: Optional[str] = None,
         **kwargs,

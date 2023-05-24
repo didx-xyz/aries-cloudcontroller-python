@@ -26,7 +26,7 @@ class DIDEndpoint(BaseModel):
     def __init__(
         self,
         *,
-        did: str = None,
+        did: str,
         endpoint: Optional[str] = None,
         **kwargs,
     ):
