@@ -27,7 +27,6 @@ from aries_cloudcontroller.model.txn_or_register_ledger_nym_response import (
     TxnOrRegisterLedgerNymResponse,
 )
 from aries_cloudcontroller.model.write_ledger_request import WriteLedgerRequest
-from aries_cloudcontroller.uplink_util import bool_query
 
 
 class LedgerApi(Consumer):
