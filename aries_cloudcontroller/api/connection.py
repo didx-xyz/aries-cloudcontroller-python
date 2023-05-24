@@ -35,7 +35,6 @@ from aries_cloudcontroller.model.invitation_result import InvitationResult
 from aries_cloudcontroller.model.receive_invitation_request import (
     ReceiveInvitationRequest,
 )
-from aries_cloudcontroller.uplink_util import bool_query
 
 
 class ConnectionApi(Consumer):
