@@ -49,7 +49,7 @@ class OobRecord(BaseModel):
     created_at: Optional[str] = None
     our_recipient_key: Optional[str] = None
     role: Optional[Literal["sender", "receiver"]] = None
-    their_service: Optional[ServiceDecorator] = None
+    their_service: Any
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
 
