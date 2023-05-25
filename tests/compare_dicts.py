@@ -38,7 +38,7 @@ def replace_bool_w_strings(d):
         return d
 
 
-def compare_dicts(d1, d2):
+def equal_dicts(d1, d2):
     d1 = replace_bool_w_strings(remove_none_values(d1))
     d2 = replace_bool_w_strings(remove_none_values(d2))
     LOGGER.debug("Comparing:\nd1:%s\nd2:%s", d1, d2)

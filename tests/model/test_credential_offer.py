@@ -4,7 +4,7 @@ import pydantic
 import pytest
 
 from aries_cloudcontroller.model import CredentialOffer
-from tests.compare_dicts import compare_dicts
+from tests.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
 
@@ -46,7 +46,7 @@ invalid_valid_credential_offer = {
 
 def test_valid():
     model = CredentialOffer(**valid_credential_offer)
-    assert compare_dicts(valid_credential_offer, model.dict(by_alias=True))
+    assert equal_dicts(valid_credential_offer, model.dict(by_alias=True))
 
 
 def test_invalid():
