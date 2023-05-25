@@ -11,12 +11,12 @@ class TestAcaPyClient:
     admin_host = "http://localhost:1000"
     api_key = "api_key"
 
-    @pytest.mark.asyncio
+    @pytest.mark.anyio
     async def test_init_acapy_client(self):
         client = AcaPyClient(self.admin_host, api_key=self.api_key)
         assert type(client) is AcaPyClient
 
-    @pytest.mark.asyncio
+    @pytest.mark.anyio
     async def test_init_args_missing_api_key_no_insecure_mode(self):
         with pytest.raises(
             Exception,
