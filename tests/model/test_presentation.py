@@ -8,8 +8,7 @@ from tests.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
 
-# From sample response in Swagger UI
-valid_presentation = {
+sample_presentation = {
     "auto_present": "false",
     "connection_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     "created_at": "2021-04-08 09:04:01Z",
@@ -53,8 +52,8 @@ invalid_presentation = {
 
 
 def test_valid():
-    model = V10PresentationExchange(**valid_presentation)
-    assert equal_dicts(valid_presentation, model.dict(by_alias=True))
+    model = V10PresentationExchange(**sample_presentation)
+    assert equal_dicts(sample_presentation, model.dict(by_alias=True))
 
 
 def test_invalid():

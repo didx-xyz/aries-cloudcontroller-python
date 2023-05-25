@@ -8,7 +8,7 @@ from tests.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
 
-valid_credential_offer = {
+sample_credential_offer = {
     "@id": "123456789abcdefghi",
     "@type": "https://didcomm.org/issue-credential/1.0/offer-credential",
     "comment": "This is a credential offer",
@@ -35,7 +35,7 @@ valid_credential_offer = {
 }
 
 
-invalid_valid_credential_offer = {
+invalid_credential_offer = {
     "@id": ["unexpected", "list"],  # should be a string
     "@type": ["unexpected", "list"],  # should be a string
     "comment": ["unexpected", "list"],  # should be a string
@@ -45,11 +45,11 @@ invalid_valid_credential_offer = {
 
 
 def test_valid():
-    model = CredentialOffer(**valid_credential_offer)
-    assert equal_dicts(valid_credential_offer, model.dict(by_alias=True))
+    model = CredentialOffer(**sample_credential_offer)
+    assert equal_dicts(sample_credential_offer, model.dict(by_alias=True))
 
 
 def test_invalid():
-    for key, value in invalid_valid_credential_offer.items():
+    for key, value in invalid_credential_offer.items():
         with pytest.raises(pydantic.error_wrappers.ValidationError):
             CredentialOffer(offersattach=[], **{key: value})

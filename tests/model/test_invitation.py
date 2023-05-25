@@ -8,7 +8,7 @@ from tests.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
 
-valid_invitation_message = {
+sample_invitation_message = {
     "@type": "https://didcomm.org/out-of-band/%VER/invitation",
     "@id": "<id used for context as pthid>",
     "label": "Faber College",
@@ -39,8 +39,8 @@ invalid_invitation_message = {
 
 
 def test_valid():
-    model = InvitationMessage(**valid_invitation_message)
-    assert equal_dicts(valid_invitation_message, model.dict(by_alias=True))
+    model = InvitationMessage(**sample_invitation_message)
+    assert equal_dicts(sample_invitation_message, model.dict(by_alias=True))
 
 
 def test_invalid():
