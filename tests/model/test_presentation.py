@@ -8,25 +8,6 @@ from aries_cloudcontroller.model.v10_presentation_exchange import (
 
 LOGGER = logging.getLogger(__name__)
 
-presentation_keys = [
-    "auto_present",
-    "connection_id",
-    "created_at",
-    "error_msg",
-    "initiator",
-    "presentation",
-    "presentation_exchange_id",
-    "presentation_proposal_dict",
-    "presentation_request",
-    "presentation_request_dict",
-    "role",
-    "state",
-    "thread_id",
-    "trace",
-    "updated_at",
-    "verified",
-]
-
 # From sample response in Swagger UI
 valid_presentation = {
     "auto_present": "false",
