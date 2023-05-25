@@ -38,31 +38,6 @@ class InvitationMessage(BaseModel):
     )
     services: Optional[List[Union[Dict, str]]] = None
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        accept: Optional[List[str]] = None,
-        handshake_protocols: Optional[List[str]] = None,
-        image_url: Optional[str] = None,
-        label: Optional[str] = None,
-        requestsattach: Optional[List[AttachDecorator]] = None,
-        services: Optional[List[Union[Dict, str]]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            accept=accept,
-            handshake_protocols=handshake_protocols,
-            image_url=image_url,
-            label=label,
-            requestsattach=requestsattach,
-            services=services,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

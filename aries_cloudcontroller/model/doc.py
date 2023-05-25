@@ -24,19 +24,6 @@ class Doc(BaseModel):
     credential: Dict[str, Any]
     options: SignatureOptions
 
-    def __init__(
-        self,
-        *,
-        credential: Dict[str, Any],
-        options: SignatureOptions,
-        **kwargs,
-    ):
-        super().__init__(
-            credential=credential,
-            options=options,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

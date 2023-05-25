@@ -23,19 +23,6 @@ class DIDEndpoint(BaseModel):
     did: str
     endpoint: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        did: str,
-        endpoint: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            did=did,
-            endpoint=endpoint,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"

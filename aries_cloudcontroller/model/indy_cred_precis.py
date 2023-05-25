@@ -29,21 +29,6 @@ class IndyCredPrecis(BaseModel):
     interval: Optional[IndyNonRevocationInterval] = None
     presentation_referents: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        cred_info: Optional[IndyCredInfo] = None,
-        interval: Optional[IndyNonRevocationInterval] = None,
-        presentation_referents: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_info=cred_info,
-            interval=interval,
-            presentation_referents=presentation_referents,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

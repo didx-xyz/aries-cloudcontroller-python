@@ -43,39 +43,6 @@ class Filter(BaseModel):
     pattern: Optional[str] = None
     type: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        const: Optional[Dict[str, Any]] = None,
-        enum: Optional[List[Dict]] = None,
-        exclusive_maximum: Optional[Dict[str, Any]] = None,
-        exclusive_minimum: Optional[Dict[str, Any]] = None,
-        format: Optional[str] = None,
-        max_length: Optional[int] = None,
-        maximum: Optional[Dict[str, Any]] = None,
-        min_length: Optional[int] = None,
-        minimum: Optional[Dict[str, Any]] = None,
-        not_: Optional[bool] = None,
-        pattern: Optional[str] = None,
-        type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            const=const,
-            enum=enum,
-            exclusive_maximum=exclusive_maximum,
-            exclusive_minimum=exclusive_minimum,
-            format=format,
-            max_length=max_length,
-            maximum=maximum,
-            min_length=min_length,
-            minimum=minimum,
-            not_=not_,
-            pattern=pattern,
-            type=type,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -35,31 +35,6 @@ class ConnectionStaticRequest(BaseModel):
     their_seed: Optional[str] = None
     their_verkey: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        alias: Optional[str] = None,
-        my_did: Optional[str] = None,
-        my_seed: Optional[str] = None,
-        their_did: Optional[str] = None,
-        their_endpoint: Optional[str] = None,
-        their_label: Optional[str] = None,
-        their_seed: Optional[str] = None,
-        their_verkey: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            alias=alias,
-            my_did=my_did,
-            my_seed=my_seed,
-            their_did=their_did,
-            their_endpoint=their_endpoint,
-            their_label=their_label,
-            their_seed=their_seed,
-            their_verkey=their_verkey,
-            **kwargs,
-        )
-
     @validator("my_did")
     def my_did_pattern(cls, value):
         # Property is optional

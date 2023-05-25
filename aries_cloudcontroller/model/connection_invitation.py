@@ -35,31 +35,6 @@ class ConnectionInvitation(BaseModel):
     routing_keys: Optional[List[str]] = Field(None, alias="routingKeys")
     service_endpoint: Optional[str] = Field(None, alias="serviceEndpoint")
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        did: Optional[str] = None,
-        image_url: Optional[str] = None,
-        label: Optional[str] = None,
-        recipient_keys: Optional[List[str]] = None,
-        routing_keys: Optional[List[str]] = None,
-        service_endpoint: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            did=did,
-            image_url=image_url,
-            label=label,
-            recipient_keys=recipient_keys,
-            routing_keys=routing_keys,
-            service_endpoint=service_endpoint,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
         # Property is optional

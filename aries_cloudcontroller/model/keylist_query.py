@@ -28,23 +28,6 @@ class KeylistQuery(BaseModel):
     filter: Optional[Dict[str, Any]] = None
     paginate: Optional[KeylistQueryPaginate] = None
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        filter: Optional[Dict[str, Any]] = None,
-        paginate: Optional[KeylistQueryPaginate] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            filter=filter,
-            paginate=paginate,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

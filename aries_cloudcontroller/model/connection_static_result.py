@@ -32,27 +32,6 @@ class ConnectionStaticResult(BaseModel):
     their_did: str
     their_verkey: str
 
-    def __init__(
-        self,
-        *,
-        my_did: str,
-        my_endpoint: str,
-        my_verkey: str,
-        record: ConnRecord,
-        their_did: str,
-        their_verkey: str,
-        **kwargs,
-    ):
-        super().__init__(
-            my_did=my_did,
-            my_endpoint=my_endpoint,
-            my_verkey=my_verkey,
-            record=record,
-            their_did=their_did,
-            their_verkey=their_verkey,
-            **kwargs,
-        )
-
     @validator("my_did")
     def my_did_pattern(cls, value):
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"

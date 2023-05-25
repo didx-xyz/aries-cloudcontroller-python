@@ -22,17 +22,6 @@ class KeylistUpdateRequest(BaseModel):
 
     updates: Optional[List[KeylistUpdateRule]] = None
 
-    def __init__(
-        self,
-        *,
-        updates: Optional[List[KeylistUpdateRule]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            updates=updates,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

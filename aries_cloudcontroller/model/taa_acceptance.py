@@ -23,19 +23,6 @@ class TAAAcceptance(BaseModel):
     mechanism: Optional[str] = None
     time: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        mechanism: Optional[str] = None,
-        time: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            mechanism=mechanism,
-            time=time,
-            **kwargs,
-        )
-
     @validator("time")
     def time_max(cls, value):
         # Property is optional

@@ -23,19 +23,6 @@ class V20PresentationSendRequestToProposal(BaseModel):
     auto_verify: Optional[bool] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        auto_verify: Optional[bool] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_verify=auto_verify,
-            trace=trace,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

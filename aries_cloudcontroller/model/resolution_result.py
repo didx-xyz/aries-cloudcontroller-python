@@ -23,19 +23,6 @@ class ResolutionResult(BaseModel):
     did_document: Dict[str, Any]
     metadata: Dict[str, Any]
 
-    def __init__(
-        self,
-        *,
-        did_document: Dict[str, Any],
-        metadata: Dict[str, Any],
-        **kwargs,
-    ):
-        super().__init__(
-            did_document=did_document,
-            metadata=metadata,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

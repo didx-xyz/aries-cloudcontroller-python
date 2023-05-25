@@ -21,17 +21,6 @@ class GetDIDEndpointResponse(BaseModel):
 
     endpoint: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        endpoint: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            endpoint=endpoint,
-            **kwargs,
-        )
-
     @validator("endpoint")
     def endpoint_pattern(cls, value):
         # Property is optional

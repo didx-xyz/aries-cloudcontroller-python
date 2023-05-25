@@ -23,19 +23,6 @@ class DIFOptions(BaseModel):
     challenge: Optional[str] = None
     domain: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        challenge: Optional[str] = None,
-        domain: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            challenge=challenge,
-            domain=domain,
-            **kwargs,
-        )
-
     @validator("challenge")
     def challenge_pattern(cls, value):
         # Property is optional

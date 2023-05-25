@@ -25,21 +25,6 @@ class IndyKeyCorrectnessProof(BaseModel):
     xr_cap: List[List[str]]
     xz_cap: str
 
-    def __init__(
-        self,
-        *,
-        c: str,
-        xr_cap: List[List[str]],
-        xz_cap: str,
-        **kwargs,
-    ):
-        super().__init__(
-            c=c,
-            xr_cap=xr_cap,
-            xz_cap=xz_cap,
-            **kwargs,
-        )
-
     @validator("c")
     def c_pattern(cls, value):
         pattern = r"^[0-9]*$"

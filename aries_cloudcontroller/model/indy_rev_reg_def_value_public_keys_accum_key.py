@@ -21,17 +21,6 @@ class IndyRevRegDefValuePublicKeysAccumKey(BaseModel):
 
     z: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        z: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            z=z,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -25,19 +25,6 @@ class TxnOrRevRegResult(BaseModel):
     sent: Optional[RevRegResult] = None
     txn: Optional[TransactionRecord] = None
 
-    def __init__(
-        self,
-        *,
-        sent: Optional[RevRegResult] = None,
-        txn: Optional[TransactionRecord] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            sent=sent,
-            txn=txn,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

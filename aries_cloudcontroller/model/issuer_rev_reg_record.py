@@ -55,49 +55,6 @@ class IssuerRevRegRecord(BaseModel):
     tails_public_uri: Optional[str] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        created_at: Optional[str] = None,
-        cred_def_id: Optional[str] = None,
-        error_msg: Optional[str] = None,
-        issuer_did: Optional[str] = None,
-        max_cred_num: Optional[int] = None,
-        pending_pub: Optional[List[str]] = None,
-        record_id: Optional[str] = None,
-        revoc_def_type: Optional[Literal["CL_ACCUM"]] = None,
-        revoc_reg_def: Optional[IndyRevRegDef] = None,
-        revoc_reg_entry: Optional[IndyRevRegEntry] = None,
-        revoc_reg_id: Optional[str] = None,
-        state: Optional[str] = None,
-        tag: Optional[str] = None,
-        tails_hash: Optional[str] = None,
-        tails_local_path: Optional[str] = None,
-        tails_public_uri: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            created_at=created_at,
-            cred_def_id=cred_def_id,
-            error_msg=error_msg,
-            issuer_did=issuer_did,
-            max_cred_num=max_cred_num,
-            pending_pub=pending_pub,
-            record_id=record_id,
-            revoc_def_type=revoc_def_type,
-            revoc_reg_def=revoc_reg_def,
-            revoc_reg_entry=revoc_reg_entry,
-            revoc_reg_id=revoc_reg_id,
-            state=state,
-            tag=tag,
-            tails_hash=tails_hash,
-            tails_local_path=tails_local_path,
-            tails_public_uri=tails_public_uri,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

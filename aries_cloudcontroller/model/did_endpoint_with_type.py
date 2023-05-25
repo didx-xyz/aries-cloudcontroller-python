@@ -25,21 +25,6 @@ class DIDEndpointWithType(BaseModel):
     endpoint: Optional[str] = None
     endpoint_type: Optional[Literal["Endpoint", "Profile", "LinkedDomains"]] = None
 
-    def __init__(
-        self,
-        *,
-        did: str,
-        endpoint: Optional[str] = None,
-        endpoint_type: Optional[Literal["Endpoint", "Profile", "LinkedDomains"]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            did=did,
-            endpoint=endpoint,
-            endpoint_type=endpoint_type,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"

@@ -25,19 +25,6 @@ class IndyPrimaryProof(BaseModel):
     eq_proof: Optional[IndyEQProof] = None
     ge_proofs: Optional[List[IndyGEProof]] = None
 
-    def __init__(
-        self,
-        *,
-        eq_proof: Optional[IndyEQProof] = None,
-        ge_proofs: Optional[List[IndyGEProof]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            eq_proof=eq_proof,
-            ge_proofs=ge_proofs,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -31,25 +31,6 @@ class CredentialOffer(BaseModel):
     comment: Optional[str] = None
     credential_preview: Optional[CredentialPreview] = None
 
-    def __init__(
-        self,
-        *,
-        offersattach: List[AttachDecorator],
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        credential_preview: Optional[CredentialPreview] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            credential_preview=credential_preview,
-            offersattach=offersattach,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

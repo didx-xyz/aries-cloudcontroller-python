@@ -36,31 +36,6 @@ class IndyCredential(BaseModel):
     rev_reg_id: Optional[str] = None
     witness: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        cred_def_id: str,
-        schema_id: str,
-        signature: Dict[str, Any],
-        signature_correctness_proof: Dict[str, Any],
-        values: Dict[str, IndyAttrValue],
-        rev_reg: Optional[Dict[str, Any]] = None,
-        rev_reg_id: Optional[str] = None,
-        witness: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_def_id=cred_def_id,
-            rev_reg=rev_reg,
-            rev_reg_id=rev_reg_id,
-            schema_id=schema_id,
-            signature=signature,
-            signature_correctness_proof=signature_correctness_proof,
-            values=values,
-            witness=witness,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"

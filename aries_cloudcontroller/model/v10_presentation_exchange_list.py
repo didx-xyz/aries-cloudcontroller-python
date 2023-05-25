@@ -24,17 +24,6 @@ class V10PresentationExchangeList(BaseModel):
 
     results: Optional[List[V10PresentationExchange]] = None
 
-    def __init__(
-        self,
-        *,
-        results: Optional[List[V10PresentationExchange]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            results=results,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

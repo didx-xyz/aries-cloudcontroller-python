@@ -35,29 +35,6 @@ class Constraints(BaseModel):
     status_suspended: Optional[Literal["required", "allowed", "disallowed"]] = None
     subject_is_issuer: Optional[Literal["required", "preferred"]] = None
 
-    def __init__(
-        self,
-        *,
-        fields: Optional[List[DIFField]] = None,
-        is_holder: Optional[List[DIFHolder]] = None,
-        limit_disclosure: Optional[str] = None,
-        status_active: Optional[Literal["required", "allowed", "disallowed"]] = None,
-        status_revoked: Optional[Literal["required", "allowed", "disallowed"]] = None,
-        status_suspended: Optional[Literal["required", "allowed", "disallowed"]] = None,
-        subject_is_issuer: Optional[Literal["required", "preferred"]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            fields=fields,
-            is_holder=is_holder,
-            limit_disclosure=limit_disclosure,
-            status_active=status_active,
-            status_revoked=status_revoked,
-            status_suspended=status_suspended,
-            subject_is_issuer=subject_is_issuer,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

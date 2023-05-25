@@ -23,19 +23,6 @@ class DIFHolder(BaseModel):
     directive: Optional[Literal["required", "preferred"]] = None
     field_id: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        directive: Optional[Literal["required", "preferred"]] = None,
-        field_id: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            directive=directive,
-            field_id=field_id,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

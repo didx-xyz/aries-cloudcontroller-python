@@ -27,23 +27,6 @@ class MediationDeny(BaseModel):
     mediator_terms: Optional[List[str]] = None
     recipient_terms: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        mediator_terms: Optional[List[str]] = None,
-        recipient_terms: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            mediator_terms=mediator_terms,
-            recipient_terms=recipient_terms,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

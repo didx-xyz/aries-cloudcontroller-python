@@ -21,17 +21,6 @@ class CredentialStatusOptions(BaseModel):
 
     type: str
 
-    def __init__(
-        self,
-        *,
-        type: str,
-        **kwargs,
-    ):
-        super().__init__(
-            type=type,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

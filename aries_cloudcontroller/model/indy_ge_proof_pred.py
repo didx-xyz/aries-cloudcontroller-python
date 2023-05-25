@@ -25,21 +25,6 @@ class IndyGEProofPred(BaseModel):
     p_type: Optional[Literal["LT", "LE", "GE", "GT"]] = None
     value: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        attr_name: Optional[str] = None,
-        p_type: Optional[Literal["LT", "LE", "GE", "GT"]] = None,
-        value: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            attr_name=attr_name,
-            p_type=p_type,
-            value=value,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

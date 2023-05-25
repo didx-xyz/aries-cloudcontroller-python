@@ -21,17 +21,6 @@ class V10CredentialProblemReportRequest(BaseModel):
 
     description: str
 
-    def __init__(
-        self,
-        *,
-        description: str,
-        **kwargs,
-    ):
-        super().__init__(
-            description=description,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

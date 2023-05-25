@@ -32,27 +32,6 @@ class Menu(BaseModel):
     errormsg: Optional[str] = None
     title: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        options: List[MenuOption],
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        description: Optional[str] = None,
-        errormsg: Optional[str] = None,
-        title: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            description=description,
-            errormsg=errormsg,
-            options=options,
-            title=title,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

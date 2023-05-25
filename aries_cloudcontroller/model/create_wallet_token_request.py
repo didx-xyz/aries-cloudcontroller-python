@@ -21,17 +21,6 @@ class CreateWalletTokenRequest(BaseModel):
 
     wallet_key: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        wallet_key: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            wallet_key=wallet_key,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

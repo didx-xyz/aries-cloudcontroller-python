@@ -26,21 +26,6 @@ class DIDCreate(BaseModel):
     options: Optional[DIDCreateOptions] = None
     seed: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        method: Optional[Literal["key", "sov"]] = None,
-        options: Optional[DIDCreateOptions] = None,
-        seed: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            method=method,
-            options=options,
-            seed=seed,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

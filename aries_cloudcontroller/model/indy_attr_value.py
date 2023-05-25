@@ -23,19 +23,6 @@ class IndyAttrValue(BaseModel):
     encoded: str
     raw: str
 
-    def __init__(
-        self,
-        *,
-        encoded: str,
-        raw: str,
-        **kwargs,
-    ):
-        super().__init__(
-            encoded=encoded,
-            raw=raw,
-            **kwargs,
-        )
-
     @validator("encoded")
     def encoded_pattern(cls, value):
         pattern = r"^-?[0-9]*$"

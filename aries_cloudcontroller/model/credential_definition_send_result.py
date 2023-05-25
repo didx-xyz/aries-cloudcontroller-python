@@ -21,17 +21,6 @@ class CredentialDefinitionSendResult(BaseModel):
 
     credential_definition_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        credential_definition_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            credential_definition_id=credential_definition_id,
-            **kwargs,
-        )
-
     @validator("credential_definition_id")
     def credential_definition_id_pattern(cls, value):
         # Property is optional

@@ -21,17 +21,6 @@ class AttributeMimeTypesResult(BaseModel):
 
     results: Optional[Dict[str, str]] = None
 
-    def __init__(
-        self,
-        *,
-        results: Optional[Dict[str, str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            results=results,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

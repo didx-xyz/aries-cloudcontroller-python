@@ -30,23 +30,6 @@ class IndyProofReqAttrSpec(BaseModel):
     non_revoked: Optional[IndyProofReqAttrSpecNonRevoked] = None
     restrictions: Optional[List[Dict[str, str]]] = None
 
-    def __init__(
-        self,
-        *,
-        name: Optional[str] = None,
-        names: Optional[List[str]] = None,
-        non_revoked: Optional[IndyProofReqAttrSpecNonRevoked] = None,
-        restrictions: Optional[List[Dict[str, str]]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            name=name,
-            names=names,
-            non_revoked=non_revoked,
-            restrictions=restrictions,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

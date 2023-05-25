@@ -23,19 +23,6 @@ class KeylistUpdateRule(BaseModel):
     action: Literal["add", "remove"]
     recipient_key: str
 
-    def __init__(
-        self,
-        *,
-        action: Literal["add", "remove"],
-        recipient_key: str,
-        **kwargs,
-    ):
-        super().__init__(
-            action=action,
-            recipient_key=recipient_key,
-            **kwargs,
-        )
-
     @validator("recipient_key")
     def recipient_key_pattern(cls, value):
         pattern = r"^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"

@@ -25,21 +25,6 @@ class ServiceDecorator(BaseModel):
     service_endpoint: str = Field(..., alias="serviceEndpoint")
     routing_keys: Optional[List[str]] = Field(None, alias="routingKeys")
 
-    def __init__(
-        self,
-        *,
-        recipient_keys: List[str],
-        service_endpoint: str,
-        routing_keys: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            recipient_keys=recipient_keys,
-            routing_keys=routing_keys,
-            service_endpoint=service_endpoint,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

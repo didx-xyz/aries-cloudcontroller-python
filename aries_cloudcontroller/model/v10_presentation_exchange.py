@@ -59,60 +59,6 @@ class V10PresentationExchange(BaseModel):
     verified: Optional[Literal["true", "false"]] = None
     verified_msgs: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        auto_present: Optional[bool] = None,
-        auto_verify: Optional[bool] = None,
-        connection_id: Optional[str] = None,
-        created_at: Optional[str] = None,
-        error_msg: Optional[str] = None,
-        initiator: Optional[Literal["self", "external"]] = None,
-        presentation: Optional[IndyProof] = None,
-        presentation_exchange_id: Optional[str] = None,
-        presentation_proposal_dict: Optional[PresentationProposal] = None,
-        presentation_request: Optional[IndyProofRequest] = None,
-        presentation_request_dict: Optional[PresentationRequest] = None,
-        role: Optional[Literal["prover", "verifier"]] = None,
-        state: Optional[str] = None,
-        thread_id: Optional[str] = None,
-        trace: Optional[bool] = None,
-        updated_at: Optional[str] = None,
-        verified: Optional[Literal["true", "false"]] = None,
-        verified_msgs: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        # Manually handle the alias of `request_presentationsattach` in `PresentationRequest`
-        if (
-            isinstance(presentation_request_dict, dict)
-            and "request_presentations~attach" in presentation_request_dict
-        ):
-            presentation_request_dict[
-                "request_presentationsattach"
-            ] = presentation_request_dict.pop("request_presentations~attach")
-
-        super().__init__(
-            auto_present=auto_present,
-            auto_verify=auto_verify,
-            connection_id=connection_id,
-            created_at=created_at,
-            error_msg=error_msg,
-            initiator=initiator,
-            presentation=presentation,
-            presentation_exchange_id=presentation_exchange_id,
-            presentation_proposal_dict=presentation_proposal_dict,
-            presentation_request=presentation_request,
-            presentation_request_dict=presentation_request_dict,
-            role=role,
-            state=state,
-            thread_id=thread_id,
-            trace=trace,
-            updated_at=updated_at,
-            verified=verified,
-            verified_msgs=verified_msgs,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

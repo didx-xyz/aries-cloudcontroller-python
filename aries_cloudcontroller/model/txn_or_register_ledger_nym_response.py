@@ -24,19 +24,6 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
     success: Optional[bool] = None
     txn: Optional[TransactionRecord] = None
 
-    def __init__(
-        self,
-        *,
-        success: Optional[bool] = None,
-        txn: Optional[TransactionRecord] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            success=success,
-            txn=txn,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -30,23 +30,6 @@ class PresentationRequest(BaseModel):
     type: Optional[str] = Field(None, alias="@type")
     comment: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        request_presentationsattach: List[AttachDecorator],
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            request_presentationsattach=request_presentationsattach,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

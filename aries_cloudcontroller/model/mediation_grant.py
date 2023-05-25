@@ -27,23 +27,6 @@ class MediationGrant(BaseModel):
     endpoint: Optional[str] = None
     routing_keys: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        endpoint: Optional[str] = None,
-        routing_keys: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            endpoint=endpoint,
-            routing_keys=routing_keys,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -30,25 +30,6 @@ class MenuOption(BaseModel):
     disabled: Optional[bool] = None
     form: Optional[MenuForm] = None
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        title: str,
-        description: Optional[str] = None,
-        disabled: Optional[bool] = None,
-        form: Optional[MenuForm] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            description=description,
-            disabled=disabled,
-            form=form,
-            name=name,
-            title=title,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

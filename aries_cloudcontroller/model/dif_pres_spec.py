@@ -28,23 +28,6 @@ class DIFPresSpec(BaseModel):
     record_ids: Optional[Dict[str, Any]] = None
     reveal_doc: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        issuer_id: Optional[str] = None,
-        presentation_definition: Optional[PresentationDefinition] = None,
-        record_ids: Optional[Dict[str, Any]] = None,
-        reveal_doc: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            issuer_id=issuer_id,
-            presentation_definition=presentation_definition,
-            record_ids=record_ids,
-            reveal_doc=reveal_doc,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

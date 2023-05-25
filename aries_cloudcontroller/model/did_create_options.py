@@ -23,19 +23,6 @@ class DIDCreateOptions(BaseModel):
     key_type: Literal["ed25519", "bls12381g2"]
     did: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        key_type: Literal["ed25519", "bls12381g2"],
-        did: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            did=did,
-            key_type=key_type,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
         # Property is optional

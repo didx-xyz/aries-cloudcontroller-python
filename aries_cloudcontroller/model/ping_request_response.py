@@ -21,17 +21,6 @@ class PingRequestResponse(BaseModel):
 
     thread_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        thread_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            thread_id=thread_id,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

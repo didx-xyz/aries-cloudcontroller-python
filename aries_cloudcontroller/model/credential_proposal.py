@@ -40,35 +40,6 @@ class CredentialProposal(BaseModel):
     schema_name: Optional[str] = None
     schema_version: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        cred_def_id: Optional[str] = None,
-        credential_proposal: Optional[CredentialPreview] = None,
-        issuer_did: Optional[str] = None,
-        schema_id: Optional[str] = None,
-        schema_issuer_did: Optional[str] = None,
-        schema_name: Optional[str] = None,
-        schema_version: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            cred_def_id=cred_def_id,
-            credential_proposal=credential_proposal,
-            issuer_did=issuer_did,
-            schema_id=schema_id,
-            schema_issuer_did=schema_issuer_did,
-            schema_name=schema_name,
-            schema_version=schema_version,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional

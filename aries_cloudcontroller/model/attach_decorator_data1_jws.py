@@ -28,21 +28,6 @@ class AttachDecoratorData1JWS(BaseModel):
     signature: str
     protected: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        header: AttachDecoratorDataJWSHeader,
-        signature: str,
-        protected: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            header=header,
-            protected=protected,
-            signature=signature,
-            **kwargs,
-        )
-
     @validator("protected")
     def protected_pattern(cls, value):
         # Property is optional

@@ -37,33 +37,6 @@ class LinkedDataProof(BaseModel):
     nonce: Optional[str] = None
     proof_value: Optional[str] = Field(None, alias="proofValue")
 
-    def __init__(
-        self,
-        *,
-        created: str,
-        proof_purpose: str,
-        type: str,
-        verification_method: str,
-        challenge: Optional[str] = None,
-        domain: Optional[str] = None,
-        jws: Optional[str] = None,
-        nonce: Optional[str] = None,
-        proof_value: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            challenge=challenge,
-            created=created,
-            domain=domain,
-            jws=jws,
-            nonce=nonce,
-            proof_purpose=proof_purpose,
-            proof_value=proof_value,
-            type=type,
-            verification_method=verification_method,
-            **kwargs,
-        )
-
     @validator("created")
     def created_pattern(cls, value):
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"

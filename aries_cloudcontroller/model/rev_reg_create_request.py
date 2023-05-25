@@ -23,19 +23,6 @@ class RevRegCreateRequest(BaseModel):
     credential_definition_id: Optional[str] = None
     max_cred_num: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        credential_definition_id: Optional[str] = None,
-        max_cred_num: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            credential_definition_id=credential_definition_id,
-            max_cred_num=max_cred_num,
-            **kwargs,
-        )
-
     @validator("credential_definition_id")
     def credential_definition_id_pattern(cls, value):
         # Property is optional

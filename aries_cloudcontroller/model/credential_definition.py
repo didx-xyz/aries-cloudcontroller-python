@@ -32,27 +32,6 @@ class CredentialDefinition(BaseModel):
     value: Optional[CredDefValue] = None
     ver: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        schema_id: Optional[str] = None,
-        tag: Optional[str] = None,
-        type: Optional[Literal["CL"]] = None,
-        value: Optional[CredDefValue] = None,
-        ver: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            schema_id=schema_id,
-            tag=tag,
-            type=type,
-            value=value,
-            ver=ver,
-            **kwargs,
-        )
-
     @validator("id")
     def id_pattern(cls, value):
         # Property is optional

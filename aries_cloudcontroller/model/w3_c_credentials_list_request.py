@@ -37,33 +37,6 @@ class W3CCredentialsListRequest(BaseModel):
     tag_query: Optional[Dict[str, str]] = None
     types: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        contexts: Optional[List[str]] = None,
-        given_id: Optional[str] = None,
-        issuer_id: Optional[str] = None,
-        max_results: Optional[int] = None,
-        proof_types: Optional[List[str]] = None,
-        schema_ids: Optional[List[str]] = None,
-        subject_ids: Optional[List[str]] = None,
-        tag_query: Optional[Dict[str, str]] = None,
-        types: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            contexts=contexts,
-            given_id=given_id,
-            issuer_id=issuer_id,
-            max_results=max_results,
-            proof_types=proof_types,
-            schema_ids=schema_ids,
-            subject_ids=subject_ids,
-            tag_query=tag_query,
-            types=types,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

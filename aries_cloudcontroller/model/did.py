@@ -29,25 +29,6 @@ class DID(BaseModel):
     posture: Optional[Literal["public", "posted", "wallet_only"]] = None
     verkey: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        did: Optional[str] = None,
-        key_type: Optional[Literal["ed25519", "bls12381g2"]] = None,
-        method: Optional[Literal["sov", "key"]] = None,
-        posture: Optional[Literal["public", "posted", "wallet_only"]] = None,
-        verkey: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            did=did,
-            key_type=key_type,
-            method=method,
-            posture=posture,
-            verkey=verkey,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
         # Property is optional

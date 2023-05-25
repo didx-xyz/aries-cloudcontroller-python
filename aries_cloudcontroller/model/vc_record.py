@@ -39,35 +39,6 @@ class VCRecord(BaseModel):
     schema_ids: Optional[List[str]] = None
     subject_ids: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        contexts: Optional[List[str]] = None,
-        cred_tags: Optional[Dict[str, str]] = None,
-        cred_value: Optional[Dict[str, Any]] = None,
-        expanded_types: Optional[List[str]] = None,
-        given_id: Optional[str] = None,
-        issuer_id: Optional[str] = None,
-        proof_types: Optional[List[str]] = None,
-        record_id: Optional[str] = None,
-        schema_ids: Optional[List[str]] = None,
-        subject_ids: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            contexts=contexts,
-            cred_tags=cred_tags,
-            cred_value=cred_value,
-            expanded_types=expanded_types,
-            given_id=given_id,
-            issuer_id=issuer_id,
-            proof_types=proof_types,
-            record_id=record_id,
-            schema_ids=schema_ids,
-            subject_ids=subject_ids,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

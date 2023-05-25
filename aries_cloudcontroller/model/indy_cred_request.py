@@ -29,25 +29,6 @@ class IndyCredRequest(BaseModel):
     nonce: str
     prover_did: str
 
-    def __init__(
-        self,
-        *,
-        blinded_ms: Dict[str, Any],
-        blinded_ms_correctness_proof: Dict[str, Any],
-        cred_def_id: str,
-        nonce: str,
-        prover_did: str,
-        **kwargs,
-    ):
-        super().__init__(
-            blinded_ms=blinded_ms,
-            blinded_ms_correctness_proof=blinded_ms_correctness_proof,
-            cred_def_id=cred_def_id,
-            nonce=nonce,
-            prover_did=prover_did,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"

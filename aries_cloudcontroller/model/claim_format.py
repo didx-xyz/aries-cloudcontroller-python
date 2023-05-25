@@ -31,27 +31,6 @@ class ClaimFormat(BaseModel):
     ldp_vc: Optional[Dict[str, Any]] = None
     ldp_vp: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        jwt: Optional[Dict[str, Any]] = None,
-        jwt_vc: Optional[Dict[str, Any]] = None,
-        jwt_vp: Optional[Dict[str, Any]] = None,
-        ldp: Optional[Dict[str, Any]] = None,
-        ldp_vc: Optional[Dict[str, Any]] = None,
-        ldp_vp: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            jwt=jwt,
-            jwt_vc=jwt_vc,
-            jwt_vp=jwt_vp,
-            ldp=ldp,
-            ldp_vc=ldp_vc,
-            ldp_vp=ldp_vp,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

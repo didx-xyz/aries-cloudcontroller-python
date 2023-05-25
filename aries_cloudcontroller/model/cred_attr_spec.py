@@ -25,21 +25,6 @@ class CredAttrSpec(BaseModel):
     value: str
     mime_type: Optional[str] = Field(None, alias="mime-type")
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        value: str,
-        mime_type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            mime_type=mime_type,
-            name=name,
-            value=value,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

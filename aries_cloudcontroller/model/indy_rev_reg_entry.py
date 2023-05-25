@@ -24,19 +24,6 @@ class IndyRevRegEntry(BaseModel):
     value: Optional[IndyRevRegEntryValue] = None
     ver: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        value: Optional[IndyRevRegEntryValue] = None,
-        ver: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            value=value,
-            ver=ver,
-            **kwargs,
-        )
-
     @validator("ver")
     def ver_pattern(cls, value):
         # Property is optional

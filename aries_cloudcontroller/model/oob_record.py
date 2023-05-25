@@ -53,51 +53,6 @@ class OobRecord(BaseModel):
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        invi_msg_id: str,
-        invitation: InvitationMessage,
-        oob_id: str,
-        state: Literal[
-            "initial",
-            "prepare-response",
-            "await-response",
-            "reuse-not-accepted",
-            "reuse-accepted",
-            "done",
-            "deleted",
-        ],
-        attach_thread_id: Optional[str] = None,
-        connection_id: Optional[str] = None,
-        created_at: Optional[str] = None,
-        our_recipient_key: Optional[str] = None,
-        role: Optional[Literal["sender", "receiver"]] = None,
-        their_service: Optional[ServiceDecorator] = None,
-        trace: Optional[bool] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        # Manually handle the alias of `requestsattach` in `InvitationMessage`
-        if isinstance(invitation, dict) and "requests~attach" in invitation:
-            invitation["requestsattach"] = invitation.pop("requests~attach")
-
-        super().__init__(
-            attach_thread_id=attach_thread_id,
-            connection_id=connection_id,
-            created_at=created_at,
-            invi_msg_id=invi_msg_id,
-            invitation=invitation,
-            oob_id=oob_id,
-            our_recipient_key=our_recipient_key,
-            role=role,
-            state=state,
-            their_service=their_service,
-            trace=trace,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

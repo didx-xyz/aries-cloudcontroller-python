@@ -21,17 +21,6 @@ class GetDIDVerkeyResponse(BaseModel):
 
     verkey: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        verkey: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            verkey=verkey,
-            **kwargs,
-        )
-
     @validator("verkey")
     def verkey_pattern(cls, value):
         # Property is optional

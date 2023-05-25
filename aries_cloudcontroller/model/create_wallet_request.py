@@ -37,35 +37,6 @@ class CreateWalletRequest(BaseModel):
     wallet_type: Optional[Literal["askar", "in_memory", "indy"]] = None
     wallet_webhook_urls: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        image_url: Optional[str] = None,
-        key_management_mode: Optional[Literal["managed"]] = None,
-        label: Optional[str] = None,
-        wallet_dispatch_type: Optional[Literal["default", "both", "base"]] = None,
-        wallet_key: Optional[str] = None,
-        wallet_key_derivation: Optional[
-            Literal["ARGON2I_MOD", "ARGON2I_INT", "RAW"]
-        ] = None,
-        wallet_name: Optional[str] = None,
-        wallet_type: Optional[Literal["askar", "in_memory", "indy"]] = None,
-        wallet_webhook_urls: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            image_url=image_url,
-            key_management_mode=key_management_mode,
-            label=label,
-            wallet_dispatch_type=wallet_dispatch_type,
-            wallet_key=wallet_key,
-            wallet_key_derivation=wallet_key_derivation,
-            wallet_name=wallet_name,
-            wallet_type=wallet_type,
-            wallet_webhook_urls=wallet_webhook_urls,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -25,19 +25,6 @@ class CredDefValue(BaseModel):
     primary: Optional[CredDefValuePrimary] = None
     revocation: Optional[CredDefValueRevocation] = None
 
-    def __init__(
-        self,
-        *,
-        primary: Optional[CredDefValuePrimary] = None,
-        revocation: Optional[CredDefValueRevocation] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            primary=primary,
-            revocation=revocation,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

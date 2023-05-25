@@ -35,31 +35,6 @@ class SubmissionRequirements(BaseModel):
     purpose: Optional[str] = None
     rule: Optional[Literal["all", "pick"]] = None
 
-    def __init__(
-        self,
-        *,
-        count: Optional[int] = None,
-        from_: Optional[str] = None,
-        from_nested: Optional[List[SubmissionRequirements]] = None,
-        max: Optional[int] = None,
-        min: Optional[int] = None,
-        name: Optional[str] = None,
-        purpose: Optional[str] = None,
-        rule: Optional[Literal["all", "pick"]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            count=count,
-            from_=from_,
-            from_nested=from_nested,
-            max=max,
-            min=min,
-            name=name,
-            purpose=purpose,
-            rule=rule,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

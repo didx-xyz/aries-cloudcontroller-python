@@ -21,17 +21,6 @@ class SendMessage(BaseModel):
 
     content: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        content: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            content=content,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

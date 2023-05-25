@@ -25,19 +25,6 @@ class IndyProofProofProofsProof(BaseModel):
     non_revoc_proof: Optional[IndyNonRevocProof] = None
     primary_proof: Optional[IndyPrimaryProof] = None
 
-    def __init__(
-        self,
-        *,
-        non_revoc_proof: Optional[IndyNonRevocProof] = None,
-        primary_proof: Optional[IndyPrimaryProof] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            non_revoc_proof=non_revoc_proof,
-            primary_proof=primary_proof,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

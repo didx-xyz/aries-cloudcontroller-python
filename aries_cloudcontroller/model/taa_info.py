@@ -30,23 +30,6 @@ class TAAInfo(BaseModel):
     taa_record: Optional[TAARecord] = None
     taa_required: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        aml_record: Optional[AMLRecord] = None,
-        taa_accepted: Optional[TAAAcceptance] = None,
-        taa_record: Optional[TAARecord] = None,
-        taa_required: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            aml_record=aml_record,
-            taa_accepted=taa_accepted,
-            taa_record=taa_record,
-            taa_required=taa_required,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -21,17 +21,6 @@ class RevRegUpdateTailsFileUri(BaseModel):
 
     tails_public_uri: str
 
-    def __init__(
-        self,
-        *,
-        tails_public_uri: str,
-        **kwargs,
-    ):
-        super().__init__(
-            tails_public_uri=tails_public_uri,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -23,19 +23,6 @@ class IndyRequestedCredsRequestedPred(BaseModel):
     cred_id: str
     timestamp: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        cred_id: str,
-        timestamp: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_id=cred_id,
-            timestamp=timestamp,
-            **kwargs,
-        )
-
     @validator("timestamp")
     def timestamp_max(cls, value):
         # Property is optional

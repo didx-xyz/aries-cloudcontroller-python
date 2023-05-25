@@ -36,27 +36,6 @@ class IndyRevRegDefValue(BaseModel):
     tails_hash: Optional[str] = Field(None, alias="tailsHash")
     tails_location: Optional[str] = Field(None, alias="tailsLocation")
 
-    def __init__(
-        self,
-        *,
-        issuance_type: Optional[
-            Literal["ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"]
-        ] = None,
-        max_cred_num: Optional[int] = None,
-        public_keys: Optional[IndyRevRegDefValuePublicKeys] = None,
-        tails_hash: Optional[str] = None,
-        tails_location: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            issuance_type=issuance_type,
-            max_cred_num=max_cred_num,
-            public_keys=public_keys,
-            tails_hash=tails_hash,
-            tails_location=tails_location,
-            **kwargs,
-        )
-
     @validator("max_cred_num")
     def max_cred_num_min(cls, value):
         # Property is optional

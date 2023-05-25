@@ -33,23 +33,6 @@ class AttachDecoratorDataJWS(BaseModel):
     signature: Optional[str] = None
     signatures: Optional[List[AttachDecoratorData1JWS]] = None
 
-    def __init__(
-        self,
-        *,
-        header: Optional[AttachDecoratorDataJWSHeader] = None,
-        protected: Optional[str] = None,
-        signature: Optional[str] = None,
-        signatures: Optional[List[AttachDecoratorData1JWS]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            header=header,
-            protected=protected,
-            signature=signature,
-            signatures=signatures,
-            **kwargs,
-        )
-
     @validator("protected")
     def protected_pattern(cls, value):
         # Property is optional

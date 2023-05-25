@@ -27,23 +27,6 @@ class UpdateWalletRequest(BaseModel):
     wallet_dispatch_type: Optional[Literal["default", "both", "base"]] = None
     wallet_webhook_urls: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        image_url: Optional[str] = None,
-        label: Optional[str] = None,
-        wallet_dispatch_type: Optional[Literal["default", "both", "base"]] = None,
-        wallet_webhook_urls: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            image_url=image_url,
-            label=label,
-            wallet_dispatch_type=wallet_dispatch_type,
-            wallet_webhook_urls=wallet_webhook_urls,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

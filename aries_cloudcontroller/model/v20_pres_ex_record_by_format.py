@@ -25,21 +25,6 @@ class V20PresExRecordByFormat(BaseModel):
     pres_proposal: Optional[Dict[str, Any]] = None
     pres_request: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        pres: Optional[Dict[str, Any]] = None,
-        pres_proposal: Optional[Dict[str, Any]] = None,
-        pres_request: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            pres=pres,
-            pres_proposal=pres_proposal,
-            pres_request=pres_request,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

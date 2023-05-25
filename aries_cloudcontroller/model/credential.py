@@ -36,31 +36,6 @@ class Credential(BaseModel):
     id: Optional[str] = None
     proof: Optional[LinkedDataProof] = None
 
-    def __init__(
-        self,
-        *,
-        context: List[Dict],
-        credential_subject: Dict[str, Any],
-        issuance_date: str,
-        issuer: Dict[str, Any],
-        type: List[str],
-        expiration_date: Optional[str] = None,
-        id: Optional[str] = None,
-        proof: Optional[LinkedDataProof] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            context=context,
-            credential_subject=credential_subject,
-            expiration_date=expiration_date,
-            id=id,
-            issuance_date=issuance_date,
-            issuer=issuer,
-            proof=proof,
-            type=type,
-            **kwargs,
-        )
-
     @validator("expiration_date")
     def expiration_date_pattern(cls, value):
         # Property is optional

@@ -32,25 +32,6 @@ class V20PresProposalRequest(BaseModel):
     comment: Optional[str] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: str,
-        presentation_proposal: V20PresProposalByFormat,
-        auto_present: Optional[bool] = None,
-        comment: Optional[str] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_present=auto_present,
-            comment=comment,
-            connection_id=connection_id,
-            presentation_proposal=presentation_proposal,
-            trace=trace,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

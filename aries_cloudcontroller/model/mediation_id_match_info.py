@@ -21,17 +21,6 @@ class MediationIdMatchInfo(BaseModel):
 
     mediation_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        mediation_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            mediation_id=mediation_id,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

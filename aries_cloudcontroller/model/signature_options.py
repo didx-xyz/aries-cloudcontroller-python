@@ -29,25 +29,6 @@ class SignatureOptions(BaseModel):
     domain: Optional[str] = None
     type: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        proof_purpose: str,
-        verification_method: str,
-        challenge: Optional[str] = None,
-        domain: Optional[str] = None,
-        type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            challenge=challenge,
-            domain=domain,
-            proof_purpose=proof_purpose,
-            type=type,
-            verification_method=verification_method,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

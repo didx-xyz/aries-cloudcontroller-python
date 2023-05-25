@@ -23,19 +23,6 @@ class IndyNonRevocProof(BaseModel):
     c_list: Optional[Dict[str, str]] = None
     x_list: Optional[Dict[str, str]] = None
 
-    def __init__(
-        self,
-        *,
-        c_list: Optional[Dict[str, str]] = None,
-        x_list: Optional[Dict[str, str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            c_list=c_list,
-            x_list=x_list,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

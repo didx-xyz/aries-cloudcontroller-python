@@ -38,33 +38,6 @@ class InvitationCreateRequest(BaseModel):
     protocol_version: Optional[str] = None
     use_public_did: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        accept: Optional[List[str]] = None,
-        alias: Optional[str] = None,
-        attachments: Optional[List[AttachmentDef]] = None,
-        handshake_protocols: Optional[List[str]] = None,
-        mediation_id: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
-        my_label: Optional[str] = None,
-        protocol_version: Optional[str] = None,
-        use_public_did: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            accept=accept,
-            alias=alias,
-            attachments=attachments,
-            handshake_protocols=handshake_protocols,
-            mediation_id=mediation_id,
-            metadata=metadata,
-            my_label=my_label,
-            protocol_version=protocol_version,
-            use_public_did=use_public_did,
-            **kwargs,
-        )
-
     @validator("mediation_id")
     def mediation_id_pattern(cls, value):
         # Property is optional

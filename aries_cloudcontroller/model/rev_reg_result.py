@@ -22,17 +22,6 @@ class RevRegResult(BaseModel):
 
     result: Optional[IssuerRevRegRecord] = None
 
-    def __init__(
-        self,
-        *,
-        result: Optional[IssuerRevRegRecord] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            result=result,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

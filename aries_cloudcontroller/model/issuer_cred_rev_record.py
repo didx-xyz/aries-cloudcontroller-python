@@ -37,33 +37,6 @@ class IssuerCredRevRecord(BaseModel):
     state: Optional[str] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        created_at: Optional[str] = None,
-        cred_def_id: Optional[str] = None,
-        cred_ex_id: Optional[str] = None,
-        cred_ex_version: Optional[str] = None,
-        cred_rev_id: Optional[str] = None,
-        record_id: Optional[str] = None,
-        rev_reg_id: Optional[str] = None,
-        state: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            created_at=created_at,
-            cred_def_id=cred_def_id,
-            cred_ex_id=cred_ex_id,
-            cred_ex_version=cred_ex_version,
-            cred_rev_id=cred_rev_id,
-            record_id=record_id,
-            rev_reg_id=rev_reg_id,
-            state=state,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

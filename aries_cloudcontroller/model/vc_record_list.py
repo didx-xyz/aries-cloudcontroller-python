@@ -22,17 +22,6 @@ class VCRecordList(BaseModel):
 
     results: Optional[List[VCRecord]] = None
 
-    def __init__(
-        self,
-        *,
-        results: Optional[List[VCRecord]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            results=results,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -21,17 +21,6 @@ class ConnectionMetadataSetRequest(BaseModel):
 
     metadata: Dict[str, Any]
 
-    def __init__(
-        self,
-        *,
-        metadata: Dict[str, Any],
-        **kwargs,
-    ):
-        super().__init__(
-            metadata=metadata,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

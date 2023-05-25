@@ -27,23 +27,6 @@ class IndyPresPredSpec(BaseModel):
     threshold: int
     cred_def_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        predicate: Literal["<", "<=", ">=", ">"],
-        threshold: int,
-        cred_def_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_def_id=cred_def_id,
-            name=name,
-            predicate=predicate,
-            threshold=threshold,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional

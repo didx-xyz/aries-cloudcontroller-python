@@ -25,21 +25,6 @@ class Disclosures(BaseModel):
     id: Optional[str] = Field(None, alias="@id")
     type: Optional[str] = Field(None, alias="@type")
 
-    def __init__(
-        self,
-        *,
-        disclosures: List[Dict],
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            disclosures=disclosures,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

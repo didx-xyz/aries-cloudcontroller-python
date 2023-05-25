@@ -31,25 +31,6 @@ class V20IssueCredSchemaCore(BaseModel):
     credential_preview: Optional[V20CredPreview] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        filter: V20CredFilter,
-        auto_remove: Optional[bool] = None,
-        comment: Optional[str] = None,
-        credential_preview: Optional[V20CredPreview] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_remove=auto_remove,
-            comment=comment,
-            credential_preview=credential_preview,
-            filter=filter,
-            trace=trace,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

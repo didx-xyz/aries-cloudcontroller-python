@@ -32,27 +32,6 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
     comment: Optional[str] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        cred_def_id: str,
-        credential_preview: CredentialPreview,
-        auto_issue: Optional[bool] = None,
-        auto_remove: Optional[bool] = None,
-        comment: Optional[str] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_issue=auto_issue,
-            auto_remove=auto_remove,
-            comment=comment,
-            cred_def_id=cred_def_id,
-            credential_preview=credential_preview,
-            trace=trace,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"

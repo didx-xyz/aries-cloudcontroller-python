@@ -23,19 +23,6 @@ class IndyProofReqPredSpecNonRevoked(BaseModel):
     from_: Optional[int] = Field(None, alias="from")
     to: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        from_: Optional[int] = None,
-        to: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            from_=from_,
-            to=to,
-            **kwargs,
-        )
-
     @validator("from_")
     def from__max(cls, value):
         # Property is optional

@@ -24,19 +24,6 @@ class SchemasInputDescriptorFilter(BaseModel):
     oneof_filter: Optional[bool] = None
     uri_groups: Optional[List[List[SchemaInputDescriptor]]] = None
 
-    def __init__(
-        self,
-        *,
-        oneof_filter: Optional[bool] = None,
-        uri_groups: Optional[List[List[SchemaInputDescriptor]]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            oneof_filter=oneof_filter,
-            uri_groups=uri_groups,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -30,23 +30,6 @@ class IndyCredAbstract(BaseModel):
     nonce: str
     schema_id: str
 
-    def __init__(
-        self,
-        *,
-        cred_def_id: str,
-        key_correctness_proof: IndyKeyCorrectnessProof,
-        nonce: str,
-        schema_id: str,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_def_id=cred_def_id,
-            key_correctness_proof=key_correctness_proof,
-            nonce=nonce,
-            schema_id=schema_id,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"

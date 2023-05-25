@@ -23,19 +23,6 @@ class EndpointsResult(BaseModel):
     my_endpoint: Optional[str] = None
     their_endpoint: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        my_endpoint: Optional[str] = None,
-        their_endpoint: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            my_endpoint=my_endpoint,
-            their_endpoint=their_endpoint,
-            **kwargs,
-        )
-
     @validator("my_endpoint")
     def my_endpoint_pattern(cls, value):
         # Property is optional

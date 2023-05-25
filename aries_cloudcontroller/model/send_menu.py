@@ -22,17 +22,6 @@ class SendMenu(BaseModel):
 
     menu: MenuJson
 
-    def __init__(
-        self,
-        *,
-        menu: MenuJson,
-        **kwargs,
-    ):
-        super().__init__(
-            menu=menu,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

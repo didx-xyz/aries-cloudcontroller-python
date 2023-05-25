@@ -37,33 +37,6 @@ class RevokeRequest(BaseModel):
     rev_reg_id: Optional[str] = None
     thread_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        comment: Optional[str] = None,
-        connection_id: Optional[str] = None,
-        cred_ex_id: Optional[str] = None,
-        cred_rev_id: Optional[str] = None,
-        notify: Optional[bool] = None,
-        notify_version: Optional[Literal["v1_0", "v2_0"]] = None,
-        publish: Optional[bool] = None,
-        rev_reg_id: Optional[str] = None,
-        thread_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            comment=comment,
-            connection_id=connection_id,
-            cred_ex_id=cred_ex_id,
-            cred_rev_id=cred_rev_id,
-            notify=notify,
-            notify_version=notify_version,
-            publish=publish,
-            rev_reg_id=rev_reg_id,
-            thread_id=thread_id,
-            **kwargs,
-        )
-
     @validator("connection_id")
     def connection_id_pattern(cls, value):
         # Property is optional

@@ -23,19 +23,6 @@ class VerifyResponse(BaseModel):
     valid: bool
     error: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        valid: bool,
-        error: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            error=error,
-            valid=valid,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

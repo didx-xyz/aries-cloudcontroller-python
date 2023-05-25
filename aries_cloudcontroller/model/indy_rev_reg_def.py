@@ -32,27 +32,6 @@ class IndyRevRegDef(BaseModel):
     value: Optional[IndyRevRegDefValue] = None
     ver: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        cred_def_id: Optional[str] = None,
-        id: Optional[str] = None,
-        revoc_def_type: Optional[Literal["CL_ACCUM"]] = None,
-        tag: Optional[str] = None,
-        value: Optional[IndyRevRegDefValue] = None,
-        ver: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_def_id=cred_def_id,
-            id=id,
-            revoc_def_type=revoc_def_type,
-            tag=tag,
-            value=value,
-            ver=ver,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional

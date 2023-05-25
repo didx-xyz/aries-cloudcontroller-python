@@ -22,17 +22,6 @@ class V20CredFilterLDProof(BaseModel):
 
     ld_proof: LDProofVCDetail
 
-    def __init__(
-        self,
-        *,
-        ld_proof: LDProofVCDetail,
-        **kwargs,
-    ):
-        super().__init__(
-            ld_proof=ld_proof,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

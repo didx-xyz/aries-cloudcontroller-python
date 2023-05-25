@@ -35,29 +35,6 @@ class V20CredExFree(BaseModel):
     trace: Optional[bool] = None
     verification_method: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: str,
-        filter: V20CredFilter,
-        auto_remove: Optional[bool] = None,
-        comment: Optional[str] = None,
-        credential_preview: Optional[V20CredPreview] = None,
-        trace: Optional[bool] = None,
-        verification_method: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_remove=auto_remove,
-            comment=comment,
-            connection_id=connection_id,
-            credential_preview=credential_preview,
-            filter=filter,
-            trace=trace,
-            verification_method=verification_method,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

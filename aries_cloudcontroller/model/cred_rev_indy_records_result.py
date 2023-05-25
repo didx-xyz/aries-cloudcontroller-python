@@ -21,17 +21,6 @@ class CredRevIndyRecordsResult(BaseModel):
 
     rev_reg_delta: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        rev_reg_delta: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            rev_reg_delta=rev_reg_delta,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

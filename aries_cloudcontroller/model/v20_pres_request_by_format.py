@@ -25,19 +25,6 @@ class V20PresRequestByFormat(BaseModel):
     dif: Optional[DIFProofRequest] = None
     indy: Optional[IndyProofRequest] = None
 
-    def __init__(
-        self,
-        *,
-        dif: Optional[DIFProofRequest] = None,
-        indy: Optional[IndyProofRequest] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            dif=dif,
-            indy=indy,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

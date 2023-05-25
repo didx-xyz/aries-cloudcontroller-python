@@ -49,45 +49,6 @@ class TransactionRecord(BaseModel):
     transaction_id: Optional[str] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        type: Optional[str] = None,
-        connection_id: Optional[str] = None,
-        created_at: Optional[str] = None,
-        endorser_write_txn: Optional[bool] = None,
-        formats: Optional[List[Dict[str, str]]] = None,
-        messages_attach: Optional[List[Dict]] = None,
-        meta_data: Optional[Dict[str, Any]] = None,
-        signature_request: Optional[List[Dict]] = None,
-        signature_response: Optional[List[Dict]] = None,
-        state: Optional[str] = None,
-        thread_id: Optional[str] = None,
-        timing: Optional[Dict[str, Any]] = None,
-        trace: Optional[bool] = None,
-        transaction_id: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            type=type,
-            connection_id=connection_id,
-            created_at=created_at,
-            endorser_write_txn=endorser_write_txn,
-            formats=formats,
-            messages_attach=messages_attach,
-            meta_data=meta_data,
-            signature_request=signature_request,
-            signature_response=signature_response,
-            state=state,
-            thread_id=thread_id,
-            timing=timing,
-            trace=trace,
-            transaction_id=transaction_id,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

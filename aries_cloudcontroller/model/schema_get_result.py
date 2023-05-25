@@ -22,17 +22,6 @@ class SchemaGetResult(BaseModel):
 
     schema_: Optional[ModelSchema] = Field(None, alias="schema")
 
-    def __init__(
-        self,
-        *,
-        schema_: Optional[ModelSchema] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            schema_=schema_,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -30,21 +30,6 @@ class V20CredExRecordDetail(BaseModel):
     indy: Optional[V20CredExRecordIndy] = None
     ld_proof: Optional[V20CredExRecordLDProof] = None
 
-    def __init__(
-        self,
-        *,
-        cred_ex_record: Optional[V20CredExRecord] = None,
-        indy: Optional[V20CredExRecordIndy] = None,
-        ld_proof: Optional[V20CredExRecordLDProof] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_ex_record=cred_ex_record,
-            indy=indy,
-            ld_proof=ld_proof,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -22,17 +22,6 @@ class LedgerConfigList(BaseModel):
 
     ledger_config_list: List[LedgerConfigInstance]
 
-    def __init__(
-        self,
-        *,
-        ledger_config_list: List[LedgerConfigInstance],
-        **kwargs,
-    ):
-        super().__init__(
-            ledger_config_list=ledger_config_list,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

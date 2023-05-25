@@ -25,21 +25,6 @@ class TAAAccept(BaseModel):
     text: Optional[str] = None
     version: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        mechanism: Optional[str] = None,
-        text: Optional[str] = None,
-        version: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            mechanism=mechanism,
-            text=text,
-            version=version,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

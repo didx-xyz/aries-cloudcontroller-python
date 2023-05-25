@@ -23,19 +23,6 @@ class ProtocolDescriptor(BaseModel):
     pid: str
     roles: Optional[List[str]] = None
 
-    def __init__(
-        self,
-        *,
-        pid: str,
-        roles: Optional[List[str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            pid=pid,
-            roles=roles,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

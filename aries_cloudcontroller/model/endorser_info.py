@@ -23,19 +23,6 @@ class EndorserInfo(BaseModel):
     endorser_did: str
     endorser_name: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        endorser_did: str,
-        endorser_name: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            endorser_did=endorser_did,
-            endorser_name=endorser_name,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

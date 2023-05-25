@@ -21,17 +21,6 @@ class AdminStatusLiveliness(BaseModel):
 
     alive: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        alive: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            alive=alive,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

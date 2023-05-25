@@ -27,23 +27,6 @@ class CredentialDefinitionSendRequest(BaseModel):
     support_revocation: Optional[bool] = None
     tag: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        revocation_registry_size: Optional[int] = None,
-        schema_id: Optional[str] = None,
-        support_revocation: Optional[bool] = None,
-        tag: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            revocation_registry_size=revocation_registry_size,
-            schema_id=schema_id,
-            support_revocation=support_revocation,
-            tag=tag,
-            **kwargs,
-        )
-
     @validator("revocation_registry_size")
     def revocation_registry_size_max(cls, value):
         # Property is optional

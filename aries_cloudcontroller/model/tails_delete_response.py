@@ -21,17 +21,6 @@ class TailsDeleteResponse(BaseModel):
 
     message: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        message: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            message=message,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -21,17 +21,6 @@ class IndyProofRequestedProofPredicate(BaseModel):
 
     sub_proof_index: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        sub_proof_index: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            sub_proof_index=sub_proof_index,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

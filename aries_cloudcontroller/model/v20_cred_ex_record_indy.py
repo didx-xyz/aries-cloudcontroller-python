@@ -37,33 +37,6 @@ class V20CredExRecordIndy(BaseModel):
     state: Optional[str] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        created_at: Optional[str] = None,
-        cred_ex_id: Optional[str] = None,
-        cred_ex_indy_id: Optional[str] = None,
-        cred_id_stored: Optional[str] = None,
-        cred_request_metadata: Optional[Dict[str, Any]] = None,
-        cred_rev_id: Optional[str] = None,
-        rev_reg_id: Optional[str] = None,
-        state: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            created_at=created_at,
-            cred_ex_id=cred_ex_id,
-            cred_ex_indy_id=cred_ex_indy_id,
-            cred_id_stored=cred_id_stored,
-            cred_request_metadata=cred_request_metadata,
-            cred_rev_id=cred_rev_id,
-            rev_reg_id=rev_reg_id,
-            state=state,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

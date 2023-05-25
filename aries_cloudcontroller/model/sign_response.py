@@ -23,19 +23,6 @@ class SignResponse(BaseModel):
     error: Optional[str] = None
     signed_doc: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        error: Optional[str] = None,
-        signed_doc: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            error=error,
-            signed_doc=signed_doc,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -36,27 +36,6 @@ class LDProofVCDetailOptions(BaseModel):
     domain: Optional[str] = None
     proof_purpose: Optional[str] = Field(None, alias="proofPurpose")
 
-    def __init__(
-        self,
-        *,
-        proof_type: str,
-        challenge: Optional[str] = None,
-        created: Optional[str] = None,
-        credential_status: Optional[CredentialStatusOptions] = None,
-        domain: Optional[str] = None,
-        proof_purpose: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            challenge=challenge,
-            created=created,
-            credential_status=credential_status,
-            domain=domain,
-            proof_purpose=proof_purpose,
-            proof_type=proof_type,
-            **kwargs,
-        )
-
     @validator("created")
     def created_pattern(cls, value):
         # Property is optional

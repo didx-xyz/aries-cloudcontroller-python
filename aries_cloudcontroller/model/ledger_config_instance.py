@@ -29,25 +29,6 @@ class LedgerConfigInstance(BaseModel):
     id: Optional[str] = None
     is_production: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        genesis_file: Optional[str] = None,
-        genesis_transactions: Optional[str] = None,
-        genesis_url: Optional[str] = None,
-        id: Optional[str] = None,
-        is_production: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            genesis_file=genesis_file,
-            genesis_transactions=genesis_transactions,
-            genesis_url=genesis_url,
-            id=id,
-            is_production=is_production,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -24,19 +24,6 @@ class SchemaSendResult(BaseModel):
     schema_id: str
     schema_: Optional[ModelSchema] = Field(None, alias="schema")
 
-    def __init__(
-        self,
-        *,
-        schema_id: str,
-        schema_: Optional[ModelSchema] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            schema_=schema_,
-            schema_id=schema_id,
-            **kwargs,
-        )
-
     @validator("schema_id")
     def schema_id_pattern(cls, value):
         pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$"

@@ -21,17 +21,6 @@ class ClearPendingRevocationsRequest(BaseModel):
 
     purge: Optional[Dict[str, List[str]]] = None
 
-    def __init__(
-        self,
-        *,
-        purge: Optional[Dict[str, List[str]]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            purge=purge,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

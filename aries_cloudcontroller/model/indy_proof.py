@@ -30,21 +30,6 @@ class IndyProof(BaseModel):
     proof: Optional[IndyProofProof] = None
     requested_proof: Optional[IndyProofRequestedProof] = None
 
-    def __init__(
-        self,
-        *,
-        identifiers: Optional[List[IndyProofIdentifier]] = None,
-        proof: Optional[IndyProofProof] = None,
-        requested_proof: Optional[IndyProofRequestedProof] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            identifiers=identifiers,
-            proof=proof,
-            requested_proof=requested_proof,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 
