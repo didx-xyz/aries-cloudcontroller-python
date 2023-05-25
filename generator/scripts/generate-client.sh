@@ -12,6 +12,8 @@ java -ea -server -Duser.timezone=UTC -jar "$(pwd)/../../openapi-generator/module
 # Copy
 cp -r ../generated/aries_cloudcontroller/ ..
 
+black .
+
 # Apply the patches required
 cd ..
 git apply --verbose generator/data/__init__.patch || {
