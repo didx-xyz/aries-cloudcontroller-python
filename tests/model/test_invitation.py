@@ -4,6 +4,7 @@ import pydantic
 import pytest
 
 from aries_cloudcontroller.model import InvitationMessage
+from tests.compare_dicts import compare_dicts
 
 LOGGER = logging.getLogger(__name__)
 
@@ -38,7 +39,8 @@ invalid_invitation_message = {
 
 
 def test_valid():
-    InvitationMessage(**valid_invitation_message)
+    model = InvitationMessage(**valid_invitation_message)
+    assert compare_dicts(valid_invitation_message, model.dict(by_alias=True))
 
 
 def test_invalid():
