@@ -52,9 +52,9 @@ invalid_presentation = {
 }
 
 
-def test_init_valid():
-    # Should not throw validation errors
-    V10PresentationExchange(**valid_presentation)
+def test_valid():
+    model = V10PresentationExchange(**valid_presentation)
+    assert compare_dicts(valid_presentation, model.dict(by_alias=True))
 
 
 def test_invalid():
