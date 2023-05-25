@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-import re  # noqa: F401
 from datetime import date, datetime  # noqa: F401
-from typing import Any, Dict, List, Literal, Optional, Union  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, Extra, Field, validator  # noqa: F401
+import re  # noqa: F401
+from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
+
+from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 
 
 class IndyProofIdentifier(BaseModel):
