@@ -1,10 +1,10 @@
-import pydantic
-import pytest
 import logging
 
-from aries_cloudcontroller.model.v10_presentation_exchange import (
-    V10PresentationExchange,
-)
+import pydantic
+import pytest
+
+from aries_cloudcontroller.model import V10PresentationExchange
+from tests.compare_dicts import compare_dicts
 
 LOGGER = logging.getLogger(__name__)
 
