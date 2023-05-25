@@ -11,8 +11,6 @@ valid_invitation_message = {
     "@type": "https://didcomm.org/out-of-band/%VER/invitation",
     "@id": "<id used for context as pthid>",
     "label": "Faber College",
-    "goal_code": "issue-vc",
-    "goal": "To issue a Faber College Graduate credential",
     "accept": ["didcomm/aip2;env=rfc587", "didcomm/aip2;env=rfc19"],
     "handshake_protocols": [
         "https://didcomm.org/didexchange/1.0",
