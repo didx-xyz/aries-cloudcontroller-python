@@ -49,7 +49,26 @@ valid_presentation = {
     "verified": "true",
 }
 
-invalid_presentation = {"abc": "1234"}
+invalid_presentation = {
+    "auto_present": "",  # should be bool
+    "auto_verify": "",  # should be bool
+    "connection_id": [],  # should be str
+    "created_at": [],  # should be str
+    "error_msg": [],  # should be str
+    "initiator": "other",  # should be one of literal
+    "presentation": "invalid",  # should be dict
+    "presentation_exchange_id": [],  # should be str
+    "presentation_proposal_dict": "",  # should be dict
+    "presentation_request": "",  # should be dict
+    "presentation_request_dict": "",  # should be dict
+    "role": "other",  # should be one of literal
+    "state": [],  # should be str
+    "thread_id": [],  # should be str
+    "trace": "",  # should be list
+    "updated_at": [],  # should be str
+    "verified": "other",  # should be one of literal
+    "verified_msgs": "",  # should be list
+}
 
 
 def test_init_valid():
@@ -57,6 +76,7 @@ def test_init_valid():
     V10PresentationExchange(**valid_presentation)
 
 
-def test_init_invalid():
-    with pytest.raises(pydantic.error_wrappers.ValidationError):
-        V10PresentationExchange(role="random")
+def test_invalid():
+    for key, value in invalid_presentation.items():
+        with pytest.raises(pydantic.error_wrappers.ValidationError):
+            V10PresentationExchange(**{key: value})
