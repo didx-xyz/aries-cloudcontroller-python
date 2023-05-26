@@ -22,17 +22,6 @@ class V10DiscoveryExchangeListResult(BaseModel):
 
     results: Optional[List[V10DiscoveryRecord]] = None
 
-    def __init__(
-        self,
-        *,
-        results: Optional[List[V10DiscoveryRecord]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            results=results,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

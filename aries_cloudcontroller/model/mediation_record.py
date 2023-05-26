@@ -39,35 +39,6 @@ class MediationRecord(BaseModel):
     state: Optional[str] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: str = None,
-        role: str = None,
-        created_at: Optional[str] = None,
-        endpoint: Optional[str] = None,
-        mediation_id: Optional[str] = None,
-        mediator_terms: Optional[List[str]] = None,
-        recipient_terms: Optional[List[str]] = None,
-        routing_keys: Optional[List[str]] = None,
-        state: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            connection_id=connection_id,
-            created_at=created_at,
-            endpoint=endpoint,
-            mediation_id=mediation_id,
-            mediator_terms=mediator_terms,
-            recipient_terms=recipient_terms,
-            role=role,
-            routing_keys=routing_keys,
-            state=state,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

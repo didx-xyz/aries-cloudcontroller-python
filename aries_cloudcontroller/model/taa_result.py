@@ -22,17 +22,6 @@ class TAAResult(BaseModel):
 
     result: Optional[TAAInfo] = None
 
-    def __init__(
-        self,
-        *,
-        result: Optional[TAAInfo] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            result=result,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -39,33 +39,6 @@ class V20DiscoveryRecord(BaseModel):
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: Optional[str] = None,
-        created_at: Optional[str] = None,
-        disclosures: Optional[Disclosures] = None,
-        discovery_exchange_id: Optional[str] = None,
-        queries_msg: Optional[Queries] = None,
-        state: Optional[str] = None,
-        thread_id: Optional[str] = None,
-        trace: Optional[bool] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            connection_id=connection_id,
-            created_at=created_at,
-            disclosures=disclosures,
-            discovery_exchange_id=discovery_exchange_id,
-            queries_msg=queries_msg,
-            state=state,
-            thread_id=thread_id,
-            trace=trace,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

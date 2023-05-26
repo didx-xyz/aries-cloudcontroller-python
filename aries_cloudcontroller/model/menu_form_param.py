@@ -31,27 +31,6 @@ class MenuFormParam(BaseModel):
     required: Optional[bool] = None
     type: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        name: str = None,
-        title: str = None,
-        default: Optional[str] = None,
-        description: Optional[str] = None,
-        required: Optional[bool] = None,
-        type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            default=default,
-            description=description,
-            name=name,
-            required=required,
-            title=title,
-            type=type,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

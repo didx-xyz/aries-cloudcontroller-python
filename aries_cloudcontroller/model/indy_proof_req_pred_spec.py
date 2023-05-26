@@ -32,25 +32,6 @@ class IndyProofReqPredSpec(BaseModel):
     non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None
     restrictions: Optional[List[Dict[str, str]]] = None
 
-    def __init__(
-        self,
-        *,
-        name: str = None,
-        p_type: Literal["<", "<=", ">=", ">"] = None,
-        p_value: int = None,
-        non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None,
-        restrictions: Optional[List[Dict[str, str]]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            name=name,
-            non_revoked=non_revoked,
-            p_type=p_type,
-            p_value=p_value,
-            restrictions=restrictions,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -40,35 +40,6 @@ class V10CredentialCreate(BaseModel):
     schema_version: Optional[str] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        credential_proposal: CredentialPreview = None,
-        auto_remove: Optional[bool] = None,
-        comment: Optional[str] = None,
-        cred_def_id: Optional[str] = None,
-        issuer_did: Optional[str] = None,
-        schema_id: Optional[str] = None,
-        schema_issuer_did: Optional[str] = None,
-        schema_name: Optional[str] = None,
-        schema_version: Optional[str] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_remove=auto_remove,
-            comment=comment,
-            cred_def_id=cred_def_id,
-            credential_proposal=credential_proposal,
-            issuer_did=issuer_did,
-            schema_id=schema_id,
-            schema_issuer_did=schema_issuer_did,
-            schema_name=schema_name,
-            schema_version=schema_version,
-            trace=trace,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional

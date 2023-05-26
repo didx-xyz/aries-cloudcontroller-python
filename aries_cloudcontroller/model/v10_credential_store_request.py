@@ -21,17 +21,6 @@ class V10CredentialStoreRequest(BaseModel):
 
     credential_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        credential_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            credential_id=credential_id,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

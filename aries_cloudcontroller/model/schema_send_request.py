@@ -25,24 +25,8 @@ class SchemaSendRequest(BaseModel):
     schema_name: str
     schema_version: str
 
-    def __init__(
-        self,
-        *,
-        attributes: List[str] = None,
-        schema_name: str = None,
-        schema_version: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            attributes=attributes,
-            schema_name=schema_name,
-            schema_version=schema_version,
-            **kwargs,
-        )
-
     @validator("schema_version")
     def schema_version_pattern(cls, value):
-
         pattern = r"^[0-9.]+$"
         if not re.match(pattern, value):
             raise ValueError(

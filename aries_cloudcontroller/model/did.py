@@ -29,32 +29,13 @@ class DID(BaseModel):
     posture: Optional[Literal["public", "posted", "wallet_only"]] = None
     verkey: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        did: Optional[str] = None,
-        key_type: Optional[Literal["ed25519", "bls12381g2"]] = None,
-        method: Optional[Literal["sov", "key"]] = None,
-        posture: Optional[Literal["public", "posted", "wallet_only"]] = None,
-        verkey: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            did=did,
-            key_type=key_type,
-            method=method,
-            posture=posture,
-            verkey=verkey,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
         # Property is optional
         if value is None:
             return
 
-        pattern = r"^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
+        pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\#.*)?$$"
         if not re.match(pattern, value):
             raise ValueError(f"Value of did does not match regex pattern ('{pattern}')")
         return value

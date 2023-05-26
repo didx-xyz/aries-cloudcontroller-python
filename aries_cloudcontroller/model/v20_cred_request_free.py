@@ -32,27 +32,6 @@ class V20CredRequestFree(BaseModel):
     holder_did: Optional[str] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: str = None,
-        filter: V20CredFilterLDProof = None,
-        auto_remove: Optional[bool] = None,
-        comment: Optional[str] = None,
-        holder_did: Optional[str] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_remove=auto_remove,
-            comment=comment,
-            connection_id=connection_id,
-            filter=filter,
-            holder_did=holder_did,
-            trace=trace,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

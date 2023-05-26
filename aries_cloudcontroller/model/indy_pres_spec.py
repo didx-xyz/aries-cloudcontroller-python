@@ -33,23 +33,6 @@ class IndyPresSpec(BaseModel):
     self_attested_attributes: Dict[str, str]
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = None,
-        requested_predicates: Dict[str, IndyRequestedCredsRequestedPred] = None,
-        self_attested_attributes: Dict[str, str] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            requested_attributes=requested_attributes,
-            requested_predicates=requested_predicates,
-            self_attested_attributes=self_attested_attributes,
-            trace=trace,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

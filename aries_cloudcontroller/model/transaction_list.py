@@ -22,17 +22,6 @@ class TransactionList(BaseModel):
 
     results: Optional[List[TransactionRecord]] = None
 
-    def __init__(
-        self,
-        *,
-        results: Optional[List[TransactionRecord]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            results=results,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

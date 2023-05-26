@@ -20,37 +20,17 @@ class IndyCredRequest(BaseModel):
         blinded_ms_correctness_proof: Blinded master secret correctness proof.
         cred_def_id: Credential definition identifier.
         nonce: Nonce in credential request.
-        prover_did: Prover DID [Optional].
+        prover_did: Prover DID.
     """
 
     blinded_ms: Dict[str, Any]
     blinded_ms_correctness_proof: Dict[str, Any]
     cred_def_id: str
     nonce: str
-    prover_did: Optional[str] = None
-
-    def __init__(
-        self,
-        *,
-        blinded_ms: Dict[str, Any] = None,
-        blinded_ms_correctness_proof: Dict[str, Any] = None,
-        cred_def_id: str = None,
-        nonce: str = None,
-        prover_did: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            blinded_ms=blinded_ms,
-            blinded_ms_correctness_proof=blinded_ms_correctness_proof,
-            cred_def_id=cred_def_id,
-            nonce=nonce,
-            prover_did=prover_did,
-            **kwargs,
-        )
+    prover_did: str
 
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
-
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -60,7 +40,6 @@ class IndyCredRequest(BaseModel):
 
     @validator("nonce")
     def nonce_pattern(cls, value):
-
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -70,10 +49,6 @@ class IndyCredRequest(BaseModel):
 
     @validator("prover_did")
     def prover_did_pattern(cls, value):
-        # Property is optional
-        if value is None:
-            return
-
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
             raise ValueError(

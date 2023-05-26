@@ -31,27 +31,6 @@ class WalletRecord(BaseModel):
     state: Optional[str] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        key_management_mode: Literal["managed", "unmanaged"] = None,
-        wallet_id: str = None,
-        created_at: Optional[str] = None,
-        settings: Optional[Dict[str, Any]] = None,
-        state: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            created_at=created_at,
-            key_management_mode=key_management_mode,
-            settings=settings,
-            state=state,
-            updated_at=updated_at,
-            wallet_id=wallet_id,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

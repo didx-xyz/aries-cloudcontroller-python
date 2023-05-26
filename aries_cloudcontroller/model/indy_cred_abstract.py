@@ -30,26 +30,8 @@ class IndyCredAbstract(BaseModel):
     nonce: str
     schema_id: str
 
-    def __init__(
-        self,
-        *,
-        cred_def_id: str = None,
-        key_correctness_proof: IndyKeyCorrectnessProof = None,
-        nonce: str = None,
-        schema_id: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_def_id=cred_def_id,
-            key_correctness_proof=key_correctness_proof,
-            nonce=nonce,
-            schema_id=schema_id,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
-
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -59,7 +41,6 @@ class IndyCredAbstract(BaseModel):
 
     @validator("nonce")
     def nonce_pattern(cls, value):
-
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -69,7 +50,6 @@ class IndyCredAbstract(BaseModel):
 
     @validator("schema_id")
     def schema_id_pattern(cls, value):
-
         pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$"
         if not re.match(pattern, value):
             raise ValueError(

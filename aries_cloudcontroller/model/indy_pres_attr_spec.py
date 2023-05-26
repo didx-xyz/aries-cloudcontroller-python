@@ -29,25 +29,6 @@ class IndyPresAttrSpec(BaseModel):
     referent: Optional[str] = None
     value: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        name: str = None,
-        cred_def_id: Optional[str] = None,
-        mime_type: Optional[str] = None,
-        referent: Optional[str] = None,
-        value: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_def_id=cred_def_id,
-            mime_type=mime_type,
-            name=name,
-            referent=referent,
-            value=value,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional

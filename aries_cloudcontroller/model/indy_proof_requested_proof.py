@@ -40,27 +40,6 @@ class IndyProofRequestedProof(BaseModel):
     self_attested_attrs: Optional[Dict[str, Any]] = None
     unrevealed_attrs: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = None,
-        revealed_attr_groups: Optional[
-            Dict[str, IndyProofRequestedProofRevealedAttrGroup]
-        ] = None,
-        revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = None,
-        self_attested_attrs: Optional[Dict[str, Any]] = None,
-        unrevealed_attrs: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            predicates=predicates,
-            revealed_attr_groups=revealed_attr_groups,
-            revealed_attrs=revealed_attrs,
-            self_attested_attrs=self_attested_attrs,
-            unrevealed_attrs=unrevealed_attrs,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

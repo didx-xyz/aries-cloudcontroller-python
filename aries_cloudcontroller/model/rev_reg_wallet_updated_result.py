@@ -25,21 +25,6 @@ class RevRegWalletUpdatedResult(BaseModel):
     accum_fixed: Optional[Dict[str, Any]] = None
     rev_reg_delta: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        accum_calculated: Optional[Dict[str, Any]] = None,
-        accum_fixed: Optional[Dict[str, Any]] = None,
-        rev_reg_delta: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            accum_calculated=accum_calculated,
-            accum_fixed=accum_fixed,
-            rev_reg_delta=rev_reg_delta,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

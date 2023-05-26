@@ -31,27 +31,6 @@ class IndyEQProof(BaseModel):
     revealed_attrs: Optional[Dict[str, str]] = None
     v: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        a_prime: Optional[str] = None,
-        e: Optional[str] = None,
-        m: Optional[Dict[str, str]] = None,
-        m2: Optional[str] = None,
-        revealed_attrs: Optional[Dict[str, str]] = None,
-        v: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            a_prime=a_prime,
-            e=e,
-            m=m,
-            m2=m2,
-            revealed_attrs=revealed_attrs,
-            v=v,
-            **kwargs,
-        )
-
     @validator("a_prime")
     def a_prime_pattern(cls, value):
         # Property is optional

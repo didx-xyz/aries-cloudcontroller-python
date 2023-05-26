@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -39,6 +39,7 @@ from aries_cloudcontroller.model.rev_reg_wallet_updated_result import (
 )
 from aries_cloudcontroller.model.rev_regs_created import RevRegsCreated
 from aries_cloudcontroller.model.revoke_request import RevokeRequest
+from aries_cloudcontroller.model.tails_delete_response import TailsDeleteResponse
 from aries_cloudcontroller.model.txn_or_publish_revocations_result import (
     TxnOrPublishRevocationsResult,
 )
@@ -143,10 +144,19 @@ class RevocationApi(Consumer):
 
     async def publish_revocations(
         self, *, body: Optional[PublishRevocations] = None
-    ) -> Union[PublishRevocations, TxnOrPublishRevocationsResult]:
+    ) -> TxnOrPublishRevocationsResult:
         """Publish pending revocations to ledger"""
         return await self.__publish_revocations(
             body=body,
+        )
+
+    async def revocation_registry_delete_tails_file_delete(
+        self, *, cred_def_id: Optional[str] = None, rev_reg_id: Optional[str] = None
+    ) -> TailsDeleteResponse:
+        """Delete the tail files"""
+        return await self.__revocation_registry_delete_tails_file_delete(
+            cred_def_id=cred_def_id,
+            rev_reg_id=rev_reg_id,
         )
 
     async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
@@ -176,7 +186,9 @@ class RevocationApi(Consumer):
             rev_reg_id=rev_reg_id,
         )
 
-    async def revoke_credential(self, *, body: Optional[RevokeRequest] = None) -> Dict:
+    async def revoke_credential(
+        self, *, body: Optional[RevokeRequest] = None
+    ) -> Dict[str, Any]:
         """Revoke an issued credential"""
         return await self.__revoke_credential(
             body=body,
@@ -198,7 +210,7 @@ class RevocationApi(Consumer):
             body=body,
         )
 
-    async def upload_tails_file(self, *, rev_reg_id: str) -> Dict:
+    async def upload_tails_file(self, *, rev_reg_id: str) -> Dict[str, Any]:
         """Upload local tails file to server"""
         return await self.__upload_tails_file(
             rev_reg_id=rev_reg_id,
@@ -286,8 +298,15 @@ class RevocationApi(Consumer):
     @post("/revocation/publish-revocations")
     def __publish_revocations(
         self, *, body: Body(type=PublishRevocations) = {}
-    ) -> Union[PublishRevocations, TxnOrPublishRevocationsResult]:
+    ) -> TxnOrPublishRevocationsResult:
         """Internal uplink method for publish_revocations"""
+
+    @returns.json
+    @delete("/revocation/registry/delete-tails-file")
+    def __revocation_registry_delete_tails_file_delete(
+        self, *, cred_def_id: Query = None, rev_reg_id: Query = None
+    ) -> TailsDeleteResponse:
+        """Internal uplink method for revocation_registry_delete_tails_file_delete"""
 
     @returns.json
     @put("/revocation/registry/{rev_reg_id}/fix-revocation-entry-state")
@@ -313,7 +332,9 @@ class RevocationApi(Consumer):
     @returns.json
     @json
     @post("/revocation/revoke")
-    def __revoke_credential(self, *, body: Body(type=RevokeRequest) = {}) -> Dict:
+    def __revoke_credential(
+        self, *, body: Body(type=RevokeRequest) = {}
+    ) -> Dict[str, Any]:
         """Internal uplink method for revoke_credential"""
 
     @returns.json
@@ -331,5 +352,5 @@ class RevocationApi(Consumer):
 
     @returns.json
     @put("/revocation/registry/{rev_reg_id}/tails-file")
-    def __upload_tails_file(self, *, rev_reg_id: str) -> Dict:
+    def __upload_tails_file(self, *, rev_reg_id: str) -> Dict[str, Any]:
         """Internal uplink method for upload_tails_file"""

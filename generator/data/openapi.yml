@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.7.5
+  version: v0.8.0
 servers:
 - url: /
 security:
@@ -273,15 +273,15 @@ paths:
         schema:
           type: string
           enum:
+          - response
           - error
           - active
-          - response
+          - abandoned
+          - invitation
           - request
           - completed
-          - start
-          - invitation
-          - abandoned
           - init
+          - start
       - name: their_did
         in: query
         description: Their DID
@@ -1245,7 +1245,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/V10DiscoveryExchangeResult'
+                $ref: '#/components/schemas/V10DiscoveryRecord'
   /discover-features/records:
     get:
       tags:
@@ -1268,7 +1268,8 @@ paths:
     post:
       tags:
       - issue-credential v2.0
-      summary: Create credential from attribute values
+      summary: Create a credential record without sending (generally for use with
+        Out-Of-Band)
       requestBody:
         content:
           application/json:
@@ -1620,7 +1621,8 @@ paths:
     post:
       tags:
       - issue-credential v1.0
-      summary: Send holder a credential, automating entire flow
+      summary: Create a credential record without sending (generally for use with
+        Out-Of-Band)
       requestBody:
         content:
           application/json:
@@ -2470,6 +2472,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/MediationGrant'
       operationId: grant_mediation_request
+  /mediation/update-keylist/{conn_id}:
+    post:
+      tags:
+      - mediation
+      summary: Update keylist for a connection
+      parameters:
+      - name: conn_id
+        in: path
+        description: Connection identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MediationIdMatchInfo'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeylistUpdate'
+      x-codegen-request-body-name: body
   /mediation/{mediation_id}/default-mediator:
     put:
       tags:
@@ -3481,6 +3509,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/RevRegsCreated'
       operationId: get_created_registries
+  /revocation/registry/delete-tails-file:
+    delete:
+      tags:
+      - revocation
+      summary: Delete the tail files
+      parameters:
+      - name: cred_def_id
+        in: query
+        description: Credential definition identifier
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+      - name: rev_reg_id
+        in: query
+        description: Revocation registry identifier
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TailsDeleteResponse'
   /revocation/registry/{rev_reg_id}:
     get:
       tags:
@@ -4201,7 +4254,7 @@ paths:
         in: query
         description: DID of interest
         schema:
-          pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: key_type
         in: query
@@ -4319,6 +4372,11 @@ paths:
         description: Create Transaction For Endorser's signature
         schema:
           type: boolean
+      - name: mediation_id
+        in: query
+        description: Mediation identifier
+        schema:
+          type: string
       responses:
         200:
           description: ''
@@ -4517,7 +4575,6 @@ components:
           example: ey4uLn0=
         json:
           type: object
-          properties: {}
           description: JSON-serialized data
           example: '{"sample": "content"}'
         jws:
@@ -5431,10 +5488,10 @@ components:
       type: object
       properties:
         did:
-          pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID of interest
-          example: WgWxqztrNooG92RXvxSTWv
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         key_type:
           type: string
           description: Key type associated with the DID
@@ -5446,9 +5503,6 @@ components:
           type: string
           description: Did method associated with the DID
           example: sov
-          enum:
-          - sov
-          - key
         posture:
           type: string
           description: Whether DID is current public DID, posted to ledger but not
@@ -5468,22 +5522,34 @@ components:
       properties:
         method:
           type: string
+          description: Method for the requested DID.Supported methods are 'key', 'sov',
+            and any other registered method.
           example: sov
-          enum:
-          - key
-          - sov
         options:
           type: object
-          description: To define a key type for a did:key
+          description: To define a key type and/or a did depending on chosen DID method.
           allOf:
           - $ref: '#/components/schemas/DIDCreateOptions'
+        seed:
+          type: string
+          description: Optional seed to use for DID, Must beenabled in configuration
+            before use.
+          example: 000000000000000000000000Trustee1
     DIDCreateOptions:
       required:
       - key_type
       type: object
       properties:
+        did:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          type: string
+          description: 'Specify final value of the did (including did:<method>: prefix)if
+            the method supports or requires so.'
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         key_type:
           type: string
+          description: Key type to use for the DID keypair. Validated with the chosen
+            DID method's supported key types.
           example: ed25519
           enum:
           - ed25519
@@ -5963,6 +6029,7 @@ components:
       - blinded_ms_correctness_proof
       - cred_def_id
       - nonce
+      - prover_did
       type: object
       properties:
         blinded_ms:
@@ -6838,6 +6905,12 @@ components:
             type: string
             description: Handshake protocol
             example: did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/didexchange/1.0
+        imageUrl:
+          type: string
+          description: Optional image URL for out-of-band invitation
+          format: url
+          nullable: true
+          example: http://192.168.56.101/img/logo.jpg
         label:
           type: string
           description: Optional label
@@ -6936,6 +7009,9 @@ components:
           type: string
           description: Credential exchange record identifier at credential issue
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_ex_version:
+          type: string
+          description: Credential exchange version
         cred_rev_id:
           pattern: ^[1-9][0-9]*$
           type: string
@@ -7130,10 +7206,10 @@ components:
           - add
           - remove
         recipient_key:
-          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+          pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
           description: Key to remove or add
-          example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
+          example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
     LDProofVCDetail:
       required:
       - credential
@@ -7347,6 +7423,14 @@ components:
           items:
             type: string
             description: Keys to use for forward message packaging
+    MediationIdMatchInfo:
+      type: object
+      properties:
+        mediation_id:
+          type: string
+          description: Mediation record identifier
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     MediationList:
       type: object
       properties:
@@ -7385,9 +7469,9 @@ components:
         routing_keys:
           type: array
           items:
-            pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+            pattern: ^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$
             type: string
-            example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
+            example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
         state:
           type: string
           description: Current record state
@@ -7568,10 +7652,21 @@ components:
           type: string
           description: OOB Role
           example: receiver
+          enum:
+          - sender
+          - receiver
         state:
           type: string
           description: Out of band message exchange state
           example: await-response
+          enum:
+          - initial
+          - prepare-response
+          - await-response
+          - reuse-not-accepted
+          - reuse-accepted
+          - done
+          - deleted
         their_service:
           $ref: '#/components/schemas/ServiceDecorator'
         trace:
@@ -7822,11 +7917,11 @@ components:
           example: MySecretKey123
     ResolutionResult:
       required:
-      - did_doc
+      - did_document
       - metadata
       type: object
       properties:
-        did_doc:
+        did_document:
           type: object
           properties: {}
           description: DID Document
@@ -8255,6 +8350,11 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/TAAInfo'
+    TailsDeleteResponse:
+      type: object
+      properties:
+        message:
+          type: string
     TransactionJobs:
       type: object
       properties:
@@ -8847,14 +8947,6 @@ components:
             description: Discover Features v1.0 exchange record
             allOf:
             - $ref: '#/components/schemas/V10DiscoveryRecord'
-    V10DiscoveryExchangeResult:
-      type: object
-      properties:
-        results:
-          type: object
-          description: Discover Features v1.0 exchange record
-          allOf:
-          - $ref: '#/components/schemas/V10DiscoveryRecord'
     V10DiscoveryRecord:
       type: object
       properties:
@@ -9142,6 +9234,10 @@ components:
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
+        verification_method:
+          type: string
+          description: For ld-proofs. Verification method for signing.
+          nullable: true
     V20CredExRecord:
       type: object
       properties:
@@ -9240,6 +9336,7 @@ components:
           - done
           - credential-revoked
           - abandoned
+          - deleted
         thread_id:
           type: string
           description: Thread identifier
@@ -9896,6 +9993,7 @@ components:
           - presentation-received
           - done
           - abandoned
+          - deleted
         thread_id:
           type: string
           description: Thread identifier

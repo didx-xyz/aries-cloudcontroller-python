@@ -23,19 +23,6 @@ class SchemaInputDescriptor(BaseModel):
     required: Optional[bool] = None
     uri: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        required: Optional[bool] = None,
-        uri: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            required=required,
-            uri=uri,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

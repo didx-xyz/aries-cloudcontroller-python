@@ -30,25 +30,6 @@ class V10PresentationSendRequestRequest(BaseModel):
     comment: Optional[str] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: str = None,
-        proof_request: IndyProofRequest = None,
-        auto_verify: Optional[bool] = None,
-        comment: Optional[str] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_verify=auto_verify,
-            comment=comment,
-            connection_id=connection_id,
-            proof_request=proof_request,
-            trace=trace,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

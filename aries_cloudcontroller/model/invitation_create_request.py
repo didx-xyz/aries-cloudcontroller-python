@@ -17,45 +17,26 @@ class InvitationCreateRequest(BaseModel):
     Do not edit the class manually.
 
     InvitationCreateRequest - a model defined in OpenAPI
+        accept: List of mime type in order of preference that should be use in responding to the message [Optional].
         alias: Alias for connection [Optional].
         attachments: Optional invitation attachments [Optional].
         handshake_protocols: The handshake_protocols of this InvitationCreateRequest [Optional].
         mediation_id: Identifier for active mediation record to be used [Optional].
         metadata: Optional metadata to attach to the connection created with the invitation [Optional].
         my_label: Label for connection invitation [Optional].
+        protocol_version: OOB protocol version [Optional].
         use_public_did: Whether to use public DID in invitation [Optional].
     """
 
+    accept: Optional[List[str]] = None
     alias: Optional[str] = None
     attachments: Optional[List[AttachmentDef]] = None
     handshake_protocols: Optional[List[str]] = None
     mediation_id: Optional[str] = None
     metadata: Optional[Dict[str, Any]] = None
     my_label: Optional[str] = None
+    protocol_version: Optional[str] = None
     use_public_did: Optional[bool] = None
-
-    def __init__(
-        self,
-        *,
-        alias: Optional[str] = None,
-        attachments: Optional[List[AttachmentDef]] = None,
-        handshake_protocols: Optional[List[str]] = None,
-        mediation_id: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
-        my_label: Optional[str] = None,
-        use_public_did: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            alias=alias,
-            attachments=attachments,
-            handshake_protocols=handshake_protocols,
-            mediation_id=mediation_id,
-            metadata=metadata,
-            my_label=my_label,
-            use_public_did=use_public_did,
-            **kwargs,
-        )
 
     @validator("mediation_id")
     def mediation_id_pattern(cls, value):

@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -42,7 +42,7 @@ class MultitenancyApi(Consumer):
 
     async def delete_wallet(
         self, *, wallet_id: str, body: Optional[RemoveWalletRequest] = None
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Remove a subwallet"""
         return await self.__delete_wallet(
             wallet_id=wallet_id,
@@ -92,7 +92,7 @@ class MultitenancyApi(Consumer):
     @post("/multitenancy/wallet/{wallet_id}/remove")
     def __delete_wallet(
         self, *, wallet_id: str, body: Body(type=RemoveWalletRequest) = {}
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Internal uplink method for delete_wallet"""
 
     @returns.json

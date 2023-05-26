@@ -35,29 +35,6 @@ class V20CredOfferRequest(BaseModel):
     credential_preview: Optional[V20CredPreview] = None
     trace: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: str = None,
-        filter: V20CredFilter = None,
-        auto_issue: Optional[bool] = None,
-        auto_remove: Optional[bool] = None,
-        comment: Optional[str] = None,
-        credential_preview: Optional[V20CredPreview] = None,
-        trace: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_issue=auto_issue,
-            auto_remove=auto_remove,
-            comment=comment,
-            connection_id=connection_id,
-            credential_preview=credential_preview,
-            filter=filter,
-            trace=trace,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

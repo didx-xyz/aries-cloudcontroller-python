@@ -21,17 +21,6 @@ class WriteLedgerRequest(BaseModel):
 
     ledger_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        ledger_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            ledger_id=ledger_id,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

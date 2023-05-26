@@ -25,21 +25,6 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
     raw: Optional[str] = None
     sub_proof_index: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        encoded: Optional[str] = None,
-        raw: Optional[str] = None,
-        sub_proof_index: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            encoded=encoded,
-            raw=raw,
-            sub_proof_index=sub_proof_index,
-            **kwargs,
-        )
-
     @validator("encoded")
     def encoded_pattern(cls, value):
         # Property is optional

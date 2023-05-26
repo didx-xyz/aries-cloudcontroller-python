@@ -31,27 +31,6 @@ class CreateInvitationRequest(BaseModel):
     routing_keys: Optional[List[str]] = None
     service_endpoint: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        mediation_id: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
-        my_label: Optional[str] = None,
-        recipient_keys: Optional[List[str]] = None,
-        routing_keys: Optional[List[str]] = None,
-        service_endpoint: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            mediation_id=mediation_id,
-            metadata=metadata,
-            my_label=my_label,
-            recipient_keys=recipient_keys,
-            routing_keys=routing_keys,
-            service_endpoint=service_endpoint,
-            **kwargs,
-        )
-
     @validator("mediation_id")
     def mediation_id_pattern(cls, value):
         # Property is optional

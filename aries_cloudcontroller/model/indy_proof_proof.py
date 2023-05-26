@@ -29,19 +29,6 @@ class IndyProofProof(BaseModel):
     aggregated_proof: Optional[IndyProofProofAggregatedProof] = None
     proofs: Optional[List[IndyProofProofProofsProof]] = None
 
-    def __init__(
-        self,
-        *,
-        aggregated_proof: Optional[IndyProofProofAggregatedProof] = None,
-        proofs: Optional[List[IndyProofProofProofsProof]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            aggregated_proof=aggregated_proof,
-            proofs=proofs,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

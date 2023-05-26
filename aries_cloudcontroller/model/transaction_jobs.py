@@ -27,23 +27,6 @@ class TransactionJobs(BaseModel):
         Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
     ] = None
 
-    def __init__(
-        self,
-        *,
-        transaction_my_job: Optional[
-            Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
-        ] = None,
-        transaction_their_job: Optional[
-            Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
-        ] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            transaction_my_job=transaction_my_job,
-            transaction_their_job=transaction_their_job,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

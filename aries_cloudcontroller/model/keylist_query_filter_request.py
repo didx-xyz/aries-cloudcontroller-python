@@ -21,17 +21,6 @@ class KeylistQueryFilterRequest(BaseModel):
 
     filter: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        filter: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            filter=filter,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -21,17 +21,6 @@ class RevRegIssuedResult(BaseModel):
 
     result: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        result: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            result=result,
-            **kwargs,
-        )
-
     @validator("result")
     def result_min(cls, value):
         # Property is optional

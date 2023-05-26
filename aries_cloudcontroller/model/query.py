@@ -27,23 +27,6 @@ class Query(BaseModel):
     type: Optional[str] = Field(None, alias="@type")
     comment: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        query: str = None,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            query=query,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

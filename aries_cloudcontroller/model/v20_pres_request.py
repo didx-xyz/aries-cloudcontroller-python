@@ -35,27 +35,6 @@ class V20PresRequest(BaseModel):
     comment: Optional[str] = None
     will_confirm: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        formats: List[V20PresFormat] = None,
-        request_presentationsattach: List[AttachDecorator] = None,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        will_confirm: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            formats=formats,
-            request_presentationsattach=request_presentationsattach,
-            will_confirm=will_confirm,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -22,17 +22,6 @@ class CredentialDefinitionGetResult(BaseModel):
 
     credential_definition: Optional[CredentialDefinition] = None
 
-    def __init__(
-        self,
-        *,
-        credential_definition: Optional[CredentialDefinition] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            credential_definition=credential_definition,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

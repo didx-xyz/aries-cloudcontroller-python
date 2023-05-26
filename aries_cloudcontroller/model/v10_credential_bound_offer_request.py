@@ -22,17 +22,6 @@ class V10CredentialBoundOfferRequest(BaseModel):
 
     counter_proposal: Optional[CredentialProposal] = None
 
-    def __init__(
-        self,
-        *,
-        counter_proposal: Optional[CredentialProposal] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            counter_proposal=counter_proposal,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

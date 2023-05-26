@@ -16,25 +16,12 @@ class ResolutionResult(BaseModel):
     Do not edit the class manually.
 
     ResolutionResult - a model defined in OpenAPI
-        did_doc: DID Document.
+        did_document: DID Document.
         metadata: Resolution metadata.
     """
 
-    did_doc: Dict[str, Any]
+    did_document: Dict[str, Any]
     metadata: Dict[str, Any]
-
-    def __init__(
-        self,
-        *,
-        did_doc: Dict[str, Any] = None,
-        metadata: Dict[str, Any] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            did_doc=did_doc,
-            metadata=metadata,
-            **kwargs,
-        )
 
     class Config:
         allow_population_by_field_name = True

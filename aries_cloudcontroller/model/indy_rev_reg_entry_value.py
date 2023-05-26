@@ -25,21 +25,6 @@ class IndyRevRegEntryValue(BaseModel):
     prev_accum: Optional[str] = Field(None, alias="prevAccum")
     revoked: Optional[List[int]] = None
 
-    def __init__(
-        self,
-        *,
-        accum: Optional[str] = None,
-        prev_accum: Optional[str] = None,
-        revoked: Optional[List[int]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            accum=accum,
-            prev_accum=prev_accum,
-            revoked=revoked,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

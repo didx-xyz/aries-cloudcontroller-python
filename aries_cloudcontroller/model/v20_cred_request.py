@@ -31,25 +31,6 @@ class V20CredRequest(BaseModel):
     type: Optional[str] = Field(None, alias="@type")
     comment: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        formats: List[V20CredFormat] = None,
-        requestsattach: List[AttachDecorator] = None,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            formats=formats,
-            requestsattach=requestsattach,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

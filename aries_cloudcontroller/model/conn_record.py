@@ -59,59 +59,6 @@ class ConnRecord(BaseModel):
     their_role: Optional[Literal["invitee", "requester", "inviter", "responder"]] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        accept: Optional[Literal["manual", "auto"]] = None,
-        alias: Optional[str] = None,
-        connection_id: Optional[str] = None,
-        connection_protocol: Optional[
-            Literal["connections/1.0", "didexchange/1.0"]
-        ] = None,
-        created_at: Optional[str] = None,
-        error_msg: Optional[str] = None,
-        inbound_connection_id: Optional[str] = None,
-        invitation_key: Optional[str] = None,
-        invitation_mode: Optional[Literal["once", "multi", "static"]] = None,
-        invitation_msg_id: Optional[str] = None,
-        my_did: Optional[str] = None,
-        request_id: Optional[str] = None,
-        rfc23_state: Optional[str] = None,
-        routing_state: Optional[Literal["none", "request", "active", "error"]] = None,
-        state: Optional[str] = None,
-        their_did: Optional[str] = None,
-        their_label: Optional[str] = None,
-        their_public_did: Optional[str] = None,
-        their_role: Optional[
-            Literal["invitee", "requester", "inviter", "responder"]
-        ] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            accept=accept,
-            alias=alias,
-            connection_id=connection_id,
-            connection_protocol=connection_protocol,
-            created_at=created_at,
-            error_msg=error_msg,
-            inbound_connection_id=inbound_connection_id,
-            invitation_key=invitation_key,
-            invitation_mode=invitation_mode,
-            invitation_msg_id=invitation_msg_id,
-            my_did=my_did,
-            request_id=request_id,
-            rfc23_state=rfc23_state,
-            routing_state=routing_state,
-            state=state,
-            their_did=their_did,
-            their_label=their_label,
-            their_public_did=their_public_did,
-            their_role=their_role,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

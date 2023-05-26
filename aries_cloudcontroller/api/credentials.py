@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -31,13 +31,13 @@ from aries_cloudcontroller.model.w3_c_credentials_list_request import (
 
 
 class CredentialsApi(Consumer):
-    async def delete_record(self, *, credential_id: str) -> Dict:
+    async def delete_record(self, *, credential_id: str) -> Dict[str, Any]:
         """Remove credential from wallet by id"""
         return await self.__delete_record(
             credential_id=credential_id,
         )
 
-    async def delete_w3c_credential(self, *, credential_id: str) -> Dict:
+    async def delete_w3c_credential(self, *, credential_id: str) -> Dict[str, Any]:
         """Remove W3C credential from wallet by id"""
         return await self.__delete_w3c_credential(
             credential_id=credential_id,
@@ -109,12 +109,12 @@ class CredentialsApi(Consumer):
 
     @returns.json
     @delete("/credential/{credential_id}")
-    def __delete_record(self, *, credential_id: str) -> Dict:
+    def __delete_record(self, *, credential_id: str) -> Dict[str, Any]:
         """Internal uplink method for delete_record"""
 
     @returns.json
     @delete("/credential/w3c/{credential_id}")
-    def __delete_w3c_credential(self, *, credential_id: str) -> Dict:
+    def __delete_w3c_credential(self, *, credential_id: str) -> Dict[str, Any]:
         """Internal uplink method for delete_w3c_credential"""
 
     @returns.json

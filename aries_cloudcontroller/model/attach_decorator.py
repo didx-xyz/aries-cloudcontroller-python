@@ -34,29 +34,6 @@ class AttachDecorator(BaseModel):
     lastmod_time: Optional[str] = None
     mime_type: Optional[str] = Field(None, alias="mime-type")
 
-    def __init__(
-        self,
-        *,
-        data: AttachDecoratorData = None,
-        id: Optional[str] = None,
-        byte_count: Optional[int] = None,
-        description: Optional[str] = None,
-        filename: Optional[str] = None,
-        lastmod_time: Optional[str] = None,
-        mime_type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            byte_count=byte_count,
-            data=data,
-            description=description,
-            filename=filename,
-            lastmod_time=lastmod_time,
-            mime_type=mime_type,
-            **kwargs,
-        )
-
     @validator("lastmod_time")
     def lastmod_time_pattern(cls, value):
         # Property is optional

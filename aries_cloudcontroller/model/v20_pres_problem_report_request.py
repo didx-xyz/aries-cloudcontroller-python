@@ -21,17 +21,6 @@ class V20PresProblemReportRequest(BaseModel):
 
     description: str
 
-    def __init__(
-        self,
-        *,
-        description: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            description=description,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

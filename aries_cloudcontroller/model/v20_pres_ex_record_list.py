@@ -22,17 +22,6 @@ class V20PresExRecordList(BaseModel):
 
     results: Optional[List[V20PresExRecord]] = None
 
-    def __init__(
-        self,
-        *,
-        results: Optional[List[V20PresExRecord]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            results=results,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

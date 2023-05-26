@@ -39,6 +39,7 @@ class V20PresExRecord(BaseModel):
         trace: Record trace information, based on agent configuration [Optional].
         updated_at: Time of last record update [Optional].
         verified: Whether presentation is verified: &#39;true&#39; or &#39;false&#39; [Optional].
+        verified_msgs: The verified_msgs of this V20PresExRecord [Optional].
     """
 
     auto_present: Optional[bool] = None
@@ -63,66 +64,14 @@ class V20PresExRecord(BaseModel):
             "presentation-received",
             "done",
             "abandoned",
+            "deleted",
         ]
     ] = None
     thread_id: Optional[str] = None
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
     verified: Optional[Literal["true", "false"]] = None
-
-    def __init__(
-        self,
-        *,
-        auto_present: Optional[bool] = None,
-        auto_verify: Optional[bool] = None,
-        by_format: Optional[V20PresExRecordByFormat] = None,
-        connection_id: Optional[str] = None,
-        created_at: Optional[str] = None,
-        error_msg: Optional[str] = None,
-        initiator: Optional[Literal["self", "external"]] = None,
-        pres: Optional[V20Pres] = None,
-        pres_ex_id: Optional[str] = None,
-        pres_proposal: Optional[V20PresProposal] = None,
-        pres_request: Optional[V20PresRequest] = None,
-        role: Optional[Literal["prover", "verifier"]] = None,
-        state: Optional[
-            Literal[
-                "proposal-sent",
-                "proposal-received",
-                "request-sent",
-                "request-received",
-                "presentation-sent",
-                "presentation-received",
-                "done",
-                "abandoned",
-            ]
-        ] = None,
-        thread_id: Optional[str] = None,
-        trace: Optional[bool] = None,
-        updated_at: Optional[str] = None,
-        verified: Optional[Literal["true", "false"]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_present=auto_present,
-            auto_verify=auto_verify,
-            by_format=by_format,
-            connection_id=connection_id,
-            created_at=created_at,
-            error_msg=error_msg,
-            initiator=initiator,
-            pres=pres,
-            pres_ex_id=pres_ex_id,
-            pres_proposal=pres_proposal,
-            pres_request=pres_request,
-            role=role,
-            state=state,
-            thread_id=thread_id,
-            trace=trace,
-            updated_at=updated_at,
-            verified=verified,
-            **kwargs,
-        )
+    verified_msgs: Optional[List[str]] = None
 
     @validator("created_at")
     def created_at_pattern(cls, value):

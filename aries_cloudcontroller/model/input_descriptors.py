@@ -37,29 +37,6 @@ class InputDescriptors(BaseModel):
     purpose: Optional[str] = None
     schema_: Optional[SchemasInputDescriptorFilter] = Field(None, alias="schema")
 
-    def __init__(
-        self,
-        *,
-        constraints: Optional[Constraints] = None,
-        group: Optional[List[str]] = None,
-        id: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        purpose: Optional[str] = None,
-        schema_: Optional[SchemasInputDescriptorFilter] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            constraints=constraints,
-            group=group,
-            id=id,
-            metadata=metadata,
-            name=name,
-            purpose=purpose,
-            schema_=schema_,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

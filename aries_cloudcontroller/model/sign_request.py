@@ -24,19 +24,6 @@ class SignRequest(BaseModel):
     doc: Doc
     verkey: str
 
-    def __init__(
-        self,
-        *,
-        doc: Doc = None,
-        verkey: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            doc=doc,
-            verkey=verkey,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

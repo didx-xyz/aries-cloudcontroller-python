@@ -21,17 +21,6 @@ class AdminStatusReadiness(BaseModel):
 
     ready: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        ready: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            ready=ready,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

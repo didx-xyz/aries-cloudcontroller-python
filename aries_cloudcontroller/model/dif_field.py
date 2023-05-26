@@ -30,25 +30,6 @@ class DIFField(BaseModel):
     predicate: Optional[Literal["required", "preferred"]] = None
     purpose: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        filter: Optional[Filter] = None,
-        id: Optional[str] = None,
-        path: Optional[List[str]] = None,
-        predicate: Optional[Literal["required", "preferred"]] = None,
-        purpose: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            filter=filter,
-            id=id,
-            path=path,
-            predicate=predicate,
-            purpose=purpose,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

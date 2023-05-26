@@ -23,19 +23,6 @@ class PerformRequest(BaseModel):
     name: Optional[str] = None
     params: Optional[Dict[str, str]] = None
 
-    def __init__(
-        self,
-        *,
-        name: Optional[str] = None,
-        params: Optional[Dict[str, str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            name=name,
-            params=params,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

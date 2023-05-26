@@ -25,19 +25,6 @@ class DIFProofProposal(BaseModel):
     input_descriptors: Optional[List[InputDescriptors]] = None
     options: Optional[DIFOptions] = None
 
-    def __init__(
-        self,
-        *,
-        input_descriptors: Optional[List[InputDescriptors]] = None,
-        options: Optional[DIFOptions] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            input_descriptors=input_descriptors,
-            options=options,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

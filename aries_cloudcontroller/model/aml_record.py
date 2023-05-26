@@ -25,21 +25,6 @@ class AMLRecord(BaseModel):
     aml_context: Optional[str] = Field(None, alias="amlContext")
     version: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        aml: Optional[Dict[str, str]] = None,
-        aml_context: Optional[str] = None,
-        version: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            aml=aml,
-            aml_context=aml_context,
-            version=version,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

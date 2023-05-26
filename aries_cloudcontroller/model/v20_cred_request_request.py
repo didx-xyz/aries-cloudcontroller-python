@@ -21,17 +21,6 @@ class V20CredRequestRequest(BaseModel):
 
     holder_did: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        holder_did: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            holder_did=holder_did,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

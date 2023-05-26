@@ -33,27 +33,6 @@ class V20CredIssue(BaseModel):
     comment: Optional[str] = None
     replacement_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        credentialsattach: List[AttachDecorator] = None,
-        formats: List[V20CredFormat] = None,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        replacement_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            credentialsattach=credentialsattach,
-            formats=formats,
-            replacement_id=replacement_id,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

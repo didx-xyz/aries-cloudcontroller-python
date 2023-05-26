@@ -24,19 +24,6 @@ class VerifyRequest(BaseModel):
     doc: SignedDoc
     verkey: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        doc: SignedDoc = None,
-        verkey: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            doc=doc,
-            verkey=verkey,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -17,21 +17,10 @@ class RevRegResult(BaseModel):
     Do not edit the class manually.
 
     RevRegResult - a model defined in OpenAPI
-        result: The result of this RevRegResult.
+        result: The result of this RevRegResult [Optional].
     """
 
-    result: IssuerRevRegRecord
-
-    def __init__(
-        self,
-        *,
-        result: IssuerRevRegRecord = None,
-        **kwargs,
-    ):
-        super().__init__(
-            result=result,
-            **kwargs,
-        )
+    result: Optional[IssuerRevRegRecord] = None
 
     class Config:
         allow_population_by_field_name = True

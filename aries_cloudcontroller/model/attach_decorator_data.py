@@ -30,25 +30,6 @@ class AttachDecoratorData(BaseModel):
     links: Optional[List[str]] = None
     sha256: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        base64: Optional[str] = None,
-        json_: Optional[Dict[str, Any]] = None,
-        jws: Optional[AttachDecoratorDataJWS] = None,
-        links: Optional[List[str]] = None,
-        sha256: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            base64=base64,
-            json_=json_,
-            jws=jws,
-            links=links,
-            sha256=sha256,
-            **kwargs,
-        )
-
     @validator("base64")
     def base64_pattern(cls, value):
         # Property is optional

@@ -28,23 +28,6 @@ class MenuForm(BaseModel):
     submit_label: Optional[str] = Field(None, alias="submit-label")
     title: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        description: Optional[str] = None,
-        params: Optional[List[MenuFormParam]] = None,
-        submit_label: Optional[str] = None,
-        title: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            description=description,
-            params=params,
-            submit_label=submit_label,
-            title=title,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

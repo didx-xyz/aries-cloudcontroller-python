@@ -24,19 +24,6 @@ class CredentialPreview(BaseModel):
     attributes: List[CredAttrSpec]
     type: Optional[str] = Field(None, alias="@type")
 
-    def __init__(
-        self,
-        *,
-        attributes: List[CredAttrSpec] = None,
-        type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            type=type,
-            attributes=attributes,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

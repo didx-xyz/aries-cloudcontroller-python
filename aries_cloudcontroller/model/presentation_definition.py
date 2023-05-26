@@ -34,27 +34,6 @@ class PresentationDefinition(BaseModel):
     purpose: Optional[str] = None
     submission_requirements: Optional[List[SubmissionRequirements]] = None
 
-    def __init__(
-        self,
-        *,
-        format: Optional[ClaimFormat] = None,
-        id: Optional[str] = None,
-        input_descriptors: Optional[List[InputDescriptors]] = None,
-        name: Optional[str] = None,
-        purpose: Optional[str] = None,
-        submission_requirements: Optional[List[SubmissionRequirements]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            format=format,
-            id=id,
-            input_descriptors=input_descriptors,
-            name=name,
-            purpose=purpose,
-            submission_requirements=submission_requirements,
-            **kwargs,
-        )
-
     @validator("id")
     def id_pattern(cls, value):
         # Property is optional

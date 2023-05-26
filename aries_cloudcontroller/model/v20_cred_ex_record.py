@@ -75,74 +75,12 @@ class V20CredExRecord(BaseModel):
             "done",
             "credential-revoked",
             "abandoned",
+            "deleted",
         ]
     ] = None
     thread_id: Optional[str] = None
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
-
-    def __init__(
-        self,
-        *,
-        auto_issue: Optional[bool] = None,
-        auto_offer: Optional[bool] = None,
-        auto_remove: Optional[bool] = None,
-        by_format: Optional[V20CredExRecordByFormat] = None,
-        connection_id: Optional[str] = None,
-        created_at: Optional[str] = None,
-        cred_ex_id: Optional[str] = None,
-        cred_issue: Optional[V20CredIssue] = None,
-        cred_offer: Optional[V20CredOffer] = None,
-        cred_preview: Optional[V20CredPreview] = None,
-        cred_proposal: Optional[V20CredProposal] = None,
-        cred_request: Optional[V20CredRequest] = None,
-        error_msg: Optional[str] = None,
-        initiator: Optional[Literal["self", "external"]] = None,
-        parent_thread_id: Optional[str] = None,
-        role: Optional[Literal["issuer", "holder"]] = None,
-        state: Optional[
-            Literal[
-                "proposal-sent",
-                "proposal-received",
-                "offer-sent",
-                "offer-received",
-                "request-sent",
-                "request-received",
-                "credential-issued",
-                "credential-received",
-                "done",
-                "credential-revoked",
-                "abandoned",
-            ]
-        ] = None,
-        thread_id: Optional[str] = None,
-        trace: Optional[bool] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            auto_issue=auto_issue,
-            auto_offer=auto_offer,
-            auto_remove=auto_remove,
-            by_format=by_format,
-            connection_id=connection_id,
-            created_at=created_at,
-            cred_ex_id=cred_ex_id,
-            cred_issue=cred_issue,
-            cred_offer=cred_offer,
-            cred_preview=cred_preview,
-            cred_proposal=cred_proposal,
-            cred_request=cred_request,
-            error_msg=error_msg,
-            initiator=initiator,
-            parent_thread_id=parent_thread_id,
-            role=role,
-            state=state,
-            thread_id=thread_id,
-            trace=trace,
-            updated_at=updated_at,
-            **kwargs,
-        )
 
     @validator("created_at")
     def created_at_pattern(cls, value):

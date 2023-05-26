@@ -31,27 +31,6 @@ class V20CredExRecordLDProof(BaseModel):
     state: Optional[str] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        created_at: Optional[str] = None,
-        cred_ex_id: Optional[str] = None,
-        cred_ex_ld_proof_id: Optional[str] = None,
-        cred_id_stored: Optional[str] = None,
-        state: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            created_at=created_at,
-            cred_ex_id=cred_ex_id,
-            cred_ex_ld_proof_id=cred_ex_ld_proof_id,
-            cred_id_stored=cred_id_stored,
-            state=state,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

@@ -25,19 +25,6 @@ class V20CredFilter(BaseModel):
     indy: Optional[V20CredFilterIndy] = None
     ld_proof: Optional[LDProofVCDetail] = None
 
-    def __init__(
-        self,
-        *,
-        indy: Optional[V20CredFilterIndy] = None,
-        ld_proof: Optional[LDProofVCDetail] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            indy=indy,
-            ld_proof=ld_proof,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

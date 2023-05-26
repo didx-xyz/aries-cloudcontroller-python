@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -23,7 +23,7 @@ from aries_cloudcontroller.model.send_menu import SendMenu
 
 
 class ActionMenuApi(Consumer):
-    async def close_active_menu(self, *, conn_id: str) -> Dict:
+    async def close_active_menu(self, *, conn_id: str) -> Dict[str, Any]:
         """Close the active menu associated with a connection"""
         return await self.__close_active_menu(
             conn_id=conn_id,
@@ -37,20 +37,22 @@ class ActionMenuApi(Consumer):
 
     async def perform_action(
         self, *, conn_id: str, body: Optional[PerformRequest] = None
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Perform an action associated with the active menu"""
         return await self.__perform_action(
             conn_id=conn_id,
             body=body,
         )
 
-    async def request_active_menu(self, *, conn_id: str) -> Dict:
+    async def request_active_menu(self, *, conn_id: str) -> Dict[str, Any]:
         """Request the active menu"""
         return await self.__request_active_menu(
             conn_id=conn_id,
         )
 
-    async def send_menu(self, *, conn_id: str, body: Optional[SendMenu] = None) -> Dict:
+    async def send_menu(
+        self, *, conn_id: str, body: Optional[SendMenu] = None
+    ) -> Dict[str, Any]:
         """Send an action menu to a connection"""
         return await self.__send_menu(
             conn_id=conn_id,
@@ -59,7 +61,7 @@ class ActionMenuApi(Consumer):
 
     @returns.json
     @post("/action-menu/{conn_id}/close")
-    def __close_active_menu(self, *, conn_id: str) -> Dict:
+    def __close_active_menu(self, *, conn_id: str) -> Dict[str, Any]:
         """Internal uplink method for close_active_menu"""
 
     @returns.json
@@ -72,16 +74,18 @@ class ActionMenuApi(Consumer):
     @post("/action-menu/{conn_id}/perform")
     def __perform_action(
         self, *, conn_id: str, body: Body(type=PerformRequest) = {}
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Internal uplink method for perform_action"""
 
     @returns.json
     @post("/action-menu/{conn_id}/request")
-    def __request_active_menu(self, *, conn_id: str) -> Dict:
+    def __request_active_menu(self, *, conn_id: str) -> Dict[str, Any]:
         """Internal uplink method for request_active_menu"""
 
     @returns.json
     @json
     @post("/action-menu/{conn_id}/send-menu")
-    def __send_menu(self, *, conn_id: str, body: Body(type=SendMenu) = {}) -> Dict:
+    def __send_menu(
+        self, *, conn_id: str, body: Body(type=SendMenu) = {}
+    ) -> Dict[str, Any]:
         """Internal uplink method for send_menu"""

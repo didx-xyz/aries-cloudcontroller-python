@@ -27,23 +27,6 @@ class V20CredExRecordByFormat(BaseModel):
     cred_proposal: Optional[Dict[str, Any]] = None
     cred_request: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        cred_issue: Optional[Dict[str, Any]] = None,
-        cred_offer: Optional[Dict[str, Any]] = None,
-        cred_proposal: Optional[Dict[str, Any]] = None,
-        cred_request: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_issue=cred_issue,
-            cred_offer=cred_offer,
-            cred_proposal=cred_proposal,
-            cred_request=cred_request,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

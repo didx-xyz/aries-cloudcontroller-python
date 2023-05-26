@@ -31,27 +31,6 @@ class ModelSchema(BaseModel):
     ver: Optional[str] = None
     version: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        attr_names: Optional[List[str]] = None,
-        id: Optional[str] = None,
-        name: Optional[str] = None,
-        seq_no: Optional[int] = None,
-        ver: Optional[str] = None,
-        version: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            attr_names=attr_names,
-            id=id,
-            name=name,
-            seq_no=seq_no,
-            ver=ver,
-            version=version,
-            **kwargs,
-        )
-
     @validator("id")
     def id_pattern(cls, value):
         # Property is optional

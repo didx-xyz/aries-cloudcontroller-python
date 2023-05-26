@@ -25,19 +25,6 @@ class DIFProofRequest(BaseModel):
     presentation_definition: PresentationDefinition
     options: Optional[DIFOptions] = None
 
-    def __init__(
-        self,
-        *,
-        presentation_definition: PresentationDefinition = None,
-        options: Optional[DIFOptions] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            options=options,
-            presentation_definition=presentation_definition,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

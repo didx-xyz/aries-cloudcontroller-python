@@ -25,24 +25,8 @@ class DIDEndpointWithType(BaseModel):
     endpoint: Optional[str] = None
     endpoint_type: Optional[Literal["Endpoint", "Profile", "LinkedDomains"]] = None
 
-    def __init__(
-        self,
-        *,
-        did: str = None,
-        endpoint: Optional[str] = None,
-        endpoint_type: Optional[Literal["Endpoint", "Profile", "LinkedDomains"]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            did=did,
-            endpoint=endpoint,
-            endpoint_type=endpoint_type,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
-
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
             raise ValueError(f"Value of did does not match regex pattern ('{pattern}')")

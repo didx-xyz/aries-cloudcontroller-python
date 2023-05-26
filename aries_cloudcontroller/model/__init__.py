@@ -204,6 +204,7 @@ from aries_cloudcontroller.model.linked_data_proof import LinkedDataProof
 from aries_cloudcontroller.model.mediation_create_request import MediationCreateRequest
 from aries_cloudcontroller.model.mediation_deny import MediationDeny
 from aries_cloudcontroller.model.mediation_grant import MediationGrant
+from aries_cloudcontroller.model.mediation_id_match_info import MediationIdMatchInfo
 from aries_cloudcontroller.model.mediation_list import MediationList
 from aries_cloudcontroller.model.mediation_record import MediationRecord
 from aries_cloudcontroller.model.menu import Menu
@@ -212,6 +213,7 @@ from aries_cloudcontroller.model.menu_form_param import MenuFormParam
 from aries_cloudcontroller.model.menu_json import MenuJson
 from aries_cloudcontroller.model.menu_option import MenuOption
 from aries_cloudcontroller.model.model_schema import ModelSchema
+from aries_cloudcontroller.model.oob_record import OobRecord
 from aries_cloudcontroller.model.perform_request import PerformRequest
 from aries_cloudcontroller.model.ping_request import PingRequest
 from aries_cloudcontroller.model.ping_request_response import PingRequestResponse
@@ -251,6 +253,7 @@ from aries_cloudcontroller.model.schemas_input_descriptor_filter import (
 )
 from aries_cloudcontroller.model.send_menu import SendMenu
 from aries_cloudcontroller.model.send_message import SendMessage
+from aries_cloudcontroller.model.service_decorator import ServiceDecorator
 from aries_cloudcontroller.model.sign_request import SignRequest
 from aries_cloudcontroller.model.sign_response import SignResponse
 from aries_cloudcontroller.model.signature_options import SignatureOptions
@@ -261,6 +264,7 @@ from aries_cloudcontroller.model.taa_acceptance import TAAAcceptance
 from aries_cloudcontroller.model.taa_info import TAAInfo
 from aries_cloudcontroller.model.taa_record import TAARecord
 from aries_cloudcontroller.model.taa_result import TAAResult
+from aries_cloudcontroller.model.tails_delete_response import TailsDeleteResponse
 from aries_cloudcontroller.model.transaction_jobs import TransactionJobs
 from aries_cloudcontroller.model.transaction_list import TransactionList
 from aries_cloudcontroller.model.transaction_record import TransactionRecord
@@ -307,9 +311,6 @@ from aries_cloudcontroller.model.v10_credential_store_request import (
 )
 from aries_cloudcontroller.model.v10_discovery_exchange_list_result import (
     V10DiscoveryExchangeListResult,
-)
-from aries_cloudcontroller.model.v10_discovery_exchange_result import (
-    V10DiscoveryExchangeResult,
 )
 from aries_cloudcontroller.model.v10_discovery_record import V10DiscoveryRecord
 from aries_cloudcontroller.model.v10_presentation_create_request_request import (
@@ -559,6 +560,7 @@ __all__ = [
     "MediationCreateRequest",
     "MediationDeny",
     "MediationGrant",
+    "MediationIdMatchInfo",
     "MediationList",
     "MediationRecord",
     "Menu",
@@ -567,6 +569,7 @@ __all__ = [
     "MenuJson",
     "MenuOption",
     "ModelSchema",
+    "OobRecord",
     "PerformRequest",
     "PingRequest",
     "PingRequestResponse",
@@ -598,6 +601,7 @@ __all__ = [
     "SchemasInputDescriptorFilter",
     "SendMenu",
     "SendMessage",
+    "ServiceDecorator",
     "SignRequest",
     "SignResponse",
     "SignatureOptions",
@@ -608,6 +612,7 @@ __all__ = [
     "TAAInfo",
     "TAARecord",
     "TAAResult",
+    "TailsDeleteResponse",
     "TransactionJobs",
     "TransactionList",
     "TransactionRecord",
@@ -629,7 +634,6 @@ __all__ = [
     "V10CredentialProposalRequestOpt",
     "V10CredentialStoreRequest",
     "V10DiscoveryExchangeListResult",
-    "V10DiscoveryExchangeResult",
     "V10DiscoveryRecord",
     "V10PresentationCreateRequestRequest",
     "V10PresentationExchange",

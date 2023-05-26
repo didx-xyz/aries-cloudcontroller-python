@@ -23,19 +23,6 @@ class IndyRequestedCredsRequestedAttr(BaseModel):
     cred_id: str
     revealed: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        cred_id: str = None,
-        revealed: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_id=cred_id,
-            revealed=revealed,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

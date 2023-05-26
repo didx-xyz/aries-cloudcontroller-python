@@ -26,17 +26,6 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
         None, alias="accumKey"
     )
 
-    def __init__(
-        self,
-        *,
-        accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            accum_key=accum_key,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

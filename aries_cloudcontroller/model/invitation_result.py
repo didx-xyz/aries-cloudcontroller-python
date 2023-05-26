@@ -26,21 +26,6 @@ class InvitationResult(BaseModel):
     invitation: Optional[ConnectionInvitation] = None
     invitation_url: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        connection_id: Optional[str] = None,
-        invitation: Optional[ConnectionInvitation] = None,
-        invitation_url: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            connection_id=connection_id,
-            invitation=invitation,
-            invitation_url=invitation_url,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

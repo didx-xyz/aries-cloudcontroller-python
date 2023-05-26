@@ -32,30 +32,8 @@ class ConnectionStaticResult(BaseModel):
     their_did: str
     their_verkey: str
 
-    def __init__(
-        self,
-        *,
-        my_did: str = None,
-        my_endpoint: str = None,
-        my_verkey: str = None,
-        record: ConnRecord = None,
-        their_did: str = None,
-        their_verkey: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            my_did=my_did,
-            my_endpoint=my_endpoint,
-            my_verkey=my_verkey,
-            record=record,
-            their_did=their_did,
-            their_verkey=their_verkey,
-            **kwargs,
-        )
-
     @validator("my_did")
     def my_did_pattern(cls, value):
-
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -65,7 +43,6 @@ class ConnectionStaticResult(BaseModel):
 
     @validator("my_endpoint")
     def my_endpoint_pattern(cls, value):
-
         pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -75,7 +52,6 @@ class ConnectionStaticResult(BaseModel):
 
     @validator("my_verkey")
     def my_verkey_pattern(cls, value):
-
         pattern = (
             r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
         )
@@ -87,7 +63,6 @@ class ConnectionStaticResult(BaseModel):
 
     @validator("their_did")
     def their_did_pattern(cls, value):
-
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
             raise ValueError(
@@ -97,7 +72,6 @@ class ConnectionStaticResult(BaseModel):
 
     @validator("their_verkey")
     def their_verkey_pattern(cls, value):
-
         pattern = (
             r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
         )

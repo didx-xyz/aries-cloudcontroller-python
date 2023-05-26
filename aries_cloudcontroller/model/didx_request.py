@@ -30,25 +30,6 @@ class DIDXRequest(BaseModel):
     did: Optional[str] = None
     did_docattach: Optional[AttachDecorator] = Field(None, alias="did_doc~attach")
 
-    def __init__(
-        self,
-        *,
-        label: str = None,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        did: Optional[str] = None,
-        did_docattach: Optional[AttachDecorator] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            did=did,
-            did_docattach=did_docattach,
-            label=label,
-            **kwargs,
-        )
-
     @validator("did")
     def did_pattern(cls, value):
         # Property is optional

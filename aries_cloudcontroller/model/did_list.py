@@ -22,17 +22,6 @@ class DIDList(BaseModel):
 
     results: Optional[List[DID]] = None
 
-    def __init__(
-        self,
-        *,
-        results: Optional[List[DID]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            results=results,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

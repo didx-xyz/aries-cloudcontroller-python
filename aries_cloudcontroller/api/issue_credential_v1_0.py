@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -52,7 +52,7 @@ class IssueCredentialV10Api(Consumer):
     async def create_credential(
         self, *, body: Optional[V10CredentialCreate] = None
     ) -> V10CredentialExchange:
-        """Send holder a credential, automating entire flow"""
+        """Create a credential record without sending (generally for use with Out-Of-Band)"""
         return await self.__create_credential(
             body=body,
         )
@@ -65,7 +65,7 @@ class IssueCredentialV10Api(Consumer):
             body=body,
         )
 
-    async def delete_record(self, *, cred_ex_id: str) -> Dict:
+    async def delete_record(self, *, cred_ex_id: str) -> Dict[str, Any]:
         """Remove an existing credential exchange record"""
         return await self.__delete_record(
             cred_ex_id=cred_ex_id,
@@ -115,7 +115,7 @@ class IssueCredentialV10Api(Consumer):
         *,
         cred_ex_id: str,
         body: Optional[V10CredentialProblemReportRequest] = None
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Send a problem report for credential exchange"""
         return await self.__report_problem(
             cred_ex_id=cred_ex_id,
@@ -180,7 +180,7 @@ class IssueCredentialV10Api(Consumer):
 
     @returns.json
     @delete("/issue-credential/records/{cred_ex_id}")
-    def __delete_record(self, *, cred_ex_id: str) -> Dict:
+    def __delete_record(self, *, cred_ex_id: str) -> Dict[str, Any]:
         """Internal uplink method for delete_record"""
 
     @returns.json
@@ -224,7 +224,7 @@ class IssueCredentialV10Api(Consumer):
         *,
         cred_ex_id: str,
         body: Body(type=V10CredentialProblemReportRequest) = {}
-    ) -> Dict:
+    ) -> Dict[str, Any]:
         """Internal uplink method for report_problem"""
 
     @returns.json

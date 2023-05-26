@@ -25,24 +25,8 @@ class IndyKeyCorrectnessProof(BaseModel):
     xr_cap: List[List[str]]
     xz_cap: str
 
-    def __init__(
-        self,
-        *,
-        c: str = None,
-        xr_cap: List[List[str]] = None,
-        xz_cap: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            c=c,
-            xr_cap=xr_cap,
-            xz_cap=xz_cap,
-            **kwargs,
-        )
-
     @validator("c")
     def c_pattern(cls, value):
-
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
             raise ValueError(f"Value of c does not match regex pattern ('{pattern}')")
@@ -50,7 +34,6 @@ class IndyKeyCorrectnessProof(BaseModel):
 
     @validator("xz_cap")
     def xz_cap_pattern(cls, value):
-
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
             raise ValueError(

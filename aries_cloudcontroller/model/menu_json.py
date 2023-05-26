@@ -28,23 +28,6 @@ class MenuJson(BaseModel):
     errormsg: Optional[str] = None
     title: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        options: List[MenuOption] = None,
-        description: Optional[str] = None,
-        errormsg: Optional[str] = None,
-        title: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            description=description,
-            errormsg=errormsg,
-            options=options,
-            title=title,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

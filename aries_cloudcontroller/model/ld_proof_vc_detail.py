@@ -27,19 +27,6 @@ class LDProofVCDetail(BaseModel):
     credential: Credential
     options: LDProofVCDetailOptions
 
-    def __init__(
-        self,
-        *,
-        credential: Credential = None,
-        options: LDProofVCDetailOptions = None,
-        **kwargs,
-    ):
-        super().__init__(
-            credential=credential,
-            options=options,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

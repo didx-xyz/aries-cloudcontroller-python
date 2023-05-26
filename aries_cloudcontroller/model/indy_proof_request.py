@@ -36,27 +36,6 @@ class IndyProofRequest(BaseModel):
     nonce: Optional[str] = None
     version: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        requested_attributes: Dict[str, IndyProofReqAttrSpec] = None,
-        requested_predicates: Dict[str, IndyProofReqPredSpec] = None,
-        name: Optional[str] = None,
-        non_revoked: Optional[IndyProofRequestNonRevoked] = None,
-        nonce: Optional[str] = None,
-        version: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            name=name,
-            non_revoked=non_revoked,
-            nonce=nonce,
-            requested_attributes=requested_attributes,
-            requested_predicates=requested_predicates,
-            version=version,
-            **kwargs,
-        )
-
     @validator("nonce")
     def nonce_pattern(cls, value):
         # Property is optional

@@ -30,25 +30,6 @@ class CredDefValuePrimary(BaseModel):
     s: Optional[str] = None
     z: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        n: Optional[str] = None,
-        r: Optional[Generated] = None,
-        rctxt: Optional[str] = None,
-        s: Optional[str] = None,
-        z: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            n=n,
-            r=r,
-            rctxt=rctxt,
-            s=s,
-            z=z,
-            **kwargs,
-        )
-
     @validator("n")
     def n_pattern(cls, value):
         # Property is optional

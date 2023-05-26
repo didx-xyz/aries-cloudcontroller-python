@@ -38,33 +38,6 @@ class InvitationRecord(BaseModel):
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        created_at: Optional[str] = None,
-        invi_msg_id: Optional[str] = None,
-        invitation: Optional[InvitationMessage] = None,
-        invitation_id: Optional[str] = None,
-        invitation_url: Optional[str] = None,
-        oob_id: Optional[str] = None,
-        state: Optional[str] = None,
-        trace: Optional[bool] = None,
-        updated_at: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            created_at=created_at,
-            invi_msg_id=invi_msg_id,
-            invitation=invitation,
-            invitation_id=invitation_id,
-            invitation_url=invitation_url,
-            oob_id=oob_id,
-            state=state,
-            trace=trace,
-            updated_at=updated_at,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

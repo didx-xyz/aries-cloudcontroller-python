@@ -23,18 +23,17 @@ class IndyProofRequestNonRevoked(BaseModel):
     from_: Optional[int] = Field(None, alias="from")
     to: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        from_: Optional[int] = None,
-        to: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            from_=from_,
-            to=to,
-            **kwargs,
-        )
+    @validator("from_")
+    def from__max(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value > 18446744073709551615:
+            raise ValueError(
+                f"from_ must be less than 18446744073709551615, currently {value}"
+            )
+        return value
 
     @validator("from_")
     def from__min(cls, value):
@@ -44,6 +43,18 @@ class IndyProofRequestNonRevoked(BaseModel):
 
         if value < 0:
             raise ValueError(f"from_ must be greater than 0, currently {value}")
+        return value
+
+    @validator("to")
+    def to_max(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value > 18446744073709551615:
+            raise ValueError(
+                f"to must be less than 18446744073709551615, currently {value}"
+            )
         return value
 
     @validator("to")

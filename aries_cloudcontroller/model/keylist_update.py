@@ -26,21 +26,6 @@ class KeylistUpdate(BaseModel):
     type: Optional[str] = Field(None, alias="@type")
     updates: Optional[List[KeylistUpdateRule]] = None
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        updates: Optional[List[KeylistUpdateRule]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            updates=updates,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

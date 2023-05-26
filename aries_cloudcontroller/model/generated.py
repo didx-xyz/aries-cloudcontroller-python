@@ -25,21 +25,6 @@ class Generated(BaseModel):
     number: Optional[str] = None
     remainder: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        master_secret: Optional[str] = None,
-        number: Optional[str] = None,
-        remainder: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            master_secret=master_secret,
-            number=number,
-            remainder=remainder,
-            **kwargs,
-        )
-
     @validator("master_secret")
     def master_secret_pattern(cls, value):
         # Property is optional

@@ -16,21 +16,23 @@ class DIDCreateOptions(BaseModel):
     Do not edit the class manually.
 
     DIDCreateOptions - a model defined in OpenAPI
-        key_type: The key_type of this DIDCreateOptions.
+        key_type: Key type to use for the DID keypair. Validated with the chosen DID method's supported key types..
+        did: Specify final value of the did (including did:&lt;method&gt;: prefix)if the method supports or requires so. [Optional].
     """
 
     key_type: Literal["ed25519", "bls12381g2"]
+    did: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        key_type: Literal["ed25519", "bls12381g2"] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            key_type=key_type,
-            **kwargs,
-        )
+    @validator("did")
+    def did_pattern(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\#.*)?$$"
+        if not re.match(pattern, value):
+            raise ValueError(f"Value of did does not match regex pattern ('{pattern}')")
+        return value
 
     class Config:
         allow_population_by_field_name = True

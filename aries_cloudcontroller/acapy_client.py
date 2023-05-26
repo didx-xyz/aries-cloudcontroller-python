@@ -14,7 +14,6 @@ class AcaPyClient(Client):
         admin_insecure: Optional[bool] = False,
         tenant_jwt: Optional[str] = None,
     ):
-
         if not api_key and not admin_insecure:
             raise Exception(
                 "api_key property is missing. Use admin_insecure=True if you want"

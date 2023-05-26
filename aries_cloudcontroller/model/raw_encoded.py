@@ -23,19 +23,6 @@ class RawEncoded(BaseModel):
     encoded: Optional[str] = None
     raw: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        encoded: Optional[str] = None,
-        raw: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            encoded=encoded,
-            raw=raw,
-            **kwargs,
-        )
-
     @validator("encoded")
     def encoded_pattern(cls, value):
         # Property is optional

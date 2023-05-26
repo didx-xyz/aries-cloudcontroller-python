@@ -31,27 +31,6 @@ class IndyCredInfo(BaseModel):
     rev_reg_id: Optional[str] = None
     schema_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        attrs: Optional[Dict[str, str]] = None,
-        cred_def_id: Optional[str] = None,
-        cred_rev_id: Optional[str] = None,
-        referent: Optional[str] = None,
-        rev_reg_id: Optional[str] = None,
-        schema_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            attrs=attrs,
-            cred_def_id=cred_def_id,
-            cred_rev_id=cred_rev_id,
-            referent=referent,
-            rev_reg_id=rev_reg_id,
-            schema_id=schema_id,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional

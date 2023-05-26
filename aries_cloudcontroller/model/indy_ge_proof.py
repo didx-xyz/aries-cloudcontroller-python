@@ -32,27 +32,6 @@ class IndyGEProof(BaseModel):
     t: Optional[Dict[str, str]] = None
     u: Optional[Dict[str, str]] = None
 
-    def __init__(
-        self,
-        *,
-        alpha: Optional[str] = None,
-        mj: Optional[str] = None,
-        predicate: Optional[IndyGEProofPred] = None,
-        r: Optional[Dict[str, str]] = None,
-        t: Optional[Dict[str, str]] = None,
-        u: Optional[Dict[str, str]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            alpha=alpha,
-            mj=mj,
-            predicate=predicate,
-            r=r,
-            t=t,
-            u=u,
-            **kwargs,
-        )
-
     @validator("alpha")
     def alpha_pattern(cls, value):
         # Property is optional

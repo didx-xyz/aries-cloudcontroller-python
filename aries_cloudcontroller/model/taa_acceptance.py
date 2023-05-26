@@ -23,18 +23,27 @@ class TAAAcceptance(BaseModel):
     mechanism: Optional[str] = None
     time: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        mechanism: Optional[str] = None,
-        time: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            mechanism=mechanism,
-            time=time,
-            **kwargs,
-        )
+    @validator("time")
+    def time_max(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value > 18446744073709551615:
+            raise ValueError(
+                f"time must be less than 18446744073709551615, currently {value}"
+            )
+        return value
+
+    @validator("time")
+    def time_min(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value < 0:
+            raise ValueError(f"time must be greater than 0, currently {value}")
+        return value
 
     class Config:
         allow_population_by_field_name = True

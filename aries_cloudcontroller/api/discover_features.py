@@ -13,16 +13,14 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
 from aries_cloudcontroller.model.v10_discovery_exchange_list_result import (
     V10DiscoveryExchangeListResult,
 )
-from aries_cloudcontroller.model.v10_discovery_exchange_result import (
-    V10DiscoveryExchangeResult,
-)
+from aries_cloudcontroller.model.v10_discovery_record import V10DiscoveryRecord
 
 
 class DiscoverFeaturesApi(Consumer):
@@ -32,7 +30,7 @@ class DiscoverFeaturesApi(Consumer):
         comment: Optional[str] = None,
         connection_id: Optional[str] = None,
         query: Optional[str] = None
-    ) -> V10DiscoveryExchangeResult:
+    ) -> V10DiscoveryRecord:
         """Query supported features"""
         return await self.__discover_features_query_get(
             comment=comment,
@@ -52,7 +50,7 @@ class DiscoverFeaturesApi(Consumer):
     @get("/discover-features/query")
     def __discover_features_query_get(
         self, *, comment: Query = None, connection_id: Query = None, query: Query = None
-    ) -> V10DiscoveryExchangeResult:
+    ) -> V10DiscoveryRecord:
         """Internal uplink method for discover_features_query_get"""
 
     @returns.json

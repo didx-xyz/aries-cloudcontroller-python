@@ -23,19 +23,6 @@ class V20PresFormat(BaseModel):
     attach_id: str
     format: str
 
-    def __init__(
-        self,
-        *,
-        attach_id: str = None,
-        format: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            attach_id=attach_id,
-            format=format,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

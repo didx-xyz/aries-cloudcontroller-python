@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -28,6 +28,7 @@ from aries_cloudcontroller.model.keylist_update_request import KeylistUpdateRequ
 from aries_cloudcontroller.model.mediation_create_request import MediationCreateRequest
 from aries_cloudcontroller.model.mediation_deny import MediationDeny
 from aries_cloudcontroller.model.mediation_grant import MediationGrant
+from aries_cloudcontroller.model.mediation_id_match_info import MediationIdMatchInfo
 from aries_cloudcontroller.model.mediation_list import MediationList
 from aries_cloudcontroller.model.mediation_record import MediationRecord
 
@@ -82,6 +83,15 @@ class MediationApi(Consumer):
         """Grant received mediation"""
         return await self.__grant_mediation_request(
             mediation_id=mediation_id,
+        )
+
+    async def mediation_update_keylist_conn_id_post(
+        self, *, conn_id: str, body: Optional[MediationIdMatchInfo] = None
+    ) -> KeylistUpdate:
+        """Update keylist for a connection"""
+        return await self.__mediation_update_keylist_conn_id_post(
+            conn_id=conn_id,
+            body=body,
         )
 
     async def request_mediation(
@@ -177,6 +187,14 @@ class MediationApi(Consumer):
     @post("/mediation/requests/{mediation_id}/grant")
     def __grant_mediation_request(self, *, mediation_id: str) -> MediationGrant:
         """Internal uplink method for grant_mediation_request"""
+
+    @returns.json
+    @json
+    @post("/mediation/update-keylist/{conn_id}")
+    def __mediation_update_keylist_conn_id_post(
+        self, *, conn_id: str, body: Body(type=MediationIdMatchInfo) = {}
+    ) -> KeylistUpdate:
+        """Internal uplink method for mediation_update_keylist_conn_id_post"""
 
     @returns.json
     @json

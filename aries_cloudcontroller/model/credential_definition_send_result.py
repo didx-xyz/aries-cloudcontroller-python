@@ -16,24 +16,16 @@ class CredentialDefinitionSendResult(BaseModel):
     Do not edit the class manually.
 
     CredentialDefinitionSendResult - a model defined in OpenAPI
-        credential_definition_id: Credential definition identifier.
+        credential_definition_id: Credential definition identifier [Optional].
     """
 
-    credential_definition_id: str
-
-    def __init__(
-        self,
-        *,
-        credential_definition_id: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            credential_definition_id=credential_definition_id,
-            **kwargs,
-        )
+    credential_definition_id: Optional[str] = None
 
     @validator("credential_definition_id")
     def credential_definition_id_pattern(cls, value):
+        # Property is optional
+        if value is None:
+            return
 
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):

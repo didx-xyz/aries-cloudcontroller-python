@@ -13,7 +13,7 @@ from uplink import (
     json,
 )
 
-from typing import Dict, List, Optional, Union  # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 
@@ -89,13 +89,13 @@ class ConnectionApi(Consumer):
             body=body,
         )
 
-    async def delete_connection(self, *, conn_id: str) -> Dict:
+    async def delete_connection(self, *, conn_id: str) -> Dict[str, Any]:
         """Remove an existing connection record"""
         return await self.__delete_connection(
             conn_id=conn_id,
         )
 
-    async def establish_inbound(self, *, conn_id: str, ref_id: str) -> Dict:
+    async def establish_inbound(self, *, conn_id: str, ref_id: str) -> Dict[str, Any]:
         """Assign another connection as the inbound connection"""
         return await self.__establish_inbound(
             conn_id=conn_id,
@@ -217,12 +217,12 @@ class ConnectionApi(Consumer):
 
     @returns.json
     @delete("/connections/{conn_id}")
-    def __delete_connection(self, *, conn_id: str) -> Dict:
+    def __delete_connection(self, *, conn_id: str) -> Dict[str, Any]:
         """Internal uplink method for delete_connection"""
 
     @returns.json
     @post("/connections/{conn_id}/establish-inbound/{ref_id}")
-    def __establish_inbound(self, *, conn_id: str, ref_id: str) -> Dict:
+    def __establish_inbound(self, *, conn_id: str, ref_id: str) -> Dict[str, Any]:
         """Internal uplink method for establish_inbound"""
 
     @returns.json

@@ -25,19 +25,6 @@ class V20CredBoundOfferRequest(BaseModel):
     counter_preview: Optional[V20CredPreview] = None
     filter: Optional[V20CredFilter] = None
 
-    def __init__(
-        self,
-        *,
-        counter_preview: Optional[V20CredPreview] = None,
-        filter: Optional[V20CredFilter] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            counter_preview=counter_preview,
-            filter=filter,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

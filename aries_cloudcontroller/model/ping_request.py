@@ -21,17 +21,6 @@ class PingRequest(BaseModel):
 
     comment: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        comment: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            comment=comment,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

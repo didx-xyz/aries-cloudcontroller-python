@@ -21,17 +21,6 @@ class Date(BaseModel):
 
     expires_time: datetime
 
-    def __init__(
-        self,
-        *,
-        expires_time: datetime = None,
-        **kwargs,
-    ):
-        super().__init__(
-            expires_time=expires_time,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

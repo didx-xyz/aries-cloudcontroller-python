@@ -41,37 +41,6 @@ class CredDefValueRevocation(BaseModel):
     u: Optional[str] = None
     y: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        g: Optional[str] = None,
-        g_dash: Optional[str] = None,
-        h: Optional[str] = None,
-        h0: Optional[str] = None,
-        h1: Optional[str] = None,
-        h2: Optional[str] = None,
-        h_cap: Optional[str] = None,
-        htilde: Optional[str] = None,
-        pk: Optional[str] = None,
-        u: Optional[str] = None,
-        y: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            g=g,
-            g_dash=g_dash,
-            h=h,
-            h0=h0,
-            h1=h1,
-            h2=h2,
-            h_cap=h_cap,
-            htilde=htilde,
-            pk=pk,
-            u=u,
-            y=y,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

@@ -23,19 +23,6 @@ class KeylistQueryPaginate(BaseModel):
     limit: Optional[int] = None
     offset: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            limit=limit,
-            offset=offset,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

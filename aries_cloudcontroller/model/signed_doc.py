@@ -22,17 +22,6 @@ class SignedDoc(BaseModel):
 
     proof: SignatureOptions
 
-    def __init__(
-        self,
-        *,
-        proof: SignatureOptions = None,
-        **kwargs,
-    ):
-        super().__init__(
-            proof=proof,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

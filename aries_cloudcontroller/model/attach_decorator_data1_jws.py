@@ -28,21 +28,6 @@ class AttachDecoratorData1JWS(BaseModel):
     signature: str
     protected: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        header: AttachDecoratorDataJWSHeader = None,
-        signature: str = None,
-        protected: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            header=header,
-            protected=protected,
-            signature=signature,
-            **kwargs,
-        )
-
     @validator("protected")
     def protected_pattern(cls, value):
         # Property is optional
@@ -58,7 +43,6 @@ class AttachDecoratorData1JWS(BaseModel):
 
     @validator("signature")
     def signature_pattern(cls, value):
-
         pattern = r"^[-_a-zA-Z0-9]*$"
         if not re.match(pattern, value):
             raise ValueError(

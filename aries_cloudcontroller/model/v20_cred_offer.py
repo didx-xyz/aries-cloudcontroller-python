@@ -36,29 +36,6 @@ class V20CredOffer(BaseModel):
     credential_preview: Optional[V20CredPreview] = None
     replacement_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        formats: List[V20CredFormat] = None,
-        offersattach: List[AttachDecorator] = None,
-        id: Optional[str] = None,
-        type: Optional[str] = None,
-        comment: Optional[str] = None,
-        credential_preview: Optional[V20CredPreview] = None,
-        replacement_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            id=id,
-            type=type,
-            comment=comment,
-            credential_preview=credential_preview,
-            formats=formats,
-            offersattach=offersattach,
-            replacement_id=replacement_id,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

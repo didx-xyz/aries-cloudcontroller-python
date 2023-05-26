@@ -35,31 +35,6 @@ class RouteRecord(BaseModel):
     updated_at: Optional[str] = None
     wallet_id: Optional[str] = None
 
-    def __init__(
-        self,
-        *,
-        recipient_key: str = None,
-        connection_id: Optional[str] = None,
-        created_at: Optional[str] = None,
-        record_id: Optional[str] = None,
-        role: Optional[str] = None,
-        state: Optional[str] = None,
-        updated_at: Optional[str] = None,
-        wallet_id: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            connection_id=connection_id,
-            created_at=created_at,
-            recipient_key=recipient_key,
-            record_id=record_id,
-            role=role,
-            state=state,
-            updated_at=updated_at,
-            wallet_id=wallet_id,
-            **kwargs,
-        )
-
     @validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional

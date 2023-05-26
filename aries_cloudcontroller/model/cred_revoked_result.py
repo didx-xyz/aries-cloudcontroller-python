@@ -21,17 +21,6 @@ class CredRevokedResult(BaseModel):
 
     revoked: Optional[bool] = None
 
-    def __init__(
-        self,
-        *,
-        revoked: Optional[bool] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            revoked=revoked,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

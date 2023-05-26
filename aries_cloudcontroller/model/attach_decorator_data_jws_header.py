@@ -21,20 +21,8 @@ class AttachDecoratorDataJWSHeader(BaseModel):
 
     kid: str
 
-    def __init__(
-        self,
-        *,
-        kid: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            kid=kid,
-            **kwargs,
-        )
-
     @validator("kid")
     def kid_pattern(cls, value):
-
         pattern = r"^did:(?:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+|sov:[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}(;.*)?(\?.*)?#.+)$"
         if not re.match(pattern, value):
             raise ValueError(f"Value of kid does not match regex pattern ('{pattern}')")

@@ -23,18 +23,17 @@ class IndyRequestedCredsRequestedPred(BaseModel):
     cred_id: str
     timestamp: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        cred_id: str = None,
-        timestamp: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_id=cred_id,
-            timestamp=timestamp,
-            **kwargs,
-        )
+    @validator("timestamp")
+    def timestamp_max(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value > 18446744073709551615:
+            raise ValueError(
+                f"timestamp must be less than 18446744073709551615, currently {value}"
+            )
+        return value
 
     @validator("timestamp")
     def timestamp_min(cls, value):

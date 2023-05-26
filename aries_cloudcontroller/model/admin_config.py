@@ -21,17 +21,6 @@ class AdminConfig(BaseModel):
 
     config: Optional[Dict[str, Any]] = None
 
-    def __init__(
-        self,
-        *,
-        config: Optional[Dict[str, Any]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            config=config,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

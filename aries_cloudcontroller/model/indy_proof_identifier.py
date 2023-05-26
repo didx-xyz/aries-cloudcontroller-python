@@ -27,23 +27,6 @@ class IndyProofIdentifier(BaseModel):
     schema_id: Optional[str] = None
     timestamp: Optional[int] = None
 
-    def __init__(
-        self,
-        *,
-        cred_def_id: Optional[str] = None,
-        rev_reg_id: Optional[str] = None,
-        schema_id: Optional[str] = None,
-        timestamp: Optional[int] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            cred_def_id=cred_def_id,
-            rev_reg_id=rev_reg_id,
-            schema_id=schema_id,
-            timestamp=timestamp,
-            **kwargs,
-        )
-
     @validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional
@@ -80,6 +63,18 @@ class IndyProofIdentifier(BaseModel):
         if not re.match(pattern, value):
             raise ValueError(
                 f"Value of schema_id does not match regex pattern ('{pattern}')"
+            )
+        return value
+
+    @validator("timestamp")
+    def timestamp_max(cls, value):
+        # Property is optional
+        if value is None:
+            return
+
+        if value > 18446744073709551615:
+            raise ValueError(
+                f"timestamp must be less than 18446744073709551615, currently {value}"
             )
         return value
 

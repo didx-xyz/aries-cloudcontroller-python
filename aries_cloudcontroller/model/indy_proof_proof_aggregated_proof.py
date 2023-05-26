@@ -23,19 +23,6 @@ class IndyProofProofAggregatedProof(BaseModel):
     c_hash: Optional[str] = None
     c_list: Optional[List[List[int]]] = None
 
-    def __init__(
-        self,
-        *,
-        c_hash: Optional[str] = None,
-        c_list: Optional[List[List[int]]] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            c_hash=c_hash,
-            c_list=c_list,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

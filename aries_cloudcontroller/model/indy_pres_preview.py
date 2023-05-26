@@ -27,21 +27,6 @@ class IndyPresPreview(BaseModel):
     predicates: List[IndyPresPredSpec]
     type: Optional[str] = Field(None, alias="@type")
 
-    def __init__(
-        self,
-        *,
-        attributes: List[IndyPresAttrSpec] = None,
-        predicates: List[IndyPresPredSpec] = None,
-        type: Optional[str] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            type=type,
-            attributes=attributes,
-            predicates=predicates,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 

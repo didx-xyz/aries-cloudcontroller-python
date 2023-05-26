@@ -36,31 +36,6 @@ class Credential(BaseModel):
     id: Optional[str] = None
     proof: Optional[LinkedDataProof] = None
 
-    def __init__(
-        self,
-        *,
-        context: List[Dict] = None,
-        credential_subject: Dict[str, Any] = None,
-        issuance_date: str = None,
-        issuer: Dict[str, Any] = None,
-        type: List[str] = None,
-        expiration_date: Optional[str] = None,
-        id: Optional[str] = None,
-        proof: Optional[LinkedDataProof] = None,
-        **kwargs,
-    ):
-        super().__init__(
-            context=context,
-            credential_subject=credential_subject,
-            expiration_date=expiration_date,
-            id=id,
-            issuance_date=issuance_date,
-            issuer=issuer,
-            proof=proof,
-            type=type,
-            **kwargs,
-        )
-
     @validator("expiration_date")
     def expiration_date_pattern(cls, value):
         # Property is optional
@@ -87,7 +62,6 @@ class Credential(BaseModel):
 
     @validator("issuance_date")
     def issuance_date_pattern(cls, value):
-
         pattern = r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$"
         if not re.match(pattern, value):
             raise ValueError(

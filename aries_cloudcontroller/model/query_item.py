@@ -23,19 +23,6 @@ class QueryItem(BaseModel):
     feature_type: Literal["protocol", "goal-code"] = Field(..., alias="feature-type")
     match: str
 
-    def __init__(
-        self,
-        *,
-        feature_type: Literal["protocol", "goal-code"] = None,
-        match: str = None,
-        **kwargs,
-    ):
-        super().__init__(
-            feature_type=feature_type,
-            match=match,
-            **kwargs,
-        )
-
     class Config:
         allow_population_by_field_name = True
 
