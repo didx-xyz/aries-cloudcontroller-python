@@ -1,6 +1,8 @@
 import logging
 import re
+
 import pytest
+from aiohttp import ClientSession
 
 from aries_cloudcontroller.acapy_client import AcaPyClient
 
@@ -22,4 +24,25 @@ class TestAcaPyClient:
             Exception,
             match=re.escape("api_key property is missing"),
         ):
-            AcaPyClient(self.admin_host)
+    @pytest.mark.anyio
+    async def test_client_session_stays_open(self):
+        async with ClientSession() as client_session:
+            async with AcaPyClient(
+                self.admin_host, client_session=client_session, admin_insecure=True
+            ):
+                pass
+            # After AcaPyClient is closed, session should remain open
+            assert client_session.closed is False
+
+        # After async context is closed, session should be closed
+        assert client_session.closed
+
+    @pytest.mark.anyio
+    async def test_client_session_closes_with_acapy(self):
+        async with AcaPyClient(self.admin_host, admin_insecure=True) as acapy_client:
+            # Check session is open within the AcaPyClient context
+            assert acapy_client.client_session.closed is False
+
+        # After AcaPyClient is closed, session should be closed
+        assert acapy_client.client_session.closed is True
+
