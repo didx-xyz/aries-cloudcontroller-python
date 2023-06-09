@@ -15,8 +15,8 @@ class TestAcaPyClient:
 
     @pytest.mark.anyio
     async def test_init_acapy_client(self):
-        client = AcaPyClient(self.admin_host, api_key=self.api_key)
-        assert type(client) is AcaPyClient
+        async with AcaPyClient(self.admin_host, api_key=self.api_key) as client:
+            assert type(client) is AcaPyClient
 
     @pytest.mark.anyio
     async def test_init_args_missing_api_key_no_insecure_mode(self):
@@ -24,6 +24,9 @@ class TestAcaPyClient:
             Exception,
             match=re.escape("api_key property is missing"),
         ):
+            async with AcaPyClient(self.admin_host):
+                pass
+
     @pytest.mark.anyio
     async def test_client_session_stays_open(self):
         async with ClientSession() as client_session:
