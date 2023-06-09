@@ -17,6 +17,9 @@ class AcaPyClient(Client):
         admin_insecure: Optional[bool] = False,
         tenant_jwt: Optional[str] = None,
     ):
+        self._should_close_session = False  # only close ClientSession when created here
+        # A provided ClientSession should be closed externally.
+
         if client_session and not api_key:
             api_key = client_session.headers.get("x-api-key")
 
@@ -30,9 +33,16 @@ class AcaPyClient(Client):
             client_session = create_client_session(
                 api_key=api_key, tenant_jwt=tenant_jwt
             )
+            self._should_close_session = True
+
+        self.client_session = client_session
 
         super().__init__(
             base_url,
-            client=client_session,
+            client=self.client_session,
             extra_service_params={"converter": PydanticConverter()},
         )
+
+    async def __aexit__(self, exc_type, exc_value, traceback):
+        if self._should_close_session and not self.client_session.closed:
+            await self.client_session.close()
