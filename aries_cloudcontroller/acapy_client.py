@@ -1,7 +1,9 @@
 from typing import Optional
+
 from aiohttp.client import ClientSession
 
 from aries_cloudcontroller.client import Client
+from aries_cloudcontroller.util.create_client_session import create_client_session
 from aries_cloudcontroller.util.pydantic_converter import PydanticConverter
 
 
@@ -10,6 +12,7 @@ class AcaPyClient(Client):
         self,
         base_url: str,
         *,
+        client_session: Optional[ClientSession] = None,
         api_key: Optional[str] = None,
         admin_insecure: Optional[bool] = False,
         tenant_jwt: Optional[str] = None,
@@ -20,17 +23,10 @@ class AcaPyClient(Client):
                 " to use the controller without authentication."
             )
 
-        headers = {}
-
-        if api_key:
-            headers["x-api-key"] = api_key
-        if tenant_jwt:
-            headers["authorization"] = f"Bearer {tenant_jwt}"
-
-        client_session = ClientSession(
-            headers=headers,
-            raise_for_status=True,
-        )
+        if not client_session:
+            client_session = create_client_session(
+                api_key=api_key, tenant_jwt=tenant_jwt
+            )
 
         super().__init__(
             base_url,
