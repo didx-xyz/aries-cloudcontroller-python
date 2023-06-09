@@ -2,7 +2,6 @@ from functools import singledispatchmethod
 import re
 
 import deepmerge
-from inflection import camelize
 import yaml
 
 
