@@ -1,3 +1,4 @@
+from json import dumps as json_dump_string
 from uplink import (
     Consumer,
     Path,
@@ -50,7 +51,7 @@ class OutOfBandApi(Consumer):
         body: Optional[InvitationMessage] = None
     ) -> OobRecord:
         """Receive a new connection invitation"""
-        body_json = json.dumps(body.dict(by_alias=True)) if body else None
+        body_json = json_dump_string(body.dict(by_alias=True)) if body else None
         return await self.__receive_invitation(
             alias=alias,
             auto_accept=bool_query(auto_accept),
