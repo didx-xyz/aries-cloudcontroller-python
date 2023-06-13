@@ -16,6 +16,7 @@ from uplink.converters.pydantic_ import (
     _PydanticResponseBody as _InitialResponseBody,
 )
 
+
 def pydantic_encoder(obj: Any) -> Any:
     if isinstance(obj, BaseModel):
         return obj.dict(exclude_unset=True, exclude_none=True, by_alias=True)
@@ -66,6 +67,7 @@ class _PydanticResponseBody(_InitialResponseBody):
     See Also:
         :class:uplink.converters.pydantic._PydanticResponseBody
     """
+
     def __init__(self, model):
         super().__init__(model)
         self._union = False
@@ -108,7 +110,7 @@ class PydanticConverter(InitialConverter):
         install this feature using pip::
 
             $ pip install uplink[pydantic]
-            
+
     See Also:
         https://github.com/prkumar/uplink/issues/233
         https://github.com/prkumar/uplink/discussions/255
@@ -117,7 +119,7 @@ class PydanticConverter(InitialConverter):
     def _get_model(self, type_):
         if is_subclass(type_, BaseModel):
             return type_
-        
+
         # Uplink does not natively support Union types
         # See https://github.com/prkumar/uplink/issues/233
         if typing.get_origin(type_) is typing.Union:
