@@ -50,13 +50,12 @@ class OutOfBandApi(Consumer):
         body: Optional[InvitationMessage] = None
     ) -> OobRecord:
         """Receive a new connection invitation"""
-        body_json = body.dict(by_alias=True) if body else None
         return await self.__receive_invitation(
             alias=alias,
             auto_accept=bool_query(auto_accept),
             mediation_id=mediation_id,
             use_existing_connection=bool_query(use_existing_connection),
-            body=body_json,
+            body=body,
         )
 
     @returns.json
