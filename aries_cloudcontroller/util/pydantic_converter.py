@@ -17,7 +17,7 @@ from uplink.utils import is_subclass
 
 def pydantic_encoder(obj: Any) -> Any:
     if isinstance(obj, BaseModel):
-        return obj.dict(exclude_unset=True, exclude_none=True, by_alias=True)
+        return obj.dict(by_alias=True)
     elif is_dataclass(obj):
         return asdict(obj)
 
