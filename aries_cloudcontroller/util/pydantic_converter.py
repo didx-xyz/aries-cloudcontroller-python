@@ -3,7 +3,7 @@ This module defines a converter that uses :py:mod:`pydantic` models
 to deserialize and serialize values.
 """
 
-from typing import Any, Union
+from typing import Any
 import typing
 from pydantic.json import ENCODERS_BY_TYPE
 from uplink.converters.interfaces import Factory, Converter
@@ -11,7 +11,10 @@ from uplink.utils import is_subclass
 
 from pydantic import BaseModel
 from dataclasses import asdict, is_dataclass
-
+from uplink.converters.pydantic_ import PydanticConverter as InitialConverter
+from uplink.converters.pydantic_ import (
+    _PydanticResponseBody as _InitialResponseBody,
+)
 
 def pydantic_encoder(obj: Any) -> Any:
     if isinstance(obj, BaseModel):
@@ -57,30 +60,32 @@ class _PydanticRequestBody(Converter):
         return _encode_pydantic(self._model.parse_obj(value))
 
 
-class _PydanticResponseBody(Converter):
+class _PydanticResponseBody(_InitialResponseBody):
+    """Pydantic converter supporting Union.
+
+    See Also:
+        :class:uplink.converters.pydantic._PydanticResponseBody
+    """
     def __init__(self, model):
-        self._model = model
+        super().__init__(model)
+        self._union = False
+
+        # Uplink does not natively support Union types
+        # See https://github.com/prkumar/uplink/issues/233
+        if typing.get_origin(self._model) is typing.Union:
+            self._union = True
+
+            class _UnionContainer(BaseModel):
+                __root__: self._model
+
+            self._model = _UnionContainer
 
     def convert(self, response):
-        try:
-            data = response.json()
-        except AttributeError:
-            data = response
-
-        # workaround because uplink doesn't support Union types
-        # see https://github.com/prkumar/uplink/issues/233
-        if typing.get_origin(self._model) is Union:
-
-            class UnionContainer(BaseModel):
-                v: self._model
-
-            data = {"v": data}
-            return UnionContainer.parse_obj(data).v
-
-        return self._model.parse_obj(data)
+        obj = super().convert(response)
+        return obj.__root__ if self._union else obj
 
 
-class PydanticConverter(Factory):
+class PydanticConverter(InitialConverter):
     """
     A converter that serializes and deserializes values using
     :py:mod:`pydantic` models.
@@ -103,20 +108,30 @@ class PydanticConverter(Factory):
         install this feature using pip::
 
             $ pip install uplink[pydantic]
+            
+    See Also:
+        https://github.com/prkumar/uplink/issues/233
+        https://github.com/prkumar/uplink/discussions/255
     """
 
     def _get_model(self, type_):
         if is_subclass(type_, BaseModel):
             return type_
-        # workaround because uplink doesn't support Union types
-        # see https://github.com/prkumar/uplink/issues/233
-        elif typing.get_origin(type_) is Union:
-            typing_args = typing.get_args(type_)
-            all_are_models = all(
-                [is_subclass(inner_type, BaseModel) for inner_type in typing_args]
-            )
-
-            if all_are_models:
+        
+        # Uplink does not natively support Union types
+        # See https://github.com/prkumar/uplink/issues/233
+        if typing.get_origin(type_) is typing.Union:
+            if all(
+                is_subclass(inner_type, BaseModel)
+                or (
+                    is_subclass(typing.get_origin(inner_type), typing.Collection)
+                    and all(
+                        is_subclass(inner_type_child, BaseModel)
+                        for inner_type_child in typing.get_args(inner_type)
+                    )
+                )
+                for inner_type in typing.get_args(type_)
+            ):
                 return type_
 
         raise ValueError("Expected pydantic.BaseModel subclass or instance")
