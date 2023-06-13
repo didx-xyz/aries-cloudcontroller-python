@@ -136,11 +136,7 @@ class PydanticConverter(InitialConverter):
         raise ValueError("Expected pydantic.BaseModel subclass or instance")
 
     def _make_converter(self, converter, type_):
-        try:
-            model = self._get_model(type_)
-        except ValueError:
-            return None
-
+        model = self._get_model(type_)
         return converter(model)
 
     def create_request_body_converter(self, type_, *args, **kwargs):
