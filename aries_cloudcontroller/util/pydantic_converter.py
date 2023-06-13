@@ -120,19 +120,18 @@ class PydanticConverter(InitialConverter):
 
         # Uplink does not natively support Union types
         # See https://github.com/prkumar/uplink/issues/233
-        if typing.get_origin(type_) is typing.Union:
-            if all(
-                is_subclass(inner_type, BaseModel)
-                or (
-                    is_subclass(typing.get_origin(inner_type), typing.Collection)
-                    and all(
-                        is_subclass(inner_type_child, BaseModel)
-                        for inner_type_child in typing.get_args(inner_type)
-                    )
+        if typing.get_origin(type_) is typing.Union and all(
+            is_subclass(inner_type, BaseModel)
+            or (
+                is_subclass(typing.get_origin(inner_type), typing.Collection)
+                and all(
+                    is_subclass(inner_type_child, BaseModel)
+                    for inner_type_child in typing.get_args(inner_type)
                 )
-                for inner_type in typing.get_args(type_)
-            ):
-                return type_
+            )
+            for inner_type in typing.get_args(type_)
+        ):
+            return type_
 
         raise ValueError("Expected pydantic.BaseModel subclass or instance")
 
