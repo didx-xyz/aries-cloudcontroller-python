@@ -62,9 +62,7 @@ def test_pydantic_request_body_convert():
     converter = _PydanticRequestBody(SampleModel)
     model_instance = SampleModel(name="Test", age=20)
     result = converter.convert(model_instance)
-    assert result == model_instance.dict(
-        exclude_unset=True, exclude_none=True, by_alias=True
-    )
+    assert result == model_instance.dict()
 
 
 def test_pydantic_response_body_convert(mocker):
