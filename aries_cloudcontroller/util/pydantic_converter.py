@@ -3,18 +3,16 @@ This module defines a converter that uses :py:mod:`pydantic` models
 to deserialize and serialize values.
 """
 
-from typing import Any
 import typing
-from pydantic.json import ENCODERS_BY_TYPE
-from uplink.converters.interfaces import Factory, Converter
-from uplink.utils import is_subclass
+from dataclasses import asdict, is_dataclass
+from typing import Any
 
 from pydantic import BaseModel
-from dataclasses import asdict, is_dataclass
+from pydantic.json import ENCODERS_BY_TYPE
+from uplink.converters.interfaces import Converter, Factory
 from uplink.converters.pydantic_ import PydanticConverter as InitialConverter
-from uplink.converters.pydantic_ import (
-    _PydanticResponseBody as _InitialResponseBody,
-)
+from uplink.converters.pydantic_ import _PydanticResponseBody as _InitialResponseBody
+from uplink.utils import is_subclass
 
 
 def pydantic_encoder(obj: Any) -> Any:
