@@ -100,6 +100,8 @@ class CredentialsApi(Consumer):
         body: Optional[W3CCredentialsListRequest] = None
     ) -> VCRecordList:
         """Fetch W3C credentials from wallet"""
+        if not body:
+            body = W3CCredentialsListRequest()
         return await self.__get_w3c_credentials(
             count=count,
             start=start,

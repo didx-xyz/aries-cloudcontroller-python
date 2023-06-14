@@ -34,6 +34,8 @@ class OutOfBandApi(Consumer):
         body: Optional[InvitationCreateRequest] = None
     ) -> InvitationRecord:
         """Create a new connection invitation"""
+        if not body:
+            body = InvitationCreateRequest()
         return await self.__create_invitation(
             auto_accept=bool_query(auto_accept),
             multi_use=bool_query(multi_use),
@@ -50,6 +52,8 @@ class OutOfBandApi(Consumer):
         body: Optional[InvitationMessage] = None
     ) -> OobRecord:
         """Receive a new connection invitation"""
+        if not body:
+            body = InvitationMessage()
         return await self.__receive_invitation(
             alias=alias,
             auto_accept=bool_query(auto_accept),

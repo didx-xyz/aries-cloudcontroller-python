@@ -48,6 +48,8 @@ class MediationApi(Consumer):
         self, *, mediation_id: str, body: Optional[AdminMediationDeny] = None
     ) -> MediationDeny:
         """Deny a stored mediation request"""
+        if not body:
+            body = AdminMediationDeny()
         return await self.__deny_mediation_request(
             mediation_id=mediation_id,
             body=body,
@@ -89,6 +91,8 @@ class MediationApi(Consumer):
         self, *, conn_id: str, body: Optional[MediationIdMatchInfo] = None
     ) -> KeylistUpdate:
         """Update keylist for a connection"""
+        if not body:
+            body = MediationIdMatchInfo()
         return await self.__mediation_update_keylist_conn_id_post(
             conn_id=conn_id,
             body=body,
@@ -98,6 +102,8 @@ class MediationApi(Consumer):
         self, *, conn_id: str, body: Optional[MediationCreateRequest] = None
     ) -> MediationRecord:
         """Request mediation from connection"""
+        if not body:
+            body = MediationCreateRequest()
         return await self.__request_mediation(
             conn_id=conn_id,
             body=body,
@@ -121,6 +127,8 @@ class MediationApi(Consumer):
         body: Optional[KeylistQueryFilterRequest] = None
     ) -> KeylistQuery:
         """Send keylist query to mediator"""
+        if not body:
+            body = KeylistQueryFilterRequest()
         return await self.__send_keylist_query(
             mediation_id=mediation_id,
             paginate_limit=paginate_limit,
@@ -132,6 +140,8 @@ class MediationApi(Consumer):
         self, *, mediation_id: str, body: Optional[KeylistUpdateRequest] = None
     ) -> KeylistUpdate:
         """Send keylist update to mediator"""
+        if not body:
+            body = KeylistUpdateRequest()
         return await self.__send_keylist_update(
             mediation_id=mediation_id,
             body=body,

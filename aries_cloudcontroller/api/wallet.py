@@ -27,6 +27,8 @@ from aries_cloudcontroller.model.did_result import DIDResult
 class WalletApi(Consumer):
     async def create_did(self, *, body: Optional[DIDCreate] = None) -> DIDResult:
         """Create a local DID"""
+        if not body:
+            body = DIDCreate()
         return await self.__create_did(
             body=body,
         )
@@ -73,6 +75,8 @@ class WalletApi(Consumer):
         body: Optional[DIDEndpointWithType] = None
     ) -> Dict[str, Any]:
         """Update endpoint in wallet and on ledger if posted to it"""
+        if not body:
+            body = DIDEndpointWithType()
         return await self.__set_did_endpoint(
             conn_id=conn_id,
             create_transaction_for_endorser=bool_query(create_transaction_for_endorser),

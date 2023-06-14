@@ -26,6 +26,8 @@ class TrustpingApi(Consumer):
         self, *, conn_id: str, body: Optional[PingRequest] = None
     ) -> PingRequestResponse:
         """Send a trust ping to a connection"""
+        if not body:
+            body = PingRequest()
         return await self.__send_ping(
             conn_id=conn_id,
             body=body,

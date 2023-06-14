@@ -26,12 +26,16 @@ from aries_cloudcontroller.model.verify_response import VerifyResponse
 class JsonldApi(Consumer):
     async def sign(self, *, body: Optional[SignRequest] = None) -> SignResponse:
         """Sign a JSON-LD structure and return it"""
+        if not body:
+            body = SignRequest()
         return await self.__sign(
             body=body,
         )
 
     async def verify(self, *, body: Optional[VerifyRequest] = None) -> VerifyResponse:
         """Verify a JSON-LD structure."""
+        if not body:
+            body = VerifyRequest()
         return await self.__verify(
             body=body,
         )

@@ -54,6 +54,8 @@ class SchemaApi(Consumer):
         body: Optional[SchemaSendRequest] = None
     ) -> TxnOrSchemaSendResult:
         """Sends a schema to the ledger"""
+        if not body:
+            body = SchemaSendRequest()
         return await self.__publish_schema(
             conn_id=conn_id,
             create_transaction_for_endorser=bool_query(create_transaction_for_endorser),

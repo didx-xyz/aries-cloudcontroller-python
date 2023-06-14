@@ -80,6 +80,8 @@ class DidExchangeApi(Consumer):
         body: Optional[DIDXRequest] = None
     ) -> ConnRecord:
         """Receive request against public DID's implicit invitation"""
+        if not body:
+            body = DIDXRequest()
         return await self.__receive_request(
             alias=alias,
             auto_accept=bool_query(auto_accept),

@@ -74,6 +74,8 @@ class CredentialDefinitionApi(Consumer):
         body: Optional[CredentialDefinitionSendRequest] = None
     ) -> TxnOrCredentialDefinitionSendResult:
         """Sends a credential definition to the ledger"""
+        if not body:
+            body = CredentialDefinitionSendRequest()
         return await self.__publish_cred_def(
             conn_id=conn_id,
             create_transaction_for_endorser=bool_query(create_transaction_for_endorser),

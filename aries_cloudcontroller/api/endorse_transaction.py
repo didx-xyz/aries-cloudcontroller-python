@@ -39,6 +39,8 @@ class EndorseTransactionApi(Consumer):
         body: Optional[Date] = None
     ) -> TransactionRecord:
         """For author to send a transaction request"""
+        if not body:
+            body = Date()
         return await self.__create_request(
             tran_id=tran_id,
             endorser_write_txn=bool_query(endorser_write_txn),

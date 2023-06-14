@@ -47,6 +47,8 @@ class PresentProofV10Api(Consumer):
         self, *, body: Optional[V10PresentationCreateRequestRequest] = None
     ) -> V10PresentationExchange:
         """Creates a presentation request not bound to any proposal or connection"""
+        if not body:
+            body = V10PresentationCreateRequestRequest()
         return await self.__create_proof_request(
             body=body,
         )
@@ -104,6 +106,8 @@ class PresentProofV10Api(Consumer):
         body: Optional[V10PresentationProblemReportRequest] = None
     ) -> Dict[str, Any]:
         """Send a problem report for presentation exchange"""
+        if not body:
+            body = V10PresentationProblemReportRequest()
         return await self.__report_problem(
             pres_ex_id=pres_ex_id,
             body=body,
@@ -113,6 +117,8 @@ class PresentProofV10Api(Consumer):
         self, *, pres_ex_id: str, body: Optional[IndyPresSpec] = None
     ) -> V10PresentationExchange:
         """Sends a proof presentation"""
+        if not body:
+            body = IndyPresSpec()
         return await self.__send_presentation(
             pres_ex_id=pres_ex_id,
             body=body,
@@ -122,6 +128,8 @@ class PresentProofV10Api(Consumer):
         self, *, body: Optional[V10PresentationProposalRequest] = None
     ) -> V10PresentationExchange:
         """Sends a presentation proposal"""
+        if not body:
+            body = V10PresentationProposalRequest()
         return await self.__send_proposal(
             body=body,
         )
@@ -133,6 +141,8 @@ class PresentProofV10Api(Consumer):
         body: Optional[V10PresentationSendRequestToProposal] = None
     ) -> V10PresentationExchange:
         """Sends a presentation request in reference to a proposal"""
+        if not body:
+            body = V10PresentationSendRequestToProposal()
         return await self.__send_request(
             pres_ex_id=pres_ex_id,
             body=body,
@@ -142,6 +152,8 @@ class PresentProofV10Api(Consumer):
         self, *, body: Optional[V10PresentationSendRequestRequest] = None
     ) -> V10PresentationExchange:
         """Sends a free presentation request not bound to any proposal"""
+        if not body:
+            body = V10PresentationSendRequestRequest()
         return await self.__send_request_free(
             body=body,
         )
