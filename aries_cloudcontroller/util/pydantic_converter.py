@@ -133,9 +133,11 @@ class PydanticConverter(InitialConverter):
         ):
             return type_
 
-        # Handle Dict[str, Any] types
+        # Handle Dict[str, Any] response types
+        # This approach assumes that when the OpenAPI schema defines an object
+        # with no properties, the corresponding response will always be an empty JSON object
         if typing.get_origin(type_) is dict:
-            return type_
+            return EmptyModel
 
         raise ValueError("Expected pydantic.BaseModel subclass or instance")
 
@@ -148,3 +150,7 @@ class PydanticConverter(InitialConverter):
 
     def create_response_body_converter(self, type_, *args, **kwargs):
         return self._make_converter(_PydanticResponseBody, type_)
+
+
+class EmptyModel(BaseModel):
+    """Default model for schemas without defined properties."""
