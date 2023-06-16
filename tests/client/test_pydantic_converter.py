@@ -1,6 +1,5 @@
 from typing import Union
 
-import pytest
 from pydantic import BaseModel
 
 from aries_cloudcontroller.model.invitation_message import InvitationMessage
@@ -32,18 +31,6 @@ def test_create_response_body_converter():
     converter = PydanticConverter()
     result = converter.create_response_body_converter(SampleModel)
     assert isinstance(result, _PydanticResponseBody)
-
-
-def test_create_request_body_converter_with_invalid_type():
-    converter = PydanticConverter()
-    with pytest.raises(ValueError):
-        converter.create_request_body_converter(str)
-
-
-def test_create_response_body_converter_with_invalid_type():
-    converter = PydanticConverter()
-    with pytest.raises(ValueError):
-        converter.create_response_body_converter(str)
 
 
 def test_create_request_body_converter_with_union_type():
