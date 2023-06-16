@@ -133,13 +133,21 @@ class PydanticConverter(InitialConverter):
         ):
             return type_
 
+        # Handle List[BaseModel] types
+        if typing.get_origin(type_) is list:
+            arg = typing.get_args(type_)[0]
+            if is_subclass(arg, BaseModel):
+                return type_
+
         # Handle Dict[str, Any] response types
         # This approach assumes that when the OpenAPI schema defines an object
         # with no properties, the corresponding response will always be an empty JSON object
         if typing.get_origin(type_) is dict:
             return EmptyModel
 
-        raise ValueError("Expected pydantic.BaseModel subclass or instance. Instead got: ", type_)
+        raise ValueError(
+            "Expected pydantic.BaseModel subclass or instance. Instead got: ", type_
+        )
 
     def _make_converter(self, converter, type_):
         model = self._get_model(type_)
