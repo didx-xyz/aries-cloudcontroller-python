@@ -139,7 +139,7 @@ class PydanticConverter(InitialConverter):
         if typing.get_origin(type_) is dict:
             return EmptyModel
 
-        raise ValueError("Expected pydantic.BaseModel subclass or instance")
+        raise ValueError("Expected pydantic.BaseModel subclass or instance. Instead got: ", type_)
 
     def _make_converter(self, converter, type_):
         model = self._get_model(type_)
