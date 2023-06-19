@@ -133,9 +133,7 @@ class PydanticConverter(InitialConverter):
         ):
             return type_
 
-        raise ValueError(
-            "Expected pydantic.BaseModel subclass or instance. Instead got: ", type_
-        )
+        raise ValueError("Expected pydantic.BaseModel subclass or instance")
 
     def _make_converter(self, converter, type_):
         try:
