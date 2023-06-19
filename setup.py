@@ -18,7 +18,7 @@ def parse_requirements(filename: str):
 if __name__ == "__main__":
     setup(
         name=PACKAGE_NAME,
-        version="0.8.1-beta-6",
+        version="0.8.1-beta-7",
         description="A simple python package for controlling an aries agent through the admin-api interface",
         long_description=long_description,
         long_description_content_type="text/markdown",
