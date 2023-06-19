@@ -2,9 +2,9 @@ import logging
 import re
 
 import pytest
-from aiohttp import ClientSession
 
 from aries_cloudcontroller.acapy_client import AcaPyClient
+from aries_cloudcontroller.util.acapy_client_session import AcaPyClientSession
 
 LOGGER = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ class TestAcaPyClient:
 
     @pytest.mark.anyio
     async def test_client_session_stays_open(self):
-        async with ClientSession() as client_session:
+        async with AcaPyClientSession() as client_session:
             async with AcaPyClient(
                 self.admin_host, client_session=client_session, admin_insecure=True
             ):
@@ -56,7 +56,7 @@ class TestAcaPyClient:
             Exception,
             match=re.escape("api_key property is missing"),
         ):
-            async with ClientSession() as client_session:
+            async with AcaPyClientSession() as client_session:
                 async with AcaPyClient(self.admin_host, client_session=client_session):
                     pass
 
