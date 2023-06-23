@@ -30,24 +30,22 @@ class AcaPyClient(Client):
                 "api_key property is missing. Use admin_insecure=True if you want"
                 " to use the controller without authentication."
             )
+
         if not client_session:
-            self.client_session_manager = AcaPyClientSession(
+            self.client_session = AcaPyClientSession(
                 api_key=api_key, tenant_jwt=tenant_jwt
-            )
+            ).client_session
             self._should_close_session = True
         else:
-            self.client_session_manager = None
             self.client_session = client_session
-
-    async def __aenter__(self):
-        if self.client_session_manager:
-            self.client_session = await self.client_session_manager.__aenter__()
 
         super().__init__(
             self.base_url,
             client=self.client_session,
             extra_service_params={"converter": PydanticConverter()},
         )
+
+    async def __aenter__(self):
         return self
 
     async def __aexit__(self, exc_type, exc_value, traceback):
