@@ -11,7 +11,8 @@ from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 from uplink.converters.interfaces import Converter
 from uplink.converters.pydantic_ import PydanticConverter as InitialConverter
-from uplink.converters.pydantic_ import _PydanticResponseBody as _InitialResponseBody
+from uplink.converters.pydantic_ import \
+    _PydanticResponseBody as _InitialResponseBody
 from uplink.utils import is_subclass
 
 
@@ -148,7 +149,3 @@ class PydanticConverter(InitialConverter):
 
     def create_response_body_converter(self, type_, *args, **kwargs):
         return self._make_converter(_PydanticResponseBody, type_)
-
-
-class EmptyModel(BaseModel):
-    """Default model for schemas without defined properties."""
