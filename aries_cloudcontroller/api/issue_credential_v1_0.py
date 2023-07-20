@@ -53,6 +53,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, body: Optional[V10CredentialCreate] = None
     ) -> V10CredentialExchange:
         """Create a credential record without sending (generally for use with Out-Of-Band)"""
+        if not body:
+            body = V10CredentialCreate()
         return await self.__create_credential(
             body=body,
         )
@@ -61,6 +63,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, body: Optional[V10CredentialConnFreeOfferRequest] = None
     ) -> V10CredentialExchange:
         """Create a credential offer, independent of any proposal or connection"""
+        if not body:
+            body = V10CredentialConnFreeOfferRequest()
         return await self.__create_offer(
             body=body,
         )
@@ -97,6 +101,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, cred_ex_id: str, body: Optional[V10CredentialIssueRequest] = None
     ) -> V10CredentialExchange:
         """Send holder a credential"""
+        if not body:
+            body = V10CredentialIssueRequest()
         return await self.__issue_credential(
             cred_ex_id=cred_ex_id,
             body=body,
@@ -106,6 +112,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, body: Optional[V10CredentialProposalRequestMand] = None
     ) -> V10CredentialExchange:
         """Send holder a credential, automating entire flow"""
+        if not body:
+            body = V10CredentialProposalRequestMand()
         return await self.__issue_credential_automated(
             body=body,
         )
@@ -117,6 +125,8 @@ class IssueCredentialV10Api(Consumer):
         body: Optional[V10CredentialProblemReportRequest] = None
     ) -> Dict[str, Any]:
         """Send a problem report for credential exchange"""
+        if not body:
+            body = V10CredentialProblemReportRequest()
         return await self.__report_problem(
             cred_ex_id=cred_ex_id,
             body=body,
@@ -126,6 +136,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, cred_ex_id: str, body: Optional[V10CredentialBoundOfferRequest] = None
     ) -> V10CredentialExchange:
         """Send holder a credential offer in reference to a proposal with preview"""
+        if not body:
+            body = V10CredentialBoundOfferRequest()
         return await self.__send_offer(
             cred_ex_id=cred_ex_id,
             body=body,
@@ -135,6 +147,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, body: Optional[V10CredentialFreeOfferRequest] = None
     ) -> V10CredentialExchange:
         """Send holder a credential offer, independent of any proposal"""
+        if not body:
+            body = V10CredentialFreeOfferRequest()
         return await self.__send_offer_free(
             body=body,
         )
@@ -143,6 +157,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, body: Optional[V10CredentialProposalRequestOpt] = None
     ) -> V10CredentialExchange:
         """Send issuer a credential proposal"""
+        if not body:
+            body = V10CredentialProposalRequestOpt()
         return await self.__send_proposal(
             body=body,
         )
@@ -157,6 +173,8 @@ class IssueCredentialV10Api(Consumer):
         self, *, cred_ex_id: str, body: Optional[V10CredentialStoreRequest] = None
     ) -> V10CredentialExchange:
         """Store a received credential"""
+        if not body:
+            body = V10CredentialStoreRequest()
         return await self.__store_credential(
             cred_ex_id=cred_ex_id,
             body=body,

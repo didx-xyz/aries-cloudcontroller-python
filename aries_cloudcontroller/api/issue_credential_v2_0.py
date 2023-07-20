@@ -47,6 +47,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, body: Optional[V20IssueCredSchemaCore] = None
     ) -> V20CredExRecord:
         """Create a credential record without sending (generally for use with Out-Of-Band)"""
+        if not body:
+            body = V20IssueCredSchemaCore()
         return await self.__create_credential(
             body=body,
         )
@@ -83,6 +85,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, cred_ex_id: str, body: Optional[V20CredIssueRequest] = None
     ) -> V20CredExRecordDetail:
         """Send holder a credential"""
+        if not body:
+            body = V20CredIssueRequest()
         return await self.__issue_credential(
             cred_ex_id=cred_ex_id,
             body=body,
@@ -92,6 +96,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, body: Optional[V20CredOfferConnFreeRequest] = None
     ) -> V20CredExRecord:
         """Create a credential offer, independent of any proposal or connection"""
+        if not body:
+            body = V20CredOfferConnFreeRequest()
         return await self.__issue_credential20_create_offer_post(
             body=body,
         )
@@ -100,6 +106,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, body: Optional[V20CredExFree] = None
     ) -> V20CredExRecord:
         """Send holder a credential, automating entire flow"""
+        if not body:
+            body = V20CredExFree()
         return await self.__issue_credential_automated(
             body=body,
         )
@@ -111,6 +119,8 @@ class IssueCredentialV20Api(Consumer):
         body: Optional[V20CredIssueProblemReportRequest] = None
     ) -> Dict[str, Any]:
         """Send a problem report for credential exchange"""
+        if not body:
+            body = V20CredIssueProblemReportRequest()
         return await self.__report_problem(
             cred_ex_id=cred_ex_id,
             body=body,
@@ -120,6 +130,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, cred_ex_id: str, body: Optional[V20CredBoundOfferRequest] = None
     ) -> V20CredExRecord:
         """Send holder a credential offer in reference to a proposal with preview"""
+        if not body:
+            body = V20CredBoundOfferRequest()
         return await self.__send_offer(
             cred_ex_id=cred_ex_id,
             body=body,
@@ -129,6 +141,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, body: Optional[V20CredOfferRequest] = None
     ) -> V20CredExRecord:
         """Send holder a credential offer, independent of any proposal"""
+        if not body:
+            body = V20CredOfferRequest()
         return await self.__send_offer_free(
             body=body,
         )
@@ -137,6 +151,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, body: Optional[V20CredExFree] = None
     ) -> V20CredExRecord:
         """Send issuer a credential proposal"""
+        if not body:
+            body = V20CredExFree()
         return await self.__send_proposal(
             body=body,
         )
@@ -145,6 +161,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, cred_ex_id: str, body: Optional[V20CredRequestRequest] = None
     ) -> V20CredExRecord:
         """Send issuer a credential request"""
+        if not body:
+            body = V20CredRequestRequest()
         return await self.__send_request(
             cred_ex_id=cred_ex_id,
             body=body,
@@ -154,6 +172,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, body: Optional[V20CredRequestFree] = None
     ) -> V20CredExRecord:
         """Send issuer a credential request not bound to an existing thread. Indy credentials cannot start at a request"""
+        if not body:
+            body = V20CredRequestFree()
         return await self.__send_request_free(
             body=body,
         )
@@ -162,6 +182,8 @@ class IssueCredentialV20Api(Consumer):
         self, *, cred_ex_id: str, body: Optional[V20CredStoreRequest] = None
     ) -> V20CredExRecordDetail:
         """Store a received credential"""
+        if not body:
+            body = V20CredStoreRequest()
         return await self.__store_credential(
             cred_ex_id=cred_ex_id,
             body=body,

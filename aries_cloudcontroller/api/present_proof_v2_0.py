@@ -43,6 +43,8 @@ class PresentProofV20Api(Consumer):
         self, *, body: Optional[V20PresCreateRequestRequest] = None
     ) -> V20PresExRecord:
         """Creates a presentation request not bound to any proposal or connection"""
+        if not body:
+            body = V20PresCreateRequestRequest()
         return await self.__create_proof_request(
             body=body,
         )
@@ -97,6 +99,8 @@ class PresentProofV20Api(Consumer):
         self, *, pres_ex_id: str, body: Optional[V20PresProblemReportRequest] = None
     ) -> Dict[str, Any]:
         """Send a problem report for presentation exchange"""
+        if not body:
+            body = V20PresProblemReportRequest()
         return await self.__report_problem(
             pres_ex_id=pres_ex_id,
             body=body,
@@ -106,6 +110,8 @@ class PresentProofV20Api(Consumer):
         self, *, pres_ex_id: str, body: Optional[V20PresSpecByFormatRequest] = None
     ) -> V20PresExRecord:
         """Sends a proof presentation"""
+        if not body:
+            body = V20PresSpecByFormatRequest()
         return await self.__send_presentation(
             pres_ex_id=pres_ex_id,
             body=body,
@@ -115,6 +121,8 @@ class PresentProofV20Api(Consumer):
         self, *, body: Optional[V20PresProposalRequest] = None
     ) -> V20PresExRecord:
         """Sends a presentation proposal"""
+        if not body:
+            body = V20PresProposalRequest()
         return await self.__send_proposal(
             body=body,
         )
@@ -126,6 +134,8 @@ class PresentProofV20Api(Consumer):
         body: Optional[V20PresentationSendRequestToProposal] = None
     ) -> V20PresExRecord:
         """Sends a presentation request in reference to a proposal"""
+        if not body:
+            body = V20PresentationSendRequestToProposal()
         return await self.__send_request(
             pres_ex_id=pres_ex_id,
             body=body,
@@ -135,6 +145,8 @@ class PresentProofV20Api(Consumer):
         self, *, body: Optional[V20PresSendRequestRequest] = None
     ) -> V20PresExRecord:
         """Sends a free presentation request not bound to any proposal"""
+        if not body:
+            body = V20PresSendRequestRequest()
         return await self.__send_request_free(
             body=body,
         )

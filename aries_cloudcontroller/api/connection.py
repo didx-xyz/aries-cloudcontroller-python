@@ -73,6 +73,8 @@ class ConnectionApi(Consumer):
         body: Optional[CreateInvitationRequest] = None
     ) -> InvitationResult:
         """Create a new connection invitation"""
+        if not body:
+            body = CreateInvitationRequest()
         return await self.__create_invitation(
             alias=alias,
             auto_accept=bool_query(auto_accept),
@@ -85,6 +87,8 @@ class ConnectionApi(Consumer):
         self, *, body: Optional[ConnectionStaticRequest] = None
     ) -> ConnectionStaticResult:
         """Create a new static connection"""
+        if not body:
+            body = ConnectionStaticRequest()
         return await self.__create_static_connection(
             body=body,
         )
@@ -158,6 +162,8 @@ class ConnectionApi(Consumer):
         body: Optional[ReceiveInvitationRequest] = None
     ) -> ConnRecord:
         """Receive a new connection invitation"""
+        if not body:
+            body = ReceiveInvitationRequest()
         return await self.__receive_invitation(
             alias=alias,
             auto_accept=bool_query(auto_accept),
@@ -169,6 +175,8 @@ class ConnectionApi(Consumer):
         self, *, conn_id: str, body: Optional[ConnectionMetadataSetRequest] = None
     ) -> ConnectionMetadata:
         """Set connection metadata"""
+        if not body:
+            body = ConnectionMetadataSetRequest()
         return await self.__set_metadata(
             conn_id=conn_id,
             body=body,

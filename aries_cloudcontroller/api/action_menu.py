@@ -39,6 +39,8 @@ class ActionMenuApi(Consumer):
         self, *, conn_id: str, body: Optional[PerformRequest] = None
     ) -> Dict[str, Any]:
         """Perform an action associated with the active menu"""
+        if not body:
+            body = PerformRequest()
         return await self.__perform_action(
             conn_id=conn_id,
             body=body,
@@ -54,6 +56,8 @@ class ActionMenuApi(Consumer):
         self, *, conn_id: str, body: Optional[SendMenu] = None
     ) -> Dict[str, Any]:
         """Send an action menu to a connection"""
+        if not body:
+            body = SendMenu()
         return await self.__send_menu(
             conn_id=conn_id,
             body=body,

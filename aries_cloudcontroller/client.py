@@ -2,7 +2,6 @@ from contextlib import AbstractAsyncContextManager
 from typing import Dict
 
 import uplink
-
 from aries_cloudcontroller.api import (
     ActionMenuApi,
     BasicmessageApi,
@@ -69,10 +68,12 @@ class Client(AbstractAsyncContextManager):
         extra_service_params: Dict = {}
     ):
         self.base_url = base_url
+        self.client = client
+
         service_params = {
             **extra_service_params,
-            "base_url": base_url,
-            "client": client,
+            "base_url": self.base_url,
+            "client": self.client,
         }
 
         self.action_menu = ActionMenuApi(**service_params)
@@ -101,8 +102,6 @@ class Client(AbstractAsyncContextManager):
         self.server = ServerApi(**service_params)
         self.trustping = TrustpingApi(**service_params)
         self.wallet = WalletApi(**service_params)
-
-        self.client = client
 
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.client.close()

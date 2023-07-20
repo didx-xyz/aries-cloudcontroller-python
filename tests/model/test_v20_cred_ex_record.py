@@ -4,7 +4,7 @@ import pydantic
 import pytest
 
 from aries_cloudcontroller.model import V20CredExRecord
-from tests.compare_dicts import equal_dicts
+from tests.util.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
 

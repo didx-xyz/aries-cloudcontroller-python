@@ -51,6 +51,8 @@ class RevocationApi(Consumer):
         self, *, body: Optional[ClearPendingRevocationsRequest] = None
     ) -> PublishRevocations:
         """Clear pending revocations"""
+        if not body:
+            body = ClearPendingRevocationsRequest()
         return await self.__clear_pending_revocations(
             body=body,
         )
@@ -59,6 +61,8 @@ class RevocationApi(Consumer):
         self, *, body: Optional[RevRegCreateRequest] = None
     ) -> RevRegResult:
         """Creates a new revocation registry"""
+        if not body:
+            body = RevRegCreateRequest()
         return await self.__create_registry(
             body=body,
         )
@@ -146,6 +150,8 @@ class RevocationApi(Consumer):
         self, *, body: Optional[PublishRevocations] = None
     ) -> TxnOrPublishRevocationsResult:
         """Publish pending revocations to ledger"""
+        if not body:
+            body = PublishRevocations()
         return await self.__publish_revocations(
             body=body,
         )
@@ -190,6 +196,8 @@ class RevocationApi(Consumer):
         self, *, body: Optional[RevokeRequest] = None
     ) -> Dict[str, Any]:
         """Revoke an issued credential"""
+        if not body:
+            body = RevokeRequest()
         return await self.__revoke_credential(
             body=body,
         )
@@ -205,6 +213,8 @@ class RevocationApi(Consumer):
         self, *, rev_reg_id: str, body: Optional[RevRegUpdateTailsFileUri] = None
     ) -> RevRegResult:
         """Update revocation registry with new public URI to its tails file"""
+        if not body:
+            body = RevRegUpdateTailsFileUri()
         return await self.__update_registry(
             rev_reg_id=rev_reg_id,
             body=body,

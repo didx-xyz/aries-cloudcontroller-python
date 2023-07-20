@@ -36,6 +36,8 @@ class MultitenancyApi(Consumer):
         self, *, body: Optional[CreateWalletRequest] = None
     ) -> CreateWalletResponse:
         """Create a subwallet"""
+        if not body:
+            body = CreateWalletRequest()
         return await self.__create_wallet(
             body=body,
         )
@@ -44,6 +46,8 @@ class MultitenancyApi(Consumer):
         self, *, wallet_id: str, body: Optional[RemoveWalletRequest] = None
     ) -> Dict[str, Any]:
         """Remove a subwallet"""
+        if not body:
+            body = RemoveWalletRequest()
         return await self.__delete_wallet(
             wallet_id=wallet_id,
             body=body,
@@ -53,6 +57,8 @@ class MultitenancyApi(Consumer):
         self, *, wallet_id: str, body: Optional[CreateWalletTokenRequest] = None
     ) -> CreateWalletTokenResponse:
         """Get auth token for a subwallet"""
+        if not body:
+            body = CreateWalletTokenRequest()
         return await self.__get_auth_token(
             wallet_id=wallet_id,
             body=body,
@@ -74,6 +80,8 @@ class MultitenancyApi(Consumer):
         self, *, wallet_id: str, body: Optional[UpdateWalletRequest] = None
     ) -> WalletRecord:
         """Update a subwallet"""
+        if not body:
+            body = UpdateWalletRequest()
         return await self.__update_wallet(
             wallet_id=wallet_id,
             body=body,

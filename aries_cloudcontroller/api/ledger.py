@@ -32,6 +32,8 @@ from aries_cloudcontroller.model.write_ledger_request import WriteLedgerRequest
 class LedgerApi(Consumer):
     async def accept_taa(self, *, body: Optional[TAAAccept] = None) -> Dict[str, Any]:
         """Accept the transaction author agreement"""
+        if not body:
+            body = TAAAccept()
         return await self.__accept_taa(
             body=body,
         )

@@ -25,6 +25,8 @@ class BasicmessageApi(Consumer):
         self, *, conn_id: str, body: Optional[SendMessage] = None
     ) -> Dict[str, Any]:
         """Send a basic message to a connection"""
+        if not body:
+            body = SendMessage()
         return await self.__send_message(
             conn_id=conn_id,
             body=body,
