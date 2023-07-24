@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.8.1
+  version: v0.8.2
 servers:
 - url: /
 security:
@@ -105,6 +105,8 @@ tags:
   externalDocs:
     description: Specification
     url: https://github.com/hyperledger/indy-node/blob/master/design/anoncreds.md#schema
+- name: settings
+  description: Agent settings interface.
 - name: trustping
   description: Trust-ping over connection
   externalDocs:
@@ -273,14 +275,14 @@ paths:
         schema:
           type: string
           enum:
+          - invitation
+          - start
+          - abandoned
           - init
           - request
           - response
           - error
           - active
-          - abandoned
-          - start
-          - invitation
           - completed
       - name: their_did
         in: query
@@ -3936,6 +3938,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/SchemaGetResult'
       operationId: write_record
+  /settings:
+    get:
+      tags:
+      - settings
+      summary: Get the configurable settings associated with the profile.
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSettings'
+    put:
+      tags:
+      - settings
+      summary: Update configurable settings associated with the profile.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileSettings'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSettings'
+      x-codegen-request-body-name: body
   /shutdown:
     get:
       tags:
@@ -5031,6 +5063,10 @@ components:
     CreateWalletRequest:
       type: object
       properties:
+        extra_settings:
+          type: object
+          properties: {}
+          description: Agent config key-value pairs
         image_url:
           type: string
           description: Image url for this wallet. This image url is publicized            (self-attested)
@@ -7771,6 +7807,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AttachDecorator'
+    ProfileSettings:
+      type: object
+      properties:
+        settings:
+          type: object
+          properties: {}
+          description: Profile settings dict
+          example:
+            debug.invite_public: true
+            log.level: INFO
+            public_invites: false
     ProtocolDescriptor:
       required:
       - pid
@@ -8536,9 +8583,24 @@ components:
           description: Schema transaction to endorse
           allOf:
           - $ref: '#/components/schemas/TransactionRecord'
+    UpdateProfileSettings:
+      type: object
+      properties:
+        extra_settings:
+          type: object
+          properties: {}
+          description: Agent config key-value pairs
+          example:
+            ACAPY_INVITE_PUBLIC: true
+            log-level: INFO
+            public-invites: false
     UpdateWalletRequest:
       type: object
       properties:
+        extra_settings:
+          type: object
+          properties: {}
+          description: Agent config key-value pairs
         image_url:
           type: string
           description: Image url for this wallet. This image url is publicized            (self-attested)
