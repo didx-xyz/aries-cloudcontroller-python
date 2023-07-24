@@ -220,6 +220,7 @@ from aries_cloudcontroller.model.ping_request_response import PingRequestRespons
 from aries_cloudcontroller.model.presentation_definition import PresentationDefinition
 from aries_cloudcontroller.model.presentation_proposal import PresentationProposal
 from aries_cloudcontroller.model.presentation_request import PresentationRequest
+from aries_cloudcontroller.model.profile_settings import ProfileSettings
 from aries_cloudcontroller.model.protocol_descriptor import ProtocolDescriptor
 from aries_cloudcontroller.model.publish_revocations import PublishRevocations
 from aries_cloudcontroller.model.queries import Queries
@@ -279,6 +280,7 @@ from aries_cloudcontroller.model.txn_or_register_ledger_nym_response import (
 )
 from aries_cloudcontroller.model.txn_or_rev_reg_result import TxnOrRevRegResult
 from aries_cloudcontroller.model.txn_or_schema_send_result import TxnOrSchemaSendResult
+from aries_cloudcontroller.model.update_profile_settings import UpdateProfileSettings
 from aries_cloudcontroller.model.update_wallet_request import UpdateWalletRequest
 from aries_cloudcontroller.model.v10_credential_bound_offer_request import (
     V10CredentialBoundOfferRequest,
@@ -576,6 +578,7 @@ __all__ = [
     "PresentationDefinition",
     "PresentationProposal",
     "PresentationRequest",
+    "ProfileSettings",
     "ProtocolDescriptor",
     "PublishRevocations",
     "Queries",
@@ -621,6 +624,7 @@ __all__ = [
     "TxnOrRegisterLedgerNymResponse",
     "TxnOrRevRegResult",
     "TxnOrSchemaSendResult",
+    "UpdateProfileSettings",
     "UpdateWalletRequest",
     "V10CredentialBoundOfferRequest",
     "V10CredentialConnFreeOfferRequest",

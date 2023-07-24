@@ -24,6 +24,7 @@ from aries_cloudcontroller.api.resolver import ResolverApi
 from aries_cloudcontroller.api.revocation import RevocationApi
 from aries_cloudcontroller.api.schema import SchemaApi
 from aries_cloudcontroller.api.server import ServerApi
+from aries_cloudcontroller.api.settings import SettingsApi
 from aries_cloudcontroller.api.trustping import TrustpingApi
 from aries_cloudcontroller.api.wallet import WalletApi
 
@@ -52,6 +53,7 @@ __all__ = [
     "RevocationApi",
     "SchemaApi",
     "ServerApi",
+    "SettingsApi",
     "TrustpingApi",
     "WalletApi",
 ]

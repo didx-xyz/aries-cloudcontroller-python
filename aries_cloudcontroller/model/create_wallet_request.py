@@ -16,6 +16,7 @@ class CreateWalletRequest(BaseModel):
     Do not edit the class manually.
 
     CreateWalletRequest - a model defined in OpenAPI
+        extra_settings: Agent config key-value pairs [Optional].
         image_url: Image url for this wallet. This image url is publicized            (self-attested) to other agents as part of forming a connection. [Optional].
         key_management_mode: Key management method to use for this wallet. [Optional].
         label: Label for this wallet. This label is publicized            (self-attested) to other agents as part of forming a connection. [Optional].
@@ -27,6 +28,7 @@ class CreateWalletRequest(BaseModel):
         wallet_webhook_urls: List of Webhook URLs associated with this subwallet [Optional].
     """
 
+    extra_settings: Optional[Dict[str, Any]] = None
     image_url: Optional[str] = None
     key_management_mode: Optional[Literal["managed"]] = None
     label: Optional[str] = None
