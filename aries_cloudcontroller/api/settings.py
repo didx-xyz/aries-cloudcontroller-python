@@ -30,6 +30,8 @@ class SettingsApi(Consumer):
         self, *, body: Optional[UpdateProfileSettings] = None
     ) -> ProfileSettings:
         """Update configurable settings associated with the profile."""
+        if not body:
+            body = UpdateProfileSettings()
         return await self.__settings_put(
             body=body,
         )
