@@ -16,12 +16,14 @@ class UpdateWalletRequest(BaseModel):
     Do not edit the class manually.
 
     UpdateWalletRequest - a model defined in OpenAPI
+        extra_settings: Agent config key-value pairs [Optional].
         image_url: Image url for this wallet. This image url is publicized            (self-attested) to other agents as part of forming a connection. [Optional].
         label: Label for this wallet. This label is publicized            (self-attested) to other agents as part of forming a connection. [Optional].
         wallet_dispatch_type: Webhook target dispatch type for this wallet.             default - Dispatch only to webhooks associated with this wallet.             base - Dispatch only to webhooks associated with the base wallet.             both - Dispatch to both webhook targets. [Optional].
         wallet_webhook_urls: List of Webhook URLs associated with this subwallet [Optional].
     """
 
+    extra_settings: Optional[Dict[str, Any]] = None
     image_url: Optional[str] = None
     label: Optional[str] = None
     wallet_dispatch_type: Optional[Literal["default", "both", "base"]] = None

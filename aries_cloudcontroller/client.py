@@ -2,6 +2,7 @@ from contextlib import AbstractAsyncContextManager
 from typing import Dict
 
 import uplink
+
 from aries_cloudcontroller.api import (
     ActionMenuApi,
     BasicmessageApi,
@@ -27,6 +28,7 @@ from aries_cloudcontroller.api import (
     RevocationApi,
     SchemaApi,
     ServerApi,
+    SettingsApi,
     TrustpingApi,
     WalletApi,
 )
@@ -57,6 +59,7 @@ class Client(AbstractAsyncContextManager):
     revocation: RevocationApi
     schema: SchemaApi
     server: ServerApi
+    settings: SettingsApi
     trustping: TrustpingApi
     wallet: WalletApi
 
@@ -100,6 +103,7 @@ class Client(AbstractAsyncContextManager):
         self.revocation = RevocationApi(**service_params)
         self.schema = SchemaApi(**service_params)
         self.server = ServerApi(**service_params)
+        self.settings = SettingsApi(**service_params)
         self.trustping = TrustpingApi(**service_params)
         self.wallet = WalletApi(**service_params)
 
