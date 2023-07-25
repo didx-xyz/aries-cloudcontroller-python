@@ -20,6 +20,8 @@ class InvitationCreateRequest(BaseModel):
         accept: List of mime type in order of preference that should be use in responding to the message [Optional].
         alias: Alias for connection [Optional].
         attachments: Optional invitation attachments [Optional].
+        goal: A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message [Optional].
+        goal_code: A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message [Optional].
         handshake_protocols: The handshake_protocols of this InvitationCreateRequest [Optional].
         mediation_id: Identifier for active mediation record to be used [Optional].
         metadata: Optional metadata to attach to the connection created with the invitation [Optional].
@@ -31,6 +33,8 @@ class InvitationCreateRequest(BaseModel):
     accept: Optional[List[str]] = None
     alias: Optional[str] = None
     attachments: Optional[List[AttachmentDef]] = None
+    goal: Optional[str] = None
+    goal_code: Optional[str] = None
     handshake_protocols: Optional[List[str]] = None
     mediation_id: Optional[str] = None
     metadata: Optional[Dict[str, Any]] = None
