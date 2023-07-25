@@ -28,9 +28,9 @@ After that you can run the following commands to update the `data/openapi.yml` f
 ```sh
 cd aries-cloudcontroller-python/generator
 
-# Retrieve the open api file. Change `py36-1.16-1_0.8.2` if you want another version
+# Retrieve the open api file. Change `py3.9-0.9.0` if you want another version. See 
 # <https://github.com/hyperledger/aries-cloudagent-python/blob/main/ContainerImagesAndGithubActions.md#tags> for tags
-./scripts/retrieve-openapi.sh py36-1.16-1_0.8.2
+./scripts/retrieve-openapi.sh py3.9-0.9.0
 
 # transform to OpenAPI V3
 ./scripts/convert-to-openapi3-local.sh
