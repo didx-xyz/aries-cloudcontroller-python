@@ -156,6 +156,14 @@ class RevocationApi(Consumer):
             body=body,
         )
 
+    async def revocation_active_registry_cred_def_id_rotate_post(
+        self, *, cred_def_id: str
+    ) -> RevRegsCreated:
+        """Rotate revocation registry"""
+        return await self.__revocation_active_registry_cred_def_id_rotate_post(
+            cred_def_id=cred_def_id,
+        )
+
     async def revocation_registry_delete_tails_file_delete(
         self, *, cred_def_id: Optional[str] = None, rev_reg_id: Optional[str] = None
     ) -> TailsDeleteResponse:
@@ -310,6 +318,13 @@ class RevocationApi(Consumer):
         self, *, body: Body(type=PublishRevocations) = {}
     ) -> TxnOrPublishRevocationsResult:
         """Internal uplink method for publish_revocations"""
+
+    @returns.json
+    @post("/revocation/active-registry/{cred_def_id}/rotate")
+    def __revocation_active_registry_cred_def_id_rotate_post(
+        self, *, cred_def_id: str
+    ) -> RevRegsCreated:
+        """Internal uplink method for revocation_active_registry_cred_def_id_rotate_post"""
 
     @returns.json
     @delete("/revocation/registry/delete-tails-file")
