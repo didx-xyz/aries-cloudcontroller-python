@@ -48,6 +48,7 @@ Each Cloud Controller version maps to a specific ACA-Py version, which is outlin
 | 0.7.0                          | 0.7.5                            |
 | 0.8.0                          | 0.8.0                            |
 | 0.8.1                          | 0.8.1                            |
+| 0.8.2                          | 0.8.2                            |
 
 ## Features
 
