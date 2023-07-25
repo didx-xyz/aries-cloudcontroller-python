@@ -33,7 +33,7 @@ if __name__ == "__main__":
         },
         tests_require=parse_requirements("requirements.dev.txt"),
         install_requires=parse_requirements("requirements.txt"),
-        python_requires=">=3.8",
+        python_requires=">=3.9",
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: Apache Software License",
