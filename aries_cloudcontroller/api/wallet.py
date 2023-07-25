@@ -22,6 +22,9 @@ from aries_cloudcontroller.model.did_endpoint import DIDEndpoint
 from aries_cloudcontroller.model.did_endpoint_with_type import DIDEndpointWithType
 from aries_cloudcontroller.model.did_list import DIDList
 from aries_cloudcontroller.model.did_result import DIDResult
+from aries_cloudcontroller.model.jws_create import JWSCreate
+from aries_cloudcontroller.model.jws_verify import JWSVerify
+from aries_cloudcontroller.model.jws_verify_response import JWSVerifyResponse
 
 
 class WalletApi(Consumer):
@@ -99,6 +102,26 @@ class WalletApi(Consumer):
             mediation_id=mediation_id,
         )
 
+    async def wallet_jwt_sign_post(
+        self, *, body: Optional[JWSCreate] = None
+    ) -> Dict[str, Any]:
+        """Create a EdDSA jws using did keys with a given payload"""
+        if not body:
+            body = JWSCreate()
+        return await self.__wallet_jwt_sign_post(
+            body=body,
+        )
+
+    async def wallet_jwt_verify_post(
+        self, *, body: Optional[JWSVerify] = None
+    ) -> JWSVerifyResponse:
+        """Verify a EdDSA jws using did keys with a given JWS"""
+        if not body:
+            body = JWSVerify()
+        return await self.__wallet_jwt_verify_post(
+            body=body,
+        )
+
     @returns.json
     @json
     @post("/wallet/did/create")
@@ -156,3 +179,19 @@ class WalletApi(Consumer):
         mediation_id: Query = None
     ) -> DIDResult:
         """Internal uplink method for set_public_did"""
+
+    @returns.json
+    @json
+    @post("/wallet/jwt/sign")
+    def __wallet_jwt_sign_post(
+        self, *, body: Body(type=JWSCreate) = {}
+    ) -> Dict[str, Any]:
+        """Internal uplink method for wallet_jwt_sign_post"""
+
+    @returns.json
+    @json
+    @post("/wallet/jwt/verify")
+    def __wallet_jwt_verify_post(
+        self, *, body: Body(type=JWSVerify) = {}
+    ) -> JWSVerifyResponse:
+        """Internal uplink method for wallet_jwt_verify_post"""
