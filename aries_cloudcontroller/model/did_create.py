@@ -22,7 +22,7 @@ class DIDCreate(BaseModel):
         seed: Optional seed to use for DID, Must beenabled in configuration before use. [Optional].
     """
 
-    method: Optional[Literal["key", "sov"]] = None
+    method: Optional[str] = None
     options: Optional[DIDCreateOptions] = None
     seed: Optional[str] = None
 
