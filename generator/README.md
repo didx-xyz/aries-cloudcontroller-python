@@ -21,16 +21,16 @@ cd generator
 
 ## Updating the OpenAPI
 
-Updating the OpenAPI is only needed when a new version of ACA-Py is released. The process of updating the OpenAPI is mostly automated, you only need to run a few scripts. First determine the version you want for OpenAPI spec from the BCGov agent docker images (https://hub.docker.com/r/bcgovimages/aries-cloudagent/). Currently the default for the `retrieve-openapi.sh` script is "py36-1.16-1_0.8.2".
+Updating the OpenAPI is only needed when a new version of ACA-Py is released. The process of updating the OpenAPI is mostly automated, you only need to run a few scripts. First determine the version you want for OpenAPI spec from the `hyperledger/aries-cloudagent-python` docker images (https://github.com/hyperledger/aries-cloudagent-python/blob/main/ContainerImagesAndGithubActions.md). Currently the default for the `retrieve-openapi.sh` script is "py3.9-0.9.0".
 
 After that you can run the following commands to update the `data/openapi.yml` file. This file should be committed.
 
 ```sh
 cd aries-cloudcontroller-python/generator
 
-# Retrieve the open api file. Change `py36-1.16-1_0.8.2` if you want another version
-# See <https://hub.docker.com/r/bcgovimages/aries-cloudagent/tags> for official releases
-./scripts/retrieve-openapi.sh py36-1.16-1_0.8.2
+# Retrieve the open api file. Change `py3.9-0.9.0` if you want another version. See 
+# <https://github.com/hyperledger/aries-cloudagent-python/blob/main/ContainerImagesAndGithubActions.md#tags> for tags
+./scripts/retrieve-openapi.sh py3.9-0.9.0
 
 # transform to OpenAPI V3
 ./scripts/convert-to-openapi3-local.sh

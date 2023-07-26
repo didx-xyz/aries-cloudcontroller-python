@@ -48,13 +48,15 @@ Each Cloud Controller version maps to a specific ACA-Py version, which is outlin
 | 0.7.0                          | 0.7.5                            |
 | 0.8.0                          | 0.8.0                            |
 | 0.8.1                          | 0.8.1                            |
+| 0.8.2                          | 0.8.2                            |
+| 0.9.0                          | 0.9.0                            |
 
 ## Features
 
 Aries Cloud Controller Python is a fully featured client for interacting with ACA-Py.
 
 - Fully Typed wrapper around Aries Cloud Agent Python
-- Supports latest ACA-Py version (0.8.1)
+- Supports latest ACA-Py version (0.9.0)
 - Client is auto generated based on OpenAPI definitions, allowing us to keep up to date with new releases.
 - Supports multi-tenant APIs and authentication
 - Async API

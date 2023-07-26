@@ -20,6 +20,8 @@ class InvitationMessage(BaseModel):
         id: Message identifier [Optional].
         type: Message type [Optional].
         accept: List of mime type in order of preference [Optional].
+        goal: A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message [Optional].
+        goal_code: A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message [Optional].
         handshake_protocols: The handshake_protocols of this InvitationMessage [Optional].
         image_url: Optional image URL for out-of-band invitation [Optional].
         label: Optional label [Optional].
@@ -30,6 +32,8 @@ class InvitationMessage(BaseModel):
     id: Optional[str] = Field(None, alias="@id")
     type: Optional[str] = Field(None, alias="@type")
     accept: Optional[List[str]] = None
+    goal: Optional[str] = None
+    goal_code: Optional[str] = None
     handshake_protocols: Optional[List[str]] = None
     image_url: Optional[str] = Field(None, alias="imageUrl")
     label: Optional[str] = None

@@ -24,6 +24,7 @@ class V20CredOfferRequest(BaseModel):
         auto_remove: Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting) [Optional].
         comment: Human-readable comment [Optional].
         credential_preview: The credential_preview of this V20CredOfferRequest [Optional].
+        replacement_id: Optional identifier used to manage credential replacement [Optional].
         trace: Record trace information, based on agent configuration [Optional].
     """
 
@@ -33,6 +34,7 @@ class V20CredOfferRequest(BaseModel):
     auto_remove: Optional[bool] = None
     comment: Optional[str] = None
     credential_preview: Optional[V20CredPreview] = None
+    replacement_id: Optional[str] = None
     trace: Optional[bool] = None
 
     class Config:

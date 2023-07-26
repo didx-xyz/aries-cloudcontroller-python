@@ -185,6 +185,9 @@ from aries_cloudcontroller.model.invitation_record import InvitationRecord
 from aries_cloudcontroller.model.invitation_result import InvitationResult
 from aries_cloudcontroller.model.issuer_cred_rev_record import IssuerCredRevRecord
 from aries_cloudcontroller.model.issuer_rev_reg_record import IssuerRevRegRecord
+from aries_cloudcontroller.model.jws_create import JWSCreate
+from aries_cloudcontroller.model.jws_verify import JWSVerify
+from aries_cloudcontroller.model.jws_verify_response import JWSVerifyResponse
 from aries_cloudcontroller.model.keylist import Keylist
 from aries_cloudcontroller.model.keylist_query import KeylistQuery
 from aries_cloudcontroller.model.keylist_query_filter_request import (
@@ -547,6 +550,9 @@ __all__ = [
     "InvitationResult",
     "IssuerCredRevRecord",
     "IssuerRevRegRecord",
+    "JWSCreate",
+    "JWSVerify",
+    "JWSVerifyResponse",
     "Keylist",
     "KeylistQuery",
     "KeylistQueryFilterRequest",

@@ -22,6 +22,8 @@ class DIDXRequest(BaseModel):
         type: Message type [Optional].
         did: DID of exchange [Optional].
         did_docattach: As signed attachment, DID Doc associated with DID [Optional].
+        goal: A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message [Optional].
+        goal_code: A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message [Optional].
     """
 
     label: str
@@ -29,6 +31,8 @@ class DIDXRequest(BaseModel):
     type: Optional[str] = Field(None, alias="@type")
     did: Optional[str] = None
     did_docattach: Optional[AttachDecorator] = Field(None, alias="did_doc~attach")
+    goal: Optional[str] = None
+    goal_code: Optional[str] = None
 
     @validator("did")
     def did_pattern(cls, value):

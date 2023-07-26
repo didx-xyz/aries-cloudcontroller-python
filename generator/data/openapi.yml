@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.8.2
+  version: v0.9.0
 servers:
 - url: /
 security:
@@ -275,14 +275,14 @@ paths:
         schema:
           type: string
           enum:
-          - invitation
-          - start
+          - request
+          - active
           - abandoned
           - init
-          - request
+          - start
+          - invitation
           - response
           - error
-          - active
           - completed
       - name: their_did
         in: query
@@ -1034,6 +1034,18 @@ paths:
       - name: alias
         in: query
         description: Alias for connection
+        schema:
+          type: string
+      - name: goal
+        in: query
+        description: A self-attested string that the receiver may want to display
+          to the user about the context-specific goal of the out-of-band message
+        schema:
+          type: string
+      - name: goal_code
+        in: query
+        description: A self-attested code the receiver may want to display to the
+          user or use in automatically deciding what to do with the out-of-band message
         schema:
           type: string
       - name: mediation_id
@@ -3388,6 +3400,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/RevRegResult'
       operationId: get_active_registry_for_cred_def
+  /revocation/active-registry/{cred_def_id}/rotate:
+    post:
+      tags:
+      - revocation
+      summary: Rotate revocation registry
+      parameters:
+      - name: cred_def_id
+        in: path
+        description: Credential definition identifier
+        required: true
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegsCreated'
   /revocation/clear-pending-revocations:
     post:
       tags:
@@ -3503,6 +3535,7 @@ paths:
           - posted
           - active
           - full
+          - decommissioned
       responses:
         200:
           description: ''
@@ -4438,6 +4471,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/DIDEndpoint'
       operationId: get_did_endpoint
+  /wallet/jwt/sign:
+    post:
+      tags:
+      - wallet
+      summary: Create a EdDSA jws using did keys with a given payload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JWSCreate'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletModuleResponse'
+      x-codegen-request-body-name: body
+  /wallet/jwt/verify:
+    post:
+      tags:
+      - wallet
+      summary: Verify a EdDSA jws using did keys with a given JWS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JWSVerify'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWSVerifyResponse'
+      x-codegen-request-body-name: body
   /wallet/set-did-endpoint:
     post:
       tags:
@@ -4855,10 +4926,10 @@ components:
           readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID for connection invitation
-          example: WgWxqztrNooG92RXvxSTWv
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         imageUrl:
           type: string
           description: Optional image URL for connection invitation
@@ -5666,6 +5737,17 @@ components:
           description: As signed attachment, DID Doc associated with DID
           allOf:
           - $ref: '#/components/schemas/AttachDecorator'
+        goal:
+          type: string
+          description: A self-attested string that the receiver may want to display
+            to the user about the context-specific goal of the out-of-band message
+          example: To issue a Faber College Graduate credential
+        goal_code:
+          type: string
+          description: A self-attested code the receiver may want to display to the
+            user or use in automatically deciding what to do with the out-of-band
+            message
+          example: issue-vc
         label:
           type: string
           description: Label for DID exchange request
@@ -6888,6 +6970,17 @@ components:
           description: Optional invitation attachments
           items:
             $ref: '#/components/schemas/AttachmentDef'
+        goal:
+          type: string
+          description: A self-attested string that the receiver may want to display
+            to the user about the context-specific goal of the out-of-band message
+          example: To issue a Faber College Graduate credential
+        goal_code:
+          type: string
+          description: A self-attested code the receiver may want to display to the
+            user or use in automatically deciding what to do with the out-of-band
+            message
+          example: issue-vc
         handshake_protocols:
           type: array
           items:
@@ -6935,6 +7028,17 @@ components:
           - didcomm/aip2;env=rfc19
           items:
             type: string
+        goal:
+          type: string
+          description: A self-attested string that the receiver may want to display
+            to the user about the context-specific goal of the out-of-band message
+          example: To issue a Faber College Graduate credential
+        goal_code:
+          type: string
+          description: A self-attested code the receiver may want to display to the
+            user or use in automatically deciding what to do with the out-of-band
+            message
+          example: issue-vc
         handshake_protocols:
           type: array
           items:
@@ -7153,6 +7257,58 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+    JWSCreate:
+      required:
+      - payload
+      type: object
+      properties:
+        did:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          type: string
+          description: DID of interest
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
+        headers:
+          type: object
+          properties: {}
+        payload:
+          type: object
+          properties: {}
+        verificationMethod:
+          pattern: \w+:(\/?\/?)[^\s]+
+          type: string
+          description: Information used for proof verification
+          example: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+    JWSVerify:
+      type: object
+      properties:
+        jwt:
+          pattern: ^[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*$
+          type: string
+          example: eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+    JWSVerifyResponse:
+      required:
+      - headers
+      - kid
+      - payload
+      - valid
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error text
+        headers:
+          type: object
+          properties: {}
+          description: Headers from verified JWT.
+        kid:
+          type: string
+          description: kid of signer
+        payload:
+          type: object
+          properties: {}
+          description: Payload from verified JWT
+        valid:
+          type: boolean
     Keylist:
       type: object
       properties:
@@ -7920,10 +8076,10 @@ components:
           readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID for connection invitation
-          example: WgWxqztrNooG92RXvxSTWv
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         imageUrl:
           type: string
           description: Optional image URL for connection invitation
@@ -9293,6 +9449,11 @@ components:
           description: Credential specification criteria by format
           allOf:
           - $ref: '#/components/schemas/V20CredFilter'
+        replacement_id:
+          type: string
+          description: Optional identifier used to manage credential replacement
+          nullable: true
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -9693,6 +9854,11 @@ components:
           description: Credential specification criteria by format
           allOf:
           - $ref: '#/components/schemas/V20CredFilter'
+        replacement_id:
+          type: string
+          description: Optional identifier used to manage credential replacement
+          nullable: true
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -9726,6 +9892,11 @@ components:
           description: Credential specification criteria by format
           allOf:
           - $ref: '#/components/schemas/V20CredFilter'
+        replacement_id:
+          type: string
+          description: Optional identifier used to manage credential replacement
+          nullable: true
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         trace:
           type: boolean
           description: Record trace information, based on agent configuration
@@ -9931,6 +10102,11 @@ components:
           description: Credential specification criteria by format
           allOf:
           - $ref: '#/components/schemas/V20CredFilter'
+        replacement_id:
+          type: string
+          description: Optional identifier used to manage credential replacement
+          nullable: true
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         trace:
           type: boolean
           description: Record trace information, based on agent configuration

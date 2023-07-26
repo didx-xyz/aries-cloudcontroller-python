@@ -11,8 +11,8 @@ cd "$(dirname "$0")/../" || exit
 ##########################################################################################
 # Global Defaults and Constants
 ##########################################################################################
-ACA_PY_DOCKER_IMAGE_VERSION=${1:-"py36-1.16-1_0.8.1"}
-ACA_PY_DOCKER_IMAGE_DEFAULT="bcgovimages/aries-cloudagent:${ACA_PY_DOCKER_IMAGE_VERSION}"
+ACA_PY_DOCKER_IMAGE_TAG=${1:-"py3.9-0.9.0"}
+ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/hyperledger/aries-cloudagent-python:${ACA_PY_DOCKER_IMAGE_TAG}"
 
 ACA_PY_ADMIN_PORT="8305"
 ACA_PY_INBOUND_PORT="8307"
@@ -25,7 +25,7 @@ ACA_PY_CMD_OPTIONS=" \
   --admin-insecure-mode \
   --log-level info \
   --auto-provision \
-  --wallet-type indy \
+  --wallet-type askar \
   --wallet-name gen-openapi \
   --wallet-key gen-openapi-key \
   --multitenant \
