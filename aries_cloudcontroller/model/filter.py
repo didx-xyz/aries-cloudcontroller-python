@@ -30,15 +30,19 @@ class Filter(BaseModel):
         type: Type [Optional].
     """
 
-    const: Optional[Dict[str, Any]] = None
-    enum: Optional[List[Dict]] = None
-    exclusive_maximum: Optional[Dict[str, Any]] = Field(None, alias="exclusiveMaximum")
-    exclusive_minimum: Optional[Dict[str, Any]] = Field(None, alias="exclusiveMinimum")
+    const: Optional[Union[str, int, float]] = None
+    enum: Optional[List[Union[str, int, float]]] = None
+    exclusive_maximum: Optional[Union[str, int, float]] = Field(
+        None, alias="exclusiveMaximum"
+    )
+    exclusive_minimum: Optional[Union[str, int, float]] = Field(
+        None, alias="exclusiveMinimum"
+    )
     format: Optional[str] = None
     max_length: Optional[int] = Field(None, alias="maxLength")
-    maximum: Optional[Dict[str, Any]] = None
+    maximum: Optional[Union[str, int, float]] = None
     min_length: Optional[int] = Field(None, alias="minLength")
-    minimum: Optional[Dict[str, Any]] = None
+    minimum: Optional[Union[str, int, float]] = None
     not_: Optional[bool] = Field(None, alias="not")
     pattern: Optional[str] = None
     type: Optional[str] = None
