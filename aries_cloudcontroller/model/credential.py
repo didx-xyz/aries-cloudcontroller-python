@@ -30,7 +30,7 @@ class Credential(BaseModel):
     context: List[Union[str,Dict]] = Field(..., alias="@context")
     credential_subject: Dict[str, Any] = Field(..., alias="credentialSubject")
     issuance_date: str = Field(..., alias="issuanceDate")
-    issuer: Union[str,Dict[str, Any]]
+    issuer: Union[str, Dict[str, Any]]
     type: List[str]
     expiration_date: Optional[str] = Field(None, alias="expirationDate")
     id: Optional[str] = None
