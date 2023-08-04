@@ -25,7 +25,9 @@ class AttachDecoratorData(BaseModel):
     """
 
     base64: Optional[str] = None
-    json_: Optional[Dict[str, Any]] = Field(None, alias="json")
+    json_: Optional[Union[Dict[str, Any], List[Dict[str, Any]]]] = Field(
+        None, alias="json"
+    )
     jws: Optional[AttachDecoratorDataJWS] = None
     links: Optional[List[str]] = None
     sha256: Optional[str] = None
