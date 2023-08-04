@@ -145,6 +145,7 @@ Currently the following top-level APIs are available in the client. Each api map
 - `revocation`
 - `schema`
 - `server`
+- `settings`
 - `trustping`
 - `wallet`
 
