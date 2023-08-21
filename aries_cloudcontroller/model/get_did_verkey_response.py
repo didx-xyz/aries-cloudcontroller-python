@@ -21,21 +21,6 @@ class GetDIDVerkeyResponse(BaseModel):
 
     verkey: Optional[str] = None
 
-    @validator("verkey")
-    def verkey_pattern(cls, value):
-        # Property is optional
-        if value is None:
-            return
-
-        pattern = (
-            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
-        )
-        if not re.match(pattern, value):
-            raise ValueError(
-                f"Value of verkey does not match regex pattern ('{pattern}')"
-            )
-        return value
-
     class Config:
         allow_population_by_field_name = True
 
