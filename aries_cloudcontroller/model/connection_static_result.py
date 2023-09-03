@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.conn_record import ConnRecord
 
 
@@ -32,7 +32,8 @@ class ConnectionStaticResult(BaseModel):
     their_did: str
     their_verkey: str
 
-    @validator("my_did")
+    @field_validator("my_did")
+    @classmethod
     def my_did_pattern(cls, value):
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
@@ -41,7 +42,8 @@ class ConnectionStaticResult(BaseModel):
             )
         return value
 
-    @validator("my_endpoint")
+    @field_validator("my_endpoint")
+    @classmethod
     def my_endpoint_pattern(cls, value):
         pattern = r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$"
         if not re.match(pattern, value):
@@ -50,7 +52,8 @@ class ConnectionStaticResult(BaseModel):
             )
         return value
 
-    @validator("my_verkey")
+    @field_validator("my_verkey")
+    @classmethod
     def my_verkey_pattern(cls, value):
         pattern = (
             r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
@@ -61,7 +64,8 @@ class ConnectionStaticResult(BaseModel):
             )
         return value
 
-    @validator("their_did")
+    @field_validator("their_did")
+    @classmethod
     def their_did_pattern(cls, value):
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
@@ -70,7 +74,8 @@ class ConnectionStaticResult(BaseModel):
             )
         return value
 
-    @validator("their_verkey")
+    @field_validator("their_verkey")
+    @classmethod
     def their_verkey_pattern(cls, value):
         pattern = (
             r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
@@ -80,9 +85,7 @@ class ConnectionStaticResult(BaseModel):
                 f"Value of their_verkey does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 ConnectionStaticResult.update_forward_refs()

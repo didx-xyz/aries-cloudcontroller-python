@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class KeylistUpdateRule(BaseModel):
@@ -23,7 +23,8 @@ class KeylistUpdateRule(BaseModel):
     action: Literal["add", "remove"]
     recipient_key: str
 
-    @validator("recipient_key")
+    @field_validator("recipient_key")
+    @classmethod
     def recipient_key_pattern(cls, value):
         pattern = r"^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$"
         if not re.match(pattern, value):
@@ -31,9 +32,7 @@ class KeylistUpdateRule(BaseModel):
                 f"Value of recipient_key does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 KeylistUpdateRule.update_forward_refs()

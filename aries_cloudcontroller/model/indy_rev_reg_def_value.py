@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_rev_reg_def_value_public_keys import (
     IndyRevRegDefValuePublicKeys,
 )
@@ -36,7 +36,8 @@ class IndyRevRegDefValue(BaseModel):
     tails_hash: Optional[str] = Field(None, alias="tailsHash")
     tails_location: Optional[str] = Field(None, alias="tailsLocation")
 
-    @validator("max_cred_num")
+    @field_validator("max_cred_num")
+    @classmethod
     def max_cred_num_min(cls, value):
         # Property is optional
         if value is None:
@@ -46,7 +47,8 @@ class IndyRevRegDefValue(BaseModel):
             raise ValueError(f"max_cred_num must be greater than 1, currently {value}")
         return value
 
-    @validator("tails_hash")
+    @field_validator("tails_hash")
+    @classmethod
     def tails_hash_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -60,9 +62,7 @@ class IndyRevRegDefValue(BaseModel):
                 f"Value of tails_hash does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyRevRegDefValue.update_forward_refs()

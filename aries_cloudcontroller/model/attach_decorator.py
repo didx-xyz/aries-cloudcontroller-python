@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.attach_decorator_data import AttachDecoratorData
 
 
@@ -34,7 +34,8 @@ class AttachDecorator(BaseModel):
     lastmod_time: Optional[str] = None
     mime_type: Optional[str] = Field(None, alias="mime-type")
 
-    @validator("lastmod_time")
+    @field_validator("lastmod_time")
+    @classmethod
     def lastmod_time_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -46,9 +47,7 @@ class AttachDecorator(BaseModel):
                 f"Value of lastmod_time does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 AttachDecorator.update_forward_refs()

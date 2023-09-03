@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_rev_reg_def import IndyRevRegDef
 from aries_cloudcontroller.model.indy_rev_reg_entry import IndyRevRegEntry
 
@@ -55,7 +55,8 @@ class IssuerRevRegRecord(BaseModel):
     tails_public_uri: Optional[str] = None
     updated_at: Optional[str] = None
 
-    @validator("created_at")
+    @field_validator("created_at")
+    @classmethod
     def created_at_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -68,7 +69,8 @@ class IssuerRevRegRecord(BaseModel):
             )
         return value
 
-    @validator("cred_def_id")
+    @field_validator("cred_def_id")
+    @classmethod
     def cred_def_id_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -81,7 +83,8 @@ class IssuerRevRegRecord(BaseModel):
             )
         return value
 
-    @validator("issuer_did")
+    @field_validator("issuer_did")
+    @classmethod
     def issuer_did_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -94,7 +97,8 @@ class IssuerRevRegRecord(BaseModel):
             )
         return value
 
-    @validator("revoc_reg_id")
+    @field_validator("revoc_reg_id")
+    @classmethod
     def revoc_reg_id_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -107,7 +111,8 @@ class IssuerRevRegRecord(BaseModel):
             )
         return value
 
-    @validator("tails_hash")
+    @field_validator("tails_hash")
+    @classmethod
     def tails_hash_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -122,7 +127,8 @@ class IssuerRevRegRecord(BaseModel):
             )
         return value
 
-    @validator("updated_at")
+    @field_validator("updated_at")
+    @classmethod
     def updated_at_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -134,9 +140,7 @@ class IssuerRevRegRecord(BaseModel):
                 f"Value of updated_at does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IssuerRevRegRecord.update_forward_refs()

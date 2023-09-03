@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class GetDIDEndpointResponse(BaseModel):
@@ -21,7 +21,8 @@ class GetDIDEndpointResponse(BaseModel):
 
     endpoint: Optional[str] = None
 
-    @validator("endpoint")
+    @field_validator("endpoint")
+    @classmethod
     def endpoint_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -33,9 +34,7 @@ class GetDIDEndpointResponse(BaseModel):
                 f"Value of endpoint does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 GetDIDEndpointResponse.update_forward_refs()

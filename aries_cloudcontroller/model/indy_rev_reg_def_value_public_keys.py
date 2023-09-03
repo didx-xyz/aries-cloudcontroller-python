@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import ConfigDict, AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_rev_reg_def_value_public_keys_accum_key import (
     IndyRevRegDefValuePublicKeysAccumKey,
 )
@@ -25,9 +25,7 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
     accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = Field(
         None, alias="accumKey"
     )
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyRevRegDefValuePublicKeys.update_forward_refs()

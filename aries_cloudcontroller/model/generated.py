@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class Generated(BaseModel):
@@ -25,7 +25,8 @@ class Generated(BaseModel):
     number: Optional[str] = None
     remainder: Optional[str] = None
 
-    @validator("master_secret")
+    @field_validator("master_secret")
+    @classmethod
     def master_secret_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -38,7 +39,8 @@ class Generated(BaseModel):
             )
         return value
 
-    @validator("number")
+    @field_validator("number")
+    @classmethod
     def number_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -51,7 +53,8 @@ class Generated(BaseModel):
             )
         return value
 
-    @validator("remainder")
+    @field_validator("remainder")
+    @classmethod
     def remainder_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -63,9 +66,7 @@ class Generated(BaseModel):
                 f"Value of remainder does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 Generated.update_forward_refs()

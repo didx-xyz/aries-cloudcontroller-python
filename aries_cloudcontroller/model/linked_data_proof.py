@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class LinkedDataProof(BaseModel):
@@ -37,7 +37,8 @@ class LinkedDataProof(BaseModel):
     nonce: Optional[str] = None
     proof_value: Optional[str] = Field(None, alias="proofValue")
 
-    @validator("created")
+    @field_validator("created")
+    @classmethod
     def created_pattern(cls, value):
         pattern = r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$"
         if not re.match(pattern, value):
@@ -46,7 +47,8 @@ class LinkedDataProof(BaseModel):
             )
         return value
 
-    @validator("domain")
+    @field_validator("domain")
+    @classmethod
     def domain_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -59,7 +61,8 @@ class LinkedDataProof(BaseModel):
             )
         return value
 
-    @validator("verification_method")
+    @field_validator("verification_method")
+    @classmethod
     def verification_method_pattern(cls, value):
         pattern = r"\w+:(\\/?\\/?)[^\s]+"
         if not re.match(pattern, value):
@@ -67,9 +70,7 @@ class LinkedDataProof(BaseModel):
                 f"Value of verification_method does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 LinkedDataProof.update_forward_refs()

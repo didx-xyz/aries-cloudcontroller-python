@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.cred_def_value import CredDefValue
 
 
@@ -32,7 +32,8 @@ class CredentialDefinition(BaseModel):
     value: Optional[CredDefValue] = None
     ver: Optional[str] = None
 
-    @validator("id")
+    @field_validator("id")
+    @classmethod
     def id_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -43,7 +44,8 @@ class CredentialDefinition(BaseModel):
             raise ValueError(f"Value of id does not match regex pattern ('{pattern}')")
         return value
 
-    @validator("ver")
+    @field_validator("ver")
+    @classmethod
     def ver_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -53,9 +55,7 @@ class CredentialDefinition(BaseModel):
         if not re.match(pattern, value):
             raise ValueError(f"Value of ver does not match regex pattern ('{pattern}')")
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 CredentialDefinition.update_forward_refs()

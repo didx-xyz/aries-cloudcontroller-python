@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_proof_req_attr_spec import IndyProofReqAttrSpec
 from aries_cloudcontroller.model.indy_proof_req_pred_spec import IndyProofReqPredSpec
 from aries_cloudcontroller.model.indy_proof_request_non_revoked import (
@@ -36,7 +36,8 @@ class IndyProofRequest(BaseModel):
     nonce: Optional[str] = None
     version: Optional[str] = None
 
-    @validator("nonce")
+    @field_validator("nonce")
+    @classmethod
     def nonce_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -49,7 +50,8 @@ class IndyProofRequest(BaseModel):
             )
         return value
 
-    @validator("version")
+    @field_validator("version")
+    @classmethod
     def version_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -61,9 +63,7 @@ class IndyProofRequest(BaseModel):
                 f"Value of version does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyProofRequest.update_forward_refs()

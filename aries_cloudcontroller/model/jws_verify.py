@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class JWSVerify(BaseModel):
@@ -21,7 +21,8 @@ class JWSVerify(BaseModel):
 
     jwt: Optional[str] = None
 
-    @validator("jwt")
+    @field_validator("jwt")
+    @classmethod
     def jwt_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -31,9 +32,7 @@ class JWSVerify(BaseModel):
         if not re.match(pattern, value):
             raise ValueError(f"Value of jwt does not match regex pattern ('{pattern}')")
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 JWSVerify.update_forward_refs()

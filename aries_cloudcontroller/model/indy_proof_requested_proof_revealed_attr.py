@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class IndyProofRequestedProofRevealedAttr(BaseModel):
@@ -25,7 +25,8 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
     raw: Optional[str] = None
     sub_proof_index: Optional[int] = None
 
-    @validator("encoded")
+    @field_validator("encoded")
+    @classmethod
     def encoded_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -37,9 +38,7 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
                 f"Value of encoded does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyProofRequestedProofRevealedAttr.update_forward_refs()

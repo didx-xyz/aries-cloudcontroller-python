@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class RevRegCreateRequest(BaseModel):
@@ -23,7 +23,8 @@ class RevRegCreateRequest(BaseModel):
     credential_definition_id: Optional[str] = None
     max_cred_num: Optional[int] = None
 
-    @validator("credential_definition_id")
+    @field_validator("credential_definition_id")
+    @classmethod
     def credential_definition_id_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -36,7 +37,8 @@ class RevRegCreateRequest(BaseModel):
             )
         return value
 
-    @validator("max_cred_num")
+    @field_validator("max_cred_num")
+    @classmethod
     def max_cred_num_max(cls, value):
         # Property is optional
         if value is None:
@@ -46,7 +48,8 @@ class RevRegCreateRequest(BaseModel):
             raise ValueError(f"max_cred_num must be less than 32768, currently {value}")
         return value
 
-    @validator("max_cred_num")
+    @field_validator("max_cred_num")
+    @classmethod
     def max_cred_num_min(cls, value):
         # Property is optional
         if value is None:
@@ -55,9 +58,7 @@ class RevRegCreateRequest(BaseModel):
         if value < 4:
             raise ValueError(f"max_cred_num must be greater than 4, currently {value}")
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 RevRegCreateRequest.update_forward_refs()

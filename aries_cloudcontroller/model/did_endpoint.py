@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class DIDEndpoint(BaseModel):
@@ -23,14 +23,16 @@ class DIDEndpoint(BaseModel):
     did: str
     endpoint: Optional[str] = None
 
-    @validator("did")
+    @field_validator("did")
+    @classmethod
     def did_pattern(cls, value):
         pattern = r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$"
         if not re.match(pattern, value):
             raise ValueError(f"Value of did does not match regex pattern ('{pattern}')")
         return value
 
-    @validator("endpoint")
+    @field_validator("endpoint")
+    @classmethod
     def endpoint_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -42,9 +44,7 @@ class DIDEndpoint(BaseModel):
                 f"Value of endpoint does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 DIDEndpoint.update_forward_refs()

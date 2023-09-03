@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.linked_data_proof import LinkedDataProof
 
 
@@ -36,7 +36,8 @@ class Credential(BaseModel):
     id: Optional[str] = None
     proof: Optional[LinkedDataProof] = None
 
-    @validator("expiration_date")
+    @field_validator("expiration_date")
+    @classmethod
     def expiration_date_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -49,7 +50,8 @@ class Credential(BaseModel):
             )
         return value
 
-    @validator("id")
+    @field_validator("id")
+    @classmethod
     def id_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -60,7 +62,8 @@ class Credential(BaseModel):
             raise ValueError(f"Value of id does not match regex pattern ('{pattern}')")
         return value
 
-    @validator("issuance_date")
+    @field_validator("issuance_date")
+    @classmethod
     def issuance_date_pattern(cls, value):
         pattern = r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$"
         if not re.match(pattern, value):
@@ -68,9 +71,7 @@ class Credential(BaseModel):
                 f"Value of issuance_date does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 Credential.update_forward_refs()

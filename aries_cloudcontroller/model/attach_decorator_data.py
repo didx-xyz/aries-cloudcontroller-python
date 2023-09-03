@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.attach_decorator_data_jws import AttachDecoratorDataJWS
 
 
@@ -32,7 +32,8 @@ class AttachDecoratorData(BaseModel):
     links: Optional[List[str]] = None
     sha256: Optional[str] = None
 
-    @validator("base64")
+    @field_validator("base64")
+    @classmethod
     def base64_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -45,7 +46,8 @@ class AttachDecoratorData(BaseModel):
             )
         return value
 
-    @validator("sha256")
+    @field_validator("sha256")
+    @classmethod
     def sha256_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -57,9 +59,7 @@ class AttachDecoratorData(BaseModel):
                 f"Value of sha256 does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 AttachDecoratorData.update_forward_refs()

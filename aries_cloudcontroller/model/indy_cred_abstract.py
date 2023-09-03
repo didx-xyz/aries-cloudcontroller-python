@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.indy_key_correctness_proof import (
     IndyKeyCorrectnessProof,
 )
@@ -30,7 +30,8 @@ class IndyCredAbstract(BaseModel):
     nonce: str
     schema_id: str
 
-    @validator("cred_def_id")
+    @field_validator("cred_def_id")
+    @classmethod
     def cred_def_id_pattern(cls, value):
         pattern = r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$"
         if not re.match(pattern, value):
@@ -39,7 +40,8 @@ class IndyCredAbstract(BaseModel):
             )
         return value
 
-    @validator("nonce")
+    @field_validator("nonce")
+    @classmethod
     def nonce_pattern(cls, value):
         pattern = r"^[0-9]*$"
         if not re.match(pattern, value):
@@ -48,7 +50,8 @@ class IndyCredAbstract(BaseModel):
             )
         return value
 
-    @validator("schema_id")
+    @field_validator("schema_id")
+    @classmethod
     def schema_id_pattern(cls, value):
         pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$"
         if not re.match(pattern, value):
@@ -56,9 +59,7 @@ class IndyCredAbstract(BaseModel):
                 f"Value of schema_id does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyCredAbstract.update_forward_refs()

@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import ConfigDict, AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.aml_record import AMLRecord
 from aries_cloudcontroller.model.taa_acceptance import TAAAcceptance
 from aries_cloudcontroller.model.taa_record import TAARecord
@@ -29,9 +29,7 @@ class TAAInfo(BaseModel):
     taa_accepted: Optional[TAAAcceptance] = None
     taa_record: Optional[TAARecord] = None
     taa_required: Optional[bool] = None
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 TAAInfo.update_forward_refs()

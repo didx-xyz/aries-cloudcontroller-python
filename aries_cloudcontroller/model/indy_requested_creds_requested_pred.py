@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class IndyRequestedCredsRequestedPred(BaseModel):
@@ -23,7 +23,8 @@ class IndyRequestedCredsRequestedPred(BaseModel):
     cred_id: str
     timestamp: Optional[int] = None
 
-    @validator("timestamp")
+    @field_validator("timestamp")
+    @classmethod
     def timestamp_max(cls, value):
         # Property is optional
         if value is None:
@@ -35,7 +36,8 @@ class IndyRequestedCredsRequestedPred(BaseModel):
             )
         return value
 
-    @validator("timestamp")
+    @field_validator("timestamp")
+    @classmethod
     def timestamp_min(cls, value):
         # Property is optional
         if value is None:
@@ -44,9 +46,7 @@ class IndyRequestedCredsRequestedPred(BaseModel):
         if value < 0:
             raise ValueError(f"timestamp must be greater than 0, currently {value}")
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyRequestedCredsRequestedPred.update_forward_refs()

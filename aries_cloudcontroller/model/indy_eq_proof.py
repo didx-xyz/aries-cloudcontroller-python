@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class IndyEQProof(BaseModel):
@@ -31,7 +31,8 @@ class IndyEQProof(BaseModel):
     revealed_attrs: Optional[Dict[str, str]] = None
     v: Optional[str] = None
 
-    @validator("a_prime")
+    @field_validator("a_prime")
+    @classmethod
     def a_prime_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -44,7 +45,8 @@ class IndyEQProof(BaseModel):
             )
         return value
 
-    @validator("e")
+    @field_validator("e")
+    @classmethod
     def e_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -55,7 +57,8 @@ class IndyEQProof(BaseModel):
             raise ValueError(f"Value of e does not match regex pattern ('{pattern}')")
         return value
 
-    @validator("m2")
+    @field_validator("m2")
+    @classmethod
     def m2_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -66,7 +69,8 @@ class IndyEQProof(BaseModel):
             raise ValueError(f"Value of m2 does not match regex pattern ('{pattern}')")
         return value
 
-    @validator("v")
+    @field_validator("v")
+    @classmethod
     def v_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -76,9 +80,7 @@ class IndyEQProof(BaseModel):
         if not re.match(pattern, value):
             raise ValueError(f"Value of v does not match regex pattern ('{pattern}')")
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyEQProof.update_forward_refs()

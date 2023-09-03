@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import ConfigDict, AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.v20_cred_ex_record import V20CredExRecord
 from aries_cloudcontroller.model.v20_cred_ex_record_indy import V20CredExRecordIndy
 from aries_cloudcontroller.model.v20_cred_ex_record_ld_proof import (
@@ -29,9 +29,7 @@ class V20CredExRecordDetail(BaseModel):
     cred_ex_record: Optional[V20CredExRecord] = None
     indy: Optional[V20CredExRecordIndy] = None
     ld_proof: Optional[V20CredExRecordLDProof] = None
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 V20CredExRecordDetail.update_forward_refs()

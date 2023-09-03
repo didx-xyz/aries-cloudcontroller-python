@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.generated import Generated
 
 
@@ -30,7 +30,8 @@ class CredDefValuePrimary(BaseModel):
     s: Optional[str] = None
     z: Optional[str] = None
 
-    @validator("n")
+    @field_validator("n")
+    @classmethod
     def n_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -41,7 +42,8 @@ class CredDefValuePrimary(BaseModel):
             raise ValueError(f"Value of n does not match regex pattern ('{pattern}')")
         return value
 
-    @validator("rctxt")
+    @field_validator("rctxt")
+    @classmethod
     def rctxt_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -54,7 +56,8 @@ class CredDefValuePrimary(BaseModel):
             )
         return value
 
-    @validator("s")
+    @field_validator("s")
+    @classmethod
     def s_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -65,7 +68,8 @@ class CredDefValuePrimary(BaseModel):
             raise ValueError(f"Value of s does not match regex pattern ('{pattern}')")
         return value
 
-    @validator("z")
+    @field_validator("z")
+    @classmethod
     def z_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -75,9 +79,7 @@ class CredDefValuePrimary(BaseModel):
         if not re.match(pattern, value):
             raise ValueError(f"Value of z does not match regex pattern ('{pattern}')")
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 CredDefValuePrimary.update_forward_refs()

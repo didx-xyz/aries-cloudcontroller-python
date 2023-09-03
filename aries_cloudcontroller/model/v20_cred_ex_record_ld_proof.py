@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class V20CredExRecordLDProof(BaseModel):
@@ -31,7 +31,8 @@ class V20CredExRecordLDProof(BaseModel):
     state: Optional[str] = None
     updated_at: Optional[str] = None
 
-    @validator("created_at")
+    @field_validator("created_at")
+    @classmethod
     def created_at_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -44,7 +45,8 @@ class V20CredExRecordLDProof(BaseModel):
             )
         return value
 
-    @validator("updated_at")
+    @field_validator("updated_at")
+    @classmethod
     def updated_at_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -56,9 +58,7 @@ class V20CredExRecordLDProof(BaseModel):
                 f"Value of updated_at does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 V20CredExRecordLDProof.update_forward_refs()

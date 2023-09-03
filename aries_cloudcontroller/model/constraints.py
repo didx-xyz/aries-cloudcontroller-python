@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import ConfigDict, AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.dif_field import DIFField
 from aries_cloudcontroller.model.dif_holder import DIFHolder
 
@@ -34,9 +34,7 @@ class Constraints(BaseModel):
     status_revoked: Optional[Literal["required", "allowed", "disallowed"]] = None
     status_suspended: Optional[Literal["required", "allowed", "disallowed"]] = None
     subject_is_issuer: Optional[Literal["required", "preferred"]] = None
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 Constraints.update_forward_refs()

@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.credential_preview import CredentialPreview
 
 
@@ -40,7 +40,8 @@ class V10CredentialCreate(BaseModel):
     schema_version: Optional[str] = None
     trace: Optional[bool] = None
 
-    @validator("cred_def_id")
+    @field_validator("cred_def_id")
+    @classmethod
     def cred_def_id_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -53,7 +54,8 @@ class V10CredentialCreate(BaseModel):
             )
         return value
 
-    @validator("issuer_did")
+    @field_validator("issuer_did")
+    @classmethod
     def issuer_did_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -66,7 +68,8 @@ class V10CredentialCreate(BaseModel):
             )
         return value
 
-    @validator("schema_id")
+    @field_validator("schema_id")
+    @classmethod
     def schema_id_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -79,7 +82,8 @@ class V10CredentialCreate(BaseModel):
             )
         return value
 
-    @validator("schema_issuer_did")
+    @field_validator("schema_issuer_did")
+    @classmethod
     def schema_issuer_did_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -92,7 +96,8 @@ class V10CredentialCreate(BaseModel):
             )
         return value
 
-    @validator("schema_version")
+    @field_validator("schema_version")
+    @classmethod
     def schema_version_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -104,9 +109,7 @@ class V10CredentialCreate(BaseModel):
                 f"Value of schema_version does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 V10CredentialCreate.update_forward_refs()

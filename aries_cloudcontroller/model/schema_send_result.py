@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.model_schema import ModelSchema
 
 
@@ -24,7 +24,8 @@ class SchemaSendResult(BaseModel):
     schema_id: str
     schema_: Optional[ModelSchema] = Field(None, alias="schema")
 
-    @validator("schema_id")
+    @field_validator("schema_id")
+    @classmethod
     def schema_id_pattern(cls, value):
         pattern = r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$"
         if not re.match(pattern, value):
@@ -32,9 +33,7 @@ class SchemaSendResult(BaseModel):
                 f"Value of schema_id does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 SchemaSendResult.update_forward_refs()

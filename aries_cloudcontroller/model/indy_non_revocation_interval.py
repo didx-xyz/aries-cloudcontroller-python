@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 
 
 class IndyNonRevocationInterval(BaseModel):
@@ -23,7 +23,8 @@ class IndyNonRevocationInterval(BaseModel):
     from_: Optional[int] = Field(None, alias="from")
     to: Optional[int] = None
 
-    @validator("from_")
+    @field_validator("from_")
+    @classmethod
     def from__max(cls, value):
         # Property is optional
         if value is None:
@@ -35,7 +36,8 @@ class IndyNonRevocationInterval(BaseModel):
             )
         return value
 
-    @validator("from_")
+    @field_validator("from_")
+    @classmethod
     def from__min(cls, value):
         # Property is optional
         if value is None:
@@ -45,7 +47,8 @@ class IndyNonRevocationInterval(BaseModel):
             raise ValueError(f"from_ must be greater than 0, currently {value}")
         return value
 
-    @validator("to")
+    @field_validator("to")
+    @classmethod
     def to_max(cls, value):
         # Property is optional
         if value is None:
@@ -57,7 +60,8 @@ class IndyNonRevocationInterval(BaseModel):
             )
         return value
 
-    @validator("to")
+    @field_validator("to")
+    @classmethod
     def to_min(cls, value):
         # Property is optional
         if value is None:
@@ -66,9 +70,7 @@ class IndyNonRevocationInterval(BaseModel):
         if value < 0:
             raise ValueError(f"to must be greater than 0, currently {value}")
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 IndyNonRevocationInterval.update_forward_refs()

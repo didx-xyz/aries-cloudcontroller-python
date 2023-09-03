@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.v20_pres import V20Pres
 from aries_cloudcontroller.model.v20_pres_ex_record_by_format import (
     V20PresExRecordByFormat,
@@ -73,7 +73,8 @@ class V20PresExRecord(BaseModel):
     verified: Optional[Literal["true", "false"]] = None
     verified_msgs: Optional[List[str]] = None
 
-    @validator("created_at")
+    @field_validator("created_at")
+    @classmethod
     def created_at_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -86,7 +87,8 @@ class V20PresExRecord(BaseModel):
             )
         return value
 
-    @validator("updated_at")
+    @field_validator("updated_at")
+    @classmethod
     def updated_at_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -98,9 +100,7 @@ class V20PresExRecord(BaseModel):
                 f"Value of updated_at does not match regex pattern ('{pattern}')"
             )
         return value
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 V20PresExRecord.update_forward_refs()

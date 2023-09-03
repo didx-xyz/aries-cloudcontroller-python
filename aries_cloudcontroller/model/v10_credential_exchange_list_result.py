@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import ConfigDict, AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.v10_credential_exchange import V10CredentialExchange
 
 
@@ -21,9 +21,7 @@ class V10CredentialExchangeListResult(BaseModel):
     """
 
     results: Optional[List[V10CredentialExchange]] = None
-
-    class Config:
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 V10CredentialExchangeListResult.update_forward_refs()
