@@ -111,5 +111,5 @@ def test_valid():
 
 def test_invalid():
     for key, value in invalid_pres_ex_record.items():
-        with pytest.raises(pydantic.error_wrappers.ValidationError):
+        with pytest.raises(pydantic.ValidationError):
             V20PresExRecord(**{key: value})
