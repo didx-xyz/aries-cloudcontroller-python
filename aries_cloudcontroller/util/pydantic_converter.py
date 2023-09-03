@@ -8,7 +8,7 @@ from dataclasses import asdict, is_dataclass
 from typing import Any
 
 from pydantic import BaseModel
-from pydantic.json import ENCODERS_BY_TYPE
+from pydantic.deprecated.json import ENCODERS_BY_TYPE
 from uplink.converters.interfaces import Converter
 from uplink.converters.pydantic_ import PydanticConverter as InitialConverter
 from uplink.converters.pydantic_ import _PydanticResponseBody as _InitialResponseBody
