@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, field_validator, Field, Extra  # noqa: F401
 from aries_cloudcontroller.model.invitation_message import InvitationMessage
 from aries_cloudcontroller.model.service_decorator import ServiceDecorator
 
@@ -53,7 +53,7 @@ class OobRecord(BaseModel):
     trace: Optional[bool] = None
     updated_at: Optional[str] = None
 
-    @validator("created_at")
+    @field_validator("created_at")
     def created_at_pattern(cls, value):
         # Property is optional
         if value is None:
@@ -66,7 +66,7 @@ class OobRecord(BaseModel):
             )
         return value
 
-    @validator("updated_at")
+    @field_validator("updated_at")
     def updated_at_pattern(cls, value):
         # Property is optional
         if value is None:

@@ -7,7 +7,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, field_validator, Field, Extra  # noqa: F401
 
 
 class IndyPresPredSpec(BaseModel):
@@ -27,7 +27,7 @@ class IndyPresPredSpec(BaseModel):
     threshold: int
     cred_def_id: Optional[str] = None
 
-    @validator("cred_def_id")
+    @field_validator("cred_def_id")
     def cred_def_id_pattern(cls, value):
         # Property is optional
         if value is None:
