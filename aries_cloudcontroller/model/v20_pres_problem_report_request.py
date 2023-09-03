@@ -23,4 +23,4 @@ class V20PresProblemReportRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresProblemReportRequest.update_forward_refs()
+V20PresProblemReportRequest.model_rebuild()

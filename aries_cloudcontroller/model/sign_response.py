@@ -25,4 +25,4 @@ class SignResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SignResponse.update_forward_refs()
+SignResponse.model_rebuild()

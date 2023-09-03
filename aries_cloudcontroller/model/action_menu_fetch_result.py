@@ -24,4 +24,4 @@ class ActionMenuFetchResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ActionMenuFetchResult.update_forward_refs()
+ActionMenuFetchResult.model_rebuild()

@@ -28,4 +28,4 @@ class DIDCreate(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIDCreate.update_forward_refs()
+DIDCreate.model_rebuild()

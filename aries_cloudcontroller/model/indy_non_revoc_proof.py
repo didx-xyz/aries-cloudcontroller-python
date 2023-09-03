@@ -25,4 +25,4 @@ class IndyNonRevocProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyNonRevocProof.update_forward_refs()
+IndyNonRevocProof.model_rebuild()

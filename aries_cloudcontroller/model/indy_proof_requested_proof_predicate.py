@@ -23,4 +23,4 @@ class IndyProofRequestedProofPredicate(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofRequestedProofPredicate.update_forward_refs()
+IndyProofRequestedProofPredicate.model_rebuild()

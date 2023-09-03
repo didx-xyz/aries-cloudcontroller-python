@@ -29,4 +29,4 @@ class LDProofVCDetail(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-LDProofVCDetail.update_forward_refs()
+LDProofVCDetail.model_rebuild()

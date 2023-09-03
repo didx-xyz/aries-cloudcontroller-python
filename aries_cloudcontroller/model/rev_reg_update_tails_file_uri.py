@@ -23,4 +23,4 @@ class RevRegUpdateTailsFileUri(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RevRegUpdateTailsFileUri.update_forward_refs()
+RevRegUpdateTailsFileUri.model_rebuild()

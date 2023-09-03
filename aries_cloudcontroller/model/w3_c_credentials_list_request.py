@@ -39,4 +39,4 @@ class W3CCredentialsListRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-W3CCredentialsListRequest.update_forward_refs()
+W3CCredentialsListRequest.model_rebuild()

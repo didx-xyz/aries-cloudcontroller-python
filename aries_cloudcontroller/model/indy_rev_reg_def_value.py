@@ -65,4 +65,4 @@ class IndyRevRegDefValue(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyRevRegDefValue.update_forward_refs()
+IndyRevRegDefValue.model_rebuild()

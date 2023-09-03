@@ -23,4 +23,4 @@ class AdminStatusReadiness(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AdminStatusReadiness.update_forward_refs()
+AdminStatusReadiness.model_rebuild()

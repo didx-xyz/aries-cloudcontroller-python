@@ -35,4 +35,4 @@ class JWSVerify(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-JWSVerify.update_forward_refs()
+JWSVerify.model_rebuild()

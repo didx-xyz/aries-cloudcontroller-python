@@ -27,4 +27,4 @@ class TxnOrPublishRevocationsResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TxnOrPublishRevocationsResult.update_forward_refs()
+TxnOrPublishRevocationsResult.model_rebuild()

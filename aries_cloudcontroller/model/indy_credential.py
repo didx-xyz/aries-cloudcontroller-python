@@ -72,4 +72,4 @@ class IndyCredential(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyCredential.update_forward_refs()
+IndyCredential.model_rebuild()

@@ -23,4 +23,4 @@ class AdminConfig(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AdminConfig.update_forward_refs()
+AdminConfig.model_rebuild()

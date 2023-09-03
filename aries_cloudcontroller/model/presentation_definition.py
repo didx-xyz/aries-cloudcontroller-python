@@ -48,4 +48,4 @@ class PresentationDefinition(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-PresentationDefinition.update_forward_refs()
+PresentationDefinition.model_rebuild()

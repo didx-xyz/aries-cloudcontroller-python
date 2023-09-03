@@ -28,4 +28,4 @@ class Disclose(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Disclose.update_forward_refs()
+Disclose.model_rebuild()

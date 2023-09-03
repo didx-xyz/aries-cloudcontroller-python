@@ -95,4 +95,4 @@ class IndyProofIdentifier(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofIdentifier.update_forward_refs()
+IndyProofIdentifier.model_rebuild()

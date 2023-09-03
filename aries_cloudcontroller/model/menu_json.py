@@ -30,4 +30,4 @@ class MenuJson(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MenuJson.update_forward_refs()
+MenuJson.model_rebuild()

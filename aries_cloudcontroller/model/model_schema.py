@@ -82,4 +82,4 @@ class ModelSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ModelSchema.update_forward_refs()
+ModelSchema.model_rebuild()

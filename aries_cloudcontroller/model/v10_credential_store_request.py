@@ -23,4 +23,4 @@ class V10CredentialStoreRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialStoreRequest.update_forward_refs()
+V10CredentialStoreRequest.model_rebuild()

@@ -24,4 +24,4 @@ class WalletList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-WalletList.update_forward_refs()
+WalletList.model_rebuild()

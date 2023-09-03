@@ -27,4 +27,4 @@ class ServiceDecorator(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ServiceDecorator.update_forward_refs()
+ServiceDecorator.model_rebuild()

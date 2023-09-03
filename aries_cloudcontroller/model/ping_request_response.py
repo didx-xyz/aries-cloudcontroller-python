@@ -23,4 +23,4 @@ class PingRequestResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-PingRequestResponse.update_forward_refs()
+PingRequestResponse.model_rebuild()

@@ -24,4 +24,4 @@ class DIDList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIDList.update_forward_refs()
+DIDList.model_rebuild()

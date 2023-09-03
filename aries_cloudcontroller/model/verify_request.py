@@ -26,4 +26,4 @@ class VerifyRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-VerifyRequest.update_forward_refs()
+VerifyRequest.model_rebuild()

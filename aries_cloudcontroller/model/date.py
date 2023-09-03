@@ -23,4 +23,4 @@ class Date(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Date.update_forward_refs()
+Date.model_rebuild()

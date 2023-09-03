@@ -24,4 +24,4 @@ class ConnectionList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ConnectionList.update_forward_refs()
+ConnectionList.model_rebuild()

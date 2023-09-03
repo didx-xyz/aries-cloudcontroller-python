@@ -109,4 +109,4 @@ class IssuerCredRevRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IssuerCredRevRecord.update_forward_refs()
+IssuerCredRevRecord.model_rebuild()

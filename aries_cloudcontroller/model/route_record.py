@@ -65,4 +65,4 @@ class RouteRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RouteRecord.update_forward_refs()
+RouteRecord.model_rebuild()

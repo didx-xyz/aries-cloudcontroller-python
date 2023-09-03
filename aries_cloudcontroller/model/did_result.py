@@ -24,4 +24,4 @@ class DIDResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIDResult.update_forward_refs()
+DIDResult.model_rebuild()

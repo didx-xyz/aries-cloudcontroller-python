@@ -32,4 +32,4 @@ class IndyProofReqAttrSpec(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofReqAttrSpec.update_forward_refs()
+IndyProofReqAttrSpec.model_rebuild()

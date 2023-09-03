@@ -25,4 +25,4 @@ class MediationCreateRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MediationCreateRequest.update_forward_refs()
+MediationCreateRequest.model_rebuild()

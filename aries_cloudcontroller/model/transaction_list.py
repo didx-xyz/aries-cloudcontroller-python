@@ -24,4 +24,4 @@ class TransactionList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TransactionList.update_forward_refs()
+TransactionList.model_rebuild()

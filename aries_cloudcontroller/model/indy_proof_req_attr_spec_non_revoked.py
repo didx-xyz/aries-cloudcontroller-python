@@ -73,4 +73,4 @@ class IndyProofReqAttrSpecNonRevoked(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofReqAttrSpecNonRevoked.update_forward_refs()
+IndyProofReqAttrSpecNonRevoked.model_rebuild()

@@ -37,4 +37,4 @@ class CredentialDefinitionSendResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialDefinitionSendResult.update_forward_refs()
+CredentialDefinitionSendResult.model_rebuild()

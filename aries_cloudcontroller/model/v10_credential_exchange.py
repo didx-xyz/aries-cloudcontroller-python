@@ -135,4 +135,4 @@ class V10CredentialExchange(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialExchange.update_forward_refs()
+V10CredentialExchange.model_rebuild()

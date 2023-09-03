@@ -55,4 +55,4 @@ class JWSCreate(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-JWSCreate.update_forward_refs()
+JWSCreate.model_rebuild()

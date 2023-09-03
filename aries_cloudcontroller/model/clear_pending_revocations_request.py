@@ -23,4 +23,4 @@ class ClearPendingRevocationsRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ClearPendingRevocationsRequest.update_forward_refs()
+ClearPendingRevocationsRequest.model_rebuild()

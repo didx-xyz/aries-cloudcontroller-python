@@ -45,4 +45,4 @@ class IndyPresAttrSpec(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyPresAttrSpec.update_forward_refs()
+IndyPresAttrSpec.model_rebuild()

@@ -61,4 +61,4 @@ class V20CredExRecordLDProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredExRecordLDProof.update_forward_refs()
+V20CredExRecordLDProof.model_rebuild()

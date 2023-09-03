@@ -27,4 +27,4 @@ class V20PresExRecordByFormat(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresExRecordByFormat.update_forward_refs()
+V20PresExRecordByFormat.model_rebuild()

@@ -30,4 +30,4 @@ class PresentationProposal(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-PresentationProposal.update_forward_refs()
+PresentationProposal.model_rebuild()

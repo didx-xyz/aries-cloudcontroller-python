@@ -35,4 +35,4 @@ class IndyAttrValue(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyAttrValue.update_forward_refs()
+IndyAttrValue.model_rebuild()

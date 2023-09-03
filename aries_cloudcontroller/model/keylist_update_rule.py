@@ -35,4 +35,4 @@ class KeylistUpdateRule(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-KeylistUpdateRule.update_forward_refs()
+KeylistUpdateRule.model_rebuild()

@@ -41,4 +41,4 @@ class VCRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-VCRecord.update_forward_refs()
+VCRecord.model_rebuild()

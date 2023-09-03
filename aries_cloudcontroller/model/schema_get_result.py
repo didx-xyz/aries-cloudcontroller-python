@@ -24,4 +24,4 @@ class SchemaGetResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SchemaGetResult.update_forward_refs()
+SchemaGetResult.model_rebuild()

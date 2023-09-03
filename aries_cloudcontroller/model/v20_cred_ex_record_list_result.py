@@ -24,4 +24,4 @@ class V20CredExRecordListResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredExRecordListResult.update_forward_refs()
+V20CredExRecordListResult.model_rebuild()

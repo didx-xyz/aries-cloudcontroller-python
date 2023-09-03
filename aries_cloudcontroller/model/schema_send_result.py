@@ -36,4 +36,4 @@ class SchemaSendResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SchemaSendResult.update_forward_refs()
+SchemaSendResult.model_rebuild()

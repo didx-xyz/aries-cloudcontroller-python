@@ -42,4 +42,4 @@ class IndyProofRequestedProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofRequestedProof.update_forward_refs()
+IndyProofRequestedProof.model_rebuild()

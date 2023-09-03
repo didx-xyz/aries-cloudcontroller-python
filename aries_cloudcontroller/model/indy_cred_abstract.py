@@ -62,4 +62,4 @@ class IndyCredAbstract(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyCredAbstract.update_forward_refs()
+IndyCredAbstract.model_rebuild()

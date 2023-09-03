@@ -63,4 +63,4 @@ class AttachDecoratorDataJWS(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AttachDecoratorDataJWS.update_forward_refs()
+AttachDecoratorDataJWS.model_rebuild()

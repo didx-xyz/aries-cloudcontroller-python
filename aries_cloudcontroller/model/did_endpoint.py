@@ -47,4 +47,4 @@ class DIDEndpoint(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIDEndpoint.update_forward_refs()
+DIDEndpoint.model_rebuild()

@@ -66,4 +66,4 @@ class IndyProofRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofRequest.update_forward_refs()
+IndyProofRequest.model_rebuild()

@@ -34,4 +34,4 @@ class V20CredRequestFree(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredRequestFree.update_forward_refs()
+V20CredRequestFree.model_rebuild()

@@ -49,4 +49,4 @@ class DIDEndpointWithType(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIDEndpointWithType.update_forward_refs()
+DIDEndpointWithType.model_rebuild()

@@ -24,4 +24,4 @@ class SendMenu(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SendMenu.update_forward_refs()
+SendMenu.model_rebuild()

@@ -23,4 +23,4 @@ class MediationIdMatchInfo(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MediationIdMatchInfo.update_forward_refs()
+MediationIdMatchInfo.model_rebuild()

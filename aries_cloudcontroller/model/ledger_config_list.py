@@ -24,4 +24,4 @@ class LedgerConfigList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-LedgerConfigList.update_forward_refs()
+LedgerConfigList.model_rebuild()

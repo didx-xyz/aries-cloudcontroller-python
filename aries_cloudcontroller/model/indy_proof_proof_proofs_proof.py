@@ -27,4 +27,4 @@ class IndyProofProofProofsProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofProofProofsProof.update_forward_refs()
+IndyProofProofProofsProof.model_rebuild()

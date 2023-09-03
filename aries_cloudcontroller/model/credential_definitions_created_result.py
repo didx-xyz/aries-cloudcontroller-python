@@ -23,4 +23,4 @@ class CredentialDefinitionsCreatedResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialDefinitionsCreatedResult.update_forward_refs()
+CredentialDefinitionsCreatedResult.model_rebuild()

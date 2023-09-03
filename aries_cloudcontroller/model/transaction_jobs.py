@@ -29,4 +29,4 @@ class TransactionJobs(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TransactionJobs.update_forward_refs()
+TransactionJobs.model_rebuild()

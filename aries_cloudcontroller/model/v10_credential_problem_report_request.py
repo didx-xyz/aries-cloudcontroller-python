@@ -23,4 +23,4 @@ class V10CredentialProblemReportRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialProblemReportRequest.update_forward_refs()
+V10CredentialProblemReportRequest.model_rebuild()

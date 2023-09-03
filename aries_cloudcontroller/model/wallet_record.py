@@ -61,4 +61,4 @@ class WalletRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-WalletRecord.update_forward_refs()
+WalletRecord.model_rebuild()

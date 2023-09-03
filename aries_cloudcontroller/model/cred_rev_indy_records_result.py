@@ -23,4 +23,4 @@ class CredRevIndyRecordsResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredRevIndyRecordsResult.update_forward_refs()
+CredRevIndyRecordsResult.model_rebuild()

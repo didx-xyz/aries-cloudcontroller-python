@@ -95,4 +95,4 @@ class RevokeRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RevokeRequest.update_forward_refs()
+RevokeRequest.model_rebuild()

@@ -37,4 +37,4 @@ class GetDIDEndpointResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-GetDIDEndpointResponse.update_forward_refs()
+GetDIDEndpointResponse.model_rebuild()

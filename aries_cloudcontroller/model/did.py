@@ -43,4 +43,4 @@ class DID(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DID.update_forward_refs()
+DID.model_rebuild()

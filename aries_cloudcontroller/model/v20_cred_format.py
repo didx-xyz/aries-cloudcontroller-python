@@ -25,4 +25,4 @@ class V20CredFormat(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredFormat.update_forward_refs()
+V20CredFormat.model_rebuild()

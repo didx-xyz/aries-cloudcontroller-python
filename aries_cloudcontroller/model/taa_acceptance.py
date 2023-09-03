@@ -49,4 +49,4 @@ class TAAAcceptance(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TAAAcceptance.update_forward_refs()
+TAAAcceptance.model_rebuild()

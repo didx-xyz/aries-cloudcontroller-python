@@ -32,4 +32,4 @@ class V20CredExRecordDetail(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredExRecordDetail.update_forward_refs()
+V20CredExRecordDetail.model_rebuild()

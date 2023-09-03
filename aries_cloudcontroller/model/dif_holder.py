@@ -25,4 +25,4 @@ class DIFHolder(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIFHolder.update_forward_refs()
+DIFHolder.model_rebuild()

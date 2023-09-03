@@ -30,4 +30,4 @@ class DIFPresSpec(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIFPresSpec.update_forward_refs()
+DIFPresSpec.model_rebuild()

@@ -23,4 +23,4 @@ class V10PresentationProblemReportRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10PresentationProblemReportRequest.update_forward_refs()
+V10PresentationProblemReportRequest.model_rebuild()

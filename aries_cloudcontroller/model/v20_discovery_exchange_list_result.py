@@ -24,4 +24,4 @@ class V20DiscoveryExchangeListResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20DiscoveryExchangeListResult.update_forward_refs()
+V20DiscoveryExchangeListResult.model_rebuild()

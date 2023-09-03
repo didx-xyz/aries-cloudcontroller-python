@@ -68,4 +68,4 @@ class InvitationRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-InvitationRecord.update_forward_refs()
+InvitationRecord.model_rebuild()

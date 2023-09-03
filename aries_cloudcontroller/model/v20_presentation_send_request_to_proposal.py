@@ -25,4 +25,4 @@ class V20PresentationSendRequestToProposal(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresentationSendRequestToProposal.update_forward_refs()
+V20PresentationSendRequestToProposal.model_rebuild()

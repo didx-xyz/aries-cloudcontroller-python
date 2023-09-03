@@ -28,4 +28,4 @@ class Queries(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Queries.update_forward_refs()
+Queries.model_rebuild()

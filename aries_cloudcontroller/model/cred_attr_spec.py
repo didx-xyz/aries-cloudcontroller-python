@@ -27,4 +27,4 @@ class CredAttrSpec(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredAttrSpec.update_forward_refs()
+CredAttrSpec.model_rebuild()

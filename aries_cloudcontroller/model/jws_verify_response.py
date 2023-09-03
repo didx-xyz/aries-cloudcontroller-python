@@ -31,4 +31,4 @@ class JWSVerifyResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-JWSVerifyResponse.update_forward_refs()
+JWSVerifyResponse.model_rebuild()

@@ -41,4 +41,4 @@ class CreateWalletRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CreateWalletRequest.update_forward_refs()
+CreateWalletRequest.model_rebuild()

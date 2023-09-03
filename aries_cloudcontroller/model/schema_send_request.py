@@ -37,4 +37,4 @@ class SchemaSendRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SchemaSendRequest.update_forward_refs()
+SchemaSendRequest.model_rebuild()

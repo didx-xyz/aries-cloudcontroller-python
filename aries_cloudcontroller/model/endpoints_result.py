@@ -53,4 +53,4 @@ class EndpointsResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-EndpointsResult.update_forward_refs()
+EndpointsResult.model_rebuild()

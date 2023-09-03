@@ -37,4 +37,4 @@ class SubmissionRequirements(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SubmissionRequirements.update_forward_refs()
+SubmissionRequirements.model_rebuild()

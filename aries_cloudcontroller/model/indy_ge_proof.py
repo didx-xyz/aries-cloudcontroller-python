@@ -60,4 +60,4 @@ class IndyGEProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyGEProof.update_forward_refs()
+IndyGEProof.model_rebuild()

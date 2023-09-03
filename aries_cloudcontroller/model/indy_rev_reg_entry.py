@@ -38,4 +38,4 @@ class IndyRevRegEntry(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyRevRegEntry.update_forward_refs()
+IndyRevRegEntry.model_rebuild()

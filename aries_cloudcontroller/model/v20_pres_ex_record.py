@@ -103,4 +103,4 @@ class V20PresExRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresExRecord.update_forward_refs()
+V20PresExRecord.model_rebuild()

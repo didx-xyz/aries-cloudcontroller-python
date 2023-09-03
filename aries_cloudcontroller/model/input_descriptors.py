@@ -39,4 +39,4 @@ class InputDescriptors(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-InputDescriptors.update_forward_refs()
+InputDescriptors.model_rebuild()

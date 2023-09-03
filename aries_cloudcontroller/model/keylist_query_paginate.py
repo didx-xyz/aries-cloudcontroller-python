@@ -25,4 +25,4 @@ class KeylistQueryPaginate(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-KeylistQueryPaginate.update_forward_refs()
+KeylistQueryPaginate.model_rebuild()

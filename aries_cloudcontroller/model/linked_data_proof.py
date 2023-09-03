@@ -73,4 +73,4 @@ class LinkedDataProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-LinkedDataProof.update_forward_refs()
+LinkedDataProof.model_rebuild()

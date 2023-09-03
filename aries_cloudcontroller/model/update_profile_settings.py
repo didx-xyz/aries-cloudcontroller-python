@@ -23,4 +23,4 @@ class UpdateProfileSettings(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-UpdateProfileSettings.update_forward_refs()
+UpdateProfileSettings.model_rebuild()

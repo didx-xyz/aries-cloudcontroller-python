@@ -25,4 +25,4 @@ class ResolutionResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ResolutionResult.update_forward_refs()
+ResolutionResult.model_rebuild()

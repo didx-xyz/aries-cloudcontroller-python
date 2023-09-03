@@ -26,4 +26,4 @@ class Doc(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Doc.update_forward_refs()
+Doc.model_rebuild()

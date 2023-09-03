@@ -23,4 +23,4 @@ class AttributeMimeTypesResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AttributeMimeTypesResult.update_forward_refs()
+AttributeMimeTypesResult.model_rebuild()

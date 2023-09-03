@@ -32,4 +32,4 @@ class PresentationRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-PresentationRequest.update_forward_refs()
+PresentationRequest.model_rebuild()

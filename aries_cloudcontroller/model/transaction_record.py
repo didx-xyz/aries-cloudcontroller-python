@@ -79,4 +79,4 @@ class TransactionRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TransactionRecord.update_forward_refs()
+TransactionRecord.model_rebuild()

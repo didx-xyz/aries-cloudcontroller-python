@@ -27,4 +27,4 @@ class TxnOrRevRegResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TxnOrRevRegResult.update_forward_refs()
+TxnOrRevRegResult.model_rebuild()

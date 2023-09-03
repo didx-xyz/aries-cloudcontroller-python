@@ -69,4 +69,4 @@ class CredentialDefinitionSendRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialDefinitionSendRequest.update_forward_refs()
+CredentialDefinitionSendRequest.model_rebuild()

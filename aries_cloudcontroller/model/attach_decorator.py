@@ -50,4 +50,4 @@ class AttachDecorator(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AttachDecorator.update_forward_refs()
+AttachDecorator.model_rebuild()

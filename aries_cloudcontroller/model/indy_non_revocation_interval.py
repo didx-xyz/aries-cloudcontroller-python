@@ -73,4 +73,4 @@ class IndyNonRevocationInterval(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyNonRevocationInterval.update_forward_refs()
+IndyNonRevocationInterval.model_rebuild()

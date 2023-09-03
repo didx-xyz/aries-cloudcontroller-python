@@ -89,4 +89,4 @@ class V10PresentationExchange(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10PresentationExchange.update_forward_refs()
+V10PresentationExchange.model_rebuild()

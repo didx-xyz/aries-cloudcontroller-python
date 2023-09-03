@@ -23,4 +23,4 @@ class IndyRevRegDefValuePublicKeysAccumKey(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyRevRegDefValuePublicKeysAccumKey.update_forward_refs()
+IndyRevRegDefValuePublicKeysAccumKey.model_rebuild()

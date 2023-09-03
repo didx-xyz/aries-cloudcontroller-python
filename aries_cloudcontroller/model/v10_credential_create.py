@@ -112,4 +112,4 @@ class V10CredentialCreate(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialCreate.update_forward_refs()
+V10CredentialCreate.model_rebuild()

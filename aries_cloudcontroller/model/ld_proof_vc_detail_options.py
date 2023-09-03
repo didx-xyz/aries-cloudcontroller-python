@@ -52,4 +52,4 @@ class LDProofVCDetailOptions(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-LDProofVCDetailOptions.update_forward_refs()
+LDProofVCDetailOptions.model_rebuild()

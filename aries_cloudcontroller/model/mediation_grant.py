@@ -29,4 +29,4 @@ class MediationGrant(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MediationGrant.update_forward_refs()
+MediationGrant.model_rebuild()

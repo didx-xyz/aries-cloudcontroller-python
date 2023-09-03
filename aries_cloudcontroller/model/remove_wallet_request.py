@@ -23,4 +23,4 @@ class RemoveWalletRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RemoveWalletRequest.update_forward_refs()
+RemoveWalletRequest.model_rebuild()

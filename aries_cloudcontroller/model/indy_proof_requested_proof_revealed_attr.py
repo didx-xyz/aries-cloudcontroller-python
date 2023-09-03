@@ -41,4 +41,4 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofRequestedProofRevealedAttr.update_forward_refs()
+IndyProofRequestedProofRevealedAttr.model_rebuild()

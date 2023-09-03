@@ -26,4 +26,4 @@ class V20CredPreview(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredPreview.update_forward_refs()
+V20CredPreview.model_rebuild()

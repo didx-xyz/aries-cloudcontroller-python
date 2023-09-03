@@ -39,4 +39,4 @@ class DIFOptions(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIFOptions.update_forward_refs()
+DIFOptions.model_rebuild()

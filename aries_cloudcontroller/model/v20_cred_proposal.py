@@ -36,4 +36,4 @@ class V20CredProposal(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredProposal.update_forward_refs()
+V20CredProposal.model_rebuild()

@@ -69,4 +69,4 @@ class V10DiscoveryRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10DiscoveryRecord.update_forward_refs()
+V10DiscoveryRecord.model_rebuild()

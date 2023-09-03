@@ -23,4 +23,4 @@ class WriteLedgerRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-WriteLedgerRequest.update_forward_refs()
+WriteLedgerRequest.model_rebuild()

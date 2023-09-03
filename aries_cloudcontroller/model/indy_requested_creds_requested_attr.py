@@ -25,4 +25,4 @@ class IndyRequestedCredsRequestedAttr(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyRequestedCredsRequestedAttr.update_forward_refs()
+IndyRequestedCredsRequestedAttr.model_rebuild()

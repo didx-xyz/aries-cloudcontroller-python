@@ -61,4 +61,4 @@ class RevRegCreateRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RevRegCreateRequest.update_forward_refs()
+RevRegCreateRequest.model_rebuild()

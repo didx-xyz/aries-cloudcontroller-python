@@ -24,4 +24,4 @@ class MediationList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MediationList.update_forward_refs()
+MediationList.model_rebuild()

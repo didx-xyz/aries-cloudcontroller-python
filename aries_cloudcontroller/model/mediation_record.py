@@ -69,4 +69,4 @@ class MediationRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MediationRecord.update_forward_refs()
+MediationRecord.model_rebuild()

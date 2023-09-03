@@ -25,4 +25,4 @@ class AttachmentDef(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AttachmentDef.update_forward_refs()
+AttachmentDef.model_rebuild()

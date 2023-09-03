@@ -58,4 +58,4 @@ class CredentialDefinition(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialDefinition.update_forward_refs()
+CredentialDefinition.model_rebuild()

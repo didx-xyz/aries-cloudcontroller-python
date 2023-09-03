@@ -26,4 +26,4 @@ class V10PresentationExchangeList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10PresentationExchangeList.update_forward_refs()
+V10PresentationExchangeList.model_rebuild()

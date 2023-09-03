@@ -112,4 +112,4 @@ class CredentialProposal(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialProposal.update_forward_refs()
+CredentialProposal.model_rebuild()

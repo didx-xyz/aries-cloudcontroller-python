@@ -27,4 +27,4 @@ class Disclosures(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Disclosures.update_forward_refs()
+Disclosures.model_rebuild()

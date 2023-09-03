@@ -34,4 +34,4 @@ class RevRegIssuedResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RevRegIssuedResult.update_forward_refs()
+RevRegIssuedResult.model_rebuild()

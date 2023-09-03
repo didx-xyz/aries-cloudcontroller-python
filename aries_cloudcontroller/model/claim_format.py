@@ -33,4 +33,4 @@ class ClaimFormat(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ClaimFormat.update_forward_refs()
+ClaimFormat.model_rebuild()

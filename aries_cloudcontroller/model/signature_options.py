@@ -31,4 +31,4 @@ class SignatureOptions(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SignatureOptions.update_forward_refs()
+SignatureOptions.model_rebuild()

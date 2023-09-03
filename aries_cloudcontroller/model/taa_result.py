@@ -24,4 +24,4 @@ class TAAResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TAAResult.update_forward_refs()
+TAAResult.model_rebuild()

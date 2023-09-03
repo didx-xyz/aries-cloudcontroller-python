@@ -27,4 +27,4 @@ class V20CredAttrSpec(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredAttrSpec.update_forward_refs()
+V20CredAttrSpec.model_rebuild()

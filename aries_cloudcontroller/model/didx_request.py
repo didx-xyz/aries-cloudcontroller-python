@@ -48,4 +48,4 @@ class DIDXRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIDXRequest.update_forward_refs()
+DIDXRequest.model_rebuild()

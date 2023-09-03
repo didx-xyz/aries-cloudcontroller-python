@@ -23,4 +23,4 @@ class GetDIDVerkeyResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-GetDIDVerkeyResponse.update_forward_refs()
+GetDIDVerkeyResponse.model_rebuild()

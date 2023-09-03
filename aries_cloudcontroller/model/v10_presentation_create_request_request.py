@@ -30,4 +30,4 @@ class V10PresentationCreateRequestRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10PresentationCreateRequestRequest.update_forward_refs()
+V10PresentationCreateRequestRequest.model_rebuild()

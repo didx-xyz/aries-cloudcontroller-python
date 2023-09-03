@@ -28,4 +28,4 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyRevRegDefValuePublicKeys.update_forward_refs()
+IndyRevRegDefValuePublicKeys.model_rebuild()

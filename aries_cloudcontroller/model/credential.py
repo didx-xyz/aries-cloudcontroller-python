@@ -74,4 +74,4 @@ class Credential(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Credential.update_forward_refs()
+Credential.model_rebuild()

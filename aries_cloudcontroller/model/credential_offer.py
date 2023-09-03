@@ -33,4 +33,4 @@ class CredentialOffer(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialOffer.update_forward_refs()
+CredentialOffer.model_rebuild()

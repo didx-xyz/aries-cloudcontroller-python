@@ -103,4 +103,4 @@ class V20CredFilterIndy(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredFilterIndy.update_forward_refs()
+V20CredFilterIndy.model_rebuild()

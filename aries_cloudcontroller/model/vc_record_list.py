@@ -24,4 +24,4 @@ class VCRecordList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-VCRecordList.update_forward_refs()
+VCRecordList.model_rebuild()

@@ -37,4 +37,4 @@ class Constraints(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Constraints.update_forward_refs()
+Constraints.model_rebuild()

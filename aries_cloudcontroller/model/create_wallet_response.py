@@ -63,4 +63,4 @@ class CreateWalletResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CreateWalletResponse.update_forward_refs()
+CreateWalletResponse.model_rebuild()

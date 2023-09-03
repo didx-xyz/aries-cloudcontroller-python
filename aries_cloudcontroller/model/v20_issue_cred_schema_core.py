@@ -35,4 +35,4 @@ class V20IssueCredSchemaCore(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20IssueCredSchemaCore.update_forward_refs()
+V20IssueCredSchemaCore.model_rebuild()

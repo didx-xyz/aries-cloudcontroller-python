@@ -45,4 +45,4 @@ class IndyKeyCorrectnessProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyKeyCorrectnessProof.update_forward_refs()
+IndyKeyCorrectnessProof.model_rebuild()

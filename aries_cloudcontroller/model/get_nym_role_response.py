@@ -27,4 +27,4 @@ class GetNymRoleResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-GetNymRoleResponse.update_forward_refs()
+GetNymRoleResponse.model_rebuild()

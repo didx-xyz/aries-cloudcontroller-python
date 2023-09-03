@@ -24,4 +24,4 @@ class V10CredentialExchangeListResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialExchangeListResult.update_forward_refs()
+V10CredentialExchangeListResult.model_rebuild()

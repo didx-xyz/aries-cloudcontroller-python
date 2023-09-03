@@ -39,4 +39,4 @@ class RawEncoded(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RawEncoded.update_forward_refs()
+RawEncoded.model_rebuild()

@@ -23,4 +23,4 @@ class CreateWalletTokenResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CreateWalletTokenResponse.update_forward_refs()
+CreateWalletTokenResponse.model_rebuild()

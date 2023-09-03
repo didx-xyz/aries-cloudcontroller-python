@@ -39,4 +39,4 @@ class V20CredOfferRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredOfferRequest.update_forward_refs()
+V20CredOfferRequest.model_rebuild()

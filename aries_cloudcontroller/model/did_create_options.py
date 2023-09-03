@@ -37,4 +37,4 @@ class DIDCreateOptions(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIDCreateOptions.update_forward_refs()
+DIDCreateOptions.model_rebuild()

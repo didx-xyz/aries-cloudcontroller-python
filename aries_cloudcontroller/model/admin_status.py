@@ -29,4 +29,4 @@ class AdminStatus(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AdminStatus.update_forward_refs()
+AdminStatus.model_rebuild()

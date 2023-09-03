@@ -24,4 +24,4 @@ class SignedDoc(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SignedDoc.update_forward_refs()
+SignedDoc.model_rebuild()

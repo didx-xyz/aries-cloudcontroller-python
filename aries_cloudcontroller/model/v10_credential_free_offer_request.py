@@ -46,4 +46,4 @@ class V10CredentialFreeOfferRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialFreeOfferRequest.update_forward_refs()
+V10CredentialFreeOfferRequest.model_rebuild()

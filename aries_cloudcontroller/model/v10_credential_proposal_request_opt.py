@@ -114,4 +114,4 @@ class V10CredentialProposalRequestOpt(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialProposalRequestOpt.update_forward_refs()
+V10CredentialProposalRequestOpt.model_rebuild()

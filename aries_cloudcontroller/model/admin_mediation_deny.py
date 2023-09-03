@@ -25,4 +25,4 @@ class AdminMediationDeny(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AdminMediationDeny.update_forward_refs()
+AdminMediationDeny.model_rebuild()

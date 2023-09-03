@@ -49,4 +49,4 @@ class ConnectionInvitation(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ConnectionInvitation.update_forward_refs()
+ConnectionInvitation.model_rebuild()

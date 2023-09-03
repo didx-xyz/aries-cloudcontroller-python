@@ -33,4 +33,4 @@ class V20PresProposal(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresProposal.update_forward_refs()
+V20PresProposal.model_rebuild()

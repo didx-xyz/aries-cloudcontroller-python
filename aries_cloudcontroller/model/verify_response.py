@@ -25,4 +25,4 @@ class VerifyResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-VerifyResponse.update_forward_refs()
+VerifyResponse.model_rebuild()

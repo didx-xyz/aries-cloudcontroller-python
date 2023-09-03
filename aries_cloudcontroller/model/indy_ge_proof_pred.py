@@ -27,4 +27,4 @@ class IndyGEProofPred(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyGEProofPred.update_forward_refs()
+IndyGEProofPred.model_rebuild()

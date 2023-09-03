@@ -32,4 +32,4 @@ class DIFField(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIFField.update_forward_refs()
+DIFField.model_rebuild()

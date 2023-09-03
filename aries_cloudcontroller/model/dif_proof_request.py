@@ -27,4 +27,4 @@ class DIFProofRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-DIFProofRequest.update_forward_refs()
+DIFProofRequest.model_rebuild()

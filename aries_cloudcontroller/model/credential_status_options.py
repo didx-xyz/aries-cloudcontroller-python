@@ -23,4 +23,4 @@ class CredentialStatusOptions(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialStatusOptions.update_forward_refs()
+CredentialStatusOptions.model_rebuild()

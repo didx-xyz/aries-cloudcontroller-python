@@ -23,4 +23,4 @@ class TailsDeleteResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TailsDeleteResponse.update_forward_refs()
+TailsDeleteResponse.model_rebuild()

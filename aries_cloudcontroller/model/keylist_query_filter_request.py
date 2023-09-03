@@ -23,4 +23,4 @@ class KeylistQueryFilterRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-KeylistQueryFilterRequest.update_forward_refs()
+KeylistQueryFilterRequest.model_rebuild()

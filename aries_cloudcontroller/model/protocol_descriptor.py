@@ -25,4 +25,4 @@ class ProtocolDescriptor(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ProtocolDescriptor.update_forward_refs()
+ProtocolDescriptor.model_rebuild()

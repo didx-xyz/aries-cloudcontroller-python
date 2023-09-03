@@ -32,4 +32,4 @@ class TAAInfo(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TAAInfo.update_forward_refs()
+TAAInfo.model_rebuild()

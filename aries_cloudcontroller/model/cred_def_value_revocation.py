@@ -43,4 +43,4 @@ class CredDefValueRevocation(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredDefValueRevocation.update_forward_refs()
+CredDefValueRevocation.model_rebuild()

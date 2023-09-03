@@ -29,4 +29,4 @@ class MediationDeny(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MediationDeny.update_forward_refs()
+MediationDeny.model_rebuild()

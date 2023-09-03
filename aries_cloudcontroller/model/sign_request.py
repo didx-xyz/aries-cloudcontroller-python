@@ -26,4 +26,4 @@ class SignRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SignRequest.update_forward_refs()
+SignRequest.model_rebuild()

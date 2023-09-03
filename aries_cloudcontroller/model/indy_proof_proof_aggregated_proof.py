@@ -25,4 +25,4 @@ class IndyProofProofAggregatedProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyProofProofAggregatedProof.update_forward_refs()
+IndyProofProofAggregatedProof.model_rebuild()

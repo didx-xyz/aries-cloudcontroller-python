@@ -82,4 +82,4 @@ class CredDefValuePrimary(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredDefValuePrimary.update_forward_refs()
+CredDefValuePrimary.model_rebuild()

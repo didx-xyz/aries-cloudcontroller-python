@@ -31,4 +31,4 @@ class AttachDecoratorDataJWSHeader(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AttachDecoratorDataJWSHeader.update_forward_refs()
+AttachDecoratorDataJWSHeader.model_rebuild()

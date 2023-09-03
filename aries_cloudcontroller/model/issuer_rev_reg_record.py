@@ -143,4 +143,4 @@ class IssuerRevRegRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IssuerRevRegRecord.update_forward_refs()
+IssuerRevRegRecord.model_rebuild()

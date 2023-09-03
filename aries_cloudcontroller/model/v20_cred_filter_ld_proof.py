@@ -24,4 +24,4 @@ class V20CredFilterLDProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredFilterLDProof.update_forward_refs()
+V20CredFilterLDProof.model_rebuild()

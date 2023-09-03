@@ -25,4 +25,4 @@ class PerformRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-PerformRequest.update_forward_refs()
+PerformRequest.model_rebuild()

@@ -27,4 +27,4 @@ class TxnOrSchemaSendResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TxnOrSchemaSendResult.update_forward_refs()
+TxnOrSchemaSendResult.model_rebuild()

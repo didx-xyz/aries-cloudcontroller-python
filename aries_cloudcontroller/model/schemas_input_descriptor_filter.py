@@ -26,4 +26,4 @@ class SchemasInputDescriptorFilter(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SchemasInputDescriptorFilter.update_forward_refs()
+SchemasInputDescriptorFilter.model_rebuild()

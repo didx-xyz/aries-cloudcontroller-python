@@ -27,4 +27,4 @@ class V20CredFilter(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredFilter.update_forward_refs()
+V20CredFilter.model_rebuild()

@@ -133,4 +133,4 @@ class ConnRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ConnRecord.update_forward_refs()
+ConnRecord.model_rebuild()

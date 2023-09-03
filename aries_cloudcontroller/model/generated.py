@@ -69,4 +69,4 @@ class Generated(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Generated.update_forward_refs()
+Generated.model_rebuild()

@@ -35,4 +35,4 @@ class V20CredIssue(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20CredIssue.update_forward_refs()
+V20CredIssue.model_rebuild()

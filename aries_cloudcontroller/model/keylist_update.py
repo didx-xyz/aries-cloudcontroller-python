@@ -28,4 +28,4 @@ class KeylistUpdate(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-KeylistUpdate.update_forward_refs()
+KeylistUpdate.model_rebuild()

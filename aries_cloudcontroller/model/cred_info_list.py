@@ -24,4 +24,4 @@ class CredInfoList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredInfoList.update_forward_refs()
+CredInfoList.model_rebuild()

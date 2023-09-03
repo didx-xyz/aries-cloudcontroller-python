@@ -23,4 +23,4 @@ class ConnectionMetadataSetRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ConnectionMetadataSetRequest.update_forward_refs()
+ConnectionMetadataSetRequest.model_rebuild()

@@ -31,4 +31,4 @@ class IndyCredPrecis(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyCredPrecis.update_forward_refs()
+IndyCredPrecis.model_rebuild()

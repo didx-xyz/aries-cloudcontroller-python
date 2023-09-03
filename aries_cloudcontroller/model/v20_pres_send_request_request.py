@@ -34,4 +34,4 @@ class V20PresSendRequestRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresSendRequestRequest.update_forward_refs()
+V20PresSendRequestRequest.model_rebuild()

@@ -23,4 +23,4 @@ class SendMessage(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SendMessage.update_forward_refs()
+SendMessage.model_rebuild()

@@ -26,4 +26,4 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TxnOrRegisterLedgerNymResponse.update_forward_refs()
+TxnOrRegisterLedgerNymResponse.model_rebuild()

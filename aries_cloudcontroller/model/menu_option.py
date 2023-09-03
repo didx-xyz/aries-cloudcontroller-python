@@ -32,4 +32,4 @@ class MenuOption(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MenuOption.update_forward_refs()
+MenuOption.model_rebuild()

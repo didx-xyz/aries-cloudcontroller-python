@@ -24,4 +24,4 @@ class V10CredentialBoundOfferRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V10CredentialBoundOfferRequest.update_forward_refs()
+V10CredentialBoundOfferRequest.model_rebuild()

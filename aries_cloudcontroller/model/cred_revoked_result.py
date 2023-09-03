@@ -23,4 +23,4 @@ class CredRevokedResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredRevokedResult.update_forward_refs()
+CredRevokedResult.model_rebuild()

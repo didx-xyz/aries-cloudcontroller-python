@@ -83,4 +83,4 @@ class OobRecord(BaseModel):
         allow_population_by_field_name = True
 
 
-OobRecord.update_forward_refs()
+OobRecord.model_rebuild()

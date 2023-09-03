@@ -33,4 +33,4 @@ class MenuFormParam(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-MenuFormParam.update_forward_refs()
+MenuFormParam.model_rebuild()

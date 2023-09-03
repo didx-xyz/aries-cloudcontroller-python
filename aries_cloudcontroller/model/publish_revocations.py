@@ -23,4 +23,4 @@ class PublishRevocations(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-PublishRevocations.update_forward_refs()
+PublishRevocations.model_rebuild()

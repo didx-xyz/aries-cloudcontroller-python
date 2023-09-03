@@ -23,4 +23,4 @@ class AdminStatusLiveliness(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AdminStatusLiveliness.update_forward_refs()
+AdminStatusLiveliness.model_rebuild()

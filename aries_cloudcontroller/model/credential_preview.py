@@ -26,4 +26,4 @@ class CredentialPreview(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredentialPreview.update_forward_refs()
+CredentialPreview.model_rebuild()

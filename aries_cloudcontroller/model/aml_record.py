@@ -27,4 +27,4 @@ class AMLRecord(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AMLRecord.update_forward_refs()
+AMLRecord.model_rebuild()

@@ -25,4 +25,4 @@ class SchemaInputDescriptor(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-SchemaInputDescriptor.update_forward_refs()
+SchemaInputDescriptor.model_rebuild()

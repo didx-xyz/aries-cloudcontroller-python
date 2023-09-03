@@ -27,4 +27,4 @@ class RevRegWalletUpdatedResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-RevRegWalletUpdatedResult.update_forward_refs()
+RevRegWalletUpdatedResult.model_rebuild()

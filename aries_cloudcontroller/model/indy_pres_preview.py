@@ -29,4 +29,4 @@ class IndyPresPreview(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyPresPreview.update_forward_refs()
+IndyPresPreview.model_rebuild()

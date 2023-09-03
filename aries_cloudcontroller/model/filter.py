@@ -49,4 +49,4 @@ class Filter(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-Filter.update_forward_refs()
+Filter.model_rebuild()

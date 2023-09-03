@@ -88,4 +88,4 @@ class ConnectionStaticResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-ConnectionStaticResult.update_forward_refs()
+ConnectionStaticResult.model_rebuild()

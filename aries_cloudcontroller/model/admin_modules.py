@@ -23,4 +23,4 @@ class AdminModules(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-AdminModules.update_forward_refs()
+AdminModules.model_rebuild()

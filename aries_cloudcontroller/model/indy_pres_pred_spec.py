@@ -44,4 +44,4 @@ class IndyPresPredSpec(BaseModel):
         allow_population_by_field_name = True
 
 
-IndyPresPredSpec.update_forward_refs()
+IndyPresPredSpec.model_rebuild()

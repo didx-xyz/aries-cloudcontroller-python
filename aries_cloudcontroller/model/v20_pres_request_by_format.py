@@ -27,4 +27,4 @@ class V20PresRequestByFormat(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresRequestByFormat.update_forward_refs()
+V20PresRequestByFormat.model_rebuild()

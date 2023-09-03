@@ -25,4 +25,4 @@ class QueryItem(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-QueryItem.update_forward_refs()
+QueryItem.model_rebuild()

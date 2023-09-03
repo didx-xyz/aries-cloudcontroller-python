@@ -44,4 +44,4 @@ class InvitationMessage(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-InvitationMessage.update_forward_refs()
+InvitationMessage.model_rebuild()

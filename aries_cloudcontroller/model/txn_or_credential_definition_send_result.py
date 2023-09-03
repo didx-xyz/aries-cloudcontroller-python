@@ -29,4 +29,4 @@ class TxnOrCredentialDefinitionSendResult(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-TxnOrCredentialDefinitionSendResult.update_forward_refs()
+TxnOrCredentialDefinitionSendResult.model_rebuild()

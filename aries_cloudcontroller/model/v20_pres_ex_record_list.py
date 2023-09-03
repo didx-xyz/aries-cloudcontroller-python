@@ -24,4 +24,4 @@ class V20PresExRecordList(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-V20PresExRecordList.update_forward_refs()
+V20PresExRecordList.model_rebuild()

@@ -83,4 +83,4 @@ class IndyEQProof(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-IndyEQProof.update_forward_refs()
+IndyEQProof.model_rebuild()

@@ -27,4 +27,4 @@ class CredDefValue(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
-CredDefValue.update_forward_refs()
+CredDefValue.model_rebuild()
