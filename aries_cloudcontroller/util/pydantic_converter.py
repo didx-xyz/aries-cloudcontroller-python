@@ -56,7 +56,7 @@ class _PydanticRequestBody(Converter):
     def convert(self, value):
         if isinstance(value, self._model):
             return _encode_pydantic(value)
-        return _encode_pydantic(self._model.parse_obj(value))
+        return _encode_pydantic(self._model.model_validate(value))
 
 
 class _PydanticResponseBody(_InitialResponseBody):
@@ -80,8 +80,16 @@ class _PydanticResponseBody(_InitialResponseBody):
 
             self._model = _UnionContainer
 
+    def _convert(self, response):
+        try:
+            data = response.json()
+        except AttributeError:
+            data = response
+
+        return self._model.model_validate(data)
+
     def convert(self, response):
-        obj = super().convert(response)
+        obj = self._convert(response)
         return obj.__root__ if self._union else obj
 
 
