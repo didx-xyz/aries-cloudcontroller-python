@@ -28,10 +28,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Black Python linting
-        uses: lgeiger/black-action@v1.0.1
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
         with:
-          args: . --check
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install \
+            isort~=5.12.0 \
+            black~=23.7.0
+      - name: Check import style with isort
+        run: |
+          isort . --check --profile black --diff
+      - name: Check code style with Black
+        run: |
+          black . --check --diff
   deploy:
     # if: ${{ startsWith(github.ref, 'refs/tags/') && github.event.base_ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
