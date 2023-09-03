@@ -7,7 +7,15 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
+from pydantic import (
+    field_validator,
+    ConfigDict,
+    AnyUrl,
+    BaseModel,
+    EmailStr,
+    Field,
+    Extra,
+)  # noqa: F401
 from aries_cloudcontroller.model.indy_proof import IndyProof
 from aries_cloudcontroller.model.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.model.presentation_proposal import PresentationProposal
@@ -86,6 +94,7 @@ class V10PresentationExchange(BaseModel):
                 f"Value of updated_at does not match regex pattern ('{pattern}')"
             )
         return value
+
     model_config = ConfigDict(populate_by_name=True)
 
 

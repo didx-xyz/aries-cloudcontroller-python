@@ -7,7 +7,15 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import ConfigDict, AnyUrl, BaseModel, EmailStr, validator, Field, Extra  # noqa: F401
+from pydantic import (
+    ConfigDict,
+    AnyUrl,
+    BaseModel,
+    EmailStr,
+    validator,
+    Field,
+    Extra,
+)  # noqa: F401
 from aries_cloudcontroller.model.attach_decorator import AttachDecorator
 from aries_cloudcontroller.model.v20_pres_format import V20PresFormat
 

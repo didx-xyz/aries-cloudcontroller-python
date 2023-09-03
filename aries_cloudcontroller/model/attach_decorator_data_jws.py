@@ -7,7 +7,15 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
 
-from pydantic import field_validator, ConfigDict, AnyUrl, BaseModel, EmailStr, Field, Extra  # noqa: F401
+from pydantic import (
+    field_validator,
+    ConfigDict,
+    AnyUrl,
+    BaseModel,
+    EmailStr,
+    Field,
+    Extra,
+)  # noqa: F401
 from aries_cloudcontroller.model.attach_decorator_data1_jws import (
     AttachDecoratorData1JWS,
 )
@@ -60,6 +68,7 @@ class AttachDecoratorDataJWS(BaseModel):
                 f"Value of signature does not match regex pattern ('{pattern}')"
             )
         return value
+
     model_config = ConfigDict(populate_by_name=True)
 
 
