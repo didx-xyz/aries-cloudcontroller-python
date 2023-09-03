@@ -49,7 +49,7 @@ def test_pydantic_request_body_convert():
     converter = _PydanticRequestBody(SampleModel)
     model_instance = SampleModel(name="Test", age=20)
     result = converter.convert(model_instance)
-    assert result == model_instance.dict()
+    assert result == model_instance.model_dump()
 
 
 def test_pydantic_response_body_convert(mocker):
@@ -91,5 +91,5 @@ def test_invitation_message_response(mocker):
 
     # Assert that the converted message matches the original sample_invitation_message
     assert equal_dicts(
-        sample_invitation_message, invitation_message.dict(by_alias=True)
+        sample_invitation_message, invitation_message.model_dump(by_alias=True)
     )

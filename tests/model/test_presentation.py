@@ -53,7 +53,7 @@ invalid_presentation = {
 
 def test_valid():
     model = V10PresentationExchange(**sample_presentation)
-    assert equal_dicts(sample_presentation, model.dict(by_alias=True))
+    assert equal_dicts(sample_presentation, model.model_dump(by_alias=True))
 
 
 def test_invalid():
