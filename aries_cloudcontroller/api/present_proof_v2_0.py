@@ -1,21 +1,19 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.indy_cred_precis import IndyCredPrecis
 from aries_cloudcontroller.model.v20_pres_create_request_request import (
@@ -36,6 +34,7 @@ from aries_cloudcontroller.model.v20_pres_spec_by_format_request import (
 from aries_cloudcontroller.model.v20_presentation_send_request_to_proposal import (
     V20PresentationSendRequestToProposal,
 )
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class PresentProofV20Api(Consumer):

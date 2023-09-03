@@ -2,20 +2,19 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime  # noqa: F401
-
 import re  # noqa: F401
-from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
+from datetime import date, datetime  # noqa: F401
+from typing import Any, Dict, List, Literal, Optional, Union  # noqa: F401
 
-from pydantic import (
-    field_validator,
-    ConfigDict,
+from pydantic import (  # noqa: F401
     AnyUrl,
     BaseModel,
+    ConfigDict,
     EmailStr,
-    Field,
     Extra,
-)  # noqa: F401
+    Field,
+    field_validator,
+)
 
 
 class V20CredFilterIndy(BaseModel):

@@ -1,27 +1,26 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.admin_config import AdminConfig
 from aries_cloudcontroller.model.admin_modules import AdminModules
 from aries_cloudcontroller.model.admin_status import AdminStatus
 from aries_cloudcontroller.model.admin_status_liveliness import AdminStatusLiveliness
 from aries_cloudcontroller.model.admin_status_readiness import AdminStatusReadiness
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class ServerApi(Consumer):

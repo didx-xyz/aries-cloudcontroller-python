@@ -1,21 +1,19 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.did_create import DIDCreate
 from aries_cloudcontroller.model.did_endpoint import DIDEndpoint
@@ -25,6 +23,7 @@ from aries_cloudcontroller.model.did_result import DIDResult
 from aries_cloudcontroller.model.jws_create import JWSCreate
 from aries_cloudcontroller.model.jws_verify import JWSVerify
 from aries_cloudcontroller.model.jws_verify_response import JWSVerifyResponse
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class WalletApi(Consumer):

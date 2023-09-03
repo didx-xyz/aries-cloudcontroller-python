@@ -1,26 +1,25 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.sign_request import SignRequest
 from aries_cloudcontroller.model.sign_response import SignResponse
 from aries_cloudcontroller.model.verify_request import VerifyRequest
 from aries_cloudcontroller.model.verify_response import VerifyResponse
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class JsonldApi(Consumer):

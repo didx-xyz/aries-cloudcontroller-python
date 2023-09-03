@@ -1,21 +1,19 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.create_wallet_request import CreateWalletRequest
 from aries_cloudcontroller.model.create_wallet_response import CreateWalletResponse
@@ -29,6 +27,7 @@ from aries_cloudcontroller.model.remove_wallet_request import RemoveWalletReques
 from aries_cloudcontroller.model.update_wallet_request import UpdateWalletRequest
 from aries_cloudcontroller.model.wallet_list import WalletList
 from aries_cloudcontroller.model.wallet_record import WalletRecord
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class MultitenancyApi(Consumer):

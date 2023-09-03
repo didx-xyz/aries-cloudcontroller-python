@@ -1,19 +1,19 @@
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
+
 from uplink import (
+    Body,
     Consumer,
+    Header,
     Path,
     Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
     delete,
-    returns,
+    get,
     json,
+    patch,
+    post,
+    put,
+    returns,
 )
-
-from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from aries_cloudcontroller.uplink_util import bool_query
 

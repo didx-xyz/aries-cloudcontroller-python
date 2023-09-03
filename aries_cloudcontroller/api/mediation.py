@@ -1,21 +1,19 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.admin_mediation_deny import AdminMediationDeny
 from aries_cloudcontroller.model.keylist import Keylist
@@ -31,6 +29,7 @@ from aries_cloudcontroller.model.mediation_grant import MediationGrant
 from aries_cloudcontroller.model.mediation_id_match_info import MediationIdMatchInfo
 from aries_cloudcontroller.model.mediation_list import MediationList
 from aries_cloudcontroller.model.mediation_record import MediationRecord
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class MediationApi(Consumer):

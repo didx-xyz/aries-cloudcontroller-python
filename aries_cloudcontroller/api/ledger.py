@@ -1,21 +1,19 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.get_did_endpoint_response import GetDIDEndpointResponse
 from aries_cloudcontroller.model.get_did_verkey_response import GetDIDVerkeyResponse
@@ -27,6 +25,7 @@ from aries_cloudcontroller.model.txn_or_register_ledger_nym_response import (
     TxnOrRegisterLedgerNymResponse,
 )
 from aries_cloudcontroller.model.write_ledger_request import WriteLedgerRequest
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class LedgerApi(Consumer):

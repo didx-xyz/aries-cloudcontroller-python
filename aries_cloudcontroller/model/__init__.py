@@ -1,6 +1,5 @@
 # flake8: noqa
 
-from aries_cloudcontroller.model.aml_record import AMLRecord
 from aries_cloudcontroller.model.action_menu_fetch_result import ActionMenuFetchResult
 from aries_cloudcontroller.model.admin_config import AdminConfig
 from aries_cloudcontroller.model.admin_mediation_deny import AdminMediationDeny
@@ -8,6 +7,7 @@ from aries_cloudcontroller.model.admin_modules import AdminModules
 from aries_cloudcontroller.model.admin_status import AdminStatus
 from aries_cloudcontroller.model.admin_status_liveliness import AdminStatusLiveliness
 from aries_cloudcontroller.model.admin_status_readiness import AdminStatusReadiness
+from aries_cloudcontroller.model.aml_record import AMLRecord
 from aries_cloudcontroller.model.attach_decorator import AttachDecorator
 from aries_cloudcontroller.model.attach_decorator_data import AttachDecoratorData
 from aries_cloudcontroller.model.attach_decorator_data1_jws import (
@@ -81,6 +81,7 @@ from aries_cloudcontroller.model.credential_proposal import CredentialProposal
 from aries_cloudcontroller.model.credential_status_options import (
     CredentialStatusOptions,
 )
+from aries_cloudcontroller.model.date import Date
 from aries_cloudcontroller.model.did import DID
 from aries_cloudcontroller.model.did_create import DIDCreate
 from aries_cloudcontroller.model.did_create_options import DIDCreateOptions
@@ -95,7 +96,6 @@ from aries_cloudcontroller.model.dif_options import DIFOptions
 from aries_cloudcontroller.model.dif_pres_spec import DIFPresSpec
 from aries_cloudcontroller.model.dif_proof_proposal import DIFProofProposal
 from aries_cloudcontroller.model.dif_proof_request import DIFProofRequest
-from aries_cloudcontroller.model.date import Date
 from aries_cloudcontroller.model.disclose import Disclose
 from aries_cloudcontroller.model.disclosures import Disclosures
 from aries_cloudcontroller.model.doc import Doc

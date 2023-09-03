@@ -1,21 +1,19 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.clear_pending_revocations_request import (
     ClearPendingRevocationsRequest,
@@ -44,6 +42,7 @@ from aries_cloudcontroller.model.txn_or_publish_revocations_result import (
     TxnOrPublishRevocationsResult,
 )
 from aries_cloudcontroller.model.txn_or_rev_reg_result import TxnOrRevRegResult
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class RevocationApi(Consumer):

@@ -1,25 +1,24 @@
-from uplink import (
-    Consumer,
-    Path,
-    Query,
-    Body,
-    Header,
-    get,
-    post,
-    patch,
-    put,
-    delete,
-    returns,
-    json,
-)
-
 from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
-from aries_cloudcontroller.uplink_util import bool_query
+from uplink import (
+    Body,
+    Consumer,
+    Header,
+    Path,
+    Query,
+    delete,
+    get,
+    json,
+    patch,
+    post,
+    put,
+    returns,
+)
 
 from aries_cloudcontroller.model.action_menu_fetch_result import ActionMenuFetchResult
 from aries_cloudcontroller.model.perform_request import PerformRequest
 from aries_cloudcontroller.model.send_menu import SendMenu
+from aries_cloudcontroller.uplink_util import bool_query
 
 
 class ActionMenuApi(Consumer):

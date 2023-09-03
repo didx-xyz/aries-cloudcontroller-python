@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime  # noqa: F401
-
 import re  # noqa: F401
-from typing import Any, Dict, List, Optional, Union, Literal  # noqa: F401
+from datetime import date, datetime  # noqa: F401
+from typing import Any, Dict, List, Literal, Optional, Union  # noqa: F401
 
-from pydantic import (
-    ConfigDict,
+from pydantic import (  # noqa: F401
     AnyUrl,
     BaseModel,
+    ConfigDict,
     EmailStr,
-    validator,
-    Field,
     Extra,
-)  # noqa: F401
+    Field,
+    validator,
+)
+
 from aries_cloudcontroller.model.indy_proof_req_attr_spec_non_revoked import (
     IndyProofReqAttrSpecNonRevoked,
 )
