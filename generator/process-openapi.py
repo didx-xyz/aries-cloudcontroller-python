@@ -1,5 +1,5 @@
-from functools import singledispatchmethod
 import re
+from functools import singledispatchmethod
 
 import deepmerge
 import yaml
