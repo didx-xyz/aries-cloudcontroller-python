@@ -1,59 +1,31 @@
 # flake8: noqa
 
-from aries_cloudcontroller.api.action_menu import ActionMenuApi
-from aries_cloudcontroller.api.basicmessage import BasicmessageApi
-from aries_cloudcontroller.api.connection import ConnectionApi
-from aries_cloudcontroller.api.credential_definition import CredentialDefinitionApi
-from aries_cloudcontroller.api.credentials import CredentialsApi
-from aries_cloudcontroller.api.default import DefaultApi
-from aries_cloudcontroller.api.did_exchange import DidExchangeApi
-from aries_cloudcontroller.api.discover_features import DiscoverFeaturesApi
-from aries_cloudcontroller.api.discover_features_v2_0 import DiscoverFeaturesV20Api
-from aries_cloudcontroller.api.endorse_transaction import EndorseTransactionApi
-from aries_cloudcontroller.api.introduction import IntroductionApi
-from aries_cloudcontroller.api.issue_credential_v1_0 import IssueCredentialV10Api
-from aries_cloudcontroller.api.issue_credential_v2_0 import IssueCredentialV20Api
-from aries_cloudcontroller.api.jsonld import JsonldApi
-from aries_cloudcontroller.api.ledger import LedgerApi
-from aries_cloudcontroller.api.mediation import MediationApi
-from aries_cloudcontroller.api.multitenancy import MultitenancyApi
-from aries_cloudcontroller.api.out_of_band import OutOfBandApi
-from aries_cloudcontroller.api.present_proof_v1_0 import PresentProofV10Api
-from aries_cloudcontroller.api.present_proof_v2_0 import PresentProofV20Api
-from aries_cloudcontroller.api.resolver import ResolverApi
-from aries_cloudcontroller.api.revocation import RevocationApi
-from aries_cloudcontroller.api.schema import SchemaApi
-from aries_cloudcontroller.api.server import ServerApi
-from aries_cloudcontroller.api.settings import SettingsApi
-from aries_cloudcontroller.api.trustping import TrustpingApi
-from aries_cloudcontroller.api.wallet import WalletApi
+# import apis into api package
+from aries_cloudcontroller.api.action_menu_api import ActionMenuApi
+from aries_cloudcontroller.api.basicmessage_api import BasicmessageApi
+from aries_cloudcontroller.api.connection_api import ConnectionApi
+from aries_cloudcontroller.api.credential_definition_api import CredentialDefinitionApi
+from aries_cloudcontroller.api.credentials_api import CredentialsApi
+from aries_cloudcontroller.api.default_api import DefaultApi
+from aries_cloudcontroller.api.did_exchange_api import DidExchangeApi
+from aries_cloudcontroller.api.discover_features_api import DiscoverFeaturesApi
+from aries_cloudcontroller.api.discover_features_v20_api import DiscoverFeaturesV20Api
+from aries_cloudcontroller.api.endorse_transaction_api import EndorseTransactionApi
+from aries_cloudcontroller.api.introduction_api import IntroductionApi
+from aries_cloudcontroller.api.issue_credential_v10_api import IssueCredentialV10Api
+from aries_cloudcontroller.api.issue_credential_v20_api import IssueCredentialV20Api
+from aries_cloudcontroller.api.jsonld_api import JsonldApi
+from aries_cloudcontroller.api.ledger_api import LedgerApi
+from aries_cloudcontroller.api.mediation_api import MediationApi
+from aries_cloudcontroller.api.multitenancy_api import MultitenancyApi
+from aries_cloudcontroller.api.out_of_band_api import OutOfBandApi
+from aries_cloudcontroller.api.present_proof_v10_api import PresentProofV10Api
+from aries_cloudcontroller.api.present_proof_v20_api import PresentProofV20Api
+from aries_cloudcontroller.api.resolver_api import ResolverApi
+from aries_cloudcontroller.api.revocation_api import RevocationApi
+from aries_cloudcontroller.api.schema_api import SchemaApi
+from aries_cloudcontroller.api.server_api import ServerApi
+from aries_cloudcontroller.api.settings_api import SettingsApi
+from aries_cloudcontroller.api.trustping_api import TrustpingApi
+from aries_cloudcontroller.api.wallet_api import WalletApi
 
-__all__ = [
-    "ActionMenuApi",
-    "BasicmessageApi",
-    "ConnectionApi",
-    "CredentialDefinitionApi",
-    "CredentialsApi",
-    "DefaultApi",
-    "DidExchangeApi",
-    "DiscoverFeaturesApi",
-    "DiscoverFeaturesV20Api",
-    "EndorseTransactionApi",
-    "IntroductionApi",
-    "IssueCredentialV10Api",
-    "IssueCredentialV20Api",
-    "JsonldApi",
-    "LedgerApi",
-    "MediationApi",
-    "MultitenancyApi",
-    "OutOfBandApi",
-    "PresentProofV10Api",
-    "PresentProofV20Api",
-    "ResolverApi",
-    "RevocationApi",
-    "SchemaApi",
-    "ServerApi",
-    "SettingsApi",
-    "TrustpingApi",
-    "WalletApi",
-]
