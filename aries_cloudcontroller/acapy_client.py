@@ -41,7 +41,6 @@ class AcaPyClient(Client):
         super().__init__(
             self.base_url,
             client=self.client_session,
-            extra_service_params={},
         )
 
     async def __aenter__(self):
