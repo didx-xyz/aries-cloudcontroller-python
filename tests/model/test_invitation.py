@@ -3,7 +3,7 @@ import logging
 import pydantic
 import pytest
 
-from aries_cloudcontroller.model import InvitationMessage
+from aries_cloudcontroller.models import InvitationMessage
 from tests.util.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)

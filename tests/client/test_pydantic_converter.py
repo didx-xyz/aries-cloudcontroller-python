@@ -2,7 +2,7 @@ from typing import Union
 
 from pydantic import BaseModel
 
-from aries_cloudcontroller.model.invitation_message import InvitationMessage
+from aries_cloudcontroller.models.invitation_message import InvitationMessage
 from aries_cloudcontroller.util.pydantic_converter import (
     PydanticConverter,
     _PydanticRequestBody,
