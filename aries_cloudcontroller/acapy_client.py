@@ -4,7 +4,6 @@ from aiohttp.client import ClientSession
 
 from aries_cloudcontroller.client import Client
 from aries_cloudcontroller.util.acapy_client_session import AcaPyClientSession
-from aries_cloudcontroller.util.pydantic_converter import PydanticConverter
 
 
 class AcaPyClient(Client):
@@ -42,7 +41,7 @@ class AcaPyClient(Client):
         super().__init__(
             self.base_url,
             client=self.client_session,
-            extra_service_params={"converter": PydanticConverter()},
+            extra_service_params={},
         )
 
     async def __aenter__(self):
