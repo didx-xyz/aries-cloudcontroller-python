@@ -1,7 +1,7 @@
 from contextlib import AbstractAsyncContextManager
 from typing import Dict
 
-import uplink
+import httpx
 
 from aries_cloudcontroller.api import (
     ActionMenuApi,
@@ -66,7 +66,7 @@ class Client(AbstractAsyncContextManager):
     def __init__(
         self,
         base_url: str,
-        client: uplink.AiohttpClient,
+        client: httpx.AsyncClient,
         *,
         extra_service_params: Dict = {}
     ):
