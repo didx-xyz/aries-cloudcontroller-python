@@ -12,24 +12,14 @@
 """  # noqa: E501
 
 
-import io
-import re  # noqa: F401
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple
 
-from pydantic import (
-    Field,
-    StrictBool,
-    StrictStr,
-    ValidationError,
-    field_validator,
-    validate_call,
-)
+from pydantic import Field, StrictBool, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.exceptions import ApiTypeError
 from aries_cloudcontroller.models.did_create import DIDCreate
 from aries_cloudcontroller.models.did_endpoint import DIDEndpoint
 from aries_cloudcontroller.models.did_endpoint_with_type import DIDEndpointWithType

@@ -16,8 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
-from typing import Any, Dict, Optional, Union
+from typing import Any, Optional, Union
 
 from pydantic import BaseModel, Field
 

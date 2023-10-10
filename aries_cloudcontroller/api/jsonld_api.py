@@ -12,16 +12,13 @@
 """  # noqa: E501
 
 
-import io
-import re  # noqa: F401
-import warnings
 from typing import Dict, List, Optional, Tuple
 
-from pydantic import ValidationError, validate_call
+from pydantic import validate_call
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.exceptions import ApiTypeError
 from aries_cloudcontroller.models.sign_request import SignRequest
 from aries_cloudcontroller.models.sign_response import SignResponse
 from aries_cloudcontroller.models.verify_request import VerifyRequest

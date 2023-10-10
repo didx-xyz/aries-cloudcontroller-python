@@ -12,8 +12,15 @@ java -ea -server -Duser.timezone=UTC -jar "$(pwd)/../../openapi-generator/module
 # Copy
 cp -r ../generated/aries_cloudcontroller/ ..
 
-black .
-isort . --profile black
+# Remove `# noqa: F401` comment indicating to ignore unused imports
+find aries_cloudcontroller -type f -name '*.py' | xargs sed -i 's/# noqa: F401//'
+
+# autoflake to remove unused imports
+autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --exclude=__init__.py
+
+# Black format and optimise imports
+black aries_cloudcontroller
+isort aries_cloudcontroller --profile black
 
 # Apply the patches required
 # cd ..

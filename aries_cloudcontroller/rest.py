@@ -17,7 +17,6 @@ import json
 import logging
 import re
 import ssl
-from urllib.parse import quote_plus, urlencode
 
 import urllib3
 
