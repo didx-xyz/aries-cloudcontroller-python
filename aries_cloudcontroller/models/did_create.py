@@ -28,20 +28,24 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class DIDCreate(BaseModel):
     """
     DIDCreate
     """
-    method: Optional[StrictStr] = Field(default=None, description="Method for the requested DID.Supported methods are 'key', 'sov', and any other registered method.")
+
+    method: Optional[StrictStr] = Field(
+        default=None,
+        description="Method for the requested DID.Supported methods are 'key', 'sov', and any other registered method.",
+    )
     options: Optional[DIDCreateOptions] = None
-    seed: Optional[StrictStr] = Field(default=None, description="Optional seed to use for DID, Must beenabled in configuration before use.")
+    seed: Optional[StrictStr] = Field(
+        default=None,
+        description="Optional seed to use for DID, Must beenabled in configuration before use.",
+    )
     __properties: ClassVar[List[str]] = ["method", "options", "seed"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,13 +62,10 @@ class DIDCreate(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
-            _dict['options'] = self.options.to_dict()
+            _dict["options"] = self.options.to_dict()
         return _dict
 
     @classmethod
@@ -76,11 +77,13 @@ class DIDCreate(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "method": obj.get("method"),
-            "options": DIDCreateOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
-            "seed": obj.get("seed")
-        })
+        _obj = cls.model_validate(
+            {
+                "method": obj.get("method"),
+                "options": DIDCreateOptions.from_dict(obj.get("options"))
+                if obj.get("options") is not None
+                else None,
+                "seed": obj.get("seed"),
+            }
+        )
         return _obj
-
-

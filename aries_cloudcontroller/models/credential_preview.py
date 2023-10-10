@@ -28,19 +28,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CredentialPreview(BaseModel):
     """
     CredentialPreview
     """
-    type: Optional[StrictStr] = Field(default=None, description="Message type identifier", alias="@type")
+
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type identifier", alias="@type"
+    )
     attributes: List[CredAttrSpec]
     __properties: ClassVar[List[str]] = ["@type", "attributes"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,17 +57,14 @@ class CredentialPreview(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in attributes (list)
         _items = []
         if self.attributes:
             for _item in self.attributes:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['attributes'] = _items
+            _dict["attributes"] = _items
         return _dict
 
     @classmethod
@@ -79,10 +76,14 @@ class CredentialPreview(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@type": obj.get("@type"),
-            "attributes": [CredAttrSpec.from_dict(_item) for _item in obj.get("attributes")] if obj.get("attributes") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "@type": obj.get("@type"),
+                "attributes": [
+                    CredAttrSpec.from_dict(_item) for _item in obj.get("attributes")
+                ]
+                if obj.get("attributes") is not None
+                else None,
+            }
+        )
         return _obj
-
-

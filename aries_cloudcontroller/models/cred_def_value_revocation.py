@@ -26,10 +26,12 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CredDefValueRevocation(BaseModel):
     """
     CredDefValueRevocation
     """
+
     g: Optional[StrictStr] = None
     g_dash: Optional[StrictStr] = None
     h: Optional[StrictStr] = None
@@ -41,13 +43,21 @@ class CredDefValueRevocation(BaseModel):
     pk: Optional[StrictStr] = None
     u: Optional[StrictStr] = None
     y: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["g", "g_dash", "h", "h0", "h1", "h2", "h_cap", "htilde", "pk", "u", "y"]
+    __properties: ClassVar[List[str]] = [
+        "g",
+        "g_dash",
+        "h",
+        "h0",
+        "h1",
+        "h2",
+        "h_cap",
+        "htilde",
+        "pk",
+        "u",
+        "y",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -64,10 +74,7 @@ class CredDefValueRevocation(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -79,19 +86,19 @@ class CredDefValueRevocation(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "g": obj.get("g"),
-            "g_dash": obj.get("g_dash"),
-            "h": obj.get("h"),
-            "h0": obj.get("h0"),
-            "h1": obj.get("h1"),
-            "h2": obj.get("h2"),
-            "h_cap": obj.get("h_cap"),
-            "htilde": obj.get("htilde"),
-            "pk": obj.get("pk"),
-            "u": obj.get("u"),
-            "y": obj.get("y")
-        })
+        _obj = cls.model_validate(
+            {
+                "g": obj.get("g"),
+                "g_dash": obj.get("g_dash"),
+                "h": obj.get("h"),
+                "h0": obj.get("h0"),
+                "h1": obj.get("h1"),
+                "h2": obj.get("h2"),
+                "h_cap": obj.get("h_cap"),
+                "htilde": obj.get("htilde"),
+                "pk": obj.get("pk"),
+                "u": obj.get("u"),
+                "y": obj.get("y"),
+            }
+        )
         return _obj
-
-

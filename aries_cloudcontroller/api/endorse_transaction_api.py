@@ -76,8 +76,8 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the cancel_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.cancel_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
@@ -125,61 +125,60 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'tran_id'
-        ]
+        _all_params = ["tran_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method cancel_transaction" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['tran_id'] is not None:
-            _path_params['tran_id'] = _params['tran_id']
-
+        if _params["tran_id"] is not None:
+            _path_params["tran_id"] = _params["tran_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionRecord",
+            "200": "TransactionRecord",
         }
 
         return self.api_client.call_api(
-            '/transactions/{tran_id}/cancel', 'POST',
+            "/transactions/{tran_id}/cancel",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -188,18 +187,22 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def create_request(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
-        endorser_write_txn: Annotated[Optional[StrictBool], Field(description="Endorser will write the transaction after endorsing it")] = None,
+        endorser_write_txn: Annotated[
+            Optional[StrictBool],
+            Field(description="Endorser will write the transaction after endorsing it"),
+        ] = None,
         body: Optional[ModelDate] = None,
         **kwargs,
     ) -> TransactionRecord:
@@ -228,17 +231,22 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the create_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_request_with_http_info(tran_id, endorser_write_txn, body, **kwargs)  # noqa: E501
+        return self.create_request_with_http_info(
+            tran_id, endorser_write_txn, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def create_request_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
-        endorser_write_txn: Annotated[Optional[StrictBool], Field(description="Endorser will write the transaction after endorsing it")] = None,
+        endorser_write_txn: Annotated[
+            Optional[StrictBool],
+            Field(description="Endorser will write the transaction after endorsing it"),
+        ] = None,
         body: Optional[ModelDate] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -283,32 +291,28 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'tran_id',
-            'endorser_write_txn',
-            'body'
-        ]
+        _all_params = ["tran_id", "endorser_write_txn", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -317,42 +321,45 @@ class EndorseTransactionApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('tran_id') is not None:  # noqa: E501
-            _query_params.append(('tran_id', _params['tran_id']))
+        if _params.get("tran_id") is not None:  # noqa: E501
+            _query_params.append(("tran_id", _params["tran_id"]))
 
-        if _params.get('endorser_write_txn') is not None:  # noqa: E501
-            _query_params.append(('endorser_write_txn', _params['endorser_write_txn']))
+        if _params.get("endorser_write_txn") is not None:  # noqa: E501
+            _query_params.append(("endorser_write_txn", _params["endorser_write_txn"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionRecord",
+            "200": "TransactionRecord",
         }
 
         return self.api_client.call_api(
-            '/transactions/create-request', 'POST',
+            "/transactions/create-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -361,18 +368,21 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def endorse_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
-        endorser_did: Annotated[Optional[StrictStr], Field(description="Endorser DID")] = None,
+        endorser_did: Annotated[
+            Optional[StrictStr], Field(description="Endorser DID")
+        ] = None,
         **kwargs,
     ) -> TransactionRecord:
         """For Endorser to endorse a particular transaction record  # noqa: E501
@@ -398,17 +408,21 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the endorse_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.endorse_transaction_with_http_info(tran_id, endorser_did, **kwargs)  # noqa: E501
+        return self.endorse_transaction_with_http_info(
+            tran_id, endorser_did, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def endorse_transaction_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
-        endorser_did: Annotated[Optional[StrictStr], Field(description="Endorser DID")] = None,
+        endorser_did: Annotated[
+            Optional[StrictStr], Field(description="Endorser DID")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """For Endorser to endorse a particular transaction record  # noqa: E501
@@ -450,65 +464,63 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'tran_id',
-            'endorser_did'
-        ]
+        _all_params = ["tran_id", "endorser_did"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method endorse_transaction" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['tran_id'] is not None:
-            _path_params['tran_id'] = _params['tran_id']
-
+        if _params["tran_id"] is not None:
+            _path_params["tran_id"] = _params["tran_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('endorser_did') is not None:  # noqa: E501
-            _query_params.append(('endorser_did', _params['endorser_did']))
+        if _params.get("endorser_did") is not None:  # noqa: E501
+            _query_params.append(("endorser_did", _params["endorser_did"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionRecord",
+            "200": "TransactionRecord",
         }
 
         return self.api_client.call_api(
-            '/transactions/{tran_id}/endorse', 'POST',
+            "/transactions/{tran_id}/endorse",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -517,12 +529,13 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_records(
@@ -548,8 +561,8 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionList
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_records_with_http_info(**kwargs)  # noqa: E501
@@ -594,29 +607,28 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-        ]
+        _all_params = []
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_records" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -626,25 +638,27 @@ class EndorseTransactionApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionList",
+            "200": "TransactionList",
         }
 
         return self.api_client.call_api(
-            '/transactions', 'GET',
+            "/transactions",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -653,12 +667,13 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_transaction(
@@ -687,8 +702,8 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
@@ -736,61 +751,60 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'tran_id'
-        ]
+        _all_params = ["tran_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_transaction" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['tran_id'] is not None:
-            _path_params['tran_id'] = _params['tran_id']
-
+        if _params["tran_id"] is not None:
+            _path_params["tran_id"] = _params["tran_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionRecord",
+            "200": "TransactionRecord",
         }
 
         return self.api_client.call_api(
-            '/transactions/{tran_id}', 'GET',
+            "/transactions/{tran_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -799,12 +813,13 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def refuse_transaction(
@@ -833,8 +848,8 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the refuse_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.refuse_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
@@ -882,61 +897,60 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'tran_id'
-        ]
+        _all_params = ["tran_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method refuse_transaction" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['tran_id'] is not None:
-            _path_params['tran_id'] = _params['tran_id']
-
+        if _params["tran_id"] is not None:
+            _path_params["tran_id"] = _params["tran_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionRecord",
+            "200": "TransactionRecord",
         }
 
         return self.api_client.call_api(
-            '/transactions/{tran_id}/refuse', 'POST',
+            "/transactions/{tran_id}/refuse",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -945,12 +959,13 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def resend_transaction_request(
@@ -979,11 +994,13 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the resend_transaction_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.resend_transaction_request_with_http_info(tran_id, **kwargs)  # noqa: E501
+        return self.resend_transaction_request_with_http_info(
+            tran_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def resend_transaction_request_with_http_info(
@@ -1028,61 +1045,60 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'tran_id'
-        ]
+        _all_params = ["tran_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method resend_transaction_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['tran_id'] is not None:
-            _path_params['tran_id'] = _params['tran_id']
-
+        if _params["tran_id"] is not None:
+            _path_params["tran_id"] = _params["tran_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionRecord",
+            "200": "TransactionRecord",
         }
 
         return self.api_client.call_api(
-            '/transaction/{tran_id}/resend', 'POST',
+            "/transaction/{tran_id}/resend",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1091,19 +1107,22 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def set_endorser_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         endorser_did: Annotated[StrictStr, Field(description="Endorser DID")],
-        endorser_name: Annotated[Optional[StrictStr], Field(description="Endorser Name")] = None,
+        endorser_name: Annotated[
+            Optional[StrictStr], Field(description="Endorser Name")
+        ] = None,
         **kwargs,
     ) -> EndorserInfo:
         """Set Endorser Info  # noqa: E501
@@ -1131,18 +1150,22 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: EndorserInfo
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the set_endorser_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_endorser_info_with_http_info(conn_id, endorser_did, endorser_name, **kwargs)  # noqa: E501
+        return self.set_endorser_info_with_http_info(
+            conn_id, endorser_did, endorser_name, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def set_endorser_info_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         endorser_did: Annotated[StrictStr, Field(description="Endorser DID")],
-        endorser_name: Annotated[Optional[StrictStr], Field(description="Endorser Name")] = None,
+        endorser_name: Annotated[
+            Optional[StrictStr], Field(description="Endorser Name")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Set Endorser Info  # noqa: E501
@@ -1186,69 +1209,66 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'endorser_did',
-            'endorser_name'
-        ]
+        _all_params = ["conn_id", "endorser_did", "endorser_name"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_endorser_info" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('endorser_did') is not None:  # noqa: E501
-            _query_params.append(('endorser_did', _params['endorser_did']))
+        if _params.get("endorser_did") is not None:  # noqa: E501
+            _query_params.append(("endorser_did", _params["endorser_did"]))
 
-        if _params.get('endorser_name') is not None:  # noqa: E501
-            _query_params.append(('endorser_name', _params['endorser_name']))
+        if _params.get("endorser_name") is not None:  # noqa: E501
+            _query_params.append(("endorser_name", _params["endorser_name"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "EndorserInfo",
+            "200": "EndorserInfo",
         }
 
         return self.api_client.call_api(
-            '/transactions/{conn_id}/set-endorser-info', 'POST',
+            "/transactions/{conn_id}/set-endorser-info",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1257,18 +1277,21 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def set_endorser_role(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        transaction_my_job: Annotated[Optional[StrictStr], Field(description="Transaction related jobs")] = None,
+        transaction_my_job: Annotated[
+            Optional[StrictStr], Field(description="Transaction related jobs")
+        ] = None,
         **kwargs,
     ) -> TransactionJobs:
         """Set transaction jobs  # noqa: E501
@@ -1294,17 +1317,21 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionJobs
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the set_endorser_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_endorser_role_with_http_info(conn_id, transaction_my_job, **kwargs)  # noqa: E501
+        return self.set_endorser_role_with_http_info(
+            conn_id, transaction_my_job, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def set_endorser_role_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        transaction_my_job: Annotated[Optional[StrictStr], Field(description="Transaction related jobs")] = None,
+        transaction_my_job: Annotated[
+            Optional[StrictStr], Field(description="Transaction related jobs")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Set transaction jobs  # noqa: E501
@@ -1346,65 +1373,63 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'transaction_my_job'
-        ]
+        _all_params = ["conn_id", "transaction_my_job"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_endorser_role" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('transaction_my_job') is not None:  # noqa: E501
-            _query_params.append(('transaction_my_job', _params['transaction_my_job']))
+        if _params.get("transaction_my_job") is not None:  # noqa: E501
+            _query_params.append(("transaction_my_job", _params["transaction_my_job"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionJobs",
+            "200": "TransactionJobs",
         }
 
         return self.api_client.call_api(
-            '/transactions/{conn_id}/set-endorser-role', 'POST',
+            "/transactions/{conn_id}/set-endorser-role",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1413,12 +1438,13 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def write_transaction(
@@ -1447,8 +1473,8 @@ class EndorseTransactionApi:
                  returns the request thread.
         :rtype: TransactionRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the write_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.write_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
@@ -1496,61 +1522,60 @@ class EndorseTransactionApi:
 
         _params = locals()
 
-        _all_params = [
-            'tran_id'
-        ]
+        _all_params = ["tran_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method write_transaction" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['tran_id'] is not None:
-            _path_params['tran_id'] = _params['tran_id']
-
+        if _params["tran_id"] is not None:
+            _path_params["tran_id"] = _params["tran_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TransactionRecord",
+            "200": "TransactionRecord",
         }
 
         return self.api_client.call_api(
-            '/transactions/{tran_id}/write', 'POST',
+            "/transactions/{tran_id}/write",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1559,9 +1584,10 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

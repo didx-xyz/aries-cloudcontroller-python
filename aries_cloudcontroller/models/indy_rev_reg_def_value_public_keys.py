@@ -30,18 +30,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyRevRegDefValuePublicKeys(BaseModel):
     """
     IndyRevRegDefValuePublicKeys
     """
-    accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = Field(default=None, alias="accumKey")
+
+    accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = Field(
+        default=None, alias="accumKey"
+    )
     __properties: ClassVar[List[str]] = ["accumKey"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,13 +58,10 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of accum_key
         if self.accum_key:
-            _dict['accumKey'] = self.accum_key.to_dict()
+            _dict["accumKey"] = self.accum_key.to_dict()
         return _dict
 
     @classmethod
@@ -76,9 +73,13 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "accumKey": IndyRevRegDefValuePublicKeysAccumKey.from_dict(obj.get("accumKey")) if obj.get("accumKey") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "accumKey": IndyRevRegDefValuePublicKeysAccumKey.from_dict(
+                    obj.get("accumKey")
+                )
+                if obj.get("accumKey") is not None
+                else None
+            }
+        )
         return _obj
-
-

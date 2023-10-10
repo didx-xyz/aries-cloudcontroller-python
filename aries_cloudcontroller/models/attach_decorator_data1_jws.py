@@ -31,16 +31,20 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class AttachDecoratorData1JWS(BaseModel):
     """
     AttachDecoratorData1JWS
     """
+
     header: AttachDecoratorDataJWSHeader
-    protected: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="protected JWS header")
+    protected: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="protected JWS header"
+    )
     signature: Annotated[str, Field(strict=True)] = Field(description="signature")
     __properties: ClassVar[List[str]] = ["header", "protected", "signature"]
 
-    @field_validator('protected')
+    @field_validator("protected")
     def protected_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -50,18 +54,14 @@ class AttachDecoratorData1JWS(BaseModel):
             raise ValueError(r"must validate the regular expression /^[-_a-zA-Z0-9]*$/")
         return value
 
-    @field_validator('signature')
+    @field_validator("signature")
     def signature_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^[-_a-zA-Z0-9]*$", value):
             raise ValueError(r"must validate the regular expression /^[-_a-zA-Z0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -78,13 +78,10 @@ class AttachDecoratorData1JWS(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of header
         if self.header:
-            _dict['header'] = self.header.to_dict()
+            _dict["header"] = self.header.to_dict()
         return _dict
 
     @classmethod
@@ -96,11 +93,13 @@ class AttachDecoratorData1JWS(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "header": AttachDecoratorDataJWSHeader.from_dict(obj.get("header")) if obj.get("header") is not None else None,
-            "protected": obj.get("protected"),
-            "signature": obj.get("signature")
-        })
+        _obj = cls.model_validate(
+            {
+                "header": AttachDecoratorDataJWSHeader.from_dict(obj.get("header"))
+                if obj.get("header") is not None
+                else None,
+                "protected": obj.get("protected"),
+                "signature": obj.get("signature"),
+            }
+        )
         return _obj
-
-

@@ -28,21 +28,25 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class KeylistQuery(BaseModel):
     """
     KeylistQuery
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    filter: Optional[Union[str, Any]] = Field(default=None, description="Query dictionary object")
+
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    filter: Optional[Union[str, Any]] = Field(
+        default=None, description="Query dictionary object"
+    )
     paginate: Optional[KeylistQueryPaginate] = None
     __properties: ClassVar[List[str]] = ["@id", "@type", "filter", "paginate"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,14 +63,16 @@ class KeylistQuery(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of paginate
         if self.paginate:
-            _dict['paginate'] = self.paginate.to_dict()
+            _dict["paginate"] = self.paginate.to_dict()
         return _dict
 
     @classmethod
@@ -78,12 +84,14 @@ class KeylistQuery(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "filter": obj.get("filter"),
-            "paginate": KeylistQueryPaginate.from_dict(obj.get("paginate")) if obj.get("paginate") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "filter": obj.get("filter"),
+                "paginate": KeylistQueryPaginate.from_dict(obj.get("paginate"))
+                if obj.get("paginate") is not None
+                else None,
+            }
+        )
         return _obj
-
-

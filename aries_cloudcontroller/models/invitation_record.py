@@ -29,46 +29,81 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class InvitationRecord(BaseModel):
     """
     InvitationRecord
     """
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
-    invi_msg_id: Optional[StrictStr] = Field(default=None, description="Invitation message identifier")
-    invitation: Optional[InvitationMessage] = None
-    invitation_id: Optional[StrictStr] = Field(default=None, description="Invitation record identifier")
-    invitation_url: Optional[StrictStr] = Field(default=None, description="Invitation message URL")
-    oob_id: Optional[StrictStr] = Field(default=None, description="Out of band record identifier")
-    state: Optional[StrictStr] = Field(default=None, description="Out of band message exchange state")
-    trace: Optional[StrictBool] = Field(default=None, description="Record trace information, based on agent configuration")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    __properties: ClassVar[List[str]] = ["created_at", "invi_msg_id", "invitation", "invitation_id", "invitation_url", "oob_id", "state", "trace", "updated_at"]
 
-    @field_validator('created_at')
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
+    invi_msg_id: Optional[StrictStr] = Field(
+        default=None, description="Invitation message identifier"
+    )
+    invitation: Optional[InvitationMessage] = None
+    invitation_id: Optional[StrictStr] = Field(
+        default=None, description="Invitation record identifier"
+    )
+    invitation_url: Optional[StrictStr] = Field(
+        default=None, description="Invitation message URL"
+    )
+    oob_id: Optional[StrictStr] = Field(
+        default=None, description="Out of band record identifier"
+    )
+    state: Optional[StrictStr] = Field(
+        default=None, description="Out of band message exchange state"
+    )
+    trace: Optional[StrictBool] = Field(
+        default=None,
+        description="Record trace information, based on agent configuration",
+    )
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    __properties: ClassVar[List[str]] = [
+        "created_at",
+        "invi_msg_id",
+        "invitation",
+        "invitation_id",
+        "invitation_url",
+        "oob_id",
+        "state",
+        "trace",
+        "updated_at",
+    ]
+
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -85,13 +120,10 @@ class InvitationRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of invitation
         if self.invitation:
-            _dict['invitation'] = self.invitation.to_dict()
+            _dict["invitation"] = self.invitation.to_dict()
         return _dict
 
     @classmethod
@@ -103,17 +135,19 @@ class InvitationRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "created_at": obj.get("created_at"),
-            "invi_msg_id": obj.get("invi_msg_id"),
-            "invitation": InvitationMessage.from_dict(obj.get("invitation")) if obj.get("invitation") is not None else None,
-            "invitation_id": obj.get("invitation_id"),
-            "invitation_url": obj.get("invitation_url"),
-            "oob_id": obj.get("oob_id"),
-            "state": obj.get("state"),
-            "trace": obj.get("trace"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "created_at": obj.get("created_at"),
+                "invi_msg_id": obj.get("invi_msg_id"),
+                "invitation": InvitationMessage.from_dict(obj.get("invitation"))
+                if obj.get("invitation") is not None
+                else None,
+                "invitation_id": obj.get("invitation_id"),
+                "invitation_url": obj.get("invitation_url"),
+                "oob_id": obj.get("oob_id"),
+                "state": obj.get("state"),
+                "trace": obj.get("trace"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

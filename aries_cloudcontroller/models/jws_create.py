@@ -27,41 +27,57 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class JWSCreate(BaseModel):
     """
     JWSCreate
     """
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="DID of interest")
+
+    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="DID of interest"
+    )
     headers: Optional[Union[str, Any]] = None
     payload: Union[str, Any]
-    verification_method: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Information used for proof verification", alias="verificationMethod")
-    __properties: ClassVar[List[str]] = ["did", "headers", "payload", "verificationMethod"]
+    verification_method: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description="Information used for proof verification",
+        alias="verificationMethod",
+    )
+    __properties: ClassVar[List[str]] = [
+        "did",
+        "headers",
+        "payload",
+        "verificationMethod",
+    ]
 
-    @field_validator('did')
+    @field_validator("did")
     def did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$/"
+            )
         return value
 
-    @field_validator('verification_method')
+    @field_validator("verification_method")
     def verification_method_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
         if not re.match(r"\w+:(\/?\/?)[^\s]+", value):
-            raise ValueError(r"must validate the regular expression /\w+:(\/?\/?)[^\s]+/")
+            raise ValueError(
+                r"must validate the regular expression /\w+:(\/?\/?)[^\s]+/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -78,10 +94,7 @@ class JWSCreate(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -93,12 +106,12 @@ class JWSCreate(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "did": obj.get("did"),
-            "headers": obj.get("headers"),
-            "payload": obj.get("payload"),
-            "verificationMethod": obj.get("verificationMethod")
-        })
+        _obj = cls.model_validate(
+            {
+                "did": obj.get("did"),
+                "headers": obj.get("headers"),
+                "payload": obj.get("payload"),
+                "verificationMethod": obj.get("verificationMethod"),
+            }
+        )
         return _obj
-
-

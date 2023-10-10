@@ -31,42 +31,61 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyCredAbstract(BaseModel):
     """
     IndyCredAbstract
     """
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(description="Credential definition identifier")
-    key_correctness_proof: IndyKeyCorrectnessProof
-    nonce: Annotated[str, Field(strict=True)] = Field(description="Nonce in credential abstract")
-    schema_id: Annotated[str, Field(strict=True)] = Field(description="Schema identifier")
-    __properties: ClassVar[List[str]] = ["cred_def_id", "key_correctness_proof", "nonce", "schema_id"]
 
-    @field_validator('cred_def_id')
+    cred_def_id: Annotated[str, Field(strict=True)] = Field(
+        description="Credential definition identifier"
+    )
+    key_correctness_proof: IndyKeyCorrectnessProof
+    nonce: Annotated[str, Field(strict=True)] = Field(
+        description="Nonce in credential abstract"
+    )
+    schema_id: Annotated[str, Field(strict=True)] = Field(
+        description="Schema identifier"
+    )
+    __properties: ClassVar[List[str]] = [
+        "cred_def_id",
+        "key_correctness_proof",
+        "nonce",
+        "schema_id",
+    ]
+
+    @field_validator("cred_def_id")
     def cred_def_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    @field_validator('nonce')
+    @field_validator("nonce")
     def nonce_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^[0-9]*$", value):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('schema_id')
+    @field_validator("schema_id")
     def schema_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -83,13 +102,10 @@ class IndyCredAbstract(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of key_correctness_proof
         if self.key_correctness_proof:
-            _dict['key_correctness_proof'] = self.key_correctness_proof.to_dict()
+            _dict["key_correctness_proof"] = self.key_correctness_proof.to_dict()
         return _dict
 
     @classmethod
@@ -101,12 +117,16 @@ class IndyCredAbstract(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_def_id": obj.get("cred_def_id"),
-            "key_correctness_proof": IndyKeyCorrectnessProof.from_dict(obj.get("key_correctness_proof")) if obj.get("key_correctness_proof") is not None else None,
-            "nonce": obj.get("nonce"),
-            "schema_id": obj.get("schema_id")
-        })
+        _obj = cls.model_validate(
+            {
+                "cred_def_id": obj.get("cred_def_id"),
+                "key_correctness_proof": IndyKeyCorrectnessProof.from_dict(
+                    obj.get("key_correctness_proof")
+                )
+                if obj.get("key_correctness_proof") is not None
+                else None,
+                "nonce": obj.get("nonce"),
+                "schema_id": obj.get("schema_id"),
+            }
+        )
         return _obj
-
-

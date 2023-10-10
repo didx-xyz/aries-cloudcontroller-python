@@ -31,33 +31,51 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class PresentationDefinition(BaseModel):
     """
     PresentationDefinition
     """
-    format: Optional[ClaimFormat] = None
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Unique Resource Identifier")
-    input_descriptors: Optional[List[InputDescriptors]] = None
-    name: Optional[StrictStr] = Field(default=None, description="Human-friendly name that describes what the presentation definition pertains to")
-    purpose: Optional[StrictStr] = Field(default=None, description="Describes the purpose for which the Presentation Definition's inputs are being requested")
-    submission_requirements: Optional[List[SubmissionRequirements]] = None
-    __properties: ClassVar[List[str]] = ["format", "id", "input_descriptors", "name", "purpose", "submission_requirements"]
 
-    @field_validator('id')
+    format: Optional[ClaimFormat] = None
+    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Unique Resource Identifier"
+    )
+    input_descriptors: Optional[List[InputDescriptors]] = None
+    name: Optional[StrictStr] = Field(
+        default=None,
+        description="Human-friendly name that describes what the presentation definition pertains to",
+    )
+    purpose: Optional[StrictStr] = Field(
+        default=None,
+        description="Describes the purpose for which the Presentation Definition's inputs are being requested",
+    )
+    submission_requirements: Optional[List[SubmissionRequirements]] = None
+    __properties: ClassVar[List[str]] = [
+        "format",
+        "id",
+        "input_descriptors",
+        "name",
+        "purpose",
+        "submission_requirements",
+    ]
+
+    @field_validator("id")
     def id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}", value):
-            raise ValueError(r"must validate the regular expression /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/")
+        if not re.match(
+            r"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -74,27 +92,24 @@ class PresentationDefinition(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of format
         if self.format:
-            _dict['format'] = self.format.to_dict()
+            _dict["format"] = self.format.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in input_descriptors (list)
         _items = []
         if self.input_descriptors:
             for _item in self.input_descriptors:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['input_descriptors'] = _items
+            _dict["input_descriptors"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in submission_requirements (list)
         _items = []
         if self.submission_requirements:
             for _item in self.submission_requirements:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['submission_requirements'] = _items
+            _dict["submission_requirements"] = _items
         return _dict
 
     @classmethod
@@ -106,14 +121,26 @@ class PresentationDefinition(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "format": ClaimFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
-            "id": obj.get("id"),
-            "input_descriptors": [InputDescriptors.from_dict(_item) for _item in obj.get("input_descriptors")] if obj.get("input_descriptors") is not None else None,
-            "name": obj.get("name"),
-            "purpose": obj.get("purpose"),
-            "submission_requirements": [SubmissionRequirements.from_dict(_item) for _item in obj.get("submission_requirements")] if obj.get("submission_requirements") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "format": ClaimFormat.from_dict(obj.get("format"))
+                if obj.get("format") is not None
+                else None,
+                "id": obj.get("id"),
+                "input_descriptors": [
+                    InputDescriptors.from_dict(_item)
+                    for _item in obj.get("input_descriptors")
+                ]
+                if obj.get("input_descriptors") is not None
+                else None,
+                "name": obj.get("name"),
+                "purpose": obj.get("purpose"),
+                "submission_requirements": [
+                    SubmissionRequirements.from_dict(_item)
+                    for _item in obj.get("submission_requirements")
+                ]
+                if obj.get("submission_requirements") is not None
+                else None,
+            }
+        )
         return _obj
-
-

@@ -28,18 +28,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class SchemaGetResult(BaseModel):
     """
     SchemaGetResult
     """
+
     var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
     __properties: ClassVar[List[str]] = ["schema"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,13 +54,10 @@ class SchemaGetResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -74,9 +69,11 @@ class SchemaGetResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "schema": ModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "schema": ModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None
+            }
+        )
         return _obj
-
-

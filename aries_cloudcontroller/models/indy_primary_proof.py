@@ -31,19 +31,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyPrimaryProof(BaseModel):
     """
     IndyPrimaryProof
     """
+
     eq_proof: Optional[IndyPrimaryProofEqProof] = None
-    ge_proofs: Optional[List[IndyGEProof]] = Field(default=None, description="Indy GE proofs")
+    ge_proofs: Optional[List[IndyGEProof]] = Field(
+        default=None, description="Indy GE proofs"
+    )
     __properties: ClassVar[List[str]] = ["eq_proof", "ge_proofs"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -60,29 +60,26 @@ class IndyPrimaryProof(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of eq_proof
         if self.eq_proof:
-            _dict['eq_proof'] = self.eq_proof.to_dict()
+            _dict["eq_proof"] = self.eq_proof.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in ge_proofs (list)
         _items = []
         if self.ge_proofs:
             for _item in self.ge_proofs:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['ge_proofs'] = _items
+            _dict["ge_proofs"] = _items
         # set to None if eq_proof (nullable) is None
         # and model_fields_set contains the field
         if self.eq_proof is None and "eq_proof" in self.model_fields_set:
-            _dict['eq_proof'] = None
+            _dict["eq_proof"] = None
 
         # set to None if ge_proofs (nullable) is None
         # and model_fields_set contains the field
         if self.ge_proofs is None and "ge_proofs" in self.model_fields_set:
-            _dict['ge_proofs'] = None
+            _dict["ge_proofs"] = None
 
         return _dict
 
@@ -95,10 +92,16 @@ class IndyPrimaryProof(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "eq_proof": IndyPrimaryProofEqProof.from_dict(obj.get("eq_proof")) if obj.get("eq_proof") is not None else None,
-            "ge_proofs": [IndyGEProof.from_dict(_item) for _item in obj.get("ge_proofs")] if obj.get("ge_proofs") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "eq_proof": IndyPrimaryProofEqProof.from_dict(obj.get("eq_proof"))
+                if obj.get("eq_proof") is not None
+                else None,
+                "ge_proofs": [
+                    IndyGEProof.from_dict(_item) for _item in obj.get("ge_proofs")
+                ]
+                if obj.get("ge_proofs") is not None
+                else None,
+            }
+        )
         return _obj
-
-

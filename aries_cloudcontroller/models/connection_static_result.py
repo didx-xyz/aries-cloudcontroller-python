@@ -29,58 +29,94 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ConnectionStaticResult(BaseModel):
     """
     ConnectionStaticResult
     """
+
     my_did: Annotated[str, Field(strict=True)] = Field(description="Local DID")
-    my_endpoint: Annotated[str, Field(strict=True)] = Field(description="My URL endpoint")
-    my_verkey: Annotated[str, Field(strict=True)] = Field(description="My verification key")
+    my_endpoint: Annotated[str, Field(strict=True)] = Field(
+        description="My URL endpoint"
+    )
+    my_verkey: Annotated[str, Field(strict=True)] = Field(
+        description="My verification key"
+    )
     record: ConnRecord
     their_did: Annotated[str, Field(strict=True)] = Field(description="Remote DID")
-    their_verkey: Annotated[str, Field(strict=True)] = Field(description="Remote verification key")
-    __properties: ClassVar[List[str]] = ["my_did", "my_endpoint", "my_verkey", "record", "their_did", "their_verkey"]
+    their_verkey: Annotated[str, Field(strict=True)] = Field(
+        description="Remote verification key"
+    )
+    __properties: ClassVar[List[str]] = [
+        "my_did",
+        "my_endpoint",
+        "my_verkey",
+        "record",
+        "their_did",
+        "their_verkey",
+    ]
 
-    @field_validator('my_did')
+    @field_validator("my_did")
     def my_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('my_endpoint')
+    @field_validator("my_endpoint")
     def my_endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/")
+        if not re.match(
+            r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/"
+            )
         return value
 
-    @field_validator('my_verkey')
+    @field_validator("my_verkey")
     def my_verkey_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/"
+            )
         return value
 
-    @field_validator('their_did')
+    @field_validator("their_did")
     def their_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('their_verkey')
+    @field_validator("their_verkey")
     def their_verkey_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -97,13 +133,10 @@ class ConnectionStaticResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of record
         if self.record:
-            _dict['record'] = self.record.to_dict()
+            _dict["record"] = self.record.to_dict()
         return _dict
 
     @classmethod
@@ -115,14 +148,16 @@ class ConnectionStaticResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "my_did": obj.get("my_did"),
-            "my_endpoint": obj.get("my_endpoint"),
-            "my_verkey": obj.get("my_verkey"),
-            "record": ConnRecord.from_dict(obj.get("record")) if obj.get("record") is not None else None,
-            "their_did": obj.get("their_did"),
-            "their_verkey": obj.get("their_verkey")
-        })
+        _obj = cls.model_validate(
+            {
+                "my_did": obj.get("my_did"),
+                "my_endpoint": obj.get("my_endpoint"),
+                "my_verkey": obj.get("my_verkey"),
+                "record": ConnRecord.from_dict(obj.get("record"))
+                if obj.get("record") is not None
+                else None,
+                "their_did": obj.get("their_did"),
+                "their_verkey": obj.get("their_verkey"),
+            }
+        )
         return _obj
-
-

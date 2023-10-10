@@ -29,22 +29,32 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CredentialOffer(BaseModel):
     """
     CredentialOffer
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    comment: Optional[StrictStr] = Field(default=None, description="Human-readable comment")
+
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Human-readable comment"
+    )
     credential_preview: Optional[CredentialPreview] = None
     offersattach: List[AttachDecorator] = Field(alias="offers~attach")
-    __properties: ClassVar[List[str]] = ["@id", "@type", "comment", "credential_preview", "offers~attach"]
+    __properties: ClassVar[List[str]] = [
+        "@id",
+        "@type",
+        "comment",
+        "credential_preview",
+        "offers~attach",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -61,25 +71,27 @@ class CredentialOffer(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of credential_preview
         if self.credential_preview:
-            _dict['credential_preview'] = self.credential_preview.to_dict()
+            _dict["credential_preview"] = self.credential_preview.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in offersattach (list)
         _items = []
         if self.offersattach:
             for _item in self.offersattach:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['offers~attach'] = _items
+            _dict["offers~attach"] = _items
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
         if self.comment is None and "comment" in self.model_fields_set:
-            _dict['comment'] = None
+            _dict["comment"] = None
 
         return _dict
 
@@ -92,13 +104,22 @@ class CredentialOffer(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "comment": obj.get("comment"),
-            "credential_preview": CredentialPreview.from_dict(obj.get("credential_preview")) if obj.get("credential_preview") is not None else None,
-            "offers~attach": [AttachDecorator.from_dict(_item) for _item in obj.get("offers~attach")] if obj.get("offers~attach") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "comment": obj.get("comment"),
+                "credential_preview": CredentialPreview.from_dict(
+                    obj.get("credential_preview")
+                )
+                if obj.get("credential_preview") is not None
+                else None,
+                "offers~attach": [
+                    AttachDecorator.from_dict(_item)
+                    for _item in obj.get("offers~attach")
+                ]
+                if obj.get("offers~attach") is not None
+                else None,
+            }
+        )
         return _obj
-
-

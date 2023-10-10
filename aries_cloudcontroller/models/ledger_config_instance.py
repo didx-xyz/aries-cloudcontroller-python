@@ -26,22 +26,30 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class LedgerConfigInstance(BaseModel):
     """
     LedgerConfigInstance
     """
+
     genesis_file: Optional[StrictStr] = Field(default=None, description="genesis_file")
-    genesis_transactions: Optional[StrictStr] = Field(default=None, description="genesis_transactions")
+    genesis_transactions: Optional[StrictStr] = Field(
+        default=None, description="genesis_transactions"
+    )
     genesis_url: Optional[StrictStr] = Field(default=None, description="genesis_url")
     id: Optional[StrictStr] = Field(default=None, description="ledger_id")
-    is_production: Optional[StrictBool] = Field(default=None, description="is_production")
-    __properties: ClassVar[List[str]] = ["genesis_file", "genesis_transactions", "genesis_url", "id", "is_production"]
+    is_production: Optional[StrictBool] = Field(
+        default=None, description="is_production"
+    )
+    __properties: ClassVar[List[str]] = [
+        "genesis_file",
+        "genesis_transactions",
+        "genesis_url",
+        "id",
+        "is_production",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,10 +66,7 @@ class LedgerConfigInstance(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -73,13 +78,13 @@ class LedgerConfigInstance(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "genesis_file": obj.get("genesis_file"),
-            "genesis_transactions": obj.get("genesis_transactions"),
-            "genesis_url": obj.get("genesis_url"),
-            "id": obj.get("id"),
-            "is_production": obj.get("is_production")
-        })
+        _obj = cls.model_validate(
+            {
+                "genesis_file": obj.get("genesis_file"),
+                "genesis_transactions": obj.get("genesis_transactions"),
+                "genesis_url": obj.get("genesis_url"),
+                "id": obj.get("id"),
+                "is_production": obj.get("is_production"),
+            }
+        )
         return _obj
-
-

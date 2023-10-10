@@ -29,10 +29,12 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CredDefValuePrimary(BaseModel):
     """
     CredDefValuePrimary
     """
+
     n: Optional[Annotated[str, Field(strict=True)]] = None
     r: Optional[Generated] = None
     rctxt: Optional[Annotated[str, Field(strict=True)]] = None
@@ -40,7 +42,7 @@ class CredDefValuePrimary(BaseModel):
     z: Optional[Annotated[str, Field(strict=True)]] = None
     __properties: ClassVar[List[str]] = ["n", "r", "rctxt", "s", "z"]
 
-    @field_validator('n')
+    @field_validator("n")
     def n_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -50,7 +52,7 @@ class CredDefValuePrimary(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('rctxt')
+    @field_validator("rctxt")
     def rctxt_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -60,7 +62,7 @@ class CredDefValuePrimary(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('s')
+    @field_validator("s")
     def s_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -70,7 +72,7 @@ class CredDefValuePrimary(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('z')
+    @field_validator("z")
     def z_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -80,11 +82,7 @@ class CredDefValuePrimary(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -101,13 +99,10 @@ class CredDefValuePrimary(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of r
         if self.r:
-            _dict['r'] = self.r.to_dict()
+            _dict["r"] = self.r.to_dict()
         return _dict
 
     @classmethod
@@ -119,13 +114,15 @@ class CredDefValuePrimary(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "n": obj.get("n"),
-            "r": Generated.from_dict(obj.get("r")) if obj.get("r") is not None else None,
-            "rctxt": obj.get("rctxt"),
-            "s": obj.get("s"),
-            "z": obj.get("z")
-        })
+        _obj = cls.model_validate(
+            {
+                "n": obj.get("n"),
+                "r": Generated.from_dict(obj.get("r"))
+                if obj.get("r") is not None
+                else None,
+                "rctxt": obj.get("rctxt"),
+                "s": obj.get("s"),
+                "z": obj.get("z"),
+            }
+        )
         return _obj
-
-

@@ -31,20 +31,22 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyCredPrecis(BaseModel):
     """
     IndyCredPrecis
     """
+
     cred_info: Optional[IndyCredInfo] = None
     interval: Optional[IndyNonRevocationInterval] = None
     presentation_referents: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["cred_info", "interval", "presentation_referents"]
+    __properties: ClassVar[List[str]] = [
+        "cred_info",
+        "interval",
+        "presentation_referents",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -61,16 +63,13 @@ class IndyCredPrecis(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of cred_info
         if self.cred_info:
-            _dict['cred_info'] = self.cred_info.to_dict()
+            _dict["cred_info"] = self.cred_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of interval
         if self.interval:
-            _dict['interval'] = self.interval.to_dict()
+            _dict["interval"] = self.interval.to_dict()
         return _dict
 
     @classmethod
@@ -82,11 +81,15 @@ class IndyCredPrecis(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_info": IndyCredInfo.from_dict(obj.get("cred_info")) if obj.get("cred_info") is not None else None,
-            "interval": IndyNonRevocationInterval.from_dict(obj.get("interval")) if obj.get("interval") is not None else None,
-            "presentation_referents": obj.get("presentation_referents")
-        })
+        _obj = cls.model_validate(
+            {
+                "cred_info": IndyCredInfo.from_dict(obj.get("cred_info"))
+                if obj.get("cred_info") is not None
+                else None,
+                "interval": IndyNonRevocationInterval.from_dict(obj.get("interval"))
+                if obj.get("interval") is not None
+                else None,
+                "presentation_referents": obj.get("presentation_referents"),
+            }
+        )
         return _obj
-
-

@@ -28,19 +28,22 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
     """
     IndyProofRequestedProofRevealedAttrGroup
     """
-    sub_proof_index: Optional[StrictInt] = Field(default=None, description="Sub-proof index")
-    values: Optional[Dict[str, RawEncoded]] = Field(default=None, description="Indy proof requested proof revealed attr groups group value")
+
+    sub_proof_index: Optional[StrictInt] = Field(
+        default=None, description="Sub-proof index"
+    )
+    values: Optional[Dict[str, RawEncoded]] = Field(
+        default=None,
+        description="Indy proof requested proof revealed attr groups group value",
+    )
     __properties: ClassVar[List[str]] = ["sub_proof_index", "values"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,17 +60,14 @@ class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each value in values (dict)
         _field_dict = {}
         if self.values:
             for _key in self.values:
                 if self.values[_key]:
                     _field_dict[_key] = self.values[_key].to_dict()
-            _dict['values'] = _field_dict
+            _dict["values"] = _field_dict
         return _dict
 
     @classmethod
@@ -79,15 +79,15 @@ class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "sub_proof_index": obj.get("sub_proof_index"),
-            "values": dict(
-                (_k, RawEncoded.from_dict(_v))
-                for _k, _v in obj.get("values").items()
-            )
-            if obj.get("values") is not None
-            else None
-        })
+        _obj = cls.model_validate(
+            {
+                "sub_proof_index": obj.get("sub_proof_index"),
+                "values": dict(
+                    (_k, RawEncoded.from_dict(_v))
+                    for _k, _v in obj.get("values").items()
+                )
+                if obj.get("values") is not None
+                else None,
+            }
+        )
         return _obj
-
-

@@ -27,19 +27,23 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProofReqPredSpecNonRevoked(BaseModel):
     """
     IndyProofReqPredSpecNonRevoked
     """
-    var_from: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(default=None, description="Earliest time of interest in non-revocation interval", alias="from")
-    to: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(default=None, description="Latest time of interest in non-revocation interval")
+
+    var_from: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(
+        default=None,
+        description="Earliest time of interest in non-revocation interval",
+        alias="from",
+    )
+    to: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(
+        default=None, description="Latest time of interest in non-revocation interval"
+    )
     __properties: ClassVar[List[str]] = ["from", "to"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,10 +60,7 @@ class IndyProofReqPredSpecNonRevoked(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -71,10 +72,5 @@ class IndyProofReqPredSpecNonRevoked(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "from": obj.get("from"),
-            "to": obj.get("to")
-        })
+        _obj = cls.model_validate({"from": obj.get("from"), "to": obj.get("to")})
         return _obj
-
-

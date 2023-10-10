@@ -28,20 +28,26 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class InvitationResult(BaseModel):
     """
     InvitationResult
     """
-    connection_id: Optional[StrictStr] = Field(default=None, description="Connection identifier")
+
+    connection_id: Optional[StrictStr] = Field(
+        default=None, description="Connection identifier"
+    )
     invitation: Optional[ConnectionInvitation] = None
-    invitation_url: Optional[StrictStr] = Field(default=None, description="Invitation URL")
-    __properties: ClassVar[List[str]] = ["connection_id", "invitation", "invitation_url"]
+    invitation_url: Optional[StrictStr] = Field(
+        default=None, description="Invitation URL"
+    )
+    __properties: ClassVar[List[str]] = [
+        "connection_id",
+        "invitation",
+        "invitation_url",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,13 +64,10 @@ class InvitationResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of invitation
         if self.invitation:
-            _dict['invitation'] = self.invitation.to_dict()
+            _dict["invitation"] = self.invitation.to_dict()
         return _dict
 
     @classmethod
@@ -76,11 +79,13 @@ class InvitationResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "connection_id": obj.get("connection_id"),
-            "invitation": ConnectionInvitation.from_dict(obj.get("invitation")) if obj.get("invitation") is not None else None,
-            "invitation_url": obj.get("invitation_url")
-        })
+        _obj = cls.model_validate(
+            {
+                "connection_id": obj.get("connection_id"),
+                "invitation": ConnectionInvitation.from_dict(obj.get("invitation"))
+                if obj.get("invitation") is not None
+                else None,
+                "invitation_url": obj.get("invitation_url"),
+            }
+        )
         return _obj
-
-

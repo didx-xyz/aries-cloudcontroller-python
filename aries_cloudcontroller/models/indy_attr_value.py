@@ -27,26 +27,26 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyAttrValue(BaseModel):
     """
     IndyAttrValue
     """
-    encoded: Annotated[str, Field(strict=True)] = Field(description="Attribute encoded value")
+
+    encoded: Annotated[str, Field(strict=True)] = Field(
+        description="Attribute encoded value"
+    )
     raw: StrictStr = Field(description="Attribute raw value")
     __properties: ClassVar[List[str]] = ["encoded", "raw"]
 
-    @field_validator('encoded')
+    @field_validator("encoded")
     def encoded_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^-?[0-9]*$", value):
             raise ValueError(r"must validate the regular expression /^-?[0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,10 +63,7 @@ class IndyAttrValue(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -78,10 +75,7 @@ class IndyAttrValue(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "encoded": obj.get("encoded"),
-            "raw": obj.get("raw")
-        })
+        _obj = cls.model_validate(
+            {"encoded": obj.get("encoded"), "raw": obj.get("raw")}
+        )
         return _obj
-
-

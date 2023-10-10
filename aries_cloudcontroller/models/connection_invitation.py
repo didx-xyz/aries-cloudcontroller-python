@@ -27,35 +27,67 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ConnectionInvitation(BaseModel):
     """
     ConnectionInvitation
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="DID for connection invitation")
-    image_url: Optional[StrictStr] = Field(default=None, description="Optional image URL for connection invitation", alias="imageUrl")
-    label: Optional[StrictStr] = Field(default=None, description="Optional label for connection invitation")
-    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, description="List of recipient keys", alias="recipientKeys")
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, description="List of routing keys", alias="routingKeys")
-    service_endpoint: Optional[StrictStr] = Field(default=None, description="Service endpoint at which to reach this agent", alias="serviceEndpoint")
-    __properties: ClassVar[List[str]] = ["@id", "@type", "did", "imageUrl", "label", "recipientKeys", "routingKeys", "serviceEndpoint"]
 
-    @field_validator('did')
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="DID for connection invitation"
+    )
+    image_url: Optional[StrictStr] = Field(
+        default=None,
+        description="Optional image URL for connection invitation",
+        alias="imageUrl",
+    )
+    label: Optional[StrictStr] = Field(
+        default=None, description="Optional label for connection invitation"
+    )
+    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+        default=None, description="List of recipient keys", alias="recipientKeys"
+    )
+    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+        default=None, description="List of routing keys", alias="routingKeys"
+    )
+    service_endpoint: Optional[StrictStr] = Field(
+        default=None,
+        description="Service endpoint at which to reach this agent",
+        alias="serviceEndpoint",
+    )
+    __properties: ClassVar[List[str]] = [
+        "@id",
+        "@type",
+        "did",
+        "imageUrl",
+        "label",
+        "recipientKeys",
+        "routingKeys",
+        "serviceEndpoint",
+    ]
+
+    @field_validator("did")
     def did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -72,15 +104,17 @@ class ConnectionInvitation(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         # set to None if image_url (nullable) is None
         # and model_fields_set contains the field
         if self.image_url is None and "image_url" in self.model_fields_set:
-            _dict['imageUrl'] = None
+            _dict["imageUrl"] = None
 
         return _dict
 
@@ -93,16 +127,16 @@ class ConnectionInvitation(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "did": obj.get("did"),
-            "imageUrl": obj.get("imageUrl"),
-            "label": obj.get("label"),
-            "recipientKeys": obj.get("recipientKeys"),
-            "routingKeys": obj.get("routingKeys"),
-            "serviceEndpoint": obj.get("serviceEndpoint")
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "did": obj.get("did"),
+                "imageUrl": obj.get("imageUrl"),
+                "label": obj.get("label"),
+                "recipientKeys": obj.get("recipientKeys"),
+                "routingKeys": obj.get("routingKeys"),
+                "serviceEndpoint": obj.get("serviceEndpoint"),
+            }
+        )
         return _obj
-
-

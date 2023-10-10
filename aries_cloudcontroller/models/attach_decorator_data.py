@@ -31,42 +31,52 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class AttachDecoratorData(BaseModel):
     """
     AttachDecoratorData
     """
-    var_base64: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Base64-encoded data", alias="base64")
-    var_json: Optional[Union[str, Any]] = Field(default=None, description="JSON-serialized data", alias="json")
+
+    var_base64: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Base64-encoded data", alias="base64"
+    )
+    var_json: Optional[Union[str, Any]] = Field(
+        default=None, description="JSON-serialized data", alias="json"
+    )
     jws: Optional[AttachDecoratorDataJWS] = None
-    links: Optional[List[StrictStr]] = Field(default=None, description="List of hypertext links to data")
-    sha256: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="SHA256 hash (binhex encoded) of content")
+    links: Optional[List[StrictStr]] = Field(
+        default=None, description="List of hypertext links to data"
+    )
+    sha256: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="SHA256 hash (binhex encoded) of content"
+    )
     __properties: ClassVar[List[str]] = ["base64", "json", "jws", "links", "sha256"]
 
-    @field_validator('var_base64')
+    @field_validator("var_base64")
     def var_base64_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
         if not re.match(r"^[a-zA-Z0-9+\/]*={0,2}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9+\/]*={0,2}$/")
+            raise ValueError(
+                r"must validate the regular expression /^[a-zA-Z0-9+\/]*={0,2}$/"
+            )
         return value
 
-    @field_validator('sha256')
+    @field_validator("sha256")
     def sha256_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
         if not re.match(r"^[a-fA-F0-9+\/]{64}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-fA-F0-9+\/]{64}$/")
+            raise ValueError(
+                r"must validate the regular expression /^[a-fA-F0-9+\/]{64}$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -83,13 +93,10 @@ class AttachDecoratorData(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of jws
         if self.jws:
-            _dict['jws'] = self.jws.to_dict()
+            _dict["jws"] = self.jws.to_dict()
         return _dict
 
     @classmethod
@@ -101,13 +108,15 @@ class AttachDecoratorData(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "base64": obj.get("base64"),
-            "json": obj.get("json"),
-            "jws": AttachDecoratorDataJWS.from_dict(obj.get("jws")) if obj.get("jws") is not None else None,
-            "links": obj.get("links"),
-            "sha256": obj.get("sha256")
-        })
+        _obj = cls.model_validate(
+            {
+                "base64": obj.get("base64"),
+                "json": obj.get("json"),
+                "jws": AttachDecoratorDataJWS.from_dict(obj.get("jws"))
+                if obj.get("jws") is not None
+                else None,
+                "links": obj.get("links"),
+                "sha256": obj.get("sha256"),
+            }
+        )
         return _obj
-
-

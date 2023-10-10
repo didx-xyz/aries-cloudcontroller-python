@@ -27,19 +27,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class TAAAcceptance(BaseModel):
     """
     TAAAcceptance
     """
+
     mechanism: Optional[StrictStr] = None
     time: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = None
     __properties: ClassVar[List[str]] = ["mechanism", "time"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,10 +54,7 @@ class TAAAcceptance(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -71,10 +66,7 @@ class TAAAcceptance(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "mechanism": obj.get("mechanism"),
-            "time": obj.get("time")
-        })
+        _obj = cls.model_validate(
+            {"mechanism": obj.get("mechanism"), "time": obj.get("time")}
+        )
         return _obj
-
-

@@ -27,47 +27,62 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class DIDEndpointWithType(BaseModel):
     """
     DIDEndpointWithType
     """
+
     did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
-    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Endpoint to set (omit to delete)")
-    endpoint_type: Optional[StrictStr] = Field(default=None, description="Endpoint type to set (default 'Endpoint'); affects only public or posted DIDs")
+    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Endpoint to set (omit to delete)"
+    )
+    endpoint_type: Optional[StrictStr] = Field(
+        default=None,
+        description="Endpoint type to set (default 'Endpoint'); affects only public or posted DIDs",
+    )
     __properties: ClassVar[List[str]] = ["did", "endpoint", "endpoint_type"]
 
-    @field_validator('did')
+    @field_validator("did")
     def did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('endpoint')
+    @field_validator("endpoint")
     def endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/")
+        if not re.match(
+            r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/"
+            )
         return value
 
-    @field_validator('endpoint_type')
+    @field_validator("endpoint_type")
     def endpoint_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('Endpoint', 'Profile', 'LinkedDomains'):
-            raise ValueError("must be one of enum values ('Endpoint', 'Profile', 'LinkedDomains')")
+        if value not in ("Endpoint", "Profile", "LinkedDomains"):
+            raise ValueError(
+                "must be one of enum values ('Endpoint', 'Profile', 'LinkedDomains')"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -84,10 +99,7 @@ class DIDEndpointWithType(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -99,11 +111,11 @@ class DIDEndpointWithType(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "did": obj.get("did"),
-            "endpoint": obj.get("endpoint"),
-            "endpoint_type": obj.get("endpoint_type")
-        })
+        _obj = cls.model_validate(
+            {
+                "did": obj.get("did"),
+                "endpoint": obj.get("endpoint"),
+                "endpoint_type": obj.get("endpoint_type"),
+            }
+        )
         return _obj
-
-

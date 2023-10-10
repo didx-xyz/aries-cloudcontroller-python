@@ -29,15 +29,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyRevRegEntry(BaseModel):
     """
     IndyRevRegEntry
     """
+
     value: Optional[IndyRevRegEntryValue] = None
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Version of revocation registry entry")
+    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Version of revocation registry entry"
+    )
     __properties: ClassVar[List[str]] = ["value", "ver"]
 
-    @field_validator('ver')
+    @field_validator("ver")
     def ver_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -47,11 +51,7 @@ class IndyRevRegEntry(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -68,13 +68,10 @@ class IndyRevRegEntry(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
-            _dict['value'] = self.value.to_dict()
+            _dict["value"] = self.value.to_dict()
         return _dict
 
     @classmethod
@@ -86,10 +83,12 @@ class IndyRevRegEntry(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "value": IndyRevRegEntryValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
-            "ver": obj.get("ver")
-        })
+        _obj = cls.model_validate(
+            {
+                "value": IndyRevRegEntryValue.from_dict(obj.get("value"))
+                if obj.get("value") is not None
+                else None,
+                "ver": obj.get("ver"),
+            }
+        )
         return _obj
-
-

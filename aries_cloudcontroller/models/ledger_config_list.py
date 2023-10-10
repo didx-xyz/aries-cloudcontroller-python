@@ -28,18 +28,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class LedgerConfigList(BaseModel):
     """
     LedgerConfigList
     """
+
     ledger_config_list: List[LedgerConfigInstance]
     __properties: ClassVar[List[str]] = ["ledger_config_list"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,17 +54,14 @@ class LedgerConfigList(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in ledger_config_list (list)
         _items = []
         if self.ledger_config_list:
             for _item in self.ledger_config_list:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['ledger_config_list'] = _items
+            _dict["ledger_config_list"] = _items
         return _dict
 
     @classmethod
@@ -78,9 +73,14 @@ class LedgerConfigList(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "ledger_config_list": [LedgerConfigInstance.from_dict(_item) for _item in obj.get("ledger_config_list")] if obj.get("ledger_config_list") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "ledger_config_list": [
+                    LedgerConfigInstance.from_dict(_item)
+                    for _item in obj.get("ledger_config_list")
+                ]
+                if obj.get("ledger_config_list") is not None
+                else None
+            }
+        )
         return _obj
-
-

@@ -26,18 +26,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProofRequestedProofPredicate(BaseModel):
     """
     IndyProofRequestedProofPredicate
     """
-    sub_proof_index: Optional[StrictInt] = Field(default=None, description="Sub-proof index")
+
+    sub_proof_index: Optional[StrictInt] = Field(
+        default=None, description="Sub-proof index"
+    )
     __properties: ClassVar[List[str]] = ["sub_proof_index"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,10 +54,7 @@ class IndyProofRequestedProofPredicate(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -69,9 +66,5 @@ class IndyProofRequestedProofPredicate(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "sub_proof_index": obj.get("sub_proof_index")
-        })
+        _obj = cls.model_validate({"sub_proof_index": obj.get("sub_proof_index")})
         return _obj
-
-

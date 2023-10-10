@@ -28,18 +28,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20DiscoveryExchangeResult(BaseModel):
     """
     V20DiscoveryExchangeResult
     """
+
     results: Optional[V20DiscoveryRecord] = None
     __properties: ClassVar[List[str]] = ["results"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,13 +54,10 @@ class V20DiscoveryExchangeResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of results
         if self.results:
-            _dict['results'] = self.results.to_dict()
+            _dict["results"] = self.results.to_dict()
         return _dict
 
     @classmethod
@@ -74,9 +69,11 @@ class V20DiscoveryExchangeResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "results": V20DiscoveryRecord.from_dict(obj.get("results")) if obj.get("results") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "results": V20DiscoveryRecord.from_dict(obj.get("results"))
+                if obj.get("results") is not None
+                else None
+            }
+        )
         return _obj
-
-

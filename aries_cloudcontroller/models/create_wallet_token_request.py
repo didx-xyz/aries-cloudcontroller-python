@@ -26,18 +26,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CreateWalletTokenRequest(BaseModel):
     """
     CreateWalletTokenRequest
     """
-    wallet_key: Optional[StrictStr] = Field(default=None, description="Master key used for key derivation. Only required for             unamanged wallets.")
+
+    wallet_key: Optional[StrictStr] = Field(
+        default=None,
+        description="Master key used for key derivation. Only required for             unamanged wallets.",
+    )
     __properties: ClassVar[List[str]] = ["wallet_key"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,10 +55,7 @@ class CreateWalletTokenRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -69,9 +67,5 @@ class CreateWalletTokenRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "wallet_key": obj.get("wallet_key")
-        })
+        _obj = cls.model_validate({"wallet_key": obj.get("wallet_key")})
         return _obj
-
-

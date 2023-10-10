@@ -28,4 +28,3 @@ from aries_cloudcontroller.api.server_api import ServerApi
 from aries_cloudcontroller.api.settings_api import SettingsApi
 from aries_cloudcontroller.api.trustping_api import TrustpingApi
 from aries_cloudcontroller.api.wallet_api import WalletApi
-

@@ -26,35 +26,44 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class SubmissionRequirements(BaseModel):
     """
     SubmissionRequirements
     """
+
     count: Optional[StrictInt] = Field(default=None, description="Count Value")
-    var_from: Optional[StrictStr] = Field(default=None, description="From", alias="from")
+    var_from: Optional[StrictStr] = Field(
+        default=None, description="From", alias="from"
+    )
     from_nested: Optional[List[SubmissionRequirements]] = None
     max: Optional[StrictInt] = Field(default=None, description="Max Value")
     min: Optional[StrictInt] = Field(default=None, description="Min Value")
     name: Optional[StrictStr] = Field(default=None, description="Name")
     purpose: Optional[StrictStr] = Field(default=None, description="Purpose")
     rule: Optional[StrictStr] = Field(default=None, description="Selection")
-    __properties: ClassVar[List[str]] = ["count", "from", "from_nested", "max", "min", "name", "purpose", "rule"]
+    __properties: ClassVar[List[str]] = [
+        "count",
+        "from",
+        "from_nested",
+        "max",
+        "min",
+        "name",
+        "purpose",
+        "rule",
+    ]
 
-    @field_validator('rule')
+    @field_validator("rule")
     def rule_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('all', 'pick'):
+        if value not in ("all", "pick"):
             raise ValueError("must be one of enum values ('all', 'pick')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -71,17 +80,14 @@ class SubmissionRequirements(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in from_nested (list)
         _items = []
         if self.from_nested:
             for _item in self.from_nested:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['from_nested'] = _items
+            _dict["from_nested"] = _items
         return _dict
 
     @classmethod
@@ -93,17 +99,25 @@ class SubmissionRequirements(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "count": obj.get("count"),
-            "from": obj.get("from"),
-            "from_nested": [SubmissionRequirements.from_dict(_item) for _item in obj.get("from_nested")] if obj.get("from_nested") is not None else None,
-            "max": obj.get("max"),
-            "min": obj.get("min"),
-            "name": obj.get("name"),
-            "purpose": obj.get("purpose"),
-            "rule": obj.get("rule")
-        })
+        _obj = cls.model_validate(
+            {
+                "count": obj.get("count"),
+                "from": obj.get("from"),
+                "from_nested": [
+                    SubmissionRequirements.from_dict(_item)
+                    for _item in obj.get("from_nested")
+                ]
+                if obj.get("from_nested") is not None
+                else None,
+                "max": obj.get("max"),
+                "min": obj.get("min"),
+                "name": obj.get("name"),
+                "purpose": obj.get("purpose"),
+                "rule": obj.get("rule"),
+            }
+        )
         return _obj
+
 
 from typing import TYPE_CHECKING
 
@@ -111,4 +125,3 @@ if TYPE_CHECKING:
     # TODO: pydantic v2
     # SubmissionRequirements.model_rebuild()
     pass
-

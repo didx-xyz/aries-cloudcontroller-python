@@ -28,27 +28,54 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class InvitationMessage(BaseModel):
     """
     InvitationMessage
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    accept: Optional[List[StrictStr]] = Field(default=None, description="List of mime type in order of preference")
-    goal: Optional[StrictStr] = Field(default=None, description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message")
-    goal_code: Optional[StrictStr] = Field(default=None, description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message")
+
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    accept: Optional[List[StrictStr]] = Field(
+        default=None, description="List of mime type in order of preference"
+    )
+    goal: Optional[StrictStr] = Field(
+        default=None,
+        description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message",
+    )
+    goal_code: Optional[StrictStr] = Field(
+        default=None,
+        description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message",
+    )
     handshake_protocols: Optional[List[StrictStr]] = None
-    image_url: Optional[StrictStr] = Field(default=None, description="Optional image URL for out-of-band invitation", alias="imageUrl")
+    image_url: Optional[StrictStr] = Field(
+        default=None,
+        description="Optional image URL for out-of-band invitation",
+        alias="imageUrl",
+    )
     label: Optional[StrictStr] = Field(default=None, description="Optional label")
-    requestsattach: Optional[List[AttachDecorator]] = Field(default=None, description="Optional request attachment", alias="requests~attach")
+    requestsattach: Optional[List[AttachDecorator]] = Field(
+        default=None, description="Optional request attachment", alias="requests~attach"
+    )
     services: Optional[List[Union[str, Any]]] = None
-    __properties: ClassVar[List[str]] = ["@id", "@type", "accept", "goal", "goal_code", "handshake_protocols", "imageUrl", "label", "requests~attach", "services"]
+    __properties: ClassVar[List[str]] = [
+        "@id",
+        "@type",
+        "accept",
+        "goal",
+        "goal_code",
+        "handshake_protocols",
+        "imageUrl",
+        "label",
+        "requests~attach",
+        "services",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,21 +92,18 @@ class InvitationMessage(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in requestsattach (list)
         _items = []
         if self.requestsattach:
             for _item in self.requestsattach:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['requests~attach'] = _items
+            _dict["requests~attach"] = _items
         # set to None if image_url (nullable) is None
         # and model_fields_set contains the field
         if self.image_url is None and "image_url" in self.model_fields_set:
-            _dict['imageUrl'] = None
+            _dict["imageUrl"] = None
 
         return _dict
 
@@ -92,18 +116,23 @@ class InvitationMessage(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "accept": obj.get("accept"),
-            "goal": obj.get("goal"),
-            "goal_code": obj.get("goal_code"),
-            "handshake_protocols": obj.get("handshake_protocols"),
-            "imageUrl": obj.get("imageUrl"),
-            "label": obj.get("label"),
-            "requests~attach": [AttachDecorator.from_dict(_item) for _item in obj.get("requests~attach")] if obj.get("requests~attach") is not None else None,
-            "services": obj.get("services")
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "accept": obj.get("accept"),
+                "goal": obj.get("goal"),
+                "goal_code": obj.get("goal_code"),
+                "handshake_protocols": obj.get("handshake_protocols"),
+                "imageUrl": obj.get("imageUrl"),
+                "label": obj.get("label"),
+                "requests~attach": [
+                    AttachDecorator.from_dict(_item)
+                    for _item in obj.get("requests~attach")
+                ]
+                if obj.get("requests~attach") is not None
+                else None,
+                "services": obj.get("services"),
+            }
+        )
         return _obj
-
-

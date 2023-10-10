@@ -26,20 +26,22 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyRevRegEntryValue(BaseModel):
     """
     IndyRevRegEntryValue
     """
+
     accum: Optional[StrictStr] = Field(default=None, description="Accumulator value")
-    prev_accum: Optional[StrictStr] = Field(default=None, description="Previous accumulator value", alias="prevAccum")
-    revoked: Optional[List[StrictInt]] = Field(default=None, description="Revoked credential revocation identifiers")
+    prev_accum: Optional[StrictStr] = Field(
+        default=None, description="Previous accumulator value", alias="prevAccum"
+    )
+    revoked: Optional[List[StrictInt]] = Field(
+        default=None, description="Revoked credential revocation identifiers"
+    )
     __properties: ClassVar[List[str]] = ["accum", "prevAccum", "revoked"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,10 +58,7 @@ class IndyRevRegEntryValue(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -71,11 +70,11 @@ class IndyRevRegEntryValue(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "accum": obj.get("accum"),
-            "prevAccum": obj.get("prevAccum"),
-            "revoked": obj.get("revoked")
-        })
+        _obj = cls.model_validate(
+            {
+                "accum": obj.get("accum"),
+                "prevAccum": obj.get("prevAccum"),
+                "revoked": obj.get("revoked"),
+            }
+        )
         return _obj
-
-

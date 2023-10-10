@@ -27,18 +27,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class PublishRevocations(BaseModel):
     """
     PublishRevocations
     """
-    rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(default=None, description="Credential revocation ids by revocation registry id")
+
+    rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
+        default=None, description="Credential revocation ids by revocation registry id"
+    )
     __properties: ClassVar[List[str]] = ["rrid2crid"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +55,7 @@ class PublishRevocations(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each value in rrid2crid (dict of array)
         _field_dict_of_array = {}
         if self.rrid2crid:
@@ -67,7 +64,7 @@ class PublishRevocations(BaseModel):
                     _field_dict_of_array[_key] = [
                         _item.to_dict() for _item in self.rrid2crid[_key]
                     ]
-            _dict['rrid2crid'] = _field_dict_of_array
+            _dict["rrid2crid"] = _field_dict_of_array
         return _dict
 
     @classmethod
@@ -79,9 +76,5 @@ class PublishRevocations(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "rrid2crid": obj.get("rrid2crid")
-        })
+        _obj = cls.model_validate({"rrid2crid": obj.get("rrid2crid")})
         return _obj
-
-

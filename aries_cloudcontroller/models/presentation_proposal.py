@@ -28,21 +28,30 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class PresentationProposal(BaseModel):
     """
     PresentationProposal
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    comment: Optional[StrictStr] = Field(default=None, description="Human-readable comment")
+
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Human-readable comment"
+    )
     presentation_proposal: IndyPresPreview
-    __properties: ClassVar[List[str]] = ["@id", "@type", "comment", "presentation_proposal"]
+    __properties: ClassVar[List[str]] = [
+        "@id",
+        "@type",
+        "comment",
+        "presentation_proposal",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,18 +68,20 @@ class PresentationProposal(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of presentation_proposal
         if self.presentation_proposal:
-            _dict['presentation_proposal'] = self.presentation_proposal.to_dict()
+            _dict["presentation_proposal"] = self.presentation_proposal.to_dict()
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
         if self.comment is None and "comment" in self.model_fields_set:
-            _dict['comment'] = None
+            _dict["comment"] = None
 
         return _dict
 
@@ -83,12 +94,16 @@ class PresentationProposal(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "comment": obj.get("comment"),
-            "presentation_proposal": IndyPresPreview.from_dict(obj.get("presentation_proposal")) if obj.get("presentation_proposal") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "comment": obj.get("comment"),
+                "presentation_proposal": IndyPresPreview.from_dict(
+                    obj.get("presentation_proposal")
+                )
+                if obj.get("presentation_proposal") is not None
+                else None,
+            }
+        )
         return _obj
-
-

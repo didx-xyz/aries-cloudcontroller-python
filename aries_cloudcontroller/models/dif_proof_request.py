@@ -29,19 +29,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class DIFProofRequest(BaseModel):
     """
     DIFProofRequest
     """
+
     options: Optional[DIFOptions] = None
     presentation_definition: PresentationDefinition
     __properties: ClassVar[List[str]] = ["options", "presentation_definition"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,16 +56,13 @@ class DIFProofRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
-            _dict['options'] = self.options.to_dict()
+            _dict["options"] = self.options.to_dict()
         # override the default output from pydantic by calling `to_dict()` of presentation_definition
         if self.presentation_definition:
-            _dict['presentation_definition'] = self.presentation_definition.to_dict()
+            _dict["presentation_definition"] = self.presentation_definition.to_dict()
         return _dict
 
     @classmethod
@@ -79,10 +74,16 @@ class DIFProofRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "options": DIFOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
-            "presentation_definition": PresentationDefinition.from_dict(obj.get("presentation_definition")) if obj.get("presentation_definition") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "options": DIFOptions.from_dict(obj.get("options"))
+                if obj.get("options") is not None
+                else None,
+                "presentation_definition": PresentationDefinition.from_dict(
+                    obj.get("presentation_definition")
+                )
+                if obj.get("presentation_definition") is not None
+                else None,
+            }
+        )
         return _obj
-
-

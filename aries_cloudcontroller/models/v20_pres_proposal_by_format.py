@@ -29,19 +29,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20PresProposalByFormat(BaseModel):
     """
     V20PresProposalByFormat
     """
+
     dif: Optional[DIFProofProposal] = None
     indy: Optional[IndyProofRequest] = None
     __properties: ClassVar[List[str]] = ["dif", "indy"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,16 +56,13 @@ class V20PresProposalByFormat(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of dif
         if self.dif:
-            _dict['dif'] = self.dif.to_dict()
+            _dict["dif"] = self.dif.to_dict()
         # override the default output from pydantic by calling `to_dict()` of indy
         if self.indy:
-            _dict['indy'] = self.indy.to_dict()
+            _dict["indy"] = self.indy.to_dict()
         return _dict
 
     @classmethod
@@ -79,10 +74,14 @@ class V20PresProposalByFormat(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "dif": DIFProofProposal.from_dict(obj.get("dif")) if obj.get("dif") is not None else None,
-            "indy": IndyProofRequest.from_dict(obj.get("indy")) if obj.get("indy") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "dif": DIFProofProposal.from_dict(obj.get("dif"))
+                if obj.get("dif") is not None
+                else None,
+                "indy": IndyProofRequest.from_dict(obj.get("indy"))
+                if obj.get("indy") is not None
+                else None,
+            }
+        )
         return _obj
-
-

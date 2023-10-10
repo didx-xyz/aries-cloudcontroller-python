@@ -26,18 +26,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20CredIssueProblemReportRequest(BaseModel):
     """
     V20CredIssueProblemReportRequest
     """
+
     description: StrictStr
     __properties: ClassVar[List[str]] = ["description"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,10 +52,7 @@ class V20CredIssueProblemReportRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -69,9 +64,5 @@ class V20CredIssueProblemReportRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "description": obj.get("description")
-        })
+        _obj = cls.model_validate({"description": obj.get("description")})
         return _obj
-
-

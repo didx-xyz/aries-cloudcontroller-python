@@ -26,21 +26,24 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20CredExRecordByFormat(BaseModel):
     """
     V20CredExRecordByFormat
     """
+
     cred_issue: Optional[Union[str, Any]] = None
     cred_offer: Optional[Union[str, Any]] = None
     cred_proposal: Optional[Union[str, Any]] = None
     cred_request: Optional[Union[str, Any]] = None
-    __properties: ClassVar[List[str]] = ["cred_issue", "cred_offer", "cred_proposal", "cred_request"]
+    __properties: ClassVar[List[str]] = [
+        "cred_issue",
+        "cred_offer",
+        "cred_proposal",
+        "cred_request",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,10 +60,7 @@ class V20CredExRecordByFormat(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -72,12 +72,12 @@ class V20CredExRecordByFormat(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_issue": obj.get("cred_issue"),
-            "cred_offer": obj.get("cred_offer"),
-            "cred_proposal": obj.get("cred_proposal"),
-            "cred_request": obj.get("cred_request")
-        })
+        _obj = cls.model_validate(
+            {
+                "cred_issue": obj.get("cred_issue"),
+                "cred_offer": obj.get("cred_offer"),
+                "cred_proposal": obj.get("cred_proposal"),
+                "cred_request": obj.get("cred_request"),
+            }
+        )
         return _obj
-
-

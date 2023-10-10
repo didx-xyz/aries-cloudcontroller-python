@@ -26,19 +26,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20CredFormat(BaseModel):
     """
     V20CredFormat
     """
+
     attach_id: StrictStr = Field(description="Attachment identifier")
     format: StrictStr = Field(description="Attachment format specifier")
     __properties: ClassVar[List[str]] = ["attach_id", "format"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +53,7 @@ class V20CredFormat(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,10 +65,7 @@ class V20CredFormat(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "attach_id": obj.get("attach_id"),
-            "format": obj.get("format")
-        })
+        _obj = cls.model_validate(
+            {"attach_id": obj.get("attach_id"), "format": obj.get("format")}
+        )
         return _obj
-
-

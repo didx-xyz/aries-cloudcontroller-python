@@ -26,21 +26,23 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class AdminStatus(BaseModel):
     """
     AdminStatus
     """
-    conductor: Optional[Union[str, Any]] = Field(default=None, description="Conductor statistics")
+
+    conductor: Optional[Union[str, Any]] = Field(
+        default=None, description="Conductor statistics"
+    )
     label: Optional[StrictStr] = Field(default=None, description="Default label")
-    timing: Optional[Union[str, Any]] = Field(default=None, description="Timing results")
+    timing: Optional[Union[str, Any]] = Field(
+        default=None, description="Timing results"
+    )
     version: Optional[StrictStr] = Field(default=None, description="Version code")
     __properties: ClassVar[List[str]] = ["conductor", "label", "timing", "version"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,14 +59,11 @@ class AdminStatus(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # set to None if label (nullable) is None
         # and model_fields_set contains the field
         if self.label is None and "label" in self.model_fields_set:
-            _dict['label'] = None
+            _dict["label"] = None
 
         return _dict
 
@@ -77,12 +76,12 @@ class AdminStatus(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "conductor": obj.get("conductor"),
-            "label": obj.get("label"),
-            "timing": obj.get("timing"),
-            "version": obj.get("version")
-        })
+        _obj = cls.model_validate(
+            {
+                "conductor": obj.get("conductor"),
+                "label": obj.get("label"),
+                "timing": obj.get("timing"),
+                "version": obj.get("version"),
+            }
+        )
         return _obj
-
-

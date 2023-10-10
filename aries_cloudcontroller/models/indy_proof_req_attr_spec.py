@@ -30,21 +30,24 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProofReqAttrSpec(BaseModel):
     """
     IndyProofReqAttrSpec
     """
+
     name: Optional[StrictStr] = Field(default=None, description="Attribute name")
-    names: Optional[List[StrictStr]] = Field(default=None, description="Attribute name group")
+    names: Optional[List[StrictStr]] = Field(
+        default=None, description="Attribute name group"
+    )
     non_revoked: Optional[IndyProofReqAttrSpecNonRevoked] = None
-    restrictions: Optional[List[Dict[str, StrictStr]]] = Field(default=None, description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name")
+    restrictions: Optional[List[Dict[str, StrictStr]]] = Field(
+        default=None,
+        description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
+    )
     __properties: ClassVar[List[str]] = ["name", "names", "non_revoked", "restrictions"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -61,17 +64,14 @@ class IndyProofReqAttrSpec(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of non_revoked
         if self.non_revoked:
-            _dict['non_revoked'] = self.non_revoked.to_dict()
+            _dict["non_revoked"] = self.non_revoked.to_dict()
         # set to None if non_revoked (nullable) is None
         # and model_fields_set contains the field
         if self.non_revoked is None and "non_revoked" in self.model_fields_set:
-            _dict['non_revoked'] = None
+            _dict["non_revoked"] = None
 
         return _dict
 
@@ -84,12 +84,16 @@ class IndyProofReqAttrSpec(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "names": obj.get("names"),
-            "non_revoked": IndyProofReqAttrSpecNonRevoked.from_dict(obj.get("non_revoked")) if obj.get("non_revoked") is not None else None,
-            "restrictions": obj.get("restrictions")
-        })
+        _obj = cls.model_validate(
+            {
+                "name": obj.get("name"),
+                "names": obj.get("names"),
+                "non_revoked": IndyProofReqAttrSpecNonRevoked.from_dict(
+                    obj.get("non_revoked")
+                )
+                if obj.get("non_revoked") is not None
+                else None,
+                "restrictions": obj.get("restrictions"),
+            }
+        )
         return _obj
-
-

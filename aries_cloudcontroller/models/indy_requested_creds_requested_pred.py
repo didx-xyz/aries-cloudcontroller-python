@@ -27,19 +27,21 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyRequestedCredsRequestedPred(BaseModel):
     """
     IndyRequestedCredsRequestedPred
     """
-    cred_id: StrictStr = Field(description="Wallet credential identifier (typically but not necessarily a UUID)")
-    timestamp: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(default=None, description="Epoch timestamp of interest for non-revocation proof")
+
+    cred_id: StrictStr = Field(
+        description="Wallet credential identifier (typically but not necessarily a UUID)"
+    )
+    timestamp: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(
+        default=None, description="Epoch timestamp of interest for non-revocation proof"
+    )
     __properties: ClassVar[List[str]] = ["cred_id", "timestamp"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,10 +58,7 @@ class IndyRequestedCredsRequestedPred(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -71,10 +70,7 @@ class IndyRequestedCredsRequestedPred(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_id": obj.get("cred_id"),
-            "timestamp": obj.get("timestamp")
-        })
+        _obj = cls.model_validate(
+            {"cred_id": obj.get("cred_id"), "timestamp": obj.get("timestamp")}
+        )
         return _obj
-
-

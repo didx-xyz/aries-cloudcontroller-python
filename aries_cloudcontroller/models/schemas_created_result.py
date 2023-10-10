@@ -27,18 +27,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class SchemasCreatedResult(BaseModel):
     """
     SchemasCreatedResult
     """
+
     schema_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["schema_ids"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +53,7 @@ class SchemasCreatedResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,9 +65,5 @@ class SchemasCreatedResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "schema_ids": obj.get("schema_ids")
-        })
+        _obj = cls.model_validate({"schema_ids": obj.get("schema_ids")})
         return _obj
-
-

@@ -27,29 +27,53 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ModelSchema(BaseModel):
     """
     ModelSchema
     """
-    attr_names: Optional[List[StrictStr]] = Field(default=None, description="Schema attribute names", alias="attrNames")
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Schema identifier")
-    name: Optional[StrictStr] = Field(default=None, description="Schema name")
-    seq_no: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="Schema sequence number", alias="seqNo")
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Node protocol version")
-    version: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Schema version")
-    __properties: ClassVar[List[str]] = ["attrNames", "id", "name", "seqNo", "ver", "version"]
 
-    @field_validator('id')
+    attr_names: Optional[List[StrictStr]] = Field(
+        default=None, description="Schema attribute names", alias="attrNames"
+    )
+    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Schema identifier"
+    )
+    name: Optional[StrictStr] = Field(default=None, description="Schema name")
+    seq_no: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
+        default=None, description="Schema sequence number", alias="seqNo"
+    )
+    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Node protocol version"
+    )
+    version: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Schema version"
+    )
+    __properties: ClassVar[List[str]] = [
+        "attrNames",
+        "id",
+        "name",
+        "seqNo",
+        "ver",
+        "version",
+    ]
+
+    @field_validator("id")
     def id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/"
+            )
         return value
 
-    @field_validator('ver')
+    @field_validator("ver")
     def ver_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -59,7 +83,7 @@ class ModelSchema(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
         return value
 
-    @field_validator('version')
+    @field_validator("version")
     def version_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -69,11 +93,7 @@ class ModelSchema(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -90,10 +110,7 @@ class ModelSchema(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -105,14 +122,14 @@ class ModelSchema(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "attrNames": obj.get("attrNames"),
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "seqNo": obj.get("seqNo"),
-            "ver": obj.get("ver"),
-            "version": obj.get("version")
-        })
+        _obj = cls.model_validate(
+            {
+                "attrNames": obj.get("attrNames"),
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+                "seqNo": obj.get("seqNo"),
+                "ver": obj.get("ver"),
+                "version": obj.get("version"),
+            }
+        )
         return _obj
-
-

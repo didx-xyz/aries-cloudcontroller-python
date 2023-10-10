@@ -26,18 +26,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class PingRequestResponse(BaseModel):
     """
     PingRequestResponse
     """
-    thread_id: Optional[StrictStr] = Field(default=None, description="Thread ID of the ping message")
+
+    thread_id: Optional[StrictStr] = Field(
+        default=None, description="Thread ID of the ping message"
+    )
     __properties: ClassVar[List[str]] = ["thread_id"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,10 +54,7 @@ class PingRequestResponse(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -69,9 +66,5 @@ class PingRequestResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "thread_id": obj.get("thread_id")
-        })
+        _obj = cls.model_validate({"thread_id": obj.get("thread_id")})
         return _obj
-
-

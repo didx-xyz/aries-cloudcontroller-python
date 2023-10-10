@@ -31,24 +31,34 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class InputDescriptors(BaseModel):
     """
     InputDescriptors
     """
+
     constraints: Optional[Constraints] = None
     group: Optional[List[StrictStr]] = None
     id: Optional[StrictStr] = Field(default=None, description="ID")
-    metadata: Optional[Union[str, Any]] = Field(default=None, description="Metadata dictionary")
+    metadata: Optional[Union[str, Any]] = Field(
+        default=None, description="Metadata dictionary"
+    )
     name: Optional[StrictStr] = Field(default=None, description="Name")
     purpose: Optional[StrictStr] = Field(default=None, description="Purpose")
-    var_schema: Optional[SchemasInputDescriptorFilter] = Field(default=None, alias="schema")
-    __properties: ClassVar[List[str]] = ["constraints", "group", "id", "metadata", "name", "purpose", "schema"]
+    var_schema: Optional[SchemasInputDescriptorFilter] = Field(
+        default=None, alias="schema"
+    )
+    __properties: ClassVar[List[str]] = [
+        "constraints",
+        "group",
+        "id",
+        "metadata",
+        "name",
+        "purpose",
+        "schema",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,16 +75,13 @@ class InputDescriptors(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of constraints
         if self.constraints:
-            _dict['constraints'] = self.constraints.to_dict()
+            _dict["constraints"] = self.constraints.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -86,15 +93,19 @@ class InputDescriptors(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "constraints": Constraints.from_dict(obj.get("constraints")) if obj.get("constraints") is not None else None,
-            "group": obj.get("group"),
-            "id": obj.get("id"),
-            "metadata": obj.get("metadata"),
-            "name": obj.get("name"),
-            "purpose": obj.get("purpose"),
-            "schema": SchemasInputDescriptorFilter.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "constraints": Constraints.from_dict(obj.get("constraints"))
+                if obj.get("constraints") is not None
+                else None,
+                "group": obj.get("group"),
+                "id": obj.get("id"),
+                "metadata": obj.get("metadata"),
+                "name": obj.get("name"),
+                "purpose": obj.get("purpose"),
+                "schema": SchemasInputDescriptorFilter.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+            }
+        )
         return _obj
-
-

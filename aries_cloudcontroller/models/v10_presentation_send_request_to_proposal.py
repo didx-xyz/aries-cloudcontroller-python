@@ -26,19 +26,21 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V10PresentationSendRequestToProposal(BaseModel):
     """
     V10PresentationSendRequestToProposal
     """
-    auto_verify: Optional[StrictBool] = Field(default=None, description="Verifier choice to auto-verify proof presentation")
-    trace: Optional[StrictBool] = Field(default=None, description="Whether to trace event (default false)")
+
+    auto_verify: Optional[StrictBool] = Field(
+        default=None, description="Verifier choice to auto-verify proof presentation"
+    )
+    trace: Optional[StrictBool] = Field(
+        default=None, description="Whether to trace event (default false)"
+    )
     __properties: ClassVar[List[str]] = ["auto_verify", "trace"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +57,7 @@ class V10PresentationSendRequestToProposal(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,10 +69,7 @@ class V10PresentationSendRequestToProposal(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "auto_verify": obj.get("auto_verify"),
-            "trace": obj.get("trace")
-        })
+        _obj = cls.model_validate(
+            {"auto_verify": obj.get("auto_verify"), "trace": obj.get("trace")}
+        )
         return _obj
-
-

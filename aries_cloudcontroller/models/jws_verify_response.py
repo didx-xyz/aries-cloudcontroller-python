@@ -26,10 +26,12 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class JWSVerifyResponse(BaseModel):
     """
     JWSVerifyResponse
     """
+
     error: Optional[StrictStr] = Field(default=None, description="Error text")
     headers: Union[str, Any] = Field(description="Headers from verified JWT.")
     kid: StrictStr = Field(description="kid of signer")
@@ -37,11 +39,7 @@ class JWSVerifyResponse(BaseModel):
     valid: StrictBool
     __properties: ClassVar[List[str]] = ["error", "headers", "kid", "payload", "valid"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,10 +56,7 @@ class JWSVerifyResponse(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -73,13 +68,13 @@ class JWSVerifyResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "error": obj.get("error"),
-            "headers": obj.get("headers"),
-            "kid": obj.get("kid"),
-            "payload": obj.get("payload"),
-            "valid": obj.get("valid")
-        })
+        _obj = cls.model_validate(
+            {
+                "error": obj.get("error"),
+                "headers": obj.get("headers"),
+                "kid": obj.get("kid"),
+                "payload": obj.get("payload"),
+                "valid": obj.get("valid"),
+            }
+        )
         return _obj
-
-

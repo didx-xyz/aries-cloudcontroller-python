@@ -26,21 +26,23 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class Query(BaseModel):
     """
     Query
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
+
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
     comment: Optional[StrictStr] = None
     query: StrictStr
     __properties: ClassVar[List[str]] = ["@id", "@type", "comment", "query"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,15 +59,17 @@ class Query(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
         if self.comment is None and "comment" in self.model_fields_set:
-            _dict['comment'] = None
+            _dict["comment"] = None
 
         return _dict
 
@@ -78,12 +82,12 @@ class Query(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "comment": obj.get("comment"),
-            "query": obj.get("query")
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "comment": obj.get("comment"),
+                "query": obj.get("query"),
+            }
+        )
         return _obj
-
-

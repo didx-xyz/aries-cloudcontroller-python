@@ -26,18 +26,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class AttributeMimeTypesResult(BaseModel):
     """
     AttributeMimeTypesResult
     """
+
     results: Optional[Dict[str, StrictStr]] = None
     __properties: ClassVar[List[str]] = ["results"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,14 +52,11 @@ class AttributeMimeTypesResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # set to None if results (nullable) is None
         # and model_fields_set contains the field
         if self.results is None and "results" in self.model_fields_set:
-            _dict['results'] = None
+            _dict["results"] = None
 
         return _dict
 
@@ -74,9 +69,5 @@ class AttributeMimeTypesResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "results": obj.get("results")
-        })
+        _obj = cls.model_validate({"results": obj.get("results")})
         return _obj
-
-

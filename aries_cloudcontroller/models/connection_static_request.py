@@ -27,55 +27,93 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ConnectionStaticRequest(BaseModel):
     """
     ConnectionStaticRequest
     """
-    alias: Optional[StrictStr] = Field(default=None, description="Alias to assign to this connection")
-    my_did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Local DID")
-    my_seed: Optional[StrictStr] = Field(default=None, description="Seed to use for the local DID")
-    their_did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Remote DID")
-    their_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="URL endpoint for other party")
-    their_label: Optional[StrictStr] = Field(default=None, description="Other party's label for this connection")
-    their_seed: Optional[StrictStr] = Field(default=None, description="Seed to use for the remote DID")
-    their_verkey: Optional[StrictStr] = Field(default=None, description="Remote verification key")
-    __properties: ClassVar[List[str]] = ["alias", "my_did", "my_seed", "their_did", "their_endpoint", "their_label", "their_seed", "their_verkey"]
 
-    @field_validator('my_did')
+    alias: Optional[StrictStr] = Field(
+        default=None, description="Alias to assign to this connection"
+    )
+    my_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Local DID"
+    )
+    my_seed: Optional[StrictStr] = Field(
+        default=None, description="Seed to use for the local DID"
+    )
+    their_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Remote DID"
+    )
+    their_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="URL endpoint for other party"
+    )
+    their_label: Optional[StrictStr] = Field(
+        default=None, description="Other party's label for this connection"
+    )
+    their_seed: Optional[StrictStr] = Field(
+        default=None, description="Seed to use for the remote DID"
+    )
+    their_verkey: Optional[StrictStr] = Field(
+        default=None, description="Remote verification key"
+    )
+    __properties: ClassVar[List[str]] = [
+        "alias",
+        "my_did",
+        "my_seed",
+        "their_did",
+        "their_endpoint",
+        "their_label",
+        "their_seed",
+        "their_verkey",
+    ]
+
+    @field_validator("my_did")
     def my_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('their_did')
+    @field_validator("their_did")
     def their_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('their_endpoint')
+    @field_validator("their_endpoint")
     def their_endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/")
+        if not re.match(
+            r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -92,10 +130,7 @@ class ConnectionStaticRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -107,16 +142,16 @@ class ConnectionStaticRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "alias": obj.get("alias"),
-            "my_did": obj.get("my_did"),
-            "my_seed": obj.get("my_seed"),
-            "their_did": obj.get("their_did"),
-            "their_endpoint": obj.get("their_endpoint"),
-            "their_label": obj.get("their_label"),
-            "their_seed": obj.get("their_seed"),
-            "their_verkey": obj.get("their_verkey")
-        })
+        _obj = cls.model_validate(
+            {
+                "alias": obj.get("alias"),
+                "my_did": obj.get("my_did"),
+                "my_seed": obj.get("my_seed"),
+                "their_did": obj.get("their_did"),
+                "their_endpoint": obj.get("their_endpoint"),
+                "their_label": obj.get("their_label"),
+                "their_seed": obj.get("their_seed"),
+                "their_verkey": obj.get("their_verkey"),
+            }
+        )
         return _obj
-
-

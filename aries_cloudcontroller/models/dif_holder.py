@@ -27,29 +27,27 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class DIFHolder(BaseModel):
     """
     DIFHolder
     """
+
     directive: Optional[StrictStr] = Field(default=None, description="Preference")
     field_id: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["directive", "field_id"]
 
-    @field_validator('directive')
+    @field_validator("directive")
     def directive_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('required', 'preferred'):
+        if value not in ("required", "preferred"):
             raise ValueError("must be one of enum values ('required', 'preferred')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -66,10 +64,7 @@ class DIFHolder(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -81,10 +76,7 @@ class DIFHolder(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "directive": obj.get("directive"),
-            "field_id": obj.get("field_id")
-        })
+        _obj = cls.model_validate(
+            {"directive": obj.get("directive"), "field_id": obj.get("field_id")}
+        )
         return _obj
-
-

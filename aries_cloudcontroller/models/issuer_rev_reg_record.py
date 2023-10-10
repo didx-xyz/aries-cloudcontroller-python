@@ -30,104 +30,180 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IssuerRevRegRecord(BaseModel):
     """
     IssuerRevRegRecord
     """
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Credential definition identifier")
+
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
+    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Credential definition identifier"
+    )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
-    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Issuer DID")
-    max_cred_num: Optional[StrictInt] = Field(default=None, description="Maximum number of credentials for revocation registry")
-    pending_pub: Optional[List[StrictStr]] = Field(default=None, description="Credential revocation identifier for credential revoked and pending publication to ledger")
-    record_id: Optional[StrictStr] = Field(default=None, description="Issuer revocation registry record identifier")
-    revoc_def_type: Optional[StrictStr] = Field(default=None, description="Revocation registry type (specify CL_ACCUM)")
+    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Issuer DID"
+    )
+    max_cred_num: Optional[StrictInt] = Field(
+        default=None,
+        description="Maximum number of credentials for revocation registry",
+    )
+    pending_pub: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="Credential revocation identifier for credential revoked and pending publication to ledger",
+    )
+    record_id: Optional[StrictStr] = Field(
+        default=None, description="Issuer revocation registry record identifier"
+    )
+    revoc_def_type: Optional[StrictStr] = Field(
+        default=None, description="Revocation registry type (specify CL_ACCUM)"
+    )
     revoc_reg_def: Optional[IndyRevRegDef] = None
     revoc_reg_entry: Optional[IndyRevRegEntry] = None
-    revoc_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Revocation registry identifier")
-    state: Optional[StrictStr] = Field(default=None, description="Issue revocation registry record state")
-    tag: Optional[StrictStr] = Field(default=None, description="Tag within issuer revocation registry identifier")
-    tails_hash: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Tails hash")
-    tails_local_path: Optional[StrictStr] = Field(default=None, description="Local path to tails file")
-    tails_public_uri: Optional[StrictStr] = Field(default=None, description="Public URI for tails file")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    __properties: ClassVar[List[str]] = ["created_at", "cred_def_id", "error_msg", "issuer_did", "max_cred_num", "pending_pub", "record_id", "revoc_def_type", "revoc_reg_def", "revoc_reg_entry", "revoc_reg_id", "state", "tag", "tails_hash", "tails_local_path", "tails_public_uri", "updated_at"]
+    revoc_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Revocation registry identifier"
+    )
+    state: Optional[StrictStr] = Field(
+        default=None, description="Issue revocation registry record state"
+    )
+    tag: Optional[StrictStr] = Field(
+        default=None, description="Tag within issuer revocation registry identifier"
+    )
+    tails_hash: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Tails hash"
+    )
+    tails_local_path: Optional[StrictStr] = Field(
+        default=None, description="Local path to tails file"
+    )
+    tails_public_uri: Optional[StrictStr] = Field(
+        default=None, description="Public URI for tails file"
+    )
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    __properties: ClassVar[List[str]] = [
+        "created_at",
+        "cred_def_id",
+        "error_msg",
+        "issuer_did",
+        "max_cred_num",
+        "pending_pub",
+        "record_id",
+        "revoc_def_type",
+        "revoc_reg_def",
+        "revoc_reg_entry",
+        "revoc_reg_id",
+        "state",
+        "tag",
+        "tails_hash",
+        "tails_local_path",
+        "tails_public_uri",
+        "updated_at",
+    ]
 
-    @field_validator('created_at')
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('cred_def_id')
+    @field_validator("cred_def_id")
     def cred_def_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    @field_validator('issuer_did')
+    @field_validator("issuer_did")
     def issuer_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('revoc_def_type')
+    @field_validator("revoc_def_type")
     def revoc_def_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('CL_ACCUM'):
+        if value not in ("CL_ACCUM"):
             raise ValueError("must be one of enum values ('CL_ACCUM')")
         return value
 
-    @field_validator('revoc_reg_id')
+    @field_validator("revoc_reg_id")
     def revoc_reg_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)/"
+            )
         return value
 
-    @field_validator('tails_hash')
+    @field_validator("tails_hash")
     def tails_hash_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -144,16 +220,13 @@ class IssuerRevRegRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of revoc_reg_def
         if self.revoc_reg_def:
-            _dict['revoc_reg_def'] = self.revoc_reg_def.to_dict()
+            _dict["revoc_reg_def"] = self.revoc_reg_def.to_dict()
         # override the default output from pydantic by calling `to_dict()` of revoc_reg_entry
         if self.revoc_reg_entry:
-            _dict['revoc_reg_entry'] = self.revoc_reg_entry.to_dict()
+            _dict["revoc_reg_entry"] = self.revoc_reg_entry.to_dict()
         return _dict
 
     @classmethod
@@ -165,25 +238,29 @@ class IssuerRevRegRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "created_at": obj.get("created_at"),
-            "cred_def_id": obj.get("cred_def_id"),
-            "error_msg": obj.get("error_msg"),
-            "issuer_did": obj.get("issuer_did"),
-            "max_cred_num": obj.get("max_cred_num"),
-            "pending_pub": obj.get("pending_pub"),
-            "record_id": obj.get("record_id"),
-            "revoc_def_type": obj.get("revoc_def_type"),
-            "revoc_reg_def": IndyRevRegDef.from_dict(obj.get("revoc_reg_def")) if obj.get("revoc_reg_def") is not None else None,
-            "revoc_reg_entry": IndyRevRegEntry.from_dict(obj.get("revoc_reg_entry")) if obj.get("revoc_reg_entry") is not None else None,
-            "revoc_reg_id": obj.get("revoc_reg_id"),
-            "state": obj.get("state"),
-            "tag": obj.get("tag"),
-            "tails_hash": obj.get("tails_hash"),
-            "tails_local_path": obj.get("tails_local_path"),
-            "tails_public_uri": obj.get("tails_public_uri"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "created_at": obj.get("created_at"),
+                "cred_def_id": obj.get("cred_def_id"),
+                "error_msg": obj.get("error_msg"),
+                "issuer_did": obj.get("issuer_did"),
+                "max_cred_num": obj.get("max_cred_num"),
+                "pending_pub": obj.get("pending_pub"),
+                "record_id": obj.get("record_id"),
+                "revoc_def_type": obj.get("revoc_def_type"),
+                "revoc_reg_def": IndyRevRegDef.from_dict(obj.get("revoc_reg_def"))
+                if obj.get("revoc_reg_def") is not None
+                else None,
+                "revoc_reg_entry": IndyRevRegEntry.from_dict(obj.get("revoc_reg_entry"))
+                if obj.get("revoc_reg_entry") is not None
+                else None,
+                "revoc_reg_id": obj.get("revoc_reg_id"),
+                "state": obj.get("state"),
+                "tag": obj.get("tag"),
+                "tails_hash": obj.get("tails_hash"),
+                "tails_local_path": obj.get("tails_local_path"),
+                "tails_public_uri": obj.get("tails_public_uri"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

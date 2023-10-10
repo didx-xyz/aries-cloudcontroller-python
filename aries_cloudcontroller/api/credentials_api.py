@@ -75,8 +75,8 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the delete_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.delete_record_with_http_info(credential_id, **kwargs)  # noqa: E501
@@ -124,61 +124,60 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'credential_id'
-        ]
+        _all_params = ["credential_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_record" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['credential_id'] is not None:
-            _path_params['credential_id'] = _params['credential_id']
-
+        if _params["credential_id"] is not None:
+            _path_params["credential_id"] = _params["credential_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/credential/{credential_id}', 'DELETE',
+            "/credential/{credential_id}",
+            "DELETE",
             _path_params,
             _query_params,
             _header_params,
@@ -187,12 +186,13 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def delete_w3c_credential(
@@ -221,11 +221,13 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the delete_w3c_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_w3c_credential_with_http_info(credential_id, **kwargs)  # noqa: E501
+        return self.delete_w3c_credential_with_http_info(
+            credential_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def delete_w3c_credential_with_http_info(
@@ -270,61 +272,60 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'credential_id'
-        ]
+        _all_params = ["credential_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_w3c_credential" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['credential_id'] is not None:
-            _path_params['credential_id'] = _params['credential_id']
-
+        if _params["credential_id"] is not None:
+            _path_params["credential_id"] = _params["credential_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/credential/w3c/{credential_id}', 'DELETE',
+            "/credential/w3c/{credential_id}",
+            "DELETE",
             _path_params,
             _query_params,
             _header_params,
@@ -333,12 +334,13 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_credential_mime_types(
@@ -367,11 +369,13 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: AttributeMimeTypesResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_credential_mime_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_credential_mime_types_with_http_info(credential_id, **kwargs)  # noqa: E501
+        return self.get_credential_mime_types_with_http_info(
+            credential_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_credential_mime_types_with_http_info(
@@ -416,61 +420,60 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'credential_id'
-        ]
+        _all_params = ["credential_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_credential_mime_types" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['credential_id'] is not None:
-            _path_params['credential_id'] = _params['credential_id']
-
+        if _params["credential_id"] is not None:
+            _path_params["credential_id"] = _params["credential_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AttributeMimeTypesResult",
+            "200": "AttributeMimeTypesResult",
         }
 
         return self.api_client.call_api(
-            '/credential/mime-types/{credential_id}', 'GET',
+            "/credential/mime-types/{credential_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -479,12 +482,13 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_record(
@@ -513,8 +517,8 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: IndyCredInfo
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_record_with_http_info(credential_id, **kwargs)  # noqa: E501
@@ -562,61 +566,60 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'credential_id'
-        ]
+        _all_params = ["credential_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_record" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['credential_id'] is not None:
-            _path_params['credential_id'] = _params['credential_id']
-
+        if _params["credential_id"] is not None:
+            _path_params["credential_id"] = _params["credential_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "IndyCredInfo",
+            "200": "IndyCredInfo",
         }
 
         return self.api_client.call_api(
-            '/credential/{credential_id}', 'GET',
+            "/credential/{credential_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -625,19 +628,29 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_records(
         self,
-        count: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Maximum number to retrieve")] = None,
-        start: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Start index")] = None,
-        wql: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="(JSON) WQL query")] = None,
+        count: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Maximum number to retrieve"),
+        ] = None,
+        start: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Start index"),
+        ] = None,
+        wql: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="(JSON) WQL query"),
+        ] = None,
         **kwargs,
     ) -> CredInfoList:
         """Fetch credentials from wallet  # noqa: E501
@@ -665,18 +678,29 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: CredInfoList
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(count, start, wql, **kwargs)  # noqa: E501
+        return self.get_records_with_http_info(
+            count, start, wql, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_records_with_http_info(
         self,
-        count: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Maximum number to retrieve")] = None,
-        start: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Start index")] = None,
-        wql: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="(JSON) WQL query")] = None,
+        count: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Maximum number to retrieve"),
+        ] = None,
+        start: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Start index"),
+        ] = None,
+        wql: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="(JSON) WQL query"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Fetch credentials from wallet  # noqa: E501
@@ -720,32 +744,28 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'count',
-            'start',
-            'wql'
-        ]
+        _all_params = ["count", "start", "wql"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_records" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -754,35 +774,37 @@ class CredentialsApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('count') is not None:  # noqa: E501
-            _query_params.append(('count', _params['count']))
+        if _params.get("count") is not None:  # noqa: E501
+            _query_params.append(("count", _params["count"]))
 
-        if _params.get('start') is not None:  # noqa: E501
-            _query_params.append(('start', _params['start']))
+        if _params.get("start") is not None:  # noqa: E501
+            _query_params.append(("start", _params["start"]))
 
-        if _params.get('wql') is not None:  # noqa: E501
-            _query_params.append(('wql', _params['wql']))
+        if _params.get("wql") is not None:  # noqa: E501
+            _query_params.append(("wql", _params["wql"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CredInfoList",
+            "200": "CredInfoList",
         }
 
         return self.api_client.call_api(
-            '/credentials', 'GET',
+            "/credentials",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -791,19 +813,28 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_revocation_status(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
-        var_from: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Earliest epoch of revocation status interval of interest")] = None,
-        to: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Latest epoch of revocation status interval of interest")] = None,
+        var_from: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(
+                description="Earliest epoch of revocation status interval of interest"
+            ),
+        ] = None,
+        to: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Latest epoch of revocation status interval of interest"),
+        ] = None,
         **kwargs,
     ) -> CredRevokedResult:
         """Query credential revocation status by id  # noqa: E501
@@ -831,18 +862,28 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: CredRevokedResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_revocation_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_revocation_status_with_http_info(credential_id, var_from, to, **kwargs)  # noqa: E501
+        return self.get_revocation_status_with_http_info(
+            credential_id, var_from, to, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_revocation_status_with_http_info(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
-        var_from: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Earliest epoch of revocation status interval of interest")] = None,
-        to: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Latest epoch of revocation status interval of interest")] = None,
+        var_from: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(
+                description="Earliest epoch of revocation status interval of interest"
+            ),
+        ] = None,
+        to: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Latest epoch of revocation status interval of interest"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Query credential revocation status by id  # noqa: E501
@@ -886,69 +927,66 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'credential_id',
-            'var_from',
-            'to'
-        ]
+        _all_params = ["credential_id", "var_from", "to"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_revocation_status" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['credential_id'] is not None:
-            _path_params['credential_id'] = _params['credential_id']
-
+        if _params["credential_id"] is not None:
+            _path_params["credential_id"] = _params["credential_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('var_from') is not None:  # noqa: E501
-            _query_params.append(('from', _params['var_from']))
+        if _params.get("var_from") is not None:  # noqa: E501
+            _query_params.append(("from", _params["var_from"]))
 
-        if _params.get('to') is not None:  # noqa: E501
-            _query_params.append(('to', _params['to']))
+        if _params.get("to") is not None:  # noqa: E501
+            _query_params.append(("to", _params["to"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CredRevokedResult",
+            "200": "CredRevokedResult",
         }
 
         return self.api_client.call_api(
-            '/credential/revoked/{credential_id}', 'GET',
+            "/credential/revoked/{credential_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -957,12 +995,13 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_w3c_credential(
@@ -991,11 +1030,13 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: VCRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_w3c_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_w3c_credential_with_http_info(credential_id, **kwargs)  # noqa: E501
+        return self.get_w3c_credential_with_http_info(
+            credential_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_w3c_credential_with_http_info(
@@ -1040,61 +1081,60 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'credential_id'
-        ]
+        _all_params = ["credential_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_w3c_credential" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['credential_id'] is not None:
-            _path_params['credential_id'] = _params['credential_id']
-
+        if _params["credential_id"] is not None:
+            _path_params["credential_id"] = _params["credential_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VCRecord",
+            "200": "VCRecord",
         }
 
         return self.api_client.call_api(
-            '/credential/w3c/{credential_id}', 'GET',
+            "/credential/w3c/{credential_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1103,19 +1143,29 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_w3c_credentials(
         self,
-        count: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Maximum number to retrieve")] = None,
-        start: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Start index")] = None,
-        wql: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="(JSON) WQL query")] = None,
+        count: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Maximum number to retrieve"),
+        ] = None,
+        start: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Start index"),
+        ] = None,
+        wql: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="(JSON) WQL query"),
+        ] = None,
         body: Optional[W3CCredentialsListRequest] = None,
         **kwargs,
     ) -> VCRecordList:
@@ -1146,18 +1196,29 @@ class CredentialsApi:
                  returns the request thread.
         :rtype: VCRecordList
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_w3c_credentials_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_w3c_credentials_with_http_info(count, start, wql, body, **kwargs)  # noqa: E501
+        return self.get_w3c_credentials_with_http_info(
+            count, start, wql, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_w3c_credentials_with_http_info(
         self,
-        count: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Maximum number to retrieve")] = None,
-        start: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Start index")] = None,
-        wql: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="(JSON) WQL query")] = None,
+        count: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Maximum number to retrieve"),
+        ] = None,
+        start: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Start index"),
+        ] = None,
+        wql: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="(JSON) WQL query"),
+        ] = None,
         body: Optional[W3CCredentialsListRequest] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -1204,33 +1265,28 @@ class CredentialsApi:
 
         _params = locals()
 
-        _all_params = [
-            'count',
-            'start',
-            'wql',
-            'body'
-        ]
+        _all_params = ["count", "start", "wql", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_w3c_credentials" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1239,45 +1295,48 @@ class CredentialsApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('count') is not None:  # noqa: E501
-            _query_params.append(('count', _params['count']))
+        if _params.get("count") is not None:  # noqa: E501
+            _query_params.append(("count", _params["count"]))
 
-        if _params.get('start') is not None:  # noqa: E501
-            _query_params.append(('start', _params['start']))
+        if _params.get("start") is not None:  # noqa: E501
+            _query_params.append(("start", _params["start"]))
 
-        if _params.get('wql') is not None:  # noqa: E501
-            _query_params.append(('wql', _params['wql']))
+        if _params.get("wql") is not None:  # noqa: E501
+            _query_params.append(("wql", _params["wql"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VCRecordList",
+            "200": "VCRecordList",
         }
 
         return self.api_client.call_api(
-            '/credentials/w3c', 'POST',
+            "/credentials/w3c",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1286,9 +1345,10 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

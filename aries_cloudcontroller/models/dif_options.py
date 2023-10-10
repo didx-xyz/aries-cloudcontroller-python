@@ -27,29 +27,36 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class DIFOptions(BaseModel):
     """
     DIFOptions
     """
-    challenge: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Challenge protect against replay attack")
-    domain: Optional[StrictStr] = Field(default=None, description="Domain protect against replay attack")
+
+    challenge: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Challenge protect against replay attack"
+    )
+    domain: Optional[StrictStr] = Field(
+        default=None, description="Domain protect against replay attack"
+    )
     __properties: ClassVar[List[str]] = ["challenge", "domain"]
 
-    @field_validator('challenge')
+    @field_validator("challenge")
     def challenge_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}", value):
-            raise ValueError(r"must validate the regular expression /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/")
+        if not re.match(
+            r"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -66,10 +73,7 @@ class DIFOptions(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -81,10 +85,7 @@ class DIFOptions(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "challenge": obj.get("challenge"),
-            "domain": obj.get("domain")
-        })
+        _obj = cls.model_validate(
+            {"challenge": obj.get("challenge"), "domain": obj.get("domain")}
+        )
         return _obj
-
-

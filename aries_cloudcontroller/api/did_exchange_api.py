@@ -50,8 +50,13 @@ class DidExchangeApi:
     def accept_invitation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
-        my_label: Annotated[Optional[StrictStr], Field(description="Label for connection request")] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
+        my_label: Annotated[
+            Optional[StrictStr], Field(description="Label for connection request")
+        ] = None,
         **kwargs,
     ) -> ConnRecord:
         """Accept a stored connection invitation  # noqa: E501
@@ -79,18 +84,25 @@ class DidExchangeApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the accept_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_invitation_with_http_info(conn_id, my_endpoint, my_label, **kwargs)  # noqa: E501
+        return self.accept_invitation_with_http_info(
+            conn_id, my_endpoint, my_label, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def accept_invitation_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
-        my_label: Annotated[Optional[StrictStr], Field(description="Label for connection request")] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
+        my_label: Annotated[
+            Optional[StrictStr], Field(description="Label for connection request")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Accept a stored connection invitation  # noqa: E501
@@ -134,69 +146,66 @@ class DidExchangeApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'my_endpoint',
-            'my_label'
-        ]
+        _all_params = ["conn_id", "my_endpoint", "my_label"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method accept_invitation" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('my_endpoint') is not None:  # noqa: E501
-            _query_params.append(('my_endpoint', _params['my_endpoint']))
+        if _params.get("my_endpoint") is not None:  # noqa: E501
+            _query_params.append(("my_endpoint", _params["my_endpoint"]))
 
-        if _params.get('my_label') is not None:  # noqa: E501
-            _query_params.append(('my_label', _params['my_label']))
+        if _params.get("my_label") is not None:  # noqa: E501
+            _query_params.append(("my_label", _params["my_label"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/didexchange/{conn_id}/accept-invitation', 'POST',
+            "/didexchange/{conn_id}/accept-invitation",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -205,19 +214,26 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def accept_request(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
         **kwargs,
     ) -> ConnRecord:
         """Accept a stored connection request  # noqa: E501
@@ -245,18 +261,26 @@ class DidExchangeApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the accept_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_request_with_http_info(conn_id, mediation_id, my_endpoint, **kwargs)  # noqa: E501
+        return self.accept_request_with_http_info(
+            conn_id, mediation_id, my_endpoint, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def accept_request_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Accept a stored connection request  # noqa: E501
@@ -300,69 +324,66 @@ class DidExchangeApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'mediation_id',
-            'my_endpoint'
-        ]
+        _all_params = ["conn_id", "mediation_id", "my_endpoint"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method accept_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('mediation_id') is not None:  # noqa: E501
-            _query_params.append(('mediation_id', _params['mediation_id']))
+        if _params.get("mediation_id") is not None:  # noqa: E501
+            _query_params.append(("mediation_id", _params["mediation_id"]))
 
-        if _params.get('my_endpoint') is not None:  # noqa: E501
-            _query_params.append(('my_endpoint', _params['my_endpoint']))
+        if _params.get("my_endpoint") is not None:  # noqa: E501
+            _query_params.append(("my_endpoint", _params["my_endpoint"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/didexchange/{conn_id}/accept-request', 'POST',
+            "/didexchange/{conn_id}/accept-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -371,24 +392,54 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def create_request(
         self,
-        their_public_did: Annotated[str, Field(strict=True, description="Qualified public DID to which to request connection")],
-        alias: Annotated[Optional[StrictStr], Field(description="Alias for connection")] = None,
-        goal: Annotated[Optional[StrictStr], Field(description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message")] = None,
-        goal_code: Annotated[Optional[StrictStr], Field(description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message")] = None,
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
-        my_label: Annotated[Optional[StrictStr], Field(description="Label for connection request")] = None,
-        use_public_did: Annotated[Optional[StrictBool], Field(description="Use public DID for this connection")] = None,
+        their_public_did: Annotated[
+            str,
+            Field(
+                strict=True,
+                description="Qualified public DID to which to request connection",
+            ),
+        ],
+        alias: Annotated[
+            Optional[StrictStr], Field(description="Alias for connection")
+        ] = None,
+        goal: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message"
+            ),
+        ] = None,
+        goal_code: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message"
+            ),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
+        my_label: Annotated[
+            Optional[StrictStr], Field(description="Label for connection request")
+        ] = None,
+        use_public_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Use public DID for this connection"),
+        ] = None,
         **kwargs,
     ) -> ConnRecord:
         """Create and send a request against public DID's implicit invitation  # noqa: E501
@@ -426,23 +477,62 @@ class DidExchangeApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the create_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_request_with_http_info(their_public_did, alias, goal, goal_code, mediation_id, my_endpoint, my_label, use_public_did, **kwargs)  # noqa: E501
+        return self.create_request_with_http_info(
+            their_public_did,
+            alias,
+            goal,
+            goal_code,
+            mediation_id,
+            my_endpoint,
+            my_label,
+            use_public_did,
+            **kwargs,
+        )  # noqa: E501
 
     @validate_call
     def create_request_with_http_info(
         self,
-        their_public_did: Annotated[str, Field(strict=True, description="Qualified public DID to which to request connection")],
-        alias: Annotated[Optional[StrictStr], Field(description="Alias for connection")] = None,
-        goal: Annotated[Optional[StrictStr], Field(description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message")] = None,
-        goal_code: Annotated[Optional[StrictStr], Field(description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message")] = None,
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
-        my_label: Annotated[Optional[StrictStr], Field(description="Label for connection request")] = None,
-        use_public_did: Annotated[Optional[StrictBool], Field(description="Use public DID for this connection")] = None,
+        their_public_did: Annotated[
+            str,
+            Field(
+                strict=True,
+                description="Qualified public DID to which to request connection",
+            ),
+        ],
+        alias: Annotated[
+            Optional[StrictStr], Field(description="Alias for connection")
+        ] = None,
+        goal: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message"
+            ),
+        ] = None,
+        goal_code: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message"
+            ),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
+        my_label: Annotated[
+            Optional[StrictStr], Field(description="Label for connection request")
+        ] = None,
+        use_public_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Use public DID for this connection"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Create and send a request against public DID's implicit invitation  # noqa: E501
@@ -497,36 +587,36 @@ class DidExchangeApi:
         _params = locals()
 
         _all_params = [
-            'their_public_did',
-            'alias',
-            'goal',
-            'goal_code',
-            'mediation_id',
-            'my_endpoint',
-            'my_label',
-            'use_public_did'
+            "their_public_did",
+            "alias",
+            "goal",
+            "goal_code",
+            "mediation_id",
+            "my_endpoint",
+            "my_label",
+            "use_public_did",
         ]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -535,50 +625,52 @@ class DidExchangeApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('their_public_did') is not None:  # noqa: E501
-            _query_params.append(('their_public_did', _params['their_public_did']))
+        if _params.get("their_public_did") is not None:  # noqa: E501
+            _query_params.append(("their_public_did", _params["their_public_did"]))
 
-        if _params.get('alias') is not None:  # noqa: E501
-            _query_params.append(('alias', _params['alias']))
+        if _params.get("alias") is not None:  # noqa: E501
+            _query_params.append(("alias", _params["alias"]))
 
-        if _params.get('goal') is not None:  # noqa: E501
-            _query_params.append(('goal', _params['goal']))
+        if _params.get("goal") is not None:  # noqa: E501
+            _query_params.append(("goal", _params["goal"]))
 
-        if _params.get('goal_code') is not None:  # noqa: E501
-            _query_params.append(('goal_code', _params['goal_code']))
+        if _params.get("goal_code") is not None:  # noqa: E501
+            _query_params.append(("goal_code", _params["goal_code"]))
 
-        if _params.get('mediation_id') is not None:  # noqa: E501
-            _query_params.append(('mediation_id', _params['mediation_id']))
+        if _params.get("mediation_id") is not None:  # noqa: E501
+            _query_params.append(("mediation_id", _params["mediation_id"]))
 
-        if _params.get('my_endpoint') is not None:  # noqa: E501
-            _query_params.append(('my_endpoint', _params['my_endpoint']))
+        if _params.get("my_endpoint") is not None:  # noqa: E501
+            _query_params.append(("my_endpoint", _params["my_endpoint"]))
 
-        if _params.get('my_label') is not None:  # noqa: E501
-            _query_params.append(('my_label', _params['my_label']))
+        if _params.get("my_label") is not None:  # noqa: E501
+            _query_params.append(("my_label", _params["my_label"]))
 
-        if _params.get('use_public_did') is not None:  # noqa: E501
-            _query_params.append(('use_public_did', _params['use_public_did']))
+        if _params.get("use_public_did") is not None:  # noqa: E501
+            _query_params.append(("use_public_did", _params["use_public_did"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/didexchange/create-request', 'POST',
+            "/didexchange/create-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -587,20 +679,32 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def receive_request(
         self,
-        alias: Annotated[Optional[StrictStr], Field(description="Alias for connection")] = None,
-        auto_accept: Annotated[Optional[StrictBool], Field(description="Auto-accept connection (defaults to configuration)")] = None,
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
+        alias: Annotated[
+            Optional[StrictStr], Field(description="Alias for connection")
+        ] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
         body: Optional[DIDXRequest] = None,
         **kwargs,
     ) -> ConnRecord:
@@ -633,19 +737,32 @@ class DidExchangeApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the receive_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.receive_request_with_http_info(alias, auto_accept, mediation_id, my_endpoint, body, **kwargs)  # noqa: E501
+        return self.receive_request_with_http_info(
+            alias, auto_accept, mediation_id, my_endpoint, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def receive_request_with_http_info(
         self,
-        alias: Annotated[Optional[StrictStr], Field(description="Alias for connection")] = None,
-        auto_accept: Annotated[Optional[StrictBool], Field(description="Auto-accept connection (defaults to configuration)")] = None,
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
+        alias: Annotated[
+            Optional[StrictStr], Field(description="Alias for connection")
+        ] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
         body: Optional[DIDXRequest] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -694,34 +811,28 @@ class DidExchangeApi:
 
         _params = locals()
 
-        _all_params = [
-            'alias',
-            'auto_accept',
-            'mediation_id',
-            'my_endpoint',
-            'body'
-        ]
+        _all_params = ["alias", "auto_accept", "mediation_id", "my_endpoint", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method receive_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -730,48 +841,51 @@ class DidExchangeApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('alias') is not None:  # noqa: E501
-            _query_params.append(('alias', _params['alias']))
+        if _params.get("alias") is not None:  # noqa: E501
+            _query_params.append(("alias", _params["alias"]))
 
-        if _params.get('auto_accept') is not None:  # noqa: E501
-            _query_params.append(('auto_accept', _params['auto_accept']))
+        if _params.get("auto_accept") is not None:  # noqa: E501
+            _query_params.append(("auto_accept", _params["auto_accept"]))
 
-        if _params.get('mediation_id') is not None:  # noqa: E501
-            _query_params.append(('mediation_id', _params['mediation_id']))
+        if _params.get("mediation_id") is not None:  # noqa: E501
+            _query_params.append(("mediation_id", _params["mediation_id"]))
 
-        if _params.get('my_endpoint') is not None:  # noqa: E501
-            _query_params.append(('my_endpoint', _params['my_endpoint']))
+        if _params.get("my_endpoint") is not None:  # noqa: E501
+            _query_params.append(("my_endpoint", _params["my_endpoint"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/didexchange/receive-request', 'POST',
+            "/didexchange/receive-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -780,9 +894,10 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

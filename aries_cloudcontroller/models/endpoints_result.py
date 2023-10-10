@@ -27,39 +27,51 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class EndpointsResult(BaseModel):
     """
     EndpointsResult
     """
-    my_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="My endpoint")
-    their_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Their endpoint")
+
+    my_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="My endpoint"
+    )
+    their_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Their endpoint"
+    )
     __properties: ClassVar[List[str]] = ["my_endpoint", "their_endpoint"]
 
-    @field_validator('my_endpoint')
+    @field_validator("my_endpoint")
     def my_endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/")
+        if not re.match(
+            r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/"
+            )
         return value
 
-    @field_validator('their_endpoint')
+    @field_validator("their_endpoint")
     def their_endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/")
+        if not re.match(
+            r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -76,10 +88,7 @@ class EndpointsResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -91,10 +100,10 @@ class EndpointsResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "my_endpoint": obj.get("my_endpoint"),
-            "their_endpoint": obj.get("their_endpoint")
-        })
+        _obj = cls.model_validate(
+            {
+                "my_endpoint": obj.get("my_endpoint"),
+                "their_endpoint": obj.get("their_endpoint"),
+            }
+        )
         return _obj
-
-

@@ -26,29 +26,48 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class Filter(BaseModel):
     """
     Filter
     """
+
     const: Optional[Union[str, Any]] = Field(default=None, description="Const")
     enum: Optional[List[Union[str, Any]]] = None
-    exclusive_maximum: Optional[Union[str, Any]] = Field(default=None, description="ExclusiveMaximum", alias="exclusiveMaximum")
-    exclusive_minimum: Optional[Union[str, Any]] = Field(default=None, description="ExclusiveMinimum", alias="exclusiveMinimum")
+    exclusive_maximum: Optional[Union[str, Any]] = Field(
+        default=None, description="ExclusiveMaximum", alias="exclusiveMaximum"
+    )
+    exclusive_minimum: Optional[Union[str, Any]] = Field(
+        default=None, description="ExclusiveMinimum", alias="exclusiveMinimum"
+    )
     format: Optional[StrictStr] = Field(default=None, description="Format")
-    max_length: Optional[StrictInt] = Field(default=None, description="Max Length", alias="maxLength")
+    max_length: Optional[StrictInt] = Field(
+        default=None, description="Max Length", alias="maxLength"
+    )
     maximum: Optional[Union[str, Any]] = Field(default=None, description="Maximum")
-    min_length: Optional[StrictInt] = Field(default=None, description="Min Length", alias="minLength")
+    min_length: Optional[StrictInt] = Field(
+        default=None, description="Min Length", alias="minLength"
+    )
     minimum: Optional[Union[str, Any]] = Field(default=None, description="Minimum")
     var_not: Optional[StrictBool] = Field(default=None, description="Not", alias="not")
     pattern: Optional[StrictStr] = Field(default=None, description="Pattern")
     type: Optional[StrictStr] = Field(default=None, description="Type")
-    __properties: ClassVar[List[str]] = ["const", "enum", "exclusiveMaximum", "exclusiveMinimum", "format", "maxLength", "maximum", "minLength", "minimum", "not", "pattern", "type"]
+    __properties: ClassVar[List[str]] = [
+        "const",
+        "enum",
+        "exclusiveMaximum",
+        "exclusiveMinimum",
+        "format",
+        "maxLength",
+        "maximum",
+        "minLength",
+        "minimum",
+        "not",
+        "pattern",
+        "type",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,10 +84,7 @@ class Filter(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -80,20 +96,20 @@ class Filter(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "const": obj.get("const"),
-            "enum": obj.get("enum"),
-            "exclusiveMaximum": obj.get("exclusiveMaximum"),
-            "exclusiveMinimum": obj.get("exclusiveMinimum"),
-            "format": obj.get("format"),
-            "maxLength": obj.get("maxLength"),
-            "maximum": obj.get("maximum"),
-            "minLength": obj.get("minLength"),
-            "minimum": obj.get("minimum"),
-            "not": obj.get("not"),
-            "pattern": obj.get("pattern"),
-            "type": obj.get("type")
-        })
+        _obj = cls.model_validate(
+            {
+                "const": obj.get("const"),
+                "enum": obj.get("enum"),
+                "exclusiveMaximum": obj.get("exclusiveMaximum"),
+                "exclusiveMinimum": obj.get("exclusiveMinimum"),
+                "format": obj.get("format"),
+                "maxLength": obj.get("maxLength"),
+                "maximum": obj.get("maximum"),
+                "minLength": obj.get("minLength"),
+                "minimum": obj.get("minimum"),
+                "not": obj.get("not"),
+                "pattern": obj.get("pattern"),
+                "type": obj.get("type"),
+            }
+        )
         return _obj
-
-

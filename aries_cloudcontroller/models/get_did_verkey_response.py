@@ -27,28 +27,33 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class GetDIDVerkeyResponse(BaseModel):
     """
     GetDIDVerkeyResponse
     """
-    verkey: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Full verification key")
+
+    verkey: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Full verification key"
+    )
     __properties: ClassVar[List[str]] = ["verkey"]
 
-    @field_validator('verkey')
+    @field_validator("verkey")
     def verkey_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,14 +70,11 @@ class GetDIDVerkeyResponse(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # set to None if verkey (nullable) is None
         # and model_fields_set contains the field
         if self.verkey is None and "verkey" in self.model_fields_set:
-            _dict['verkey'] = None
+            _dict["verkey"] = None
 
         return _dict
 
@@ -85,9 +87,5 @@ class GetDIDVerkeyResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "verkey": obj.get("verkey")
-        })
+        _obj = cls.model_validate({"verkey": obj.get("verkey")})
         return _obj
-
-

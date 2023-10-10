@@ -27,12 +27,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class MediationRecord(BaseModel):
     """
     MediationRecord
     """
+
     connection_id: StrictStr
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
     endpoint: Optional[StrictStr] = None
     mediation_id: Optional[StrictStr] = None
     mediator_terms: Optional[List[StrictStr]] = None
@@ -40,34 +44,53 @@ class MediationRecord(BaseModel):
     role: StrictStr
     routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = None
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    __properties: ClassVar[List[str]] = ["connection_id", "created_at", "endpoint", "mediation_id", "mediator_terms", "recipient_terms", "role", "routing_keys", "state", "updated_at"]
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    __properties: ClassVar[List[str]] = [
+        "connection_id",
+        "created_at",
+        "endpoint",
+        "mediation_id",
+        "mediator_terms",
+        "recipient_terms",
+        "role",
+        "routing_keys",
+        "state",
+        "updated_at",
+    ]
 
-    @field_validator('created_at')
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -84,10 +107,7 @@ class MediationRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -99,18 +119,18 @@ class MediationRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "connection_id": obj.get("connection_id"),
-            "created_at": obj.get("created_at"),
-            "endpoint": obj.get("endpoint"),
-            "mediation_id": obj.get("mediation_id"),
-            "mediator_terms": obj.get("mediator_terms"),
-            "recipient_terms": obj.get("recipient_terms"),
-            "role": obj.get("role"),
-            "routing_keys": obj.get("routing_keys"),
-            "state": obj.get("state"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "connection_id": obj.get("connection_id"),
+                "created_at": obj.get("created_at"),
+                "endpoint": obj.get("endpoint"),
+                "mediation_id": obj.get("mediation_id"),
+                "mediator_terms": obj.get("mediator_terms"),
+                "recipient_terms": obj.get("recipient_terms"),
+                "role": obj.get("role"),
+                "routing_keys": obj.get("routing_keys"),
+                "state": obj.get("state"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

@@ -87,8 +87,8 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchange
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the create_proof_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.create_proof_request_with_http_info(body, **kwargs)  # noqa: E501
@@ -136,30 +136,28 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_proof_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -169,35 +167,38 @@ class PresentProofV10Api:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchange",
+            "200": "V10PresentationExchange",
         }
 
         return self.api_client.call_api(
-            '/present-proof/create-request', 'POST',
+            "/present-proof/create-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -206,17 +207,20 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def delete_record(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         **kwargs,
     ) -> object:
         """Remove an existing presentation exchange record  # noqa: E501
@@ -240,8 +244,8 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the delete_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.delete_record_with_http_info(pres_ex_id, **kwargs)  # noqa: E501
@@ -249,7 +253,9 @@ class PresentProofV10Api:
     @validate_call
     def delete_record_with_http_info(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Remove an existing presentation exchange record  # noqa: E501
@@ -289,61 +295,60 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'pres_ex_id'
-        ]
+        _all_params = ["pres_ex_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_record" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['pres_ex_id'] is not None:
-            _path_params['pres_ex_id'] = _params['pres_ex_id']
-
+        if _params["pres_ex_id"] is not None:
+            _path_params["pres_ex_id"] = _params["pres_ex_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records/{pres_ex_id}', 'DELETE',
+            "/present-proof/records/{pres_ex_id}",
+            "DELETE",
             _path_params,
             _query_params,
             _header_params,
@@ -352,21 +357,36 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_matching_credentials(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
-        count: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Maximum number to retrieve")] = None,
-        extra_query: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="(JSON) object mapping referents to extra WQL queries")] = None,
-        referent: Annotated[Optional[StrictStr], Field(description="Proof request referents of interest, comma-separated")] = None,
-        start: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Start index")] = None,
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
+        count: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Maximum number to retrieve"),
+        ] = None,
+        extra_query: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="(JSON) object mapping referents to extra WQL queries"),
+        ] = None,
+        referent: Annotated[
+            Optional[StrictStr],
+            Field(description="Proof request referents of interest, comma-separated"),
+        ] = None,
+        start: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Start index"),
+        ] = None,
         **kwargs,
     ) -> List[IndyCredPrecis]:
         """Fetch credentials for a presentation request from wallet  # noqa: E501
@@ -398,20 +418,36 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: List[IndyCredPrecis]
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_matching_credentials_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_matching_credentials_with_http_info(pres_ex_id, count, extra_query, referent, start, **kwargs)  # noqa: E501
+        return self.get_matching_credentials_with_http_info(
+            pres_ex_id, count, extra_query, referent, start, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_matching_credentials_with_http_info(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
-        count: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Maximum number to retrieve")] = None,
-        extra_query: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="(JSON) object mapping referents to extra WQL queries")] = None,
-        referent: Annotated[Optional[StrictStr], Field(description="Proof request referents of interest, comma-separated")] = None,
-        start: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Start index")] = None,
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
+        count: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Maximum number to retrieve"),
+        ] = None,
+        extra_query: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="(JSON) object mapping referents to extra WQL queries"),
+        ] = None,
+        referent: Annotated[
+            Optional[StrictStr],
+            Field(description="Proof request referents of interest, comma-separated"),
+        ] = None,
+        start: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Start index"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Fetch credentials for a presentation request from wallet  # noqa: E501
@@ -459,77 +495,72 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'pres_ex_id',
-            'count',
-            'extra_query',
-            'referent',
-            'start'
-        ]
+        _all_params = ["pres_ex_id", "count", "extra_query", "referent", "start"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_matching_credentials" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['pres_ex_id'] is not None:
-            _path_params['pres_ex_id'] = _params['pres_ex_id']
-
+        if _params["pres_ex_id"] is not None:
+            _path_params["pres_ex_id"] = _params["pres_ex_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('count') is not None:  # noqa: E501
-            _query_params.append(('count', _params['count']))
+        if _params.get("count") is not None:  # noqa: E501
+            _query_params.append(("count", _params["count"]))
 
-        if _params.get('extra_query') is not None:  # noqa: E501
-            _query_params.append(('extra_query', _params['extra_query']))
+        if _params.get("extra_query") is not None:  # noqa: E501
+            _query_params.append(("extra_query", _params["extra_query"]))
 
-        if _params.get('referent') is not None:  # noqa: E501
-            _query_params.append(('referent', _params['referent']))
+        if _params.get("referent") is not None:  # noqa: E501
+            _query_params.append(("referent", _params["referent"]))
 
-        if _params.get('start') is not None:  # noqa: E501
-            _query_params.append(('start', _params['start']))
+        if _params.get("start") is not None:  # noqa: E501
+            _query_params.append(("start", _params["start"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[IndyCredPrecis]",
+            "200": "List[IndyCredPrecis]",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records/{pres_ex_id}/credentials', 'GET',
+            "/present-proof/records/{pres_ex_id}/credentials",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -538,17 +569,20 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_record(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         **kwargs,
     ) -> V10PresentationExchange:
         """Fetch a single presentation exchange record  # noqa: E501
@@ -572,8 +606,8 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchange
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_record_with_http_info(pres_ex_id, **kwargs)  # noqa: E501
@@ -581,7 +615,9 @@ class PresentProofV10Api:
     @validate_call
     def get_record_with_http_info(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Fetch a single presentation exchange record  # noqa: E501
@@ -621,61 +657,60 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'pres_ex_id'
-        ]
+        _all_params = ["pres_ex_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_record" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['pres_ex_id'] is not None:
-            _path_params['pres_ex_id'] = _params['pres_ex_id']
-
+        if _params["pres_ex_id"] is not None:
+            _path_params["pres_ex_id"] = _params["pres_ex_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchange",
+            "200": "V10PresentationExchange",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records/{pres_ex_id}', 'GET',
+            "/present-proof/records/{pres_ex_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -684,20 +719,30 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_records(
         self,
-        connection_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        role: Annotated[Optional[StrictStr], Field(description="Role assigned in presentation exchange")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Presentation exchange state")] = None,
-        thread_id: Annotated[Optional[StrictStr], Field(description="Thread identifier")] = None,
+        connection_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        role: Annotated[
+            Optional[StrictStr],
+            Field(description="Role assigned in presentation exchange"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Presentation exchange state")
+        ] = None,
+        thread_id: Annotated[
+            Optional[StrictStr], Field(description="Thread identifier")
+        ] = None,
         **kwargs,
     ) -> V10PresentationExchangeList:
         """Fetch all present-proof exchange records  # noqa: E501
@@ -727,19 +772,30 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchangeList
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(connection_id, role, state, thread_id, **kwargs)  # noqa: E501
+        return self.get_records_with_http_info(
+            connection_id, role, state, thread_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_records_with_http_info(
         self,
-        connection_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        role: Annotated[Optional[StrictStr], Field(description="Role assigned in presentation exchange")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Presentation exchange state")] = None,
-        thread_id: Annotated[Optional[StrictStr], Field(description="Thread identifier")] = None,
+        connection_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        role: Annotated[
+            Optional[StrictStr],
+            Field(description="Role assigned in presentation exchange"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Presentation exchange state")
+        ] = None,
+        thread_id: Annotated[
+            Optional[StrictStr], Field(description="Thread identifier")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Fetch all present-proof exchange records  # noqa: E501
@@ -785,33 +841,28 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'connection_id',
-            'role',
-            'state',
-            'thread_id'
-        ]
+        _all_params = ["connection_id", "role", "state", "thread_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_records" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -820,38 +871,40 @@ class PresentProofV10Api:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('connection_id') is not None:  # noqa: E501
-            _query_params.append(('connection_id', _params['connection_id']))
+        if _params.get("connection_id") is not None:  # noqa: E501
+            _query_params.append(("connection_id", _params["connection_id"]))
 
-        if _params.get('role') is not None:  # noqa: E501
-            _query_params.append(('role', _params['role']))
+        if _params.get("role") is not None:  # noqa: E501
+            _query_params.append(("role", _params["role"]))
 
-        if _params.get('state') is not None:  # noqa: E501
-            _query_params.append(('state', _params['state']))
+        if _params.get("state") is not None:  # noqa: E501
+            _query_params.append(("state", _params["state"]))
 
-        if _params.get('thread_id') is not None:  # noqa: E501
-            _query_params.append(('thread_id', _params['thread_id']))
+        if _params.get("thread_id") is not None:  # noqa: E501
+            _query_params.append(("thread_id", _params["thread_id"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchangeList",
+            "200": "V10PresentationExchangeList",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records', 'GET',
+            "/present-proof/records",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -860,17 +913,20 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def report_problem(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         body: Optional[V10PresentationProblemReportRequest] = None,
         **kwargs,
     ) -> object:
@@ -897,16 +953,20 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the report_problem_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.report_problem_with_http_info(pres_ex_id, body, **kwargs)  # noqa: E501
+        return self.report_problem_with_http_info(
+            pres_ex_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def report_problem_with_http_info(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         body: Optional[V10PresentationProblemReportRequest] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -949,72 +1009,71 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'pres_ex_id',
-            'body'
-        ]
+        _all_params = ["pres_ex_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method report_problem" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['pres_ex_id'] is not None:
-            _path_params['pres_ex_id'] = _params['pres_ex_id']
-
+        if _params["pres_ex_id"] is not None:
+            _path_params["pres_ex_id"] = _params["pres_ex_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records/{pres_ex_id}/problem-report', 'POST',
+            "/present-proof/records/{pres_ex_id}/problem-report",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1023,17 +1082,20 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def send_presentation(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         body: Optional[IndyPresSpec] = None,
         **kwargs,
     ) -> V10PresentationExchange:
@@ -1060,16 +1122,20 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchange
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the send_presentation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_presentation_with_http_info(pres_ex_id, body, **kwargs)  # noqa: E501
+        return self.send_presentation_with_http_info(
+            pres_ex_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def send_presentation_with_http_info(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         body: Optional[IndyPresSpec] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -1112,72 +1178,71 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'pres_ex_id',
-            'body'
-        ]
+        _all_params = ["pres_ex_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_presentation" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['pres_ex_id'] is not None:
-            _path_params['pres_ex_id'] = _params['pres_ex_id']
-
+        if _params["pres_ex_id"] is not None:
+            _path_params["pres_ex_id"] = _params["pres_ex_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchange",
+            "200": "V10PresentationExchange",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records/{pres_ex_id}/send-presentation', 'POST',
+            "/present-proof/records/{pres_ex_id}/send-presentation",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1186,12 +1251,13 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def send_proposal(
@@ -1220,8 +1286,8 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchange
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the send_proposal_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.send_proposal_with_http_info(body, **kwargs)  # noqa: E501
@@ -1269,30 +1335,28 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_proposal" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1302,35 +1366,38 @@ class PresentProofV10Api:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchange",
+            "200": "V10PresentationExchange",
         }
 
         return self.api_client.call_api(
-            '/present-proof/send-proposal', 'POST',
+            "/present-proof/send-proposal",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1339,17 +1406,20 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def send_request(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         body: Optional[V10PresentationSendRequestToProposal] = None,
         **kwargs,
     ) -> V10PresentationExchange:
@@ -1376,16 +1446,20 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchange
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the send_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_request_with_http_info(pres_ex_id, body, **kwargs)  # noqa: E501
+        return self.send_request_with_http_info(
+            pres_ex_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def send_request_with_http_info(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         body: Optional[V10PresentationSendRequestToProposal] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -1428,72 +1502,71 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'pres_ex_id',
-            'body'
-        ]
+        _all_params = ["pres_ex_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['pres_ex_id'] is not None:
-            _path_params['pres_ex_id'] = _params['pres_ex_id']
-
+        if _params["pres_ex_id"] is not None:
+            _path_params["pres_ex_id"] = _params["pres_ex_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchange",
+            "200": "V10PresentationExchange",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records/{pres_ex_id}/send-request', 'POST',
+            "/present-proof/records/{pres_ex_id}/send-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1502,12 +1575,13 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def send_request_free(
@@ -1536,8 +1610,8 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchange
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the send_request_free_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.send_request_free_with_http_info(body, **kwargs)  # noqa: E501
@@ -1585,30 +1659,28 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_request_free" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1618,35 +1690,38 @@ class PresentProofV10Api:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchange",
+            "200": "V10PresentationExchange",
         }
 
         return self.api_client.call_api(
-            '/present-proof/send-request', 'POST',
+            "/present-proof/send-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1655,17 +1730,20 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def verify_presentation(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         **kwargs,
     ) -> V10PresentationExchange:
         """Verify a received presentation  # noqa: E501
@@ -1689,16 +1767,20 @@ class PresentProofV10Api:
                  returns the request thread.
         :rtype: V10PresentationExchange
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the verify_presentation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.verify_presentation_with_http_info(pres_ex_id, **kwargs)  # noqa: E501
+        return self.verify_presentation_with_http_info(
+            pres_ex_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def verify_presentation_with_http_info(
         self,
-        pres_ex_id: Annotated[str, Field(strict=True, description="Presentation exchange identifier")],
+        pres_ex_id: Annotated[
+            str, Field(strict=True, description="Presentation exchange identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Verify a received presentation  # noqa: E501
@@ -1738,61 +1820,60 @@ class PresentProofV10Api:
 
         _params = locals()
 
-        _all_params = [
-            'pres_ex_id'
-        ]
+        _all_params = ["pres_ex_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method verify_presentation" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['pres_ex_id'] is not None:
-            _path_params['pres_ex_id'] = _params['pres_ex_id']
-
+        if _params["pres_ex_id"] is not None:
+            _path_params["pres_ex_id"] = _params["pres_ex_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10PresentationExchange",
+            "200": "V10PresentationExchange",
         }
 
         return self.api_client.call_api(
-            '/present-proof/records/{pres_ex_id}/verify-presentation', 'POST',
+            "/present-proof/records/{pres_ex_id}/verify-presentation",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1801,9 +1882,10 @@ class PresentProofV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

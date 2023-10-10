@@ -21,72 +21,85 @@ import sys
 import urllib3
 
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
-    'multipleOf', 'maximum', 'exclusiveMaximum',
-    'minimum', 'exclusiveMinimum', 'maxLength',
-    'minLength', 'pattern', 'maxItems', 'minItems'
+    "multipleOf",
+    "maximum",
+    "exclusiveMaximum",
+    "minimum",
+    "exclusiveMinimum",
+    "maxLength",
+    "minLength",
+    "pattern",
+    "maxItems",
+    "minItems",
 }
+
 
 class Configuration:
     """This class contains various settings of the API client.
 
-    :param host: Base url.
-    :param api_key: Dict to store API key(s).
-      Each entry in the dict specifies an API key.
-      The dict key is the name of the security scheme in the OAS specification.
-      The dict value is the API key secret.
-    :param api_key_prefix: Dict to store API prefix (e.g. Bearer).
-      The dict key is the name of the security scheme in the OAS specification.
-      The dict value is an API key prefix when generating the auth data.
-    :param username: Username for HTTP basic authentication.
-    :param password: Password for HTTP basic authentication.
-    :param access_token: Access token.
-    :param server_index: Index to servers configuration.
-    :param server_variables: Mapping with string values to replace variables in
-      templated server configuration. The validation of enums is performed for
-      variables with defined enum values before.
-    :param server_operation_index: Mapping from operation ID to an index to server
-      configuration.
-    :param server_operation_variables: Mapping from operation ID to a mapping with
-      string values to replace variables in templated server configuration.
-      The validation of enums is performed for variables with defined enum
-      values before.
-    :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
-      in PEM format.
+        :param host: Base url.
+        :param api_key: Dict to store API key(s).
+          Each entry in the dict specifies an API key.
+          The dict key is the name of the security scheme in the OAS specification.
+          The dict value is the API key secret.
+        :param api_key_prefix: Dict to store API prefix (e.g. Bearer).
+          The dict key is the name of the security scheme in the OAS specification.
+          The dict value is an API key prefix when generating the auth data.
+        :param username: Username for HTTP basic authentication.
+        :param password: Password for HTTP basic authentication.
+        :param access_token: Access token.
+        :param server_index: Index to servers configuration.
+        :param server_variables: Mapping with string values to replace variables in
+          templated server configuration. The validation of enums is performed for
+          variables with defined enum values before.
+        :param server_operation_index: Mapping from operation ID to an index to server
+          configuration.
+        :param server_operation_variables: Mapping from operation ID to a mapping with
+          string values to replace variables in templated server configuration.
+          The validation of enums is performed for variables with defined enum
+          values before.
+        :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
+          in PEM format.
 
-    :Example:
+        :Example:
 
-    API Key Authentication Example.
-    Given the following security scheme in the OpenAPI specification:
-      components:
-        securitySchemes:
-          cookieAuth:         # name for the security scheme
-            type: apiKey
-            in: cookie
-            name: JSESSIONID  # cookie name
+        API Key Authentication Example.
+        Given the following security scheme in the OpenAPI specification:
+          components:
+            securitySchemes:
+              cookieAuth:         # name for the security scheme
+                type: apiKey
+                in: cookie
+                name: JSESSIONID  # cookie name
 
-    You can programmatically set the cookie:
+        You can programmatically set the cookie:
 
-conf = aries_cloudcontroller.Configuration(
-    api_key={'cookieAuth': 'abc123'}
-    api_key_prefix={'cookieAuth': 'JSESSIONID'}
-)
+    conf = aries_cloudcontroller.Configuration(
+        api_key={'cookieAuth': 'abc123'}
+        api_key_prefix={'cookieAuth': 'JSESSIONID'}
+    )
 
-    The following cookie will be added to the HTTP request:
-       Cookie: JSESSIONID abc123
+        The following cookie will be added to the HTTP request:
+           Cookie: JSESSIONID abc123
     """
 
     _default = None
 
-    def __init__(self, host=None,
-                 api_key=None, api_key_prefix=None,
-                 username=None, password=None,
-                 access_token=None,
-                 server_index=None, server_variables=None,
-                 server_operation_index=None, server_operation_variables=None,
-                 ssl_ca_cert=None,
-                 ) -> None:
-        """Constructor
-        """
+    def __init__(
+        self,
+        host=None,
+        api_key=None,
+        api_key_prefix=None,
+        username=None,
+        password=None,
+        access_token=None,
+        server_index=None,
+        server_variables=None,
+        server_operation_index=None,
+        server_operation_variables=None,
+        ssl_ca_cert=None,
+    ) -> None:
+        """Constructor"""
         self._base_path = "http://localhost" if host is None else host
         """Default Base url
         """
@@ -129,7 +142,7 @@ conf = aries_cloudcontroller.Configuration(
         """
         self.logger["package_logger"] = logging.getLogger("aries_cloudcontroller")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
-        self.logger_format = '%(asctime)s %(levelname)s %(message)s'
+        self.logger_format = "%(asctime)s %(levelname)s %(message)s"
         """Log format
         """
         self.logger_stream_handler = None
@@ -181,7 +194,7 @@ conf = aries_cloudcontroller.Configuration(
         self.proxy_headers = None
         """Proxy headers
         """
-        self.safe_chars_for_path_param = ''
+        self.safe_chars_for_path_param = ""
         """Safe chars for path_param
         """
         self.retries = None
@@ -207,7 +220,7 @@ conf = aries_cloudcontroller.Configuration(
         result = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
-            if k not in ('logger', 'logger_file_handler'):
+            if k not in ("logger", "logger_file_handler"):
                 setattr(result, k, copy.deepcopy(v, memo))
         # shallow copy of loggers
         result.logger = copy.copy(self.logger)
@@ -348,7 +361,9 @@ conf = aries_cloudcontroller.Configuration(
         """
         if self.refresh_api_key_hook is not None:
             self.refresh_api_key_hook(self)
-        key = self.api_key.get(identifier, self.api_key.get(alias) if alias is not None else None)
+        key = self.api_key.get(
+            identifier, self.api_key.get(alias) if alias is not None else None
+        )
         if key:
             prefix = self.api_key_prefix.get(identifier)
             if prefix:
@@ -367,9 +382,9 @@ conf = aries_cloudcontroller.Configuration(
         password = ""
         if self.password is not None:
             password = self.password
-        return urllib3.util.make_headers(
-            basic_auth=username + ':' + password
-        ).get('authorization')
+        return urllib3.util.make_headers(basic_auth=username + ":" + password).get(
+            "authorization"
+        )
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.
@@ -377,13 +392,13 @@ conf = aries_cloudcontroller.Configuration(
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if 'AuthorizationHeader' in self.api_key:
-            auth['AuthorizationHeader'] = {
-                'type': 'api_key',
-                'in': 'header',
-                'key': 'Authorization',
-                'value': self.get_api_key_with_prefix(
-                    'AuthorizationHeader',
+        if "AuthorizationHeader" in self.api_key:
+            auth["AuthorizationHeader"] = {
+                "type": "api_key",
+                "in": "header",
+                "key": "Authorization",
+                "value": self.get_api_key_with_prefix(
+                    "AuthorizationHeader",
                 ),
             }
         return auth
@@ -393,12 +408,13 @@ conf = aries_cloudcontroller.Configuration(
 
         :return: The report for debugging.
         """
-        return "Python SDK Debug Report:\n"\
-               "OS: {env}\n"\
-               "Python Version: {pyversion}\n"\
-               "Version of the API: v0.9.0\n"\
-               "SDK Package Version: 1.0.0".\
-               format(env=sys.platform, pyversion=sys.version)
+        return (
+            "Python SDK Debug Report:\n"
+            "OS: {env}\n"
+            "Python Version: {pyversion}\n"
+            "Version of the API: v0.9.0\n"
+            "SDK Package Version: 1.0.0".format(env=sys.platform, pyversion=sys.version)
+        )
 
     def get_host_settings(self):
         """Gets an array of host settings
@@ -407,8 +423,8 @@ conf = aries_cloudcontroller.Configuration(
         """
         return [
             {
-                'url': "",
-                'description': "No description provided",
+                "url": "",
+                "description": "No description provided",
             }
         ]
 
@@ -430,22 +446,22 @@ conf = aries_cloudcontroller.Configuration(
         except IndexError:
             raise ValueError(
                 "Invalid index {0} when selecting the host settings. "
-                "Must be less than {1}".format(index, len(servers)))
+                "Must be less than {1}".format(index, len(servers))
+            )
 
-        url = server['url']
+        url = server["url"]
 
         # go through variables and replace placeholders
-        for variable_name, variable in server.get('variables', {}).items():
-            used_value = variables.get(
-                variable_name, variable['default_value'])
+        for variable_name, variable in server.get("variables", {}).items():
+            used_value = variables.get(variable_name, variable["default_value"])
 
-            if 'enum_values' in variable \
-                    and used_value not in variable['enum_values']:
+            if "enum_values" in variable and used_value not in variable["enum_values"]:
                 raise ValueError(
                     "The variable `{0}` in the host URL has invalid value "
                     "{1}. Must be {2}.".format(
-                        variable_name, variables[variable_name],
-                        variable['enum_values']))
+                        variable_name, variables[variable_name], variable["enum_values"]
+                    )
+                )
 
             url = url.replace("{" + variable_name + "}", used_value)
 
@@ -454,7 +470,9 @@ conf = aries_cloudcontroller.Configuration(
     @property
     def host(self):
         """Return generated host."""
-        return self.get_host_from_settings(self.server_index, variables=self.server_variables)
+        return self.get_host_from_settings(
+            self.server_index, variables=self.server_variables
+        )
 
     @host.setter
     def host(self, value):

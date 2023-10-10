@@ -28,21 +28,28 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V10PresentationCreateRequestRequest(BaseModel):
     """
     V10PresentationCreateRequestRequest
     """
-    auto_verify: Optional[StrictBool] = Field(default=None, description="Verifier choice to auto-verify proof presentation")
+
+    auto_verify: Optional[StrictBool] = Field(
+        default=None, description="Verifier choice to auto-verify proof presentation"
+    )
     comment: Optional[StrictStr] = None
     proof_request: IndyProofRequest
-    trace: Optional[StrictBool] = Field(default=None, description="Whether to trace event (default false)")
-    __properties: ClassVar[List[str]] = ["auto_verify", "comment", "proof_request", "trace"]
+    trace: Optional[StrictBool] = Field(
+        default=None, description="Whether to trace event (default false)"
+    )
+    __properties: ClassVar[List[str]] = [
+        "auto_verify",
+        "comment",
+        "proof_request",
+        "trace",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,17 +66,14 @@ class V10PresentationCreateRequestRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of proof_request
         if self.proof_request:
-            _dict['proof_request'] = self.proof_request.to_dict()
+            _dict["proof_request"] = self.proof_request.to_dict()
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
         if self.comment is None and "comment" in self.model_fields_set:
-            _dict['comment'] = None
+            _dict["comment"] = None
 
         return _dict
 
@@ -82,12 +86,14 @@ class V10PresentationCreateRequestRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "auto_verify": obj.get("auto_verify"),
-            "comment": obj.get("comment"),
-            "proof_request": IndyProofRequest.from_dict(obj.get("proof_request")) if obj.get("proof_request") is not None else None,
-            "trace": obj.get("trace")
-        })
+        _obj = cls.model_validate(
+            {
+                "auto_verify": obj.get("auto_verify"),
+                "comment": obj.get("comment"),
+                "proof_request": IndyProofRequest.from_dict(obj.get("proof_request"))
+                if obj.get("proof_request") is not None
+                else None,
+                "trace": obj.get("trace"),
+            }
+        )
         return _obj
-
-

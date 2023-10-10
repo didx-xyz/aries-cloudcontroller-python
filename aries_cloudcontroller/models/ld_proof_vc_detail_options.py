@@ -31,33 +31,60 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class LDProofVCDetailOptions(BaseModel):
     """
     LDProofVCDetailOptions
     """
-    challenge: Optional[StrictStr] = Field(default=None, description="A challenge to include in the proof. SHOULD be provided by the requesting party of the credential (=holder)")
-    created: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The date and time of the proof (with a maximum accuracy in seconds). Defaults to current system time")
-    credential_status: Optional[CredentialStatusOptions] = Field(default=None, alias="credentialStatus")
-    domain: Optional[StrictStr] = Field(default=None, description="The intended domain of validity for the proof")
-    proof_purpose: Optional[StrictStr] = Field(default=None, description="The proof purpose used for the proof. Should match proof purposes registered in the Linked Data Proofs Specification", alias="proofPurpose")
-    proof_type: StrictStr = Field(description="The proof type used for the proof. Should match suites registered in the Linked Data Cryptographic Suite Registry", alias="proofType")
-    __properties: ClassVar[List[str]] = ["challenge", "created", "credentialStatus", "domain", "proofPurpose", "proofType"]
 
-    @field_validator('created')
+    challenge: Optional[StrictStr] = Field(
+        default=None,
+        description="A challenge to include in the proof. SHOULD be provided by the requesting party of the credential (=holder)",
+    )
+    created: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description="The date and time of the proof (with a maximum accuracy in seconds). Defaults to current system time",
+    )
+    credential_status: Optional[CredentialStatusOptions] = Field(
+        default=None, alias="credentialStatus"
+    )
+    domain: Optional[StrictStr] = Field(
+        default=None, description="The intended domain of validity for the proof"
+    )
+    proof_purpose: Optional[StrictStr] = Field(
+        default=None,
+        description="The proof purpose used for the proof. Should match proof purposes registered in the Linked Data Proofs Specification",
+        alias="proofPurpose",
+    )
+    proof_type: StrictStr = Field(
+        description="The proof type used for the proof. Should match suites registered in the Linked Data Cryptographic Suite Registry",
+        alias="proofType",
+    )
+    __properties: ClassVar[List[str]] = [
+        "challenge",
+        "created",
+        "credentialStatus",
+        "domain",
+        "proofPurpose",
+        "proofType",
+    ]
+
+    @field_validator("created")
     def created_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -74,13 +101,10 @@ class LDProofVCDetailOptions(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of credential_status
         if self.credential_status:
-            _dict['credentialStatus'] = self.credential_status.to_dict()
+            _dict["credentialStatus"] = self.credential_status.to_dict()
         return _dict
 
     @classmethod
@@ -92,14 +116,18 @@ class LDProofVCDetailOptions(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "challenge": obj.get("challenge"),
-            "created": obj.get("created"),
-            "credentialStatus": CredentialStatusOptions.from_dict(obj.get("credentialStatus")) if obj.get("credentialStatus") is not None else None,
-            "domain": obj.get("domain"),
-            "proofPurpose": obj.get("proofPurpose"),
-            "proofType": obj.get("proofType")
-        })
+        _obj = cls.model_validate(
+            {
+                "challenge": obj.get("challenge"),
+                "created": obj.get("created"),
+                "credentialStatus": CredentialStatusOptions.from_dict(
+                    obj.get("credentialStatus")
+                )
+                if obj.get("credentialStatus") is not None
+                else None,
+                "domain": obj.get("domain"),
+                "proofPurpose": obj.get("proofPurpose"),
+                "proofType": obj.get("proofType"),
+            }
+        )
         return _obj
-
-

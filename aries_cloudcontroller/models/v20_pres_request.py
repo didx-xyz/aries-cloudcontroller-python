@@ -29,23 +29,39 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20PresRequest(BaseModel):
     """
     V20PresRequest
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    comment: Optional[StrictStr] = Field(default=None, description="Human-readable comment")
+
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Human-readable comment"
+    )
     formats: List[V20PresFormat]
-    request_presentationsattach: List[AttachDecorator] = Field(description="Attachment per acceptable format on corresponding identifier", alias="request_presentations~attach")
-    will_confirm: Optional[StrictBool] = Field(default=None, description="Whether verifier will send confirmation ack")
-    __properties: ClassVar[List[str]] = ["@id", "@type", "comment", "formats", "request_presentations~attach", "will_confirm"]
+    request_presentationsattach: List[AttachDecorator] = Field(
+        description="Attachment per acceptable format on corresponding identifier",
+        alias="request_presentations~attach",
+    )
+    will_confirm: Optional[StrictBool] = Field(
+        default=None, description="Whether verifier will send confirmation ack"
+    )
+    __properties: ClassVar[List[str]] = [
+        "@id",
+        "@type",
+        "comment",
+        "formats",
+        "request_presentations~attach",
+        "will_confirm",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,25 +78,27 @@ class V20PresRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in formats (list)
         _items = []
         if self.formats:
             for _item in self.formats:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['formats'] = _items
+            _dict["formats"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in request_presentationsattach (list)
         _items = []
         if self.request_presentationsattach:
             for _item in self.request_presentationsattach:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['request_presentations~attach'] = _items
+            _dict["request_presentations~attach"] = _items
         return _dict
 
     @classmethod
@@ -92,14 +110,23 @@ class V20PresRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "comment": obj.get("comment"),
-            "formats": [V20PresFormat.from_dict(_item) for _item in obj.get("formats")] if obj.get("formats") is not None else None,
-            "request_presentations~attach": [AttachDecorator.from_dict(_item) for _item in obj.get("request_presentations~attach")] if obj.get("request_presentations~attach") is not None else None,
-            "will_confirm": obj.get("will_confirm")
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "comment": obj.get("comment"),
+                "formats": [
+                    V20PresFormat.from_dict(_item) for _item in obj.get("formats")
+                ]
+                if obj.get("formats") is not None
+                else None,
+                "request_presentations~attach": [
+                    AttachDecorator.from_dict(_item)
+                    for _item in obj.get("request_presentations~attach")
+                ]
+                if obj.get("request_presentations~attach") is not None
+                else None,
+                "will_confirm": obj.get("will_confirm"),
+            }
+        )
         return _obj
-
-

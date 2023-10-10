@@ -26,20 +26,28 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class RevRegWalletUpdatedResult(BaseModel):
     """
     RevRegWalletUpdatedResult
     """
-    accum_calculated: Optional[Union[str, Any]] = Field(default=None, description="Calculated accumulator for phantom revocations")
-    accum_fixed: Optional[Union[str, Any]] = Field(default=None, description="Applied ledger transaction to fix revocations")
-    rev_reg_delta: Optional[Union[str, Any]] = Field(default=None, description="Indy revocation registry delta")
-    __properties: ClassVar[List[str]] = ["accum_calculated", "accum_fixed", "rev_reg_delta"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    accum_calculated: Optional[Union[str, Any]] = Field(
+        default=None, description="Calculated accumulator for phantom revocations"
+    )
+    accum_fixed: Optional[Union[str, Any]] = Field(
+        default=None, description="Applied ledger transaction to fix revocations"
+    )
+    rev_reg_delta: Optional[Union[str, Any]] = Field(
+        default=None, description="Indy revocation registry delta"
+    )
+    __properties: ClassVar[List[str]] = [
+        "accum_calculated",
+        "accum_fixed",
+        "rev_reg_delta",
+    ]
 
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,10 +64,7 @@ class RevRegWalletUpdatedResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -71,11 +76,11 @@ class RevRegWalletUpdatedResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "accum_calculated": obj.get("accum_calculated"),
-            "accum_fixed": obj.get("accum_fixed"),
-            "rev_reg_delta": obj.get("rev_reg_delta")
-        })
+        _obj = cls.model_validate(
+            {
+                "accum_calculated": obj.get("accum_calculated"),
+                "accum_fixed": obj.get("accum_fixed"),
+                "rev_reg_delta": obj.get("rev_reg_delta"),
+            }
+        )
         return _obj
-
-

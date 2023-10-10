@@ -98,11 +98,13 @@ class RevocationApi:
                  returns the request thread.
         :rtype: PublishRevocations
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the clear_pending_revocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.clear_pending_revocations_with_http_info(body, **kwargs)  # noqa: E501
+        return self.clear_pending_revocations_with_http_info(
+            body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def clear_pending_revocations_with_http_info(
@@ -147,30 +149,28 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method clear_pending_revocations" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -180,35 +180,38 @@ class RevocationApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PublishRevocations",
+            "200": "PublishRevocations",
         }
 
         return self.api_client.call_api(
-            '/revocation/clear-pending-revocations', 'POST',
+            "/revocation/clear-pending-revocations",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -217,12 +220,13 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def create_registry(
@@ -251,8 +255,8 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the create_registry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.create_registry_with_http_info(body, **kwargs)  # noqa: E501
@@ -300,30 +304,28 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_registry" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -333,35 +335,38 @@ class RevocationApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegResult",
+            "200": "RevRegResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/create-registry', 'POST',
+            "/revocation/create-registry",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -370,17 +375,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def download_tails_file(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> bytearray:
         """Download tails file  # noqa: E501
@@ -404,16 +412,20 @@ class RevocationApi:
                  returns the request thread.
         :rtype: bytearray
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the download_tails_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.download_tails_file_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
+        return self.download_tails_file_with_http_info(
+            rev_reg_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def download_tails_file_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Download tails file  # noqa: E501
@@ -453,61 +465,60 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id'
-        ]
+        _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method download_tails_file" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/octet-stream'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            "200": "bytearray",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/tails-file', 'GET',
+            "/revocation/registry/{rev_reg_id}/tails-file",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -516,17 +527,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_active_registry_for_cred_def(
         self,
-        cred_def_id: Annotated[str, Field(strict=True, description="Credential definition identifier")],
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
+        ],
         **kwargs,
     ) -> RevRegResult:
         """Get current active revocation registry by credential definition id  # noqa: E501
@@ -550,16 +564,20 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_active_registry_for_cred_def_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_active_registry_for_cred_def_with_http_info(cred_def_id, **kwargs)  # noqa: E501
+        return self.get_active_registry_for_cred_def_with_http_info(
+            cred_def_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_active_registry_for_cred_def_with_http_info(
         self,
-        cred_def_id: Annotated[str, Field(strict=True, description="Credential definition identifier")],
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Get current active revocation registry by credential definition id  # noqa: E501
@@ -599,61 +617,60 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'cred_def_id'
-        ]
+        _all_params = ["cred_def_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_active_registry_for_cred_def" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['cred_def_id'] is not None:
-            _path_params['cred_def_id'] = _params['cred_def_id']
-
+        if _params["cred_def_id"] is not None:
+            _path_params["cred_def_id"] = _params["cred_def_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegResult",
+            "200": "RevRegResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/active-registry/{cred_def_id}', 'GET',
+            "/revocation/active-registry/{cred_def_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -662,18 +679,24 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_created_registries(
         self,
-        cred_def_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential definition identifier")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Revocation registry state")] = None,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Revocation registry state")
+        ] = None,
         **kwargs,
     ) -> RevRegsCreated:
         """Search for matching revocation registries that current agent created  # noqa: E501
@@ -699,17 +722,24 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegsCreated
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_created_registries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_created_registries_with_http_info(cred_def_id, state, **kwargs)  # noqa: E501
+        return self.get_created_registries_with_http_info(
+            cred_def_id, state, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_created_registries_with_http_info(
         self,
-        cred_def_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential definition identifier")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Revocation registry state")] = None,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Revocation registry state")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Search for matching revocation registries that current agent created  # noqa: E501
@@ -751,31 +781,28 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'cred_def_id',
-            'state'
-        ]
+        _all_params = ["cred_def_id", "state"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_created_registries" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -784,32 +811,34 @@ class RevocationApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('cred_def_id') is not None:  # noqa: E501
-            _query_params.append(('cred_def_id', _params['cred_def_id']))
+        if _params.get("cred_def_id") is not None:  # noqa: E501
+            _query_params.append(("cred_def_id", _params["cred_def_id"]))
 
-        if _params.get('state') is not None:  # noqa: E501
-            _query_params.append(('state', _params['state']))
+        if _params.get("state") is not None:  # noqa: E501
+            _query_params.append(("state", _params["state"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegsCreated",
+            "200": "RevRegsCreated",
         }
 
         return self.api_client.call_api(
-            '/revocation/registries/created', 'GET',
+            "/revocation/registries/created",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -818,17 +847,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_registry(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> RevRegResult:
         """Get revocation registry by revocation registry id  # noqa: E501
@@ -852,8 +884,8 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_registry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_registry_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
@@ -861,7 +893,9 @@ class RevocationApi:
     @validate_call
     def get_registry_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Get revocation registry by revocation registry id  # noqa: E501
@@ -901,61 +935,60 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id'
-        ]
+        _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_registry" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegResult",
+            "200": "RevRegResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}', 'GET',
+            "/revocation/registry/{rev_reg_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -964,17 +997,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_registry_issued_credentials_count(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> RevRegIssuedResult:
         """Get number of credentials issued against revocation registry  # noqa: E501
@@ -998,16 +1034,20 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegIssuedResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_registry_issued_credentials_count_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_registry_issued_credentials_count_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
+        return self.get_registry_issued_credentials_count_with_http_info(
+            rev_reg_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_registry_issued_credentials_count_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Get number of credentials issued against revocation registry  # noqa: E501
@@ -1047,61 +1087,60 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id'
-        ]
+        _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_registry_issued_credentials_count" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegIssuedResult",
+            "200": "RevRegIssuedResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/issued', 'GET',
+            "/revocation/registry/{rev_reg_id}/issued",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1110,19 +1149,29 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_revocation_status(
         self,
-        cred_ex_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential exchange identifier")] = None,
-        cred_rev_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential revocation identifier")] = None,
-        rev_reg_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Revocation registry identifier")] = None,
+        cred_ex_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential exchange identifier"),
+        ] = None,
+        cred_rev_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential revocation identifier"),
+        ] = None,
+        rev_reg_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Revocation registry identifier"),
+        ] = None,
         **kwargs,
     ) -> CredRevRecordResult:
         """Get credential revocation status  # noqa: E501
@@ -1150,18 +1199,29 @@ class RevocationApi:
                  returns the request thread.
         :rtype: CredRevRecordResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_revocation_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_revocation_status_with_http_info(cred_ex_id, cred_rev_id, rev_reg_id, **kwargs)  # noqa: E501
+        return self.get_revocation_status_with_http_info(
+            cred_ex_id, cred_rev_id, rev_reg_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_revocation_status_with_http_info(
         self,
-        cred_ex_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential exchange identifier")] = None,
-        cred_rev_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential revocation identifier")] = None,
-        rev_reg_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Revocation registry identifier")] = None,
+        cred_ex_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential exchange identifier"),
+        ] = None,
+        cred_rev_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential revocation identifier"),
+        ] = None,
+        rev_reg_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Revocation registry identifier"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Get credential revocation status  # noqa: E501
@@ -1205,32 +1265,28 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'cred_ex_id',
-            'cred_rev_id',
-            'rev_reg_id'
-        ]
+        _all_params = ["cred_ex_id", "cred_rev_id", "rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_revocation_status" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1239,35 +1295,37 @@ class RevocationApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('cred_ex_id') is not None:  # noqa: E501
-            _query_params.append(('cred_ex_id', _params['cred_ex_id']))
+        if _params.get("cred_ex_id") is not None:  # noqa: E501
+            _query_params.append(("cred_ex_id", _params["cred_ex_id"]))
 
-        if _params.get('cred_rev_id') is not None:  # noqa: E501
-            _query_params.append(('cred_rev_id', _params['cred_rev_id']))
+        if _params.get("cred_rev_id") is not None:  # noqa: E501
+            _query_params.append(("cred_rev_id", _params["cred_rev_id"]))
 
-        if _params.get('rev_reg_id') is not None:  # noqa: E501
-            _query_params.append(('rev_reg_id', _params['rev_reg_id']))
+        if _params.get("rev_reg_id") is not None:  # noqa: E501
+            _query_params.append(("rev_reg_id", _params["rev_reg_id"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CredRevRecordResult",
+            "200": "CredRevRecordResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/credential-record', 'GET',
+            "/revocation/credential-record",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1276,19 +1334,27 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def publish_rev_reg_def(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         **kwargs,
     ) -> TxnOrRevRegResult:
         """Send revocation registry definition to ledger  # noqa: E501
@@ -1316,18 +1382,27 @@ class RevocationApi:
                  returns the request thread.
         :rtype: TxnOrRevRegResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the publish_rev_reg_def_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.publish_rev_reg_def_with_http_info(rev_reg_id, conn_id, create_transaction_for_endorser, **kwargs)  # noqa: E501
+        return self.publish_rev_reg_def_with_http_info(
+            rev_reg_id, conn_id, create_transaction_for_endorser, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def publish_rev_reg_def_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Send revocation registry definition to ledger  # noqa: E501
@@ -1371,69 +1446,71 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id',
-            'conn_id',
-            'create_transaction_for_endorser'
-        ]
+        _all_params = ["rev_reg_id", "conn_id", "create_transaction_for_endorser"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method publish_rev_reg_def" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('conn_id') is not None:  # noqa: E501
-            _query_params.append(('conn_id', _params['conn_id']))
+        if _params.get("conn_id") is not None:  # noqa: E501
+            _query_params.append(("conn_id", _params["conn_id"]))
 
-        if _params.get('create_transaction_for_endorser') is not None:  # noqa: E501
-            _query_params.append(('create_transaction_for_endorser', _params['create_transaction_for_endorser']))
+        if _params.get("create_transaction_for_endorser") is not None:  # noqa: E501
+            _query_params.append(
+                (
+                    "create_transaction_for_endorser",
+                    _params["create_transaction_for_endorser"],
+                )
+            )
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TxnOrRevRegResult",
+            "200": "TxnOrRevRegResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/definition', 'POST',
+            "/revocation/registry/{rev_reg_id}/definition",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1442,19 +1519,27 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def publish_rev_reg_entry(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         **kwargs,
     ) -> RevRegResult:
         """Send revocation registry entry to ledger  # noqa: E501
@@ -1482,18 +1567,27 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the publish_rev_reg_entry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.publish_rev_reg_entry_with_http_info(rev_reg_id, conn_id, create_transaction_for_endorser, **kwargs)  # noqa: E501
+        return self.publish_rev_reg_entry_with_http_info(
+            rev_reg_id, conn_id, create_transaction_for_endorser, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def publish_rev_reg_entry_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Send revocation registry entry to ledger  # noqa: E501
@@ -1537,69 +1631,71 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id',
-            'conn_id',
-            'create_transaction_for_endorser'
-        ]
+        _all_params = ["rev_reg_id", "conn_id", "create_transaction_for_endorser"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method publish_rev_reg_entry" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('conn_id') is not None:  # noqa: E501
-            _query_params.append(('conn_id', _params['conn_id']))
+        if _params.get("conn_id") is not None:  # noqa: E501
+            _query_params.append(("conn_id", _params["conn_id"]))
 
-        if _params.get('create_transaction_for_endorser') is not None:  # noqa: E501
-            _query_params.append(('create_transaction_for_endorser', _params['create_transaction_for_endorser']))
+        if _params.get("create_transaction_for_endorser") is not None:  # noqa: E501
+            _query_params.append(
+                (
+                    "create_transaction_for_endorser",
+                    _params["create_transaction_for_endorser"],
+                )
+            )
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegResult",
+            "200": "RevRegResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/entry', 'POST',
+            "/revocation/registry/{rev_reg_id}/entry",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1608,12 +1704,13 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def publish_revocations(
@@ -1642,8 +1739,8 @@ class RevocationApi:
                  returns the request thread.
         :rtype: TxnOrPublishRevocationsResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the publish_revocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.publish_revocations_with_http_info(body, **kwargs)  # noqa: E501
@@ -1691,30 +1788,28 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method publish_revocations" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1724,35 +1819,38 @@ class RevocationApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TxnOrPublishRevocationsResult",
+            "200": "TxnOrPublishRevocationsResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/publish-revocations', 'POST',
+            "/revocation/publish-revocations",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1761,17 +1859,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def revocation_active_registry_cred_def_id_rotate_post(
         self,
-        cred_def_id: Annotated[str, Field(strict=True, description="Credential definition identifier")],
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
+        ],
         **kwargs,
     ) -> RevRegsCreated:
         """Rotate revocation registry  # noqa: E501
@@ -1795,16 +1896,20 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegsCreated
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_active_registry_cred_def_id_rotate_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_active_registry_cred_def_id_rotate_post_with_http_info(cred_def_id, **kwargs)  # noqa: E501
+        return self.revocation_active_registry_cred_def_id_rotate_post_with_http_info(
+            cred_def_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def revocation_active_registry_cred_def_id_rotate_post_with_http_info(
         self,
-        cred_def_id: Annotated[str, Field(strict=True, description="Credential definition identifier")],
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Rotate revocation registry  # noqa: E501
@@ -1844,61 +1949,61 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'cred_def_id'
-        ]
+        _all_params = ["cred_def_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method revocation_active_registry_cred_def_id_rotate_post" % _key
+                    " to method revocation_active_registry_cred_def_id_rotate_post"
+                    % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['cred_def_id'] is not None:
-            _path_params['cred_def_id'] = _params['cred_def_id']
-
+        if _params["cred_def_id"] is not None:
+            _path_params["cred_def_id"] = _params["cred_def_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegsCreated",
+            "200": "RevRegsCreated",
         }
 
         return self.api_client.call_api(
-            '/revocation/active-registry/{cred_def_id}/rotate', 'POST',
+            "/revocation/active-registry/{cred_def_id}/rotate",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1907,18 +2012,25 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def revocation_registry_delete_tails_file_delete(
         self,
-        cred_def_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential definition identifier")] = None,
-        rev_reg_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Revocation registry identifier")] = None,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        rev_reg_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Revocation registry identifier"),
+        ] = None,
         **kwargs,
     ) -> TailsDeleteResponse:
         """Delete the tail files  # noqa: E501
@@ -1944,17 +2056,25 @@ class RevocationApi:
                  returns the request thread.
         :rtype: TailsDeleteResponse
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_delete_tails_file_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_delete_tails_file_delete_with_http_info(cred_def_id, rev_reg_id, **kwargs)  # noqa: E501
+        return self.revocation_registry_delete_tails_file_delete_with_http_info(
+            cred_def_id, rev_reg_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def revocation_registry_delete_tails_file_delete_with_http_info(
         self,
-        cred_def_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Credential definition identifier")] = None,
-        rev_reg_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Revocation registry identifier")] = None,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        rev_reg_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Revocation registry identifier"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Delete the tail files  # noqa: E501
@@ -1996,31 +2116,28 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'cred_def_id',
-            'rev_reg_id'
-        ]
+        _all_params = ["cred_def_id", "rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method revocation_registry_delete_tails_file_delete" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -2029,32 +2146,34 @@ class RevocationApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('cred_def_id') is not None:  # noqa: E501
-            _query_params.append(('cred_def_id', _params['cred_def_id']))
+        if _params.get("cred_def_id") is not None:  # noqa: E501
+            _query_params.append(("cred_def_id", _params["cred_def_id"]))
 
-        if _params.get('rev_reg_id') is not None:  # noqa: E501
-            _query_params.append(('rev_reg_id', _params['rev_reg_id']))
+        if _params.get("rev_reg_id") is not None:  # noqa: E501
+            _query_params.append(("rev_reg_id", _params["rev_reg_id"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TailsDeleteResponse",
+            "200": "TailsDeleteResponse",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/delete-tails-file', 'DELETE',
+            "/revocation/registry/delete-tails-file",
+            "DELETE",
             _path_params,
             _query_params,
             _header_params,
@@ -2063,18 +2182,24 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        apply_ledger_update: Annotated[StrictBool, Field(description="Apply updated accumulator transaction to ledger")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
         **kwargs,
     ) -> RevRegWalletUpdatedResult:
         """Fix revocation state in wallet and return number of updated entries  # noqa: E501
@@ -2100,17 +2225,24 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegWalletUpdatedResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(rev_reg_id, apply_ledger_update, **kwargs)  # noqa: E501
+        return self.revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
+            rev_reg_id, apply_ledger_update, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        apply_ledger_update: Annotated[StrictBool, Field(description="Apply updated accumulator transaction to ledger")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Fix revocation state in wallet and return number of updated entries  # noqa: E501
@@ -2152,65 +2284,66 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id',
-            'apply_ledger_update'
-        ]
+        _all_params = ["rev_reg_id", "apply_ledger_update"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method revocation_registry_rev_reg_id_fix_revocation_entry_state_put" % _key
+                    " to method revocation_registry_rev_reg_id_fix_revocation_entry_state_put"
+                    % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('apply_ledger_update') is not None:  # noqa: E501
-            _query_params.append(('apply_ledger_update', _params['apply_ledger_update']))
+        if _params.get("apply_ledger_update") is not None:  # noqa: E501
+            _query_params.append(
+                ("apply_ledger_update", _params["apply_ledger_update"])
+            )
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegWalletUpdatedResult",
+            "200": "RevRegWalletUpdatedResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/fix-revocation-entry-state', 'PUT',
+            "/revocation/registry/{rev_reg_id}/fix-revocation-entry-state",
+            "PUT",
             _path_params,
             _query_params,
             _header_params,
@@ -2219,17 +2352,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def revocation_registry_rev_reg_id_issued_details_get(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> CredRevRecordDetailsResult:
         """Get details of credentials issued against revocation registry  # noqa: E501
@@ -2253,16 +2389,20 @@ class RevocationApi:
                  returns the request thread.
         :rtype: CredRevRecordDetailsResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_rev_reg_id_issued_details_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_rev_reg_id_issued_details_get_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
+        return self.revocation_registry_rev_reg_id_issued_details_get_with_http_info(
+            rev_reg_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def revocation_registry_rev_reg_id_issued_details_get_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Get details of credentials issued against revocation registry  # noqa: E501
@@ -2302,61 +2442,61 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id'
-        ]
+        _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method revocation_registry_rev_reg_id_issued_details_get" % _key
+                    " to method revocation_registry_rev_reg_id_issued_details_get"
+                    % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CredRevRecordDetailsResult",
+            "200": "CredRevRecordDetailsResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/issued/details', 'GET',
+            "/revocation/registry/{rev_reg_id}/issued/details",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -2365,17 +2505,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def revocation_registry_rev_reg_id_issued_indy_recs_get(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> CredRevIndyRecordsResult:
         """Get details of revoked credentials from ledger  # noqa: E501
@@ -2399,16 +2542,20 @@ class RevocationApi:
                  returns the request thread.
         :rtype: CredRevIndyRecordsResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
+        return self.revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
+            rev_reg_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Get details of revoked credentials from ledger  # noqa: E501
@@ -2448,61 +2595,61 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id'
-        ]
+        _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method revocation_registry_rev_reg_id_issued_indy_recs_get" % _key
+                    " to method revocation_registry_rev_reg_id_issued_indy_recs_get"
+                    % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CredRevIndyRecordsResult",
+            "200": "CredRevIndyRecordsResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/issued/indy_recs', 'GET',
+            "/revocation/registry/{rev_reg_id}/issued/indy_recs",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -2511,12 +2658,13 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def revoke_credential(
@@ -2545,8 +2693,8 @@ class RevocationApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the revoke_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.revoke_credential_with_http_info(body, **kwargs)  # noqa: E501
@@ -2594,30 +2742,28 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method revoke_credential" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -2627,35 +2773,38 @@ class RevocationApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/revocation/revoke', 'POST',
+            "/revocation/revoke",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -2664,18 +2813,23 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def set_registry_state(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        state: Annotated[StrictStr, Field(description="Revocation registry state to set")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        state: Annotated[
+            StrictStr, Field(description="Revocation registry state to set")
+        ],
         **kwargs,
     ) -> RevRegResult:
         """Set revocation registry state manually  # noqa: E501
@@ -2701,17 +2855,23 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the set_registry_state_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_registry_state_with_http_info(rev_reg_id, state, **kwargs)  # noqa: E501
+        return self.set_registry_state_with_http_info(
+            rev_reg_id, state, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def set_registry_state_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
-        state: Annotated[StrictStr, Field(description="Revocation registry state to set")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        state: Annotated[
+            StrictStr, Field(description="Revocation registry state to set")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Set revocation registry state manually  # noqa: E501
@@ -2753,65 +2913,63 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id',
-            'state'
-        ]
+        _all_params = ["rev_reg_id", "state"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_registry_state" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('state') is not None:  # noqa: E501
-            _query_params.append(('state', _params['state']))
+        if _params.get("state") is not None:  # noqa: E501
+            _query_params.append(("state", _params["state"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegResult",
+            "200": "RevRegResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/set-state', 'PATCH',
+            "/revocation/registry/{rev_reg_id}/set-state",
+            "PATCH",
             _path_params,
             _query_params,
             _header_params,
@@ -2820,17 +2978,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def update_registry(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         body: Optional[RevRegUpdateTailsFileUri] = None,
         **kwargs,
     ) -> RevRegResult:
@@ -2857,16 +3018,20 @@ class RevocationApi:
                  returns the request thread.
         :rtype: RevRegResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the update_registry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.update_registry_with_http_info(rev_reg_id, body, **kwargs)  # noqa: E501
+        return self.update_registry_with_http_info(
+            rev_reg_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def update_registry_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         body: Optional[RevRegUpdateTailsFileUri] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -2909,72 +3074,71 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id',
-            'body'
-        ]
+        _all_params = ["rev_reg_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_registry" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RevRegResult",
+            "200": "RevRegResult",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}', 'PATCH',
+            "/revocation/registry/{rev_reg_id}",
+            "PATCH",
             _path_params,
             _query_params,
             _header_params,
@@ -2983,17 +3147,20 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def upload_tails_file(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> object:
         """Upload local tails file to server  # noqa: E501
@@ -3017,8 +3184,8 @@ class RevocationApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the upload_tails_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.upload_tails_file_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
@@ -3026,7 +3193,9 @@ class RevocationApi:
     @validate_call
     def upload_tails_file_with_http_info(
         self,
-        rev_reg_id: Annotated[str, Field(strict=True, description="Revocation Registry identifier")],
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Upload local tails file to server  # noqa: E501
@@ -3066,61 +3235,60 @@ class RevocationApi:
 
         _params = locals()
 
-        _all_params = [
-            'rev_reg_id'
-        ]
+        _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method upload_tails_file" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['rev_reg_id'] is not None:
-            _path_params['rev_reg_id'] = _params['rev_reg_id']
-
+        if _params["rev_reg_id"] is not None:
+            _path_params["rev_reg_id"] = _params["rev_reg_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/revocation/registry/{rev_reg_id}/tails-file', 'PUT',
+            "/revocation/registry/{rev_reg_id}/tails-file",
+            "PUT",
             _path_params,
             _query_params,
             _header_params,
@@ -3129,9 +3297,10 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

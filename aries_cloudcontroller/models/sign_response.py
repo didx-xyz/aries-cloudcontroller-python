@@ -26,19 +26,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class SignResponse(BaseModel):
     """
     SignResponse
     """
+
     error: Optional[StrictStr] = Field(default=None, description="Error text")
-    signed_doc: Optional[Union[str, Any]] = Field(default=None, description="Signed document")
+    signed_doc: Optional[Union[str, Any]] = Field(
+        default=None, description="Signed document"
+    )
     __properties: ClassVar[List[str]] = ["error", "signed_doc"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +55,7 @@ class SignResponse(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,10 +67,7 @@ class SignResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "error": obj.get("error"),
-            "signed_doc": obj.get("signed_doc")
-        })
+        _obj = cls.model_validate(
+            {"error": obj.get("error"), "signed_doc": obj.get("signed_doc")}
+        )
         return _obj
-
-

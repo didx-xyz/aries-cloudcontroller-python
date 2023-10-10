@@ -27,28 +27,28 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class JWSVerify(BaseModel):
     """
     JWSVerify
     """
+
     jwt: Optional[Annotated[str, Field(strict=True)]] = None
     __properties: ClassVar[List[str]] = ["jwt"]
 
-    @field_validator('jwt')
+    @field_validator("jwt")
     def jwt_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
         if not re.match(r"^[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*$", value):
-            raise ValueError(r"must validate the regular expression /^[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*$/")
+            raise ValueError(
+                r"must validate the regular expression /^[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,10 +65,7 @@ class JWSVerify(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -80,9 +77,5 @@ class JWSVerify(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "jwt": obj.get("jwt")
-        })
+        _obj = cls.model_validate({"jwt": obj.get("jwt")})
         return _obj
-
-

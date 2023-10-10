@@ -26,26 +26,24 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class QueryItem(BaseModel):
     """
     QueryItem
     """
+
     feature_type: StrictStr = Field(description="feature type", alias="feature-type")
     match: StrictStr = Field(description="match")
     __properties: ClassVar[List[str]] = ["feature-type", "match"]
 
-    @field_validator('feature_type')
+    @field_validator("feature_type")
     def feature_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('protocol', 'goal-code'):
+        if value not in ("protocol", "goal-code"):
             raise ValueError("must be one of enum values ('protocol', 'goal-code')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,10 +60,7 @@ class QueryItem(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -77,10 +72,7 @@ class QueryItem(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "feature-type": obj.get("feature-type"),
-            "match": obj.get("match")
-        })
+        _obj = cls.model_validate(
+            {"feature-type": obj.get("feature-type"), "match": obj.get("match")}
+        )
         return _obj
-
-

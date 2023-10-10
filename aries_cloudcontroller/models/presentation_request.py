@@ -28,21 +28,32 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class PresentationRequest(BaseModel):
     """
     PresentationRequest
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    comment: Optional[StrictStr] = Field(default=None, description="Human-readable comment")
-    request_presentationsattach: List[AttachDecorator] = Field(alias="request_presentations~attach")
-    __properties: ClassVar[List[str]] = ["@id", "@type", "comment", "request_presentations~attach"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Human-readable comment"
+    )
+    request_presentationsattach: List[AttachDecorator] = Field(
+        alias="request_presentations~attach"
+    )
+    __properties: ClassVar[List[str]] = [
+        "@id",
+        "@type",
+        "comment",
+        "request_presentations~attach",
+    ]
 
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,22 +70,24 @@ class PresentationRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in request_presentationsattach (list)
         _items = []
         if self.request_presentationsattach:
             for _item in self.request_presentationsattach:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['request_presentations~attach'] = _items
+            _dict["request_presentations~attach"] = _items
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
         if self.comment is None and "comment" in self.model_fields_set:
-            _dict['comment'] = None
+            _dict["comment"] = None
 
         return _dict
 
@@ -87,12 +100,17 @@ class PresentationRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "comment": obj.get("comment"),
-            "request_presentations~attach": [AttachDecorator.from_dict(_item) for _item in obj.get("request_presentations~attach")] if obj.get("request_presentations~attach") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "comment": obj.get("comment"),
+                "request_presentations~attach": [
+                    AttachDecorator.from_dict(_item)
+                    for _item in obj.get("request_presentations~attach")
+                ]
+                if obj.get("request_presentations~attach") is not None
+                else None,
+            }
+        )
         return _obj
-
-

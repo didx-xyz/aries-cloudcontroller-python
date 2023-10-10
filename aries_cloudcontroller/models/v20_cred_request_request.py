@@ -26,18 +26,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20CredRequestRequest(BaseModel):
     """
     V20CredRequestRequest
     """
-    holder_did: Optional[StrictStr] = Field(default=None, description="Holder DID to substitute for the credentialSubject.id")
+
+    holder_did: Optional[StrictStr] = Field(
+        default=None,
+        description="Holder DID to substitute for the credentialSubject.id",
+    )
     __properties: ClassVar[List[str]] = ["holder_did"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,14 +55,11 @@ class V20CredRequestRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # set to None if holder_did (nullable) is None
         # and model_fields_set contains the field
         if self.holder_did is None and "holder_did" in self.model_fields_set:
-            _dict['holder_did'] = None
+            _dict["holder_did"] = None
 
         return _dict
 
@@ -74,9 +72,5 @@ class V20CredRequestRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "holder_did": obj.get("holder_did")
-        })
+        _obj = cls.model_validate({"holder_did": obj.get("holder_did")})
         return _obj
-
-

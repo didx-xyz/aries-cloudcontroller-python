@@ -45,8 +45,15 @@ class DiscoverFeaturesApi:
     def discover_features_query_get(
         self,
         comment: Annotated[Optional[StrictStr], Field(description="Comment")] = None,
-        connection_id: Annotated[Optional[StrictStr], Field(description="Connection identifier, if none specified, then the query will provide features for this agent.")] = None,
-        query: Annotated[Optional[StrictStr], Field(description="Protocol feature query")] = None,
+        connection_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Connection identifier, if none specified, then the query will provide features for this agent."
+            ),
+        ] = None,
+        query: Annotated[
+            Optional[StrictStr], Field(description="Protocol feature query")
+        ] = None,
         **kwargs,
     ) -> V10DiscoveryRecord:
         """Query supported features  # noqa: E501
@@ -74,18 +81,27 @@ class DiscoverFeaturesApi:
                  returns the request thread.
         :rtype: V10DiscoveryRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the discover_features_query_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.discover_features_query_get_with_http_info(comment, connection_id, query, **kwargs)  # noqa: E501
+        return self.discover_features_query_get_with_http_info(
+            comment, connection_id, query, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def discover_features_query_get_with_http_info(
         self,
         comment: Annotated[Optional[StrictStr], Field(description="Comment")] = None,
-        connection_id: Annotated[Optional[StrictStr], Field(description="Connection identifier, if none specified, then the query will provide features for this agent.")] = None,
-        query: Annotated[Optional[StrictStr], Field(description="Protocol feature query")] = None,
+        connection_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Connection identifier, if none specified, then the query will provide features for this agent."
+            ),
+        ] = None,
+        query: Annotated[
+            Optional[StrictStr], Field(description="Protocol feature query")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Query supported features  # noqa: E501
@@ -129,32 +145,28 @@ class DiscoverFeaturesApi:
 
         _params = locals()
 
-        _all_params = [
-            'comment',
-            'connection_id',
-            'query'
-        ]
+        _all_params = ["comment", "connection_id", "query"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method discover_features_query_get" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -163,35 +175,37 @@ class DiscoverFeaturesApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('comment') is not None:  # noqa: E501
-            _query_params.append(('comment', _params['comment']))
+        if _params.get("comment") is not None:  # noqa: E501
+            _query_params.append(("comment", _params["comment"]))
 
-        if _params.get('connection_id') is not None:  # noqa: E501
-            _query_params.append(('connection_id', _params['connection_id']))
+        if _params.get("connection_id") is not None:  # noqa: E501
+            _query_params.append(("connection_id", _params["connection_id"]))
 
-        if _params.get('query') is not None:  # noqa: E501
-            _query_params.append(('query', _params['query']))
+        if _params.get("query") is not None:  # noqa: E501
+            _query_params.append(("query", _params["query"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10DiscoveryRecord",
+            "200": "V10DiscoveryRecord",
         }
 
         return self.api_client.call_api(
-            '/discover-features/query', 'GET',
+            "/discover-features/query",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -200,17 +214,20 @@ class DiscoverFeaturesApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def discover_features_records_get(
         self,
-        connection_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
+        connection_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
         **kwargs,
     ) -> V10DiscoveryExchangeListResult:
         """Discover Features records  # noqa: E501
@@ -234,16 +251,20 @@ class DiscoverFeaturesApi:
                  returns the request thread.
         :rtype: V10DiscoveryExchangeListResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the discover_features_records_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.discover_features_records_get_with_http_info(connection_id, **kwargs)  # noqa: E501
+        return self.discover_features_records_get_with_http_info(
+            connection_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def discover_features_records_get_with_http_info(
         self,
-        connection_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
+        connection_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Discover Features records  # noqa: E501
@@ -283,30 +304,28 @@ class DiscoverFeaturesApi:
 
         _params = locals()
 
-        _all_params = [
-            'connection_id'
-        ]
+        _all_params = ["connection_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method discover_features_records_get" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -315,29 +334,31 @@ class DiscoverFeaturesApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('connection_id') is not None:  # noqa: E501
-            _query_params.append(('connection_id', _params['connection_id']))
+        if _params.get("connection_id") is not None:  # noqa: E501
+            _query_params.append(("connection_id", _params["connection_id"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "V10DiscoveryExchangeListResult",
+            "200": "V10DiscoveryExchangeListResult",
         }
 
         return self.api_client.call_api(
-            '/discover-features/records', 'GET',
+            "/discover-features/records",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -346,9 +367,10 @@ class DiscoverFeaturesApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

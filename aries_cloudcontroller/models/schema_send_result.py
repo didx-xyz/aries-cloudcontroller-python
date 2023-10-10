@@ -29,26 +29,31 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class SchemaSendResult(BaseModel):
     """
     SchemaSendResult
     """
+
     var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
-    schema_id: Annotated[str, Field(strict=True)] = Field(description="Schema identifier")
+    schema_id: Annotated[str, Field(strict=True)] = Field(
+        description="Schema identifier"
+    )
     __properties: ClassVar[List[str]] = ["schema", "schema_id"]
 
-    @field_validator('schema_id')
+    @field_validator("schema_id")
     def schema_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,13 +70,10 @@ class SchemaSendResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -83,10 +85,12 @@ class SchemaSendResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "schema": ModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "schema_id": obj.get("schema_id")
-        })
+        _obj = cls.model_validate(
+            {
+                "schema": ModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "schema_id": obj.get("schema_id"),
+            }
+        )
         return _obj
-
-

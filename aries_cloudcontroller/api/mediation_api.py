@@ -82,8 +82,8 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the clear_default_mediator_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.clear_default_mediator_with_http_info(**kwargs)  # noqa: E501
@@ -128,29 +128,28 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-        ]
+        _all_params = []
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method clear_default_mediator" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -160,25 +159,27 @@ class MediationApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MediationRecord",
+            "201": "MediationRecord",
         }
 
         return self.api_client.call_api(
-            '/mediation/default-mediator', 'DELETE',
+            "/mediation/default-mediator",
+            "DELETE",
             _path_params,
             _query_params,
             _header_params,
@@ -187,17 +188,20 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def delete_record(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> MediationRecord:
         """Delete mediation request by ID  # noqa: E501
@@ -221,8 +225,8 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the delete_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.delete_record_with_http_info(mediation_id, **kwargs)  # noqa: E501
@@ -230,7 +234,9 @@ class MediationApi:
     @validate_call
     def delete_record_with_http_info(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Delete mediation request by ID  # noqa: E501
@@ -270,61 +276,60 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'mediation_id'
-        ]
+        _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_record" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['mediation_id'] is not None:
-            _path_params['mediation_id'] = _params['mediation_id']
-
+        if _params["mediation_id"] is not None:
+            _path_params["mediation_id"] = _params["mediation_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MediationRecord",
+            "200": "MediationRecord",
         }
 
         return self.api_client.call_api(
-            '/mediation/requests/{mediation_id}', 'DELETE',
+            "/mediation/requests/{mediation_id}",
+            "DELETE",
             _path_params,
             _query_params,
             _header_params,
@@ -333,17 +338,20 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def deny_mediation_request(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         body: Optional[AdminMediationDeny] = None,
         **kwargs,
     ) -> MediationDeny:
@@ -370,16 +378,20 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationDeny
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the deny_mediation_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.deny_mediation_request_with_http_info(mediation_id, body, **kwargs)  # noqa: E501
+        return self.deny_mediation_request_with_http_info(
+            mediation_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def deny_mediation_request_with_http_info(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         body: Optional[AdminMediationDeny] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -422,72 +434,71 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'mediation_id',
-            'body'
-        ]
+        _all_params = ["mediation_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method deny_mediation_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['mediation_id'] is not None:
-            _path_params['mediation_id'] = _params['mediation_id']
-
+        if _params["mediation_id"] is not None:
+            _path_params["mediation_id"] = _params["mediation_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MediationDeny",
+            "201": "MediationDeny",
         }
 
         return self.api_client.call_api(
-            '/mediation/requests/{mediation_id}/deny', 'POST',
+            "/mediation/requests/{mediation_id}/deny",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -496,12 +507,13 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_default_mediator(
@@ -527,8 +539,8 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_default_mediator_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_default_mediator_with_http_info(**kwargs)  # noqa: E501
@@ -573,29 +585,28 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-        ]
+        _all_params = []
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_default_mediator" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -605,25 +616,27 @@ class MediationApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MediationRecord",
+            "200": "MediationRecord",
         }
 
         return self.api_client.call_api(
-            '/mediation/default-mediator', 'GET',
+            "/mediation/default-mediator",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -632,17 +645,20 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_record(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> MediationRecord:
         """Retrieve mediation request record  # noqa: E501
@@ -666,8 +682,8 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_record_with_http_info(mediation_id, **kwargs)  # noqa: E501
@@ -675,7 +691,9 @@ class MediationApi:
     @validate_call
     def get_record_with_http_info(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Retrieve mediation request record  # noqa: E501
@@ -715,61 +733,60 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'mediation_id'
-        ]
+        _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_record" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['mediation_id'] is not None:
-            _path_params['mediation_id'] = _params['mediation_id']
-
+        if _params["mediation_id"] is not None:
+            _path_params["mediation_id"] = _params["mediation_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MediationRecord",
+            "200": "MediationRecord",
         }
 
         return self.api_client.call_api(
-            '/mediation/requests/{mediation_id}', 'GET',
+            "/mediation/requests/{mediation_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -778,20 +795,31 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_records(
         self,
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier (optional)")] = None,
-        mediator_terms: Annotated[Optional[List[StrictStr]], Field(description="List of mediator rules for recipient")] = None,
-        recipient_terms: Annotated[Optional[List[StrictStr]], Field(description="List of recipient rules for mediation")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Mediation state (optional)")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier (optional)")
+        ] = None,
+        mediator_terms: Annotated[
+            Optional[List[StrictStr]],
+            Field(description="List of mediator rules for recipient"),
+        ] = None,
+        recipient_terms: Annotated[
+            Optional[List[StrictStr]],
+            Field(description="List of recipient rules for mediation"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Mediation state (optional)")
+        ] = None,
         **kwargs,
     ) -> MediationList:
         """Query mediation requests, returns list of all mediation records  # noqa: E501
@@ -821,19 +849,31 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationList
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(conn_id, mediator_terms, recipient_terms, state, **kwargs)  # noqa: E501
+        return self.get_records_with_http_info(
+            conn_id, mediator_terms, recipient_terms, state, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_records_with_http_info(
         self,
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier (optional)")] = None,
-        mediator_terms: Annotated[Optional[List[StrictStr]], Field(description="List of mediator rules for recipient")] = None,
-        recipient_terms: Annotated[Optional[List[StrictStr]], Field(description="List of recipient rules for mediation")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Mediation state (optional)")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier (optional)")
+        ] = None,
+        mediator_terms: Annotated[
+            Optional[List[StrictStr]],
+            Field(description="List of mediator rules for recipient"),
+        ] = None,
+        recipient_terms: Annotated[
+            Optional[List[StrictStr]],
+            Field(description="List of recipient rules for mediation"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Mediation state (optional)")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Query mediation requests, returns list of all mediation records  # noqa: E501
@@ -879,33 +919,28 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'mediator_terms',
-            'recipient_terms',
-            'state'
-        ]
+        _all_params = ["conn_id", "mediator_terms", "recipient_terms", "state"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_records" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -914,40 +949,42 @@ class MediationApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('conn_id') is not None:  # noqa: E501
-            _query_params.append(('conn_id', _params['conn_id']))
+        if _params.get("conn_id") is not None:  # noqa: E501
+            _query_params.append(("conn_id", _params["conn_id"]))
 
-        if _params.get('mediator_terms') is not None:  # noqa: E501
-            _query_params.append(('mediator_terms', _params['mediator_terms']))
-            _collection_formats['mediator_terms'] = 'multi'
+        if _params.get("mediator_terms") is not None:  # noqa: E501
+            _query_params.append(("mediator_terms", _params["mediator_terms"]))
+            _collection_formats["mediator_terms"] = "multi"
 
-        if _params.get('recipient_terms') is not None:  # noqa: E501
-            _query_params.append(('recipient_terms', _params['recipient_terms']))
-            _collection_formats['recipient_terms'] = 'multi'
+        if _params.get("recipient_terms") is not None:  # noqa: E501
+            _query_params.append(("recipient_terms", _params["recipient_terms"]))
+            _collection_formats["recipient_terms"] = "multi"
 
-        if _params.get('state') is not None:  # noqa: E501
-            _query_params.append(('state', _params['state']))
+        if _params.get("state") is not None:  # noqa: E501
+            _query_params.append(("state", _params["state"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MediationList",
+            "200": "MediationList",
         }
 
         return self.api_client.call_api(
-            '/mediation/requests', 'GET',
+            "/mediation/requests",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -956,17 +993,20 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def grant_mediation_request(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> MediationGrant:
         """Grant received mediation  # noqa: E501
@@ -990,16 +1030,20 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationGrant
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the grant_mediation_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.grant_mediation_request_with_http_info(mediation_id, **kwargs)  # noqa: E501
+        return self.grant_mediation_request_with_http_info(
+            mediation_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def grant_mediation_request_with_http_info(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Grant received mediation  # noqa: E501
@@ -1039,61 +1083,60 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'mediation_id'
-        ]
+        _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method grant_mediation_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['mediation_id'] is not None:
-            _path_params['mediation_id'] = _params['mediation_id']
-
+        if _params["mediation_id"] is not None:
+            _path_params["mediation_id"] = _params["mediation_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MediationGrant",
+            "201": "MediationGrant",
         }
 
         return self.api_client.call_api(
-            '/mediation/requests/{mediation_id}/grant', 'POST',
+            "/mediation/requests/{mediation_id}/grant",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1102,12 +1145,13 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def mediation_update_keylist_conn_id_post(
@@ -1139,11 +1183,13 @@ class MediationApi:
                  returns the request thread.
         :rtype: KeylistUpdate
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the mediation_update_keylist_conn_id_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.mediation_update_keylist_conn_id_post_with_http_info(conn_id, body, **kwargs)  # noqa: E501
+        return self.mediation_update_keylist_conn_id_post_with_http_info(
+            conn_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def mediation_update_keylist_conn_id_post_with_http_info(
@@ -1191,72 +1237,71 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'body'
-        ]
+        _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method mediation_update_keylist_conn_id_post" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "KeylistUpdate",
+            "200": "KeylistUpdate",
         }
 
         return self.api_client.call_api(
-            '/mediation/update-keylist/{conn_id}', 'POST',
+            "/mediation/update-keylist/{conn_id}",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1265,12 +1310,13 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def request_mediation(
@@ -1302,11 +1348,13 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the request_mediation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.request_mediation_with_http_info(conn_id, body, **kwargs)  # noqa: E501
+        return self.request_mediation_with_http_info(
+            conn_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def request_mediation_with_http_info(
@@ -1354,72 +1402,71 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'body'
-        ]
+        _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method request_mediation" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MediationRecord",
+            "201": "MediationRecord",
         }
 
         return self.api_client.call_api(
-            '/mediation/request/{conn_id}', 'POST',
+            "/mediation/request/{conn_id}",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1428,18 +1475,26 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def retrieve_keylists(
         self,
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier (optional)")] = None,
-        role: Annotated[Optional[StrictStr], Field(description="Filer on role, 'client' for keys         mediated by other agents, 'server' for keys         mediated by this agent")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier (optional)")
+        ] = None,
+        role: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filer on role, 'client' for keys         mediated by other agents, 'server' for keys         mediated by this agent"
+            ),
+        ] = None,
         **kwargs,
     ) -> Keylist:
         """Retrieve keylists by connection or role  # noqa: E501
@@ -1465,17 +1520,26 @@ class MediationApi:
                  returns the request thread.
         :rtype: Keylist
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the retrieve_keylists_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.retrieve_keylists_with_http_info(conn_id, role, **kwargs)  # noqa: E501
+        return self.retrieve_keylists_with_http_info(
+            conn_id, role, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def retrieve_keylists_with_http_info(
         self,
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier (optional)")] = None,
-        role: Annotated[Optional[StrictStr], Field(description="Filer on role, 'client' for keys         mediated by other agents, 'server' for keys         mediated by this agent")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier (optional)")
+        ] = None,
+        role: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filer on role, 'client' for keys         mediated by other agents, 'server' for keys         mediated by this agent"
+            ),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Retrieve keylists by connection or role  # noqa: E501
@@ -1517,31 +1581,28 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'role'
-        ]
+        _all_params = ["conn_id", "role"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method retrieve_keylists" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1550,32 +1611,34 @@ class MediationApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('conn_id') is not None:  # noqa: E501
-            _query_params.append(('conn_id', _params['conn_id']))
+        if _params.get("conn_id") is not None:  # noqa: E501
+            _query_params.append(("conn_id", _params["conn_id"]))
 
-        if _params.get('role') is not None:  # noqa: E501
-            _query_params.append(('role', _params['role']))
+        if _params.get("role") is not None:  # noqa: E501
+            _query_params.append(("role", _params["role"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Keylist",
+            "200": "Keylist",
         }
 
         return self.api_client.call_api(
-            '/mediation/keylists', 'GET',
+            "/mediation/keylists",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1584,19 +1647,26 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def send_keylist_query(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
-        paginate_limit: Annotated[Optional[StrictInt], Field(description="limit number of results")] = None,
-        paginate_offset: Annotated[Optional[StrictInt], Field(description="offset to use in pagination")] = None,
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
+        paginate_limit: Annotated[
+            Optional[StrictInt], Field(description="limit number of results")
+        ] = None,
+        paginate_offset: Annotated[
+            Optional[StrictInt], Field(description="offset to use in pagination")
+        ] = None,
         body: Optional[KeylistQueryFilterRequest] = None,
         **kwargs,
     ) -> KeylistQuery:
@@ -1627,18 +1697,26 @@ class MediationApi:
                  returns the request thread.
         :rtype: KeylistQuery
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the send_keylist_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_keylist_query_with_http_info(mediation_id, paginate_limit, paginate_offset, body, **kwargs)  # noqa: E501
+        return self.send_keylist_query_with_http_info(
+            mediation_id, paginate_limit, paginate_offset, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def send_keylist_query_with_http_info(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
-        paginate_limit: Annotated[Optional[StrictInt], Field(description="limit number of results")] = None,
-        paginate_offset: Annotated[Optional[StrictInt], Field(description="offset to use in pagination")] = None,
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
+        paginate_limit: Annotated[
+            Optional[StrictInt], Field(description="limit number of results")
+        ] = None,
+        paginate_offset: Annotated[
+            Optional[StrictInt], Field(description="offset to use in pagination")
+        ] = None,
         body: Optional[KeylistQueryFilterRequest] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -1685,80 +1763,77 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'mediation_id',
-            'paginate_limit',
-            'paginate_offset',
-            'body'
-        ]
+        _all_params = ["mediation_id", "paginate_limit", "paginate_offset", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_keylist_query" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['mediation_id'] is not None:
-            _path_params['mediation_id'] = _params['mediation_id']
-
+        if _params["mediation_id"] is not None:
+            _path_params["mediation_id"] = _params["mediation_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('paginate_limit') is not None:  # noqa: E501
-            _query_params.append(('paginate_limit', _params['paginate_limit']))
+        if _params.get("paginate_limit") is not None:  # noqa: E501
+            _query_params.append(("paginate_limit", _params["paginate_limit"]))
 
-        if _params.get('paginate_offset') is not None:  # noqa: E501
-            _query_params.append(('paginate_offset', _params['paginate_offset']))
+        if _params.get("paginate_offset") is not None:  # noqa: E501
+            _query_params.append(("paginate_offset", _params["paginate_offset"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "KeylistQuery",
+            "201": "KeylistQuery",
         }
 
         return self.api_client.call_api(
-            '/mediation/keylists/{mediation_id}/send-keylist-query', 'POST',
+            "/mediation/keylists/{mediation_id}/send-keylist-query",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1767,17 +1842,20 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def send_keylist_update(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         body: Optional[KeylistUpdateRequest] = None,
         **kwargs,
     ) -> KeylistUpdate:
@@ -1804,16 +1882,20 @@ class MediationApi:
                  returns the request thread.
         :rtype: KeylistUpdate
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the send_keylist_update_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_keylist_update_with_http_info(mediation_id, body, **kwargs)  # noqa: E501
+        return self.send_keylist_update_with_http_info(
+            mediation_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def send_keylist_update_with_http_info(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         body: Optional[KeylistUpdateRequest] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -1856,72 +1938,71 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'mediation_id',
-            'body'
-        ]
+        _all_params = ["mediation_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_keylist_update" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['mediation_id'] is not None:
-            _path_params['mediation_id'] = _params['mediation_id']
-
+        if _params["mediation_id"] is not None:
+            _path_params["mediation_id"] = _params["mediation_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "KeylistUpdate",
+            "201": "KeylistUpdate",
         }
 
         return self.api_client.call_api(
-            '/mediation/keylists/{mediation_id}/send-keylist-update', 'POST',
+            "/mediation/keylists/{mediation_id}/send-keylist-update",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1930,17 +2011,20 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def set_default_mediator(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> MediationRecord:
         """Set default mediator  # noqa: E501
@@ -1964,16 +2048,20 @@ class MediationApi:
                  returns the request thread.
         :rtype: MediationRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the set_default_mediator_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_default_mediator_with_http_info(mediation_id, **kwargs)  # noqa: E501
+        return self.set_default_mediator_with_http_info(
+            mediation_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def set_default_mediator_with_http_info(
         self,
-        mediation_id: Annotated[StrictStr, Field(description="Mediation record identifier")],
+        mediation_id: Annotated[
+            StrictStr, Field(description="Mediation record identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Set default mediator  # noqa: E501
@@ -2013,61 +2101,60 @@ class MediationApi:
 
         _params = locals()
 
-        _all_params = [
-            'mediation_id'
-        ]
+        _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_default_mediator" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['mediation_id'] is not None:
-            _path_params['mediation_id'] = _params['mediation_id']
-
+        if _params["mediation_id"] is not None:
+            _path_params["mediation_id"] = _params["mediation_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MediationRecord",
+            "201": "MediationRecord",
         }
 
         return self.api_client.call_api(
-            '/mediation/{mediation_id}/default-mediator', 'PUT',
+            "/mediation/{mediation_id}/default-mediator",
+            "PUT",
             _path_params,
             _query_params,
             _header_params,
@@ -2076,9 +2163,10 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

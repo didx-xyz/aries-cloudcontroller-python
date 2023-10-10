@@ -34,95 +34,160 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20PresExRecord(BaseModel):
     """
     V20PresExRecord
     """
-    auto_present: Optional[StrictBool] = Field(default=None, description="Prover choice to auto-present proof as verifier requests")
-    auto_verify: Optional[StrictBool] = Field(default=None, description="Verifier choice to auto-verify proof presentation")
+
+    auto_present: Optional[StrictBool] = Field(
+        default=None,
+        description="Prover choice to auto-present proof as verifier requests",
+    )
+    auto_verify: Optional[StrictBool] = Field(
+        default=None, description="Verifier choice to auto-verify proof presentation"
+    )
     by_format: Optional[V20PresExRecordByFormat] = None
-    connection_id: Optional[StrictStr] = Field(default=None, description="Connection identifier")
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
+    connection_id: Optional[StrictStr] = Field(
+        default=None, description="Connection identifier"
+    )
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
-    initiator: Optional[StrictStr] = Field(default=None, description="Present-proof exchange initiator: self or external")
+    initiator: Optional[StrictStr] = Field(
+        default=None, description="Present-proof exchange initiator: self or external"
+    )
     pres: Optional[V20Pres] = None
-    pres_ex_id: Optional[StrictStr] = Field(default=None, description="Presentation exchange identifier")
+    pres_ex_id: Optional[StrictStr] = Field(
+        default=None, description="Presentation exchange identifier"
+    )
     pres_proposal: Optional[V20PresProposal] = None
     pres_request: Optional[V20PresRequest] = None
-    role: Optional[StrictStr] = Field(default=None, description="Present-proof exchange role: prover or verifier")
-    state: Optional[StrictStr] = Field(default=None, description="Present-proof exchange state")
-    thread_id: Optional[StrictStr] = Field(default=None, description="Thread identifier")
-    trace: Optional[StrictBool] = Field(default=None, description="Record trace information, based on agent configuration")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    verified: Optional[StrictStr] = Field(default=None, description="Whether presentation is verified: 'true' or 'false'")
+    role: Optional[StrictStr] = Field(
+        default=None, description="Present-proof exchange role: prover or verifier"
+    )
+    state: Optional[StrictStr] = Field(
+        default=None, description="Present-proof exchange state"
+    )
+    thread_id: Optional[StrictStr] = Field(
+        default=None, description="Thread identifier"
+    )
+    trace: Optional[StrictBool] = Field(
+        default=None,
+        description="Record trace information, based on agent configuration",
+    )
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    verified: Optional[StrictStr] = Field(
+        default=None, description="Whether presentation is verified: 'true' or 'false'"
+    )
     verified_msgs: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["auto_present", "auto_verify", "by_format", "connection_id", "created_at", "error_msg", "initiator", "pres", "pres_ex_id", "pres_proposal", "pres_request", "role", "state", "thread_id", "trace", "updated_at", "verified", "verified_msgs"]
+    __properties: ClassVar[List[str]] = [
+        "auto_present",
+        "auto_verify",
+        "by_format",
+        "connection_id",
+        "created_at",
+        "error_msg",
+        "initiator",
+        "pres",
+        "pres_ex_id",
+        "pres_proposal",
+        "pres_request",
+        "role",
+        "state",
+        "thread_id",
+        "trace",
+        "updated_at",
+        "verified",
+        "verified_msgs",
+    ]
 
-    @field_validator('created_at')
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('initiator')
+    @field_validator("initiator")
     def initiator_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('self', 'external'):
+        if value not in ("self", "external"):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
-    @field_validator('role')
+    @field_validator("role")
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('prover', 'verifier'):
+        if value not in ("prover", "verifier"):
             raise ValueError("must be one of enum values ('prover', 'verifier')")
         return value
 
-    @field_validator('state')
+    @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('proposal-sent', 'proposal-received', 'request-sent', 'request-received', 'presentation-sent', 'presentation-received', 'done', 'abandoned', 'deleted'):
-            raise ValueError("must be one of enum values ('proposal-sent', 'proposal-received', 'request-sent', 'request-received', 'presentation-sent', 'presentation-received', 'done', 'abandoned', 'deleted')")
+        if value not in (
+            "proposal-sent",
+            "proposal-received",
+            "request-sent",
+            "request-received",
+            "presentation-sent",
+            "presentation-received",
+            "done",
+            "abandoned",
+            "deleted",
+        ):
+            raise ValueError(
+                "must be one of enum values ('proposal-sent', 'proposal-received', 'request-sent', 'request-received', 'presentation-sent', 'presentation-received', 'done', 'abandoned', 'deleted')"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('verified')
+    @field_validator("verified")
     def verified_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('true', 'false'):
+        if value not in ("true", "false"):
             raise ValueError("must be one of enum values ('true', 'false')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -139,22 +204,19 @@ class V20PresExRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of by_format
         if self.by_format:
-            _dict['by_format'] = self.by_format.to_dict()
+            _dict["by_format"] = self.by_format.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pres
         if self.pres:
-            _dict['pres'] = self.pres.to_dict()
+            _dict["pres"] = self.pres.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pres_proposal
         if self.pres_proposal:
-            _dict['pres_proposal'] = self.pres_proposal.to_dict()
+            _dict["pres_proposal"] = self.pres_proposal.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pres_request
         if self.pres_request:
-            _dict['pres_request'] = self.pres_request.to_dict()
+            _dict["pres_request"] = self.pres_request.to_dict()
         return _dict
 
     @classmethod
@@ -166,26 +228,34 @@ class V20PresExRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "auto_present": obj.get("auto_present"),
-            "auto_verify": obj.get("auto_verify"),
-            "by_format": V20PresExRecordByFormat.from_dict(obj.get("by_format")) if obj.get("by_format") is not None else None,
-            "connection_id": obj.get("connection_id"),
-            "created_at": obj.get("created_at"),
-            "error_msg": obj.get("error_msg"),
-            "initiator": obj.get("initiator"),
-            "pres": V20Pres.from_dict(obj.get("pres")) if obj.get("pres") is not None else None,
-            "pres_ex_id": obj.get("pres_ex_id"),
-            "pres_proposal": V20PresProposal.from_dict(obj.get("pres_proposal")) if obj.get("pres_proposal") is not None else None,
-            "pres_request": V20PresRequest.from_dict(obj.get("pres_request")) if obj.get("pres_request") is not None else None,
-            "role": obj.get("role"),
-            "state": obj.get("state"),
-            "thread_id": obj.get("thread_id"),
-            "trace": obj.get("trace"),
-            "updated_at": obj.get("updated_at"),
-            "verified": obj.get("verified"),
-            "verified_msgs": obj.get("verified_msgs")
-        })
+        _obj = cls.model_validate(
+            {
+                "auto_present": obj.get("auto_present"),
+                "auto_verify": obj.get("auto_verify"),
+                "by_format": V20PresExRecordByFormat.from_dict(obj.get("by_format"))
+                if obj.get("by_format") is not None
+                else None,
+                "connection_id": obj.get("connection_id"),
+                "created_at": obj.get("created_at"),
+                "error_msg": obj.get("error_msg"),
+                "initiator": obj.get("initiator"),
+                "pres": V20Pres.from_dict(obj.get("pres"))
+                if obj.get("pres") is not None
+                else None,
+                "pres_ex_id": obj.get("pres_ex_id"),
+                "pres_proposal": V20PresProposal.from_dict(obj.get("pres_proposal"))
+                if obj.get("pres_proposal") is not None
+                else None,
+                "pres_request": V20PresRequest.from_dict(obj.get("pres_request"))
+                if obj.get("pres_request") is not None
+                else None,
+                "role": obj.get("role"),
+                "state": obj.get("state"),
+                "thread_id": obj.get("thread_id"),
+                "trace": obj.get("trace"),
+                "updated_at": obj.get("updated_at"),
+                "verified": obj.get("verified"),
+                "verified_msgs": obj.get("verified_msgs"),
+            }
+        )
         return _obj
-
-

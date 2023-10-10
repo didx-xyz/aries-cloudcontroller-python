@@ -27,18 +27,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class RevRegIssuedResult(BaseModel):
     """
     RevRegIssuedResult
     """
-    result: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, description="Number of credentials issued against revocation registry")
+
+    result: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="Number of credentials issued against revocation registry",
+    )
     __properties: ClassVar[List[str]] = ["result"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +56,7 @@ class RevRegIssuedResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,9 +68,5 @@ class RevRegIssuedResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "result": obj.get("result")
-        })
+        _obj = cls.model_validate({"result": obj.get("result")})
         return _obj
-
-

@@ -27,52 +27,95 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class TransactionRecord(BaseModel):
     """
     TransactionRecord
     """
-    type: Optional[StrictStr] = Field(default=None, description="Transaction type", alias="_type")
-    connection_id: Optional[StrictStr] = Field(default=None, description="The connection identifier for thie particular transaction record")
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
-    endorser_write_txn: Optional[StrictBool] = Field(default=None, description="If True, Endorser will write the transaction after endorsing it")
+
+    type: Optional[StrictStr] = Field(
+        default=None, description="Transaction type", alias="_type"
+    )
+    connection_id: Optional[StrictStr] = Field(
+        default=None,
+        description="The connection identifier for thie particular transaction record",
+    )
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
+    endorser_write_txn: Optional[StrictBool] = Field(
+        default=None,
+        description="If True, Endorser will write the transaction after endorsing it",
+    )
     formats: Optional[List[Dict[str, StrictStr]]] = None
     messages_attach: Optional[List[Union[str, Any]]] = None
     meta_data: Optional[Union[str, Any]] = None
     signature_request: Optional[List[Union[str, Any]]] = None
     signature_response: Optional[List[Union[str, Any]]] = None
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    thread_id: Optional[StrictStr] = Field(default=None, description="Thread Identifier")
+    thread_id: Optional[StrictStr] = Field(
+        default=None, description="Thread Identifier"
+    )
     timing: Optional[Union[str, Any]] = None
-    trace: Optional[StrictBool] = Field(default=None, description="Record trace information, based on agent configuration")
-    transaction_id: Optional[StrictStr] = Field(default=None, description="Transaction identifier")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    __properties: ClassVar[List[str]] = ["_type", "connection_id", "created_at", "endorser_write_txn", "formats", "messages_attach", "meta_data", "signature_request", "signature_response", "state", "thread_id", "timing", "trace", "transaction_id", "updated_at"]
+    trace: Optional[StrictBool] = Field(
+        default=None,
+        description="Record trace information, based on agent configuration",
+    )
+    transaction_id: Optional[StrictStr] = Field(
+        default=None, description="Transaction identifier"
+    )
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    __properties: ClassVar[List[str]] = [
+        "_type",
+        "connection_id",
+        "created_at",
+        "endorser_write_txn",
+        "formats",
+        "messages_attach",
+        "meta_data",
+        "signature_request",
+        "signature_response",
+        "state",
+        "thread_id",
+        "timing",
+        "trace",
+        "transaction_id",
+        "updated_at",
+    ]
 
-    @field_validator('created_at')
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -89,10 +132,7 @@ class TransactionRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -104,23 +144,23 @@ class TransactionRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "_type": obj.get("_type"),
-            "connection_id": obj.get("connection_id"),
-            "created_at": obj.get("created_at"),
-            "endorser_write_txn": obj.get("endorser_write_txn"),
-            "formats": obj.get("formats"),
-            "messages_attach": obj.get("messages_attach"),
-            "meta_data": obj.get("meta_data"),
-            "signature_request": obj.get("signature_request"),
-            "signature_response": obj.get("signature_response"),
-            "state": obj.get("state"),
-            "thread_id": obj.get("thread_id"),
-            "timing": obj.get("timing"),
-            "trace": obj.get("trace"),
-            "transaction_id": obj.get("transaction_id"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "_type": obj.get("_type"),
+                "connection_id": obj.get("connection_id"),
+                "created_at": obj.get("created_at"),
+                "endorser_write_txn": obj.get("endorser_write_txn"),
+                "formats": obj.get("formats"),
+                "messages_attach": obj.get("messages_attach"),
+                "meta_data": obj.get("meta_data"),
+                "signature_request": obj.get("signature_request"),
+                "signature_response": obj.get("signature_response"),
+                "state": obj.get("state"),
+                "thread_id": obj.get("thread_id"),
+                "timing": obj.get("timing"),
+                "trace": obj.get("trace"),
+                "transaction_id": obj.get("transaction_id"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

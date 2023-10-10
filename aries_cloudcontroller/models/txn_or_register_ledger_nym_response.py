@@ -28,19 +28,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class TxnOrRegisterLedgerNymResponse(BaseModel):
     """
     TxnOrRegisterLedgerNymResponse
     """
-    success: Optional[StrictBool] = Field(default=None, description="Success of nym registration operation")
+
+    success: Optional[StrictBool] = Field(
+        default=None, description="Success of nym registration operation"
+    )
     txn: Optional[TransactionRecord] = None
     __properties: ClassVar[List[str]] = ["success", "txn"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,13 +57,10 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of txn
         if self.txn:
-            _dict['txn'] = self.txn.to_dict()
+            _dict["txn"] = self.txn.to_dict()
         return _dict
 
     @classmethod
@@ -75,10 +72,12 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "success": obj.get("success"),
-            "txn": TransactionRecord.from_dict(obj.get("txn")) if obj.get("txn") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "success": obj.get("success"),
+                "txn": TransactionRecord.from_dict(obj.get("txn"))
+                if obj.get("txn") is not None
+                else None,
+            }
+        )
         return _obj
-
-

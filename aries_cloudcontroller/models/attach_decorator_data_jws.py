@@ -34,17 +34,30 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class AttachDecoratorDataJWS(BaseModel):
     """
     AttachDecoratorDataJWS
     """
-    header: Optional[AttachDecoratorDataJWSHeader] = None
-    protected: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="protected JWS header")
-    signature: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="signature")
-    signatures: Optional[List[AttachDecoratorData1JWS]] = Field(default=None, description="List of signatures")
-    __properties: ClassVar[List[str]] = ["header", "protected", "signature", "signatures"]
 
-    @field_validator('protected')
+    header: Optional[AttachDecoratorDataJWSHeader] = None
+    protected: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="protected JWS header"
+    )
+    signature: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="signature"
+    )
+    signatures: Optional[List[AttachDecoratorData1JWS]] = Field(
+        default=None, description="List of signatures"
+    )
+    __properties: ClassVar[List[str]] = [
+        "header",
+        "protected",
+        "signature",
+        "signatures",
+    ]
+
+    @field_validator("protected")
     def protected_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -54,7 +67,7 @@ class AttachDecoratorDataJWS(BaseModel):
             raise ValueError(r"must validate the regular expression /^[-_a-zA-Z0-9]*$/")
         return value
 
-    @field_validator('signature')
+    @field_validator("signature")
     def signature_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -64,11 +77,7 @@ class AttachDecoratorDataJWS(BaseModel):
             raise ValueError(r"must validate the regular expression /^[-_a-zA-Z0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -85,20 +94,17 @@ class AttachDecoratorDataJWS(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of header
         if self.header:
-            _dict['header'] = self.header.to_dict()
+            _dict["header"] = self.header.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in signatures (list)
         _items = []
         if self.signatures:
             for _item in self.signatures:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['signatures'] = _items
+            _dict["signatures"] = _items
         return _dict
 
     @classmethod
@@ -110,12 +116,19 @@ class AttachDecoratorDataJWS(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "header": AttachDecoratorDataJWSHeader.from_dict(obj.get("header")) if obj.get("header") is not None else None,
-            "protected": obj.get("protected"),
-            "signature": obj.get("signature"),
-            "signatures": [AttachDecoratorData1JWS.from_dict(_item) for _item in obj.get("signatures")] if obj.get("signatures") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "header": AttachDecoratorDataJWSHeader.from_dict(obj.get("header"))
+                if obj.get("header") is not None
+                else None,
+                "protected": obj.get("protected"),
+                "signature": obj.get("signature"),
+                "signatures": [
+                    AttachDecoratorData1JWS.from_dict(_item)
+                    for _item in obj.get("signatures")
+                ]
+                if obj.get("signatures") is not None
+                else None,
+            }
+        )
         return _obj
-
-

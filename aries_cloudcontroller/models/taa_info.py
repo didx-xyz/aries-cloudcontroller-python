@@ -30,21 +30,24 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class TAAInfo(BaseModel):
     """
     TAAInfo
     """
+
     aml_record: Optional[AMLRecord] = None
     taa_accepted: Optional[TAAAcceptance] = None
     taa_record: Optional[TAARecord] = None
     taa_required: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["aml_record", "taa_accepted", "taa_record", "taa_required"]
+    __properties: ClassVar[List[str]] = [
+        "aml_record",
+        "taa_accepted",
+        "taa_record",
+        "taa_required",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -61,19 +64,16 @@ class TAAInfo(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of aml_record
         if self.aml_record:
-            _dict['aml_record'] = self.aml_record.to_dict()
+            _dict["aml_record"] = self.aml_record.to_dict()
         # override the default output from pydantic by calling `to_dict()` of taa_accepted
         if self.taa_accepted:
-            _dict['taa_accepted'] = self.taa_accepted.to_dict()
+            _dict["taa_accepted"] = self.taa_accepted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of taa_record
         if self.taa_record:
-            _dict['taa_record'] = self.taa_record.to_dict()
+            _dict["taa_record"] = self.taa_record.to_dict()
         return _dict
 
     @classmethod
@@ -85,12 +85,18 @@ class TAAInfo(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "aml_record": AMLRecord.from_dict(obj.get("aml_record")) if obj.get("aml_record") is not None else None,
-            "taa_accepted": TAAAcceptance.from_dict(obj.get("taa_accepted")) if obj.get("taa_accepted") is not None else None,
-            "taa_record": TAARecord.from_dict(obj.get("taa_record")) if obj.get("taa_record") is not None else None,
-            "taa_required": obj.get("taa_required")
-        })
+        _obj = cls.model_validate(
+            {
+                "aml_record": AMLRecord.from_dict(obj.get("aml_record"))
+                if obj.get("aml_record") is not None
+                else None,
+                "taa_accepted": TAAAcceptance.from_dict(obj.get("taa_accepted"))
+                if obj.get("taa_accepted") is not None
+                else None,
+                "taa_record": TAARecord.from_dict(obj.get("taa_record"))
+                if obj.get("taa_record") is not None
+                else None,
+                "taa_required": obj.get("taa_required"),
+            }
+        )
         return _obj
-
-

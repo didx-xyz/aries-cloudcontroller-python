@@ -26,39 +26,45 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class TransactionJobs(BaseModel):
     """
     TransactionJobs
     """
-    transaction_my_job: Optional[StrictStr] = Field(default=None, description="My transaction related job")
-    transaction_their_job: Optional[StrictStr] = Field(default=None, description="Their transaction related job")
+
+    transaction_my_job: Optional[StrictStr] = Field(
+        default=None, description="My transaction related job"
+    )
+    transaction_their_job: Optional[StrictStr] = Field(
+        default=None, description="Their transaction related job"
+    )
     __properties: ClassVar[List[str]] = ["transaction_my_job", "transaction_their_job"]
 
-    @field_validator('transaction_my_job')
+    @field_validator("transaction_my_job")
     def transaction_my_job_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset'):
-            raise ValueError("must be one of enum values ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset')")
+        if value not in ("TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"):
+            raise ValueError(
+                "must be one of enum values ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset')"
+            )
         return value
 
-    @field_validator('transaction_their_job')
+    @field_validator("transaction_their_job")
     def transaction_their_job_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset'):
-            raise ValueError("must be one of enum values ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset')")
+        if value not in ("TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"):
+            raise ValueError(
+                "must be one of enum values ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset')"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -75,10 +81,7 @@ class TransactionJobs(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -90,10 +93,10 @@ class TransactionJobs(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "transaction_my_job": obj.get("transaction_my_job"),
-            "transaction_their_job": obj.get("transaction_their_job")
-        })
+        _obj = cls.model_validate(
+            {
+                "transaction_my_job": obj.get("transaction_my_job"),
+                "transaction_their_job": obj.get("transaction_their_job"),
+            }
+        )
         return _obj
-
-

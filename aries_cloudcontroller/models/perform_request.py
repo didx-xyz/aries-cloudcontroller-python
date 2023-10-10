@@ -26,19 +26,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class PerformRequest(BaseModel):
     """
     PerformRequest
     """
+
     name: Optional[StrictStr] = Field(default=None, description="Menu option name")
-    params: Optional[Dict[str, StrictStr]] = Field(default=None, description="Input parameter values")
+    params: Optional[Dict[str, StrictStr]] = Field(
+        default=None, description="Input parameter values"
+    )
     __properties: ClassVar[List[str]] = ["name", "params"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +55,7 @@ class PerformRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,10 +67,7 @@ class PerformRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "params": obj.get("params")
-        })
+        _obj = cls.model_validate(
+            {"name": obj.get("name"), "params": obj.get("params")}
+        )
         return _obj
-
-

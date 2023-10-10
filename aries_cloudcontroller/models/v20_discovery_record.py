@@ -30,46 +30,77 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20DiscoveryRecord(BaseModel):
     """
     V20DiscoveryRecord
     """
-    connection_id: Optional[StrictStr] = Field(default=None, description="Connection identifier")
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
+
+    connection_id: Optional[StrictStr] = Field(
+        default=None, description="Connection identifier"
+    )
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
     disclosures: Optional[Disclosures] = None
-    discovery_exchange_id: Optional[StrictStr] = Field(default=None, description="Credential exchange identifier")
+    discovery_exchange_id: Optional[StrictStr] = Field(
+        default=None, description="Credential exchange identifier"
+    )
     queries_msg: Optional[Queries] = None
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    thread_id: Optional[StrictStr] = Field(default=None, description="Thread identifier")
-    trace: Optional[StrictBool] = Field(default=None, description="Record trace information, based on agent configuration")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    __properties: ClassVar[List[str]] = ["connection_id", "created_at", "disclosures", "discovery_exchange_id", "queries_msg", "state", "thread_id", "trace", "updated_at"]
+    thread_id: Optional[StrictStr] = Field(
+        default=None, description="Thread identifier"
+    )
+    trace: Optional[StrictBool] = Field(
+        default=None,
+        description="Record trace information, based on agent configuration",
+    )
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    __properties: ClassVar[List[str]] = [
+        "connection_id",
+        "created_at",
+        "disclosures",
+        "discovery_exchange_id",
+        "queries_msg",
+        "state",
+        "thread_id",
+        "trace",
+        "updated_at",
+    ]
 
-    @field_validator('created_at')
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -86,16 +117,13 @@ class V20DiscoveryRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of disclosures
         if self.disclosures:
-            _dict['disclosures'] = self.disclosures.to_dict()
+            _dict["disclosures"] = self.disclosures.to_dict()
         # override the default output from pydantic by calling `to_dict()` of queries_msg
         if self.queries_msg:
-            _dict['queries_msg'] = self.queries_msg.to_dict()
+            _dict["queries_msg"] = self.queries_msg.to_dict()
         return _dict
 
     @classmethod
@@ -107,17 +135,21 @@ class V20DiscoveryRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "connection_id": obj.get("connection_id"),
-            "created_at": obj.get("created_at"),
-            "disclosures": Disclosures.from_dict(obj.get("disclosures")) if obj.get("disclosures") is not None else None,
-            "discovery_exchange_id": obj.get("discovery_exchange_id"),
-            "queries_msg": Queries.from_dict(obj.get("queries_msg")) if obj.get("queries_msg") is not None else None,
-            "state": obj.get("state"),
-            "thread_id": obj.get("thread_id"),
-            "trace": obj.get("trace"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "connection_id": obj.get("connection_id"),
+                "created_at": obj.get("created_at"),
+                "disclosures": Disclosures.from_dict(obj.get("disclosures"))
+                if obj.get("disclosures") is not None
+                else None,
+                "discovery_exchange_id": obj.get("discovery_exchange_id"),
+                "queries_msg": Queries.from_dict(obj.get("queries_msg"))
+                if obj.get("queries_msg") is not None
+                else None,
+                "state": obj.get("state"),
+                "thread_id": obj.get("thread_id"),
+                "trace": obj.get("trace"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

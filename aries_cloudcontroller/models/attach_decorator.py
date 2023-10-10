@@ -29,34 +29,56 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class AttachDecorator(BaseModel):
     """
     AttachDecorator
     """
-    id: Optional[StrictStr] = Field(default=None, description="Attachment identifier", alias="@id")
-    byte_count: Optional[StrictInt] = Field(default=None, description="Byte count of data included by reference")
-    data: AttachDecoratorData
-    description: Optional[StrictStr] = Field(default=None, description="Human-readable description of content")
-    filename: Optional[StrictStr] = Field(default=None, description="File name")
-    lastmod_time: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Hint regarding last modification datetime, in ISO-8601 format")
-    mime_type: Optional[StrictStr] = Field(default=None, description="MIME type", alias="mime-type")
-    __properties: ClassVar[List[str]] = ["@id", "byte_count", "data", "description", "filename", "lastmod_time", "mime-type"]
 
-    @field_validator('lastmod_time')
+    id: Optional[StrictStr] = Field(
+        default=None, description="Attachment identifier", alias="@id"
+    )
+    byte_count: Optional[StrictInt] = Field(
+        default=None, description="Byte count of data included by reference"
+    )
+    data: AttachDecoratorData
+    description: Optional[StrictStr] = Field(
+        default=None, description="Human-readable description of content"
+    )
+    filename: Optional[StrictStr] = Field(default=None, description="File name")
+    lastmod_time: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description="Hint regarding last modification datetime, in ISO-8601 format",
+    )
+    mime_type: Optional[StrictStr] = Field(
+        default=None, description="MIME type", alias="mime-type"
+    )
+    __properties: ClassVar[List[str]] = [
+        "@id",
+        "byte_count",
+        "data",
+        "description",
+        "filename",
+        "lastmod_time",
+        "mime-type",
+    ]
+
+    @field_validator("lastmod_time")
     def lastmod_time_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -73,13 +95,10 @@ class AttachDecorator(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of data
         if self.data:
-            _dict['data'] = self.data.to_dict()
+            _dict["data"] = self.data.to_dict()
         return _dict
 
     @classmethod
@@ -91,15 +110,17 @@ class AttachDecorator(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "byte_count": obj.get("byte_count"),
-            "data": AttachDecoratorData.from_dict(obj.get("data")) if obj.get("data") is not None else None,
-            "description": obj.get("description"),
-            "filename": obj.get("filename"),
-            "lastmod_time": obj.get("lastmod_time"),
-            "mime-type": obj.get("mime-type")
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "byte_count": obj.get("byte_count"),
+                "data": AttachDecoratorData.from_dict(obj.get("data"))
+                if obj.get("data") is not None
+                else None,
+                "description": obj.get("description"),
+                "filename": obj.get("filename"),
+                "lastmod_time": obj.get("lastmod_time"),
+                "mime-type": obj.get("mime-type"),
+            }
+        )
         return _obj
-
-

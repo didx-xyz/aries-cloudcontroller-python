@@ -26,22 +26,26 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class SignatureOptions(BaseModel):
     """
     SignatureOptions
     """
+
     challenge: Optional[StrictStr] = None
     domain: Optional[StrictStr] = None
     proof_purpose: StrictStr = Field(alias="proofPurpose")
     type: Optional[StrictStr] = None
     verification_method: StrictStr = Field(alias="verificationMethod")
-    __properties: ClassVar[List[str]] = ["challenge", "domain", "proofPurpose", "type", "verificationMethod"]
+    __properties: ClassVar[List[str]] = [
+        "challenge",
+        "domain",
+        "proofPurpose",
+        "type",
+        "verificationMethod",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,10 +62,7 @@ class SignatureOptions(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -73,13 +74,13 @@ class SignatureOptions(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "challenge": obj.get("challenge"),
-            "domain": obj.get("domain"),
-            "proofPurpose": obj.get("proofPurpose"),
-            "type": obj.get("type"),
-            "verificationMethod": obj.get("verificationMethod")
-        })
+        _obj = cls.model_validate(
+            {
+                "challenge": obj.get("challenge"),
+                "domain": obj.get("domain"),
+                "proofPurpose": obj.get("proofPurpose"),
+                "type": obj.get("type"),
+                "verificationMethod": obj.get("verificationMethod"),
+            }
+        )
         return _obj
-
-

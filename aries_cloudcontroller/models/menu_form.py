@@ -28,21 +28,32 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class MenuForm(BaseModel):
     """
     MenuForm
     """
-    description: Optional[StrictStr] = Field(default=None, description="Additional descriptive text for menu form")
-    params: Optional[List[MenuFormParam]] = Field(default=None, description="List of form parameters")
-    submit_label: Optional[StrictStr] = Field(default=None, description="Alternative label for form submit button", alias="submit-label")
+
+    description: Optional[StrictStr] = Field(
+        default=None, description="Additional descriptive text for menu form"
+    )
+    params: Optional[List[MenuFormParam]] = Field(
+        default=None, description="List of form parameters"
+    )
+    submit_label: Optional[StrictStr] = Field(
+        default=None,
+        description="Alternative label for form submit button",
+        alias="submit-label",
+    )
     title: Optional[StrictStr] = Field(default=None, description="Menu form title")
-    __properties: ClassVar[List[str]] = ["description", "params", "submit-label", "title"]
+    __properties: ClassVar[List[str]] = [
+        "description",
+        "params",
+        "submit-label",
+        "title",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,17 +70,14 @@ class MenuForm(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in params (list)
         _items = []
         if self.params:
             for _item in self.params:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['params'] = _items
+            _dict["params"] = _items
         return _dict
 
     @classmethod
@@ -81,12 +89,16 @@ class MenuForm(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "description": obj.get("description"),
-            "params": [MenuFormParam.from_dict(_item) for _item in obj.get("params")] if obj.get("params") is not None else None,
-            "submit-label": obj.get("submit-label"),
-            "title": obj.get("title")
-        })
+        _obj = cls.model_validate(
+            {
+                "description": obj.get("description"),
+                "params": [
+                    MenuFormParam.from_dict(_item) for _item in obj.get("params")
+                ]
+                if obj.get("params") is not None
+                else None,
+                "submit-label": obj.get("submit-label"),
+                "title": obj.get("title"),
+            }
+        )
         return _obj
-
-

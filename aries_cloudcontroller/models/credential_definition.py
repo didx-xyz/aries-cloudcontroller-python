@@ -29,29 +29,55 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CredentialDefinition(BaseModel):
     """
     CredentialDefinition
     """
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Credential definition identifier")
-    schema_id: Optional[StrictStr] = Field(default=None, description="Schema identifier within credential definition identifier", alias="schemaId")
-    tag: Optional[StrictStr] = Field(default=None, description="Tag within credential definition identifier")
-    type: Optional[Union[str, Any]] = Field(default=None, description="Signature type: CL for Camenisch-Lysyanskaya")
-    value: Optional[CredDefValue] = None
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Node protocol version")
-    __properties: ClassVar[List[str]] = ["id", "schemaId", "tag", "type", "value", "ver"]
 
-    @field_validator('id')
+    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Credential definition identifier"
+    )
+    schema_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Schema identifier within credential definition identifier",
+        alias="schemaId",
+    )
+    tag: Optional[StrictStr] = Field(
+        default=None, description="Tag within credential definition identifier"
+    )
+    type: Optional[Union[str, Any]] = Field(
+        default=None, description="Signature type: CL for Camenisch-Lysyanskaya"
+    )
+    value: Optional[CredDefValue] = None
+    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Node protocol version"
+    )
+    __properties: ClassVar[List[str]] = [
+        "id",
+        "schemaId",
+        "tag",
+        "type",
+        "value",
+        "ver",
+    ]
+
+    @field_validator("id")
     def id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    @field_validator('ver')
+    @field_validator("ver")
     def ver_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -61,11 +87,7 @@ class CredentialDefinition(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -82,13 +104,10 @@ class CredentialDefinition(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
-            _dict['value'] = self.value.to_dict()
+            _dict["value"] = self.value.to_dict()
         return _dict
 
     @classmethod
@@ -100,14 +119,16 @@ class CredentialDefinition(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "schemaId": obj.get("schemaId"),
-            "tag": obj.get("tag"),
-            "type": obj.get("type"),
-            "value": CredDefValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
-            "ver": obj.get("ver")
-        })
+        _obj = cls.model_validate(
+            {
+                "id": obj.get("id"),
+                "schemaId": obj.get("schemaId"),
+                "tag": obj.get("tag"),
+                "type": obj.get("type"),
+                "value": CredDefValue.from_dict(obj.get("value"))
+                if obj.get("value") is not None
+                else None,
+                "ver": obj.get("ver"),
+            }
+        )
         return _obj
-
-

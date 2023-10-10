@@ -28,18 +28,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V10CredentialBoundOfferRequest(BaseModel):
     """
     V10CredentialBoundOfferRequest
     """
+
     counter_proposal: Optional[CredentialProposal] = None
     __properties: ClassVar[List[str]] = ["counter_proposal"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,13 +54,10 @@ class V10CredentialBoundOfferRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of counter_proposal
         if self.counter_proposal:
-            _dict['counter_proposal'] = self.counter_proposal.to_dict()
+            _dict["counter_proposal"] = self.counter_proposal.to_dict()
         return _dict
 
     @classmethod
@@ -74,9 +69,13 @@ class V10CredentialBoundOfferRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "counter_proposal": CredentialProposal.from_dict(obj.get("counter_proposal")) if obj.get("counter_proposal") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "counter_proposal": CredentialProposal.from_dict(
+                    obj.get("counter_proposal")
+                )
+                if obj.get("counter_proposal") is not None
+                else None
+            }
+        )
         return _obj
-
-

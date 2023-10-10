@@ -29,10 +29,12 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyGEProof(BaseModel):
     """
     IndyGEProof
     """
+
     alpha: Optional[Annotated[str, Field(strict=True)]] = None
     mj: Optional[Annotated[str, Field(strict=True)]] = None
     predicate: Optional[IndyGEProofPred] = None
@@ -41,7 +43,7 @@ class IndyGEProof(BaseModel):
     u: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["alpha", "mj", "predicate", "r", "t", "u"]
 
-    @field_validator('alpha')
+    @field_validator("alpha")
     def alpha_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -51,7 +53,7 @@ class IndyGEProof(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('mj')
+    @field_validator("mj")
     def mj_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -61,11 +63,7 @@ class IndyGEProof(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -82,13 +80,10 @@ class IndyGEProof(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of predicate
         if self.predicate:
-            _dict['predicate'] = self.predicate.to_dict()
+            _dict["predicate"] = self.predicate.to_dict()
         return _dict
 
     @classmethod
@@ -100,14 +95,16 @@ class IndyGEProof(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "alpha": obj.get("alpha"),
-            "mj": obj.get("mj"),
-            "predicate": IndyGEProofPred.from_dict(obj.get("predicate")) if obj.get("predicate") is not None else None,
-            "r": obj.get("r"),
-            "t": obj.get("t"),
-            "u": obj.get("u")
-        })
+        _obj = cls.model_validate(
+            {
+                "alpha": obj.get("alpha"),
+                "mj": obj.get("mj"),
+                "predicate": IndyGEProofPred.from_dict(obj.get("predicate"))
+                if obj.get("predicate") is not None
+                else None,
+                "r": obj.get("r"),
+                "t": obj.get("t"),
+                "u": obj.get("u"),
+            }
+        )
         return _obj
-
-

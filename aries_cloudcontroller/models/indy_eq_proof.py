@@ -27,19 +27,28 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyEQProof(BaseModel):
     """
     IndyEQProof
     """
+
     a_prime: Optional[Annotated[str, Field(strict=True)]] = None
     e: Optional[Annotated[str, Field(strict=True)]] = None
     m: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
     m2: Optional[Annotated[str, Field(strict=True)]] = None
     revealed_attrs: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
     v: Optional[Annotated[str, Field(strict=True)]] = None
-    __properties: ClassVar[List[str]] = ["a_prime", "e", "m", "m2", "revealed_attrs", "v"]
+    __properties: ClassVar[List[str]] = [
+        "a_prime",
+        "e",
+        "m",
+        "m2",
+        "revealed_attrs",
+        "v",
+    ]
 
-    @field_validator('a_prime')
+    @field_validator("a_prime")
     def a_prime_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -49,7 +58,7 @@ class IndyEQProof(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('e')
+    @field_validator("e")
     def e_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -59,7 +68,7 @@ class IndyEQProof(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('m2')
+    @field_validator("m2")
     def m2_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -69,7 +78,7 @@ class IndyEQProof(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('v')
+    @field_validator("v")
     def v_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -79,11 +88,7 @@ class IndyEQProof(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -100,10 +105,7 @@ class IndyEQProof(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -115,14 +117,14 @@ class IndyEQProof(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "a_prime": obj.get("a_prime"),
-            "e": obj.get("e"),
-            "m": obj.get("m"),
-            "m2": obj.get("m2"),
-            "revealed_attrs": obj.get("revealed_attrs"),
-            "v": obj.get("v")
-        })
+        _obj = cls.model_validate(
+            {
+                "a_prime": obj.get("a_prime"),
+                "e": obj.get("e"),
+                "m": obj.get("m"),
+                "m2": obj.get("m2"),
+                "revealed_attrs": obj.get("revealed_attrs"),
+                "v": obj.get("v"),
+            }
+        )
         return _obj
-
-

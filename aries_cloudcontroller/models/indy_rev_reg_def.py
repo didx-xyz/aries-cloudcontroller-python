@@ -29,49 +29,80 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyRevRegDef(BaseModel):
     """
     IndyRevRegDef
     """
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Credential definition identifier", alias="credDefId")
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Indy revocation registry identifier")
-    revoc_def_type: Optional[StrictStr] = Field(default=None, description="Revocation registry type (specify CL_ACCUM)", alias="revocDefType")
-    tag: Optional[StrictStr] = Field(default=None, description="Revocation registry tag")
-    value: Optional[IndyRevRegDefValue] = None
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Version of revocation registry definition")
-    __properties: ClassVar[List[str]] = ["credDefId", "id", "revocDefType", "tag", "value", "ver"]
 
-    @field_validator('cred_def_id')
+    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Credential definition identifier", alias="credDefId"
+    )
+    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Indy revocation registry identifier"
+    )
+    revoc_def_type: Optional[StrictStr] = Field(
+        default=None,
+        description="Revocation registry type (specify CL_ACCUM)",
+        alias="revocDefType",
+    )
+    tag: Optional[StrictStr] = Field(
+        default=None, description="Revocation registry tag"
+    )
+    value: Optional[IndyRevRegDefValue] = None
+    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Version of revocation registry definition"
+    )
+    __properties: ClassVar[List[str]] = [
+        "credDefId",
+        "id",
+        "revocDefType",
+        "tag",
+        "value",
+        "ver",
+    ]
+
+    @field_validator("cred_def_id")
     def cred_def_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    @field_validator('id')
+    @field_validator("id")
     def id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)/"
+            )
         return value
 
-    @field_validator('revoc_def_type')
+    @field_validator("revoc_def_type")
     def revoc_def_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('CL_ACCUM'):
+        if value not in ("CL_ACCUM"):
             raise ValueError("must be one of enum values ('CL_ACCUM')")
         return value
 
-    @field_validator('ver')
+    @field_validator("ver")
     def ver_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -81,11 +112,7 @@ class IndyRevRegDef(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -102,13 +129,10 @@ class IndyRevRegDef(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
-            _dict['value'] = self.value.to_dict()
+            _dict["value"] = self.value.to_dict()
         return _dict
 
     @classmethod
@@ -120,14 +144,16 @@ class IndyRevRegDef(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "credDefId": obj.get("credDefId"),
-            "id": obj.get("id"),
-            "revocDefType": obj.get("revocDefType"),
-            "tag": obj.get("tag"),
-            "value": IndyRevRegDefValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
-            "ver": obj.get("ver")
-        })
+        _obj = cls.model_validate(
+            {
+                "credDefId": obj.get("credDefId"),
+                "id": obj.get("id"),
+                "revocDefType": obj.get("revocDefType"),
+                "tag": obj.get("tag"),
+                "value": IndyRevRegDefValue.from_dict(obj.get("value"))
+                if obj.get("value") is not None
+                else None,
+                "ver": obj.get("ver"),
+            }
+        )
         return _obj
-
-

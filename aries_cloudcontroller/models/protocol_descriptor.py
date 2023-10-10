@@ -26,19 +26,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ProtocolDescriptor(BaseModel):
     """
     ProtocolDescriptor
     """
+
     pid: StrictStr
     roles: Optional[List[StrictStr]] = Field(default=None, description="List of roles")
     __properties: ClassVar[List[str]] = ["pid", "roles"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,14 +53,11 @@ class ProtocolDescriptor(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # set to None if roles (nullable) is None
         # and model_fields_set contains the field
         if self.roles is None and "roles" in self.model_fields_set:
-            _dict['roles'] = None
+            _dict["roles"] = None
 
         return _dict
 
@@ -75,10 +70,5 @@ class ProtocolDescriptor(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "pid": obj.get("pid"),
-            "roles": obj.get("roles")
-        })
+        _obj = cls.model_validate({"pid": obj.get("pid"), "roles": obj.get("roles")})
         return _obj
-
-

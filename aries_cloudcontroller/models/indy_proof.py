@@ -32,20 +32,20 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProof(BaseModel):
     """
     IndyProof
     """
-    identifiers: Optional[List[IndyProofIdentifier]] = Field(default=None, description="Indy proof.identifiers content")
+
+    identifiers: Optional[List[IndyProofIdentifier]] = Field(
+        default=None, description="Indy proof.identifiers content"
+    )
     proof: Optional[IndyProofProof] = None
     requested_proof: Optional[IndyProofRequestedProof] = None
     __properties: ClassVar[List[str]] = ["identifiers", "proof", "requested_proof"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,23 +62,20 @@ class IndyProof(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in identifiers (list)
         _items = []
         if self.identifiers:
             for _item in self.identifiers:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['identifiers'] = _items
+            _dict["identifiers"] = _items
         # override the default output from pydantic by calling `to_dict()` of proof
         if self.proof:
-            _dict['proof'] = self.proof.to_dict()
+            _dict["proof"] = self.proof.to_dict()
         # override the default output from pydantic by calling `to_dict()` of requested_proof
         if self.requested_proof:
-            _dict['requested_proof'] = self.requested_proof.to_dict()
+            _dict["requested_proof"] = self.requested_proof.to_dict()
         return _dict
 
     @classmethod
@@ -90,11 +87,22 @@ class IndyProof(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "identifiers": [IndyProofIdentifier.from_dict(_item) for _item in obj.get("identifiers")] if obj.get("identifiers") is not None else None,
-            "proof": IndyProofProof.from_dict(obj.get("proof")) if obj.get("proof") is not None else None,
-            "requested_proof": IndyProofRequestedProof.from_dict(obj.get("requested_proof")) if obj.get("requested_proof") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "identifiers": [
+                    IndyProofIdentifier.from_dict(_item)
+                    for _item in obj.get("identifiers")
+                ]
+                if obj.get("identifiers") is not None
+                else None,
+                "proof": IndyProofProof.from_dict(obj.get("proof"))
+                if obj.get("proof") is not None
+                else None,
+                "requested_proof": IndyProofRequestedProof.from_dict(
+                    obj.get("requested_proof")
+                )
+                if obj.get("requested_proof") is not None
+                else None,
+            }
+        )
         return _obj
-
-

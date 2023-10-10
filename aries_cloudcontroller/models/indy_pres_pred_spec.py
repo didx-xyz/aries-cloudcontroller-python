@@ -27,38 +27,48 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyPresPredSpec(BaseModel):
     """
     IndyPresPredSpec
     """
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Credential definition identifier")
+
+    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Credential definition identifier"
+    )
     name: StrictStr = Field(description="Attribute name")
     predicate: StrictStr = Field(description="Predicate type ('<', '<=', '>=', or '>')")
     threshold: StrictInt = Field(description="Threshold value")
-    __properties: ClassVar[List[str]] = ["cred_def_id", "name", "predicate", "threshold"]
+    __properties: ClassVar[List[str]] = [
+        "cred_def_id",
+        "name",
+        "predicate",
+        "threshold",
+    ]
 
-    @field_validator('cred_def_id')
+    @field_validator("cred_def_id")
     def cred_def_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    @field_validator('predicate')
+    @field_validator("predicate")
     def predicate_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('<', '<=', '>=', '>'):
+        if value not in ("<", "<=", ">=", ">"):
             raise ValueError("must be one of enum values ('<', '<=', '>=', '>')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -75,10 +85,7 @@ class IndyPresPredSpec(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -90,12 +97,12 @@ class IndyPresPredSpec(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_def_id": obj.get("cred_def_id"),
-            "name": obj.get("name"),
-            "predicate": obj.get("predicate"),
-            "threshold": obj.get("threshold")
-        })
+        _obj = cls.model_validate(
+            {
+                "cred_def_id": obj.get("cred_def_id"),
+                "name": obj.get("name"),
+                "predicate": obj.get("predicate"),
+                "threshold": obj.get("threshold"),
+            }
+        )
         return _obj
-
-

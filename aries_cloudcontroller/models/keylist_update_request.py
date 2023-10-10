@@ -28,18 +28,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class KeylistUpdateRequest(BaseModel):
     """
     KeylistUpdateRequest
     """
+
     updates: Optional[List[KeylistUpdateRule]] = None
     __properties: ClassVar[List[str]] = ["updates"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,17 +54,14 @@ class KeylistUpdateRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in updates (list)
         _items = []
         if self.updates:
             for _item in self.updates:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['updates'] = _items
+            _dict["updates"] = _items
         return _dict
 
     @classmethod
@@ -78,9 +73,13 @@ class KeylistUpdateRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "updates": [KeylistUpdateRule.from_dict(_item) for _item in obj.get("updates")] if obj.get("updates") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "updates": [
+                    KeylistUpdateRule.from_dict(_item) for _item in obj.get("updates")
+                ]
+                if obj.get("updates") is not None
+                else None
+            }
+        )
         return _obj
-
-

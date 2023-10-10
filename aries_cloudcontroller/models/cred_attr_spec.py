@@ -26,20 +26,24 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CredAttrSpec(BaseModel):
     """
     CredAttrSpec
     """
-    mime_type: Optional[StrictStr] = Field(default=None, description="MIME type: omit for (null) default", alias="mime-type")
+
+    mime_type: Optional[StrictStr] = Field(
+        default=None,
+        description="MIME type: omit for (null) default",
+        alias="mime-type",
+    )
     name: StrictStr = Field(description="Attribute name")
-    value: StrictStr = Field(description="Attribute value: base64-encode if MIME type is present")
+    value: StrictStr = Field(
+        description="Attribute value: base64-encode if MIME type is present"
+    )
     __properties: ClassVar[List[str]] = ["mime-type", "name", "value"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -56,14 +60,11 @@ class CredAttrSpec(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # set to None if mime_type (nullable) is None
         # and model_fields_set contains the field
         if self.mime_type is None and "mime_type" in self.model_fields_set:
-            _dict['mime-type'] = None
+            _dict["mime-type"] = None
 
         return _dict
 
@@ -76,11 +77,11 @@ class CredAttrSpec(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "mime-type": obj.get("mime-type"),
-            "name": obj.get("name"),
-            "value": obj.get("value")
-        })
+        _obj = cls.model_validate(
+            {
+                "mime-type": obj.get("mime-type"),
+                "name": obj.get("name"),
+                "value": obj.get("value"),
+            }
+        )
         return _obj
-
-

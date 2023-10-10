@@ -27,59 +27,98 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20CredFilterIndy(BaseModel):
     """
     V20CredFilterIndy
     """
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Credential definition identifier")
-    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Credential issuer DID")
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Schema identifier")
-    schema_issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Schema issuer DID")
-    schema_name: Optional[StrictStr] = Field(default=None, description="Schema name")
-    schema_version: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Schema version")
-    __properties: ClassVar[List[str]] = ["cred_def_id", "issuer_did", "schema_id", "schema_issuer_did", "schema_name", "schema_version"]
 
-    @field_validator('cred_def_id')
+    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Credential definition identifier"
+    )
+    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Credential issuer DID"
+    )
+    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Schema identifier"
+    )
+    schema_issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Schema issuer DID"
+    )
+    schema_name: Optional[StrictStr] = Field(default=None, description="Schema name")
+    schema_version: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Schema version"
+    )
+    __properties: ClassVar[List[str]] = [
+        "cred_def_id",
+        "issuer_did",
+        "schema_id",
+        "schema_issuer_did",
+        "schema_name",
+        "schema_version",
+    ]
+
+    @field_validator("cred_def_id")
     def cred_def_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    @field_validator('issuer_did')
+    @field_validator("issuer_did")
     def issuer_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('schema_id')
+    @field_validator("schema_id")
     def schema_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/"
+            )
         return value
 
-    @field_validator('schema_issuer_did')
+    @field_validator("schema_issuer_did")
     def schema_issuer_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('schema_version')
+    @field_validator("schema_version")
     def schema_version_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -89,11 +128,7 @@ class V20CredFilterIndy(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -110,10 +145,7 @@ class V20CredFilterIndy(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -125,14 +157,14 @@ class V20CredFilterIndy(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_def_id": obj.get("cred_def_id"),
-            "issuer_did": obj.get("issuer_did"),
-            "schema_id": obj.get("schema_id"),
-            "schema_issuer_did": obj.get("schema_issuer_did"),
-            "schema_name": obj.get("schema_name"),
-            "schema_version": obj.get("schema_version")
-        })
+        _obj = cls.model_validate(
+            {
+                "cred_def_id": obj.get("cred_def_id"),
+                "issuer_did": obj.get("issuer_did"),
+                "schema_id": obj.get("schema_id"),
+                "schema_issuer_did": obj.get("schema_issuer_did"),
+                "schema_name": obj.get("schema_name"),
+                "schema_version": obj.get("schema_version"),
+            }
+        )
         return _obj
-
-

@@ -27,15 +27,19 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class RawEncoded(BaseModel):
     """
     RawEncoded
     """
-    encoded: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Encoded value")
+
+    encoded: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Encoded value"
+    )
     raw: Optional[StrictStr] = Field(default=None, description="Raw value")
     __properties: ClassVar[List[str]] = ["encoded", "raw"]
 
-    @field_validator('encoded')
+    @field_validator("encoded")
     def encoded_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -45,11 +49,7 @@ class RawEncoded(BaseModel):
             raise ValueError(r"must validate the regular expression /^-?[0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -66,10 +66,7 @@ class RawEncoded(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -81,10 +78,7 @@ class RawEncoded(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "encoded": obj.get("encoded"),
-            "raw": obj.get("raw")
-        })
+        _obj = cls.model_validate(
+            {"encoded": obj.get("encoded"), "raw": obj.get("raw")}
+        )
         return _obj
-
-

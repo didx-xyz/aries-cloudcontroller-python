@@ -30,22 +30,33 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20PresProposalRequest(BaseModel):
     """
     V20PresProposalRequest
     """
-    auto_present: Optional[StrictBool] = Field(default=None, description="Whether to respond automatically to presentation requests, building and presenting requested proof")
-    comment: Optional[StrictStr] = Field(default=None, description="Human-readable comment")
+
+    auto_present: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to respond automatically to presentation requests, building and presenting requested proof",
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Human-readable comment"
+    )
     connection_id: StrictStr = Field(description="Connection identifier")
     presentation_proposal: V20PresProposalByFormat
-    trace: Optional[StrictBool] = Field(default=None, description="Whether to trace event (default false)")
-    __properties: ClassVar[List[str]] = ["auto_present", "comment", "connection_id", "presentation_proposal", "trace"]
+    trace: Optional[StrictBool] = Field(
+        default=None, description="Whether to trace event (default false)"
+    )
+    __properties: ClassVar[List[str]] = [
+        "auto_present",
+        "comment",
+        "connection_id",
+        "presentation_proposal",
+        "trace",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,17 +73,14 @@ class V20PresProposalRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of presentation_proposal
         if self.presentation_proposal:
-            _dict['presentation_proposal'] = self.presentation_proposal.to_dict()
+            _dict["presentation_proposal"] = self.presentation_proposal.to_dict()
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
         if self.comment is None and "comment" in self.model_fields_set:
-            _dict['comment'] = None
+            _dict["comment"] = None
 
         return _dict
 
@@ -85,13 +93,17 @@ class V20PresProposalRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "auto_present": obj.get("auto_present"),
-            "comment": obj.get("comment"),
-            "connection_id": obj.get("connection_id"),
-            "presentation_proposal": V20PresProposalByFormat.from_dict(obj.get("presentation_proposal")) if obj.get("presentation_proposal") is not None else None,
-            "trace": obj.get("trace")
-        })
+        _obj = cls.model_validate(
+            {
+                "auto_present": obj.get("auto_present"),
+                "comment": obj.get("comment"),
+                "connection_id": obj.get("connection_id"),
+                "presentation_proposal": V20PresProposalByFormat.from_dict(
+                    obj.get("presentation_proposal")
+                )
+                if obj.get("presentation_proposal") is not None
+                else None,
+                "trace": obj.get("trace"),
+            }
+        )
         return _obj
-
-

@@ -30,66 +30,110 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class OobRecord(BaseModel):
     """
     OobRecord
     """
-    attach_thread_id: Optional[StrictStr] = Field(default=None, description="Connection record identifier")
-    connection_id: Optional[StrictStr] = Field(default=None, description="Connection record identifier")
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
+
+    attach_thread_id: Optional[StrictStr] = Field(
+        default=None, description="Connection record identifier"
+    )
+    connection_id: Optional[StrictStr] = Field(
+        default=None, description="Connection record identifier"
+    )
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
     invi_msg_id: StrictStr = Field(description="Invitation message identifier")
     invitation: InvitationMessage
     oob_id: StrictStr = Field(description="Oob record identifier")
-    our_recipient_key: Optional[StrictStr] = Field(default=None, description="Recipient key used for oob invitation")
+    our_recipient_key: Optional[StrictStr] = Field(
+        default=None, description="Recipient key used for oob invitation"
+    )
     role: Optional[StrictStr] = Field(default=None, description="OOB Role")
     state: StrictStr = Field(description="Out of band message exchange state")
     their_service: Optional[ServiceDecorator] = None
-    trace: Optional[StrictBool] = Field(default=None, description="Record trace information, based on agent configuration")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    __properties: ClassVar[List[str]] = ["attach_thread_id", "connection_id", "created_at", "invi_msg_id", "invitation", "oob_id", "our_recipient_key", "role", "state", "their_service", "trace", "updated_at"]
+    trace: Optional[StrictBool] = Field(
+        default=None,
+        description="Record trace information, based on agent configuration",
+    )
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    __properties: ClassVar[List[str]] = [
+        "attach_thread_id",
+        "connection_id",
+        "created_at",
+        "invi_msg_id",
+        "invitation",
+        "oob_id",
+        "our_recipient_key",
+        "role",
+        "state",
+        "their_service",
+        "trace",
+        "updated_at",
+    ]
 
-    @field_validator('created_at')
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('role')
+    @field_validator("role")
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('sender', 'receiver'):
+        if value not in ("sender", "receiver"):
             raise ValueError("must be one of enum values ('sender', 'receiver')")
         return value
 
-    @field_validator('state')
+    @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('initial', 'prepare-response', 'await-response', 'reuse-not-accepted', 'reuse-accepted', 'done', 'deleted'):
-            raise ValueError("must be one of enum values ('initial', 'prepare-response', 'await-response', 'reuse-not-accepted', 'reuse-accepted', 'done', 'deleted')")
+        if value not in (
+            "initial",
+            "prepare-response",
+            "await-response",
+            "reuse-not-accepted",
+            "reuse-accepted",
+            "done",
+            "deleted",
+        ):
+            raise ValueError(
+                "must be one of enum values ('initial', 'prepare-response', 'await-response', 'reuse-not-accepted', 'reuse-accepted', 'done', 'deleted')"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -106,16 +150,13 @@ class OobRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of invitation
         if self.invitation:
-            _dict['invitation'] = self.invitation.to_dict()
+            _dict["invitation"] = self.invitation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of their_service
         if self.their_service:
-            _dict['their_service'] = self.their_service.to_dict()
+            _dict["their_service"] = self.their_service.to_dict()
         return _dict
 
     @classmethod
@@ -127,20 +168,24 @@ class OobRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "attach_thread_id": obj.get("attach_thread_id"),
-            "connection_id": obj.get("connection_id"),
-            "created_at": obj.get("created_at"),
-            "invi_msg_id": obj.get("invi_msg_id"),
-            "invitation": InvitationMessage.from_dict(obj.get("invitation")) if obj.get("invitation") is not None else None,
-            "oob_id": obj.get("oob_id"),
-            "our_recipient_key": obj.get("our_recipient_key"),
-            "role": obj.get("role"),
-            "state": obj.get("state"),
-            "their_service": ServiceDecorator.from_dict(obj.get("their_service")) if obj.get("their_service") is not None else None,
-            "trace": obj.get("trace"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "attach_thread_id": obj.get("attach_thread_id"),
+                "connection_id": obj.get("connection_id"),
+                "created_at": obj.get("created_at"),
+                "invi_msg_id": obj.get("invi_msg_id"),
+                "invitation": InvitationMessage.from_dict(obj.get("invitation"))
+                if obj.get("invitation") is not None
+                else None,
+                "oob_id": obj.get("oob_id"),
+                "our_recipient_key": obj.get("our_recipient_key"),
+                "role": obj.get("role"),
+                "state": obj.get("state"),
+                "their_service": ServiceDecorator.from_dict(obj.get("their_service"))
+                if obj.get("their_service") is not None
+                else None,
+                "trace": obj.get("trace"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

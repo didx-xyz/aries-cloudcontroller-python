@@ -26,29 +26,29 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class AttachmentDef(BaseModel):
     """
     AttachmentDef
     """
+
     id: Optional[StrictStr] = Field(default=None, description="Attachment identifier")
     type: Optional[StrictStr] = Field(default=None, description="Attachment type")
     __properties: ClassVar[List[str]] = ["id", "type"]
 
-    @field_validator('type')
+    @field_validator("type")
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('credential-offer', 'present-proof'):
-            raise ValueError("must be one of enum values ('credential-offer', 'present-proof')")
+        if value not in ("credential-offer", "present-proof"):
+            raise ValueError(
+                "must be one of enum values ('credential-offer', 'present-proof')"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,10 +65,7 @@ class AttachmentDef(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -80,10 +77,5 @@ class AttachmentDef(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "type": obj.get("type")
-        })
+        _obj = cls.model_validate({"id": obj.get("id"), "type": obj.get("type")})
         return _obj
-
-

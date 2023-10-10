@@ -29,30 +29,53 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V10CredentialConnFreeOfferRequest(BaseModel):
     """
     V10CredentialConnFreeOfferRequest
     """
-    auto_issue: Optional[StrictBool] = Field(default=None, description="Whether to respond automatically to credential requests, creating and issuing requested credentials")
-    auto_remove: Optional[StrictBool] = Field(default=None, description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)")
-    comment: Optional[StrictStr] = Field(default=None, description="Human-readable comment")
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(description="Credential definition identifier")
-    credential_preview: CredentialPreview
-    trace: Optional[StrictBool] = Field(default=None, description="Record trace information, based on agent configuration")
-    __properties: ClassVar[List[str]] = ["auto_issue", "auto_remove", "comment", "cred_def_id", "credential_preview", "trace"]
 
-    @field_validator('cred_def_id')
+    auto_issue: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to respond automatically to credential requests, creating and issuing requested credentials",
+    )
+    auto_remove: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Human-readable comment"
+    )
+    cred_def_id: Annotated[str, Field(strict=True)] = Field(
+        description="Credential definition identifier"
+    )
+    credential_preview: CredentialPreview
+    trace: Optional[StrictBool] = Field(
+        default=None,
+        description="Record trace information, based on agent configuration",
+    )
+    __properties: ClassVar[List[str]] = [
+        "auto_issue",
+        "auto_remove",
+        "comment",
+        "cred_def_id",
+        "credential_preview",
+        "trace",
+    ]
+
+    @field_validator("cred_def_id")
     def cred_def_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -69,17 +92,14 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of credential_preview
         if self.credential_preview:
-            _dict['credential_preview'] = self.credential_preview.to_dict()
+            _dict["credential_preview"] = self.credential_preview.to_dict()
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
         if self.comment is None and "comment" in self.model_fields_set:
-            _dict['comment'] = None
+            _dict["comment"] = None
 
         return _dict
 
@@ -92,14 +112,18 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "auto_issue": obj.get("auto_issue"),
-            "auto_remove": obj.get("auto_remove"),
-            "comment": obj.get("comment"),
-            "cred_def_id": obj.get("cred_def_id"),
-            "credential_preview": CredentialPreview.from_dict(obj.get("credential_preview")) if obj.get("credential_preview") is not None else None,
-            "trace": obj.get("trace")
-        })
+        _obj = cls.model_validate(
+            {
+                "auto_issue": obj.get("auto_issue"),
+                "auto_remove": obj.get("auto_remove"),
+                "comment": obj.get("comment"),
+                "cred_def_id": obj.get("cred_def_id"),
+                "credential_preview": CredentialPreview.from_dict(
+                    obj.get("credential_preview")
+                )
+                if obj.get("credential_preview") is not None
+                else None,
+                "trace": obj.get("trace"),
+            }
+        )
         return _obj
-
-

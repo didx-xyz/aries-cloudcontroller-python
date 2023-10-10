@@ -27,34 +27,36 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyKeyCorrectnessProof(BaseModel):
     """
     IndyKeyCorrectnessProof
     """
-    c: Annotated[str, Field(strict=True)] = Field(description="c in key correctness proof")
+
+    c: Annotated[str, Field(strict=True)] = Field(
+        description="c in key correctness proof"
+    )
     xr_cap: List[List[StrictStr]] = Field(description="xr_cap in key correctness proof")
-    xz_cap: Annotated[str, Field(strict=True)] = Field(description="xz_cap in key correctness proof")
+    xz_cap: Annotated[str, Field(strict=True)] = Field(
+        description="xz_cap in key correctness proof"
+    )
     __properties: ClassVar[List[str]] = ["c", "xr_cap", "xz_cap"]
 
-    @field_validator('c')
+    @field_validator("c")
     def c_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^[0-9]*$", value):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('xz_cap')
+    @field_validator("xz_cap")
     def xz_cap_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^[0-9]*$", value):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -71,10 +73,7 @@ class IndyKeyCorrectnessProof(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -86,11 +85,11 @@ class IndyKeyCorrectnessProof(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "c": obj.get("c"),
-            "xr_cap": obj.get("xr_cap"),
-            "xz_cap": obj.get("xz_cap")
-        })
+        _obj = cls.model_validate(
+            {
+                "c": obj.get("c"),
+                "xr_cap": obj.get("xr_cap"),
+                "xz_cap": obj.get("xz_cap"),
+            }
+        )
         return _obj
-
-

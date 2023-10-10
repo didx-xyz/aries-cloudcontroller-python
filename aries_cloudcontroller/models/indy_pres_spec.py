@@ -33,21 +33,32 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyPresSpec(BaseModel):
     """
     IndyPresSpec
     """
-    requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = Field(description="Nested object mapping proof request attribute referents to requested-attribute specifiers")
-    requested_predicates: Dict[str, IndyRequestedCredsRequestedPred] = Field(description="Nested object mapping proof request predicate referents to requested-predicate specifiers")
-    self_attested_attributes: Dict[str, StrictStr] = Field(description="Self-attested attributes to build into proof")
-    trace: Optional[StrictBool] = Field(default=None, description="Whether to trace event (default false)")
-    __properties: ClassVar[List[str]] = ["requested_attributes", "requested_predicates", "self_attested_attributes", "trace"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = Field(
+        description="Nested object mapping proof request attribute referents to requested-attribute specifiers"
+    )
+    requested_predicates: Dict[str, IndyRequestedCredsRequestedPred] = Field(
+        description="Nested object mapping proof request predicate referents to requested-predicate specifiers"
+    )
+    self_attested_attributes: Dict[str, StrictStr] = Field(
+        description="Self-attested attributes to build into proof"
+    )
+    trace: Optional[StrictBool] = Field(
+        default=None, description="Whether to trace event (default false)"
+    )
+    __properties: ClassVar[List[str]] = [
+        "requested_attributes",
+        "requested_predicates",
+        "self_attested_attributes",
+        "trace",
+    ]
 
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -64,24 +75,21 @@ class IndyPresSpec(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each value in requested_attributes (dict)
         _field_dict = {}
         if self.requested_attributes:
             for _key in self.requested_attributes:
                 if self.requested_attributes[_key]:
                     _field_dict[_key] = self.requested_attributes[_key].to_dict()
-            _dict['requested_attributes'] = _field_dict
+            _dict["requested_attributes"] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in requested_predicates (dict)
         _field_dict = {}
         if self.requested_predicates:
             for _key in self.requested_predicates:
                 if self.requested_predicates[_key]:
                     _field_dict[_key] = self.requested_predicates[_key].to_dict()
-            _dict['requested_predicates'] = _field_dict
+            _dict["requested_predicates"] = _field_dict
         return _dict
 
     @classmethod
@@ -93,22 +101,22 @@ class IndyPresSpec(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "requested_attributes": dict(
-                (_k, IndyRequestedCredsRequestedAttr.from_dict(_v))
-                for _k, _v in obj.get("requested_attributes").items()
-            )
-            if obj.get("requested_attributes") is not None
-            else None,
-            "requested_predicates": dict(
-                (_k, IndyRequestedCredsRequestedPred.from_dict(_v))
-                for _k, _v in obj.get("requested_predicates").items()
-            )
-            if obj.get("requested_predicates") is not None
-            else None,
-            "self_attested_attributes": obj.get("self_attested_attributes"),
-            "trace": obj.get("trace")
-        })
+        _obj = cls.model_validate(
+            {
+                "requested_attributes": dict(
+                    (_k, IndyRequestedCredsRequestedAttr.from_dict(_v))
+                    for _k, _v in obj.get("requested_attributes").items()
+                )
+                if obj.get("requested_attributes") is not None
+                else None,
+                "requested_predicates": dict(
+                    (_k, IndyRequestedCredsRequestedPred.from_dict(_v))
+                    for _k, _v in obj.get("requested_predicates").items()
+                )
+                if obj.get("requested_predicates") is not None
+                else None,
+                "self_attested_attributes": obj.get("self_attested_attributes"),
+                "trace": obj.get("trace"),
+            }
+        )
         return _obj
-
-

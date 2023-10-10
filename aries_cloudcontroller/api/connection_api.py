@@ -66,9 +66,17 @@ class ConnectionApi:
     def accept_invitation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
-        my_label: Annotated[Optional[StrictStr], Field(description="Label for connection")] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
+        my_label: Annotated[
+            Optional[StrictStr], Field(description="Label for connection")
+        ] = None,
         **kwargs,
     ) -> ConnRecord:
         """Accept a stored connection invitation  # noqa: E501
@@ -98,19 +106,29 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the accept_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_invitation_with_http_info(conn_id, mediation_id, my_endpoint, my_label, **kwargs)  # noqa: E501
+        return self.accept_invitation_with_http_info(
+            conn_id, mediation_id, my_endpoint, my_label, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def accept_invitation_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
-        my_label: Annotated[Optional[StrictStr], Field(description="Label for connection")] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
+        my_label: Annotated[
+            Optional[StrictStr], Field(description="Label for connection")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Accept a stored connection invitation  # noqa: E501
@@ -156,73 +174,69 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'mediation_id',
-            'my_endpoint',
-            'my_label'
-        ]
+        _all_params = ["conn_id", "mediation_id", "my_endpoint", "my_label"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method accept_invitation" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('mediation_id') is not None:  # noqa: E501
-            _query_params.append(('mediation_id', _params['mediation_id']))
+        if _params.get("mediation_id") is not None:  # noqa: E501
+            _query_params.append(("mediation_id", _params["mediation_id"]))
 
-        if _params.get('my_endpoint') is not None:  # noqa: E501
-            _query_params.append(('my_endpoint', _params['my_endpoint']))
+        if _params.get("my_endpoint") is not None:  # noqa: E501
+            _query_params.append(("my_endpoint", _params["my_endpoint"]))
 
-        if _params.get('my_label') is not None:  # noqa: E501
-            _query_params.append(('my_label', _params['my_label']))
+        if _params.get("my_label") is not None:  # noqa: E501
+            _query_params.append(("my_label", _params["my_label"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}/accept-invitation', 'POST',
+            "/connections/{conn_id}/accept-invitation",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -231,18 +245,22 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def accept_request(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
         **kwargs,
     ) -> ConnRecord:
         """Accept a stored connection request  # noqa: E501
@@ -268,17 +286,22 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the accept_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_request_with_http_info(conn_id, my_endpoint, **kwargs)  # noqa: E501
+        return self.accept_request_with_http_info(
+            conn_id, my_endpoint, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def accept_request_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        my_endpoint: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My URL endpoint")] = None,
+        my_endpoint: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="My URL endpoint"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Accept a stored connection request  # noqa: E501
@@ -320,65 +343,63 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'my_endpoint'
-        ]
+        _all_params = ["conn_id", "my_endpoint"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method accept_request" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('my_endpoint') is not None:  # noqa: E501
-            _query_params.append(('my_endpoint', _params['my_endpoint']))
+        if _params.get("my_endpoint") is not None:  # noqa: E501
+            _query_params.append(("my_endpoint", _params["my_endpoint"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}/accept-request', 'POST',
+            "/connections/{conn_id}/accept-request",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -387,20 +408,30 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def create_invitation(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
-        auto_accept: Annotated[Optional[StrictBool], Field(description="Auto-accept connection (defaults to configuration)")] = None,
-        multi_use: Annotated[Optional[StrictBool], Field(description="Create invitation for multiple use (default false)")] = None,
-        public: Annotated[Optional[StrictBool], Field(description="Create invitation from public DID (default false)")] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        multi_use: Annotated[
+            Optional[StrictBool],
+            Field(description="Create invitation for multiple use (default false)"),
+        ] = None,
+        public: Annotated[
+            Optional[StrictBool],
+            Field(description="Create invitation from public DID (default false)"),
+        ] = None,
         body: Optional[CreateInvitationRequest] = None,
         **kwargs,
     ) -> InvitationResult:
@@ -433,19 +464,30 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: InvitationResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the create_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_invitation_with_http_info(alias, auto_accept, multi_use, public, body, **kwargs)  # noqa: E501
+        return self.create_invitation_with_http_info(
+            alias, auto_accept, multi_use, public, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def create_invitation_with_http_info(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
-        auto_accept: Annotated[Optional[StrictBool], Field(description="Auto-accept connection (defaults to configuration)")] = None,
-        multi_use: Annotated[Optional[StrictBool], Field(description="Create invitation for multiple use (default false)")] = None,
-        public: Annotated[Optional[StrictBool], Field(description="Create invitation from public DID (default false)")] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        multi_use: Annotated[
+            Optional[StrictBool],
+            Field(description="Create invitation for multiple use (default false)"),
+        ] = None,
+        public: Annotated[
+            Optional[StrictBool],
+            Field(description="Create invitation from public DID (default false)"),
+        ] = None,
         body: Optional[CreateInvitationRequest] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -494,34 +536,28 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'alias',
-            'auto_accept',
-            'multi_use',
-            'public',
-            'body'
-        ]
+        _all_params = ["alias", "auto_accept", "multi_use", "public", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_invitation" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -530,48 +566,51 @@ class ConnectionApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('alias') is not None:  # noqa: E501
-            _query_params.append(('alias', _params['alias']))
+        if _params.get("alias") is not None:  # noqa: E501
+            _query_params.append(("alias", _params["alias"]))
 
-        if _params.get('auto_accept') is not None:  # noqa: E501
-            _query_params.append(('auto_accept', _params['auto_accept']))
+        if _params.get("auto_accept") is not None:  # noqa: E501
+            _query_params.append(("auto_accept", _params["auto_accept"]))
 
-        if _params.get('multi_use') is not None:  # noqa: E501
-            _query_params.append(('multi_use', _params['multi_use']))
+        if _params.get("multi_use") is not None:  # noqa: E501
+            _query_params.append(("multi_use", _params["multi_use"]))
 
-        if _params.get('public') is not None:  # noqa: E501
-            _query_params.append(('public', _params['public']))
+        if _params.get("public") is not None:  # noqa: E501
+            _query_params.append(("public", _params["public"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InvitationResult",
+            "200": "InvitationResult",
         }
 
         return self.api_client.call_api(
-            '/connections/create-invitation', 'POST',
+            "/connections/create-invitation",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -580,12 +619,13 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def create_static_connection(
@@ -614,11 +654,13 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnectionStaticResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the create_static_connection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_static_connection_with_http_info(body, **kwargs)  # noqa: E501
+        return self.create_static_connection_with_http_info(
+            body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def create_static_connection_with_http_info(
@@ -663,30 +705,28 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_static_connection" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -696,35 +736,38 @@ class ConnectionApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnectionStaticResult",
+            "200": "ConnectionStaticResult",
         }
 
         return self.api_client.call_api(
-            '/connections/create-static', 'POST',
+            "/connections/create-static",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -733,12 +776,13 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def delete_connection(
@@ -767,8 +811,8 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the delete_connection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.delete_connection_with_http_info(conn_id, **kwargs)  # noqa: E501
@@ -816,61 +860,60 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id'
-        ]
+        _all_params = ["conn_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_connection" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}', 'DELETE',
+            "/connections/{conn_id}",
+            "DELETE",
             _path_params,
             _query_params,
             _header_params,
@@ -879,18 +922,21 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def establish_inbound(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        ref_id: Annotated[StrictStr, Field(description="Inbound connection identifier")],
+        ref_id: Annotated[
+            StrictStr, Field(description="Inbound connection identifier")
+        ],
         **kwargs,
     ) -> object:
         """Assign another connection as the inbound connection  # noqa: E501
@@ -916,17 +962,21 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the establish_inbound_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.establish_inbound_with_http_info(conn_id, ref_id, **kwargs)  # noqa: E501
+        return self.establish_inbound_with_http_info(
+            conn_id, ref_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def establish_inbound_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        ref_id: Annotated[StrictStr, Field(description="Inbound connection identifier")],
+        ref_id: Annotated[
+            StrictStr, Field(description="Inbound connection identifier")
+        ],
         **kwargs,
     ) -> ApiResponse:
         """Assign another connection as the inbound connection  # noqa: E501
@@ -968,65 +1018,63 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'ref_id'
-        ]
+        _all_params = ["conn_id", "ref_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method establish_inbound" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
-        if _params['ref_id'] is not None:
-            _path_params['ref_id'] = _params['ref_id']
-
+        if _params["ref_id"] is not None:
+            _path_params["ref_id"] = _params["ref_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}/establish-inbound/{ref_id}', 'POST',
+            "/connections/{conn_id}/establish-inbound/{ref_id}",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1035,12 +1083,13 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_connection(
@@ -1069,8 +1118,8 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_connection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_connection_with_http_info(conn_id, **kwargs)  # noqa: E501
@@ -1118,61 +1167,60 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id'
-        ]
+        _all_params = ["conn_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_connection" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}', 'GET',
+            "/connections/{conn_id}",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1181,12 +1229,13 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_connection_endpoint(
@@ -1215,11 +1264,13 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: EndpointsResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_connection_endpoint_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_connection_endpoint_with_http_info(conn_id, **kwargs)  # noqa: E501
+        return self.get_connection_endpoint_with_http_info(
+            conn_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_connection_endpoint_with_http_info(
@@ -1264,61 +1315,60 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id'
-        ]
+        _all_params = ["conn_id"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_connection_endpoint" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "EndpointsResult",
+            "200": "EndpointsResult",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}/endpoints', 'GET',
+            "/connections/{conn_id}/endpoints",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1327,25 +1377,46 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_connections(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
-        connection_protocol: Annotated[Optional[StrictStr], Field(description="Connection protocol used")] = None,
-        invitation_key: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="invitation key")] = None,
-        invitation_msg_id: Annotated[Optional[StrictStr], Field(description="Identifier of the associated Invitation Mesage")] = None,
-        my_did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Connection state")] = None,
-        their_did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Their DID")] = None,
-        their_public_did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Their Public DID")] = None,
-        their_role: Annotated[Optional[StrictStr], Field(description="Their role in the connection protocol")] = None,
+        connection_protocol: Annotated[
+            Optional[StrictStr], Field(description="Connection protocol used")
+        ] = None,
+        invitation_key: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="invitation key"),
+        ] = None,
+        invitation_msg_id: Annotated[
+            Optional[StrictStr],
+            Field(description="Identifier of the associated Invitation Mesage"),
+        ] = None,
+        my_did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Connection state")
+        ] = None,
+        their_did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]], Field(description="Their DID")
+        ] = None,
+        their_public_did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Their Public DID"),
+        ] = None,
+        their_role: Annotated[
+            Optional[StrictStr],
+            Field(description="Their role in the connection protocol"),
+        ] = None,
         **kwargs,
     ) -> ConnectionList:
         """Query agent-to-agent connections  # noqa: E501
@@ -1385,24 +1456,55 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnectionList
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_connections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_connections_with_http_info(alias, connection_protocol, invitation_key, invitation_msg_id, my_did, state, their_did, their_public_did, their_role, **kwargs)  # noqa: E501
+        return self.get_connections_with_http_info(
+            alias,
+            connection_protocol,
+            invitation_key,
+            invitation_msg_id,
+            my_did,
+            state,
+            their_did,
+            their_public_did,
+            their_role,
+            **kwargs,
+        )  # noqa: E501
 
     @validate_call
     def get_connections_with_http_info(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
-        connection_protocol: Annotated[Optional[StrictStr], Field(description="Connection protocol used")] = None,
-        invitation_key: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="invitation key")] = None,
-        invitation_msg_id: Annotated[Optional[StrictStr], Field(description="Identifier of the associated Invitation Mesage")] = None,
-        my_did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Connection state")] = None,
-        their_did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Their DID")] = None,
-        their_public_did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Their Public DID")] = None,
-        their_role: Annotated[Optional[StrictStr], Field(description="Their role in the connection protocol")] = None,
+        connection_protocol: Annotated[
+            Optional[StrictStr], Field(description="Connection protocol used")
+        ] = None,
+        invitation_key: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="invitation key"),
+        ] = None,
+        invitation_msg_id: Annotated[
+            Optional[StrictStr],
+            Field(description="Identifier of the associated Invitation Mesage"),
+        ] = None,
+        my_did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Connection state")
+        ] = None,
+        their_did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]], Field(description="Their DID")
+        ] = None,
+        their_public_did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Their Public DID"),
+        ] = None,
+        their_role: Annotated[
+            Optional[StrictStr],
+            Field(description="Their role in the connection protocol"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Query agent-to-agent connections  # noqa: E501
@@ -1459,37 +1561,37 @@ class ConnectionApi:
         _params = locals()
 
         _all_params = [
-            'alias',
-            'connection_protocol',
-            'invitation_key',
-            'invitation_msg_id',
-            'my_did',
-            'state',
-            'their_did',
-            'their_public_did',
-            'their_role'
+            "alias",
+            "connection_protocol",
+            "invitation_key",
+            "invitation_msg_id",
+            "my_did",
+            "state",
+            "their_did",
+            "their_public_did",
+            "their_role",
         ]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_connections" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1498,53 +1600,57 @@ class ConnectionApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('alias') is not None:  # noqa: E501
-            _query_params.append(('alias', _params['alias']))
+        if _params.get("alias") is not None:  # noqa: E501
+            _query_params.append(("alias", _params["alias"]))
 
-        if _params.get('connection_protocol') is not None:  # noqa: E501
-            _query_params.append(('connection_protocol', _params['connection_protocol']))
+        if _params.get("connection_protocol") is not None:  # noqa: E501
+            _query_params.append(
+                ("connection_protocol", _params["connection_protocol"])
+            )
 
-        if _params.get('invitation_key') is not None:  # noqa: E501
-            _query_params.append(('invitation_key', _params['invitation_key']))
+        if _params.get("invitation_key") is not None:  # noqa: E501
+            _query_params.append(("invitation_key", _params["invitation_key"]))
 
-        if _params.get('invitation_msg_id') is not None:  # noqa: E501
-            _query_params.append(('invitation_msg_id', _params['invitation_msg_id']))
+        if _params.get("invitation_msg_id") is not None:  # noqa: E501
+            _query_params.append(("invitation_msg_id", _params["invitation_msg_id"]))
 
-        if _params.get('my_did') is not None:  # noqa: E501
-            _query_params.append(('my_did', _params['my_did']))
+        if _params.get("my_did") is not None:  # noqa: E501
+            _query_params.append(("my_did", _params["my_did"]))
 
-        if _params.get('state') is not None:  # noqa: E501
-            _query_params.append(('state', _params['state']))
+        if _params.get("state") is not None:  # noqa: E501
+            _query_params.append(("state", _params["state"]))
 
-        if _params.get('their_did') is not None:  # noqa: E501
-            _query_params.append(('their_did', _params['their_did']))
+        if _params.get("their_did") is not None:  # noqa: E501
+            _query_params.append(("their_did", _params["their_did"]))
 
-        if _params.get('their_public_did') is not None:  # noqa: E501
-            _query_params.append(('their_public_did', _params['their_public_did']))
+        if _params.get("their_public_did") is not None:  # noqa: E501
+            _query_params.append(("their_public_did", _params["their_public_did"]))
 
-        if _params.get('their_role') is not None:  # noqa: E501
-            _query_params.append(('their_role', _params['their_role']))
+        if _params.get("their_role") is not None:  # noqa: E501
+            _query_params.append(("their_role", _params["their_role"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnectionList",
+            "200": "ConnectionList",
         }
 
         return self.api_client.call_api(
-            '/connections', 'GET',
+            "/connections",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1553,18 +1659,21 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_metadata(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        key: Annotated[Optional[StrictStr], Field(description="Key to retrieve.")] = None,
+        key: Annotated[
+            Optional[StrictStr], Field(description="Key to retrieve.")
+        ] = None,
         **kwargs,
     ) -> ConnectionMetadata:
         """Fetch connection metadata  # noqa: E501
@@ -1590,8 +1699,8 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnectionMetadata
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_metadata_with_http_info(conn_id, key, **kwargs)  # noqa: E501
@@ -1600,7 +1709,9 @@ class ConnectionApi:
     def get_metadata_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        key: Annotated[Optional[StrictStr], Field(description="Key to retrieve.")] = None,
+        key: Annotated[
+            Optional[StrictStr], Field(description="Key to retrieve.")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Fetch connection metadata  # noqa: E501
@@ -1642,65 +1753,63 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'key'
-        ]
+        _all_params = ["conn_id", "key"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_metadata" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('key') is not None:  # noqa: E501
-            _query_params.append(('key', _params['key']))
+        if _params.get("key") is not None:  # noqa: E501
+            _query_params.append(("key", _params["key"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnectionMetadata",
+            "200": "ConnectionMetadata",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}/metadata', 'GET',
+            "/connections/{conn_id}/metadata",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -1709,19 +1818,26 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def receive_invitation(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
-        auto_accept: Annotated[Optional[StrictBool], Field(description="Auto-accept connection (defaults to configuration)")] = None,
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
         body: Optional[ReceiveInvitationRequest] = None,
         **kwargs,
     ) -> ConnRecord:
@@ -1752,18 +1868,26 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnRecord
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the receive_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.receive_invitation_with_http_info(alias, auto_accept, mediation_id, body, **kwargs)  # noqa: E501
+        return self.receive_invitation_with_http_info(
+            alias, auto_accept, mediation_id, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def receive_invitation_with_http_info(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
-        auto_accept: Annotated[Optional[StrictBool], Field(description="Auto-accept connection (defaults to configuration)")] = None,
-        mediation_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Identifier for active mediation record to be used")] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
         body: Optional[ReceiveInvitationRequest] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -1810,33 +1934,28 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'alias',
-            'auto_accept',
-            'mediation_id',
-            'body'
-        ]
+        _all_params = ["alias", "auto_accept", "mediation_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method receive_invitation" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1845,45 +1964,48 @@ class ConnectionApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('alias') is not None:  # noqa: E501
-            _query_params.append(('alias', _params['alias']))
+        if _params.get("alias") is not None:  # noqa: E501
+            _query_params.append(("alias", _params["alias"]))
 
-        if _params.get('auto_accept') is not None:  # noqa: E501
-            _query_params.append(('auto_accept', _params['auto_accept']))
+        if _params.get("auto_accept") is not None:  # noqa: E501
+            _query_params.append(("auto_accept", _params["auto_accept"]))
 
-        if _params.get('mediation_id') is not None:  # noqa: E501
-            _query_params.append(('mediation_id', _params['mediation_id']))
+        if _params.get("mediation_id") is not None:  # noqa: E501
+            _query_params.append(("mediation_id", _params["mediation_id"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnRecord",
+            "200": "ConnRecord",
         }
 
         return self.api_client.call_api(
-            '/connections/receive-invitation', 'POST',
+            "/connections/receive-invitation",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1892,12 +2014,13 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def set_metadata(
@@ -1929,8 +2052,8 @@ class ConnectionApi:
                  returns the request thread.
         :rtype: ConnectionMetadata
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the set_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.set_metadata_with_http_info(conn_id, body, **kwargs)  # noqa: E501
@@ -1981,72 +2104,71 @@ class ConnectionApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'body'
-        ]
+        _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_metadata" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
         # process the path parameters
         _path_params: Dict[str, str] = {}
-        if _params['conn_id'] is not None:
-            _path_params['conn_id'] = _params['conn_id']
-
+        if _params["conn_id"] is not None:
+            _path_params["conn_id"] = _params["conn_id"]
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConnectionMetadata",
+            "200": "ConnectionMetadata",
         }
 
         return self.api_client.call_api(
-            '/connections/{conn_id}/metadata', 'POST',
+            "/connections/{conn_id}/metadata",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -2055,9 +2177,10 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

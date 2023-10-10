@@ -28,19 +28,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class Doc(BaseModel):
     """
     Doc
     """
+
     credential: Union[str, Any] = Field(description="Credential to sign")
     options: SignatureOptions
     __properties: ClassVar[List[str]] = ["credential", "options"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,13 +55,10 @@ class Doc(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
-            _dict['options'] = self.options.to_dict()
+            _dict["options"] = self.options.to_dict()
         return _dict
 
     @classmethod
@@ -75,10 +70,12 @@ class Doc(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "credential": obj.get("credential"),
-            "options": SignatureOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "credential": obj.get("credential"),
+                "options": SignatureOptions.from_dict(obj.get("options"))
+                if obj.get("options") is not None
+                else None,
+            }
+        )
         return _obj
-
-

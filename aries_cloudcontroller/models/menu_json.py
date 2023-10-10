@@ -28,21 +28,23 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class MenuJson(BaseModel):
     """
     MenuJson
     """
-    description: Optional[StrictStr] = Field(default=None, description="Introductory text for the menu")
-    errormsg: Optional[StrictStr] = Field(default=None, description="Optional error message to display in menu header")
+
+    description: Optional[StrictStr] = Field(
+        default=None, description="Introductory text for the menu"
+    )
+    errormsg: Optional[StrictStr] = Field(
+        default=None, description="Optional error message to display in menu header"
+    )
     options: List[MenuOption] = Field(description="List of menu options")
     title: Optional[StrictStr] = Field(default=None, description="Menu title")
     __properties: ClassVar[List[str]] = ["description", "errormsg", "options", "title"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,17 +61,14 @@ class MenuJson(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in options (list)
         _items = []
         if self.options:
             for _item in self.options:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['options'] = _items
+            _dict["options"] = _items
         return _dict
 
     @classmethod
@@ -81,12 +80,14 @@ class MenuJson(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "description": obj.get("description"),
-            "errormsg": obj.get("errormsg"),
-            "options": [MenuOption.from_dict(_item) for _item in obj.get("options")] if obj.get("options") is not None else None,
-            "title": obj.get("title")
-        })
+        _obj = cls.model_validate(
+            {
+                "description": obj.get("description"),
+                "errormsg": obj.get("errormsg"),
+                "options": [MenuOption.from_dict(_item) for _item in obj.get("options")]
+                if obj.get("options") is not None
+                else None,
+                "title": obj.get("title"),
+            }
+        )
         return _obj
-
-

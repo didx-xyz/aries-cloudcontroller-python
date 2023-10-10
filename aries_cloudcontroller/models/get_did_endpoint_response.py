@@ -27,28 +27,33 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class GetDIDEndpointResponse(BaseModel):
     """
     GetDIDEndpointResponse
     """
-    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Full verification key")
+
+    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Full verification key"
+    )
     __properties: ClassVar[List[str]] = ["endpoint"]
 
-    @field_validator('endpoint')
+    @field_validator("endpoint")
     def endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/")
+        if not re.match(
+            r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,14 +70,11 @@ class GetDIDEndpointResponse(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # set to None if endpoint (nullable) is None
         # and model_fields_set contains the field
         if self.endpoint is None and "endpoint" in self.model_fields_set:
-            _dict['endpoint'] = None
+            _dict["endpoint"] = None
 
         return _dict
 
@@ -85,9 +87,5 @@ class GetDIDEndpointResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "endpoint": obj.get("endpoint")
-        })
+        _obj = cls.model_validate({"endpoint": obj.get("endpoint")})
         return _obj
-
-

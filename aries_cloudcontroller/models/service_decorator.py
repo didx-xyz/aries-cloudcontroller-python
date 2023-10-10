@@ -27,20 +27,29 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ServiceDecorator(BaseModel):
     """
     ServiceDecorator
     """
-    recipient_keys: List[Annotated[str, Field(strict=True)]] = Field(description="List of recipient keys", alias="recipientKeys")
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, description="List of routing keys", alias="routingKeys")
-    service_endpoint: StrictStr = Field(description="Service endpoint at which to reach this agent", alias="serviceEndpoint")
-    __properties: ClassVar[List[str]] = ["recipientKeys", "routingKeys", "serviceEndpoint"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    recipient_keys: List[Annotated[str, Field(strict=True)]] = Field(
+        description="List of recipient keys", alias="recipientKeys"
+    )
+    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+        default=None, description="List of routing keys", alias="routingKeys"
+    )
+    service_endpoint: StrictStr = Field(
+        description="Service endpoint at which to reach this agent",
+        alias="serviceEndpoint",
+    )
+    __properties: ClassVar[List[str]] = [
+        "recipientKeys",
+        "routingKeys",
+        "serviceEndpoint",
+    ]
 
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,10 +66,7 @@ class ServiceDecorator(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -72,11 +78,11 @@ class ServiceDecorator(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "recipientKeys": obj.get("recipientKeys"),
-            "routingKeys": obj.get("routingKeys"),
-            "serviceEndpoint": obj.get("serviceEndpoint")
-        })
+        _obj = cls.model_validate(
+            {
+                "recipientKeys": obj.get("recipientKeys"),
+                "routingKeys": obj.get("routingKeys"),
+                "serviceEndpoint": obj.get("serviceEndpoint"),
+            }
+        )
         return _obj
-
-

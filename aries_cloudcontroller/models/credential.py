@@ -29,52 +29,79 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class Credential(BaseModel):
     """
     Credential
     """
-    context: List[Union[str, Any]] = Field(description="The JSON-LD context of the credential", alias="@context")
+
+    context: List[Union[str, Any]] = Field(
+        description="The JSON-LD context of the credential", alias="@context"
+    )
     credential_subject: Union[str, Any] = Field(alias="credentialSubject")
-    expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The expiration date", alias="expirationDate")
+    expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The expiration date", alias="expirationDate"
+    )
     id: Optional[Annotated[str, Field(strict=True)]] = None
-    issuance_date: Annotated[str, Field(strict=True)] = Field(description="The issuance date", alias="issuanceDate")
-    issuer: Union[str, Any] = Field(description="The JSON-LD Verifiable Credential Issuer. Either string of object with id field.")
+    issuance_date: Annotated[str, Field(strict=True)] = Field(
+        description="The issuance date", alias="issuanceDate"
+    )
+    issuer: Union[str, Any] = Field(
+        description="The JSON-LD Verifiable Credential Issuer. Either string of object with id field."
+    )
     proof: Optional[LinkedDataProof] = None
     type: List[StrictStr] = Field(description="The JSON-LD type of the credential")
-    __properties: ClassVar[List[str]] = ["@context", "credentialSubject", "expirationDate", "id", "issuanceDate", "issuer", "proof", "type"]
+    __properties: ClassVar[List[str]] = [
+        "@context",
+        "credentialSubject",
+        "expirationDate",
+        "id",
+        "issuanceDate",
+        "issuer",
+        "proof",
+        "type",
+    ]
 
-    @field_validator('expiration_date')
+    @field_validator("expiration_date")
     def expiration_date_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$", value):
-            raise ValueError(r"must validate the regular expression /^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$/")
+        if not re.match(
+            r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$/"
+            )
         return value
 
-    @field_validator('id')
+    @field_validator("id")
     def id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
         if not re.match(r"\w+:(\/?\/?)[^\s]+", value):
-            raise ValueError(r"must validate the regular expression /\w+:(\/?\/?)[^\s]+/")
+            raise ValueError(
+                r"must validate the regular expression /\w+:(\/?\/?)[^\s]+/"
+            )
         return value
 
-    @field_validator('issuance_date')
+    @field_validator("issuance_date")
     def issuance_date_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$", value):
-            raise ValueError(r"must validate the regular expression /^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$/")
+        if not re.match(
+            r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -91,13 +118,10 @@ class Credential(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of proof
         if self.proof:
-            _dict['proof'] = self.proof.to_dict()
+            _dict["proof"] = self.proof.to_dict()
         return _dict
 
     @classmethod
@@ -109,16 +133,18 @@ class Credential(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@context": obj.get("@context"),
-            "credentialSubject": obj.get("credentialSubject"),
-            "expirationDate": obj.get("expirationDate"),
-            "id": obj.get("id"),
-            "issuanceDate": obj.get("issuanceDate"),
-            "issuer": obj.get("issuer"),
-            "proof": LinkedDataProof.from_dict(obj.get("proof")) if obj.get("proof") is not None else None,
-            "type": obj.get("type")
-        })
+        _obj = cls.model_validate(
+            {
+                "@context": obj.get("@context"),
+                "credentialSubject": obj.get("credentialSubject"),
+                "expirationDate": obj.get("expirationDate"),
+                "id": obj.get("id"),
+                "issuanceDate": obj.get("issuanceDate"),
+                "issuer": obj.get("issuer"),
+                "proof": LinkedDataProof.from_dict(obj.get("proof"))
+                if obj.get("proof") is not None
+                else None,
+                "type": obj.get("type"),
+            }
+        )
         return _obj
-
-

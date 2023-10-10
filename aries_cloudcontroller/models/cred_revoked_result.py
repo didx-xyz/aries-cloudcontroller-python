@@ -26,18 +26,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class CredRevokedResult(BaseModel):
     """
     CredRevokedResult
     """
-    revoked: Optional[StrictBool] = Field(default=None, description="Whether credential is revoked on the ledger")
+
+    revoked: Optional[StrictBool] = Field(
+        default=None, description="Whether credential is revoked on the ledger"
+    )
     __properties: ClassVar[List[str]] = ["revoked"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,10 +54,7 @@ class CredRevokedResult(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -69,9 +66,5 @@ class CredRevokedResult(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "revoked": obj.get("revoked")
-        })
+        _obj = cls.model_validate({"revoked": obj.get("revoked")})
         return _obj
-
-

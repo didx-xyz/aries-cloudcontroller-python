@@ -26,23 +26,28 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ClaimFormat(BaseModel):
     """
     ClaimFormat
     """
+
     jwt: Optional[Union[str, Any]] = None
     jwt_vc: Optional[Union[str, Any]] = None
     jwt_vp: Optional[Union[str, Any]] = None
     ldp: Optional[Union[str, Any]] = None
     ldp_vc: Optional[Union[str, Any]] = None
     ldp_vp: Optional[Union[str, Any]] = None
-    __properties: ClassVar[List[str]] = ["jwt", "jwt_vc", "jwt_vp", "ldp", "ldp_vc", "ldp_vp"]
+    __properties: ClassVar[List[str]] = [
+        "jwt",
+        "jwt_vc",
+        "jwt_vp",
+        "ldp",
+        "ldp_vc",
+        "ldp_vp",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,10 +64,7 @@ class ClaimFormat(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -74,14 +76,14 @@ class ClaimFormat(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "jwt": obj.get("jwt"),
-            "jwt_vc": obj.get("jwt_vc"),
-            "jwt_vp": obj.get("jwt_vp"),
-            "ldp": obj.get("ldp"),
-            "ldp_vc": obj.get("ldp_vc"),
-            "ldp_vp": obj.get("ldp_vp")
-        })
+        _obj = cls.model_validate(
+            {
+                "jwt": obj.get("jwt"),
+                "jwt_vc": obj.get("jwt_vc"),
+                "jwt_vp": obj.get("jwt_vp"),
+                "ldp": obj.get("ldp"),
+                "ldp_vc": obj.get("ldp_vc"),
+                "ldp_vp": obj.get("ldp_vp"),
+            }
+        )
         return _obj
-
-

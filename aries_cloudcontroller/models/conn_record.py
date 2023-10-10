@@ -27,137 +27,223 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ConnRecord(BaseModel):
     """
     ConnRecord
     """
-    accept: Optional[StrictStr] = Field(default=None, description="Connection acceptance: manual or auto")
-    alias: Optional[StrictStr] = Field(default=None, description="Optional alias to apply to connection for later use")
-    connection_id: Optional[StrictStr] = Field(default=None, description="Connection identifier")
-    connection_protocol: Optional[StrictStr] = Field(default=None, description="Connection protocol used")
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of record creation")
-    error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
-    inbound_connection_id: Optional[StrictStr] = Field(default=None, description="Inbound routing connection id to use")
-    invitation_key: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Public key for connection")
-    invitation_mode: Optional[StrictStr] = Field(default=None, description="Invitation mode")
-    invitation_msg_id: Optional[StrictStr] = Field(default=None, description="ID of out-of-band invitation message")
-    my_did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Our DID for connection")
-    request_id: Optional[StrictStr] = Field(default=None, description="Connection request identifier")
-    rfc23_state: Optional[StrictStr] = Field(default=None, description="State per RFC 23")
-    routing_state: Optional[StrictStr] = Field(default=None, description="Routing state of connection")
-    state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    their_did: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Their DID for connection")
-    their_label: Optional[StrictStr] = Field(default=None, description="Their label for connection")
-    their_public_did: Optional[StrictStr] = Field(default=None, description="Other agent's public DID for connection")
-    their_role: Optional[StrictStr] = Field(default=None, description="Their role in the connection protocol")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Time of last record update")
-    __properties: ClassVar[List[str]] = ["accept", "alias", "connection_id", "connection_protocol", "created_at", "error_msg", "inbound_connection_id", "invitation_key", "invitation_mode", "invitation_msg_id", "my_did", "request_id", "rfc23_state", "routing_state", "state", "their_did", "their_label", "their_public_did", "their_role", "updated_at"]
 
-    @field_validator('accept')
+    accept: Optional[StrictStr] = Field(
+        default=None, description="Connection acceptance: manual or auto"
+    )
+    alias: Optional[StrictStr] = Field(
+        default=None, description="Optional alias to apply to connection for later use"
+    )
+    connection_id: Optional[StrictStr] = Field(
+        default=None, description="Connection identifier"
+    )
+    connection_protocol: Optional[StrictStr] = Field(
+        default=None, description="Connection protocol used"
+    )
+    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of record creation"
+    )
+    error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
+    inbound_connection_id: Optional[StrictStr] = Field(
+        default=None, description="Inbound routing connection id to use"
+    )
+    invitation_key: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Public key for connection"
+    )
+    invitation_mode: Optional[StrictStr] = Field(
+        default=None, description="Invitation mode"
+    )
+    invitation_msg_id: Optional[StrictStr] = Field(
+        default=None, description="ID of out-of-band invitation message"
+    )
+    my_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Our DID for connection"
+    )
+    request_id: Optional[StrictStr] = Field(
+        default=None, description="Connection request identifier"
+    )
+    rfc23_state: Optional[StrictStr] = Field(
+        default=None, description="State per RFC 23"
+    )
+    routing_state: Optional[StrictStr] = Field(
+        default=None, description="Routing state of connection"
+    )
+    state: Optional[StrictStr] = Field(default=None, description="Current record state")
+    their_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Their DID for connection"
+    )
+    their_label: Optional[StrictStr] = Field(
+        default=None, description="Their label for connection"
+    )
+    their_public_did: Optional[StrictStr] = Field(
+        default=None, description="Other agent's public DID for connection"
+    )
+    their_role: Optional[StrictStr] = Field(
+        default=None, description="Their role in the connection protocol"
+    )
+    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Time of last record update"
+    )
+    __properties: ClassVar[List[str]] = [
+        "accept",
+        "alias",
+        "connection_id",
+        "connection_protocol",
+        "created_at",
+        "error_msg",
+        "inbound_connection_id",
+        "invitation_key",
+        "invitation_mode",
+        "invitation_msg_id",
+        "my_did",
+        "request_id",
+        "rfc23_state",
+        "routing_state",
+        "state",
+        "their_did",
+        "their_label",
+        "their_public_did",
+        "their_role",
+        "updated_at",
+    ]
+
+    @field_validator("accept")
     def accept_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('manual', 'auto'):
+        if value not in ("manual", "auto"):
             raise ValueError("must be one of enum values ('manual', 'auto')")
         return value
 
-    @field_validator('connection_protocol')
+    @field_validator("connection_protocol")
     def connection_protocol_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('connections/1.0', 'didexchange/1.0'):
-            raise ValueError("must be one of enum values ('connections/1.0', 'didexchange/1.0')")
+        if value not in ("connections/1.0", "didexchange/1.0"):
+            raise ValueError(
+                "must be one of enum values ('connections/1.0', 'didexchange/1.0')"
+            )
         return value
 
-    @field_validator('created_at')
+    @field_validator("created_at")
     def created_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    @field_validator('invitation_key')
+    @field_validator("invitation_key")
     def invitation_key_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$", value):
-            raise ValueError(r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/")
+        if not re.match(
+            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/"
+            )
         return value
 
-    @field_validator('invitation_mode')
+    @field_validator("invitation_mode")
     def invitation_mode_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('once', 'multi', 'static'):
+        if value not in ("once", "multi", "static"):
             raise ValueError("must be one of enum values ('once', 'multi', 'static')")
         return value
 
-    @field_validator('my_did')
+    @field_validator("my_did")
     def my_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('routing_state')
+    @field_validator("routing_state")
     def routing_state_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('none', 'request', 'active', 'error'):
-            raise ValueError("must be one of enum values ('none', 'request', 'active', 'error')")
+        if value not in ("none", "request", "active", "error"):
+            raise ValueError(
+                "must be one of enum values ('none', 'request', 'active', 'error')"
+            )
         return value
 
-    @field_validator('their_did')
+    @field_validator("their_did")
     def their_did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$", value):
-            raise ValueError(r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
+            )
         return value
 
-    @field_validator('their_role')
+    @field_validator("their_role")
     def their_role_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('invitee', 'requester', 'inviter', 'responder'):
-            raise ValueError("must be one of enum values ('invitee', 'requester', 'inviter', 'responder')")
+        if value not in ("invitee", "requester", "inviter", "responder"):
+            raise ValueError(
+                "must be one of enum values ('invitee', 'requester', 'inviter', 'responder')"
+            )
         return value
 
-    @field_validator('updated_at')
+    @field_validator("updated_at")
     def updated_at_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/")
+        if not re.match(
+            r"^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -174,11 +260,13 @@ class ConnRecord(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "rfc23_state",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "rfc23_state",
+            },
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
@@ -190,28 +278,28 @@ class ConnRecord(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "accept": obj.get("accept"),
-            "alias": obj.get("alias"),
-            "connection_id": obj.get("connection_id"),
-            "connection_protocol": obj.get("connection_protocol"),
-            "created_at": obj.get("created_at"),
-            "error_msg": obj.get("error_msg"),
-            "inbound_connection_id": obj.get("inbound_connection_id"),
-            "invitation_key": obj.get("invitation_key"),
-            "invitation_mode": obj.get("invitation_mode"),
-            "invitation_msg_id": obj.get("invitation_msg_id"),
-            "my_did": obj.get("my_did"),
-            "request_id": obj.get("request_id"),
-            "rfc23_state": obj.get("rfc23_state"),
-            "routing_state": obj.get("routing_state"),
-            "state": obj.get("state"),
-            "their_did": obj.get("their_did"),
-            "their_label": obj.get("their_label"),
-            "their_public_did": obj.get("their_public_did"),
-            "their_role": obj.get("their_role"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "accept": obj.get("accept"),
+                "alias": obj.get("alias"),
+                "connection_id": obj.get("connection_id"),
+                "connection_protocol": obj.get("connection_protocol"),
+                "created_at": obj.get("created_at"),
+                "error_msg": obj.get("error_msg"),
+                "inbound_connection_id": obj.get("inbound_connection_id"),
+                "invitation_key": obj.get("invitation_key"),
+                "invitation_mode": obj.get("invitation_mode"),
+                "invitation_msg_id": obj.get("invitation_msg_id"),
+                "my_did": obj.get("my_did"),
+                "request_id": obj.get("request_id"),
+                "rfc23_state": obj.get("rfc23_state"),
+                "routing_state": obj.get("routing_state"),
+                "state": obj.get("state"),
+                "their_did": obj.get("their_did"),
+                "their_label": obj.get("their_label"),
+                "their_public_did": obj.get("their_public_did"),
+                "their_role": obj.get("their_role"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

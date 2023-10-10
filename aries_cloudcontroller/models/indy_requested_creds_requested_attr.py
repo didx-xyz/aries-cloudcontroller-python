@@ -26,19 +26,21 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyRequestedCredsRequestedAttr(BaseModel):
     """
     IndyRequestedCredsRequestedAttr
     """
-    cred_id: StrictStr = Field(description="Wallet credential identifier (typically but not necessarily a UUID)")
-    revealed: Optional[StrictBool] = Field(default=None, description="Whether to reveal attribute in proof (default true)")
+
+    cred_id: StrictStr = Field(
+        description="Wallet credential identifier (typically but not necessarily a UUID)"
+    )
+    revealed: Optional[StrictBool] = Field(
+        default=None, description="Whether to reveal attribute in proof (default true)"
+    )
     __properties: ClassVar[List[str]] = ["cred_id", "revealed"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +57,7 @@ class IndyRequestedCredsRequestedAttr(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,10 +69,7 @@ class IndyRequestedCredsRequestedAttr(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_id": obj.get("cred_id"),
-            "revealed": obj.get("revealed")
-        })
+        _obj = cls.model_validate(
+            {"cred_id": obj.get("cred_id"), "revealed": obj.get("revealed")}
+        )
         return _obj
-
-

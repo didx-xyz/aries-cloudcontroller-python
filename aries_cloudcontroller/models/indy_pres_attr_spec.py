@@ -27,32 +27,45 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyPresAttrSpec(BaseModel):
     """
     IndyPresAttrSpec
     """
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = None
-    mime_type: Optional[StrictStr] = Field(default=None, description="MIME type (default null)", alias="mime-type")
-    name: StrictStr = Field(description="Attribute name")
-    referent: Optional[StrictStr] = Field(default=None, description="Credential referent")
-    value: Optional[StrictStr] = Field(default=None, description="Attribute value")
-    __properties: ClassVar[List[str]] = ["cred_def_id", "mime-type", "name", "referent", "value"]
 
-    @field_validator('cred_def_id')
+    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = None
+    mime_type: Optional[StrictStr] = Field(
+        default=None, description="MIME type (default null)", alias="mime-type"
+    )
+    name: StrictStr = Field(description="Attribute name")
+    referent: Optional[StrictStr] = Field(
+        default=None, description="Credential referent"
+    )
+    value: Optional[StrictStr] = Field(default=None, description="Attribute value")
+    __properties: ClassVar[List[str]] = [
+        "cred_def_id",
+        "mime-type",
+        "name",
+        "referent",
+        "value",
+    ]
+
+    @field_validator("cred_def_id")
     def cred_def_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$", value):
-            raise ValueError(r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/")
+        if not re.match(
+            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
+            )
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -69,10 +82,7 @@ class IndyPresAttrSpec(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -84,13 +94,13 @@ class IndyPresAttrSpec(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "cred_def_id": obj.get("cred_def_id"),
-            "mime-type": obj.get("mime-type"),
-            "name": obj.get("name"),
-            "referent": obj.get("referent"),
-            "value": obj.get("value")
-        })
+        _obj = cls.model_validate(
+            {
+                "cred_def_id": obj.get("cred_def_id"),
+                "mime-type": obj.get("mime-type"),
+                "name": obj.get("name"),
+                "referent": obj.get("referent"),
+                "value": obj.get("value"),
+            }
+        )
         return _obj
-
-

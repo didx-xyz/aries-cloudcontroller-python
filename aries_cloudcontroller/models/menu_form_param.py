@@ -26,23 +26,36 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class MenuFormParam(BaseModel):
     """
     MenuFormParam
     """
-    default: Optional[StrictStr] = Field(default=None, description="Default parameter value")
-    description: Optional[StrictStr] = Field(default=None, description="Additional descriptive text for menu form parameter")
+
+    default: Optional[StrictStr] = Field(
+        default=None, description="Default parameter value"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Additional descriptive text for menu form parameter"
+    )
     name: StrictStr = Field(description="Menu parameter name")
-    required: Optional[StrictBool] = Field(default=None, description="Whether parameter is required")
+    required: Optional[StrictBool] = Field(
+        default=None, description="Whether parameter is required"
+    )
     title: StrictStr = Field(description="Menu parameter title")
-    type: Optional[StrictStr] = Field(default=None, description="Menu form parameter input type")
-    __properties: ClassVar[List[str]] = ["default", "description", "name", "required", "title", "type"]
+    type: Optional[StrictStr] = Field(
+        default=None, description="Menu form parameter input type"
+    )
+    __properties: ClassVar[List[str]] = [
+        "default",
+        "description",
+        "name",
+        "required",
+        "title",
+        "type",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,10 +72,7 @@ class MenuFormParam(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -74,14 +84,14 @@ class MenuFormParam(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "default": obj.get("default"),
-            "description": obj.get("description"),
-            "name": obj.get("name"),
-            "required": obj.get("required"),
-            "title": obj.get("title"),
-            "type": obj.get("type")
-        })
+        _obj = cls.model_validate(
+            {
+                "default": obj.get("default"),
+                "description": obj.get("description"),
+                "name": obj.get("name"),
+                "required": obj.get("required"),
+                "title": obj.get("title"),
+                "type": obj.get("type"),
+            }
+        )
         return _obj
-
-

@@ -27,18 +27,16 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class ModelDate(BaseModel):
     """
     ModelDate
     """
+
     expires_time: datetime = Field(description="Expiry Date")
     __properties: ClassVar[List[str]] = ["expires_time"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -55,10 +53,7 @@ class ModelDate(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -70,9 +65,5 @@ class ModelDate(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "expires_time": obj.get("expires_time")
-        })
+        _obj = cls.model_validate({"expires_time": obj.get("expires_time")})
         return _obj
-
-

@@ -79,8 +79,8 @@ class WalletApi:
                  returns the request thread.
         :rtype: DIDResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the create_did_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.create_did_with_http_info(body, **kwargs)  # noqa: E501
@@ -128,30 +128,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_did" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -161,35 +159,38 @@ class WalletApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DIDResult",
+            "200": "DIDResult",
         }
 
         return self.api_client.call_api(
-            '/wallet/did/create', 'POST',
+            "/wallet/did/create",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -198,12 +199,13 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_did_endpoint(
@@ -232,8 +234,8 @@ class WalletApi:
                  returns the request thread.
         :rtype: DIDEndpoint
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_did_endpoint_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_did_endpoint_with_http_info(did, **kwargs)  # noqa: E501
@@ -281,30 +283,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-            'did'
-        ]
+        _all_params = ["did"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_did_endpoint" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -313,29 +313,31 @@ class WalletApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('did') is not None:  # noqa: E501
-            _query_params.append(('did', _params['did']))
+        if _params.get("did") is not None:  # noqa: E501
+            _query_params.append(("did", _params["did"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DIDEndpoint",
+            "200": "DIDEndpoint",
         }
 
         return self.api_client.call_api(
-            '/wallet/get-did-endpoint', 'GET',
+            "/wallet/get-did-endpoint",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -344,21 +346,40 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_dids(
         self,
-        did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="DID of interest")] = None,
-        key_type: Annotated[Optional[StrictStr], Field(description="Key type to query for.")] = None,
-        method: Annotated[Optional[StrictStr], Field(description="DID method to query for. e.g. sov to only fetch indy/sov DIDs")] = None,
-        posture: Annotated[Optional[StrictStr], Field(description="Whether DID is current public DID, posted to ledger but current public DID, or local to the wallet")] = None,
-        verkey: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Verification key of interest")] = None,
+        did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="DID of interest"),
+        ] = None,
+        key_type: Annotated[
+            Optional[StrictStr], Field(description="Key type to query for.")
+        ] = None,
+        method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="DID method to query for. e.g. sov to only fetch indy/sov DIDs"
+            ),
+        ] = None,
+        posture: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Whether DID is current public DID, posted to ledger but current public DID, or local to the wallet"
+            ),
+        ] = None,
+        verkey: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Verification key of interest"),
+        ] = None,
         **kwargs,
     ) -> DIDList:
         """List wallet DIDs  # noqa: E501
@@ -390,20 +411,40 @@ class WalletApi:
                  returns the request thread.
         :rtype: DIDList
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_dids_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_dids_with_http_info(did, key_type, method, posture, verkey, **kwargs)  # noqa: E501
+        return self.get_dids_with_http_info(
+            did, key_type, method, posture, verkey, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def get_dids_with_http_info(
         self,
-        did: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="DID of interest")] = None,
-        key_type: Annotated[Optional[StrictStr], Field(description="Key type to query for.")] = None,
-        method: Annotated[Optional[StrictStr], Field(description="DID method to query for. e.g. sov to only fetch indy/sov DIDs")] = None,
-        posture: Annotated[Optional[StrictStr], Field(description="Whether DID is current public DID, posted to ledger but current public DID, or local to the wallet")] = None,
-        verkey: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Verification key of interest")] = None,
+        did: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="DID of interest"),
+        ] = None,
+        key_type: Annotated[
+            Optional[StrictStr], Field(description="Key type to query for.")
+        ] = None,
+        method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="DID method to query for. e.g. sov to only fetch indy/sov DIDs"
+            ),
+        ] = None,
+        posture: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Whether DID is current public DID, posted to ledger but current public DID, or local to the wallet"
+            ),
+        ] = None,
+        verkey: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Verification key of interest"),
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """List wallet DIDs  # noqa: E501
@@ -451,34 +492,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-            'did',
-            'key_type',
-            'method',
-            'posture',
-            'verkey'
-        ]
+        _all_params = ["did", "key_type", "method", "posture", "verkey"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_dids" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -487,41 +522,43 @@ class WalletApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('did') is not None:  # noqa: E501
-            _query_params.append(('did', _params['did']))
+        if _params.get("did") is not None:  # noqa: E501
+            _query_params.append(("did", _params["did"]))
 
-        if _params.get('key_type') is not None:  # noqa: E501
-            _query_params.append(('key_type', _params['key_type']))
+        if _params.get("key_type") is not None:  # noqa: E501
+            _query_params.append(("key_type", _params["key_type"]))
 
-        if _params.get('method') is not None:  # noqa: E501
-            _query_params.append(('method', _params['method']))
+        if _params.get("method") is not None:  # noqa: E501
+            _query_params.append(("method", _params["method"]))
 
-        if _params.get('posture') is not None:  # noqa: E501
-            _query_params.append(('posture', _params['posture']))
+        if _params.get("posture") is not None:  # noqa: E501
+            _query_params.append(("posture", _params["posture"]))
 
-        if _params.get('verkey') is not None:  # noqa: E501
-            _query_params.append(('verkey', _params['verkey']))
+        if _params.get("verkey") is not None:  # noqa: E501
+            _query_params.append(("verkey", _params["verkey"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DIDList",
+            "200": "DIDList",
         }
 
         return self.api_client.call_api(
-            '/wallet/did', 'GET',
+            "/wallet/did",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -530,12 +567,13 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def get_public_did(
@@ -561,8 +599,8 @@ class WalletApi:
                  returns the request thread.
         :rtype: DIDResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the get_public_did_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.get_public_did_with_http_info(**kwargs)  # noqa: E501
@@ -607,29 +645,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-        ]
+        _all_params = []
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_public_did" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -639,25 +676,27 @@ class WalletApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DIDResult",
+            "200": "DIDResult",
         }
 
         return self.api_client.call_api(
-            '/wallet/did/public', 'GET',
+            "/wallet/did/public",
+            "GET",
             _path_params,
             _query_params,
             _header_params,
@@ -666,12 +705,13 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def rotate_keypair(
@@ -700,8 +740,8 @@ class WalletApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the rotate_keypair_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.rotate_keypair_with_http_info(did, **kwargs)  # noqa: E501
@@ -749,30 +789,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-            'did'
-        ]
+        _all_params = ["did"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method rotate_keypair" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -781,29 +819,31 @@ class WalletApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('did') is not None:  # noqa: E501
-            _query_params.append(('did', _params['did']))
+        if _params.get("did") is not None:  # noqa: E501
+            _query_params.append(("did", _params["did"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/wallet/did/local/rotate-keypair', 'PATCH',
+            "/wallet/did/local/rotate-keypair",
+            "PATCH",
             _path_params,
             _query_params,
             _header_params,
@@ -812,18 +852,24 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def set_did_endpoint(
         self,
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[DIDEndpointWithType] = None,
         **kwargs,
     ) -> object:
@@ -852,17 +898,24 @@ class WalletApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the set_did_endpoint_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_did_endpoint_with_http_info(conn_id, create_transaction_for_endorser, body, **kwargs)  # noqa: E501
+        return self.set_did_endpoint_with_http_info(
+            conn_id, create_transaction_for_endorser, body, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def set_did_endpoint_with_http_info(
         self,
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[DIDEndpointWithType] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -907,32 +960,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-            'conn_id',
-            'create_transaction_for_endorser',
-            'body'
-        ]
+        _all_params = ["conn_id", "create_transaction_for_endorser", "body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_did_endpoint" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -941,42 +990,50 @@ class WalletApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('conn_id') is not None:  # noqa: E501
-            _query_params.append(('conn_id', _params['conn_id']))
+        if _params.get("conn_id") is not None:  # noqa: E501
+            _query_params.append(("conn_id", _params["conn_id"]))
 
-        if _params.get('create_transaction_for_endorser') is not None:  # noqa: E501
-            _query_params.append(('create_transaction_for_endorser', _params['create_transaction_for_endorser']))
+        if _params.get("create_transaction_for_endorser") is not None:  # noqa: E501
+            _query_params.append(
+                (
+                    "create_transaction_for_endorser",
+                    _params["create_transaction_for_endorser"],
+                )
+            )
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/wallet/set-did-endpoint', 'POST',
+            "/wallet/set-did-endpoint",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -985,20 +1042,28 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def set_public_did(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
-        mediation_id: Annotated[Optional[StrictStr], Field(description="Mediation identifier")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[StrictStr], Field(description="Mediation identifier")
+        ] = None,
         **kwargs,
     ) -> DIDResult:
         """Assign the current public DID  # noqa: E501
@@ -1028,19 +1093,28 @@ class WalletApi:
                  returns the request thread.
         :rtype: DIDResult
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the set_public_did_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_public_did_with_http_info(did, conn_id, create_transaction_for_endorser, mediation_id, **kwargs)  # noqa: E501
+        return self.set_public_did_with_http_info(
+            did, conn_id, create_transaction_for_endorser, mediation_id, **kwargs
+        )  # noqa: E501
 
     @validate_call
     def set_public_did_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
-        conn_id: Annotated[Optional[StrictStr], Field(description="Connection identifier")] = None,
-        create_transaction_for_endorser: Annotated[Optional[StrictBool], Field(description="Create Transaction For Endorser's signature")] = None,
-        mediation_id: Annotated[Optional[StrictStr], Field(description="Mediation identifier")] = None,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[StrictStr], Field(description="Mediation identifier")
+        ] = None,
         **kwargs,
     ) -> ApiResponse:
         """Assign the current public DID  # noqa: E501
@@ -1087,32 +1161,32 @@ class WalletApi:
         _params = locals()
 
         _all_params = [
-            'did',
-            'conn_id',
-            'create_transaction_for_endorser',
-            'mediation_id'
+            "did",
+            "conn_id",
+            "create_transaction_for_endorser",
+            "mediation_id",
         ]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_public_did" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1121,38 +1195,45 @@ class WalletApi:
 
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get('did') is not None:  # noqa: E501
-            _query_params.append(('did', _params['did']))
+        if _params.get("did") is not None:  # noqa: E501
+            _query_params.append(("did", _params["did"]))
 
-        if _params.get('conn_id') is not None:  # noqa: E501
-            _query_params.append(('conn_id', _params['conn_id']))
+        if _params.get("conn_id") is not None:  # noqa: E501
+            _query_params.append(("conn_id", _params["conn_id"]))
 
-        if _params.get('create_transaction_for_endorser') is not None:  # noqa: E501
-            _query_params.append(('create_transaction_for_endorser', _params['create_transaction_for_endorser']))
+        if _params.get("create_transaction_for_endorser") is not None:  # noqa: E501
+            _query_params.append(
+                (
+                    "create_transaction_for_endorser",
+                    _params["create_transaction_for_endorser"],
+                )
+            )
 
-        if _params.get('mediation_id') is not None:  # noqa: E501
-            _query_params.append(('mediation_id', _params['mediation_id']))
+        if _params.get("mediation_id") is not None:  # noqa: E501
+            _query_params.append(("mediation_id", _params["mediation_id"]))
 
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DIDResult",
+            "200": "DIDResult",
         }
 
         return self.api_client.call_api(
-            '/wallet/did/public', 'POST',
+            "/wallet/did/public",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1161,12 +1242,13 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def wallet_jwt_sign_post(
@@ -1195,8 +1277,8 @@ class WalletApi:
                  returns the request thread.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the wallet_jwt_sign_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.wallet_jwt_sign_post_with_http_info(body, **kwargs)  # noqa: E501
@@ -1244,30 +1326,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method wallet_jwt_sign_post" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1277,35 +1357,38 @@ class WalletApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            "200": "object",
         }
 
         return self.api_client.call_api(
-            '/wallet/jwt/sign', 'POST',
+            "/wallet/jwt/sign",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1314,12 +1397,13 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )
 
     @validate_call
     def wallet_jwt_verify_post(
@@ -1348,8 +1432,8 @@ class WalletApi:
                  returns the request thread.
         :rtype: JWSVerifyResponse
         """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
+        kwargs["_return_http_data_only"] = True
+        if "_preload_content" in kwargs:
             message = "Error! Please call the wallet_jwt_verify_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
         return self.wallet_jwt_verify_post_with_http_info(body, **kwargs)  # noqa: E501
@@ -1397,30 +1481,28 @@ class WalletApi:
 
         _params = locals()
 
-        _all_params = [
-            'body'
-        ]
+        _all_params = ["body"]
         _all_params.extend(
             [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
+                "async_req",
+                "_return_http_data_only",
+                "_preload_content",
+                "_request_timeout",
+                "_request_auth",
+                "_content_type",
+                "_headers",
             ]
         )
 
         # validate the arguments
-        for _key, _val in _params['kwargs'].items():
+        for _key, _val in _params["kwargs"].items():
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method wallet_jwt_verify_post" % _key
                 )
             _params[_key] = _val
-        del _params['kwargs']
+        del _params["kwargs"]
 
         _collection_formats: Dict[str, str] = {}
 
@@ -1430,35 +1512,38 @@ class WalletApi:
         # process the query parameters
         _query_params: List[Tuple[str, str]] = []
         # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
+        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
+        if _params["body"] is not None:
+            _body_params = _params["body"]
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = ['AuthorizationHeader']  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "JWSVerifyResponse",
+            "200": "JWSVerifyResponse",
         }
 
         return self.api_client.call_api(
-            '/wallet/jwt/verify', 'POST',
+            "/wallet/jwt/verify",
+            "POST",
             _path_params,
             _query_params,
             _header_params,
@@ -1467,9 +1552,10 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
+            async_req=_params.get("async_req"),
+            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
+            _preload_content=_params.get("_preload_content", True),
+            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _request_auth=_params.get("_request_auth"),
+        )

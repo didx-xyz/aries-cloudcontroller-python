@@ -31,19 +31,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProofProofProofsProof(BaseModel):
     """
     IndyProofProofProofsProof
     """
+
     non_revoc_proof: Optional[IndyProofProofProofsProofNonRevocProof] = None
     primary_proof: Optional[IndyPrimaryProof] = None
     __properties: ClassVar[List[str]] = ["non_revoc_proof", "primary_proof"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -60,20 +58,17 @@ class IndyProofProofProofsProof(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of non_revoc_proof
         if self.non_revoc_proof:
-            _dict['non_revoc_proof'] = self.non_revoc_proof.to_dict()
+            _dict["non_revoc_proof"] = self.non_revoc_proof.to_dict()
         # override the default output from pydantic by calling `to_dict()` of primary_proof
         if self.primary_proof:
-            _dict['primary_proof'] = self.primary_proof.to_dict()
+            _dict["primary_proof"] = self.primary_proof.to_dict()
         # set to None if non_revoc_proof (nullable) is None
         # and model_fields_set contains the field
         if self.non_revoc_proof is None and "non_revoc_proof" in self.model_fields_set:
-            _dict['non_revoc_proof'] = None
+            _dict["non_revoc_proof"] = None
 
         return _dict
 
@@ -86,10 +81,16 @@ class IndyProofProofProofsProof(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "non_revoc_proof": IndyProofProofProofsProofNonRevocProof.from_dict(obj.get("non_revoc_proof")) if obj.get("non_revoc_proof") is not None else None,
-            "primary_proof": IndyPrimaryProof.from_dict(obj.get("primary_proof")) if obj.get("primary_proof") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "non_revoc_proof": IndyProofProofProofsProofNonRevocProof.from_dict(
+                    obj.get("non_revoc_proof")
+                )
+                if obj.get("non_revoc_proof") is not None
+                else None,
+                "primary_proof": IndyPrimaryProof.from_dict(obj.get("primary_proof"))
+                if obj.get("primary_proof") is not None
+                else None,
+            }
+        )
         return _obj
-
-

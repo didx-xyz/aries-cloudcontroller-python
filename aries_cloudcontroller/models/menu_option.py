@@ -28,22 +28,30 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class MenuOption(BaseModel):
     """
     MenuOption
     """
-    description: Optional[StrictStr] = Field(default=None, description="Additional descriptive text for menu option")
-    disabled: Optional[StrictBool] = Field(default=None, description="Whether to show option as disabled")
+
+    description: Optional[StrictStr] = Field(
+        default=None, description="Additional descriptive text for menu option"
+    )
+    disabled: Optional[StrictBool] = Field(
+        default=None, description="Whether to show option as disabled"
+    )
     form: Optional[MenuForm] = None
     name: StrictStr = Field(description="Menu option name (unique identifier)")
     title: StrictStr = Field(description="Menu option title")
-    __properties: ClassVar[List[str]] = ["description", "disabled", "form", "name", "title"]
+    __properties: ClassVar[List[str]] = [
+        "description",
+        "disabled",
+        "form",
+        "name",
+        "title",
+    ]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -60,13 +68,10 @@ class MenuOption(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of form
         if self.form:
-            _dict['form'] = self.form.to_dict()
+            _dict["form"] = self.form.to_dict()
         return _dict
 
     @classmethod
@@ -78,13 +83,15 @@ class MenuOption(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "description": obj.get("description"),
-            "disabled": obj.get("disabled"),
-            "form": MenuForm.from_dict(obj.get("form")) if obj.get("form") is not None else None,
-            "name": obj.get("name"),
-            "title": obj.get("title")
-        })
+        _obj = cls.model_validate(
+            {
+                "description": obj.get("description"),
+                "disabled": obj.get("disabled"),
+                "form": MenuForm.from_dict(obj.get("form"))
+                if obj.get("form") is not None
+                else None,
+                "name": obj.get("name"),
+                "title": obj.get("title"),
+            }
+        )
         return _obj
-
-

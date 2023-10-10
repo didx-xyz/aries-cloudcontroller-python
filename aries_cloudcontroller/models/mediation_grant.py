@@ -26,21 +26,26 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class MediationGrant(BaseModel):
     """
     MediationGrant
     """
-    id: Optional[StrictStr] = Field(default=None, description="Message identifier", alias="@id")
-    type: Optional[StrictStr] = Field(default=None, description="Message type", alias="@type")
-    endpoint: Optional[StrictStr] = Field(default=None, description="endpoint on which messages destined for the recipient are received.")
+
+    id: Optional[StrictStr] = Field(
+        default=None, description="Message identifier", alias="@id"
+    )
+    type: Optional[StrictStr] = Field(
+        default=None, description="Message type", alias="@type"
+    )
+    endpoint: Optional[StrictStr] = Field(
+        default=None,
+        description="endpoint on which messages destined for the recipient are received.",
+    )
     routing_keys: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["@id", "@type", "endpoint", "routing_keys"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -57,11 +62,13 @@ class MediationGrant(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                            "type",
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+                "type",
+            },
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
@@ -73,12 +80,12 @@ class MediationGrant(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "@id": obj.get("@id"),
-            "@type": obj.get("@type"),
-            "endpoint": obj.get("endpoint"),
-            "routing_keys": obj.get("routing_keys")
-        })
+        _obj = cls.model_validate(
+            {
+                "@id": obj.get("@id"),
+                "@type": obj.get("@type"),
+                "endpoint": obj.get("endpoint"),
+                "routing_keys": obj.get("routing_keys"),
+            }
+        )
         return _obj
-
-

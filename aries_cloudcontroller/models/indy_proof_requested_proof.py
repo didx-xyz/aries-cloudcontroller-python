@@ -36,22 +36,38 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProofRequestedProof(BaseModel):
     """
     IndyProofRequestedProof
     """
-    predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = Field(default=None, description="Proof requested proof predicates.")
-    revealed_attr_groups: Optional[Dict[str, IndyProofRequestedProofRevealedAttrGroup]] = Field(default=None, description="Proof requested proof revealed attribute groups")
-    revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = Field(default=None, description="Proof requested proof revealed attributes")
-    self_attested_attrs: Optional[Union[str, Any]] = Field(default=None, description="Proof requested proof self-attested attributes")
-    unrevealed_attrs: Optional[Union[str, Any]] = Field(default=None, description="Unrevealed attributes")
-    __properties: ClassVar[List[str]] = ["predicates", "revealed_attr_groups", "revealed_attrs", "self_attested_attrs", "unrevealed_attrs"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = Field(
+        default=None, description="Proof requested proof predicates."
+    )
+    revealed_attr_groups: Optional[
+        Dict[str, IndyProofRequestedProofRevealedAttrGroup]
+    ] = Field(
+        default=None, description="Proof requested proof revealed attribute groups"
+    )
+    revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = Field(
+        default=None, description="Proof requested proof revealed attributes"
+    )
+    self_attested_attrs: Optional[Union[str, Any]] = Field(
+        default=None, description="Proof requested proof self-attested attributes"
+    )
+    unrevealed_attrs: Optional[Union[str, Any]] = Field(
+        default=None, description="Unrevealed attributes"
+    )
+    __properties: ClassVar[List[str]] = [
+        "predicates",
+        "revealed_attr_groups",
+        "revealed_attrs",
+        "self_attested_attrs",
+        "unrevealed_attrs",
+    ]
 
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -68,40 +84,40 @@ class IndyProofRequestedProof(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each value in predicates (dict)
         _field_dict = {}
         if self.predicates:
             for _key in self.predicates:
                 if self.predicates[_key]:
                     _field_dict[_key] = self.predicates[_key].to_dict()
-            _dict['predicates'] = _field_dict
+            _dict["predicates"] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in revealed_attr_groups (dict)
         _field_dict = {}
         if self.revealed_attr_groups:
             for _key in self.revealed_attr_groups:
                 if self.revealed_attr_groups[_key]:
                     _field_dict[_key] = self.revealed_attr_groups[_key].to_dict()
-            _dict['revealed_attr_groups'] = _field_dict
+            _dict["revealed_attr_groups"] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in revealed_attrs (dict)
         _field_dict = {}
         if self.revealed_attrs:
             for _key in self.revealed_attrs:
                 if self.revealed_attrs[_key]:
                     _field_dict[_key] = self.revealed_attrs[_key].to_dict()
-            _dict['revealed_attrs'] = _field_dict
+            _dict["revealed_attrs"] = _field_dict
         # set to None if revealed_attr_groups (nullable) is None
         # and model_fields_set contains the field
-        if self.revealed_attr_groups is None and "revealed_attr_groups" in self.model_fields_set:
-            _dict['revealed_attr_groups'] = None
+        if (
+            self.revealed_attr_groups is None
+            and "revealed_attr_groups" in self.model_fields_set
+        ):
+            _dict["revealed_attr_groups"] = None
 
         # set to None if revealed_attrs (nullable) is None
         # and model_fields_set contains the field
         if self.revealed_attrs is None and "revealed_attrs" in self.model_fields_set:
-            _dict['revealed_attrs'] = None
+            _dict["revealed_attrs"] = None
 
         return _dict
 
@@ -114,28 +130,28 @@ class IndyProofRequestedProof(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "predicates": dict(
-                (_k, IndyProofRequestedProofPredicate.from_dict(_v))
-                for _k, _v in obj.get("predicates").items()
-            )
-            if obj.get("predicates") is not None
-            else None,
-            "revealed_attr_groups": dict(
-                (_k, IndyProofRequestedProofRevealedAttrGroup.from_dict(_v))
-                for _k, _v in obj.get("revealed_attr_groups").items()
-            )
-            if obj.get("revealed_attr_groups") is not None
-            else None,
-            "revealed_attrs": dict(
-                (_k, IndyProofRequestedProofRevealedAttr.from_dict(_v))
-                for _k, _v in obj.get("revealed_attrs").items()
-            )
-            if obj.get("revealed_attrs") is not None
-            else None,
-            "self_attested_attrs": obj.get("self_attested_attrs"),
-            "unrevealed_attrs": obj.get("unrevealed_attrs")
-        })
+        _obj = cls.model_validate(
+            {
+                "predicates": dict(
+                    (_k, IndyProofRequestedProofPredicate.from_dict(_v))
+                    for _k, _v in obj.get("predicates").items()
+                )
+                if obj.get("predicates") is not None
+                else None,
+                "revealed_attr_groups": dict(
+                    (_k, IndyProofRequestedProofRevealedAttrGroup.from_dict(_v))
+                    for _k, _v in obj.get("revealed_attr_groups").items()
+                )
+                if obj.get("revealed_attr_groups") is not None
+                else None,
+                "revealed_attrs": dict(
+                    (_k, IndyProofRequestedProofRevealedAttr.from_dict(_v))
+                    for _k, _v in obj.get("revealed_attrs").items()
+                )
+                if obj.get("revealed_attrs") is not None
+                else None,
+                "self_attested_attrs": obj.get("self_attested_attrs"),
+                "unrevealed_attrs": obj.get("unrevealed_attrs"),
+            }
+        )
         return _obj
-
-

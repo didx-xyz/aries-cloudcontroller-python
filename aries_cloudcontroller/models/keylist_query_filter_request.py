@@ -26,18 +26,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class KeylistQueryFilterRequest(BaseModel):
     """
     KeylistQueryFilterRequest
     """
-    filter: Optional[Union[str, Any]] = Field(default=None, description="Filter for keylist query")
+
+    filter: Optional[Union[str, Any]] = Field(
+        default=None, description="Filter for keylist query"
+    )
     __properties: ClassVar[List[str]] = ["filter"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -54,10 +54,7 @@ class KeylistQueryFilterRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -69,9 +66,5 @@ class KeylistQueryFilterRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "filter": obj.get("filter")
-        })
+        _obj = cls.model_validate({"filter": obj.get("filter")})
         return _obj
-
-

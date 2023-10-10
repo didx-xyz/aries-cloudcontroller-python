@@ -29,19 +29,17 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class V20CredBoundOfferRequest(BaseModel):
     """
     V20CredBoundOfferRequest
     """
+
     counter_preview: Optional[V20CredPreview] = None
     filter: Optional[V20CredFilter] = None
     __properties: ClassVar[List[str]] = ["counter_preview", "filter"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,16 +56,13 @@ class V20CredBoundOfferRequest(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of counter_preview
         if self.counter_preview:
-            _dict['counter_preview'] = self.counter_preview.to_dict()
+            _dict["counter_preview"] = self.counter_preview.to_dict()
         # override the default output from pydantic by calling `to_dict()` of filter
         if self.filter:
-            _dict['filter'] = self.filter.to_dict()
+            _dict["filter"] = self.filter.to_dict()
         return _dict
 
     @classmethod
@@ -79,10 +74,14 @@ class V20CredBoundOfferRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "counter_preview": V20CredPreview.from_dict(obj.get("counter_preview")) if obj.get("counter_preview") is not None else None,
-            "filter": V20CredFilter.from_dict(obj.get("filter")) if obj.get("filter") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "counter_preview": V20CredPreview.from_dict(obj.get("counter_preview"))
+                if obj.get("counter_preview") is not None
+                else None,
+                "filter": V20CredFilter.from_dict(obj.get("filter"))
+                if obj.get("filter") is not None
+                else None,
+            }
+        )
         return _obj
-
-

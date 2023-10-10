@@ -30,29 +30,36 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class IndyProofReqPredSpec(BaseModel):
     """
     IndyProofReqPredSpec
     """
+
     name: StrictStr = Field(description="Attribute name")
     non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None
     p_type: StrictStr = Field(description="Predicate type ('<', '<=', '>=', or '>')")
     p_value: StrictInt = Field(description="Threshold value")
-    restrictions: Optional[List[Dict[str, StrictStr]]] = Field(default=None, description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name")
-    __properties: ClassVar[List[str]] = ["name", "non_revoked", "p_type", "p_value", "restrictions"]
+    restrictions: Optional[List[Dict[str, StrictStr]]] = Field(
+        default=None,
+        description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
+    )
+    __properties: ClassVar[List[str]] = [
+        "name",
+        "non_revoked",
+        "p_type",
+        "p_value",
+        "restrictions",
+    ]
 
-    @field_validator('p_type')
+    @field_validator("p_type")
     def p_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('<', '<=', '>=', '>'):
+        if value not in ("<", "<=", ">=", ">"):
             raise ValueError("must be one of enum values ('<', '<=', '>=', '>')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -69,17 +76,14 @@ class IndyProofReqPredSpec(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of non_revoked
         if self.non_revoked:
-            _dict['non_revoked'] = self.non_revoked.to_dict()
+            _dict["non_revoked"] = self.non_revoked.to_dict()
         # set to None if non_revoked (nullable) is None
         # and model_fields_set contains the field
         if self.non_revoked is None and "non_revoked" in self.model_fields_set:
-            _dict['non_revoked'] = None
+            _dict["non_revoked"] = None
 
         return _dict
 
@@ -92,13 +96,17 @@ class IndyProofReqPredSpec(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "non_revoked": IndyProofReqPredSpecNonRevoked.from_dict(obj.get("non_revoked")) if obj.get("non_revoked") is not None else None,
-            "p_type": obj.get("p_type"),
-            "p_value": obj.get("p_value"),
-            "restrictions": obj.get("restrictions")
-        })
+        _obj = cls.model_validate(
+            {
+                "name": obj.get("name"),
+                "non_revoked": IndyProofReqPredSpecNonRevoked.from_dict(
+                    obj.get("non_revoked")
+                )
+                if obj.get("non_revoked") is not None
+                else None,
+                "p_type": obj.get("p_type"),
+                "p_value": obj.get("p_value"),
+                "restrictions": obj.get("restrictions"),
+            }
+        )
         return _obj
-
-

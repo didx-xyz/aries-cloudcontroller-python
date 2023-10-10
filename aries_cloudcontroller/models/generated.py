@@ -27,16 +27,18 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class Generated(BaseModel):
     """
     Generated
     """
+
     master_secret: Optional[Annotated[str, Field(strict=True)]] = None
     number: Optional[Annotated[str, Field(strict=True)]] = None
     remainder: Optional[Annotated[str, Field(strict=True)]] = None
     __properties: ClassVar[List[str]] = ["master_secret", "number", "remainder"]
 
-    @field_validator('master_secret')
+    @field_validator("master_secret")
     def master_secret_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -46,7 +48,7 @@ class Generated(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('number')
+    @field_validator("number")
     def number_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -56,7 +58,7 @@ class Generated(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    @field_validator('remainder')
+    @field_validator("remainder")
     def remainder_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -66,11 +68,7 @@ class Generated(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -87,10 +85,7 @@ class Generated(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -102,11 +97,11 @@ class Generated(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "master_secret": obj.get("master_secret"),
-            "number": obj.get("number"),
-            "remainder": obj.get("remainder")
-        })
+        _obj = cls.model_validate(
+            {
+                "master_secret": obj.get("master_secret"),
+                "number": obj.get("number"),
+                "remainder": obj.get("remainder"),
+            }
+        )
         return _obj
-
-

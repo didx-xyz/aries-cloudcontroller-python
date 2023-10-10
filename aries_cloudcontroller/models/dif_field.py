@@ -28,10 +28,12 @@ try:
 except ImportError:
     from typing_extensions import Self
 
+
 class DIFField(BaseModel):
     """
     DIFField
     """
+
     filter: Optional[Filter] = None
     id: Optional[StrictStr] = Field(default=None, description="ID")
     path: Optional[List[StrictStr]] = None
@@ -39,21 +41,17 @@ class DIFField(BaseModel):
     purpose: Optional[StrictStr] = Field(default=None, description="Purpose")
     __properties: ClassVar[List[str]] = ["filter", "id", "path", "predicate", "purpose"]
 
-    @field_validator('predicate')
+    @field_validator("predicate")
     def predicate_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('required', 'preferred'):
+        if value not in ("required", "preferred"):
             raise ValueError("must be one of enum values ('required', 'preferred')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
-
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -70,13 +68,10 @@ class DIFField(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of filter
         if self.filter:
-            _dict['filter'] = self.filter.to_dict()
+            _dict["filter"] = self.filter.to_dict()
         return _dict
 
     @classmethod
@@ -88,13 +83,15 @@ class DIFField(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "filter": Filter.from_dict(obj.get("filter")) if obj.get("filter") is not None else None,
-            "id": obj.get("id"),
-            "path": obj.get("path"),
-            "predicate": obj.get("predicate"),
-            "purpose": obj.get("purpose")
-        })
+        _obj = cls.model_validate(
+            {
+                "filter": Filter.from_dict(obj.get("filter"))
+                if obj.get("filter") is not None
+                else None,
+                "id": obj.get("id"),
+                "path": obj.get("path"),
+                "predicate": obj.get("predicate"),
+                "purpose": obj.get("purpose"),
+            }
+        )
         return _obj
-
-
