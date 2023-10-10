@@ -40,7 +40,7 @@ invalid_invitation_message = {
 
 def test_valid():
     model = InvitationMessage(**sample_invitation_message)
-    assert equal_dicts(sample_invitation_message, model.dict(by_alias=True))
+    assert equal_dicts(sample_invitation_message, model.model_dump(by_alias=True))
 
 
 def test_invalid():

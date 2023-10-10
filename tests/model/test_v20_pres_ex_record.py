@@ -106,7 +106,7 @@ invalid_pres_ex_record = {
 
 def test_valid():
     model = V20PresExRecord(**sample_pres_ex_record)
-    assert equal_dicts(sample_pres_ex_record, model.dict(by_alias=True))
+    assert equal_dicts(sample_pres_ex_record, model.model_dump(by_alias=True))
 
 
 def test_invalid():

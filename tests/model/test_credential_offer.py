@@ -46,7 +46,7 @@ invalid_credential_offer = {
 
 def test_valid():
     model = CredentialOffer(**sample_credential_offer)
-    assert equal_dicts(sample_credential_offer, model.dict(by_alias=True))
+    assert equal_dicts(sample_credential_offer, model.model_dump(by_alias=True))
 
 
 def test_invalid():

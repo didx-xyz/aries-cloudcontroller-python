@@ -134,7 +134,7 @@ invalid_cred_ex_record = {
 
 def test_valid():
     model = V20CredExRecord(**sample_cred_ex_record)
-    assert equal_dicts(sample_cred_ex_record, model.dict(by_alias=True))
+    assert equal_dicts(sample_cred_ex_record, model.model_dump(by_alias=True))
 
 
 def test_invalid():
