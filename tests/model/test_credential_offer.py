@@ -51,5 +51,5 @@ def test_valid():
 
 def test_invalid():
     for key, value in invalid_credential_offer.items():
-        with pytest.raises(pydantic.error_wrappers.ValidationError):
+        with pytest.raises(pydantic.ValidationError):
             CredentialOffer(offersattach=[], **{key: value})

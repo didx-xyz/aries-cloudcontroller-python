@@ -45,5 +45,5 @@ def test_valid():
 
 def test_invalid():
     for key, value in invalid_invitation_message.items():
-        with pytest.raises(pydantic.error_wrappers.ValidationError):
+        with pytest.raises(pydantic.ValidationError):
             InvitationMessage(**{key: value})
