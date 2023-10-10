@@ -2,8 +2,8 @@ import logging
 
 import pydantic
 import pytest
-
 from aries_cloudcontroller.models import V20PresExRecord
+
 from tests.util.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
