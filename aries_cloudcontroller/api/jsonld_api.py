@@ -12,26 +12,20 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
-
-from pydantic import validate_call, ValidationError
 from typing import Dict, List, Optional, Tuple
 
-from typing import Optional
+from pydantic import ValidationError, validate_call
 
+from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_response import ApiResponse
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
 from aries_cloudcontroller.models.sign_request import SignRequest
 from aries_cloudcontroller.models.sign_response import SignResponse
 from aries_cloudcontroller.models.verify_request import VerifyRequest
 from aries_cloudcontroller.models.verify_response import VerifyResponse
-
-from aries_cloudcontroller.api_client import ApiClient
-from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
 
 
 class JsonldApi:

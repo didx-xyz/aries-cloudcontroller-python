@@ -2,8 +2,8 @@ import logging
 
 import pydantic
 import pytest
-from aries_cloudcontroller.models import CredentialOffer
 
+from aries_cloudcontroller.models import CredentialOffer
 from tests.util.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)

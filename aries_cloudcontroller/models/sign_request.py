@@ -13,16 +13,16 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict
 
+from pydantic import BaseModel, Field, StrictStr
 
-
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
 from aries_cloudcontroller.models.doc import Doc
-from typing import Dict, Any
+
 try:
     from typing import Self
 except ImportError:

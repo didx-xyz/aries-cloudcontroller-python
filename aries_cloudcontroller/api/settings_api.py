@@ -12,24 +12,18 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
-
-from pydantic import validate_call, ValidationError
 from typing import Dict, List, Optional, Tuple
 
-from typing import Optional
-
-from aries_cloudcontroller.models.profile_settings import ProfileSettings
-from aries_cloudcontroller.models.update_profile_settings import UpdateProfileSettings
+from pydantic import ValidationError, validate_call
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.models.profile_settings import ProfileSettings
+from aries_cloudcontroller.models.update_profile_settings import UpdateProfileSettings
 
 
 class SettingsApi:

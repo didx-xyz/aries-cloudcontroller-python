@@ -12,28 +12,19 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
-
-from pydantic import validate_call, ValidationError
 from typing import Dict, List, Optional, Tuple
 
-from pydantic import Field
+from pydantic import Field, StrictStr, ValidationError, validate_call
 from typing_extensions import Annotated
-from pydantic import StrictStr
-
-from typing import Optional
-
-from aries_cloudcontroller.models.ping_request import PingRequest
-from aries_cloudcontroller.models.ping_request_response import PingRequestResponse
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.models.ping_request import PingRequest
+from aries_cloudcontroller.models.ping_request_response import PingRequestResponse
 
 
 class TrustpingApi:

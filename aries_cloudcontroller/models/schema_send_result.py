@@ -13,17 +13,17 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, Optional
 
-
-from typing import Optional
-from pydantic import BaseModel, field_validator
-from pydantic import Field
+from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated
+
 from aries_cloudcontroller.models.model_schema import ModelSchema
-from typing import Dict, Any
+
 try:
     from typing import Self
 except ImportError:

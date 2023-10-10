@@ -13,17 +13,20 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, Optional
 
-
-from typing import Optional
 from pydantic import BaseModel
+
 from aries_cloudcontroller.models.v20_cred_ex_record import V20CredExRecord
 from aries_cloudcontroller.models.v20_cred_ex_record_indy import V20CredExRecordIndy
-from aries_cloudcontroller.models.v20_cred_ex_record_ld_proof import V20CredExRecordLDProof
-from typing import Dict, Any
+from aries_cloudcontroller.models.v20_cred_ex_record_ld_proof import (
+    V20CredExRecordLDProof,
+)
+
 try:
     from typing import Self
 except ImportError:

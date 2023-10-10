@@ -12,32 +12,27 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import Field, StrictStr, ValidationError, field_validator, validate_call
 from typing_extensions import Annotated
-from pydantic import StrictStr, field_validator
 
-from typing import Any, Dict, Optional, Union
-
-from aries_cloudcontroller.models.attribute_mime_types_result import AttributeMimeTypesResult
+from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_response import ApiResponse
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.models.attribute_mime_types_result import (
+    AttributeMimeTypesResult,
+)
 from aries_cloudcontroller.models.cred_info_list import CredInfoList
 from aries_cloudcontroller.models.cred_revoked_result import CredRevokedResult
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.vc_record import VCRecord
 from aries_cloudcontroller.models.vc_record_list import VCRecordList
-from aries_cloudcontroller.models.w3_c_credentials_list_request import W3CCredentialsListRequest
-
-from aries_cloudcontroller.api_client import ApiClient
-from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
+from aries_cloudcontroller.models.w3_c_credentials_list_request import (
+    W3CCredentialsListRequest,
 )
 
 

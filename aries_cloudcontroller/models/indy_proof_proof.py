@@ -13,17 +13,21 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, List, Optional
 
+from pydantic import BaseModel, Field
 
-from typing import List, Optional
-from pydantic import BaseModel
-from pydantic import Field
-from aries_cloudcontroller.models.indy_proof_proof_aggregated_proof import IndyProofProofAggregatedProof
-from aries_cloudcontroller.models.indy_proof_proof_proofs_proof import IndyProofProofProofsProof
-from typing import Dict, Any
+from aries_cloudcontroller.models.indy_proof_proof_aggregated_proof import (
+    IndyProofProofAggregatedProof,
+)
+from aries_cloudcontroller.models.indy_proof_proof_proofs_proof import (
+    IndyProofProofProofsProof,
+)
+
 try:
     from typing import Self
 except ImportError:

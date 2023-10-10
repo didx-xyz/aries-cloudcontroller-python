@@ -13,16 +13,19 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, List, Optional
 
-
-from typing import List, Optional
 from pydantic import BaseModel, StrictStr
+
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
-from aries_cloudcontroller.models.indy_non_revocation_interval import IndyNonRevocationInterval
-from typing import Dict, Any
+from aries_cloudcontroller.models.indy_non_revocation_interval import (
+    IndyNonRevocationInterval,
+)
+
 try:
     from typing import Self
 except ImportError:

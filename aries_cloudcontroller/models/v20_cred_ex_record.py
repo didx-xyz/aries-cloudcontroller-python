@@ -13,22 +13,24 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, Optional
 
-
-from typing import Optional
-from pydantic import BaseModel, StrictBool, StrictStr, field_validator
-from pydantic import Field
+from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
 from typing_extensions import Annotated
-from aries_cloudcontroller.models.v20_cred_ex_record_by_format import V20CredExRecordByFormat
+
+from aries_cloudcontroller.models.v20_cred_ex_record_by_format import (
+    V20CredExRecordByFormat,
+)
 from aries_cloudcontroller.models.v20_cred_issue import V20CredIssue
 from aries_cloudcontroller.models.v20_cred_offer import V20CredOffer
 from aries_cloudcontroller.models.v20_cred_preview import V20CredPreview
 from aries_cloudcontroller.models.v20_cred_proposal import V20CredProposal
 from aries_cloudcontroller.models.v20_cred_request import V20CredRequest
-from typing import Dict, Any
+
 try:
     from typing import Self
 except ImportError:

@@ -13,16 +13,15 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, List
 
-
-from typing import List
-from pydantic import BaseModel, StrictStr, field_validator
-from pydantic import Field
+from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated
-from typing import Dict, Any
+
 try:
     from typing import Self
 except ImportError:

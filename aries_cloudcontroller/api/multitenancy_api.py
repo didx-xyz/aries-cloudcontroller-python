@@ -12,34 +12,29 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import Field, StrictStr, ValidationError, validate_call
 from typing_extensions import Annotated
-from pydantic import StrictStr
 
-from typing import Any, Dict, Optional, Union
-
+from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_response import ApiResponse
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
 from aries_cloudcontroller.models.create_wallet_request import CreateWalletRequest
 from aries_cloudcontroller.models.create_wallet_response import CreateWalletResponse
-from aries_cloudcontroller.models.create_wallet_token_request import CreateWalletTokenRequest
-from aries_cloudcontroller.models.create_wallet_token_response import CreateWalletTokenResponse
+from aries_cloudcontroller.models.create_wallet_token_request import (
+    CreateWalletTokenRequest,
+)
+from aries_cloudcontroller.models.create_wallet_token_response import (
+    CreateWalletTokenResponse,
+)
 from aries_cloudcontroller.models.remove_wallet_request import RemoveWalletRequest
 from aries_cloudcontroller.models.update_wallet_request import UpdateWalletRequest
 from aries_cloudcontroller.models.wallet_list import WalletList
 from aries_cloudcontroller.models.wallet_record import WalletRecord
-
-from aries_cloudcontroller.api_client import ApiClient
-from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
 
 
 class MultitenancyApi:

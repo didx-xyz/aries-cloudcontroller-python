@@ -12,38 +12,39 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import Field, StrictStr, ValidationError, field_validator, validate_call
 from typing_extensions import Annotated
-from pydantic import StrictStr, field_validator
 
-from typing import Any, Dict, Optional, Union
-
-from aries_cloudcontroller.models.v20_cred_bound_offer_request import V20CredBoundOfferRequest
+from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_response import ApiResponse
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.models.v20_cred_bound_offer_request import (
+    V20CredBoundOfferRequest,
+)
 from aries_cloudcontroller.models.v20_cred_ex_free import V20CredExFree
 from aries_cloudcontroller.models.v20_cred_ex_record import V20CredExRecord
 from aries_cloudcontroller.models.v20_cred_ex_record_detail import V20CredExRecordDetail
-from aries_cloudcontroller.models.v20_cred_ex_record_list_result import V20CredExRecordListResult
-from aries_cloudcontroller.models.v20_cred_issue_problem_report_request import V20CredIssueProblemReportRequest
+from aries_cloudcontroller.models.v20_cred_ex_record_list_result import (
+    V20CredExRecordListResult,
+)
+from aries_cloudcontroller.models.v20_cred_issue_problem_report_request import (
+    V20CredIssueProblemReportRequest,
+)
 from aries_cloudcontroller.models.v20_cred_issue_request import V20CredIssueRequest
-from aries_cloudcontroller.models.v20_cred_offer_conn_free_request import V20CredOfferConnFreeRequest
+from aries_cloudcontroller.models.v20_cred_offer_conn_free_request import (
+    V20CredOfferConnFreeRequest,
+)
 from aries_cloudcontroller.models.v20_cred_offer_request import V20CredOfferRequest
 from aries_cloudcontroller.models.v20_cred_request_free import V20CredRequestFree
 from aries_cloudcontroller.models.v20_cred_request_request import V20CredRequestRequest
 from aries_cloudcontroller.models.v20_cred_store_request import V20CredStoreRequest
-from aries_cloudcontroller.models.v20_issue_cred_schema_core import V20IssueCredSchemaCore
-
-from aries_cloudcontroller.api_client import ApiClient
-from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
+from aries_cloudcontroller.models.v20_issue_cred_schema_core import (
+    V20IssueCredSchemaCore,
 )
 
 

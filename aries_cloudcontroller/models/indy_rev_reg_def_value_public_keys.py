@@ -13,16 +13,18 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, Optional
 
+from pydantic import BaseModel, Field
 
-from typing import Optional
-from pydantic import BaseModel
-from pydantic import Field
-from aries_cloudcontroller.models.indy_rev_reg_def_value_public_keys_accum_key import IndyRevRegDefValuePublicKeysAccumKey
-from typing import Dict, Any
+from aries_cloudcontroller.models.indy_rev_reg_def_value_public_keys_accum_key import (
+    IndyRevRegDefValuePublicKeysAccumKey,
+)
+
 try:
     from typing import Self
 except ImportError:

@@ -13,18 +13,18 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, List, Optional
 
-
-from typing import List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr, field_validator
-from pydantic import Field
+from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Annotated
+
 from aries_cloudcontroller.models.indy_rev_reg_def import IndyRevRegDef
 from aries_cloudcontroller.models.indy_rev_reg_entry import IndyRevRegEntry
-from typing import Dict, Any
+
 try:
     from typing import Self
 except ImportError:

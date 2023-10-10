@@ -12,34 +12,39 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import Field, StrictStr, ValidationError, field_validator, validate_call
 from typing_extensions import Annotated
-from pydantic import StrictStr, field_validator
-
-from typing import Any, Dict, List, Optional, Union
-
-from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis
-from aries_cloudcontroller.models.indy_pres_spec import IndyPresSpec
-from aries_cloudcontroller.models.v10_presentation_create_request_request import V10PresentationCreateRequestRequest
-from aries_cloudcontroller.models.v10_presentation_exchange import V10PresentationExchange
-from aries_cloudcontroller.models.v10_presentation_exchange_list import V10PresentationExchangeList
-from aries_cloudcontroller.models.v10_presentation_problem_report_request import V10PresentationProblemReportRequest
-from aries_cloudcontroller.models.v10_presentation_proposal_request import V10PresentationProposalRequest
-from aries_cloudcontroller.models.v10_presentation_send_request_request import V10PresentationSendRequestRequest
-from aries_cloudcontroller.models.v10_presentation_send_request_to_proposal import V10PresentationSendRequestToProposal
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis
+from aries_cloudcontroller.models.indy_pres_spec import IndyPresSpec
+from aries_cloudcontroller.models.v10_presentation_create_request_request import (
+    V10PresentationCreateRequestRequest,
+)
+from aries_cloudcontroller.models.v10_presentation_exchange import (
+    V10PresentationExchange,
+)
+from aries_cloudcontroller.models.v10_presentation_exchange_list import (
+    V10PresentationExchangeList,
+)
+from aries_cloudcontroller.models.v10_presentation_problem_report_request import (
+    V10PresentationProblemReportRequest,
+)
+from aries_cloudcontroller.models.v10_presentation_proposal_request import (
+    V10PresentationProposalRequest,
+)
+from aries_cloudcontroller.models.v10_presentation_send_request_request import (
+    V10PresentationSendRequestRequest,
+)
+from aries_cloudcontroller.models.v10_presentation_send_request_to_proposal import (
+    V10PresentationSendRequestToProposal,
 )
 
 

@@ -12,34 +12,37 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import Field, StrictStr, ValidationError, field_validator, validate_call
 from typing_extensions import Annotated
-from pydantic import StrictStr, field_validator
-
-from typing import Any, Dict, List, Optional, Union
-
-from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis
-from aries_cloudcontroller.models.v20_pres_create_request_request import V20PresCreateRequestRequest
-from aries_cloudcontroller.models.v20_pres_ex_record import V20PresExRecord
-from aries_cloudcontroller.models.v20_pres_ex_record_list import V20PresExRecordList
-from aries_cloudcontroller.models.v20_pres_problem_report_request import V20PresProblemReportRequest
-from aries_cloudcontroller.models.v20_pres_proposal_request import V20PresProposalRequest
-from aries_cloudcontroller.models.v20_pres_send_request_request import V20PresSendRequestRequest
-from aries_cloudcontroller.models.v20_pres_spec_by_format_request import V20PresSpecByFormatRequest
-from aries_cloudcontroller.models.v20_presentation_send_request_to_proposal import V20PresentationSendRequestToProposal
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis
+from aries_cloudcontroller.models.v20_pres_create_request_request import (
+    V20PresCreateRequestRequest,
+)
+from aries_cloudcontroller.models.v20_pres_ex_record import V20PresExRecord
+from aries_cloudcontroller.models.v20_pres_ex_record_list import V20PresExRecordList
+from aries_cloudcontroller.models.v20_pres_problem_report_request import (
+    V20PresProblemReportRequest,
+)
+from aries_cloudcontroller.models.v20_pres_proposal_request import (
+    V20PresProposalRequest,
+)
+from aries_cloudcontroller.models.v20_pres_send_request_request import (
+    V20PresSendRequestRequest,
+)
+from aries_cloudcontroller.models.v20_pres_spec_by_format_request import (
+    V20PresSpecByFormatRequest,
+)
+from aries_cloudcontroller.models.v20_presentation_send_request_to_proposal import (
+    V20PresentationSendRequestToProposal,
 )
 
 

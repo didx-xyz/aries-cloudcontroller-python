@@ -13,16 +13,18 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, List, Optional
 
+from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
 
-from typing import Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr, field_validator
-from pydantic import Field
-from aries_cloudcontroller.models.indy_proof_req_pred_spec_non_revoked import IndyProofReqPredSpecNonRevoked
-from typing import Dict, Any
+from aries_cloudcontroller.models.indy_proof_req_pred_spec_non_revoked import (
+    IndyProofReqPredSpecNonRevoked,
+)
+
 try:
     from typing import Self
 except ImportError:

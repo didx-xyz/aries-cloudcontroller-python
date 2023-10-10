@@ -12,41 +12,51 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import (
+    Field,
+    StrictBool,
+    StrictStr,
+    ValidationError,
+    field_validator,
+    validate_call,
+)
 from typing_extensions import Annotated
-from pydantic import StrictBool, StrictStr, field_validator
 
-from typing import Any, Dict, Optional, Union
-
-from aries_cloudcontroller.models.clear_pending_revocations_request import ClearPendingRevocationsRequest
-from aries_cloudcontroller.models.cred_rev_indy_records_result import CredRevIndyRecordsResult
-from aries_cloudcontroller.models.cred_rev_record_details_result import CredRevRecordDetailsResult
+from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_response import ApiResponse
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
+from aries_cloudcontroller.models.clear_pending_revocations_request import (
+    ClearPendingRevocationsRequest,
+)
+from aries_cloudcontroller.models.cred_rev_indy_records_result import (
+    CredRevIndyRecordsResult,
+)
+from aries_cloudcontroller.models.cred_rev_record_details_result import (
+    CredRevRecordDetailsResult,
+)
 from aries_cloudcontroller.models.cred_rev_record_result import CredRevRecordResult
 from aries_cloudcontroller.models.publish_revocations import PublishRevocations
 from aries_cloudcontroller.models.rev_reg_create_request import RevRegCreateRequest
 from aries_cloudcontroller.models.rev_reg_issued_result import RevRegIssuedResult
 from aries_cloudcontroller.models.rev_reg_result import RevRegResult
-from aries_cloudcontroller.models.rev_reg_update_tails_file_uri import RevRegUpdateTailsFileUri
-from aries_cloudcontroller.models.rev_reg_wallet_updated_result import RevRegWalletUpdatedResult
+from aries_cloudcontroller.models.rev_reg_update_tails_file_uri import (
+    RevRegUpdateTailsFileUri,
+)
+from aries_cloudcontroller.models.rev_reg_wallet_updated_result import (
+    RevRegWalletUpdatedResult,
+)
 from aries_cloudcontroller.models.rev_regs_created import RevRegsCreated
 from aries_cloudcontroller.models.revoke_request import RevokeRequest
 from aries_cloudcontroller.models.tails_delete_response import TailsDeleteResponse
-from aries_cloudcontroller.models.txn_or_publish_revocations_result import TxnOrPublishRevocationsResult
-from aries_cloudcontroller.models.txn_or_rev_reg_result import TxnOrRevRegResult
-
-from aries_cloudcontroller.api_client import ApiClient
-from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
+from aries_cloudcontroller.models.txn_or_publish_revocations_result import (
+    TxnOrPublishRevocationsResult,
 )
+from aries_cloudcontroller.models.txn_or_rev_reg_result import TxnOrRevRegResult
 
 
 class RevocationApi:

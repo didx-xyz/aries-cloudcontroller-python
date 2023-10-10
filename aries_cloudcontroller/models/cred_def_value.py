@@ -13,16 +13,19 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, Optional
 
-
-from typing import Optional
 from pydantic import BaseModel
+
 from aries_cloudcontroller.models.cred_def_value_primary import CredDefValuePrimary
-from aries_cloudcontroller.models.cred_def_value_revocation import CredDefValueRevocation
-from typing import Dict, Any
+from aries_cloudcontroller.models.cred_def_value_revocation import (
+    CredDefValueRevocation,
+)
+
 try:
     from typing import Self
 except ImportError:

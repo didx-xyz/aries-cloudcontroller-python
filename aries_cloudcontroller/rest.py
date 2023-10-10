@@ -17,12 +17,19 @@ import json
 import logging
 import re
 import ssl
+from urllib.parse import quote_plus, urlencode
 
-from urllib.parse import urlencode, quote_plus
 import urllib3
 
-from aries_cloudcontroller.exceptions import ApiException, UnauthorizedException, ForbiddenException, NotFoundException, ServiceException, ApiValueError, BadRequestException
-
+from aries_cloudcontroller.exceptions import (
+    ApiException,
+    ApiValueError,
+    BadRequestException,
+    ForbiddenException,
+    NotFoundException,
+    ServiceException,
+    UnauthorizedException,
+)
 
 logger = logging.getLogger(__name__)
 

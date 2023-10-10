@@ -12,19 +12,24 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
+import re  # noqa: F401
 import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import (
+    Field,
+    StrictBool,
+    StrictStr,
+    ValidationError,
+    field_validator,
+    validate_call,
+)
 from typing_extensions import Annotated
-from pydantic import StrictBool, StrictStr, field_validator
 
-from typing import Any, Dict, Optional, Union
-
+from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_response import ApiResponse
+from aries_cloudcontroller.exceptions import ApiTypeError, ApiValueError  # noqa: F401
 from aries_cloudcontroller.models.did_create import DIDCreate
 from aries_cloudcontroller.models.did_endpoint import DIDEndpoint
 from aries_cloudcontroller.models.did_endpoint_with_type import DIDEndpointWithType
@@ -33,13 +38,6 @@ from aries_cloudcontroller.models.did_result import DIDResult
 from aries_cloudcontroller.models.jws_create import JWSCreate
 from aries_cloudcontroller.models.jws_verify import JWSVerify
 from aries_cloudcontroller.models.jws_verify_response import JWSVerifyResponse
-
-from aries_cloudcontroller.api_client import ApiClient
-from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
 
 
 class WalletApi:

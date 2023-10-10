@@ -13,15 +13,15 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
-
 from datetime import datetime
+from typing import Any, Dict
 
-from pydantic import BaseModel
-from pydantic import Field
-from typing import Dict, Any
+from pydantic import BaseModel, Field
+
 try:
     from typing import Self
 except ImportError:

@@ -13,16 +13,16 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
-
-
 from typing import Any, Dict, Union
-from pydantic import BaseModel
-from pydantic import Field
+
+from pydantic import BaseModel, Field
+
 from aries_cloudcontroller.models.signature_options import SignatureOptions
-from typing import Dict, Any
+
 try:
     from typing import Self
 except ImportError:

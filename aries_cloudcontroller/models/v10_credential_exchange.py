@@ -13,22 +13,22 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
-
-
 from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, StrictBool, StrictStr, field_validator
-from pydantic import Field
+
+from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
 from typing_extensions import Annotated
+
 from aries_cloudcontroller.models.credential_offer import CredentialOffer
 from aries_cloudcontroller.models.credential_proposal import CredentialProposal
 from aries_cloudcontroller.models.indy_cred_abstract import IndyCredAbstract
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.indy_cred_request import IndyCredRequest
 from aries_cloudcontroller.models.indy_credential import IndyCredential
-from typing import Dict, Any
+
 try:
     from typing import Self
 except ImportError:

@@ -2,6 +2,7 @@ import logging
 import re
 
 import pytest
+
 from aries_cloudcontroller.acapy_client import AcaPyClient
 from aries_cloudcontroller.util.acapy_client_session import AcaPyClientSession
 

@@ -13,17 +13,21 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, Dict, Optional
 
+from pydantic import BaseModel, Field, StrictBool, StrictStr
 
-from typing import Dict, Optional
-from pydantic import BaseModel, StrictBool, StrictStr
-from pydantic import Field
-from aries_cloudcontroller.models.indy_requested_creds_requested_attr import IndyRequestedCredsRequestedAttr
-from aries_cloudcontroller.models.indy_requested_creds_requested_pred import IndyRequestedCredsRequestedPred
-from typing import Dict, Any
+from aries_cloudcontroller.models.indy_requested_creds_requested_attr import (
+    IndyRequestedCredsRequestedAttr,
+)
+from aries_cloudcontroller.models.indy_requested_creds_requested_pred import (
+    IndyRequestedCredsRequestedPred,
+)
+
 try:
     from typing import Self
 except ImportError:
