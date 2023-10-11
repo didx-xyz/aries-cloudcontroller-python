@@ -47,23 +47,16 @@ class MultitenancyApi:
         self.api_client = api_client
 
     @validate_call
-    def create_wallet(
+    async def create_wallet(
         self,
         body: Optional[CreateWalletRequest] = None,
         **kwargs,
     ) -> CreateWalletResponse:
         """Create a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_wallet(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: CreateWalletRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -77,26 +70,23 @@ class MultitenancyApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_wallet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_wallet_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.create_wallet_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_wallet_with_http_info(
+    async def create_wallet_with_http_info(
         self,
         body: Optional[CreateWalletRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Create a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_wallet_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: CreateWalletRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -125,7 +115,6 @@ class MultitenancyApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -182,7 +171,7 @@ class MultitenancyApi:
             "200": "CreateWalletResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/multitenancy/wallet",
             "POST",
             _path_params,
@@ -193,7 +182,6 @@ class MultitenancyApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -202,7 +190,7 @@ class MultitenancyApi:
         )
 
     @validate_call
-    def delete_wallet(
+    async def delete_wallet(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
         body: Optional[RemoveWalletRequest] = None,
@@ -210,18 +198,11 @@ class MultitenancyApi:
     ) -> object:
         """Remove a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_wallet(wallet_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: Subwallet identifier (required)
         :type wallet_id: str
         :param body:
         :type body: RemoveWalletRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -235,12 +216,15 @@ class MultitenancyApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the delete_wallet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_wallet_with_http_info(
-            wallet_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.delete_wallet_with_http_info.raw_function(
+            wallet_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def delete_wallet_with_http_info(
+    async def delete_wallet_with_http_info(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
         body: Optional[RemoveWalletRequest] = None,
@@ -248,18 +232,11 @@ class MultitenancyApi:
     ) -> ApiResponse:
         """Remove a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_wallet_with_http_info(wallet_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: Subwallet identifier (required)
         :type wallet_id: str
         :param body:
         :type body: RemoveWalletRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -288,7 +265,6 @@ class MultitenancyApi:
         _all_params = ["wallet_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -347,7 +323,7 @@ class MultitenancyApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/multitenancy/wallet/{wallet_id}/remove",
             "POST",
             _path_params,
@@ -358,7 +334,6 @@ class MultitenancyApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -367,7 +342,7 @@ class MultitenancyApi:
         )
 
     @validate_call
-    def get_auth_token(
+    async def get_auth_token(
         self,
         wallet_id: StrictStr,
         body: Optional[CreateWalletTokenRequest] = None,
@@ -375,18 +350,11 @@ class MultitenancyApi:
     ) -> CreateWalletTokenResponse:
         """Get auth token for a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_auth_token(wallet_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: (required)
         :type wallet_id: str
         :param body:
         :type body: CreateWalletTokenRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -400,12 +368,15 @@ class MultitenancyApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_auth_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_auth_token_with_http_info(
-            wallet_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.get_auth_token_with_http_info.raw_function(
+            wallet_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def get_auth_token_with_http_info(
+    async def get_auth_token_with_http_info(
         self,
         wallet_id: StrictStr,
         body: Optional[CreateWalletTokenRequest] = None,
@@ -413,18 +384,11 @@ class MultitenancyApi:
     ) -> ApiResponse:
         """Get auth token for a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_auth_token_with_http_info(wallet_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: (required)
         :type wallet_id: str
         :param body:
         :type body: CreateWalletTokenRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -453,7 +417,6 @@ class MultitenancyApi:
         _all_params = ["wallet_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -512,7 +475,7 @@ class MultitenancyApi:
             "200": "CreateWalletTokenResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/multitenancy/wallet/{wallet_id}/token",
             "POST",
             _path_params,
@@ -523,7 +486,6 @@ class MultitenancyApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -532,23 +494,16 @@ class MultitenancyApi:
         )
 
     @validate_call
-    def get_wallet(
+    async def get_wallet(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
         **kwargs,
     ) -> WalletRecord:
         """Get a single subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_wallet(wallet_id, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: Subwallet identifier (required)
         :type wallet_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -562,26 +517,23 @@ class MultitenancyApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_wallet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_wallet_with_http_info(wallet_id, **kwargs)  # noqa: E501
+
+        return await self.get_wallet_with_http_info.raw_function(
+            wallet_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_wallet_with_http_info(
+    async def get_wallet_with_http_info(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Get a single subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_wallet_with_http_info(wallet_id, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: Subwallet identifier (required)
         :type wallet_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -610,7 +562,6 @@ class MultitenancyApi:
         _all_params = ["wallet_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -658,7 +609,7 @@ class MultitenancyApi:
             "200": "WalletRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/multitenancy/wallet/{wallet_id}",
             "GET",
             _path_params,
@@ -669,7 +620,6 @@ class MultitenancyApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -678,7 +628,7 @@ class MultitenancyApi:
         )
 
     @validate_call
-    def get_wallets(
+    async def get_wallets(
         self,
         wallet_name: Annotated[
             Optional[StrictStr], Field(description="Wallet name")
@@ -687,16 +637,9 @@ class MultitenancyApi:
     ) -> WalletList:
         """Query subwallets  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_wallets(wallet_name, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_name: Wallet name
         :type wallet_name: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -710,10 +653,14 @@ class MultitenancyApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_wallets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_wallets_with_http_info(wallet_name, **kwargs)  # noqa: E501
+
+        return await self.get_wallets_with_http_info.raw_function(
+            wallet_name,
+            **kwargs,
+        )
 
     @validate_call
-    def get_wallets_with_http_info(
+    async def get_wallets_with_http_info(
         self,
         wallet_name: Annotated[
             Optional[StrictStr], Field(description="Wallet name")
@@ -722,16 +669,9 @@ class MultitenancyApi:
     ) -> ApiResponse:
         """Query subwallets  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_wallets_with_http_info(wallet_name, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_name: Wallet name
         :type wallet_name: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -760,7 +700,6 @@ class MultitenancyApi:
         _all_params = ["wallet_name"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -809,7 +748,7 @@ class MultitenancyApi:
             "200": "WalletList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/multitenancy/wallets",
             "GET",
             _path_params,
@@ -820,7 +759,6 @@ class MultitenancyApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -829,7 +767,7 @@ class MultitenancyApi:
         )
 
     @validate_call
-    def update_wallet(
+    async def update_wallet(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
         body: Optional[UpdateWalletRequest] = None,
@@ -837,18 +775,11 @@ class MultitenancyApi:
     ) -> WalletRecord:
         """Update a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_wallet(wallet_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: Subwallet identifier (required)
         :type wallet_id: str
         :param body:
         :type body: UpdateWalletRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -862,12 +793,15 @@ class MultitenancyApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the update_wallet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.update_wallet_with_http_info(
-            wallet_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.update_wallet_with_http_info.raw_function(
+            wallet_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def update_wallet_with_http_info(
+    async def update_wallet_with_http_info(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
         body: Optional[UpdateWalletRequest] = None,
@@ -875,18 +809,11 @@ class MultitenancyApi:
     ) -> ApiResponse:
         """Update a subwallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_wallet_with_http_info(wallet_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param wallet_id: Subwallet identifier (required)
         :type wallet_id: str
         :param body:
         :type body: UpdateWalletRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -915,7 +842,6 @@ class MultitenancyApi:
         _all_params = ["wallet_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -974,7 +900,7 @@ class MultitenancyApi:
             "200": "WalletRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/multitenancy/wallet/{wallet_id}",
             "PUT",
             _path_params,
@@ -985,7 +911,6 @@ class MultitenancyApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

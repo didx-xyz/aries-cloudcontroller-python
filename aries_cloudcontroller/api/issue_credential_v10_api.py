@@ -64,23 +64,16 @@ class IssueCredentialV10Api:
         self.api_client = api_client
 
     @validate_call
-    def create_credential(
+    async def create_credential(
         self,
         body: Optional[V10CredentialCreate] = None,
         **kwargs,
     ) -> V10CredentialExchange:
         """Create a credential record without sending (generally for use with Out-Of-Band)  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_credential(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -94,26 +87,23 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_credential_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.create_credential_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_credential_with_http_info(
+    async def create_credential_with_http_info(
         self,
         body: Optional[V10CredentialCreate] = None,
         **kwargs,
     ) -> ApiResponse:
         """Create a credential record without sending (generally for use with Out-Of-Band)  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_credential_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -142,7 +132,6 @@ class IssueCredentialV10Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -199,7 +188,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/create",
             "POST",
             _path_params,
@@ -210,7 +199,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -219,23 +207,16 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def create_offer(
+    async def create_offer(
         self,
         body: Optional[V10CredentialConnFreeOfferRequest] = None,
         **kwargs,
     ) -> V10CredentialExchange:
         """Create a credential offer, independent of any proposal or connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_offer(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialConnFreeOfferRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -249,26 +230,23 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_offer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_offer_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.create_offer_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_offer_with_http_info(
+    async def create_offer_with_http_info(
         self,
         body: Optional[V10CredentialConnFreeOfferRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Create a credential offer, independent of any proposal or connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_offer_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialConnFreeOfferRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -297,7 +275,6 @@ class IssueCredentialV10Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -354,7 +331,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/create-offer",
             "POST",
             _path_params,
@@ -365,7 +342,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -374,7 +350,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def delete_record(
+    async def delete_record(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -383,16 +359,9 @@ class IssueCredentialV10Api:
     ) -> object:
         """Remove an existing credential exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record(cred_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -406,10 +375,14 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the delete_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_record_with_http_info(cred_ex_id, **kwargs)  # noqa: E501
+
+        return await self.delete_record_with_http_info.raw_function(
+            cred_ex_id,
+            **kwargs,
+        )
 
     @validate_call
-    def delete_record_with_http_info(
+    async def delete_record_with_http_info(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -418,16 +391,9 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Remove an existing credential exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record_with_http_info(cred_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -456,7 +422,6 @@ class IssueCredentialV10Api:
         _all_params = ["cred_ex_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -504,7 +469,7 @@ class IssueCredentialV10Api:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records/{cred_ex_id}",
             "DELETE",
             _path_params,
@@ -515,7 +480,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -524,7 +488,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def get_record(
+    async def get_record(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -533,16 +497,9 @@ class IssueCredentialV10Api:
     ) -> V10CredentialExchange:
         """Fetch a single credential exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record(cred_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -556,10 +513,14 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_record_with_http_info(cred_ex_id, **kwargs)  # noqa: E501
+
+        return await self.get_record_with_http_info.raw_function(
+            cred_ex_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_record_with_http_info(
+    async def get_record_with_http_info(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -568,16 +529,9 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Fetch a single credential exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record_with_http_info(cred_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -606,7 +560,6 @@ class IssueCredentialV10Api:
         _all_params = ["cred_ex_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -654,7 +607,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records/{cred_ex_id}",
             "GET",
             _path_params,
@@ -665,7 +618,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -674,7 +626,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def get_records(
+    async def get_records(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -693,11 +645,6 @@ class IssueCredentialV10Api:
     ) -> V10CredentialExchangeListResult:
         """Fetch all credential exchange records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records(connection_id, role, state, thread_id, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier
         :type connection_id: str
@@ -707,8 +654,6 @@ class IssueCredentialV10Api:
         :type state: str
         :param thread_id: Thread identifier
         :type thread_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -722,12 +667,17 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(
-            connection_id, role, state, thread_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_records_with_http_info.raw_function(
+            connection_id,
+            role,
+            state,
+            thread_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_records_with_http_info(
+    async def get_records_with_http_info(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -746,11 +696,6 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Fetch all credential exchange records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records_with_http_info(connection_id, role, state, thread_id, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier
         :type connection_id: str
@@ -760,8 +705,6 @@ class IssueCredentialV10Api:
         :type state: str
         :param thread_id: Thread identifier
         :type thread_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -790,7 +733,6 @@ class IssueCredentialV10Api:
         _all_params = ["connection_id", "role", "state", "thread_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -848,7 +790,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchangeListResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records",
             "GET",
             _path_params,
@@ -859,7 +801,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -868,7 +809,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def issue_credential(
+    async def issue_credential(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -878,18 +819,11 @@ class IssueCredentialV10Api:
     ) -> V10CredentialExchange:
         """Send holder a credential  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_credential(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialIssueRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -903,12 +837,15 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the issue_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.issue_credential_with_http_info(
-            cred_ex_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.issue_credential_with_http_info.raw_function(
+            cred_ex_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def issue_credential_with_http_info(
+    async def issue_credential_with_http_info(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -918,18 +855,11 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Send holder a credential  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_credential_with_http_info(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialIssueRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -958,7 +888,6 @@ class IssueCredentialV10Api:
         _all_params = ["cred_ex_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1017,7 +946,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records/{cred_ex_id}/issue",
             "POST",
             _path_params,
@@ -1028,7 +957,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1037,23 +965,16 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def issue_credential_automated(
+    async def issue_credential_automated(
         self,
         body: Optional[V10CredentialProposalRequestMand] = None,
         **kwargs,
     ) -> V10CredentialExchange:
         """Send holder a credential, automating entire flow  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_credential_automated(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialProposalRequestMand
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1067,28 +988,23 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the issue_credential_automated_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.issue_credential_automated_with_http_info(
-            body, **kwargs
-        )  # noqa: E501
+
+        return await self.issue_credential_automated_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def issue_credential_automated_with_http_info(
+    async def issue_credential_automated_with_http_info(
         self,
         body: Optional[V10CredentialProposalRequestMand] = None,
         **kwargs,
     ) -> ApiResponse:
         """Send holder a credential, automating entire flow  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_credential_automated_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialProposalRequestMand
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1117,7 +1033,6 @@ class IssueCredentialV10Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1174,7 +1089,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/send",
             "POST",
             _path_params,
@@ -1185,7 +1100,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1194,7 +1108,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def report_problem(
+    async def report_problem(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -1204,18 +1118,11 @@ class IssueCredentialV10Api:
     ) -> object:
         """Send a problem report for credential exchange  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.report_problem(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialProblemReportRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1229,12 +1136,15 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the report_problem_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.report_problem_with_http_info(
-            cred_ex_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.report_problem_with_http_info.raw_function(
+            cred_ex_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def report_problem_with_http_info(
+    async def report_problem_with_http_info(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -1244,18 +1154,11 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Send a problem report for credential exchange  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.report_problem_with_http_info(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialProblemReportRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1284,7 +1187,6 @@ class IssueCredentialV10Api:
         _all_params = ["cred_ex_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1343,7 +1245,7 @@ class IssueCredentialV10Api:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records/{cred_ex_id}/problem-report",
             "POST",
             _path_params,
@@ -1354,7 +1256,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1363,7 +1264,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def send_offer(
+    async def send_offer(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -1373,18 +1274,11 @@ class IssueCredentialV10Api:
     ) -> V10CredentialExchange:
         """Send holder a credential offer in reference to a proposal with preview  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_offer(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialBoundOfferRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1398,10 +1292,15 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_offer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_offer_with_http_info(cred_ex_id, body, **kwargs)  # noqa: E501
+
+        return await self.send_offer_with_http_info.raw_function(
+            cred_ex_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_offer_with_http_info(
+    async def send_offer_with_http_info(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -1411,18 +1310,11 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Send holder a credential offer in reference to a proposal with preview  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_offer_with_http_info(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialBoundOfferRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1451,7 +1343,6 @@ class IssueCredentialV10Api:
         _all_params = ["cred_ex_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1510,7 +1401,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records/{cred_ex_id}/send-offer",
             "POST",
             _path_params,
@@ -1521,7 +1412,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1530,23 +1420,16 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def send_offer_free(
+    async def send_offer_free(
         self,
         body: Optional[V10CredentialFreeOfferRequest] = None,
         **kwargs,
     ) -> V10CredentialExchange:
         """Send holder a credential offer, independent of any proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_offer_free(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialFreeOfferRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1560,26 +1443,23 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_offer_free_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_offer_free_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.send_offer_free_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_offer_free_with_http_info(
+    async def send_offer_free_with_http_info(
         self,
         body: Optional[V10CredentialFreeOfferRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Send holder a credential offer, independent of any proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_offer_free_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialFreeOfferRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1608,7 +1488,6 @@ class IssueCredentialV10Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1665,7 +1544,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/send-offer",
             "POST",
             _path_params,
@@ -1676,7 +1555,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1685,23 +1563,16 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def send_proposal(
+    async def send_proposal(
         self,
         body: Optional[V10CredentialProposalRequestOpt] = None,
         **kwargs,
     ) -> V10CredentialExchange:
         """Send issuer a credential proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_proposal(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialProposalRequestOpt
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1715,26 +1586,23 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_proposal_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_proposal_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.send_proposal_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_proposal_with_http_info(
+    async def send_proposal_with_http_info(
         self,
         body: Optional[V10CredentialProposalRequestOpt] = None,
         **kwargs,
     ) -> ApiResponse:
         """Send issuer a credential proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_proposal_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V10CredentialProposalRequestOpt
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1763,7 +1631,6 @@ class IssueCredentialV10Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1820,7 +1687,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/send-proposal",
             "POST",
             _path_params,
@@ -1831,7 +1698,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1840,7 +1706,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def send_request(
+    async def send_request(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -1849,16 +1715,9 @@ class IssueCredentialV10Api:
     ) -> V10CredentialExchange:
         """Send issuer a credential request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_request(cred_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1872,10 +1731,14 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_request_with_http_info(cred_ex_id, **kwargs)  # noqa: E501
+
+        return await self.send_request_with_http_info.raw_function(
+            cred_ex_id,
+            **kwargs,
+        )
 
     @validate_call
-    def send_request_with_http_info(
+    async def send_request_with_http_info(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -1884,16 +1747,9 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Send issuer a credential request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_request_with_http_info(cred_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1922,7 +1778,6 @@ class IssueCredentialV10Api:
         _all_params = ["cred_ex_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1970,7 +1825,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records/{cred_ex_id}/send-request",
             "POST",
             _path_params,
@@ -1981,7 +1836,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1990,7 +1844,7 @@ class IssueCredentialV10Api:
         )
 
     @validate_call
-    def store_credential(
+    async def store_credential(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -2000,18 +1854,11 @@ class IssueCredentialV10Api:
     ) -> V10CredentialExchange:
         """Store a received credential  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.store_credential(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialStoreRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2025,12 +1872,15 @@ class IssueCredentialV10Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the store_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.store_credential_with_http_info(
-            cred_ex_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.store_credential_with_http_info.raw_function(
+            cred_ex_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def store_credential_with_http_info(
+    async def store_credential_with_http_info(
         self,
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
@@ -2040,18 +1890,11 @@ class IssueCredentialV10Api:
     ) -> ApiResponse:
         """Store a received credential  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.store_credential_with_http_info(cred_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         :param body:
         :type body: V10CredentialStoreRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2080,7 +1923,6 @@ class IssueCredentialV10Api:
         _all_params = ["cred_ex_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2139,7 +1981,7 @@ class IssueCredentialV10Api:
             "200": "V10CredentialExchange",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/issue-credential/records/{cred_ex_id}/store",
             "POST",
             _path_params,
@@ -2150,7 +1992,6 @@ class IssueCredentialV10Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

@@ -36,23 +36,16 @@ class ResolverApi:
         self.api_client = api_client
 
     @validate_call
-    def get_did(
+    async def get_did(
         self,
         did: Annotated[str, Field(strict=True, description="DID")],
         **kwargs,
     ) -> ResolutionResult:
         """Retrieve doc for requested did  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -66,26 +59,23 @@ class ResolverApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_did_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_did_with_http_info(did, **kwargs)  # noqa: E501
+
+        return await self.get_did_with_http_info.raw_function(
+            did,
+            **kwargs,
+        )
 
     @validate_call
-    def get_did_with_http_info(
+    async def get_did_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID")],
         **kwargs,
     ) -> ApiResponse:
         """Retrieve doc for requested did  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_with_http_info(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -114,7 +104,6 @@ class ResolverApi:
         _all_params = ["did"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -162,7 +151,7 @@ class ResolverApi:
             "200": "ResolutionResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/resolver/resolve/{did}",
             "GET",
             _path_params,
@@ -173,7 +162,6 @@ class ResolverApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

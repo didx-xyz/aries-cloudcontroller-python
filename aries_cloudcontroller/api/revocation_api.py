@@ -62,23 +62,16 @@ class RevocationApi:
         self.api_client = api_client
 
     @validate_call
-    def clear_pending_revocations(
+    async def clear_pending_revocations(
         self,
         body: Optional[ClearPendingRevocationsRequest] = None,
         **kwargs,
     ) -> PublishRevocations:
         """Clear pending revocations  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.clear_pending_revocations(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: ClearPendingRevocationsRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -92,28 +85,23 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the clear_pending_revocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.clear_pending_revocations_with_http_info(
-            body, **kwargs
-        )  # noqa: E501
+
+        return await self.clear_pending_revocations_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def clear_pending_revocations_with_http_info(
+    async def clear_pending_revocations_with_http_info(
         self,
         body: Optional[ClearPendingRevocationsRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Clear pending revocations  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.clear_pending_revocations_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: ClearPendingRevocationsRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -142,7 +130,6 @@ class RevocationApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -199,7 +186,7 @@ class RevocationApi:
             "200": "PublishRevocations",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/clear-pending-revocations",
             "POST",
             _path_params,
@@ -210,7 +197,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -219,23 +205,16 @@ class RevocationApi:
         )
 
     @validate_call
-    def create_registry(
+    async def create_registry(
         self,
         body: Optional[RevRegCreateRequest] = None,
         **kwargs,
     ) -> RevRegResult:
         """Creates a new revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_registry(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: RevRegCreateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -249,26 +228,23 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_registry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_registry_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.create_registry_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_registry_with_http_info(
+    async def create_registry_with_http_info(
         self,
         body: Optional[RevRegCreateRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Creates a new revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_registry_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: RevRegCreateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -297,7 +273,6 @@ class RevocationApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -354,7 +329,7 @@ class RevocationApi:
             "200": "RevRegResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/create-registry",
             "POST",
             _path_params,
@@ -365,7 +340,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -374,7 +348,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def download_tails_file(
+    async def download_tails_file(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -383,16 +357,9 @@ class RevocationApi:
     ) -> bytearray:
         """Download tails file  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.download_tails_file(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -406,12 +373,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the download_tails_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.download_tails_file_with_http_info(
-            rev_reg_id, **kwargs
-        )  # noqa: E501
+
+        return await self.download_tails_file_with_http_info.raw_function(
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def download_tails_file_with_http_info(
+    async def download_tails_file_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -420,16 +389,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Download tails file  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.download_tails_file_with_http_info(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -458,7 +420,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -506,7 +467,7 @@ class RevocationApi:
             "200": "bytearray",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/tails-file",
             "GET",
             _path_params,
@@ -517,7 +478,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -526,7 +486,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def get_active_registry_for_cred_def(
+    async def get_active_registry_for_cred_def(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -535,16 +495,9 @@ class RevocationApi:
     ) -> RevRegResult:
         """Get current active revocation registry by credential definition id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_active_registry_for_cred_def(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -558,12 +511,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_active_registry_for_cred_def_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_active_registry_for_cred_def_with_http_info(
-            cred_def_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_active_registry_for_cred_def_with_http_info.raw_function(
+            cred_def_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_active_registry_for_cred_def_with_http_info(
+    async def get_active_registry_for_cred_def_with_http_info(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -572,16 +527,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Get current active revocation registry by credential definition id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_active_registry_for_cred_def_with_http_info(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -610,7 +558,6 @@ class RevocationApi:
         _all_params = ["cred_def_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -658,7 +605,7 @@ class RevocationApi:
             "200": "RevRegResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/active-registry/{cred_def_id}",
             "GET",
             _path_params,
@@ -669,7 +616,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -678,7 +624,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def get_created_registries(
+    async def get_created_registries(
         self,
         cred_def_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -691,18 +637,11 @@ class RevocationApi:
     ) -> RevRegsCreated:
         """Search for matching revocation registries that current agent created  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_created_registries(cred_def_id, state, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier
         :type cred_def_id: str
         :param state: Revocation registry state
         :type state: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -716,12 +655,15 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_created_registries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_created_registries_with_http_info(
-            cred_def_id, state, **kwargs
-        )  # noqa: E501
+
+        return await self.get_created_registries_with_http_info.raw_function(
+            cred_def_id,
+            state,
+            **kwargs,
+        )
 
     @validate_call
-    def get_created_registries_with_http_info(
+    async def get_created_registries_with_http_info(
         self,
         cred_def_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -734,18 +676,11 @@ class RevocationApi:
     ) -> ApiResponse:
         """Search for matching revocation registries that current agent created  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_created_registries_with_http_info(cred_def_id, state, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier
         :type cred_def_id: str
         :param state: Revocation registry state
         :type state: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -774,7 +709,6 @@ class RevocationApi:
         _all_params = ["cred_def_id", "state"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -826,7 +760,7 @@ class RevocationApi:
             "200": "RevRegsCreated",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registries/created",
             "GET",
             _path_params,
@@ -837,7 +771,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -846,7 +779,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def get_registry(
+    async def get_registry(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -855,16 +788,9 @@ class RevocationApi:
     ) -> RevRegResult:
         """Get revocation registry by revocation registry id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_registry(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -878,10 +804,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_registry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_registry_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
+
+        return await self.get_registry_with_http_info.raw_function(
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_registry_with_http_info(
+    async def get_registry_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -890,16 +820,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Get revocation registry by revocation registry id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_registry_with_http_info(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -928,7 +851,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -976,7 +898,7 @@ class RevocationApi:
             "200": "RevRegResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}",
             "GET",
             _path_params,
@@ -987,7 +909,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -996,7 +917,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def get_registry_issued_credentials_count(
+    async def get_registry_issued_credentials_count(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1005,16 +926,9 @@ class RevocationApi:
     ) -> RevRegIssuedResult:
         """Get number of credentials issued against revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_registry_issued_credentials_count(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1028,12 +942,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_registry_issued_credentials_count_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_registry_issued_credentials_count_with_http_info(
-            rev_reg_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_registry_issued_credentials_count_with_http_info.raw_function(
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_registry_issued_credentials_count_with_http_info(
+    async def get_registry_issued_credentials_count_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1042,16 +958,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Get number of credentials issued against revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_registry_issued_credentials_count_with_http_info(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1080,7 +989,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1128,7 +1036,7 @@ class RevocationApi:
             "200": "RevRegIssuedResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/issued",
             "GET",
             _path_params,
@@ -1139,7 +1047,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1148,7 +1055,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def get_revocation_status(
+    async def get_revocation_status(
         self,
         cred_ex_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -1166,11 +1073,6 @@ class RevocationApi:
     ) -> CredRevRecordResult:
         """Get credential revocation status  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_revocation_status(cred_ex_id, cred_rev_id, rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier
         :type cred_ex_id: str
@@ -1178,8 +1080,6 @@ class RevocationApi:
         :type cred_rev_id: str
         :param rev_reg_id: Revocation registry identifier
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1193,12 +1093,16 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_revocation_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_revocation_status_with_http_info(
-            cred_ex_id, cred_rev_id, rev_reg_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_revocation_status_with_http_info.raw_function(
+            cred_ex_id,
+            cred_rev_id,
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_revocation_status_with_http_info(
+    async def get_revocation_status_with_http_info(
         self,
         cred_ex_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -1216,11 +1120,6 @@ class RevocationApi:
     ) -> ApiResponse:
         """Get credential revocation status  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_revocation_status_with_http_info(cred_ex_id, cred_rev_id, rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_ex_id: Credential exchange identifier
         :type cred_ex_id: str
@@ -1228,8 +1127,6 @@ class RevocationApi:
         :type cred_rev_id: str
         :param rev_reg_id: Revocation registry identifier
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1258,7 +1155,6 @@ class RevocationApi:
         _all_params = ["cred_ex_id", "cred_rev_id", "rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1313,7 +1209,7 @@ class RevocationApi:
             "200": "CredRevRecordResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/credential-record",
             "GET",
             _path_params,
@@ -1324,7 +1220,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1333,7 +1228,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def publish_rev_reg_def(
+    async def publish_rev_reg_def(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1349,11 +1244,6 @@ class RevocationApi:
     ) -> TxnOrRevRegResult:
         """Send revocation registry definition to ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_rev_reg_def(rev_reg_id, conn_id, create_transaction_for_endorser, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
@@ -1361,8 +1251,6 @@ class RevocationApi:
         :type conn_id: str
         :param create_transaction_for_endorser: Create Transaction For Endorser's signature
         :type create_transaction_for_endorser: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1376,12 +1264,16 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the publish_rev_reg_def_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.publish_rev_reg_def_with_http_info(
-            rev_reg_id, conn_id, create_transaction_for_endorser, **kwargs
-        )  # noqa: E501
+
+        return await self.publish_rev_reg_def_with_http_info.raw_function(
+            rev_reg_id,
+            conn_id,
+            create_transaction_for_endorser,
+            **kwargs,
+        )
 
     @validate_call
-    def publish_rev_reg_def_with_http_info(
+    async def publish_rev_reg_def_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1397,11 +1289,6 @@ class RevocationApi:
     ) -> ApiResponse:
         """Send revocation registry definition to ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_rev_reg_def_with_http_info(rev_reg_id, conn_id, create_transaction_for_endorser, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
@@ -1409,8 +1296,6 @@ class RevocationApi:
         :type conn_id: str
         :param create_transaction_for_endorser: Create Transaction For Endorser's signature
         :type create_transaction_for_endorser: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1439,7 +1324,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id", "conn_id", "create_transaction_for_endorser"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1498,7 +1382,7 @@ class RevocationApi:
             "200": "TxnOrRevRegResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/definition",
             "POST",
             _path_params,
@@ -1509,7 +1393,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1518,7 +1401,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def publish_rev_reg_entry(
+    async def publish_rev_reg_entry(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1534,11 +1417,6 @@ class RevocationApi:
     ) -> RevRegResult:
         """Send revocation registry entry to ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_rev_reg_entry(rev_reg_id, conn_id, create_transaction_for_endorser, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
@@ -1546,8 +1424,6 @@ class RevocationApi:
         :type conn_id: str
         :param create_transaction_for_endorser: Create Transaction For Endorser's signature
         :type create_transaction_for_endorser: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1561,12 +1437,16 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the publish_rev_reg_entry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.publish_rev_reg_entry_with_http_info(
-            rev_reg_id, conn_id, create_transaction_for_endorser, **kwargs
-        )  # noqa: E501
+
+        return await self.publish_rev_reg_entry_with_http_info.raw_function(
+            rev_reg_id,
+            conn_id,
+            create_transaction_for_endorser,
+            **kwargs,
+        )
 
     @validate_call
-    def publish_rev_reg_entry_with_http_info(
+    async def publish_rev_reg_entry_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1582,11 +1462,6 @@ class RevocationApi:
     ) -> ApiResponse:
         """Send revocation registry entry to ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_rev_reg_entry_with_http_info(rev_reg_id, conn_id, create_transaction_for_endorser, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
@@ -1594,8 +1469,6 @@ class RevocationApi:
         :type conn_id: str
         :param create_transaction_for_endorser: Create Transaction For Endorser's signature
         :type create_transaction_for_endorser: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1624,7 +1497,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id", "conn_id", "create_transaction_for_endorser"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1683,7 +1555,7 @@ class RevocationApi:
             "200": "RevRegResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/entry",
             "POST",
             _path_params,
@@ -1694,7 +1566,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1703,23 +1574,16 @@ class RevocationApi:
         )
 
     @validate_call
-    def publish_revocations(
+    async def publish_revocations(
         self,
         body: Optional[PublishRevocations] = None,
         **kwargs,
     ) -> TxnOrPublishRevocationsResult:
         """Publish pending revocations to ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_revocations(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: PublishRevocations
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1733,26 +1597,23 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the publish_revocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.publish_revocations_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.publish_revocations_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def publish_revocations_with_http_info(
+    async def publish_revocations_with_http_info(
         self,
         body: Optional[PublishRevocations] = None,
         **kwargs,
     ) -> ApiResponse:
         """Publish pending revocations to ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_revocations_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: PublishRevocations
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1781,7 +1642,6 @@ class RevocationApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1838,7 +1698,7 @@ class RevocationApi:
             "200": "TxnOrPublishRevocationsResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/publish-revocations",
             "POST",
             _path_params,
@@ -1849,7 +1709,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1858,7 +1717,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def revocation_active_registry_cred_def_id_rotate_post(
+    async def revocation_active_registry_cred_def_id_rotate_post(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -1867,16 +1726,9 @@ class RevocationApi:
     ) -> RevRegsCreated:
         """Rotate revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_active_registry_cred_def_id_rotate_post(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1890,12 +1742,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_active_registry_cred_def_id_rotate_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_active_registry_cred_def_id_rotate_post_with_http_info(
-            cred_def_id, **kwargs
-        )  # noqa: E501
+
+        return await self.revocation_active_registry_cred_def_id_rotate_post_with_http_info.raw_function(
+            cred_def_id,
+            **kwargs,
+        )
 
     @validate_call
-    def revocation_active_registry_cred_def_id_rotate_post_with_http_info(
+    async def revocation_active_registry_cred_def_id_rotate_post_with_http_info(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -1904,16 +1758,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Rotate revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_active_registry_cred_def_id_rotate_post_with_http_info(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1942,7 +1789,6 @@ class RevocationApi:
         _all_params = ["cred_def_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1991,7 +1837,7 @@ class RevocationApi:
             "200": "RevRegsCreated",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/active-registry/{cred_def_id}/rotate",
             "POST",
             _path_params,
@@ -2002,7 +1848,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2011,7 +1856,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def revocation_registry_delete_tails_file_delete(
+    async def revocation_registry_delete_tails_file_delete(
         self,
         cred_def_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -2025,18 +1870,11 @@ class RevocationApi:
     ) -> TailsDeleteResponse:
         """Delete the tail files  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_delete_tails_file_delete(cred_def_id, rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier
         :type cred_def_id: str
         :param rev_reg_id: Revocation registry identifier
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2050,12 +1888,15 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_delete_tails_file_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_delete_tails_file_delete_with_http_info(
-            cred_def_id, rev_reg_id, **kwargs
-        )  # noqa: E501
+
+        return await self.revocation_registry_delete_tails_file_delete_with_http_info.raw_function(
+            cred_def_id,
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def revocation_registry_delete_tails_file_delete_with_http_info(
+    async def revocation_registry_delete_tails_file_delete_with_http_info(
         self,
         cred_def_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -2069,18 +1910,11 @@ class RevocationApi:
     ) -> ApiResponse:
         """Delete the tail files  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_delete_tails_file_delete_with_http_info(cred_def_id, rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier
         :type cred_def_id: str
         :param rev_reg_id: Revocation registry identifier
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2109,7 +1943,6 @@ class RevocationApi:
         _all_params = ["cred_def_id", "rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2161,7 +1994,7 @@ class RevocationApi:
             "200": "TailsDeleteResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/delete-tails-file",
             "DELETE",
             _path_params,
@@ -2172,7 +2005,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2181,7 +2013,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
+    async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2194,18 +2026,11 @@ class RevocationApi:
     ) -> RevRegWalletUpdatedResult:
         """Fix revocation state in wallet and return number of updated entries  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_rev_reg_id_fix_revocation_entry_state_put(rev_reg_id, apply_ledger_update, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
         :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
         :type apply_ledger_update: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2219,12 +2044,15 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
-            rev_reg_id, apply_ledger_update, **kwargs
-        )  # noqa: E501
+
+        return await self.revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info.raw_function(
+            rev_reg_id,
+            apply_ledger_update,
+            **kwargs,
+        )
 
     @validate_call
-    def revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
+    async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2237,18 +2065,11 @@ class RevocationApi:
     ) -> ApiResponse:
         """Fix revocation state in wallet and return number of updated entries  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(rev_reg_id, apply_ledger_update, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
         :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
         :type apply_ledger_update: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2277,7 +2098,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id", "apply_ledger_update"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2331,7 +2151,7 @@ class RevocationApi:
             "200": "RevRegWalletUpdatedResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/fix-revocation-entry-state",
             "PUT",
             _path_params,
@@ -2342,7 +2162,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2351,7 +2170,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def revocation_registry_rev_reg_id_issued_details_get(
+    async def revocation_registry_rev_reg_id_issued_details_get(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2360,16 +2179,9 @@ class RevocationApi:
     ) -> CredRevRecordDetailsResult:
         """Get details of credentials issued against revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_rev_reg_id_issued_details_get(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2383,12 +2195,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_rev_reg_id_issued_details_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_rev_reg_id_issued_details_get_with_http_info(
-            rev_reg_id, **kwargs
-        )  # noqa: E501
+
+        return await self.revocation_registry_rev_reg_id_issued_details_get_with_http_info.raw_function(
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def revocation_registry_rev_reg_id_issued_details_get_with_http_info(
+    async def revocation_registry_rev_reg_id_issued_details_get_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2397,16 +2211,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Get details of credentials issued against revocation registry  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_rev_reg_id_issued_details_get_with_http_info(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2435,7 +2242,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2484,7 +2290,7 @@ class RevocationApi:
             "200": "CredRevRecordDetailsResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/issued/details",
             "GET",
             _path_params,
@@ -2495,7 +2301,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2504,7 +2309,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def revocation_registry_rev_reg_id_issued_indy_recs_get(
+    async def revocation_registry_rev_reg_id_issued_indy_recs_get(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2513,16 +2318,9 @@ class RevocationApi:
     ) -> CredRevIndyRecordsResult:
         """Get details of revoked credentials from ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_rev_reg_id_issued_indy_recs_get(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2536,12 +2334,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
-            rev_reg_id, **kwargs
-        )  # noqa: E501
+
+        return await self.revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info.raw_function(
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
+    async def revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2550,16 +2350,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Get details of revoked credentials from ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2588,7 +2381,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2637,7 +2429,7 @@ class RevocationApi:
             "200": "CredRevIndyRecordsResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/issued/indy_recs",
             "GET",
             _path_params,
@@ -2648,7 +2440,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2657,23 +2448,16 @@ class RevocationApi:
         )
 
     @validate_call
-    def revoke_credential(
+    async def revoke_credential(
         self,
         body: Optional[RevokeRequest] = None,
         **kwargs,
     ) -> object:
         """Revoke an issued credential  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revoke_credential(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: RevokeRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2687,26 +2471,23 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the revoke_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.revoke_credential_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.revoke_credential_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def revoke_credential_with_http_info(
+    async def revoke_credential_with_http_info(
         self,
         body: Optional[RevokeRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Revoke an issued credential  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revoke_credential_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: RevokeRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2735,7 +2516,6 @@ class RevocationApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2792,7 +2572,7 @@ class RevocationApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/revoke",
             "POST",
             _path_params,
@@ -2803,7 +2583,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2812,7 +2591,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def set_registry_state(
+    async def set_registry_state(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2824,18 +2603,11 @@ class RevocationApi:
     ) -> RevRegResult:
         """Set revocation registry state manually  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_registry_state(rev_reg_id, state, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
         :param state: Revocation registry state to set (required)
         :type state: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2849,12 +2621,15 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the set_registry_state_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_registry_state_with_http_info(
-            rev_reg_id, state, **kwargs
-        )  # noqa: E501
+
+        return await self.set_registry_state_with_http_info.raw_function(
+            rev_reg_id,
+            state,
+            **kwargs,
+        )
 
     @validate_call
-    def set_registry_state_with_http_info(
+    async def set_registry_state_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2866,18 +2641,11 @@ class RevocationApi:
     ) -> ApiResponse:
         """Set revocation registry state manually  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_registry_state_with_http_info(rev_reg_id, state, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
         :param state: Revocation registry state to set (required)
         :type state: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2906,7 +2674,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id", "state"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2957,7 +2724,7 @@ class RevocationApi:
             "200": "RevRegResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/set-state",
             "PATCH",
             _path_params,
@@ -2968,7 +2735,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2977,7 +2743,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def update_registry(
+    async def update_registry(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -2987,18 +2753,11 @@ class RevocationApi:
     ) -> RevRegResult:
         """Update revocation registry with new public URI to its tails file  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_registry(rev_reg_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
         :param body:
         :type body: RevRegUpdateTailsFileUri
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -3012,12 +2771,15 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the update_registry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.update_registry_with_http_info(
-            rev_reg_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.update_registry_with_http_info.raw_function(
+            rev_reg_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def update_registry_with_http_info(
+    async def update_registry_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3027,18 +2789,11 @@ class RevocationApi:
     ) -> ApiResponse:
         """Update revocation registry with new public URI to its tails file  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_registry_with_http_info(rev_reg_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
         :param body:
         :type body: RevRegUpdateTailsFileUri
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -3067,7 +2822,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -3126,7 +2880,7 @@ class RevocationApi:
             "200": "RevRegResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}",
             "PATCH",
             _path_params,
@@ -3137,7 +2891,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -3146,7 +2899,7 @@ class RevocationApi:
         )
 
     @validate_call
-    def upload_tails_file(
+    async def upload_tails_file(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3155,16 +2908,9 @@ class RevocationApi:
     ) -> object:
         """Upload local tails file to server  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.upload_tails_file(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -3178,10 +2924,14 @@ class RevocationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the upload_tails_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.upload_tails_file_with_http_info(rev_reg_id, **kwargs)  # noqa: E501
+
+        return await self.upload_tails_file_with_http_info.raw_function(
+            rev_reg_id,
+            **kwargs,
+        )
 
     @validate_call
-    def upload_tails_file_with_http_info(
+    async def upload_tails_file_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3190,16 +2940,9 @@ class RevocationApi:
     ) -> ApiResponse:
         """Upload local tails file to server  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.upload_tails_file_with_http_info(rev_reg_id, async_req=True)
-        >>> result = thread.get()
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -3228,7 +2971,6 @@ class RevocationApi:
         _all_params = ["rev_reg_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -3276,7 +3018,7 @@ class RevocationApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/revocation/registry/{rev_reg_id}/tails-file",
             "PUT",
             _path_params,
@@ -3287,7 +3029,6 @@ class RevocationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

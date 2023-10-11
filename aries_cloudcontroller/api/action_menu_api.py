@@ -38,23 +38,16 @@ class ActionMenuApi:
         self.api_client = api_client
 
     @validate_call
-    def close_active_menu(
+    async def close_active_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> object:
         """Close the active menu associated with a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.close_active_menu(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -68,26 +61,23 @@ class ActionMenuApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the close_active_menu_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.close_active_menu_with_http_info(conn_id, **kwargs)  # noqa: E501
+
+        return await self.close_active_menu_with_http_info.raw_function(
+            conn_id,
+            **kwargs,
+        )
 
     @validate_call
-    def close_active_menu_with_http_info(
+    async def close_active_menu_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Close the active menu associated with a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.close_active_menu_with_http_info(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -116,7 +106,6 @@ class ActionMenuApi:
         _all_params = ["conn_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -164,7 +153,7 @@ class ActionMenuApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/action-menu/{conn_id}/close",
             "POST",
             _path_params,
@@ -175,7 +164,6 @@ class ActionMenuApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -184,23 +172,16 @@ class ActionMenuApi:
         )
 
     @validate_call
-    def fetch_active_menu(
+    async def fetch_active_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ActionMenuFetchResult:
         """Fetch the active menu  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.fetch_active_menu(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -214,26 +195,23 @@ class ActionMenuApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the fetch_active_menu_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.fetch_active_menu_with_http_info(conn_id, **kwargs)  # noqa: E501
+
+        return await self.fetch_active_menu_with_http_info.raw_function(
+            conn_id,
+            **kwargs,
+        )
 
     @validate_call
-    def fetch_active_menu_with_http_info(
+    async def fetch_active_menu_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Fetch the active menu  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.fetch_active_menu_with_http_info(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -262,7 +240,6 @@ class ActionMenuApi:
         _all_params = ["conn_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -310,7 +287,7 @@ class ActionMenuApi:
             "200": "ActionMenuFetchResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/action-menu/{conn_id}/fetch",
             "POST",
             _path_params,
@@ -321,7 +298,6 @@ class ActionMenuApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -330,7 +306,7 @@ class ActionMenuApi:
         )
 
     @validate_call
-    def perform_action(
+    async def perform_action(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[PerformRequest] = None,
@@ -338,18 +314,11 @@ class ActionMenuApi:
     ) -> object:
         """Perform an action associated with the active menu  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.perform_action(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: PerformRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -363,10 +332,15 @@ class ActionMenuApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the perform_action_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.perform_action_with_http_info(conn_id, body, **kwargs)  # noqa: E501
+
+        return await self.perform_action_with_http_info.raw_function(
+            conn_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def perform_action_with_http_info(
+    async def perform_action_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[PerformRequest] = None,
@@ -374,18 +348,11 @@ class ActionMenuApi:
     ) -> ApiResponse:
         """Perform an action associated with the active menu  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.perform_action_with_http_info(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: PerformRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -414,7 +381,6 @@ class ActionMenuApi:
         _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -473,7 +439,7 @@ class ActionMenuApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/action-menu/{conn_id}/perform",
             "POST",
             _path_params,
@@ -484,7 +450,6 @@ class ActionMenuApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -493,23 +458,16 @@ class ActionMenuApi:
         )
 
     @validate_call
-    def request_active_menu(
+    async def request_active_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> object:
         """Request the active menu  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.request_active_menu(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -523,26 +481,23 @@ class ActionMenuApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the request_active_menu_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.request_active_menu_with_http_info(conn_id, **kwargs)  # noqa: E501
+
+        return await self.request_active_menu_with_http_info.raw_function(
+            conn_id,
+            **kwargs,
+        )
 
     @validate_call
-    def request_active_menu_with_http_info(
+    async def request_active_menu_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Request the active menu  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.request_active_menu_with_http_info(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -571,7 +526,6 @@ class ActionMenuApi:
         _all_params = ["conn_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -619,7 +573,7 @@ class ActionMenuApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/action-menu/{conn_id}/request",
             "POST",
             _path_params,
@@ -630,7 +584,6 @@ class ActionMenuApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -639,7 +592,7 @@ class ActionMenuApi:
         )
 
     @validate_call
-    def send_menu(
+    async def send_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[SendMenu] = None,
@@ -647,18 +600,11 @@ class ActionMenuApi:
     ) -> object:
         """Send an action menu to a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_menu(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: SendMenu
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -672,10 +618,15 @@ class ActionMenuApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_menu_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_menu_with_http_info(conn_id, body, **kwargs)  # noqa: E501
+
+        return await self.send_menu_with_http_info.raw_function(
+            conn_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_menu_with_http_info(
+    async def send_menu_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[SendMenu] = None,
@@ -683,18 +634,11 @@ class ActionMenuApi:
     ) -> ApiResponse:
         """Send an action menu to a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_menu_with_http_info(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: SendMenu
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -723,7 +667,6 @@ class ActionMenuApi:
         _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -782,7 +725,7 @@ class ActionMenuApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/action-menu/{conn_id}/send-menu",
             "POST",
             _path_params,
@@ -793,7 +736,6 @@ class ActionMenuApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

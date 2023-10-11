@@ -39,20 +39,13 @@ class ServerApi:
         self.api_client = api_client
 
     @validate_call
-    def check_liveliness(
+    async def check_liveliness(
         self,
         **kwargs,
     ) -> AdminStatusLiveliness:
         """Liveliness check  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.check_liveliness(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -66,23 +59,19 @@ class ServerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the check_liveliness_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.check_liveliness_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.check_liveliness_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def check_liveliness_with_http_info(
+    async def check_liveliness_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Liveliness check  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.check_liveliness_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -111,7 +100,6 @@ class ServerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -157,7 +145,7 @@ class ServerApi:
             "200": "AdminStatusLiveliness",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/status/live",
             "GET",
             _path_params,
@@ -168,7 +156,6 @@ class ServerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -177,20 +164,13 @@ class ServerApi:
         )
 
     @validate_call
-    def get_config(
+    async def get_config(
         self,
         **kwargs,
     ) -> AdminConfig:
         """Fetch the server configuration  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_config(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -204,23 +184,19 @@ class ServerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_config_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_config_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.get_config_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def get_config_with_http_info(
+    async def get_config_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Fetch the server configuration  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_config_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -249,7 +225,6 @@ class ServerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -295,7 +270,7 @@ class ServerApi:
             "200": "AdminConfig",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/status/config",
             "GET",
             _path_params,
@@ -306,7 +281,6 @@ class ServerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -315,20 +289,13 @@ class ServerApi:
         )
 
     @validate_call
-    def get_plugins(
+    async def get_plugins(
         self,
         **kwargs,
     ) -> AdminModules:
         """Fetch the list of loaded plugins  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_plugins(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -342,23 +309,19 @@ class ServerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_plugins_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_plugins_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.get_plugins_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def get_plugins_with_http_info(
+    async def get_plugins_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Fetch the list of loaded plugins  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_plugins_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -387,7 +350,6 @@ class ServerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -433,7 +395,7 @@ class ServerApi:
             "200": "AdminModules",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/plugins",
             "GET",
             _path_params,
@@ -444,7 +406,6 @@ class ServerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -453,20 +414,13 @@ class ServerApi:
         )
 
     @validate_call
-    def get_ready_state(
+    async def get_ready_state(
         self,
         **kwargs,
     ) -> AdminStatusReadiness:
         """Readiness check  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_ready_state(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -480,23 +434,19 @@ class ServerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_ready_state_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_ready_state_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.get_ready_state_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def get_ready_state_with_http_info(
+    async def get_ready_state_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Readiness check  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_ready_state_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -525,7 +475,6 @@ class ServerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -571,7 +520,7 @@ class ServerApi:
             "200": "AdminStatusReadiness",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/status/ready",
             "GET",
             _path_params,
@@ -582,7 +531,6 @@ class ServerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -591,20 +539,13 @@ class ServerApi:
         )
 
     @validate_call
-    def get_status(
+    async def get_status(
         self,
         **kwargs,
     ) -> AdminStatus:
         """Fetch the server status  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_status(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -618,23 +559,19 @@ class ServerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_status_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.get_status_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def get_status_with_http_info(
+    async def get_status_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Fetch the server status  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_status_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -663,7 +600,6 @@ class ServerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -709,7 +645,7 @@ class ServerApi:
             "200": "AdminStatus",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/status",
             "GET",
             _path_params,
@@ -720,7 +656,6 @@ class ServerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -729,20 +664,13 @@ class ServerApi:
         )
 
     @validate_call
-    def reset_statistics(
+    async def reset_statistics(
         self,
         **kwargs,
     ) -> object:
         """Reset statistics  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.reset_statistics(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -756,23 +684,19 @@ class ServerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the reset_statistics_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.reset_statistics_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.reset_statistics_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def reset_statistics_with_http_info(
+    async def reset_statistics_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Reset statistics  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.reset_statistics_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -801,7 +725,6 @@ class ServerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -847,7 +770,7 @@ class ServerApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/status/reset",
             "POST",
             _path_params,
@@ -858,7 +781,6 @@ class ServerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -867,20 +789,13 @@ class ServerApi:
         )
 
     @validate_call
-    def shutdown_server(
+    async def shutdown_server(
         self,
         **kwargs,
     ) -> object:
         """Shut down server  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.shutdown_server(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -894,23 +809,19 @@ class ServerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the shutdown_server_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.shutdown_server_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.shutdown_server_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def shutdown_server_with_http_info(
+    async def shutdown_server_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Shut down server  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.shutdown_server_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -939,7 +850,6 @@ class ServerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -985,7 +895,7 @@ class ServerApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/shutdown",
             "GET",
             _path_params,
@@ -996,7 +906,6 @@ class ServerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

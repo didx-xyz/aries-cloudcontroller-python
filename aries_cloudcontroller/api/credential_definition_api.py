@@ -47,7 +47,7 @@ class CredentialDefinitionApi:
         self.api_client = api_client
 
     @validate_call
-    def credential_definitions_cred_def_id_write_record_post(
+    async def credential_definitions_cred_def_id_write_record_post(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -56,16 +56,9 @@ class CredentialDefinitionApi:
     ) -> CredentialDefinitionGetResult:
         """Writes a credential definition non-secret record to the wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.credential_definitions_cred_def_id_write_record_post(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -79,12 +72,14 @@ class CredentialDefinitionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the credential_definitions_cred_def_id_write_record_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.credential_definitions_cred_def_id_write_record_post_with_http_info(
-            cred_def_id, **kwargs
-        )  # noqa: E501
+
+        return await self.credential_definitions_cred_def_id_write_record_post_with_http_info.raw_function(
+            cred_def_id,
+            **kwargs,
+        )
 
     @validate_call
-    def credential_definitions_cred_def_id_write_record_post_with_http_info(
+    async def credential_definitions_cred_def_id_write_record_post_with_http_info(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -93,16 +88,9 @@ class CredentialDefinitionApi:
     ) -> ApiResponse:
         """Writes a credential definition non-secret record to the wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.credential_definitions_cred_def_id_write_record_post_with_http_info(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -131,7 +119,6 @@ class CredentialDefinitionApi:
         _all_params = ["cred_def_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -180,7 +167,7 @@ class CredentialDefinitionApi:
             "200": "CredentialDefinitionGetResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential-definitions/{cred_def_id}/write_record",
             "POST",
             _path_params,
@@ -191,7 +178,6 @@ class CredentialDefinitionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -200,7 +186,7 @@ class CredentialDefinitionApi:
         )
 
     @validate_call
-    def get_created_cred_defs(
+    async def get_created_cred_defs(
         self,
         cred_def_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -229,11 +215,6 @@ class CredentialDefinitionApi:
     ) -> CredentialDefinitionsCreatedResult:
         """Search for matching credential definitions that agent originated  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_created_cred_defs(cred_def_id, issuer_did, schema_id, schema_issuer_did, schema_name, schema_version, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition id
         :type cred_def_id: str
@@ -247,8 +228,6 @@ class CredentialDefinitionApi:
         :type schema_name: str
         :param schema_version: Schema version
         :type schema_version: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -262,7 +241,8 @@ class CredentialDefinitionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_created_cred_defs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_created_cred_defs_with_http_info(
+
+        return await self.get_created_cred_defs_with_http_info.raw_function(
             cred_def_id,
             issuer_did,
             schema_id,
@@ -270,10 +250,10 @@ class CredentialDefinitionApi:
             schema_name,
             schema_version,
             **kwargs,
-        )  # noqa: E501
+        )
 
     @validate_call
-    def get_created_cred_defs_with_http_info(
+    async def get_created_cred_defs_with_http_info(
         self,
         cred_def_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -302,11 +282,6 @@ class CredentialDefinitionApi:
     ) -> ApiResponse:
         """Search for matching credential definitions that agent originated  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_created_cred_defs_with_http_info(cred_def_id, issuer_did, schema_id, schema_issuer_did, schema_name, schema_version, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition id
         :type cred_def_id: str
@@ -320,8 +295,6 @@ class CredentialDefinitionApi:
         :type schema_name: str
         :param schema_version: Schema version
         :type schema_version: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -357,7 +330,6 @@ class CredentialDefinitionApi:
         ]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -421,7 +393,7 @@ class CredentialDefinitionApi:
             "200": "CredentialDefinitionsCreatedResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential-definitions/created",
             "GET",
             _path_params,
@@ -432,7 +404,6 @@ class CredentialDefinitionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -441,7 +412,7 @@ class CredentialDefinitionApi:
         )
 
     @validate_call
-    def get_cred_def(
+    async def get_cred_def(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -450,16 +421,9 @@ class CredentialDefinitionApi:
     ) -> CredentialDefinitionGetResult:
         """Gets a credential definition from the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_cred_def(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -473,10 +437,14 @@ class CredentialDefinitionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_cred_def_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_cred_def_with_http_info(cred_def_id, **kwargs)  # noqa: E501
+
+        return await self.get_cred_def_with_http_info.raw_function(
+            cred_def_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_cred_def_with_http_info(
+    async def get_cred_def_with_http_info(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -485,16 +453,9 @@ class CredentialDefinitionApi:
     ) -> ApiResponse:
         """Gets a credential definition from the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_cred_def_with_http_info(cred_def_id, async_req=True)
-        >>> result = thread.get()
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -523,7 +484,6 @@ class CredentialDefinitionApi:
         _all_params = ["cred_def_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -571,7 +531,7 @@ class CredentialDefinitionApi:
             "200": "CredentialDefinitionGetResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential-definitions/{cred_def_id}",
             "GET",
             _path_params,
@@ -582,7 +542,6 @@ class CredentialDefinitionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -591,7 +550,7 @@ class CredentialDefinitionApi:
         )
 
     @validate_call
-    def publish_cred_def(
+    async def publish_cred_def(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -605,11 +564,6 @@ class CredentialDefinitionApi:
     ) -> TxnOrCredentialDefinitionSendResult:
         """Sends a credential definition to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_cred_def(conn_id, create_transaction_for_endorser, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier
         :type conn_id: str
@@ -617,8 +571,6 @@ class CredentialDefinitionApi:
         :type create_transaction_for_endorser: bool
         :param body:
         :type body: CredentialDefinitionSendRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -632,12 +584,16 @@ class CredentialDefinitionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the publish_cred_def_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.publish_cred_def_with_http_info(
-            conn_id, create_transaction_for_endorser, body, **kwargs
-        )  # noqa: E501
+
+        return await self.publish_cred_def_with_http_info.raw_function(
+            conn_id,
+            create_transaction_for_endorser,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def publish_cred_def_with_http_info(
+    async def publish_cred_def_with_http_info(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -651,11 +607,6 @@ class CredentialDefinitionApi:
     ) -> ApiResponse:
         """Sends a credential definition to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_cred_def_with_http_info(conn_id, create_transaction_for_endorser, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier
         :type conn_id: str
@@ -663,8 +614,6 @@ class CredentialDefinitionApi:
         :type create_transaction_for_endorser: bool
         :param body:
         :type body: CredentialDefinitionSendRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -693,7 +642,6 @@ class CredentialDefinitionApi:
         _all_params = ["conn_id", "create_transaction_for_endorser", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -761,7 +709,7 @@ class CredentialDefinitionApi:
             "200": "TxnOrCredentialDefinitionSendResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential-definitions",
             "POST",
             _path_params,
@@ -772,7 +720,6 @@ class CredentialDefinitionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

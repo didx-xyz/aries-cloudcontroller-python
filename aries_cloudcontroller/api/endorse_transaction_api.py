@@ -40,23 +40,16 @@ class EndorseTransactionApi:
         self.api_client = api_client
 
     @validate_call
-    def cancel_transaction(
+    async def cancel_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> TransactionRecord:
         """For Author to cancel a particular transaction request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.cancel_transaction(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -70,26 +63,23 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the cancel_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.cancel_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
+
+        return await self.cancel_transaction_with_http_info.raw_function(
+            tran_id,
+            **kwargs,
+        )
 
     @validate_call
-    def cancel_transaction_with_http_info(
+    async def cancel_transaction_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> ApiResponse:
         """For Author to cancel a particular transaction request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.cancel_transaction_with_http_info(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -118,7 +108,6 @@ class EndorseTransactionApi:
         _all_params = ["tran_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -166,7 +155,7 @@ class EndorseTransactionApi:
             "200": "TransactionRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/{tran_id}/cancel",
             "POST",
             _path_params,
@@ -177,7 +166,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -186,7 +174,7 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def create_request(
+    async def create_request(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         endorser_write_txn: Annotated[
@@ -198,11 +186,6 @@ class EndorseTransactionApi:
     ) -> TransactionRecord:
         """For author to send a transaction request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_request(tran_id, endorser_write_txn, body, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
@@ -210,8 +193,6 @@ class EndorseTransactionApi:
         :type endorser_write_txn: bool
         :param body:
         :type body: ModelDate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -225,12 +206,16 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_request_with_http_info(
-            tran_id, endorser_write_txn, body, **kwargs
-        )  # noqa: E501
+
+        return await self.create_request_with_http_info.raw_function(
+            tran_id,
+            endorser_write_txn,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_request_with_http_info(
+    async def create_request_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         endorser_write_txn: Annotated[
@@ -242,11 +227,6 @@ class EndorseTransactionApi:
     ) -> ApiResponse:
         """For author to send a transaction request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_request_with_http_info(tran_id, endorser_write_txn, body, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
@@ -254,8 +234,6 @@ class EndorseTransactionApi:
         :type endorser_write_txn: bool
         :param body:
         :type body: ModelDate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -284,7 +262,6 @@ class EndorseTransactionApi:
         _all_params = ["tran_id", "endorser_write_txn", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -347,7 +324,7 @@ class EndorseTransactionApi:
             "200": "TransactionRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/create-request",
             "POST",
             _path_params,
@@ -358,7 +335,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -367,7 +343,7 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def endorse_transaction(
+    async def endorse_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         endorser_did: Annotated[
@@ -377,18 +353,11 @@ class EndorseTransactionApi:
     ) -> TransactionRecord:
         """For Endorser to endorse a particular transaction record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.endorse_transaction(tran_id, endorser_did, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
         :param endorser_did: Endorser DID
         :type endorser_did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -402,12 +371,15 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the endorse_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.endorse_transaction_with_http_info(
-            tran_id, endorser_did, **kwargs
-        )  # noqa: E501
+
+        return await self.endorse_transaction_with_http_info.raw_function(
+            tran_id,
+            endorser_did,
+            **kwargs,
+        )
 
     @validate_call
-    def endorse_transaction_with_http_info(
+    async def endorse_transaction_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         endorser_did: Annotated[
@@ -417,18 +389,11 @@ class EndorseTransactionApi:
     ) -> ApiResponse:
         """For Endorser to endorse a particular transaction record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.endorse_transaction_with_http_info(tran_id, endorser_did, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
         :param endorser_did: Endorser DID
         :type endorser_did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -457,7 +422,6 @@ class EndorseTransactionApi:
         _all_params = ["tran_id", "endorser_did"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -508,7 +472,7 @@ class EndorseTransactionApi:
             "200": "TransactionRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/{tran_id}/endorse",
             "POST",
             _path_params,
@@ -519,7 +483,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -528,20 +491,13 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def get_records(
+    async def get_records(
         self,
         **kwargs,
     ) -> TransactionList:
         """Query transactions  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_records(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -555,23 +511,19 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.get_records_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def get_records_with_http_info(
+    async def get_records_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Query transactions  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_records_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -600,7 +552,6 @@ class EndorseTransactionApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -646,7 +597,7 @@ class EndorseTransactionApi:
             "200": "TransactionList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions",
             "GET",
             _path_params,
@@ -657,7 +608,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -666,23 +616,16 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def get_transaction(
+    async def get_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> TransactionRecord:
         """Fetch a single transaction record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_transaction(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -696,26 +639,23 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
+
+        return await self.get_transaction_with_http_info.raw_function(
+            tran_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_transaction_with_http_info(
+    async def get_transaction_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Fetch a single transaction record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_transaction_with_http_info(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -744,7 +684,6 @@ class EndorseTransactionApi:
         _all_params = ["tran_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -792,7 +731,7 @@ class EndorseTransactionApi:
             "200": "TransactionRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/{tran_id}",
             "GET",
             _path_params,
@@ -803,7 +742,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -812,23 +750,16 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def refuse_transaction(
+    async def refuse_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> TransactionRecord:
         """For Endorser to refuse a particular transaction record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.refuse_transaction(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -842,26 +773,23 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the refuse_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.refuse_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
+
+        return await self.refuse_transaction_with_http_info.raw_function(
+            tran_id,
+            **kwargs,
+        )
 
     @validate_call
-    def refuse_transaction_with_http_info(
+    async def refuse_transaction_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> ApiResponse:
         """For Endorser to refuse a particular transaction record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.refuse_transaction_with_http_info(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -890,7 +818,6 @@ class EndorseTransactionApi:
         _all_params = ["tran_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -938,7 +865,7 @@ class EndorseTransactionApi:
             "200": "TransactionRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/{tran_id}/refuse",
             "POST",
             _path_params,
@@ -949,7 +876,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -958,23 +884,16 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def resend_transaction_request(
+    async def resend_transaction_request(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> TransactionRecord:
         """For Author to resend a particular transaction request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.resend_transaction_request(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -988,28 +907,23 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the resend_transaction_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.resend_transaction_request_with_http_info(
-            tran_id, **kwargs
-        )  # noqa: E501
+
+        return await self.resend_transaction_request_with_http_info.raw_function(
+            tran_id,
+            **kwargs,
+        )
 
     @validate_call
-    def resend_transaction_request_with_http_info(
+    async def resend_transaction_request_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> ApiResponse:
         """For Author to resend a particular transaction request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.resend_transaction_request_with_http_info(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1038,7 +952,6 @@ class EndorseTransactionApi:
         _all_params = ["tran_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1086,7 +999,7 @@ class EndorseTransactionApi:
             "200": "TransactionRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transaction/{tran_id}/resend",
             "POST",
             _path_params,
@@ -1097,7 +1010,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1106,7 +1018,7 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def set_endorser_info(
+    async def set_endorser_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         endorser_did: Annotated[StrictStr, Field(description="Endorser DID")],
@@ -1117,11 +1029,6 @@ class EndorseTransactionApi:
     ) -> EndorserInfo:
         """Set Endorser Info  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_endorser_info(conn_id, endorser_did, endorser_name, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -1129,8 +1036,6 @@ class EndorseTransactionApi:
         :type endorser_did: str
         :param endorser_name: Endorser Name
         :type endorser_name: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1144,12 +1049,16 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the set_endorser_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_endorser_info_with_http_info(
-            conn_id, endorser_did, endorser_name, **kwargs
-        )  # noqa: E501
+
+        return await self.set_endorser_info_with_http_info.raw_function(
+            conn_id,
+            endorser_did,
+            endorser_name,
+            **kwargs,
+        )
 
     @validate_call
-    def set_endorser_info_with_http_info(
+    async def set_endorser_info_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         endorser_did: Annotated[StrictStr, Field(description="Endorser DID")],
@@ -1160,11 +1069,6 @@ class EndorseTransactionApi:
     ) -> ApiResponse:
         """Set Endorser Info  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_endorser_info_with_http_info(conn_id, endorser_did, endorser_name, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -1172,8 +1076,6 @@ class EndorseTransactionApi:
         :type endorser_did: str
         :param endorser_name: Endorser Name
         :type endorser_name: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1202,7 +1104,6 @@ class EndorseTransactionApi:
         _all_params = ["conn_id", "endorser_did", "endorser_name"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1256,7 +1157,7 @@ class EndorseTransactionApi:
             "200": "EndorserInfo",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/{conn_id}/set-endorser-info",
             "POST",
             _path_params,
@@ -1267,7 +1168,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1276,7 +1176,7 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def set_endorser_role(
+    async def set_endorser_role(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         transaction_my_job: Annotated[
@@ -1286,18 +1186,11 @@ class EndorseTransactionApi:
     ) -> TransactionJobs:
         """Set transaction jobs  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_endorser_role(conn_id, transaction_my_job, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param transaction_my_job: Transaction related jobs
         :type transaction_my_job: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1311,12 +1204,15 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the set_endorser_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_endorser_role_with_http_info(
-            conn_id, transaction_my_job, **kwargs
-        )  # noqa: E501
+
+        return await self.set_endorser_role_with_http_info.raw_function(
+            conn_id,
+            transaction_my_job,
+            **kwargs,
+        )
 
     @validate_call
-    def set_endorser_role_with_http_info(
+    async def set_endorser_role_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         transaction_my_job: Annotated[
@@ -1326,18 +1222,11 @@ class EndorseTransactionApi:
     ) -> ApiResponse:
         """Set transaction jobs  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_endorser_role_with_http_info(conn_id, transaction_my_job, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param transaction_my_job: Transaction related jobs
         :type transaction_my_job: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1366,7 +1255,6 @@ class EndorseTransactionApi:
         _all_params = ["conn_id", "transaction_my_job"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1417,7 +1305,7 @@ class EndorseTransactionApi:
             "200": "TransactionJobs",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/{conn_id}/set-endorser-role",
             "POST",
             _path_params,
@@ -1428,7 +1316,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1437,23 +1324,16 @@ class EndorseTransactionApi:
         )
 
     @validate_call
-    def write_transaction(
+    async def write_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> TransactionRecord:
         """For Author / Endorser to write an endorsed transaction to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.write_transaction(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1467,26 +1347,23 @@ class EndorseTransactionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the write_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.write_transaction_with_http_info(tran_id, **kwargs)  # noqa: E501
+
+        return await self.write_transaction_with_http_info.raw_function(
+            tran_id,
+            **kwargs,
+        )
 
     @validate_call
-    def write_transaction_with_http_info(
+    async def write_transaction_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
         **kwargs,
     ) -> ApiResponse:
         """For Author / Endorser to write an endorsed transaction to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.write_transaction_with_http_info(tran_id, async_req=True)
-        >>> result = thread.get()
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1515,7 +1392,6 @@ class EndorseTransactionApi:
         _all_params = ["tran_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1563,7 +1439,7 @@ class EndorseTransactionApi:
             "200": "TransactionRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/transactions/{tran_id}/write",
             "POST",
             _path_params,
@@ -1574,7 +1450,6 @@ class EndorseTransactionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

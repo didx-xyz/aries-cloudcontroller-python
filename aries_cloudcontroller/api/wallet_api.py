@@ -43,23 +43,16 @@ class WalletApi:
         self.api_client = api_client
 
     @validate_call
-    def create_did(
+    async def create_did(
         self,
         body: Optional[DIDCreate] = None,
         **kwargs,
     ) -> DIDResult:
         """Create a local DID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_did(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: DIDCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -73,26 +66,23 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_did_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_did_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.create_did_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_did_with_http_info(
+    async def create_did_with_http_info(
         self,
         body: Optional[DIDCreate] = None,
         **kwargs,
     ) -> ApiResponse:
         """Create a local DID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_did_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: DIDCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -121,7 +111,6 @@ class WalletApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -178,7 +167,7 @@ class WalletApi:
             "200": "DIDResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/did/create",
             "POST",
             _path_params,
@@ -189,7 +178,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -198,23 +186,16 @@ class WalletApi:
         )
 
     @validate_call
-    def get_did_endpoint(
+    async def get_did_endpoint(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> DIDEndpoint:
         """Query DID endpoint in wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_endpoint(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -228,26 +209,23 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_did_endpoint_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_did_endpoint_with_http_info(did, **kwargs)  # noqa: E501
+
+        return await self.get_did_endpoint_with_http_info.raw_function(
+            did,
+            **kwargs,
+        )
 
     @validate_call
-    def get_did_endpoint_with_http_info(
+    async def get_did_endpoint_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> ApiResponse:
         """Query DID endpoint in wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_endpoint_with_http_info(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -276,7 +254,6 @@ class WalletApi:
         _all_params = ["did"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -325,7 +302,7 @@ class WalletApi:
             "200": "DIDEndpoint",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/get-did-endpoint",
             "GET",
             _path_params,
@@ -336,7 +313,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -345,7 +321,7 @@ class WalletApi:
         )
 
     @validate_call
-    def get_dids(
+    async def get_dids(
         self,
         did: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -374,11 +350,6 @@ class WalletApi:
     ) -> DIDList:
         """List wallet DIDs  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_dids(did, key_type, method, posture, verkey, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest
         :type did: str
@@ -390,8 +361,6 @@ class WalletApi:
         :type posture: str
         :param verkey: Verification key of interest
         :type verkey: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -405,12 +374,18 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_dids_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_dids_with_http_info(
-            did, key_type, method, posture, verkey, **kwargs
-        )  # noqa: E501
+
+        return await self.get_dids_with_http_info.raw_function(
+            did,
+            key_type,
+            method,
+            posture,
+            verkey,
+            **kwargs,
+        )
 
     @validate_call
-    def get_dids_with_http_info(
+    async def get_dids_with_http_info(
         self,
         did: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -439,11 +414,6 @@ class WalletApi:
     ) -> ApiResponse:
         """List wallet DIDs  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_dids_with_http_info(did, key_type, method, posture, verkey, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest
         :type did: str
@@ -455,8 +425,6 @@ class WalletApi:
         :type posture: str
         :param verkey: Verification key of interest
         :type verkey: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -485,7 +453,6 @@ class WalletApi:
         _all_params = ["did", "key_type", "method", "posture", "verkey"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -546,7 +513,7 @@ class WalletApi:
             "200": "DIDList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/did",
             "GET",
             _path_params,
@@ -557,7 +524,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -566,20 +532,13 @@ class WalletApi:
         )
 
     @validate_call
-    def get_public_did(
+    async def get_public_did(
         self,
         **kwargs,
     ) -> DIDResult:
         """Fetch the current public DID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_public_did(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -593,23 +552,19 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_public_did_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_public_did_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.get_public_did_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def get_public_did_with_http_info(
+    async def get_public_did_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Fetch the current public DID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_public_did_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -638,7 +593,6 @@ class WalletApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -684,7 +638,7 @@ class WalletApi:
             "200": "DIDResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/did/public",
             "GET",
             _path_params,
@@ -695,7 +649,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -704,23 +657,16 @@ class WalletApi:
         )
 
     @validate_call
-    def rotate_keypair(
+    async def rotate_keypair(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> object:
         """Rotate keypair for a DID not posted to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.rotate_keypair(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -734,26 +680,23 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the rotate_keypair_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.rotate_keypair_with_http_info(did, **kwargs)  # noqa: E501
+
+        return await self.rotate_keypair_with_http_info.raw_function(
+            did,
+            **kwargs,
+        )
 
     @validate_call
-    def rotate_keypair_with_http_info(
+    async def rotate_keypair_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> ApiResponse:
         """Rotate keypair for a DID not posted to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.rotate_keypair_with_http_info(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -782,7 +725,6 @@ class WalletApi:
         _all_params = ["did"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -831,7 +773,7 @@ class WalletApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/did/local/rotate-keypair",
             "PATCH",
             _path_params,
@@ -842,7 +784,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -851,7 +792,7 @@ class WalletApi:
         )
 
     @validate_call
-    def set_did_endpoint(
+    async def set_did_endpoint(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -865,11 +806,6 @@ class WalletApi:
     ) -> object:
         """Update endpoint in wallet and on ledger if posted to it  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_did_endpoint(conn_id, create_transaction_for_endorser, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier
         :type conn_id: str
@@ -877,8 +813,6 @@ class WalletApi:
         :type create_transaction_for_endorser: bool
         :param body:
         :type body: DIDEndpointWithType
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -892,12 +826,16 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the set_did_endpoint_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_did_endpoint_with_http_info(
-            conn_id, create_transaction_for_endorser, body, **kwargs
-        )  # noqa: E501
+
+        return await self.set_did_endpoint_with_http_info.raw_function(
+            conn_id,
+            create_transaction_for_endorser,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def set_did_endpoint_with_http_info(
+    async def set_did_endpoint_with_http_info(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -911,11 +849,6 @@ class WalletApi:
     ) -> ApiResponse:
         """Update endpoint in wallet and on ledger if posted to it  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_did_endpoint_with_http_info(conn_id, create_transaction_for_endorser, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier
         :type conn_id: str
@@ -923,8 +856,6 @@ class WalletApi:
         :type create_transaction_for_endorser: bool
         :param body:
         :type body: DIDEndpointWithType
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -953,7 +884,6 @@ class WalletApi:
         _all_params = ["conn_id", "create_transaction_for_endorser", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1021,7 +951,7 @@ class WalletApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/set-did-endpoint",
             "POST",
             _path_params,
@@ -1032,7 +962,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1041,7 +970,7 @@ class WalletApi:
         )
 
     @validate_call
-    def set_public_did(
+    async def set_public_did(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         conn_id: Annotated[
@@ -1058,11 +987,6 @@ class WalletApi:
     ) -> DIDResult:
         """Assign the current public DID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_public_did(did, conn_id, create_transaction_for_endorser, mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
@@ -1072,8 +996,6 @@ class WalletApi:
         :type create_transaction_for_endorser: bool
         :param mediation_id: Mediation identifier
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1087,12 +1009,17 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the set_public_did_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_public_did_with_http_info(
-            did, conn_id, create_transaction_for_endorser, mediation_id, **kwargs
-        )  # noqa: E501
+
+        return await self.set_public_did_with_http_info.raw_function(
+            did,
+            conn_id,
+            create_transaction_for_endorser,
+            mediation_id,
+            **kwargs,
+        )
 
     @validate_call
-    def set_public_did_with_http_info(
+    async def set_public_did_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         conn_id: Annotated[
@@ -1109,11 +1036,6 @@ class WalletApi:
     ) -> ApiResponse:
         """Assign the current public DID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_public_did_with_http_info(did, conn_id, create_transaction_for_endorser, mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
@@ -1123,8 +1045,6 @@ class WalletApi:
         :type create_transaction_for_endorser: bool
         :param mediation_id: Mediation identifier
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1158,7 +1078,6 @@ class WalletApi:
         ]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1221,7 +1140,7 @@ class WalletApi:
             "200": "DIDResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/did/public",
             "POST",
             _path_params,
@@ -1232,7 +1151,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1241,23 +1159,16 @@ class WalletApi:
         )
 
     @validate_call
-    def wallet_jwt_sign_post(
+    async def wallet_jwt_sign_post(
         self,
         body: Optional[JWSCreate] = None,
         **kwargs,
     ) -> object:
         """Create a EdDSA jws using did keys with a given payload  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wallet_jwt_sign_post(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: JWSCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1271,26 +1182,23 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the wallet_jwt_sign_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.wallet_jwt_sign_post_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.wallet_jwt_sign_post_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def wallet_jwt_sign_post_with_http_info(
+    async def wallet_jwt_sign_post_with_http_info(
         self,
         body: Optional[JWSCreate] = None,
         **kwargs,
     ) -> ApiResponse:
         """Create a EdDSA jws using did keys with a given payload  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wallet_jwt_sign_post_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: JWSCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1319,7 +1227,6 @@ class WalletApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1376,7 +1283,7 @@ class WalletApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/jwt/sign",
             "POST",
             _path_params,
@@ -1387,7 +1294,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1396,23 +1302,16 @@ class WalletApi:
         )
 
     @validate_call
-    def wallet_jwt_verify_post(
+    async def wallet_jwt_verify_post(
         self,
         body: Optional[JWSVerify] = None,
         **kwargs,
     ) -> JWSVerifyResponse:
         """Verify a EdDSA jws using did keys with a given JWS  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wallet_jwt_verify_post(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: JWSVerify
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1426,26 +1325,23 @@ class WalletApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the wallet_jwt_verify_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.wallet_jwt_verify_post_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.wallet_jwt_verify_post_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def wallet_jwt_verify_post_with_http_info(
+    async def wallet_jwt_verify_post_with_http_info(
         self,
         body: Optional[JWSVerify] = None,
         **kwargs,
     ) -> ApiResponse:
         """Verify a EdDSA jws using did keys with a given JWS  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wallet_jwt_verify_post_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: JWSVerify
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1474,7 +1370,6 @@ class WalletApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1531,7 +1426,7 @@ class WalletApi:
             "200": "JWSVerifyResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/wallet/jwt/verify",
             "POST",
             _path_params,
@@ -1542,7 +1437,6 @@ class WalletApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

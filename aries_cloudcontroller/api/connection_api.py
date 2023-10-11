@@ -53,7 +53,7 @@ class ConnectionApi:
         self.api_client = api_client
 
     @validate_call
-    def accept_invitation(
+    async def accept_invitation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         mediation_id: Annotated[
@@ -71,11 +71,6 @@ class ConnectionApi:
     ) -> ConnRecord:
         """Accept a stored connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_invitation(conn_id, mediation_id, my_endpoint, my_label, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -85,8 +80,6 @@ class ConnectionApi:
         :type my_endpoint: str
         :param my_label: Label for connection
         :type my_label: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -100,12 +93,17 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the accept_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_invitation_with_http_info(
-            conn_id, mediation_id, my_endpoint, my_label, **kwargs
-        )  # noqa: E501
+
+        return await self.accept_invitation_with_http_info.raw_function(
+            conn_id,
+            mediation_id,
+            my_endpoint,
+            my_label,
+            **kwargs,
+        )
 
     @validate_call
-    def accept_invitation_with_http_info(
+    async def accept_invitation_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         mediation_id: Annotated[
@@ -123,11 +121,6 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Accept a stored connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_invitation_with_http_info(conn_id, mediation_id, my_endpoint, my_label, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -137,8 +130,6 @@ class ConnectionApi:
         :type my_endpoint: str
         :param my_label: Label for connection
         :type my_label: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -167,7 +158,6 @@ class ConnectionApi:
         _all_params = ["conn_id", "mediation_id", "my_endpoint", "my_label"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -224,7 +214,7 @@ class ConnectionApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}/accept-invitation",
             "POST",
             _path_params,
@@ -235,7 +225,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -244,7 +233,7 @@ class ConnectionApi:
         )
 
     @validate_call
-    def accept_request(
+    async def accept_request(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
@@ -255,18 +244,11 @@ class ConnectionApi:
     ) -> ConnRecord:
         """Accept a stored connection request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_request(conn_id, my_endpoint, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param my_endpoint: My URL endpoint
         :type my_endpoint: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -280,12 +262,15 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the accept_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_request_with_http_info(
-            conn_id, my_endpoint, **kwargs
-        )  # noqa: E501
+
+        return await self.accept_request_with_http_info.raw_function(
+            conn_id,
+            my_endpoint,
+            **kwargs,
+        )
 
     @validate_call
-    def accept_request_with_http_info(
+    async def accept_request_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
@@ -296,18 +281,11 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Accept a stored connection request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_request_with_http_info(conn_id, my_endpoint, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param my_endpoint: My URL endpoint
         :type my_endpoint: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -336,7 +314,6 @@ class ConnectionApi:
         _all_params = ["conn_id", "my_endpoint"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -387,7 +364,7 @@ class ConnectionApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}/accept-request",
             "POST",
             _path_params,
@@ -398,7 +375,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -407,7 +383,7 @@ class ConnectionApi:
         )
 
     @validate_call
-    def create_invitation(
+    async def create_invitation(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
         auto_accept: Annotated[
@@ -427,11 +403,6 @@ class ConnectionApi:
     ) -> InvitationResult:
         """Create a new connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_invitation(alias, auto_accept, multi_use, public, body, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias
         :type alias: str
@@ -443,8 +414,6 @@ class ConnectionApi:
         :type public: bool
         :param body:
         :type body: CreateInvitationRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -458,12 +427,18 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_invitation_with_http_info(
-            alias, auto_accept, multi_use, public, body, **kwargs
-        )  # noqa: E501
+
+        return await self.create_invitation_with_http_info.raw_function(
+            alias,
+            auto_accept,
+            multi_use,
+            public,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_invitation_with_http_info(
+    async def create_invitation_with_http_info(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
         auto_accept: Annotated[
@@ -483,11 +458,6 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Create a new connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_invitation_with_http_info(alias, auto_accept, multi_use, public, body, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias
         :type alias: str
@@ -499,8 +469,6 @@ class ConnectionApi:
         :type public: bool
         :param body:
         :type body: CreateInvitationRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -529,7 +497,6 @@ class ConnectionApi:
         _all_params = ["alias", "auto_accept", "multi_use", "public", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -598,7 +565,7 @@ class ConnectionApi:
             "200": "InvitationResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/create-invitation",
             "POST",
             _path_params,
@@ -609,7 +576,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -618,23 +584,16 @@ class ConnectionApi:
         )
 
     @validate_call
-    def create_static_connection(
+    async def create_static_connection(
         self,
         body: Optional[ConnectionStaticRequest] = None,
         **kwargs,
     ) -> ConnectionStaticResult:
         """Create a new static connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_static_connection(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: ConnectionStaticRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -648,28 +607,23 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_static_connection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_static_connection_with_http_info(
-            body, **kwargs
-        )  # noqa: E501
+
+        return await self.create_static_connection_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_static_connection_with_http_info(
+    async def create_static_connection_with_http_info(
         self,
         body: Optional[ConnectionStaticRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Create a new static connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_static_connection_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: ConnectionStaticRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -698,7 +652,6 @@ class ConnectionApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -755,7 +708,7 @@ class ConnectionApi:
             "200": "ConnectionStaticResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/create-static",
             "POST",
             _path_params,
@@ -766,7 +719,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -775,23 +727,16 @@ class ConnectionApi:
         )
 
     @validate_call
-    def delete_connection(
+    async def delete_connection(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> object:
         """Remove an existing connection record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_connection(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -805,26 +750,23 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the delete_connection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_connection_with_http_info(conn_id, **kwargs)  # noqa: E501
+
+        return await self.delete_connection_with_http_info.raw_function(
+            conn_id,
+            **kwargs,
+        )
 
     @validate_call
-    def delete_connection_with_http_info(
+    async def delete_connection_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Remove an existing connection record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_connection_with_http_info(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -853,7 +795,6 @@ class ConnectionApi:
         _all_params = ["conn_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -901,7 +842,7 @@ class ConnectionApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}",
             "DELETE",
             _path_params,
@@ -912,7 +853,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -921,7 +861,7 @@ class ConnectionApi:
         )
 
     @validate_call
-    def establish_inbound(
+    async def establish_inbound(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         ref_id: Annotated[
@@ -931,18 +871,11 @@ class ConnectionApi:
     ) -> object:
         """Assign another connection as the inbound connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.establish_inbound(conn_id, ref_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param ref_id: Inbound connection identifier (required)
         :type ref_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -956,12 +889,15 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the establish_inbound_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.establish_inbound_with_http_info(
-            conn_id, ref_id, **kwargs
-        )  # noqa: E501
+
+        return await self.establish_inbound_with_http_info.raw_function(
+            conn_id,
+            ref_id,
+            **kwargs,
+        )
 
     @validate_call
-    def establish_inbound_with_http_info(
+    async def establish_inbound_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         ref_id: Annotated[
@@ -971,18 +907,11 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Assign another connection as the inbound connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.establish_inbound_with_http_info(conn_id, ref_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param ref_id: Inbound connection identifier (required)
         :type ref_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1011,7 +940,6 @@ class ConnectionApi:
         _all_params = ["conn_id", "ref_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1062,7 +990,7 @@ class ConnectionApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}/establish-inbound/{ref_id}",
             "POST",
             _path_params,
@@ -1073,7 +1001,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1082,23 +1009,16 @@ class ConnectionApi:
         )
 
     @validate_call
-    def get_connection(
+    async def get_connection(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ConnRecord:
         """Fetch a single connection record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_connection(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1112,26 +1032,23 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_connection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_connection_with_http_info(conn_id, **kwargs)  # noqa: E501
+
+        return await self.get_connection_with_http_info.raw_function(
+            conn_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_connection_with_http_info(
+    async def get_connection_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Fetch a single connection record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_connection_with_http_info(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1160,7 +1077,6 @@ class ConnectionApi:
         _all_params = ["conn_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1208,7 +1124,7 @@ class ConnectionApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}",
             "GET",
             _path_params,
@@ -1219,7 +1135,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1228,23 +1143,16 @@ class ConnectionApi:
         )
 
     @validate_call
-    def get_connection_endpoint(
+    async def get_connection_endpoint(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> EndpointsResult:
         """Fetch connection remote endpoint  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_connection_endpoint(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1258,28 +1166,23 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_connection_endpoint_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_connection_endpoint_with_http_info(
-            conn_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_connection_endpoint_with_http_info.raw_function(
+            conn_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_connection_endpoint_with_http_info(
+    async def get_connection_endpoint_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Fetch connection remote endpoint  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_connection_endpoint_with_http_info(conn_id, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1308,7 +1211,6 @@ class ConnectionApi:
         _all_params = ["conn_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1356,7 +1258,7 @@ class ConnectionApi:
             "200": "EndpointsResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}/endpoints",
             "GET",
             _path_params,
@@ -1367,7 +1269,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1376,7 +1277,7 @@ class ConnectionApi:
         )
 
     @validate_call
-    def get_connections(
+    async def get_connections(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
         connection_protocol: Annotated[
@@ -1411,11 +1312,6 @@ class ConnectionApi:
     ) -> ConnectionList:
         """Query agent-to-agent connections  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_connections(alias, connection_protocol, invitation_key, invitation_msg_id, my_did, state, their_did, their_public_did, their_role, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias
         :type alias: str
@@ -1435,8 +1331,6 @@ class ConnectionApi:
         :type their_public_did: str
         :param their_role: Their role in the connection protocol
         :type their_role: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1450,7 +1344,8 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_connections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_connections_with_http_info(
+
+        return await self.get_connections_with_http_info.raw_function(
             alias,
             connection_protocol,
             invitation_key,
@@ -1461,10 +1356,10 @@ class ConnectionApi:
             their_public_did,
             their_role,
             **kwargs,
-        )  # noqa: E501
+        )
 
     @validate_call
-    def get_connections_with_http_info(
+    async def get_connections_with_http_info(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
         connection_protocol: Annotated[
@@ -1499,11 +1394,6 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Query agent-to-agent connections  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_connections_with_http_info(alias, connection_protocol, invitation_key, invitation_msg_id, my_did, state, their_did, their_public_did, their_role, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias
         :type alias: str
@@ -1523,8 +1413,6 @@ class ConnectionApi:
         :type their_public_did: str
         :param their_role: Their role in the connection protocol
         :type their_role: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1563,7 +1451,6 @@ class ConnectionApi:
         ]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1638,7 +1525,7 @@ class ConnectionApi:
             "200": "ConnectionList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections",
             "GET",
             _path_params,
@@ -1649,7 +1536,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1658,7 +1544,7 @@ class ConnectionApi:
         )
 
     @validate_call
-    def get_metadata(
+    async def get_metadata(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         key: Annotated[
@@ -1668,18 +1554,11 @@ class ConnectionApi:
     ) -> ConnectionMetadata:
         """Fetch connection metadata  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_metadata(conn_id, key, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param key: Key to retrieve.
         :type key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1693,10 +1572,15 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_metadata_with_http_info(conn_id, key, **kwargs)  # noqa: E501
+
+        return await self.get_metadata_with_http_info.raw_function(
+            conn_id,
+            key,
+            **kwargs,
+        )
 
     @validate_call
-    def get_metadata_with_http_info(
+    async def get_metadata_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         key: Annotated[
@@ -1706,18 +1590,11 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Fetch connection metadata  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_metadata_with_http_info(conn_id, key, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param key: Key to retrieve.
         :type key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1746,7 +1623,6 @@ class ConnectionApi:
         _all_params = ["conn_id", "key"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1797,7 +1673,7 @@ class ConnectionApi:
             "200": "ConnectionMetadata",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}/metadata",
             "GET",
             _path_params,
@@ -1808,7 +1684,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1817,7 +1692,7 @@ class ConnectionApi:
         )
 
     @validate_call
-    def receive_invitation(
+    async def receive_invitation(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
         auto_accept: Annotated[
@@ -1833,11 +1708,6 @@ class ConnectionApi:
     ) -> ConnRecord:
         """Receive a new connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.receive_invitation(alias, auto_accept, mediation_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias
         :type alias: str
@@ -1847,8 +1717,6 @@ class ConnectionApi:
         :type mediation_id: str
         :param body:
         :type body: ReceiveInvitationRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1862,12 +1730,17 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the receive_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.receive_invitation_with_http_info(
-            alias, auto_accept, mediation_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.receive_invitation_with_http_info.raw_function(
+            alias,
+            auto_accept,
+            mediation_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def receive_invitation_with_http_info(
+    async def receive_invitation_with_http_info(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
         auto_accept: Annotated[
@@ -1883,11 +1756,6 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Receive a new connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.receive_invitation_with_http_info(alias, auto_accept, mediation_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias
         :type alias: str
@@ -1897,8 +1765,6 @@ class ConnectionApi:
         :type mediation_id: str
         :param body:
         :type body: ReceiveInvitationRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1927,7 +1793,6 @@ class ConnectionApi:
         _all_params = ["alias", "auto_accept", "mediation_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1993,7 +1858,7 @@ class ConnectionApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/receive-invitation",
             "POST",
             _path_params,
@@ -2004,7 +1869,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2013,7 +1877,7 @@ class ConnectionApi:
         )
 
     @validate_call
-    def set_metadata(
+    async def set_metadata(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[ConnectionMetadataSetRequest] = None,
@@ -2021,18 +1885,11 @@ class ConnectionApi:
     ) -> ConnectionMetadata:
         """Set connection metadata  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_metadata(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: ConnectionMetadataSetRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2046,10 +1903,15 @@ class ConnectionApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the set_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_metadata_with_http_info(conn_id, body, **kwargs)  # noqa: E501
+
+        return await self.set_metadata_with_http_info.raw_function(
+            conn_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def set_metadata_with_http_info(
+    async def set_metadata_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[ConnectionMetadataSetRequest] = None,
@@ -2057,18 +1919,11 @@ class ConnectionApi:
     ) -> ApiResponse:
         """Set connection metadata  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_metadata_with_http_info(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: ConnectionMetadataSetRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2097,7 +1952,6 @@ class ConnectionApi:
         _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2156,7 +2010,7 @@ class ConnectionApi:
             "200": "ConnectionMetadata",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}/metadata",
             "POST",
             _path_params,
@@ -2167,7 +2021,6 @@ class ConnectionApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

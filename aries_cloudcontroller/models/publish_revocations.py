@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated
@@ -52,18 +52,21 @@ class PublishRevocations(BaseModel):
         """Create an instance of PublishRevocations from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each value in rrid2crid (dict of array)
-        _field_dict_of_array = {}
-        if self.rrid2crid:
-            for _key in self.rrid2crid:
-                if self.rrid2crid[_key]:
-                    _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.rrid2crid[_key]
-                    ]
-            _dict["rrid2crid"] = _field_dict_of_array
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod

@@ -39,7 +39,7 @@ class SchemaApi:
         self.api_client = api_client
 
     @validate_call
-    def get_created_schemas(
+    async def get_created_schemas(
         self,
         schema_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -60,11 +60,6 @@ class SchemaApi:
     ) -> SchemasCreatedResult:
         """Search for matching schema that agent originated  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_created_schemas(schema_id, schema_issuer_did, schema_name, schema_version, async_req=True)
-        >>> result = thread.get()
 
         :param schema_id: Schema identifier
         :type schema_id: str
@@ -74,8 +69,6 @@ class SchemaApi:
         :type schema_name: str
         :param schema_version: Schema version
         :type schema_version: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -89,12 +82,17 @@ class SchemaApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_created_schemas_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_created_schemas_with_http_info(
-            schema_id, schema_issuer_did, schema_name, schema_version, **kwargs
-        )  # noqa: E501
+
+        return await self.get_created_schemas_with_http_info.raw_function(
+            schema_id,
+            schema_issuer_did,
+            schema_name,
+            schema_version,
+            **kwargs,
+        )
 
     @validate_call
-    def get_created_schemas_with_http_info(
+    async def get_created_schemas_with_http_info(
         self,
         schema_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -115,11 +113,6 @@ class SchemaApi:
     ) -> ApiResponse:
         """Search for matching schema that agent originated  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_created_schemas_with_http_info(schema_id, schema_issuer_did, schema_name, schema_version, async_req=True)
-        >>> result = thread.get()
 
         :param schema_id: Schema identifier
         :type schema_id: str
@@ -129,8 +122,6 @@ class SchemaApi:
         :type schema_name: str
         :param schema_version: Schema version
         :type schema_version: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -164,7 +155,6 @@ class SchemaApi:
         ]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -222,7 +212,7 @@ class SchemaApi:
             "200": "SchemasCreatedResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/schemas/created",
             "GET",
             _path_params,
@@ -233,7 +223,6 @@ class SchemaApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -242,23 +231,16 @@ class SchemaApi:
         )
 
     @validate_call
-    def get_schema(
+    async def get_schema(
         self,
         schema_id: Annotated[str, Field(strict=True, description="Schema identifier")],
         **kwargs,
     ) -> SchemaGetResult:
         """Gets a schema from the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_schema(schema_id, async_req=True)
-        >>> result = thread.get()
 
         :param schema_id: Schema identifier (required)
         :type schema_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -272,26 +254,23 @@ class SchemaApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_schema_with_http_info(schema_id, **kwargs)  # noqa: E501
+
+        return await self.get_schema_with_http_info.raw_function(
+            schema_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_schema_with_http_info(
+    async def get_schema_with_http_info(
         self,
         schema_id: Annotated[str, Field(strict=True, description="Schema identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Gets a schema from the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_schema_with_http_info(schema_id, async_req=True)
-        >>> result = thread.get()
 
         :param schema_id: Schema identifier (required)
         :type schema_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -320,7 +299,6 @@ class SchemaApi:
         _all_params = ["schema_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -368,7 +346,7 @@ class SchemaApi:
             "200": "SchemaGetResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/schemas/{schema_id}",
             "GET",
             _path_params,
@@ -379,7 +357,6 @@ class SchemaApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -388,7 +365,7 @@ class SchemaApi:
         )
 
     @validate_call
-    def publish_schema(
+    async def publish_schema(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -402,11 +379,6 @@ class SchemaApi:
     ) -> TxnOrSchemaSendResult:
         """Sends a schema to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_schema(conn_id, create_transaction_for_endorser, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier
         :type conn_id: str
@@ -414,8 +386,6 @@ class SchemaApi:
         :type create_transaction_for_endorser: bool
         :param body:
         :type body: SchemaSendRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -429,12 +399,16 @@ class SchemaApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the publish_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.publish_schema_with_http_info(
-            conn_id, create_transaction_for_endorser, body, **kwargs
-        )  # noqa: E501
+
+        return await self.publish_schema_with_http_info.raw_function(
+            conn_id,
+            create_transaction_for_endorser,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def publish_schema_with_http_info(
+    async def publish_schema_with_http_info(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -448,11 +422,6 @@ class SchemaApi:
     ) -> ApiResponse:
         """Sends a schema to the ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.publish_schema_with_http_info(conn_id, create_transaction_for_endorser, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier
         :type conn_id: str
@@ -460,8 +429,6 @@ class SchemaApi:
         :type create_transaction_for_endorser: bool
         :param body:
         :type body: SchemaSendRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -490,7 +457,6 @@ class SchemaApi:
         _all_params = ["conn_id", "create_transaction_for_endorser", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -558,7 +524,7 @@ class SchemaApi:
             "200": "TxnOrSchemaSendResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/schemas",
             "POST",
             _path_params,
@@ -569,7 +535,6 @@ class SchemaApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -578,23 +543,16 @@ class SchemaApi:
         )
 
     @validate_call
-    def write_record(
+    async def write_record(
         self,
         schema_id: Annotated[str, Field(strict=True, description="Schema identifier")],
         **kwargs,
     ) -> SchemaGetResult:
         """Writes a schema non-secret record to the wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.write_record(schema_id, async_req=True)
-        >>> result = thread.get()
 
         :param schema_id: Schema identifier (required)
         :type schema_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -608,26 +566,23 @@ class SchemaApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the write_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.write_record_with_http_info(schema_id, **kwargs)  # noqa: E501
+
+        return await self.write_record_with_http_info.raw_function(
+            schema_id,
+            **kwargs,
+        )
 
     @validate_call
-    def write_record_with_http_info(
+    async def write_record_with_http_info(
         self,
         schema_id: Annotated[str, Field(strict=True, description="Schema identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Writes a schema non-secret record to the wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.write_record_with_http_info(schema_id, async_req=True)
-        >>> result = thread.get()
 
         :param schema_id: Schema identifier (required)
         :type schema_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -656,7 +611,6 @@ class SchemaApi:
         _all_params = ["schema_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -704,7 +658,7 @@ class SchemaApi:
             "200": "SchemaGetResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/schemas/{schema_id}/write_record",
             "POST",
             _path_params,
@@ -715,7 +669,6 @@ class SchemaApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

@@ -37,7 +37,7 @@ class DidExchangeApi:
         self.api_client = api_client
 
     @validate_call
-    def accept_invitation(
+    async def accept_invitation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
@@ -51,11 +51,6 @@ class DidExchangeApi:
     ) -> ConnRecord:
         """Accept a stored connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_invitation(conn_id, my_endpoint, my_label, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -63,8 +58,6 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -78,12 +71,16 @@ class DidExchangeApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the accept_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_invitation_with_http_info(
-            conn_id, my_endpoint, my_label, **kwargs
-        )  # noqa: E501
+
+        return await self.accept_invitation_with_http_info.raw_function(
+            conn_id,
+            my_endpoint,
+            my_label,
+            **kwargs,
+        )
 
     @validate_call
-    def accept_invitation_with_http_info(
+    async def accept_invitation_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
@@ -97,11 +94,6 @@ class DidExchangeApi:
     ) -> ApiResponse:
         """Accept a stored connection invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_invitation_with_http_info(conn_id, my_endpoint, my_label, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -109,8 +101,6 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -139,7 +129,6 @@ class DidExchangeApi:
         _all_params = ["conn_id", "my_endpoint", "my_label"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -193,7 +182,7 @@ class DidExchangeApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/didexchange/{conn_id}/accept-invitation",
             "POST",
             _path_params,
@@ -204,7 +193,6 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -213,7 +201,7 @@ class DidExchangeApi:
         )
 
     @validate_call
-    def accept_request(
+    async def accept_request(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         mediation_id: Annotated[
@@ -228,11 +216,6 @@ class DidExchangeApi:
     ) -> ConnRecord:
         """Accept a stored connection request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_request(conn_id, mediation_id, my_endpoint, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -240,8 +223,6 @@ class DidExchangeApi:
         :type mediation_id: str
         :param my_endpoint: My URL endpoint
         :type my_endpoint: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -255,12 +236,16 @@ class DidExchangeApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the accept_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_request_with_http_info(
-            conn_id, mediation_id, my_endpoint, **kwargs
-        )  # noqa: E501
+
+        return await self.accept_request_with_http_info.raw_function(
+            conn_id,
+            mediation_id,
+            my_endpoint,
+            **kwargs,
+        )
 
     @validate_call
-    def accept_request_with_http_info(
+    async def accept_request_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         mediation_id: Annotated[
@@ -275,11 +260,6 @@ class DidExchangeApi:
     ) -> ApiResponse:
         """Accept a stored connection request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_request_with_http_info(conn_id, mediation_id, my_endpoint, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
@@ -287,8 +267,6 @@ class DidExchangeApi:
         :type mediation_id: str
         :param my_endpoint: My URL endpoint
         :type my_endpoint: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -317,7 +295,6 @@ class DidExchangeApi:
         _all_params = ["conn_id", "mediation_id", "my_endpoint"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -371,7 +348,7 @@ class DidExchangeApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/didexchange/{conn_id}/accept-request",
             "POST",
             _path_params,
@@ -382,7 +359,6 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -391,7 +367,7 @@ class DidExchangeApi:
         )
 
     @validate_call
-    def create_request(
+    async def create_request(
         self,
         their_public_did: Annotated[
             str,
@@ -434,11 +410,6 @@ class DidExchangeApi:
     ) -> ConnRecord:
         """Create and send a request against public DID's implicit invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_request(their_public_did, alias, goal, goal_code, mediation_id, my_endpoint, my_label, use_public_did, async_req=True)
-        >>> result = thread.get()
 
         :param their_public_did: Qualified public DID to which to request connection (required)
         :type their_public_did: str
@@ -456,8 +427,6 @@ class DidExchangeApi:
         :type my_label: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -471,7 +440,8 @@ class DidExchangeApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_request_with_http_info(
+
+        return await self.create_request_with_http_info.raw_function(
             their_public_did,
             alias,
             goal,
@@ -481,10 +451,10 @@ class DidExchangeApi:
             my_label,
             use_public_did,
             **kwargs,
-        )  # noqa: E501
+        )
 
     @validate_call
-    def create_request_with_http_info(
+    async def create_request_with_http_info(
         self,
         their_public_did: Annotated[
             str,
@@ -527,11 +497,6 @@ class DidExchangeApi:
     ) -> ApiResponse:
         """Create and send a request against public DID's implicit invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_request_with_http_info(their_public_did, alias, goal, goal_code, mediation_id, my_endpoint, my_label, use_public_did, async_req=True)
-        >>> result = thread.get()
 
         :param their_public_did: Qualified public DID to which to request connection (required)
         :type their_public_did: str
@@ -549,8 +514,6 @@ class DidExchangeApi:
         :type my_label: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -588,7 +551,6 @@ class DidExchangeApi:
         ]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -658,7 +620,7 @@ class DidExchangeApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/didexchange/create-request",
             "POST",
             _path_params,
@@ -669,7 +631,6 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -678,7 +639,7 @@ class DidExchangeApi:
         )
 
     @validate_call
-    def receive_request(
+    async def receive_request(
         self,
         alias: Annotated[
             Optional[StrictStr], Field(description="Alias for connection")
@@ -700,11 +661,6 @@ class DidExchangeApi:
     ) -> ConnRecord:
         """Receive request against public DID's implicit invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.receive_request(alias, auto_accept, mediation_id, my_endpoint, body, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias for connection
         :type alias: str
@@ -716,8 +672,6 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param body:
         :type body: DIDXRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -731,12 +685,18 @@ class DidExchangeApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the receive_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.receive_request_with_http_info(
-            alias, auto_accept, mediation_id, my_endpoint, body, **kwargs
-        )  # noqa: E501
+
+        return await self.receive_request_with_http_info.raw_function(
+            alias,
+            auto_accept,
+            mediation_id,
+            my_endpoint,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def receive_request_with_http_info(
+    async def receive_request_with_http_info(
         self,
         alias: Annotated[
             Optional[StrictStr], Field(description="Alias for connection")
@@ -758,11 +718,6 @@ class DidExchangeApi:
     ) -> ApiResponse:
         """Receive request against public DID's implicit invitation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.receive_request_with_http_info(alias, auto_accept, mediation_id, my_endpoint, body, async_req=True)
-        >>> result = thread.get()
 
         :param alias: Alias for connection
         :type alias: str
@@ -774,8 +729,6 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param body:
         :type body: DIDXRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -804,7 +757,6 @@ class DidExchangeApi:
         _all_params = ["alias", "auto_accept", "mediation_id", "my_endpoint", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -873,7 +825,7 @@ class DidExchangeApi:
             "200": "ConnRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/didexchange/receive-request",
             "POST",
             _path_params,
@@ -884,7 +836,6 @@ class DidExchangeApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

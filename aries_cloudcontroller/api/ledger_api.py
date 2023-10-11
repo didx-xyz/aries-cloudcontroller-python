@@ -47,23 +47,16 @@ class LedgerApi:
         self.api_client = api_client
 
     @validate_call
-    def accept_taa(
+    async def accept_taa(
         self,
         body: Optional[TAAAccept] = None,
         **kwargs,
     ) -> object:
         """Accept the transaction author agreement  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_taa(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: TAAAccept
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -77,26 +70,23 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the accept_taa_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.accept_taa_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.accept_taa_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def accept_taa_with_http_info(
+    async def accept_taa_with_http_info(
         self,
         body: Optional[TAAAccept] = None,
         **kwargs,
     ) -> ApiResponse:
         """Accept the transaction author agreement  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.accept_taa_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: TAAAccept
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -125,7 +115,6 @@ class LedgerApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -182,7 +171,7 @@ class LedgerApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/taa/accept",
             "POST",
             _path_params,
@@ -193,7 +182,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -202,20 +190,13 @@ class LedgerApi:
         )
 
     @validate_call
-    def fetch_taa(
+    async def fetch_taa(
         self,
         **kwargs,
     ) -> TAAResult:
         """Fetch the current transaction author agreement, if any  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.fetch_taa(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -229,23 +210,19 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the fetch_taa_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.fetch_taa_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.fetch_taa_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def fetch_taa_with_http_info(
+    async def fetch_taa_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Fetch the current transaction author agreement, if any  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.fetch_taa_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -274,7 +251,6 @@ class LedgerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -320,7 +296,7 @@ class LedgerApi:
             "200": "TAAResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/taa",
             "GET",
             _path_params,
@@ -331,7 +307,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -340,7 +315,7 @@ class LedgerApi:
         )
 
     @validate_call
-    def get_did_endpoint(
+    async def get_did_endpoint(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         endpoint_type: Annotated[
@@ -351,18 +326,11 @@ class LedgerApi:
     ) -> GetDIDEndpointResponse:
         """Get the endpoint for a DID from the ledger.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_endpoint(did, endpoint_type, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
         :param endpoint_type: Endpoint type of interest (default 'Endpoint')
         :type endpoint_type: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -376,12 +344,15 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_did_endpoint_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_did_endpoint_with_http_info(
-            did, endpoint_type, **kwargs
-        )  # noqa: E501
+
+        return await self.get_did_endpoint_with_http_info.raw_function(
+            did,
+            endpoint_type,
+            **kwargs,
+        )
 
     @validate_call
-    def get_did_endpoint_with_http_info(
+    async def get_did_endpoint_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         endpoint_type: Annotated[
@@ -392,18 +363,11 @@ class LedgerApi:
     ) -> ApiResponse:
         """Get the endpoint for a DID from the ledger.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_endpoint_with_http_info(did, endpoint_type, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
         :param endpoint_type: Endpoint type of interest (default 'Endpoint')
         :type endpoint_type: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -432,7 +396,6 @@ class LedgerApi:
         _all_params = ["did", "endpoint_type"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -484,7 +447,7 @@ class LedgerApi:
             "200": "GetDIDEndpointResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/did-endpoint",
             "GET",
             _path_params,
@@ -495,7 +458,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -504,23 +466,16 @@ class LedgerApi:
         )
 
     @validate_call
-    def get_did_nym_role(
+    async def get_did_nym_role(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> GetNymRoleResponse:
         """Get the role from the NYM registration of a public DID.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_nym_role(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -534,26 +489,23 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_did_nym_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_did_nym_role_with_http_info(did, **kwargs)  # noqa: E501
+
+        return await self.get_did_nym_role_with_http_info.raw_function(
+            did,
+            **kwargs,
+        )
 
     @validate_call
-    def get_did_nym_role_with_http_info(
+    async def get_did_nym_role_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> ApiResponse:
         """Get the role from the NYM registration of a public DID.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_nym_role_with_http_info(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -582,7 +534,6 @@ class LedgerApi:
         _all_params = ["did"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -631,7 +582,7 @@ class LedgerApi:
             "200": "GetNymRoleResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/get-nym-role",
             "GET",
             _path_params,
@@ -642,7 +593,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -651,23 +601,16 @@ class LedgerApi:
         )
 
     @validate_call
-    def get_did_verkey(
+    async def get_did_verkey(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> GetDIDVerkeyResponse:
         """Get the verkey for a DID from the ledger.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_verkey(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -681,26 +624,23 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_did_verkey_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_did_verkey_with_http_info(did, **kwargs)  # noqa: E501
+
+        return await self.get_did_verkey_with_http_info.raw_function(
+            did,
+            **kwargs,
+        )
 
     @validate_call
-    def get_did_verkey_with_http_info(
+    async def get_did_verkey_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
         **kwargs,
     ) -> ApiResponse:
         """Get the verkey for a DID from the ledger.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_did_verkey_with_http_info(did, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID of interest (required)
         :type did: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -729,7 +669,6 @@ class LedgerApi:
         _all_params = ["did"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -778,7 +717,7 @@ class LedgerApi:
             "200": "GetDIDVerkeyResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/did-verkey",
             "GET",
             _path_params,
@@ -789,7 +728,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -798,20 +736,13 @@ class LedgerApi:
         )
 
     @validate_call
-    def ledger_multiple_config_get(
+    async def ledger_multiple_config_get(
         self,
         **kwargs,
     ) -> LedgerConfigList:
         """Fetch the multiple ledger configuration currently in use  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.ledger_multiple_config_get(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -825,23 +756,19 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the ledger_multiple_config_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.ledger_multiple_config_get_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.ledger_multiple_config_get_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def ledger_multiple_config_get_with_http_info(
+    async def ledger_multiple_config_get_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Fetch the multiple ledger configuration currently in use  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.ledger_multiple_config_get_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -870,7 +797,6 @@ class LedgerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -916,7 +842,7 @@ class LedgerApi:
             "200": "LedgerConfigList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/multiple/config",
             "GET",
             _path_params,
@@ -927,7 +853,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -936,20 +861,13 @@ class LedgerApi:
         )
 
     @validate_call
-    def ledger_multiple_get_write_ledger_get(
+    async def ledger_multiple_get_write_ledger_get(
         self,
         **kwargs,
     ) -> WriteLedgerRequest:
         """Fetch the current write ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.ledger_multiple_get_write_ledger_get(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -963,25 +881,21 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the ledger_multiple_get_write_ledger_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.ledger_multiple_get_write_ledger_get_with_http_info(
-            **kwargs
-        )  # noqa: E501
+
+        return (
+            await self.ledger_multiple_get_write_ledger_get_with_http_info.raw_function(
+                **kwargs,
+            )
+        )
 
     @validate_call
-    def ledger_multiple_get_write_ledger_get_with_http_info(
+    async def ledger_multiple_get_write_ledger_get_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Fetch the current write ledger  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.ledger_multiple_get_write_ledger_get_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1010,7 +924,6 @@ class LedgerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1056,7 +969,7 @@ class LedgerApi:
             "200": "WriteLedgerRequest",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/multiple/get-write-ledger",
             "GET",
             _path_params,
@@ -1067,7 +980,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1076,7 +988,7 @@ class LedgerApi:
         )
 
     @validate_call
-    def register_nym(
+    async def register_nym(
         self,
         did: Annotated[str, Field(strict=True, description="DID to register")],
         verkey: Annotated[str, Field(strict=True, description="Verification key")],
@@ -1093,11 +1005,6 @@ class LedgerApi:
     ) -> TxnOrRegisterLedgerNymResponse:
         """Send a NYM registration to the ledger.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.register_nym(did, verkey, alias, conn_id, create_transaction_for_endorser, role, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID to register (required)
         :type did: str
@@ -1111,8 +1018,6 @@ class LedgerApi:
         :type create_transaction_for_endorser: bool
         :param role: Role
         :type role: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1126,12 +1031,19 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the register_nym_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.register_nym_with_http_info(
-            did, verkey, alias, conn_id, create_transaction_for_endorser, role, **kwargs
-        )  # noqa: E501
+
+        return await self.register_nym_with_http_info.raw_function(
+            did,
+            verkey,
+            alias,
+            conn_id,
+            create_transaction_for_endorser,
+            role,
+            **kwargs,
+        )
 
     @validate_call
-    def register_nym_with_http_info(
+    async def register_nym_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID to register")],
         verkey: Annotated[str, Field(strict=True, description="Verification key")],
@@ -1148,11 +1060,6 @@ class LedgerApi:
     ) -> ApiResponse:
         """Send a NYM registration to the ledger.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.register_nym_with_http_info(did, verkey, alias, conn_id, create_transaction_for_endorser, role, async_req=True)
-        >>> result = thread.get()
 
         :param did: DID to register (required)
         :type did: str
@@ -1166,8 +1073,6 @@ class LedgerApi:
         :type create_transaction_for_endorser: bool
         :param role: Role
         :type role: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1203,7 +1108,6 @@ class LedgerApi:
         ]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1272,7 +1176,7 @@ class LedgerApi:
             "200": "TxnOrRegisterLedgerNymResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/register-nym",
             "POST",
             _path_params,
@@ -1283,7 +1187,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1292,20 +1195,13 @@ class LedgerApi:
         )
 
     @validate_call
-    def rotate_public_did_keypair(
+    async def rotate_public_did_keypair(
         self,
         **kwargs,
     ) -> object:
         """Rotate key pair for public DID.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.rotate_public_did_keypair(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1319,23 +1215,19 @@ class LedgerApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the rotate_public_did_keypair_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.rotate_public_did_keypair_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.rotate_public_did_keypair_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def rotate_public_did_keypair_with_http_info(
+    async def rotate_public_did_keypair_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Rotate key pair for public DID.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.rotate_public_did_keypair_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1364,7 +1256,6 @@ class LedgerApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1410,7 +1301,7 @@ class LedgerApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/ledger/rotate-public-did-keypair",
             "PATCH",
             _path_params,
@@ -1421,7 +1312,6 @@ class LedgerApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

@@ -36,7 +36,7 @@ class BasicmessageApi:
         self.api_client = api_client
 
     @validate_call
-    def send_message(
+    async def send_message(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[SendMessage] = None,
@@ -44,18 +44,11 @@ class BasicmessageApi:
     ) -> object:
         """Send a basic message to a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_message(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: SendMessage
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -69,10 +62,15 @@ class BasicmessageApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_message_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_message_with_http_info(conn_id, body, **kwargs)  # noqa: E501
+
+        return await self.send_message_with_http_info.raw_function(
+            conn_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_message_with_http_info(
+    async def send_message_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[SendMessage] = None,
@@ -80,18 +78,11 @@ class BasicmessageApi:
     ) -> ApiResponse:
         """Send a basic message to a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_message_with_http_info(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: SendMessage
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -120,7 +111,6 @@ class BasicmessageApi:
         _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -179,7 +169,7 @@ class BasicmessageApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/connections/{conn_id}/send-message",
             "POST",
             _path_params,
@@ -190,7 +180,6 @@ class BasicmessageApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

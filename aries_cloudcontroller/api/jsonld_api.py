@@ -38,23 +38,16 @@ class JsonldApi:
         self.api_client = api_client
 
     @validate_call
-    def sign(
+    async def sign(
         self,
         body: Optional[SignRequest] = None,
         **kwargs,
     ) -> SignResponse:
         """Sign a JSON-LD structure and return it  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.sign(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: SignRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -68,26 +61,23 @@ class JsonldApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the sign_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.sign_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.sign_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def sign_with_http_info(
+    async def sign_with_http_info(
         self,
         body: Optional[SignRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Sign a JSON-LD structure and return it  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.sign_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: SignRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -116,7 +106,6 @@ class JsonldApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -172,7 +161,7 @@ class JsonldApi:
             "200": "SignResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/jsonld/sign",
             "POST",
             _path_params,
@@ -183,7 +172,6 @@ class JsonldApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -192,23 +180,16 @@ class JsonldApi:
         )
 
     @validate_call
-    def verify(
+    async def verify(
         self,
         body: Optional[VerifyRequest] = None,
         **kwargs,
     ) -> VerifyResponse:
         """Verify a JSON-LD structure.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: VerifyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -222,26 +203,23 @@ class JsonldApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the verify_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.verify_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.verify_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def verify_with_http_info(
+    async def verify_with_http_info(
         self,
         body: Optional[VerifyRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Verify a JSON-LD structure.  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: VerifyRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -270,7 +248,6 @@ class JsonldApi:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -326,7 +303,7 @@ class JsonldApi:
             "200": "VerifyResponse",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/jsonld/verify",
             "POST",
             _path_params,
@@ -337,7 +314,6 @@ class JsonldApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

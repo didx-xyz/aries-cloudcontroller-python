@@ -46,23 +46,16 @@ class CredentialsApi:
         self.api_client = api_client
 
     @validate_call
-    def delete_record(
+    async def delete_record(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> object:
         """Remove credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -76,26 +69,23 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the delete_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_record_with_http_info(credential_id, **kwargs)  # noqa: E501
+
+        return await self.delete_record_with_http_info.raw_function(
+            credential_id,
+            **kwargs,
+        )
 
     @validate_call
-    def delete_record_with_http_info(
+    async def delete_record_with_http_info(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Remove credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record_with_http_info(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -124,7 +114,6 @@ class CredentialsApi:
         _all_params = ["credential_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -172,7 +161,7 @@ class CredentialsApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential/{credential_id}",
             "DELETE",
             _path_params,
@@ -183,7 +172,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -192,23 +180,16 @@ class CredentialsApi:
         )
 
     @validate_call
-    def delete_w3c_credential(
+    async def delete_w3c_credential(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> object:
         """Remove W3C credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_w3c_credential(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -222,28 +203,23 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the delete_w3c_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_w3c_credential_with_http_info(
-            credential_id, **kwargs
-        )  # noqa: E501
+
+        return await self.delete_w3c_credential_with_http_info.raw_function(
+            credential_id,
+            **kwargs,
+        )
 
     @validate_call
-    def delete_w3c_credential_with_http_info(
+    async def delete_w3c_credential_with_http_info(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Remove W3C credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_w3c_credential_with_http_info(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -272,7 +248,6 @@ class CredentialsApi:
         _all_params = ["credential_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -320,7 +295,7 @@ class CredentialsApi:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential/w3c/{credential_id}",
             "DELETE",
             _path_params,
@@ -331,7 +306,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -340,23 +314,16 @@ class CredentialsApi:
         )
 
     @validate_call
-    def get_credential_mime_types(
+    async def get_credential_mime_types(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> AttributeMimeTypesResult:
         """Get attribute MIME types from wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_credential_mime_types(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -370,28 +337,23 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_credential_mime_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_credential_mime_types_with_http_info(
-            credential_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_credential_mime_types_with_http_info.raw_function(
+            credential_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_credential_mime_types_with_http_info(
+    async def get_credential_mime_types_with_http_info(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Get attribute MIME types from wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_credential_mime_types_with_http_info(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -420,7 +382,6 @@ class CredentialsApi:
         _all_params = ["credential_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -468,7 +429,7 @@ class CredentialsApi:
             "200": "AttributeMimeTypesResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential/mime-types/{credential_id}",
             "GET",
             _path_params,
@@ -479,7 +440,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -488,23 +448,16 @@ class CredentialsApi:
         )
 
     @validate_call
-    def get_record(
+    async def get_record(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> IndyCredInfo:
         """Fetch credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -518,26 +471,23 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_record_with_http_info(credential_id, **kwargs)  # noqa: E501
+
+        return await self.get_record_with_http_info.raw_function(
+            credential_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_record_with_http_info(
+    async def get_record_with_http_info(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Fetch credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record_with_http_info(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -566,7 +516,6 @@ class CredentialsApi:
         _all_params = ["credential_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -614,7 +563,7 @@ class CredentialsApi:
             "200": "IndyCredInfo",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential/{credential_id}",
             "GET",
             _path_params,
@@ -625,7 +574,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -634,7 +582,7 @@ class CredentialsApi:
         )
 
     @validate_call
-    def get_records(
+    async def get_records(
         self,
         count: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -652,11 +600,6 @@ class CredentialsApi:
     ) -> CredInfoList:
         """Fetch credentials from wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records(count, start, wql, async_req=True)
-        >>> result = thread.get()
 
         :param count: Maximum number to retrieve
         :type count: str
@@ -664,8 +607,6 @@ class CredentialsApi:
         :type start: str
         :param wql: (JSON) WQL query
         :type wql: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -679,12 +620,16 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(
-            count, start, wql, **kwargs
-        )  # noqa: E501
+
+        return await self.get_records_with_http_info.raw_function(
+            count,
+            start,
+            wql,
+            **kwargs,
+        )
 
     @validate_call
-    def get_records_with_http_info(
+    async def get_records_with_http_info(
         self,
         count: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -702,11 +647,6 @@ class CredentialsApi:
     ) -> ApiResponse:
         """Fetch credentials from wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records_with_http_info(count, start, wql, async_req=True)
-        >>> result = thread.get()
 
         :param count: Maximum number to retrieve
         :type count: str
@@ -714,8 +654,6 @@ class CredentialsApi:
         :type start: str
         :param wql: (JSON) WQL query
         :type wql: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -744,7 +682,6 @@ class CredentialsApi:
         _all_params = ["count", "start", "wql"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -799,7 +736,7 @@ class CredentialsApi:
             "200": "CredInfoList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credentials",
             "GET",
             _path_params,
@@ -810,7 +747,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -819,7 +755,7 @@ class CredentialsApi:
         )
 
     @validate_call
-    def get_revocation_status(
+    async def get_revocation_status(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         var_from: Annotated[
@@ -836,11 +772,6 @@ class CredentialsApi:
     ) -> CredRevokedResult:
         """Query credential revocation status by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_revocation_status(credential_id, var_from, to, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
@@ -848,8 +779,6 @@ class CredentialsApi:
         :type var_from: str
         :param to: Latest epoch of revocation status interval of interest
         :type to: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -863,12 +792,16 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_revocation_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_revocation_status_with_http_info(
-            credential_id, var_from, to, **kwargs
-        )  # noqa: E501
+
+        return await self.get_revocation_status_with_http_info.raw_function(
+            credential_id,
+            var_from,
+            to,
+            **kwargs,
+        )
 
     @validate_call
-    def get_revocation_status_with_http_info(
+    async def get_revocation_status_with_http_info(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         var_from: Annotated[
@@ -885,11 +818,6 @@ class CredentialsApi:
     ) -> ApiResponse:
         """Query credential revocation status by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_revocation_status_with_http_info(credential_id, var_from, to, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
@@ -897,8 +825,6 @@ class CredentialsApi:
         :type var_from: str
         :param to: Latest epoch of revocation status interval of interest
         :type to: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -927,7 +853,6 @@ class CredentialsApi:
         _all_params = ["credential_id", "var_from", "to"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -981,7 +906,7 @@ class CredentialsApi:
             "200": "CredRevokedResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential/revoked/{credential_id}",
             "GET",
             _path_params,
@@ -992,7 +917,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1001,23 +925,16 @@ class CredentialsApi:
         )
 
     @validate_call
-    def get_w3c_credential(
+    async def get_w3c_credential(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> VCRecord:
         """Fetch W3C credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_w3c_credential(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1031,28 +948,23 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_w3c_credential_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_w3c_credential_with_http_info(
-            credential_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_w3c_credential_with_http_info.raw_function(
+            credential_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_w3c_credential_with_http_info(
+    async def get_w3c_credential_with_http_info(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         **kwargs,
     ) -> ApiResponse:
         """Fetch W3C credential from wallet by id  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_w3c_credential_with_http_info(credential_id, async_req=True)
-        >>> result = thread.get()
 
         :param credential_id: Credential identifier (required)
         :type credential_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1081,7 +993,6 @@ class CredentialsApi:
         _all_params = ["credential_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1129,7 +1040,7 @@ class CredentialsApi:
             "200": "VCRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credential/w3c/{credential_id}",
             "GET",
             _path_params,
@@ -1140,7 +1051,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1149,7 +1059,7 @@ class CredentialsApi:
         )
 
     @validate_call
-    def get_w3c_credentials(
+    async def get_w3c_credentials(
         self,
         count: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -1168,11 +1078,6 @@ class CredentialsApi:
     ) -> VCRecordList:
         """Fetch W3C credentials from wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_w3c_credentials(count, start, wql, body, async_req=True)
-        >>> result = thread.get()
 
         :param count: Maximum number to retrieve
         :type count: str
@@ -1182,8 +1087,6 @@ class CredentialsApi:
         :type wql: str
         :param body:
         :type body: W3CCredentialsListRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1197,12 +1100,17 @@ class CredentialsApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_w3c_credentials_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_w3c_credentials_with_http_info(
-            count, start, wql, body, **kwargs
-        )  # noqa: E501
+
+        return await self.get_w3c_credentials_with_http_info.raw_function(
+            count,
+            start,
+            wql,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def get_w3c_credentials_with_http_info(
+    async def get_w3c_credentials_with_http_info(
         self,
         count: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -1221,11 +1129,6 @@ class CredentialsApi:
     ) -> ApiResponse:
         """Fetch W3C credentials from wallet  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_w3c_credentials_with_http_info(count, start, wql, body, async_req=True)
-        >>> result = thread.get()
 
         :param count: Maximum number to retrieve
         :type count: str
@@ -1235,8 +1138,6 @@ class CredentialsApi:
         :type wql: str
         :param body:
         :type body: W3CCredentialsListRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1265,7 +1166,6 @@ class CredentialsApi:
         _all_params = ["count", "start", "wql", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1331,7 +1231,7 @@ class CredentialsApi:
             "200": "VCRecordList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/credentials/w3c",
             "POST",
             _path_params,
@@ -1342,7 +1242,6 @@ class CredentialsApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

@@ -41,7 +41,7 @@ class DiscoverFeaturesV20Api:
         self.api_client = api_client
 
     @validate_call
-    def discover_features20_queries_get(
+    async def discover_features20_queries_get(
         self,
         connection_id: Annotated[
             Optional[StrictStr],
@@ -59,11 +59,6 @@ class DiscoverFeaturesV20Api:
     ) -> V20DiscoveryExchangeResult:
         """Query supported features  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.discover_features20_queries_get(connection_id, query_goal_code, query_protocol, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier, if none specified, then the query will provide features for this agent.
         :type connection_id: str
@@ -71,8 +66,6 @@ class DiscoverFeaturesV20Api:
         :type query_goal_code: str
         :param query_protocol: Protocol feature-type query
         :type query_protocol: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -86,12 +79,16 @@ class DiscoverFeaturesV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the discover_features20_queries_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.discover_features20_queries_get_with_http_info(
-            connection_id, query_goal_code, query_protocol, **kwargs
-        )  # noqa: E501
+
+        return await self.discover_features20_queries_get_with_http_info.raw_function(
+            connection_id,
+            query_goal_code,
+            query_protocol,
+            **kwargs,
+        )
 
     @validate_call
-    def discover_features20_queries_get_with_http_info(
+    async def discover_features20_queries_get_with_http_info(
         self,
         connection_id: Annotated[
             Optional[StrictStr],
@@ -109,11 +106,6 @@ class DiscoverFeaturesV20Api:
     ) -> ApiResponse:
         """Query supported features  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.discover_features20_queries_get_with_http_info(connection_id, query_goal_code, query_protocol, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier, if none specified, then the query will provide features for this agent.
         :type connection_id: str
@@ -121,8 +113,6 @@ class DiscoverFeaturesV20Api:
         :type query_goal_code: str
         :param query_protocol: Protocol feature-type query
         :type query_protocol: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -151,7 +141,6 @@ class DiscoverFeaturesV20Api:
         _all_params = ["connection_id", "query_goal_code", "query_protocol"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -206,7 +195,7 @@ class DiscoverFeaturesV20Api:
             "200": "V20DiscoveryExchangeResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/discover-features-2.0/queries",
             "GET",
             _path_params,
@@ -217,7 +206,6 @@ class DiscoverFeaturesV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -226,7 +214,7 @@ class DiscoverFeaturesV20Api:
         )
 
     @validate_call
-    def discover_features20_records_get(
+    async def discover_features20_records_get(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -235,16 +223,9 @@ class DiscoverFeaturesV20Api:
     ) -> V20DiscoveryExchangeListResult:
         """Discover Features v2.0 records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.discover_features20_records_get(connection_id, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier
         :type connection_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -258,12 +239,14 @@ class DiscoverFeaturesV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the discover_features20_records_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.discover_features20_records_get_with_http_info(
-            connection_id, **kwargs
-        )  # noqa: E501
+
+        return await self.discover_features20_records_get_with_http_info.raw_function(
+            connection_id,
+            **kwargs,
+        )
 
     @validate_call
-    def discover_features20_records_get_with_http_info(
+    async def discover_features20_records_get_with_http_info(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -272,16 +255,9 @@ class DiscoverFeaturesV20Api:
     ) -> ApiResponse:
         """Discover Features v2.0 records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.discover_features20_records_get_with_http_info(connection_id, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier
         :type connection_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -310,7 +286,6 @@ class DiscoverFeaturesV20Api:
         _all_params = ["connection_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -359,7 +334,7 @@ class DiscoverFeaturesV20Api:
             "200": "V20DiscoveryExchangeListResult",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/discover-features-2.0/records",
             "GET",
             _path_params,
@@ -370,7 +345,6 @@ class DiscoverFeaturesV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

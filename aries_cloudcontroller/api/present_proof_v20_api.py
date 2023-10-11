@@ -56,23 +56,16 @@ class PresentProofV20Api:
         self.api_client = api_client
 
     @validate_call
-    def create_proof_request(
+    async def create_proof_request(
         self,
         body: Optional[V20PresCreateRequestRequest] = None,
         **kwargs,
     ) -> V20PresExRecord:
         """Creates a presentation request not bound to any proposal or connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_proof_request(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V20PresCreateRequestRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -86,26 +79,23 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the create_proof_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_proof_request_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.create_proof_request_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def create_proof_request_with_http_info(
+    async def create_proof_request_with_http_info(
         self,
         body: Optional[V20PresCreateRequestRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Creates a presentation request not bound to any proposal or connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_proof_request_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V20PresCreateRequestRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -134,7 +124,6 @@ class PresentProofV20Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -191,7 +180,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/create-request",
             "POST",
             _path_params,
@@ -202,7 +191,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -211,7 +199,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def delete_record(
+    async def delete_record(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -220,16 +208,9 @@ class PresentProofV20Api:
     ) -> object:
         """Remove an existing presentation exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record(pres_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -243,10 +224,14 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the delete_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_record_with_http_info(pres_ex_id, **kwargs)  # noqa: E501
+
+        return await self.delete_record_with_http_info.raw_function(
+            pres_ex_id,
+            **kwargs,
+        )
 
     @validate_call
-    def delete_record_with_http_info(
+    async def delete_record_with_http_info(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -255,16 +240,9 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Remove an existing presentation exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record_with_http_info(pres_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -293,7 +271,6 @@ class PresentProofV20Api:
         _all_params = ["pres_ex_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -341,7 +318,7 @@ class PresentProofV20Api:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records/{pres_ex_id}",
             "DELETE",
             _path_params,
@@ -352,7 +329,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -361,7 +337,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def get_matching_credentials(
+    async def get_matching_credentials(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -386,11 +362,6 @@ class PresentProofV20Api:
     ) -> List[IndyCredPrecis]:
         """Fetch credentials from wallet for presentation request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_matching_credentials(pres_ex_id, count, extra_query, referent, start, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
@@ -402,8 +373,6 @@ class PresentProofV20Api:
         :type referent: str
         :param start: Start index
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -417,12 +386,18 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_matching_credentials_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_matching_credentials_with_http_info(
-            pres_ex_id, count, extra_query, referent, start, **kwargs
-        )  # noqa: E501
+
+        return await self.get_matching_credentials_with_http_info.raw_function(
+            pres_ex_id,
+            count,
+            extra_query,
+            referent,
+            start,
+            **kwargs,
+        )
 
     @validate_call
-    def get_matching_credentials_with_http_info(
+    async def get_matching_credentials_with_http_info(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -447,11 +422,6 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Fetch credentials from wallet for presentation request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_matching_credentials_with_http_info(pres_ex_id, count, extra_query, referent, start, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
@@ -463,8 +433,6 @@ class PresentProofV20Api:
         :type referent: str
         :param start: Start index
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -493,7 +461,6 @@ class PresentProofV20Api:
         _all_params = ["pres_ex_id", "count", "extra_query", "referent", "start"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -553,7 +520,7 @@ class PresentProofV20Api:
             "200": "List[IndyCredPrecis]",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records/{pres_ex_id}/credentials",
             "GET",
             _path_params,
@@ -564,7 +531,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -573,7 +539,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def get_record(
+    async def get_record(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -582,16 +548,9 @@ class PresentProofV20Api:
     ) -> V20PresExRecord:
         """Fetch a single presentation exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record(pres_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -605,10 +564,14 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_record_with_http_info(pres_ex_id, **kwargs)  # noqa: E501
+
+        return await self.get_record_with_http_info.raw_function(
+            pres_ex_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_record_with_http_info(
+    async def get_record_with_http_info(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -617,16 +580,9 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Fetch a single presentation exchange record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record_with_http_info(pres_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -655,7 +611,6 @@ class PresentProofV20Api:
         _all_params = ["pres_ex_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -703,7 +658,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records/{pres_ex_id}",
             "GET",
             _path_params,
@@ -714,7 +669,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -723,7 +677,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def get_records(
+    async def get_records(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -742,11 +696,6 @@ class PresentProofV20Api:
     ) -> V20PresExRecordList:
         """Fetch all present-proof exchange records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records(connection_id, role, state, thread_id, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier
         :type connection_id: str
@@ -756,8 +705,6 @@ class PresentProofV20Api:
         :type state: str
         :param thread_id: Thread identifier
         :type thread_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -771,12 +718,17 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(
-            connection_id, role, state, thread_id, **kwargs
-        )  # noqa: E501
+
+        return await self.get_records_with_http_info.raw_function(
+            connection_id,
+            role,
+            state,
+            thread_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_records_with_http_info(
+    async def get_records_with_http_info(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -795,11 +747,6 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Fetch all present-proof exchange records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records_with_http_info(connection_id, role, state, thread_id, async_req=True)
-        >>> result = thread.get()
 
         :param connection_id: Connection identifier
         :type connection_id: str
@@ -809,8 +756,6 @@ class PresentProofV20Api:
         :type state: str
         :param thread_id: Thread identifier
         :type thread_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -839,7 +784,6 @@ class PresentProofV20Api:
         _all_params = ["connection_id", "role", "state", "thread_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -897,7 +841,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecordList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records",
             "GET",
             _path_params,
@@ -908,7 +852,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -917,7 +860,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def report_problem(
+    async def report_problem(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -927,18 +870,11 @@ class PresentProofV20Api:
     ) -> object:
         """Send a problem report for presentation exchange  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.report_problem(pres_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
         :type body: V20PresProblemReportRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -952,12 +888,15 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the report_problem_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.report_problem_with_http_info(
-            pres_ex_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.report_problem_with_http_info.raw_function(
+            pres_ex_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def report_problem_with_http_info(
+    async def report_problem_with_http_info(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -967,18 +906,11 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Send a problem report for presentation exchange  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.report_problem_with_http_info(pres_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
         :type body: V20PresProblemReportRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1007,7 +939,6 @@ class PresentProofV20Api:
         _all_params = ["pres_ex_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1066,7 +997,7 @@ class PresentProofV20Api:
             "200": "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records/{pres_ex_id}/problem-report",
             "POST",
             _path_params,
@@ -1077,7 +1008,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1086,7 +1016,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def send_presentation(
+    async def send_presentation(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -1096,18 +1026,11 @@ class PresentProofV20Api:
     ) -> V20PresExRecord:
         """Sends a proof presentation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_presentation(pres_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
         :type body: V20PresSpecByFormatRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1121,12 +1044,15 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_presentation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_presentation_with_http_info(
-            pres_ex_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.send_presentation_with_http_info.raw_function(
+            pres_ex_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_presentation_with_http_info(
+    async def send_presentation_with_http_info(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -1136,18 +1062,11 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Sends a proof presentation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_presentation_with_http_info(pres_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
         :type body: V20PresSpecByFormatRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1176,7 +1095,6 @@ class PresentProofV20Api:
         _all_params = ["pres_ex_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1235,7 +1153,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records/{pres_ex_id}/send-presentation",
             "POST",
             _path_params,
@@ -1246,7 +1164,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1255,23 +1172,16 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def send_proposal(
+    async def send_proposal(
         self,
         body: Optional[V20PresProposalRequest] = None,
         **kwargs,
     ) -> V20PresExRecord:
         """Sends a presentation proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_proposal(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V20PresProposalRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1285,26 +1195,23 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_proposal_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_proposal_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.send_proposal_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_proposal_with_http_info(
+    async def send_proposal_with_http_info(
         self,
         body: Optional[V20PresProposalRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Sends a presentation proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_proposal_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V20PresProposalRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1333,7 +1240,6 @@ class PresentProofV20Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1390,7 +1296,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/send-proposal",
             "POST",
             _path_params,
@@ -1401,7 +1307,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1410,7 +1315,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def send_request(
+    async def send_request(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -1420,18 +1325,11 @@ class PresentProofV20Api:
     ) -> V20PresExRecord:
         """Sends a presentation request in reference to a proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_request(pres_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
         :type body: V20PresentationSendRequestToProposal
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1445,12 +1343,15 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_request_with_http_info(
-            pres_ex_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.send_request_with_http_info.raw_function(
+            pres_ex_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_request_with_http_info(
+    async def send_request_with_http_info(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -1460,18 +1361,11 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Sends a presentation request in reference to a proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_request_with_http_info(pres_ex_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
         :type body: V20PresentationSendRequestToProposal
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1500,7 +1394,6 @@ class PresentProofV20Api:
         _all_params = ["pres_ex_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1559,7 +1452,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records/{pres_ex_id}/send-request",
             "POST",
             _path_params,
@@ -1570,7 +1463,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1579,23 +1471,16 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def send_request_free(
+    async def send_request_free(
         self,
         body: Optional[V20PresSendRequestRequest] = None,
         **kwargs,
     ) -> V20PresExRecord:
         """Sends a free presentation request not bound to any proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_request_free(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V20PresSendRequestRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1609,26 +1494,23 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_request_free_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_request_free_with_http_info(body, **kwargs)  # noqa: E501
+
+        return await self.send_request_free_with_http_info.raw_function(
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_request_free_with_http_info(
+    async def send_request_free_with_http_info(
         self,
         body: Optional[V20PresSendRequestRequest] = None,
         **kwargs,
     ) -> ApiResponse:
         """Sends a free presentation request not bound to any proposal  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_request_free_with_http_info(body, async_req=True)
-        >>> result = thread.get()
 
         :param body:
         :type body: V20PresSendRequestRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1657,7 +1539,6 @@ class PresentProofV20Api:
         _all_params = ["body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1714,7 +1595,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/send-request",
             "POST",
             _path_params,
@@ -1725,7 +1606,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1734,7 +1614,7 @@ class PresentProofV20Api:
         )
 
     @validate_call
-    def verify_presentation(
+    async def verify_presentation(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -1743,16 +1623,9 @@ class PresentProofV20Api:
     ) -> V20PresExRecord:
         """Verify a received presentation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify_presentation(pres_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1766,12 +1639,14 @@ class PresentProofV20Api:
         if "_preload_content" in kwargs:
             message = "Error! Please call the verify_presentation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.verify_presentation_with_http_info(
-            pres_ex_id, **kwargs
-        )  # noqa: E501
+
+        return await self.verify_presentation_with_http_info.raw_function(
+            pres_ex_id,
+            **kwargs,
+        )
 
     @validate_call
-    def verify_presentation_with_http_info(
+    async def verify_presentation_with_http_info(
         self,
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
@@ -1780,16 +1655,9 @@ class PresentProofV20Api:
     ) -> ApiResponse:
         """Verify a received presentation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify_presentation_with_http_info(pres_ex_id, async_req=True)
-        >>> result = thread.get()
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1818,7 +1686,6 @@ class PresentProofV20Api:
         _all_params = ["pres_ex_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1866,7 +1733,7 @@ class PresentProofV20Api:
             "200": "V20PresExRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/present-proof-2.0/records/{pres_ex_id}/verify-presentation",
             "POST",
             _path_params,
@@ -1877,7 +1744,6 @@ class PresentProofV20Api:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),

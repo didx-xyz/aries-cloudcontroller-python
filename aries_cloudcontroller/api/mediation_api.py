@@ -49,20 +49,13 @@ class MediationApi:
         self.api_client = api_client
 
     @validate_call
-    def clear_default_mediator(
+    async def clear_default_mediator(
         self,
         **kwargs,
     ) -> MediationRecord:
         """Clear default mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.clear_default_mediator(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -76,23 +69,19 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the clear_default_mediator_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.clear_default_mediator_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.clear_default_mediator_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def clear_default_mediator_with_http_info(
+    async def clear_default_mediator_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Clear default mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.clear_default_mediator_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -121,7 +110,6 @@ class MediationApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -167,7 +155,7 @@ class MediationApi:
             "201": "MediationRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/default-mediator",
             "DELETE",
             _path_params,
@@ -178,7 +166,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -187,7 +174,7 @@ class MediationApi:
         )
 
     @validate_call
-    def delete_record(
+    async def delete_record(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -196,16 +183,9 @@ class MediationApi:
     ) -> MediationRecord:
         """Delete mediation request by ID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -219,10 +199,14 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the delete_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_record_with_http_info(mediation_id, **kwargs)  # noqa: E501
+
+        return await self.delete_record_with_http_info.raw_function(
+            mediation_id,
+            **kwargs,
+        )
 
     @validate_call
-    def delete_record_with_http_info(
+    async def delete_record_with_http_info(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -231,16 +215,9 @@ class MediationApi:
     ) -> ApiResponse:
         """Delete mediation request by ID  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_record_with_http_info(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -269,7 +246,6 @@ class MediationApi:
         _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -317,7 +293,7 @@ class MediationApi:
             "200": "MediationRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/requests/{mediation_id}",
             "DELETE",
             _path_params,
@@ -328,7 +304,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -337,7 +312,7 @@ class MediationApi:
         )
 
     @validate_call
-    def deny_mediation_request(
+    async def deny_mediation_request(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -347,18 +322,11 @@ class MediationApi:
     ) -> MediationDeny:
         """Deny a stored mediation request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.deny_mediation_request(mediation_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
         :param body:
         :type body: AdminMediationDeny
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -372,12 +340,15 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the deny_mediation_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.deny_mediation_request_with_http_info(
-            mediation_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.deny_mediation_request_with_http_info.raw_function(
+            mediation_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def deny_mediation_request_with_http_info(
+    async def deny_mediation_request_with_http_info(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -387,18 +358,11 @@ class MediationApi:
     ) -> ApiResponse:
         """Deny a stored mediation request  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.deny_mediation_request_with_http_info(mediation_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
         :param body:
         :type body: AdminMediationDeny
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -427,7 +391,6 @@ class MediationApi:
         _all_params = ["mediation_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -486,7 +449,7 @@ class MediationApi:
             "201": "MediationDeny",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/requests/{mediation_id}/deny",
             "POST",
             _path_params,
@@ -497,7 +460,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -506,20 +468,13 @@ class MediationApi:
         )
 
     @validate_call
-    def get_default_mediator(
+    async def get_default_mediator(
         self,
         **kwargs,
     ) -> MediationRecord:
         """Get default mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_default_mediator(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -533,23 +488,19 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_default_mediator_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_default_mediator_with_http_info(**kwargs)  # noqa: E501
+
+        return await self.get_default_mediator_with_http_info.raw_function(
+            **kwargs,
+        )
 
     @validate_call
-    def get_default_mediator_with_http_info(
+    async def get_default_mediator_with_http_info(
         self,
         **kwargs,
     ) -> ApiResponse:
         """Get default mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_default_mediator_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -578,7 +529,6 @@ class MediationApi:
         _all_params = []
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -624,7 +574,7 @@ class MediationApi:
             "200": "MediationRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/default-mediator",
             "GET",
             _path_params,
@@ -635,7 +585,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -644,7 +593,7 @@ class MediationApi:
         )
 
     @validate_call
-    def get_record(
+    async def get_record(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -653,16 +602,9 @@ class MediationApi:
     ) -> MediationRecord:
         """Retrieve mediation request record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -676,10 +618,14 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_record_with_http_info(mediation_id, **kwargs)  # noqa: E501
+
+        return await self.get_record_with_http_info.raw_function(
+            mediation_id,
+            **kwargs,
+        )
 
     @validate_call
-    def get_record_with_http_info(
+    async def get_record_with_http_info(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -688,16 +634,9 @@ class MediationApi:
     ) -> ApiResponse:
         """Retrieve mediation request record  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_record_with_http_info(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -726,7 +665,6 @@ class MediationApi:
         _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -774,7 +712,7 @@ class MediationApi:
             "200": "MediationRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/requests/{mediation_id}",
             "GET",
             _path_params,
@@ -785,7 +723,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -794,7 +731,7 @@ class MediationApi:
         )
 
     @validate_call
-    def get_records(
+    async def get_records(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier (optional)")
@@ -814,11 +751,6 @@ class MediationApi:
     ) -> MediationList:
         """Query mediation requests, returns list of all mediation records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records(conn_id, mediator_terms, recipient_terms, state, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (optional)
         :type conn_id: str
@@ -828,8 +760,6 @@ class MediationApi:
         :type recipient_terms: List[str]
         :param state: Mediation state (optional)
         :type state: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -843,12 +773,17 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the get_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_records_with_http_info(
-            conn_id, mediator_terms, recipient_terms, state, **kwargs
-        )  # noqa: E501
+
+        return await self.get_records_with_http_info.raw_function(
+            conn_id,
+            mediator_terms,
+            recipient_terms,
+            state,
+            **kwargs,
+        )
 
     @validate_call
-    def get_records_with_http_info(
+    async def get_records_with_http_info(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier (optional)")
@@ -868,11 +803,6 @@ class MediationApi:
     ) -> ApiResponse:
         """Query mediation requests, returns list of all mediation records  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_records_with_http_info(conn_id, mediator_terms, recipient_terms, state, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (optional)
         :type conn_id: str
@@ -882,8 +812,6 @@ class MediationApi:
         :type recipient_terms: List[str]
         :param state: Mediation state (optional)
         :type state: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -912,7 +840,6 @@ class MediationApi:
         _all_params = ["conn_id", "mediator_terms", "recipient_terms", "state"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -972,7 +899,7 @@ class MediationApi:
             "200": "MediationList",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/requests",
             "GET",
             _path_params,
@@ -983,7 +910,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -992,7 +918,7 @@ class MediationApi:
         )
 
     @validate_call
-    def grant_mediation_request(
+    async def grant_mediation_request(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -1001,16 +927,9 @@ class MediationApi:
     ) -> MediationGrant:
         """Grant received mediation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.grant_mediation_request(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1024,12 +943,14 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the grant_mediation_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.grant_mediation_request_with_http_info(
-            mediation_id, **kwargs
-        )  # noqa: E501
+
+        return await self.grant_mediation_request_with_http_info.raw_function(
+            mediation_id,
+            **kwargs,
+        )
 
     @validate_call
-    def grant_mediation_request_with_http_info(
+    async def grant_mediation_request_with_http_info(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -1038,16 +959,9 @@ class MediationApi:
     ) -> ApiResponse:
         """Grant received mediation  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.grant_mediation_request_with_http_info(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1076,7 +990,6 @@ class MediationApi:
         _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1124,7 +1037,7 @@ class MediationApi:
             "201": "MediationGrant",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/requests/{mediation_id}/grant",
             "POST",
             _path_params,
@@ -1135,7 +1048,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1144,7 +1056,7 @@ class MediationApi:
         )
 
     @validate_call
-    def mediation_update_keylist_conn_id_post(
+    async def mediation_update_keylist_conn_id_post(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[MediationIdMatchInfo] = None,
@@ -1152,18 +1064,11 @@ class MediationApi:
     ) -> KeylistUpdate:
         """Update keylist for a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mediation_update_keylist_conn_id_post(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: MediationIdMatchInfo
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1177,12 +1082,15 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the mediation_update_keylist_conn_id_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.mediation_update_keylist_conn_id_post_with_http_info(
-            conn_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.mediation_update_keylist_conn_id_post_with_http_info.raw_function(
+            conn_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def mediation_update_keylist_conn_id_post_with_http_info(
+    async def mediation_update_keylist_conn_id_post_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[MediationIdMatchInfo] = None,
@@ -1190,18 +1098,11 @@ class MediationApi:
     ) -> ApiResponse:
         """Update keylist for a connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mediation_update_keylist_conn_id_post_with_http_info(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: MediationIdMatchInfo
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1230,7 +1131,6 @@ class MediationApi:
         _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1289,7 +1189,7 @@ class MediationApi:
             "200": "KeylistUpdate",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/update-keylist/{conn_id}",
             "POST",
             _path_params,
@@ -1300,7 +1200,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1309,7 +1208,7 @@ class MediationApi:
         )
 
     @validate_call
-    def request_mediation(
+    async def request_mediation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[MediationCreateRequest] = None,
@@ -1317,18 +1216,11 @@ class MediationApi:
     ) -> MediationRecord:
         """Request mediation from connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.request_mediation(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: MediationCreateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1342,12 +1234,15 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the request_mediation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.request_mediation_with_http_info(
-            conn_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.request_mediation_with_http_info.raw_function(
+            conn_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def request_mediation_with_http_info(
+    async def request_mediation_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[MediationCreateRequest] = None,
@@ -1355,18 +1250,11 @@ class MediationApi:
     ) -> ApiResponse:
         """Request mediation from connection  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.request_mediation_with_http_info(conn_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
         :type body: MediationCreateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1395,7 +1283,6 @@ class MediationApi:
         _all_params = ["conn_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1454,7 +1341,7 @@ class MediationApi:
             "201": "MediationRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/request/{conn_id}",
             "POST",
             _path_params,
@@ -1465,7 +1352,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1474,7 +1360,7 @@ class MediationApi:
         )
 
     @validate_call
-    def retrieve_keylists(
+    async def retrieve_keylists(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier (optional)")
@@ -1489,18 +1375,11 @@ class MediationApi:
     ) -> Keylist:
         """Retrieve keylists by connection or role  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.retrieve_keylists(conn_id, role, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (optional)
         :type conn_id: str
         :param role: Filer on role, 'client' for keys         mediated by other agents, 'server' for keys         mediated by this agent
         :type role: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1514,12 +1393,15 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the retrieve_keylists_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.retrieve_keylists_with_http_info(
-            conn_id, role, **kwargs
-        )  # noqa: E501
+
+        return await self.retrieve_keylists_with_http_info.raw_function(
+            conn_id,
+            role,
+            **kwargs,
+        )
 
     @validate_call
-    def retrieve_keylists_with_http_info(
+    async def retrieve_keylists_with_http_info(
         self,
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier (optional)")
@@ -1534,18 +1416,11 @@ class MediationApi:
     ) -> ApiResponse:
         """Retrieve keylists by connection or role  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.retrieve_keylists_with_http_info(conn_id, role, async_req=True)
-        >>> result = thread.get()
 
         :param conn_id: Connection identifier (optional)
         :type conn_id: str
         :param role: Filer on role, 'client' for keys         mediated by other agents, 'server' for keys         mediated by this agent
         :type role: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1574,7 +1449,6 @@ class MediationApi:
         _all_params = ["conn_id", "role"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1626,7 +1500,7 @@ class MediationApi:
             "200": "Keylist",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/keylists",
             "GET",
             _path_params,
@@ -1637,7 +1511,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1646,7 +1519,7 @@ class MediationApi:
         )
 
     @validate_call
-    def send_keylist_query(
+    async def send_keylist_query(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -1662,11 +1535,6 @@ class MediationApi:
     ) -> KeylistQuery:
         """Send keylist query to mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_keylist_query(mediation_id, paginate_limit, paginate_offset, body, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
@@ -1676,8 +1544,6 @@ class MediationApi:
         :type paginate_offset: int
         :param body:
         :type body: KeylistQueryFilterRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1691,12 +1557,17 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_keylist_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_keylist_query_with_http_info(
-            mediation_id, paginate_limit, paginate_offset, body, **kwargs
-        )  # noqa: E501
+
+        return await self.send_keylist_query_with_http_info.raw_function(
+            mediation_id,
+            paginate_limit,
+            paginate_offset,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_keylist_query_with_http_info(
+    async def send_keylist_query_with_http_info(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -1712,11 +1583,6 @@ class MediationApi:
     ) -> ApiResponse:
         """Send keylist query to mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_keylist_query_with_http_info(mediation_id, paginate_limit, paginate_offset, body, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
@@ -1726,8 +1592,6 @@ class MediationApi:
         :type paginate_offset: int
         :param body:
         :type body: KeylistQueryFilterRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1756,7 +1620,6 @@ class MediationApi:
         _all_params = ["mediation_id", "paginate_limit", "paginate_offset", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1821,7 +1684,7 @@ class MediationApi:
             "201": "KeylistQuery",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/keylists/{mediation_id}/send-keylist-query",
             "POST",
             _path_params,
@@ -1832,7 +1695,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -1841,7 +1703,7 @@ class MediationApi:
         )
 
     @validate_call
-    def send_keylist_update(
+    async def send_keylist_update(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -1851,18 +1713,11 @@ class MediationApi:
     ) -> KeylistUpdate:
         """Send keylist update to mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_keylist_update(mediation_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
         :param body:
         :type body: KeylistUpdateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1876,12 +1731,15 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the send_keylist_update_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.send_keylist_update_with_http_info(
-            mediation_id, body, **kwargs
-        )  # noqa: E501
+
+        return await self.send_keylist_update_with_http_info.raw_function(
+            mediation_id,
+            body,
+            **kwargs,
+        )
 
     @validate_call
-    def send_keylist_update_with_http_info(
+    async def send_keylist_update_with_http_info(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -1891,18 +1749,11 @@ class MediationApi:
     ) -> ApiResponse:
         """Send keylist update to mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.send_keylist_update_with_http_info(mediation_id, body, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
         :param body:
         :type body: KeylistUpdateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1931,7 +1782,6 @@ class MediationApi:
         _all_params = ["mediation_id", "body"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -1990,7 +1840,7 @@ class MediationApi:
             "201": "KeylistUpdate",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/keylists/{mediation_id}/send-keylist-update",
             "POST",
             _path_params,
@@ -2001,7 +1851,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
@@ -2010,7 +1859,7 @@ class MediationApi:
         )
 
     @validate_call
-    def set_default_mediator(
+    async def set_default_mediator(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -2019,16 +1868,9 @@ class MediationApi:
     ) -> MediationRecord:
         """Set default mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_default_mediator(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -2042,12 +1884,14 @@ class MediationApi:
         if "_preload_content" in kwargs:
             message = "Error! Please call the set_default_mediator_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.set_default_mediator_with_http_info(
-            mediation_id, **kwargs
-        )  # noqa: E501
+
+        return await self.set_default_mediator_with_http_info.raw_function(
+            mediation_id,
+            **kwargs,
+        )
 
     @validate_call
-    def set_default_mediator_with_http_info(
+    async def set_default_mediator_with_http_info(
         self,
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
@@ -2056,16 +1900,9 @@ class MediationApi:
     ) -> ApiResponse:
         """Set default mediator  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_default_mediator_with_http_info(mediation_id, async_req=True)
-        >>> result = thread.get()
 
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2094,7 +1931,6 @@ class MediationApi:
         _all_params = ["mediation_id"]
         _all_params.extend(
             [
-                "async_req",
                 "_return_http_data_only",
                 "_preload_content",
                 "_request_timeout",
@@ -2142,7 +1978,7 @@ class MediationApi:
             "201": "MediationRecord",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             "/mediation/{mediation_id}/default-mediator",
             "PUT",
             _path_params,
@@ -2153,7 +1989,6 @@ class MediationApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
             _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
             _preload_content=_params.get("_preload_content", True),
             _request_timeout=_params.get("_request_timeout"),
