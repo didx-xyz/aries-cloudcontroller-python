@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, Dict, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
 from typing_extensions import Annotated

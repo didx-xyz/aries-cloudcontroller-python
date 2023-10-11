@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, Dict, Optional
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Annotated

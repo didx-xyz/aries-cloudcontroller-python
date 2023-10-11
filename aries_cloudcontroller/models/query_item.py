@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, Dict
+from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 

@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, Dict, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel
 
