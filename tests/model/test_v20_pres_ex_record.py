@@ -9,8 +9,8 @@ from tests.util.compare_dicts import equal_dicts
 LOGGER = logging.getLogger(__name__)
 
 sample_pres_ex_record = {
-    "auto_present": "true",
-    "auto_verify": "true",
+    "auto_present": True,
+    "auto_verify": True,
     "by_format": {"pres": {"attach_id": "sample_id"}},
     "connection_id": "connection_id_example",
     "created_at": "2023-05-24 00:00:00Z",
@@ -75,7 +75,7 @@ sample_pres_ex_record = {
     "role": "prover",
     "state": "presentation-sent",
     "thread_id": "1234567890",
-    "trace": "false",
+    "trace": False,
     "updated_at": "2023-05-24 00:01:00Z",
     "verified": "true",
     "verified_msgs": ["msg1", "msg2"],

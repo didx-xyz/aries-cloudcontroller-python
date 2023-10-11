@@ -9,7 +9,7 @@ from tests.util.compare_dicts import equal_dicts
 LOGGER = logging.getLogger(__name__)
 
 sample_presentation = {
-    "auto_present": "false",
+    "auto_present": False,
     "connection_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     "created_at": "2021-04-08 09:04:01Z",
     "error_msg": "Invalid structure",
@@ -24,7 +24,7 @@ sample_presentation = {
     "role": "prover",
     "state": "verified",
     "thread_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "trace": "true",
+    "trace": True,
     "updated_at": "2021-04-08 09:04:01Z",
     "verified": "true",
 }
