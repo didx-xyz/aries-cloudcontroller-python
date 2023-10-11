@@ -16,6 +16,8 @@
 
 __version__ = "1.0.0"
 
+from aries_cloudcontroller.acapy_client import AcaPyClient
+
 # import apis into sdk package
 from aries_cloudcontroller.api.action_menu_api import ActionMenuApi
 from aries_cloudcontroller.api.basicmessage_api import BasicmessageApi
