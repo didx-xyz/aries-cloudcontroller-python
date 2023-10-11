@@ -67,7 +67,14 @@ class AcaPyClient(ApiClient):
         *,
         api_key: Optional[str] = None,
         tenant_jwt: Optional[str] = None,
+        admin_insecure: Optional[bool] = False,
     ):
+        if not api_key and not admin_insecure:
+            raise Exception(
+                "api_key property is missing. Use admin_insecure=True if you want"
+                " to use the controller without authentication."
+            )
+
         # Initialize the parent ApiClient
         super().__init__()
 
