@@ -33,7 +33,9 @@ class TAAAcceptance(BaseModel):
     """
 
     mechanism: Optional[StrictStr] = None
-    time: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = None
+    time: Optional[
+        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
+    ] = None
     __properties: ClassVar[List[str]] = ["mechanism", "time"]
 
     model_config = {"populate_by_name": True, "validate_assignment": True}

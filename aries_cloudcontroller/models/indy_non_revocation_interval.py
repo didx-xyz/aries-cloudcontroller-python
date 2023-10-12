@@ -32,12 +32,16 @@ class IndyNonRevocationInterval(BaseModel):
     IndyNonRevocationInterval
     """
 
-    var_from: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(
+    var_from: Optional[
+        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
+    ] = Field(
         default=None,
         description="Earliest time of interest in non-revocation interval",
         alias="from",
     )
-    to: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(
+    to: Optional[
+        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
+    ] = Field(
         default=None, description="Latest time of interest in non-revocation interval"
     )
     __properties: ClassVar[List[str]] = ["from", "to"]

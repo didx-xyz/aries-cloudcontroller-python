@@ -42,9 +42,9 @@ class IndyProofIdentifier(BaseModel):
     schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Schema identifier"
     )
-    timestamp: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(
-        default=None, description="Timestamp epoch"
-    )
+    timestamp: Optional[
+        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
+    ] = Field(default=None, description="Timestamp epoch")
     __properties: ClassVar[List[str]] = [
         "cred_def_id",
         "rev_reg_id",

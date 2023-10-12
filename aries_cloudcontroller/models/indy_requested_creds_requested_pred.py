@@ -35,7 +35,9 @@ class IndyRequestedCredsRequestedPred(BaseModel):
     cred_id: StrictStr = Field(
         description="Wallet credential identifier (typically but not necessarily a UUID)"
     )
-    timestamp: Optional[Annotated[int, Field(le=-1, strict=True, ge=0)]] = Field(
+    timestamp: Optional[
+        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
+    ] = Field(
         default=None, description="Epoch timestamp of interest for non-revocation proof"
     )
     __properties: ClassVar[List[str]] = ["cred_id", "timestamp"]
