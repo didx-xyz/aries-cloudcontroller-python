@@ -148,4 +148,4 @@ class WalletRecord(BaseModel):
 
 
 class WalletRecordWithGroups(WalletRecord):
-    group_id: Optional[str] = Field(None, example="SomeGroupId")
+    group_id: Optional[str] = Field(None, examples=["SomeGroupId"])
