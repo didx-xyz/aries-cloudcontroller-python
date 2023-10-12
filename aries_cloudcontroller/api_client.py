@@ -195,11 +195,6 @@ class ApiClient:
 
         # query parameters
         if query_params:
-            # Convert boolean query parameters to their string equivalents
-            for key, value in query_params.items():
-                if isinstance(value, bool):
-                    query_params[key] = str(value).lower()
-
             query_params = self.sanitize_for_serialization(query_params)
             url_query = self.parameters_to_url_query(query_params, collection_formats)
             url += "?" + url_query
@@ -281,6 +276,9 @@ class ApiClient:
         """
         if obj is None:
             return None
+        elif isinstance(obj, bool):
+            # Custom conversion: convert boolean query parameters to their string equivalents
+            return str(obj).lower()
         elif isinstance(obj, self.PRIMITIVE_TYPES):
             return obj
         elif isinstance(obj, list):
