@@ -145,3 +145,7 @@ class WalletRecord(BaseModel):
             }
         )
         return _obj
+
+
+class WalletRecordWithGroups(WalletRecord):
+    group_id: Optional[str] = Field(None, example="SomeGroupId")

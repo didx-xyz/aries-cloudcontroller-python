@@ -20,7 +20,10 @@ from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
-from aries_cloudcontroller.models.wallet_record import WalletRecord
+from aries_cloudcontroller.models.wallet_record import (
+    WalletRecord,
+    WalletRecordWithGroups,
+)
 
 try:
     from typing import Self
@@ -96,3 +99,7 @@ class WalletList(BaseModel):
             }
         )
         return _obj
+
+
+class WalletListWithGroups(BaseModel):
+    results: Optional[List[WalletRecordWithGroups]] = None
