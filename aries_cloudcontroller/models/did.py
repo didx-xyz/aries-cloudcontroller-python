@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated
@@ -36,13 +36,13 @@ class DID(BaseModel):
     did: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="DID of interest"
     )
-    key_type: Optional[StrictStr] = Field(
+    key_type: Optional[Literal["ed25519", "bls12381g2"]] = Field(
         default=None, description="Key type associated with the DID"
     )
-    method: Optional[StrictStr] = Field(
+    method: Optional[Literal["sov", "key"]] = Field(
         default=None, description="Did method associated with the DID"
     )
-    posture: Optional[StrictStr] = Field(
+    posture: Optional[Literal["public", "posted", "wallet_only"]] = Field(
         default=None,
         description="Whether DID is current public DID, posted to ledger but not current public DID, or local to the wallet",
     )
