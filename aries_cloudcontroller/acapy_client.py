@@ -32,7 +32,7 @@ from aries_cloudcontroller.api import (
 from aries_cloudcontroller.api_client import ApiClient
 
 
-class AcaPyClient(ApiClient):
+class AcaPyClient:
     action_menu: ActionMenuApi
     basicmessage: BasicmessageApi
     connection: ConnectionApi
@@ -75,41 +75,41 @@ class AcaPyClient(ApiClient):
                 " to use the controller without authentication."
             )
 
-        # Initialize the parent ApiClient
-        super().__init__()
+        # We will configure an ApiClient instance and pass it to our API modules
+        api_client = ApiClient()
 
         # Custom setup from base_url, api_key, and tenant_jwt
-        self.configuration.host = base_url
+        api_client.configuration.host = base_url
         if api_key:
-            self.default_headers["x-api-key"] = api_key
+            api_client.default_headers["x-api-key"] = api_key
         if tenant_jwt:
-            self.default_headers["Authorization"] = f"Bearer {tenant_jwt}"
+            api_client.default_headers["Authorization"] = f"Bearer {tenant_jwt}"
 
         # Initialize the API modules
-        self.action_menu = ActionMenuApi(self)
-        self.basicmessage = BasicmessageApi(self)
-        self.connection = ConnectionApi(self)
-        self.credential_definition = CredentialDefinitionApi(self)
-        self.credentials = CredentialsApi(self)
-        self.default = DefaultApi(self)
-        self.did_exchange = DidExchangeApi(self)
-        self.discover_features = DiscoverFeaturesApi(self)
-        self.discover_features_v2_0 = DiscoverFeaturesV20Api(self)
-        self.endorse_transaction = EndorseTransactionApi(self)
-        self.introduction = IntroductionApi(self)
-        self.issue_credential_v1_0 = IssueCredentialV10Api(self)
-        self.issue_credential_v2_0 = IssueCredentialV20Api(self)
-        self.jsonld = JsonldApi(self)
-        self.ledger = LedgerApi(self)
-        self.mediation = MediationApi(self)
-        self.multitenancy = MultitenancyApi(self)
-        self.out_of_band = OutOfBandApi(self)
-        self.present_proof_v1_0 = PresentProofV10Api(self)
-        self.present_proof_v2_0 = PresentProofV20Api(self)
-        self.resolver = ResolverApi(self)
-        self.revocation = RevocationApi(self)
-        self.schema = SchemaApi(self)
-        self.server = ServerApi(self)
-        self.settings = SettingsApi(self)
-        self.trustping = TrustpingApi(self)
-        self.wallet = WalletApi(self)
+        self.action_menu = ActionMenuApi(api_client)
+        self.basicmessage = BasicmessageApi(api_client)
+        self.connection = ConnectionApi(api_client)
+        self.credential_definition = CredentialDefinitionApi(api_client)
+        self.credentials = CredentialsApi(api_client)
+        self.default = DefaultApi(api_client)
+        self.did_exchange = DidExchangeApi(api_client)
+        self.discover_features = DiscoverFeaturesApi(api_client)
+        self.discover_features_v2_0 = DiscoverFeaturesV20Api(api_client)
+        self.endorse_transaction = EndorseTransactionApi(api_client)
+        self.introduction = IntroductionApi(api_client)
+        self.issue_credential_v1_0 = IssueCredentialV10Api(api_client)
+        self.issue_credential_v2_0 = IssueCredentialV20Api(api_client)
+        self.jsonld = JsonldApi(api_client)
+        self.ledger = LedgerApi(api_client)
+        self.mediation = MediationApi(api_client)
+        self.multitenancy = MultitenancyApi(api_client)
+        self.out_of_band = OutOfBandApi(api_client)
+        self.present_proof_v1_0 = PresentProofV10Api(api_client)
+        self.present_proof_v2_0 = PresentProofV20Api(api_client)
+        self.resolver = ResolverApi(api_client)
+        self.revocation = RevocationApi(api_client)
+        self.schema = SchemaApi(api_client)
+        self.server = ServerApi(api_client)
+        self.settings = SettingsApi(api_client)
+        self.trustping = TrustpingApi(api_client)
+        self.wallet = WalletApi(api_client)
