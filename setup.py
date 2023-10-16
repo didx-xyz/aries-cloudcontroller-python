@@ -23,7 +23,7 @@ if __name__ == "__main__":
         description="A simple python package for controlling an aries agent through the admin-api interface",
         long_description=long_description,
         long_description_content_type="text/markdown",
-        url="https://github.com/didx-xyz/aries-cloudcontroller-python/tree/main/aries_cloudcontroller",
+        url="https://github.com/didx-xyz/aries-cloudcontroller-python",
         packages=find_packages(),
         include_package_data=True,
         package_data={
