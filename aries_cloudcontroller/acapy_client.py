@@ -31,6 +31,7 @@ from aries_cloudcontroller.api import (
     WalletApi,
 )
 from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.configuration import Configuration
 
 
 class AcaPyClient(AbstractAsyncContextManager):
@@ -77,10 +78,10 @@ class AcaPyClient(AbstractAsyncContextManager):
             )
 
         # We will configure an ApiClient instance and pass it to our API modules
-        self.api_client = ApiClient()
+        self.configuration = Configuration(host=base_url)
+        self.api_client = ApiClient(self.configuration)
 
-        # Custom setup from base_url, api_key, and tenant_jwt
-        self.api_client.configuration.host = base_url
+        # ApiClient init can only take one header, so configure api_key and tenant_jwt separately
         if api_key:
             self.api_client.default_headers["x-api-key"] = api_key
         if tenant_jwt:
