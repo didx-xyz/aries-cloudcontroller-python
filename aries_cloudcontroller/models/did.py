@@ -19,8 +19,10 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Literal, Optional
 
-from pydantic import BaseModel, Field, StrictStr, field_validator
+from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated
+
+from aries_cloudcontroller.util import BBS_PATTERN, ED25519_PATTERN
 
 try:
     from typing import Self
@@ -100,12 +102,9 @@ class DID(BaseModel):
         if value is None:
             return value
 
-        if not re.match(
-            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
-            value,
-        ):
+        if not re.match(ED25519_PATTERN, value) and not re.match(BBS_PATTERN, value):
             raise ValueError(
-                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$/"
+                f"Invalid verkey format. Expected either an ED25519 format matching: {ED25519_PATTERN} or BBS+ format matching: {BBS_PATTERN}"
             )
         return value
 
