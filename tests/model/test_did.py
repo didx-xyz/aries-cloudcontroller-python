@@ -1,6 +1,8 @@
 import logging
-import pytest
+
 import pydantic
+import pytest
+
 from aries_cloudcontroller.models import DID
 from tests.util.compare_dicts import equal_dicts
 
