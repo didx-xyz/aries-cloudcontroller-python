@@ -40,7 +40,7 @@ class AttachDecoratorData(BaseModel):
     var_base64: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Base64-encoded data", alias="base64"
     )
-    var_json: Optional[Union[str, Any]] = Field(
+    var_json: Optional[Union[Dict[str, Any], List[Dict[str, Any]]]] = Field(
         default=None, description="JSON-serialized data", alias="json"
     )
     jws: Optional[AttachDecoratorDataJWS] = None
