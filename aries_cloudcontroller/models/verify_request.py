@@ -69,9 +69,6 @@ class VerifyRequest(BaseModel):
             exclude={},
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of doc
-        if self.doc:
-            _dict["doc"] = self.doc.to_dict()
         return _dict
 
     @classmethod
