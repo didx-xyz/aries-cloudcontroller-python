@@ -31,10 +31,7 @@ from aries_cloudcontroller.models.create_wallet_token_response import (
 from aries_cloudcontroller.models.remove_wallet_request import RemoveWalletRequest
 from aries_cloudcontroller.models.update_wallet_request import UpdateWalletRequest
 from aries_cloudcontroller.models.wallet_list import WalletList, WalletListWithGroups
-from aries_cloudcontroller.models.wallet_record import (
-    WalletRecord,
-    WalletRecordWithGroups,
-)
+from aries_cloudcontroller.models.wallet_record import WalletRecord
 
 
 class MultitenancyApi:
