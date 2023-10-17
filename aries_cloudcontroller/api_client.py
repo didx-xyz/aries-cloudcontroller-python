@@ -195,7 +195,9 @@ class ApiClient:
 
         # query parameters
         if query_params:
-            query_params = self.sanitize_for_serialization(query_params)
+            query_params = self.sanitize_for_serialization(
+                query_params, query_params=True
+            )
             url_query = self.parameters_to_url_query(query_params, collection_formats)
             url += "?" + url_query
 
@@ -260,7 +262,7 @@ class ApiClient:
                 raw_data=response_data.data,
             )
 
-    def sanitize_for_serialization(self, obj):
+    def sanitize_for_serialization(self, obj, query_params=False):
         """Builds a JSON POST object.
 
         If obj is None, return None.
@@ -272,19 +274,27 @@ class ApiClient:
         If obj is OpenAPI model, return the properties dict.
 
         :param obj: The data to serialize.
+        :param query_params: If these are query params or not
         :return: The serialized form of data.
         """
-        if obj is None:
-            return None
-        elif isinstance(obj, bool):
+        if query_params and isinstance(obj, bool):
             # Custom conversion: convert boolean query parameters to their string equivalents
             return str(obj).lower()
+
+        if obj is None:
+            return None
         elif isinstance(obj, self.PRIMITIVE_TYPES):
             return obj
         elif isinstance(obj, list):
-            return [self.sanitize_for_serialization(sub_obj) for sub_obj in obj]
+            return [
+                self.sanitize_for_serialization(sub_obj, query_params=query_params)
+                for sub_obj in obj
+            ]
         elif isinstance(obj, tuple):
-            return tuple(self.sanitize_for_serialization(sub_obj) for sub_obj in obj)
+            return tuple(
+                self.sanitize_for_serialization(sub_obj, query_params=query_params)
+                for sub_obj in obj
+            )
         elif isinstance(obj, (datetime.datetime, datetime.date)):
             return obj.isoformat()
 
@@ -299,7 +309,8 @@ class ApiClient:
             obj_dict = obj.to_dict()
 
         return {
-            key: self.sanitize_for_serialization(val) for key, val in obj_dict.items()
+            key: self.sanitize_for_serialization(val, query_params=query_params)
+            for key, val in obj_dict.items()
         }
 
     def deserialize(self, response, response_type):
