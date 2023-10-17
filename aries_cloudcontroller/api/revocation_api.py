@@ -12,7 +12,7 @@
 """  # noqa: E501
 
 
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictBool, StrictStr, validate_call
 from typing_extensions import Annotated
@@ -1241,7 +1241,7 @@ class RevocationApi:
             Field(description="Create Transaction For Endorser's signature"),
         ] = None,
         **kwargs,
-    ) -> TxnOrRevRegResult:
+    ) -> Union[RevRegResult, TxnOrRevRegResult]:
         """Send revocation registry definition to ledger  # noqa: E501
 
 
@@ -1258,7 +1258,7 @@ class RevocationApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: TxnOrRevRegResult
+        :rtype: Union[RevRegResult, TxnOrRevRegResult]
         """
         kwargs["_return_http_data_only"] = True
         if "_preload_content" in kwargs:
@@ -1316,7 +1316,7 @@ class RevocationApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(TxnOrRevRegResult, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Union[RevRegResult, TxnOrRevRegResult], status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1379,7 +1379,7 @@ class RevocationApi:
         _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "TxnOrRevRegResult",
+            "200": "Union[RevRegResult, TxnOrRevRegResult]",
         }
 
         return await self.api_client.call_api(
