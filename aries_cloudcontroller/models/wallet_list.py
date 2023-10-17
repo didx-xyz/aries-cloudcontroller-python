@@ -101,5 +101,5 @@ class WalletList(BaseModel):
         return _obj
 
 
-class WalletListWithGroups(BaseModel):
+class WalletListWithGroups(WalletList):
     results: Optional[List[WalletRecordWithGroups]] = None
