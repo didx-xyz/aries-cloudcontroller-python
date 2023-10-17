@@ -31,23 +31,27 @@ class Filter(BaseModel):
     Filter
     """
 
-    const: Optional[Union[str, Any]] = Field(default=None, description="Const")
-    enum: Optional[List[Union[str, Any]]] = None
-    exclusive_maximum: Optional[Union[str, Any]] = Field(
+    const: Optional[Union[str, int, float]] = Field(default=None, description="Const")
+    enum: Optional[List[Union[str, int, float]]] = None
+    exclusive_maximum: Optional[Union[str, int, float]] = Field(
         default=None, description="ExclusiveMaximum", alias="exclusiveMaximum"
     )
-    exclusive_minimum: Optional[Union[str, Any]] = Field(
+    exclusive_minimum: Optional[Union[str, int, float]] = Field(
         default=None, description="ExclusiveMinimum", alias="exclusiveMinimum"
     )
     format: Optional[StrictStr] = Field(default=None, description="Format")
     max_length: Optional[StrictInt] = Field(
         default=None, description="Max Length", alias="maxLength"
     )
-    maximum: Optional[Union[str, Any]] = Field(default=None, description="Maximum")
+    maximum: Optional[Union[str, int, float]] = Field(
+        default=None, description="Maximum"
+    )
     min_length: Optional[StrictInt] = Field(
         default=None, description="Min Length", alias="minLength"
     )
-    minimum: Optional[Union[str, Any]] = Field(default=None, description="Minimum")
+    minimum: Optional[Union[str, int, float]] = Field(
+        default=None, description="Minimum"
+    )
     var_not: Optional[StrictBool] = Field(default=None, description="Not", alias="not")
     pattern: Optional[StrictStr] = Field(default=None, description="Pattern")
     type: Optional[StrictStr] = Field(default=None, description="Type")
