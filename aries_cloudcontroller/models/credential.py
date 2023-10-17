@@ -35,7 +35,7 @@ class Credential(BaseModel):
     Credential
     """
 
-    context: List[Union[str, Any]] = Field(
+    context: List[Union[str, Dict]] = Field(
         description="The JSON-LD context of the credential", alias="@context"
     )
     credential_subject: Union[str, Any] = Field(alias="credentialSubject")
@@ -46,7 +46,7 @@ class Credential(BaseModel):
     issuance_date: Annotated[str, Field(strict=True)] = Field(
         description="The issuance date", alias="issuanceDate"
     )
-    issuer: Union[str, Any] = Field(
+    issuer: Union[str, Dict[str, Any]] = Field(
         description="The JSON-LD Verifiable Credential Issuer. Either string of object with id field."
     )
     proof: Optional[LinkedDataProof] = None
