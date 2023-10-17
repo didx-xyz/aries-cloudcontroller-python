@@ -60,7 +60,7 @@ class InvitationMessage(BaseModel):
     requestsattach: Optional[List[AttachDecorator]] = Field(
         default=None, description="Optional request attachment", alias="requests~attach"
     )
-    services: Optional[List[Union[str, Any]]] = None
+    services: Optional[List[Union[str, Dict]]] = None
     __properties: ClassVar[List[str]] = [
         "@id",
         "@type",
