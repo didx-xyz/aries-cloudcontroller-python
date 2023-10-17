@@ -103,3 +103,24 @@ class WalletList(BaseModel):
 
 class WalletListWithGroups(WalletList):
     results: Optional[List[WalletRecordWithGroups]] = None
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> Self:
+        """Create an instance of WalletListWithGroups from a dict"""
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return cls.model_validate(obj)
+
+        _obj = cls.model_validate(
+            {
+                "results": [
+                    WalletRecordWithGroups.from_dict(_item)
+                    for _item in obj.get("results")
+                ]
+                if obj.get("results") is not None
+                else None
+            }
+        )
+        return _obj
