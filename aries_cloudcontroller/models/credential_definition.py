@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated
@@ -46,7 +46,7 @@ class CredentialDefinition(BaseModel):
     tag: Optional[StrictStr] = Field(
         default=None, description="Tag within credential definition identifier"
     )
-    type: Optional[Union[str, Any]] = Field(
+    type: Optional[Literal["CL"]] = Field(
         default=None, description="Signature type: CL for Camenisch-Lysyanskaya"
     )
     value: Optional[CredDefValue] = None
