@@ -33,7 +33,7 @@ class VerifyRequest(BaseModel):
     VerifyRequest
     """
 
-    doc: SignedDoc
+    doc: Dict[str, Any]
     verkey: Optional[StrictStr] = Field(
         default=None, description="Verkey to use for doc verification"
     )
