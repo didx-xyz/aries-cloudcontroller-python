@@ -21,6 +21,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, Field, StrictStr
 
 from aries_cloudcontroller.models.query_item import QueryItem
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -42,7 +43,7 @@ class Queries(BaseModel):
     queries: Optional[List[QueryItem]] = None
     __properties: ClassVar[List[str]] = ["@id", "@type", "queries"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

@@ -459,3 +459,6 @@ from aries_cloudcontroller.models.wallet_record import (
     WalletRecordWithGroups,
 )
 from aries_cloudcontroller.models.write_ledger_request import WriteLedgerRequest
+from aries_cloudcontroller.util.pydantic_model_config import (
+    DEFAULT_PYDANTIC_MODEL_CONFIG,
+)

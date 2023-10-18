@@ -22,6 +22,7 @@ from pydantic import BaseModel, Field, StrictBool
 
 from aries_cloudcontroller.models.dif_pres_spec import DIFPresSpec
 from aries_cloudcontroller.models.indy_pres_spec import IndyPresSpec
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -42,7 +43,7 @@ class V20PresSpecByFormatRequest(BaseModel):
     )
     __properties: ClassVar[List[str]] = ["dif", "indy", "trace"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

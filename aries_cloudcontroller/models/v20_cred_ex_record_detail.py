@@ -25,6 +25,7 @@ from aries_cloudcontroller.models.v20_cred_ex_record_indy import V20CredExRecord
 from aries_cloudcontroller.models.v20_cred_ex_record_ld_proof import (
     V20CredExRecordLDProof,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -42,7 +43,7 @@ class V20CredExRecordDetail(BaseModel):
     ld_proof: Optional[V20CredExRecordLDProof] = None
     __properties: ClassVar[List[str]] = ["cred_ex_record", "indy", "ld_proof"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

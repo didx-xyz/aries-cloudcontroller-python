@@ -22,6 +22,7 @@ from pydantic import BaseModel
 
 from aries_cloudcontroller.models.v20_cred_filter import V20CredFilter
 from aries_cloudcontroller.models.v20_cred_preview import V20CredPreview
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -38,7 +39,7 @@ class V20CredBoundOfferRequest(BaseModel):
     filter: Optional[V20CredFilter] = None
     __properties: ClassVar[List[str]] = ["counter_preview", "filter"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

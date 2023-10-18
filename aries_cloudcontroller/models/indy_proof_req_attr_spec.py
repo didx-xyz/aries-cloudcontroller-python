@@ -23,6 +23,7 @@ from pydantic import BaseModel, Field, StrictStr
 from aries_cloudcontroller.models.indy_proof_req_attr_spec_non_revoked import (
     IndyProofReqAttrSpecNonRevoked,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -46,7 +47,7 @@ class IndyProofReqAttrSpec(BaseModel):
     )
     __properties: ClassVar[List[str]] = ["name", "names", "non_revoked", "restrictions"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

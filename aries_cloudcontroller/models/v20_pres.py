@@ -22,6 +22,7 @@ from pydantic import BaseModel, Field, StrictStr
 
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
 from aries_cloudcontroller.models.v20_pres_format import V20PresFormat
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -53,7 +54,7 @@ class V20Pres(BaseModel):
         "presentations~attach",
     ]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

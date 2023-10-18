@@ -22,6 +22,7 @@ from pydantic import BaseModel, Field, StrictStr
 
 from aries_cloudcontroller.models.indy_pres_attr_spec import IndyPresAttrSpec
 from aries_cloudcontroller.models.indy_pres_pred_spec import IndyPresPredSpec
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -41,7 +42,7 @@ class IndyPresPreview(BaseModel):
     predicates: List[IndyPresPredSpec]
     __properties: ClassVar[List[str]] = ["@type", "attributes", "predicates"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

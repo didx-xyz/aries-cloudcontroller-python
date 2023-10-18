@@ -26,6 +26,7 @@ from aries_cloudcontroller.models.indy_requested_creds_requested_attr import (
 from aries_cloudcontroller.models.indy_requested_creds_requested_pred import (
     IndyRequestedCredsRequestedPred,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -57,7 +58,7 @@ class IndyPresSpec(BaseModel):
         "trace",
     ]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

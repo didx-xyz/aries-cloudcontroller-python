@@ -30,6 +30,7 @@ from aries_cloudcontroller.models.v20_cred_offer import V20CredOffer
 from aries_cloudcontroller.models.v20_cred_preview import V20CredPreview
 from aries_cloudcontroller.models.v20_cred_proposal import V20CredProposal
 from aries_cloudcontroller.models.v20_cred_request import V20CredRequest
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -191,7 +192,7 @@ class V20CredExRecord(BaseModel):
             )
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

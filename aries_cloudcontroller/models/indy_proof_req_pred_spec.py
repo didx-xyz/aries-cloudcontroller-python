@@ -23,6 +23,7 @@ from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
 from aries_cloudcontroller.models.indy_proof_req_pred_spec_non_revoked import (
     IndyProofReqPredSpecNonRevoked,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -58,7 +59,7 @@ class IndyProofReqPredSpec(BaseModel):
             raise ValueError("must be one of enum values ('<', '<=', '>=', '>')")
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

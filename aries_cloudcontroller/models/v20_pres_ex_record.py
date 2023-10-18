@@ -28,6 +28,7 @@ from aries_cloudcontroller.models.v20_pres_ex_record_by_format import (
 )
 from aries_cloudcontroller.models.v20_pres_proposal import V20PresProposal
 from aries_cloudcontroller.models.v20_pres_request import V20PresRequest
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -187,7 +188,7 @@ class V20PresExRecord(BaseModel):
             raise ValueError("must be one of enum values ('true', 'false')")
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

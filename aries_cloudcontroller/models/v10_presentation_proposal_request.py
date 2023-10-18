@@ -21,6 +21,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
 
 from aries_cloudcontroller.models.indy_pres_preview import IndyPresPreview
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -53,7 +54,7 @@ class V10PresentationProposalRequest(BaseModel):
         "trace",
     ]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

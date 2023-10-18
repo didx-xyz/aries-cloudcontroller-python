@@ -26,6 +26,7 @@ from aries_cloudcontroller.models.indy_proof import IndyProof
 from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.models.presentation_proposal import PresentationProposal
 from aries_cloudcontroller.models.presentation_request import PresentationRequest
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -163,7 +164,7 @@ class V10PresentationExchange(BaseModel):
             raise ValueError("must be one of enum values ('true', 'false')")
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

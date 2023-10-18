@@ -25,6 +25,7 @@ from typing_extensions import Annotated
 from aries_cloudcontroller.models.claim_format import ClaimFormat
 from aries_cloudcontroller.models.input_descriptors import InputDescriptors
 from aries_cloudcontroller.models.submission_requirements import SubmissionRequirements
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -75,7 +76,7 @@ class PresentationDefinition(BaseModel):
             )
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

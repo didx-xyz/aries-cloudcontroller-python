@@ -25,6 +25,7 @@ from typing_extensions import Annotated
 from aries_cloudcontroller.models.attach_decorator_data_jws_header import (
     AttachDecoratorDataJWSHeader,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -61,7 +62,7 @@ class AttachDecoratorData1JWS(BaseModel):
             raise ValueError(r"must validate the regular expression /^[-_a-zA-Z0-9]*$/")
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

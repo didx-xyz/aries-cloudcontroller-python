@@ -20,6 +20,8 @@ from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, StrictStr
 
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
+
 try:
     from typing import Self
 except ImportError:
@@ -34,7 +36,7 @@ class V20PresProblemReportRequest(BaseModel):
     description: StrictStr
     __properties: ClassVar[List[str]] = ["description"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

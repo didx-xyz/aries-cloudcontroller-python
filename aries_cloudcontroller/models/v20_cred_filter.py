@@ -22,6 +22,7 @@ from pydantic import BaseModel
 
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -38,7 +39,7 @@ class V20CredFilter(BaseModel):
     ld_proof: Optional[LDProofVCDetail] = None
     __properties: ClassVar[List[str]] = ["indy", "ld_proof"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

@@ -24,6 +24,7 @@ from aries_cloudcontroller.models.constraints import Constraints
 from aries_cloudcontroller.models.schemas_input_descriptor_filter import (
     SchemasInputDescriptorFilter,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -57,7 +58,7 @@ class InputDescriptors(BaseModel):
         "schema",
     ]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

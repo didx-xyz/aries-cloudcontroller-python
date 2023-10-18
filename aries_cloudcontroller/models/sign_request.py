@@ -21,6 +21,7 @@ from typing import Any, ClassVar, Dict, List
 from pydantic import BaseModel, Field, StrictStr
 
 from aries_cloudcontroller.models.doc import Doc
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -37,7 +38,7 @@ class SignRequest(BaseModel):
     verkey: StrictStr = Field(description="Verkey to use for signing")
     __properties: ClassVar[List[str]] = ["doc", "verkey"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

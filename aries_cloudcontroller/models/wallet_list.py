@@ -24,6 +24,7 @@ from aries_cloudcontroller.models.wallet_record import (
     WalletRecord,
     WalletRecordWithGroups,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -41,7 +42,7 @@ class WalletList(BaseModel):
     )
     __properties: ClassVar[List[str]] = ["results"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

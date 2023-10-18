@@ -24,6 +24,7 @@ from aries_cloudcontroller.models.indy_ge_proof import IndyGEProof
 from aries_cloudcontroller.models.indy_primary_proof_eq_proof import (
     IndyPrimaryProofEqProof,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -42,7 +43,7 @@ class IndyPrimaryProof(BaseModel):
     )
     __properties: ClassVar[List[str]] = ["eq_proof", "ge_proofs"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

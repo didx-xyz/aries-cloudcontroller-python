@@ -26,6 +26,7 @@ from aries_cloudcontroller.models.indy_proof_proof_aggregated_proof import (
 from aries_cloudcontroller.models.indy_proof_proof_proofs_proof import (
     IndyProofProofProofsProof,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -44,7 +45,7 @@ class IndyProofProof(BaseModel):
     )
     __properties: ClassVar[List[str]] = ["aggregated_proof", "proofs"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

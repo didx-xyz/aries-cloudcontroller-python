@@ -21,6 +21,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 
 from aries_cloudcontroller.models.credential_proposal import CredentialProposal
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -36,7 +37,7 @@ class V10CredentialBoundOfferRequest(BaseModel):
     counter_proposal: Optional[CredentialProposal] = None
     __properties: ClassVar[List[str]] = ["counter_proposal"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

@@ -22,6 +22,7 @@ from pydantic import BaseModel
 
 from aries_cloudcontroller.models.dif_options import DIFOptions
 from aries_cloudcontroller.models.input_descriptors import InputDescriptors
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -38,7 +39,7 @@ class DIFProofProposal(BaseModel):
     options: Optional[DIFOptions] = None
     __properties: ClassVar[List[str]] = ["input_descriptors", "options"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

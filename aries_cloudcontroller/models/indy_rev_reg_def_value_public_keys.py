@@ -23,6 +23,7 @@ from pydantic import BaseModel, Field
 from aries_cloudcontroller.models.indy_rev_reg_def_value_public_keys_accum_key import (
     IndyRevRegDefValuePublicKeysAccumKey,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -40,7 +41,7 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
     )
     __properties: ClassVar[List[str]] = ["accumKey"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

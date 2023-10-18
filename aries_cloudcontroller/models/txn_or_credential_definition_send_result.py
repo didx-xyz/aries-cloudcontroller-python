@@ -24,6 +24,7 @@ from aries_cloudcontroller.models.credential_definition_send_result import (
     CredentialDefinitionSendResult,
 )
 from aries_cloudcontroller.models.transaction_record import TransactionRecord
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -40,7 +41,7 @@ class TxnOrCredentialDefinitionSendResult(BaseModel):
     txn: Optional[TransactionRecord] = None
     __properties: ClassVar[List[str]] = ["sent", "txn"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

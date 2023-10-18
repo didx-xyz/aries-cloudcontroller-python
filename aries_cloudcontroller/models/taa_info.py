@@ -23,6 +23,7 @@ from pydantic import BaseModel, StrictBool
 from aries_cloudcontroller.models.aml_record import AMLRecord
 from aries_cloudcontroller.models.taa_acceptance import TAAAcceptance
 from aries_cloudcontroller.models.taa_record import TAARecord
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -46,7 +47,7 @@ class TAAInfo(BaseModel):
         "taa_required",
     ]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

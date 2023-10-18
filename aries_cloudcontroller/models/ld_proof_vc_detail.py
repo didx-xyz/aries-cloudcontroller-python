@@ -24,6 +24,7 @@ from aries_cloudcontroller.models.credential import Credential
 from aries_cloudcontroller.models.ld_proof_vc_detail_options import (
     LDProofVCDetailOptions,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -40,7 +41,7 @@ class LDProofVCDetail(BaseModel):
     options: LDProofVCDetailOptions
     __properties: ClassVar[List[str]] = ["credential", "options"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

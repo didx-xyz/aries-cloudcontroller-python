@@ -24,6 +24,7 @@ from aries_cloudcontroller.models.indy_primary_proof import IndyPrimaryProof
 from aries_cloudcontroller.models.indy_proof_proof_proofs_proof_non_revoc_proof import (
     IndyProofProofProofsProofNonRevocProof,
 )
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -40,7 +41,7 @@ class IndyProofProofProofsProof(BaseModel):
     primary_proof: Optional[IndyPrimaryProof] = None
     __properties: ClassVar[List[str]] = ["non_revoc_proof", "primary_proof"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

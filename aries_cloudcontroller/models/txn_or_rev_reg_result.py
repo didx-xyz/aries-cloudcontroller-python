@@ -22,6 +22,7 @@ from pydantic import BaseModel
 
 from aries_cloudcontroller.models.rev_reg_result import RevRegResult
 from aries_cloudcontroller.models.transaction_record import TransactionRecord
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -38,7 +39,7 @@ class TxnOrRevRegResult(BaseModel):
     txn: Optional[TransactionRecord] = None
     __properties: ClassVar[List[str]] = ["sent", "txn"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

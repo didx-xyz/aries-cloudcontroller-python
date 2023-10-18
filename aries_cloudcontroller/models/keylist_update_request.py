@@ -21,6 +21,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 
 from aries_cloudcontroller.models.keylist_update_rule import KeylistUpdateRule
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -36,7 +37,7 @@ class KeylistUpdateRequest(BaseModel):
     updates: Optional[List[KeylistUpdateRule]] = None
     __properties: ClassVar[List[str]] = ["updates"]
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
