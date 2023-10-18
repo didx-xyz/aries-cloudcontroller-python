@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.0"
+__version__ = "0.9.0"
 
 from aries_cloudcontroller.acapy_client import AcaPyClient
 
