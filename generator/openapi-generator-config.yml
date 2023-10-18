@@ -1,0 +1,7 @@
+generatorName: python
+outputDir: ../generated
+inputSpec: data/openapi.yml
+additionalProperties:
+  library: asyncio
+  packageName: aries_cloudcontroller
+  packageVersion: 0.9.0
