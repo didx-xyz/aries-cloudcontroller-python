@@ -6,6 +6,11 @@ cd "$(dirname "$0")/../" || exit
 # Remove old generated code
 rm -rf ../generated/
 
+# Fetch spec, convert, and pre-process
+./retrieve-openapi.sh
+./convert-to-openapi3-local.sh
+./process-openapi.sh
+
 # Generated client
 java -ea -server -Duser.timezone=UTC -jar "$(pwd)/../../openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate -c ./openapi-generator-config.yml --skip-validate-spec
 
