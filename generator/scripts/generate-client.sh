@@ -10,7 +10,8 @@ rm -rf ../generated/
 java -ea -server -Duser.timezone=UTC -jar "$(pwd)/../../openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate -c ./openapi-generator-config.yml --skip-validate-spec
 
 # Copy
-cp -r ../generated/aries_cloudcontroller/ ..
+cd ..
+cp -r ./generated/aries_cloudcontroller/ .
 
 # Remove `# noqa: F401` comment indicating to ignore unused imports
 find aries_cloudcontroller -type f -name '*.py' | xargs sed -i 's/# noqa: F401//'
