@@ -33,7 +33,7 @@ ACA_PY_CMD_OPTIONS=" \
   --jwt-secret test \
   --no-ledger"
 
-# Print an indication of script reaching a processing 
+# Print an indication of script reaching a processing
 # milestone in a noticable way
 # $1 : Message string to print
 function printMilestone() {
@@ -44,13 +44,11 @@ function printMilestone() {
   echo -e "##########################################################################################\n"
 }
 
-
 # Wait for a web server to provide a funcitoning interface we can use
 # $1 : Url to poll that indicates webserver initialsation complete
 # $2 : maximum number of seconds to wait
 function waitActiveWebInterface() {
-  for (( i=1; i < ${2}; i++))
-  do
+  for ((i = 1; i < ${2}; i++)); do
     curl -s -f ${1}
     if [ $? == 0 ]; then
       return 0
@@ -69,8 +67,8 @@ function waitActiveWebInterface() {
 # $2: The port mapping from docker to local host in format "docker1:local1 docker2:local2"
 # $3: The ACA-py command line arguements
 # $4: The name of a variable to return the continer ID to
-function runACAPy() { 
-  local acaPyImage="${1}" 
+function runACAPy() {
+  local acaPyImage="${1}"
   local ports="${2}"
   local acaPyArgs="${3}"
   local result="${4}"
@@ -81,7 +79,7 @@ function runACAPy() {
   done
 
   acaPyCmd="docker run -d --rm  ${args} \
-              ${acaPyImage} start ${acaPyArgs}" 
+              ${acaPyImage} start ${acaPyArgs}"
   printMilestone "Starting ACA-py docker image with command: \n \
         \t ${acaPyCmd}"
 
@@ -89,8 +87,8 @@ function runACAPy() {
   containerId=$(${acaPyCmd})
   local returnStatus=$?
   if [[ ${returnStatus} != 0 ]]; then
-      echo "**** FAIL - ACA-Py failed to start, exiting. ****"
-      exit 1
+    echo "**** FAIL - ACA-Py failed to start, exiting. ****"
+    exit 1
   fi
   if [[ "${result}" ]]; then
     eval ${result}="'${containerId}'"
@@ -99,8 +97,8 @@ function runACAPy() {
 
 ##########################################################################################
 # Run docker ACA-py image and pull REST API spec file
-##########################################################################################  
-runACAPy "${ACA_PY_DOCKER_IMAGE_DEFAULT}" "${ACA_PY_DOCKER_PORTS}" "${ACA_PY_CMD_OPTIONS}" ACA_PY_CONTAINER_ID 
+##########################################################################################
+runACAPy "${ACA_PY_DOCKER_IMAGE_DEFAULT}" "${ACA_PY_DOCKER_PORTS}" "${ACA_PY_CMD_OPTIONS}" ACA_PY_CONTAINER_ID
 # Make sure ACA-py container gets terminated when we do
 trap 'docker kill ${ACA_PY_CONTAINER_ID}' EXIT
 waitActiveWebInterface "http://localhost:${ACA_PY_ADMIN_PORT}" 20
