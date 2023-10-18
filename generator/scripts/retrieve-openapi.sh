@@ -7,11 +7,10 @@
 # Make sure everything is done in our generator directory
 cd "$(dirname "$0")/../" || exit
 
-
 ##########################################################################################
 # Global Defaults and Constants
 ##########################################################################################
-ACA_PY_DOCKER_IMAGE_TAG=${1:-"py3.9-0.9.0"}
+ACA_PY_DOCKER_IMAGE_TAG="py3.9-${ACA_PY_VERSION}"
 ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/hyperledger/aries-cloudagent-python:${ACA_PY_DOCKER_IMAGE_TAG}"
 
 ACA_PY_ADMIN_PORT="8305"
