@@ -21,9 +21,19 @@ from urllib.parse import urlencode
 
 import aiohttp
 
+from aries_cloudcontroller.configuration import Configuration
 from aries_cloudcontroller.exceptions import ApiException, ApiValueError
 
 logger = logging.getLogger(__name__)
+
+default_configuration = Configuration()
+default_ssl_context = ssl.create_default_context(
+    cafile=default_configuration.ssl_ca_cert
+)
+if default_configuration.cert_file:
+    default_ssl_context.load_cert_chain(
+        default_configuration.cert_file, keyfile=default_configuration.key_file
+    )
 
 
 class RESTResponse(io.IOBase):
@@ -48,12 +58,7 @@ class RESTClientObject:
         if maxsize is None:
             maxsize = configuration.connection_pool_maxsize
 
-        ssl_context = ssl.create_default_context(cafile=configuration.ssl_ca_cert)
-        if configuration.cert_file:
-            ssl_context.load_cert_chain(
-                configuration.cert_file, keyfile=configuration.key_file
-            )
-
+        ssl_context = default_ssl_context
         if not configuration.verify_ssl:
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
