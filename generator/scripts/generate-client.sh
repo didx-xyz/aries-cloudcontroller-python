@@ -9,7 +9,9 @@ rm -rf ../generated/
 # Read ACA_PY_VERSION from input arg or default to 0.9.0
 ACA_PY_VERSION=${1:-"0.9.0"}
 
-export ACA_PY_VERSION # Set env for openapi-config-template
+export ACA_PY_VERSION # Set env for openapi-config-template'
+
+echo "*** Generating client for ACA-Py version: ${ACA_PY_VERSION} ***"
 
 # Generate config from template (with env var filled)
 envsubst <openapi-config-template.yml >openapi-generator-config.yml
@@ -19,7 +21,7 @@ envsubst <openapi-config-template.yml >openapi-generator-config.yml
 ./scripts/convert-to-openapi3-local.sh
 ./scripts/process-openapi.sh
 
-# Generated client
+# Generate client
 java -ea -server -Duser.timezone=UTC -jar "$(pwd)/../../openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate -c ./openapi-generator-config.yml --skip-validate-spec
 
 # Copy
