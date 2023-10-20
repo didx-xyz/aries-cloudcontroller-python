@@ -20,10 +20,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
-from aries_cloudcontroller.models.wallet_record import (
-    WalletRecord,
-    WalletRecordWithGroups,
-)
+from aries_cloudcontroller.models.wallet_record import WalletRecord
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
@@ -94,31 +91,6 @@ class WalletList(BaseModel):
             {
                 "results": [
                     WalletRecord.from_dict(_item) for _item in obj.get("results")
-                ]
-                if obj.get("results") is not None
-                else None
-            }
-        )
-        return _obj
-
-
-class WalletListWithGroups(WalletList):
-    results: Optional[List[WalletRecordWithGroups]] = None
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> Self:
-        """Create an instance of WalletListWithGroups from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
-
-        _obj = cls.model_validate(
-            {
-                "results": [
-                    WalletRecordWithGroups.from_dict(_item)
-                    for _item in obj.get("results")
                 ]
                 if obj.get("results") is not None
                 else None
