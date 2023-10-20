@@ -3,7 +3,7 @@ import logging
 import pydantic
 import pytest
 
-from aries_cloudcontroller.model import CredentialOffer
+from aries_cloudcontroller.models import CredentialOffer
 from tests.util.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
@@ -46,10 +46,10 @@ invalid_credential_offer = {
 
 def test_valid():
     model = CredentialOffer(**sample_credential_offer)
-    assert equal_dicts(sample_credential_offer, model.dict(by_alias=True))
+    assert equal_dicts(sample_credential_offer, model.model_dump(by_alias=True))
 
 
 def test_invalid():
     for key, value in invalid_credential_offer.items():
-        with pytest.raises(pydantic.error_wrappers.ValidationError):
+        with pytest.raises(pydantic.ValidationError):
             CredentialOffer(offersattach=[], **{key: value})

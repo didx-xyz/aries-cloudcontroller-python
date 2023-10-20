@@ -1,53 +1,126 @@
+from contextlib import AbstractAsyncContextManager
 from typing import Optional
 
-from aiohttp.client import ClientSession
+from aries_cloudcontroller.api import (
+    ActionMenuApi,
+    BasicmessageApi,
+    ConnectionApi,
+    CredentialDefinitionApi,
+    CredentialsApi,
+    DefaultApi,
+    DidExchangeApi,
+    DiscoverFeaturesApi,
+    DiscoverFeaturesV20Api,
+    EndorseTransactionApi,
+    IntroductionApi,
+    IssueCredentialV10Api,
+    IssueCredentialV20Api,
+    JsonldApi,
+    LedgerApi,
+    MediationApi,
+    MultitenancyApi,
+    OutOfBandApi,
+    PresentProofV10Api,
+    PresentProofV20Api,
+    ResolverApi,
+    RevocationApi,
+    SchemaApi,
+    ServerApi,
+    SettingsApi,
+    TrustpingApi,
+    WalletApi,
+)
+from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.configuration import Configuration
 
-from aries_cloudcontroller.client import Client
-from aries_cloudcontroller.util.acapy_client_session import AcaPyClientSession
-from aries_cloudcontroller.util.pydantic_converter import PydanticConverter
 
+class AcaPyClient(AbstractAsyncContextManager):
+    action_menu: ActionMenuApi
+    basicmessage: BasicmessageApi
+    connection: ConnectionApi
+    credential_definition: CredentialDefinitionApi
+    credentials: CredentialsApi
+    default: DefaultApi
+    did_exchange: DidExchangeApi
+    discover_features: DiscoverFeaturesApi
+    discover_features_v2_0: DiscoverFeaturesV20Api
+    endorse_transaction: EndorseTransactionApi
+    introduction: IntroductionApi
+    issue_credential_v1_0: IssueCredentialV10Api
+    issue_credential_v2_0: IssueCredentialV20Api
+    jsonld: JsonldApi
+    ledger: LedgerApi
+    mediation: MediationApi
+    multitenancy: MultitenancyApi
+    out_of_band: OutOfBandApi
+    present_proof_v1_0: PresentProofV10Api
+    present_proof_v2_0: PresentProofV20Api
+    resolver: ResolverApi
+    revocation: RevocationApi
+    schema: SchemaApi
+    server: ServerApi
+    settings: SettingsApi
+    trustping: TrustpingApi
+    wallet: WalletApi
 
-class AcaPyClient(Client):
     def __init__(
         self,
         base_url: str,
         *,
-        client_session: Optional[ClientSession] = None,
         api_key: Optional[str] = None,
-        admin_insecure: Optional[bool] = False,
         tenant_jwt: Optional[str] = None,
+        admin_insecure: Optional[bool] = False,
     ):
-        self.base_url = base_url
-
-        self._should_close_session = False  # only close ClientSession when created here
-        # A provided ClientSession should be closed externally.
-
-        if client_session and not api_key:
-            api_key = client_session.headers.get("x-api-key")
-
         if not api_key and not admin_insecure:
             raise Exception(
                 "api_key property is missing. Use admin_insecure=True if you want"
                 " to use the controller without authentication."
             )
 
-        if not client_session:
-            self.client_session = AcaPyClientSession(
-                api_key=api_key, tenant_jwt=tenant_jwt
-            ).client_session
-            self._should_close_session = True
-        else:
-            self.client_session = client_session
+        # We will configure an ApiClient instance and pass it to our API modules
+        self.configuration = Configuration(host=base_url)
+        self.api_client = ApiClient(self.configuration)
 
-        super().__init__(
-            self.base_url,
-            client=self.client_session,
-            extra_service_params={"converter": PydanticConverter()},
-        )
+        # ApiClient init can only take one header, so configure api_key and tenant_jwt separately
+        if api_key:
+            self.api_client.default_headers["x-api-key"] = api_key
+        if tenant_jwt:
+            self.api_client.default_headers["Authorization"] = f"Bearer {tenant_jwt}"
+
+        # Initialize the API modules
+        self.action_menu = ActionMenuApi(self.api_client)
+        self.basicmessage = BasicmessageApi(self.api_client)
+        self.connection = ConnectionApi(self.api_client)
+        self.credential_definition = CredentialDefinitionApi(self.api_client)
+        self.credentials = CredentialsApi(self.api_client)
+        self.default = DefaultApi(self.api_client)
+        self.did_exchange = DidExchangeApi(self.api_client)
+        self.discover_features = DiscoverFeaturesApi(self.api_client)
+        self.discover_features_v2_0 = DiscoverFeaturesV20Api(self.api_client)
+        self.endorse_transaction = EndorseTransactionApi(self.api_client)
+        self.introduction = IntroductionApi(self.api_client)
+        self.issue_credential_v1_0 = IssueCredentialV10Api(self.api_client)
+        self.issue_credential_v2_0 = IssueCredentialV20Api(self.api_client)
+        self.jsonld = JsonldApi(self.api_client)
+        self.ledger = LedgerApi(self.api_client)
+        self.mediation = MediationApi(self.api_client)
+        self.multitenancy = MultitenancyApi(self.api_client)
+        self.out_of_band = OutOfBandApi(self.api_client)
+        self.present_proof_v1_0 = PresentProofV10Api(self.api_client)
+        self.present_proof_v2_0 = PresentProofV20Api(self.api_client)
+        self.resolver = ResolverApi(self.api_client)
+        self.revocation = RevocationApi(self.api_client)
+        self.schema = SchemaApi(self.api_client)
+        self.server = ServerApi(self.api_client)
+        self.settings = SettingsApi(self.api_client)
+        self.trustping = TrustpingApi(self.api_client)
+        self.wallet = WalletApi(self.api_client)
 
     async def __aenter__(self):
         return self
 
     async def __aexit__(self, exc_type, exc_value, traceback):
-        if self._should_close_session and not self.client_session.closed:
-            await self.client_session.close()
+        await self.close()
+
+    async def close(self):
+        await self.api_client.close()

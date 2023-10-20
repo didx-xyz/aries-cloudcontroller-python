@@ -3,15 +3,15 @@ import logging
 import pydantic
 import pytest
 
-from aries_cloudcontroller.model import V20CredExRecord
+from aries_cloudcontroller.models import V20CredExRecord
 from tests.util.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
 
 sample_cred_ex_record = {
-    "auto_issue": "true",
-    "auto_offer": "true",
-    "auto_remove": "false",
+    "auto_issue": True,
+    "auto_offer": True,
+    "auto_remove": False,
     "by_format": {
         "cred_issue": {"cred_issue_attach_id": "sample_id"},
         "cred_offer": {"cred_offer_attach_id": "sample_id"},
@@ -104,7 +104,7 @@ sample_cred_ex_record = {
     "role": "issuer",
     "state": "credential-issued",
     "thread_id": "1234567890",
-    "trace": "false",
+    "trace": False,
     "updated_at": "2023-05-24 00:01:00Z",
 }
 
@@ -134,10 +134,10 @@ invalid_cred_ex_record = {
 
 def test_valid():
     model = V20CredExRecord(**sample_cred_ex_record)
-    assert equal_dicts(sample_cred_ex_record, model.dict(by_alias=True))
+    assert equal_dicts(sample_cred_ex_record, model.model_dump(by_alias=True))
 
 
 def test_invalid():
     for key, value in invalid_cred_ex_record.items():
-        with pytest.raises(pydantic.error_wrappers.ValidationError):
+        with pytest.raises(pydantic.ValidationError):
             V20CredExRecord(**{key: value})

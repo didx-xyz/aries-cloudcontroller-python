@@ -3,14 +3,14 @@ import logging
 import pydantic
 import pytest
 
-from aries_cloudcontroller.model import V20PresExRecord
+from aries_cloudcontroller.models import V20PresExRecord
 from tests.util.compare_dicts import equal_dicts
 
 LOGGER = logging.getLogger(__name__)
 
 sample_pres_ex_record = {
-    "auto_present": "true",
-    "auto_verify": "true",
+    "auto_present": True,
+    "auto_verify": True,
     "by_format": {"pres": {"attach_id": "sample_id"}},
     "connection_id": "connection_id_example",
     "created_at": "2023-05-24 00:00:00Z",
@@ -75,7 +75,7 @@ sample_pres_ex_record = {
     "role": "prover",
     "state": "presentation-sent",
     "thread_id": "1234567890",
-    "trace": "false",
+    "trace": False,
     "updated_at": "2023-05-24 00:01:00Z",
     "verified": "true",
     "verified_msgs": ["msg1", "msg2"],
@@ -106,10 +106,10 @@ invalid_pres_ex_record = {
 
 def test_valid():
     model = V20PresExRecord(**sample_pres_ex_record)
-    assert equal_dicts(sample_pres_ex_record, model.dict(by_alias=True))
+    assert equal_dicts(sample_pres_ex_record, model.model_dump(by_alias=True))
 
 
 def test_invalid():
     for key, value in invalid_pres_ex_record.items():
-        with pytest.raises(pydantic.error_wrappers.ValidationError):
+        with pytest.raises(pydantic.ValidationError):
             V20PresExRecord(**{key: value})

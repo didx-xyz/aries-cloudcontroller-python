@@ -6,21 +6,27 @@ cd "$(dirname "$0")/../" || exit
 # Remove old generated code
 rm -rf ../generated/
 
-# Generated client
+# Read ACA_PY_VERSION from input arg or default to 0.9.0
+ACA_PY_VERSION=${1:-"0.9.0"}
+
+export ACA_PY_VERSION # Set env for openapi-config-template'
+
+echo "*** Generating client for ACA-Py version: ${ACA_PY_VERSION} ***"
+
+# Generate config from template (with env var filled)
+envsubst <openapi-config-template.yml >openapi-generator-config.yml
+
+# Fetch spec, convert, and pre-process
+./scripts/retrieve-openapi.sh
+./scripts/convert-to-openapi3-local.sh
+./scripts/process-openapi.sh
+
+# Generate client
 java -ea -server -Duser.timezone=UTC -jar "$(pwd)/../../openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate -c ./openapi-generator-config.yml --skip-validate-spec
 
+# Make automated changes to generated client
+./scripts/postprocess-client.sh
+
 # Copy
-cp -r ../generated/aries_cloudcontroller/ ..
-
-black .
-
-# Apply the patches required
 cd ..
-
-echo -e "\nApplying patch"
-git apply --verbose generator/data/__init__.patch || {
-    # git apply failed! Warn the user
-    echo -e "$(tput setaf 1)\n\nFailed to apply patch. Client generation INCOMPLETE!\n\nPlease, ensure to fix this before proceeding.\nTake care when committing unpatched code.\n\n"
-    exit 1
-}
-black .
+cp -r ./generated/aries_cloudcontroller/ .

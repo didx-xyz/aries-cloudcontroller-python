@@ -19,11 +19,11 @@ def parse_requirements(filename: str):
 if __name__ == "__main__":
     setup(
         name=PACKAGE_NAME,
-        version="0.9.1-beta1",
-        description="A simple python package for controlling an aries agent through the admin-api interface",
+        version="0.9.0-rev",
+        description="A simple python client for controlling an ACA-Py agent",
         long_description=long_description,
         long_description_content_type="text/markdown",
-        url="https://github.com/didx-xyz/aries-cloudcontroller-python/tree/main/aries_cloudcontroller",
+        url="https://github.com/didx-xyz/aries-cloudcontroller-python",
         packages=find_packages(),
         include_package_data=True,
         package_data={
