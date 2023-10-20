@@ -49,6 +49,8 @@ from aries_cloudcontroller.api import (
     WalletApi,
 )
 from aries_cloudcontroller.api_client import ApiClient
+
+# import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.configuration import Configuration
 from aries_cloudcontroller.exceptions import (

@@ -453,12 +453,10 @@ from aries_cloudcontroller.models.verify_response import VerifyResponse
 from aries_cloudcontroller.models.w3_c_credentials_list_request import (
     W3CCredentialsListRequest,
 )
-from aries_cloudcontroller.models.wallet_list import WalletList, WalletListWithGroups
-from aries_cloudcontroller.models.wallet_record import (
-    WalletRecord,
+from aries_cloudcontroller.models.wallet_list import WalletList
+from aries_cloudcontroller.models.wallet_list_with_groups import WalletListWithGroups
+from aries_cloudcontroller.models.wallet_record import WalletRecord
+from aries_cloudcontroller.models.wallet_record_with_groups import (
     WalletRecordWithGroups,
 )
 from aries_cloudcontroller.models.write_ledger_request import WriteLedgerRequest
-from aries_cloudcontroller.util.pydantic_model_config import (
-    DEFAULT_PYDANTIC_MODEL_CONFIG,
-)

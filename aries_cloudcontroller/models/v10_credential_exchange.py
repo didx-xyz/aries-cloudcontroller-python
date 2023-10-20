@@ -28,6 +28,7 @@ from aries_cloudcontroller.models.indy_cred_abstract import IndyCredAbstract
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.indy_cred_request import IndyCredRequest
 from aries_cloudcontroller.models.indy_credential import IndyCredential
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -218,7 +219,7 @@ class V10CredentialExchange(BaseModel):
             )
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

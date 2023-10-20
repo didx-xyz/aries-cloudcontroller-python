@@ -23,6 +23,7 @@ from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.indy_attr_value import IndyAttrValue
+from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 try:
     from typing import Self
@@ -105,7 +106,7 @@ class IndyCredential(BaseModel):
             )
         return value
 
-    model_config = {"populate_by_name": True, "validate_assignment": True}
+    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

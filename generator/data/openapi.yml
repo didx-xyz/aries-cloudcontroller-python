@@ -276,11 +276,11 @@ paths:
           type: string
           enum:
           - error
-          - init
-          - completed
           - start
           - active
           - response
+          - init
+          - completed
           - invitation
           - abandoned
           - request
