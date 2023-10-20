@@ -37,7 +37,7 @@
   <a href="#license">License</a> 
 </p>
 
-Aries Cloud Controller Python is a client library written in Python for interacting with an [Aries Cloud Agent Python](https://github.com/hyperledger/aries-cloudagent-python) instance. It is generated based on the OpenAPI definition provided by ACA-Py, giving a fully-typed rich API for interacting the cloud agent.
+The Aries CloudController is a client library, written in Python, for interacting with an [Aries Cloud Agent](https://github.com/hyperledger/aries-cloudagent-python) instance. It is generated based on the OpenAPI definition provided by ACA-Py, giving a fully-typed, rich API for interacting with the cloud agent.
 
 Each Cloud Controller version maps to a specific ACA-Py version, which is outlined in the table below. Although not strictly adhered to in the past, a new ACA-Py version will result in a new Minor version bump for the Cloud Controller, as there are often times breaking changes.
 
