@@ -23,6 +23,7 @@ from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
+from aries_cloudcontroller.util.regex_patterns import BBS_PATTERN, ED25519_PATTERN
 
 try:
     from typing import Self
