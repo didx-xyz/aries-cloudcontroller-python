@@ -774,7 +774,7 @@ class MultitenancyApi:
             Optional[StrictStr], Field(description="Wallet name")
         ] = None,
         group_id: Annotated[
-            StrictStr,
+            Optional[StrictStr],
             Field(description="Group id (additional field from ACA-Py plugin)"),
         ] = None,
         **kwargs,
@@ -813,7 +813,7 @@ class MultitenancyApi:
             Optional[StrictStr], Field(description="Wallet name")
         ] = None,
         group_id: Annotated[
-            StrictStr,
+            Optional[StrictStr],
             Field(description="Group id (additional field from ACA-Py plugin)"),
         ] = None,
         **kwargs,
