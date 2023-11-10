@@ -54,6 +54,9 @@ sed -i -e 's/context: List\[Union\[str, Any\]\]/context: List\[Union\[str, Dict\
 # Fix type in invitation_message.py: "Any" type in services should be a dict
 sed -i 's/services: Optional\[List\[Union\[str, Any\]\]\]/services: Optional\[List\[Union\[str, Dict\]\]\]/g' aries_cloudcontroller/models/invitation_message.py
 
+# Fix Union[str,Any] should be Dict[str,Any]! Most of them are wrapped in Optional[..] and some in List[..]. But all can safely be replaced (there are no valid Union[str, Any]'s, all must be Dict)
+sed -i 's/Union\[str, Any\]/Dict[str, Any]/g' aries_cloudcontroller/models/*.py
+
 # NB:
 # There are 3 more models, and 1 API Module, that we are not amending automatically. These should be reviewed manually:
 # - MultitenancyAPI has custom method to handle our groups plugin!
