@@ -6,9 +6,6 @@ cd "$(dirname "$0")/../../generated/" || exit # Move to /generated folder
 # Remove `# noqa: F401` comment indicating to ignore unused imports, for autoflake
 find aries_cloudcontroller -type f -name '*.py' | xargs sed -i 's/# noqa: F401//'
 
-# autoflake to remove unused imports
-autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
-
 # Cleanup generated models
 for file in aries_cloudcontroller/models/*.py; do
     # Replace the model config with DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -70,6 +67,9 @@ sed -i 's/Annotated\[str, Field(strict=True)\]/StrictStr/g' aries_cloudcontrolle
 
 # Additionally, the API Client we modify so that query_params are converted from bool to str, before being submitted to ACA-Py
 # This change impacts multiple lines, calling `sanitize_for_serialization`
+
+# autoflake to remove unused imports
+autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
 
 # Black format and optimise imports
 black aries_cloudcontroller
