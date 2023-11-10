@@ -39,13 +39,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install \
             isort~=5.12.0 \
-            black~=23.9.1
+            black~=23.9.1 \
+            pylint~=3.0.2
       - name: Check import style with isort
         run: |
           isort . --check --profile black --diff
       - name: Check code style with Black
         run: |
           black . --check --diff
+      - name: Check for undefined types with Pylint
+        run: |
+          set -e
+          pylint --disable=all --enable=E0602 $(find . -type f -name "*.py")
 
   deploy:
     runs-on: ubuntu-latest
