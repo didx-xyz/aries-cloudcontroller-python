@@ -35,8 +35,8 @@ class DIDEndpointWithType(BaseModel):
     DIDEndpointWithType
     """
 
-    did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
-    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: StrictStr = Field(description="DID of interest")
+    endpoint: Optional[StrictStr] = Field(
         default=None, description="Endpoint to set (omit to delete)"
     )
     endpoint_type: Optional[StrictStr] = Field(

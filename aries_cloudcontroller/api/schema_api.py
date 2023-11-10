@@ -42,18 +42,18 @@ class SchemaApi:
     async def get_created_schemas(
         self,
         schema_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema identifier"),
         ] = None,
         schema_issuer_did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema issuer DID"),
         ] = None,
         schema_name: Annotated[
             Optional[StrictStr], Field(description="Schema name")
         ] = None,
         schema_version: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema version"),
         ] = None,
         **kwargs,
@@ -95,18 +95,18 @@ class SchemaApi:
     async def get_created_schemas_with_http_info(
         self,
         schema_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema identifier"),
         ] = None,
         schema_issuer_did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema issuer DID"),
         ] = None,
         schema_name: Annotated[
             Optional[StrictStr], Field(description="Schema name")
         ] = None,
         schema_version: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema version"),
         ] = None,
         **kwargs,

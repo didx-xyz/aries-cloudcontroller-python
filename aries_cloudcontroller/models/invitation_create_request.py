@@ -53,7 +53,7 @@ class InvitationCreateRequest(BaseModel):
         description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message",
     )
     handshake_protocols: Optional[List[StrictStr]] = None
-    mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    mediation_id: Optional[StrictStr] = Field(
         default=None, description="Identifier for active mediation record to be used"
     )
     metadata: Optional[Dict[str, Any]] = Field(

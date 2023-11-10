@@ -52,7 +52,7 @@ class V20PresExRecord(BaseModel):
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
@@ -78,7 +78,7 @@ class V20PresExRecord(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     verified: Optional[StrictStr] = Field(

@@ -35,12 +35,12 @@ class JWSCreate(BaseModel):
     JWSCreate
     """
 
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: Optional[StrictStr] = Field(
         default=None, description="DID of interest"
     )
     headers: Optional[Dict[str, Any]] = None
     payload: Dict[str, Any]
-    verification_method: Optional[Annotated[str, Field(strict=True)]] = Field(
+    verification_method: Optional[StrictStr] = Field(
         default=None,
         description="Information used for proof verification",
         alias="verificationMethod",

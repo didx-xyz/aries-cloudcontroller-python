@@ -35,7 +35,7 @@ class DIDCreateOptions(BaseModel):
     DIDCreateOptions
     """
 
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: Optional[StrictStr] = Field(
         default=None,
         description="Specify final value of the did (including did:<method>: prefix)if the method supports or requires so.",
     )

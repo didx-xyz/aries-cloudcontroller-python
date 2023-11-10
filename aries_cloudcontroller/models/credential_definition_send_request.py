@@ -38,7 +38,7 @@ class CredentialDefinitionSendRequest(BaseModel):
     revocation_registry_size: Optional[
         Annotated[int, Field(le=32768, strict=True, ge=4)]
     ] = Field(default=None, description="Revocation registry size")
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
     support_revocation: Optional[StrictBool] = Field(

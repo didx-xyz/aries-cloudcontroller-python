@@ -57,6 +57,9 @@ sed -i 's/services: Optional\[List\[Union\[str, Any\]\]\]/services: Optional\[Li
 # Fix Union[str,Any] should be Dict[str,Any]! Most of them are wrapped in Optional[..] and some in List[..]. But all can safely be replaced (there are no valid Union[str, Any]'s, all must be Dict)
 sed -i 's/Union\[str, Any\]/Dict[str, Any]/g' aries_cloudcontroller/models/*.py
 
+# Replace all `Annotated[str, Field(strict=True)]` with `StrictStr` (the one is simpler than the other ...)
+sed -i 's/Annotated\[str, Field(strict=True)\]/StrictStr/g' aries_cloudcontroller/*/*.py
+
 # NB:
 # There are 3 more models, and 1 API Module, that we are not amending automatically. These should be reviewed manually:
 # - MultitenancyAPI has custom method to handle our groups plugin!

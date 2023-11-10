@@ -36,16 +36,16 @@ class IndyCredential(BaseModel):
     IndyCredential
     """
 
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(
+    cred_def_id: StrictStr = Field(
         description="Credential definition identifier"
     )
     rev_reg: Optional[Dict[str, Any]] = Field(
         default=None, description="Revocation registry state"
     )
-    rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    rev_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
-    schema_id: Annotated[str, Field(strict=True)] = Field(
+    schema_id: StrictStr = Field(
         description="Schema identifier"
     )
     signature: Dict[str, Any] = Field(description="Credential signature")

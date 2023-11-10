@@ -35,7 +35,7 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
     IndyProofRequestedProofRevealedAttr
     """
 
-    encoded: Optional[Annotated[str, Field(strict=True)]] = Field(
+    encoded: Optional[StrictStr] = Field(
         default=None, description="Encoded value"
     )
     raw: Optional[StrictStr] = Field(default=None, description="Raw value")

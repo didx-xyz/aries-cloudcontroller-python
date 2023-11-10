@@ -42,10 +42,10 @@ class AttachDecoratorDataJWS(BaseModel):
     """
 
     header: Optional[AttachDecoratorDataJWSHeader] = None
-    protected: Optional[Annotated[str, Field(strict=True)]] = Field(
+    protected: Optional[StrictStr] = Field(
         default=None, description="protected JWS header"
     )
-    signature: Optional[Annotated[str, Field(strict=True)]] = Field(
+    signature: Optional[StrictStr] = Field(
         default=None, description="signature"
     )
     signatures: Optional[List[AttachDecoratorData1JWS]] = Field(

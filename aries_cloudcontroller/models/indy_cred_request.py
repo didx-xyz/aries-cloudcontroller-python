@@ -39,13 +39,13 @@ class IndyCredRequest(BaseModel):
     blinded_ms_correctness_proof: Dict[str, Any] = Field(
         description="Blinded master secret correctness proof"
     )
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(
+    cred_def_id: StrictStr = Field(
         description="Credential definition identifier"
     )
-    nonce: Annotated[str, Field(strict=True)] = Field(
+    nonce: StrictStr = Field(
         description="Nonce in credential request"
     )
-    prover_did: Annotated[str, Field(strict=True)] = Field(description="Prover DID")
+    prover_did: StrictStr = Field(description="Prover DID")
     __properties: ClassVar[List[str]] = [
         "blinded_ms",
         "blinded_ms_correctness_proof",

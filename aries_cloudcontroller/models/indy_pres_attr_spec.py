@@ -35,7 +35,7 @@ class IndyPresAttrSpec(BaseModel):
     IndyPresAttrSpec
     """
 
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = None
+    cred_def_id: Optional[StrictStr] = None
     mime_type: Optional[StrictStr] = Field(
         default=None, description="MIME type (default null)", alias="mime-type"
     )

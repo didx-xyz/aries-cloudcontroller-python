@@ -627,7 +627,7 @@ class RevocationApi:
     async def get_created_registries(
         self,
         cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential definition identifier"),
         ] = None,
         state: Annotated[
@@ -666,7 +666,7 @@ class RevocationApi:
     async def get_created_registries_with_http_info(
         self,
         cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential definition identifier"),
         ] = None,
         state: Annotated[
@@ -1058,15 +1058,15 @@ class RevocationApi:
     async def get_revocation_status(
         self,
         cred_ex_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential exchange identifier"),
         ] = None,
         cred_rev_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential revocation identifier"),
         ] = None,
         rev_reg_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Revocation registry identifier"),
         ] = None,
         **kwargs,
@@ -1105,15 +1105,15 @@ class RevocationApi:
     async def get_revocation_status_with_http_info(
         self,
         cred_ex_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential exchange identifier"),
         ] = None,
         cred_rev_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential revocation identifier"),
         ] = None,
         rev_reg_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Revocation registry identifier"),
         ] = None,
         **kwargs,
@@ -1859,11 +1859,11 @@ class RevocationApi:
     async def revocation_registry_delete_tails_file_delete(
         self,
         cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential definition identifier"),
         ] = None,
         rev_reg_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Revocation registry identifier"),
         ] = None,
         **kwargs,
@@ -1899,11 +1899,11 @@ class RevocationApi:
     async def revocation_registry_delete_tails_file_delete_with_http_info(
         self,
         cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential definition identifier"),
         ] = None,
         rev_reg_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Revocation registry identifier"),
         ] = None,
         **kwargs,

@@ -59,7 +59,7 @@ class V20CredExRecord(BaseModel):
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     cred_ex_id: Optional[StrictStr] = Field(
@@ -91,7 +91,7 @@ class V20CredExRecord(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

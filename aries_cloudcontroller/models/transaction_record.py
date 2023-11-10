@@ -42,7 +42,7 @@ class TransactionRecord(BaseModel):
         default=None,
         description="The connection identifier for thie particular transaction record",
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     endorser_write_txn: Optional[StrictBool] = Field(
@@ -66,7 +66,7 @@ class TransactionRecord(BaseModel):
     transaction_id: Optional[StrictStr] = Field(
         default=None, description="Transaction identifier"
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

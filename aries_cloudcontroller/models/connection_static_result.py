@@ -36,16 +36,16 @@ class ConnectionStaticResult(BaseModel):
     ConnectionStaticResult
     """
 
-    my_did: Annotated[str, Field(strict=True)] = Field(description="Local DID")
-    my_endpoint: Annotated[str, Field(strict=True)] = Field(
+    my_did: StrictStr = Field(description="Local DID")
+    my_endpoint: StrictStr = Field(
         description="My URL endpoint"
     )
-    my_verkey: Annotated[str, Field(strict=True)] = Field(
+    my_verkey: StrictStr = Field(
         description="My verification key"
     )
     record: ConnRecord
-    their_did: Annotated[str, Field(strict=True)] = Field(description="Remote DID")
-    their_verkey: Annotated[str, Field(strict=True)] = Field(
+    their_did: StrictStr = Field(description="Remote DID")
+    their_verkey: StrictStr = Field(
         description="Remote verification key"
     )
     __properties: ClassVar[List[str]] = [

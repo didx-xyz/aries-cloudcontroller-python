@@ -38,14 +38,14 @@ class IndyCredAbstract(BaseModel):
     IndyCredAbstract
     """
 
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(
+    cred_def_id: StrictStr = Field(
         description="Credential definition identifier"
     )
     key_correctness_proof: IndyKeyCorrectnessProof
-    nonce: Annotated[str, Field(strict=True)] = Field(
+    nonce: StrictStr = Field(
         description="Nonce in credential abstract"
     )
-    schema_id: Annotated[str, Field(strict=True)] = Field(
+    schema_id: StrictStr = Field(
         description="Schema identifier"
     )
     __properties: ClassVar[List[str]] = [

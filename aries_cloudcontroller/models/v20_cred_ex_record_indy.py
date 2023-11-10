@@ -35,7 +35,7 @@ class V20CredExRecordIndy(BaseModel):
     V20CredExRecordIndy
     """
 
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     cred_ex_id: Optional[StrictStr] = Field(
@@ -51,15 +51,15 @@ class V20CredExRecordIndy(BaseModel):
     cred_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Credential request metadata for indy holder"
     )
-    cred_rev_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_rev_id: Optional[StrictStr] = Field(
         default=None,
         description="Credential revocation identifier within revocation registry",
     )
-    rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    rev_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

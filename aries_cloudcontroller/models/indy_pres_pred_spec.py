@@ -35,7 +35,7 @@ class IndyPresPredSpec(BaseModel):
     IndyPresPredSpec
     """
 
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     name: StrictStr = Field(description="Attribute name")

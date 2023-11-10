@@ -40,11 +40,11 @@ class Credential(BaseModel):
         description="The JSON-LD context of the credential", alias="@context"
     )
     credential_subject: Dict[str, Any] = Field(alias="credentialSubject")
-    expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(
+    expiration_date: Optional[StrictStr] = Field(
         default=None, description="The expiration date", alias="expirationDate"
     )
-    id: Optional[Annotated[str, Field(strict=True)]] = None
-    issuance_date: Annotated[str, Field(strict=True)] = Field(
+    id: Optional[StrictStr] = None
+    issuance_date: StrictStr = Field(
         description="The issuance date", alias="issuanceDate"
     )
     issuer: Union[str, Dict[str, Any]] = Field(

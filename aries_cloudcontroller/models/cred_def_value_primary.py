@@ -36,11 +36,11 @@ class CredDefValuePrimary(BaseModel):
     CredDefValuePrimary
     """
 
-    n: Optional[Annotated[str, Field(strict=True)]] = None
+    n: Optional[StrictStr] = None
     r: Optional[Generated] = None
-    rctxt: Optional[Annotated[str, Field(strict=True)]] = None
-    s: Optional[Annotated[str, Field(strict=True)]] = None
-    z: Optional[Annotated[str, Field(strict=True)]] = None
+    rctxt: Optional[StrictStr] = None
+    s: Optional[StrictStr] = None
+    z: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["n", "r", "rctxt", "s", "z"]
 
     @field_validator("n")

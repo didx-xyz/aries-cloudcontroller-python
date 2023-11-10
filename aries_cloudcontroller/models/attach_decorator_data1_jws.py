@@ -39,10 +39,10 @@ class AttachDecoratorData1JWS(BaseModel):
     """
 
     header: AttachDecoratorDataJWSHeader
-    protected: Optional[Annotated[str, Field(strict=True)]] = Field(
+    protected: Optional[StrictStr] = Field(
         default=None, description="protected JWS header"
     )
-    signature: Annotated[str, Field(strict=True)] = Field(description="signature")
+    signature: StrictStr = Field(description="signature")
     __properties: ClassVar[List[str]] = ["header", "protected", "signature"]
 
     @field_validator("protected")

@@ -35,7 +35,7 @@ class GetDIDEndpointResponse(BaseModel):
     GetDIDEndpointResponse
     """
 
-    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+    endpoint: Optional[StrictStr] = Field(
         default=None, description="Full verification key"
     )
     __properties: ClassVar[List[str]] = ["endpoint"]

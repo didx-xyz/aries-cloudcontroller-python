@@ -36,7 +36,7 @@ class CredentialDefinition(BaseModel):
     CredentialDefinition
     """
 
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     schema_id: Optional[StrictStr] = Field(
@@ -51,7 +51,7 @@ class CredentialDefinition(BaseModel):
         default=None, description="Signature type: CL for Camenisch-Lysyanskaya"
     )
     value: Optional[CredDefValue] = None
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+    ver: Optional[StrictStr] = Field(
         default=None, description="Node protocol version"
     )
     __properties: ClassVar[List[str]] = [

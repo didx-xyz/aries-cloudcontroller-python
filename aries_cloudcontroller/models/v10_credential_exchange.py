@@ -56,11 +56,11 @@ class V10CredentialExchange(BaseModel):
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     credential: Optional[IndyCredInfo] = None
-    credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    credential_definition_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     credential_exchange_id: Optional[StrictStr] = Field(
@@ -94,7 +94,7 @@ class V10CredentialExchange(BaseModel):
     role: Optional[StrictStr] = Field(
         default=None, description="Issue-credential exchange role: holder or issuer"
     )
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
     state: Optional[StrictStr] = Field(
@@ -107,7 +107,7 @@ class V10CredentialExchange(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

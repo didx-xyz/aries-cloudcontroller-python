@@ -41,7 +41,7 @@ class ConnectionInvitation(BaseModel):
     type: Optional[StrictStr] = Field(
         default=None, description="Message type", alias="@type"
     )
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: Optional[StrictStr] = Field(
         default=None, description="DID for connection invitation"
     )
     image_url: Optional[StrictStr] = Field(
@@ -52,10 +52,10 @@ class ConnectionInvitation(BaseModel):
     label: Optional[StrictStr] = Field(
         default=None, description="Optional label for connection invitation"
     )
-    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    recipient_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of recipient keys", alias="recipientKeys"
     )
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    routing_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of routing keys", alias="routingKeys"
     )
     service_endpoint: Optional[StrictStr] = Field(

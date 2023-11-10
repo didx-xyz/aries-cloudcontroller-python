@@ -36,10 +36,10 @@ class IndyRevRegDef(BaseModel):
     IndyRevRegDef
     """
 
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier", alias="credDefId"
     )
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    id: Optional[StrictStr] = Field(
         default=None, description="Indy revocation registry identifier"
     )
     revoc_def_type: Optional[StrictStr] = Field(
@@ -51,7 +51,7 @@ class IndyRevRegDef(BaseModel):
         default=None, description="Revocation registry tag"
     )
     value: Optional[IndyRevRegDefValue] = None
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+    ver: Optional[StrictStr] = Field(
         default=None, description="Version of revocation registry definition"
     )
     __properties: ClassVar[List[str]] = [

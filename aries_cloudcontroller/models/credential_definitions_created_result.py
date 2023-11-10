@@ -34,7 +34,7 @@ class CredentialDefinitionsCreatedResult(BaseModel):
     CredentialDefinitionsCreatedResult
     """
 
-    credential_definition_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    credential_definition_ids: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["credential_definition_ids"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

@@ -35,7 +35,7 @@ class CreateInvitationRequest(BaseModel):
     CreateInvitationRequest
     """
 
-    mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    mediation_id: Optional[StrictStr] = Field(
         default=None, description="Identifier for active mediation record to be used"
     )
     metadata: Optional[Dict[str, Any]] = Field(
@@ -45,10 +45,10 @@ class CreateInvitationRequest(BaseModel):
     my_label: Optional[StrictStr] = Field(
         default=None, description="Optional label for connection invitation"
     )
-    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    recipient_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of recipient keys"
     )
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    routing_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of routing keys"
     )
     service_endpoint: Optional[StrictStr] = Field(

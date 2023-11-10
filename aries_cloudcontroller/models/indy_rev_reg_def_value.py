@@ -49,7 +49,7 @@ class IndyRevRegDefValue(BaseModel):
     public_keys: Optional[IndyRevRegDefValuePublicKeys] = Field(
         default=None, alias="publicKeys"
     )
-    tails_hash: Optional[Annotated[str, Field(strict=True)]] = Field(
+    tails_hash: Optional[StrictStr] = Field(
         default=None, description="Tails hash value", alias="tailsHash"
     )
     tails_location: Optional[StrictStr] = Field(

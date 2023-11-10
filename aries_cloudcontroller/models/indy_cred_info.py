@@ -38,17 +38,17 @@ class IndyCredInfo(BaseModel):
     attrs: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="Attribute names and value"
     )
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
-    cred_rev_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_rev_id: Optional[StrictStr] = Field(
         default=None, description="Credential revocation identifier"
     )
     referent: Optional[StrictStr] = Field(default=None, description="Wallet referent")
-    rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    rev_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
     __properties: ClassVar[List[str]] = [

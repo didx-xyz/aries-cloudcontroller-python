@@ -226,7 +226,7 @@ class OutOfBandApi:
             Field(description="Auto-accept connection (defaults to configuration)"),
         ] = None,
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         use_existing_connection: Annotated[
@@ -283,7 +283,7 @@ class OutOfBandApi:
             Field(description="Auto-accept connection (defaults to configuration)"),
         ] = None,
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         use_existing_connection: Annotated[

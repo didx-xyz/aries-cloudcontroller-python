@@ -35,7 +35,7 @@ class AttachDecoratorDataJWSHeader(BaseModel):
     AttachDecoratorDataJWSHeader
     """
 
-    kid: Annotated[str, Field(strict=True)] = Field(
+    kid: StrictStr = Field(
         description="Key identifier, in W3C did:key or DID URL format"
     )
     __properties: ClassVar[List[str]] = ["kid"]

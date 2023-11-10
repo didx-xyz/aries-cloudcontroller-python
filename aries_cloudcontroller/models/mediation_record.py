@@ -36,7 +36,7 @@ class MediationRecord(BaseModel):
     """
 
     connection_id: StrictStr
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     endpoint: Optional[StrictStr] = None
@@ -44,9 +44,9 @@ class MediationRecord(BaseModel):
     mediator_terms: Optional[List[StrictStr]] = None
     recipient_terms: Optional[List[StrictStr]] = None
     role: StrictStr
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    routing_keys: Optional[List[StrictStr]] = None
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

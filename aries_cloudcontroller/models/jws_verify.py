@@ -35,7 +35,7 @@ class JWSVerify(BaseModel):
     JWSVerify
     """
 
-    jwt: Optional[Annotated[str, Field(strict=True)]] = None
+    jwt: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["jwt"]
 
     @field_validator("jwt")

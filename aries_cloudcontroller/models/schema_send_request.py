@@ -37,7 +37,7 @@ class SchemaSendRequest(BaseModel):
 
     attributes: List[StrictStr] = Field(description="List of schema attributes")
     schema_name: StrictStr = Field(description="Schema name")
-    schema_version: Annotated[str, Field(strict=True)] = Field(
+    schema_version: StrictStr = Field(
         description="Schema version"
     )
     __properties: ClassVar[List[str]] = ["attributes", "schema_name", "schema_version"]

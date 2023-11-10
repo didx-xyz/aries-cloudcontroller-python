@@ -47,7 +47,7 @@ class AttachDecorator(BaseModel):
         default=None, description="Human-readable description of content"
     )
     filename: Optional[StrictStr] = Field(default=None, description="File name")
-    lastmod_time: Optional[Annotated[str, Field(strict=True)]] = Field(
+    lastmod_time: Optional[StrictStr] = Field(
         default=None,
         description="Hint regarding last modification datetime, in ISO-8601 format",
     )

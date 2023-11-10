@@ -47,14 +47,14 @@ class ConnRecord(BaseModel):
     connection_protocol: Optional[StrictStr] = Field(
         default=None, description="Connection protocol used"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
     inbound_connection_id: Optional[StrictStr] = Field(
         default=None, description="Inbound routing connection id to use"
     )
-    invitation_key: Optional[Annotated[str, Field(strict=True)]] = Field(
+    invitation_key: Optional[StrictStr] = Field(
         default=None, description="Public key for connection"
     )
     invitation_mode: Optional[StrictStr] = Field(
@@ -63,7 +63,7 @@ class ConnRecord(BaseModel):
     invitation_msg_id: Optional[StrictStr] = Field(
         default=None, description="ID of out-of-band invitation message"
     )
-    my_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    my_did: Optional[StrictStr] = Field(
         default=None, description="Our DID for connection"
     )
     request_id: Optional[StrictStr] = Field(
@@ -76,7 +76,7 @@ class ConnRecord(BaseModel):
         default=None, description="Routing state of connection"
     )
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    their_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    their_did: Optional[StrictStr] = Field(
         default=None, description="Their DID for connection"
     )
     their_label: Optional[StrictStr] = Field(
@@ -88,7 +88,7 @@ class ConnRecord(BaseModel):
     their_role: Optional[StrictStr] = Field(
         default=None, description="Their role in the connection protocol"
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

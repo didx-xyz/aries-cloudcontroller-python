@@ -35,7 +35,7 @@ class WalletRecord(BaseModel):
     WalletRecord
     """
 
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     key_management_mode: StrictStr = Field(
@@ -45,7 +45,7 @@ class WalletRecord(BaseModel):
         default=None, description="Settings for this wallet."
     )
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     wallet_id: StrictStr = Field(description="Wallet record ID")

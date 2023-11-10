@@ -38,17 +38,17 @@ class ModelSchema(BaseModel):
     attr_names: Optional[List[StrictStr]] = Field(
         default=None, description="Schema attribute names", alias="attrNames"
     )
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
     name: Optional[StrictStr] = Field(default=None, description="Schema name")
     seq_no: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
         default=None, description="Schema sequence number", alias="seqNo"
     )
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+    ver: Optional[StrictStr] = Field(
         default=None, description="Node protocol version"
     )
-    version: Optional[Annotated[str, Field(strict=True)]] = Field(
+    version: Optional[StrictStr] = Field(
         default=None, description="Schema version"
     )
     __properties: ClassVar[List[str]] = [

@@ -35,7 +35,7 @@ class DIFHolder(BaseModel):
     """
 
     directive: Optional[StrictStr] = Field(default=None, description="Preference")
-    field_id: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    field_id: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["directive", "field_id"]
 
     @field_validator("directive")

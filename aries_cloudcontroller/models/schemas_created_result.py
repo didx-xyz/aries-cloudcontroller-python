@@ -34,7 +34,7 @@ class SchemasCreatedResult(BaseModel):
     SchemasCreatedResult
     """
 
-    schema_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    schema_ids: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["schema_ids"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

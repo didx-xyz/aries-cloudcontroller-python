@@ -34,10 +34,10 @@ class ServiceDecorator(BaseModel):
     ServiceDecorator
     """
 
-    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    recipient_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of recipient keys", alias="recipientKeys"
     )
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    routing_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of routing keys", alias="routingKeys"
     )
     service_endpoint: Optional[StrictStr] = Field(

@@ -35,7 +35,7 @@ class CredentialDefinitionSendResult(BaseModel):
     CredentialDefinitionSendResult
     """
 
-    credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    credential_definition_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     __properties: ClassVar[List[str]] = ["credential_definition_id"]

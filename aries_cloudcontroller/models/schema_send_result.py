@@ -37,7 +37,7 @@ class SchemaSendResult(BaseModel):
     """
 
     var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
-    schema_id: Annotated[str, Field(strict=True)] = Field(
+    schema_id: StrictStr = Field(
         description="Schema identifier"
     )
     __properties: ClassVar[List[str]] = ["schema", "schema_id"]

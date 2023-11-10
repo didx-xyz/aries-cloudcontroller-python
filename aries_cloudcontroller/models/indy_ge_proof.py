@@ -36,12 +36,12 @@ class IndyGEProof(BaseModel):
     IndyGEProof
     """
 
-    alpha: Optional[Annotated[str, Field(strict=True)]] = None
-    mj: Optional[Annotated[str, Field(strict=True)]] = None
+    alpha: Optional[StrictStr] = None
+    mj: Optional[StrictStr] = None
     predicate: Optional[IndyGEProofPred] = None
-    r: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    t: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    u: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
+    r: Optional[Dict[str, StrictStr]] = None
+    t: Optional[Dict[str, StrictStr]] = None
+    u: Optional[Dict[str, StrictStr]] = None
     __properties: ClassVar[List[str]] = ["alpha", "mj", "predicate", "r", "t", "u"]
 
     @field_validator("alpha")

@@ -35,10 +35,10 @@ class IssuerCredRevRecord(BaseModel):
     IssuerCredRevRecord
     """
 
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     cred_ex_id: Optional[StrictStr] = Field(
@@ -48,19 +48,19 @@ class IssuerCredRevRecord(BaseModel):
     cred_ex_version: Optional[StrictStr] = Field(
         default=None, description="Credential exchange version"
     )
-    cred_rev_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_rev_id: Optional[StrictStr] = Field(
         default=None, description="Credential revocation identifier"
     )
     record_id: Optional[StrictStr] = Field(
         default=None, description="Issuer credential revocation record identifier"
     )
-    rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    rev_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
     state: Optional[StrictStr] = Field(
         default=None, description="Issue credential revocation record state"
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

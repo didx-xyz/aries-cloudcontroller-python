@@ -41,7 +41,7 @@ class DidExchangeApi:
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         my_label: Annotated[
@@ -84,7 +84,7 @@ class DidExchangeApi:
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         my_label: Annotated[
@@ -205,11 +205,11 @@ class DidExchangeApi:
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         **kwargs,
@@ -249,11 +249,11 @@ class DidExchangeApi:
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         **kwargs,
@@ -392,11 +392,11 @@ class DidExchangeApi:
             ),
         ] = None,
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         my_label: Annotated[
@@ -479,11 +479,11 @@ class DidExchangeApi:
             ),
         ] = None,
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         my_label: Annotated[
@@ -649,11 +649,11 @@ class DidExchangeApi:
             Field(description="Auto-accept connection (defaults to configuration)"),
         ] = None,
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         body: Optional[DIDXRequest] = None,
@@ -706,11 +706,11 @@ class DidExchangeApi:
             Field(description="Auto-accept connection (defaults to configuration)"),
         ] = None,
         mediation_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="My URL endpoint"),
         ] = None,
         body: Optional[DIDXRequest] = None,

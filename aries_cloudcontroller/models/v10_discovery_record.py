@@ -40,7 +40,7 @@ class V10DiscoveryRecord(BaseModel):
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     disclose: Optional[Disclose] = None
@@ -56,7 +56,7 @@ class V10DiscoveryRecord(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

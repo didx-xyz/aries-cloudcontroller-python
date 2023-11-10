@@ -345,11 +345,11 @@ class PresentProofV10Api:
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Maximum number to retrieve"),
         ] = None,
         extra_query: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) object mapping referents to extra WQL queries"),
         ] = None,
         referent: Annotated[
@@ -357,7 +357,7 @@ class PresentProofV10Api:
             Field(description="Proof request referents of interest, comma-separated"),
         ] = None,
         start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Start index"),
         ] = None,
         **kwargs,
@@ -405,11 +405,11 @@ class PresentProofV10Api:
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Maximum number to retrieve"),
         ] = None,
         extra_query: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) object mapping referents to extra WQL queries"),
         ] = None,
         referent: Annotated[
@@ -417,7 +417,7 @@ class PresentProofV10Api:
             Field(description="Proof request referents of interest, comma-separated"),
         ] = None,
         start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Start index"),
         ] = None,
         **kwargs,

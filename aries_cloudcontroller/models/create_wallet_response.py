@@ -35,7 +35,7 @@ class CreateWalletResponse(BaseModel):
     CreateWalletResponse
     """
 
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     key_management_mode: StrictStr = Field(
@@ -48,7 +48,7 @@ class CreateWalletResponse(BaseModel):
     token: Optional[StrictStr] = Field(
         default=None, description="Authorization token to authenticate wallet requests"
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     wallet_id: StrictStr = Field(description="Wallet record ID")

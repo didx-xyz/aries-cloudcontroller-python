@@ -37,7 +37,7 @@ class IndyRevRegEntry(BaseModel):
     """
 
     value: Optional[IndyRevRegEntryValue] = None
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
+    ver: Optional[StrictStr] = Field(
         default=None, description="Version of revocation registry entry"
     )
     __properties: ClassVar[List[str]] = ["value", "ver"]

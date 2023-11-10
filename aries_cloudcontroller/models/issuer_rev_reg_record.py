@@ -37,14 +37,14 @@ class IssuerRevRegRecord(BaseModel):
     IssuerRevRegRecord
     """
 
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
-    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    issuer_did: Optional[StrictStr] = Field(
         default=None, description="Issuer DID"
     )
     max_cred_num: Optional[StrictInt] = Field(
@@ -63,7 +63,7 @@ class IssuerRevRegRecord(BaseModel):
     )
     revoc_reg_def: Optional[IndyRevRegDef] = None
     revoc_reg_entry: Optional[IndyRevRegEntry] = None
-    revoc_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    revoc_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
     state: Optional[StrictStr] = Field(
@@ -72,7 +72,7 @@ class IssuerRevRegRecord(BaseModel):
     tag: Optional[StrictStr] = Field(
         default=None, description="Tag within issuer revocation registry identifier"
     )
-    tails_hash: Optional[Annotated[str, Field(strict=True)]] = Field(
+    tails_hash: Optional[StrictStr] = Field(
         default=None, description="Tails hash"
     )
     tails_local_path: Optional[StrictStr] = Field(
@@ -81,7 +81,7 @@ class IssuerRevRegRecord(BaseModel):
     tails_public_uri: Optional[StrictStr] = Field(
         default=None, description="Public URI for tails file"
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

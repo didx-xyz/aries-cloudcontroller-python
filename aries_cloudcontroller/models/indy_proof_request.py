@@ -42,7 +42,7 @@ class IndyProofRequest(BaseModel):
 
     name: Optional[StrictStr] = Field(default=None, description="Proof request name")
     non_revoked: Optional[IndyProofRequestNonRevoked] = None
-    nonce: Optional[Annotated[str, Field(strict=True)]] = Field(
+    nonce: Optional[StrictStr] = Field(
         default=None, description="Nonce"
     )
     requested_attributes: Dict[str, IndyProofReqAttrSpec] = Field(
@@ -51,7 +51,7 @@ class IndyProofRequest(BaseModel):
     requested_predicates: Dict[str, IndyProofReqPredSpec] = Field(
         description="Requested predicate specifications of proof request"
     )
-    version: Optional[Annotated[str, Field(strict=True)]] = Field(
+    version: Optional[StrictStr] = Field(
         default=None, description="Proof request version"
     )
     __properties: ClassVar[List[str]] = [

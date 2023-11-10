@@ -35,13 +35,13 @@ class IndyProofIdentifier(BaseModel):
     IndyProofIdentifier
     """
 
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
-    rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    rev_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
     timestamp: Optional[

@@ -36,14 +36,14 @@ class RouteRecord(BaseModel):
     """
 
     connection_id: Optional[StrictStr] = None
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     recipient_key: StrictStr
     record_id: Optional[StrictStr] = None
     role: Optional[StrictStr] = None
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     wallet_id: Optional[StrictStr] = None

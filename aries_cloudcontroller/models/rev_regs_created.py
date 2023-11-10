@@ -34,7 +34,7 @@ class RevRegsCreated(BaseModel):
     RevRegsCreated
     """
 
-    rev_reg_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    rev_reg_ids: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["rev_reg_ids"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

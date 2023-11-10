@@ -35,9 +35,9 @@ class Generated(BaseModel):
     Generated
     """
 
-    master_secret: Optional[Annotated[str, Field(strict=True)]] = None
-    number: Optional[Annotated[str, Field(strict=True)]] = None
-    remainder: Optional[Annotated[str, Field(strict=True)]] = None
+    master_secret: Optional[StrictStr] = None
+    number: Optional[StrictStr] = None
+    remainder: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["master_secret", "number", "remainder"]
 
     @field_validator("master_secret")

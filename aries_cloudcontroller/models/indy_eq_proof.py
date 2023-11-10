@@ -35,12 +35,12 @@ class IndyEQProof(BaseModel):
     IndyEQProof
     """
 
-    a_prime: Optional[Annotated[str, Field(strict=True)]] = None
-    e: Optional[Annotated[str, Field(strict=True)]] = None
-    m: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    m2: Optional[Annotated[str, Field(strict=True)]] = None
-    revealed_attrs: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    v: Optional[Annotated[str, Field(strict=True)]] = None
+    a_prime: Optional[StrictStr] = None
+    e: Optional[StrictStr] = None
+    m: Optional[Dict[str, StrictStr]] = None
+    m2: Optional[StrictStr] = None
+    revealed_attrs: Optional[Dict[str, StrictStr]] = None
+    v: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "a_prime",
         "e",

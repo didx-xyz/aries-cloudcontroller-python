@@ -36,7 +36,7 @@ class DID(BaseModel):
     DID
     """
 
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: Optional[StrictStr] = Field(
         default=None, description="DID of interest"
     )
     key_type: Optional[Literal["ed25519", "bls12381g2"]] = Field(
@@ -49,7 +49,7 @@ class DID(BaseModel):
         default=None,
         description="Whether DID is current public DID, posted to ledger but not current public DID, or local to the wallet",
     )
-    verkey: Optional[Annotated[str, Field(strict=True)]] = Field(
+    verkey: Optional[StrictStr] = Field(
         default=None, description="Public verification key"
     )
     __properties: ClassVar[List[str]] = [

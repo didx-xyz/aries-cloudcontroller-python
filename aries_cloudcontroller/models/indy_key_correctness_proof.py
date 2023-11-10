@@ -35,11 +35,11 @@ class IndyKeyCorrectnessProof(BaseModel):
     IndyKeyCorrectnessProof
     """
 
-    c: Annotated[str, Field(strict=True)] = Field(
+    c: StrictStr = Field(
         description="c in key correctness proof"
     )
     xr_cap: List[List[StrictStr]] = Field(description="xr_cap in key correctness proof")
-    xz_cap: Annotated[str, Field(strict=True)] = Field(
+    xz_cap: StrictStr = Field(
         description="xz_cap in key correctness proof"
     )
     __properties: ClassVar[List[str]] = ["c", "xr_cap", "xz_cap"]

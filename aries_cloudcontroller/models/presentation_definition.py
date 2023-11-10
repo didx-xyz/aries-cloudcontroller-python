@@ -39,7 +39,7 @@ class PresentationDefinition(BaseModel):
     """
 
     format: Optional[ClaimFormat] = None
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    id: Optional[StrictStr] = Field(
         default=None, description="Unique Resource Identifier"
     )
     input_descriptors: Optional[List[InputDescriptors]] = None

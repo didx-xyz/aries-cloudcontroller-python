@@ -39,14 +39,14 @@ class RevokeRequest(BaseModel):
         default=None,
         description="Optional comment to include in revocation notification",
     )
-    connection_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    connection_id: Optional[StrictStr] = Field(
         default=None,
         description="Connection ID to which the revocation notification will be sent; required if notify is true",
     )
-    cred_ex_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_ex_id: Optional[StrictStr] = Field(
         default=None, description="Credential exchange identifier"
     )
-    cred_rev_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_rev_id: Optional[StrictStr] = Field(
         default=None, description="Credential revocation identifier"
     )
     notify: Optional[StrictBool] = Field(
@@ -60,7 +60,7 @@ class RevokeRequest(BaseModel):
         default=None,
         description="(True) publish revocation to ledger immediately, or (default, False) mark it pending",
     )
-    rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    rev_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
     thread_id: Optional[StrictStr] = Field(

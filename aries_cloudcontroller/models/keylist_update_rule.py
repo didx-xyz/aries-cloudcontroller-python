@@ -36,7 +36,7 @@ class KeylistUpdateRule(BaseModel):
     """
 
     action: StrictStr = Field(description="Action for specific key")
-    recipient_key: Annotated[str, Field(strict=True)] = Field(
+    recipient_key: StrictStr = Field(
         description="Key to remove or add"
     )
     __properties: ClassVar[List[str]] = ["action", "recipient_key"]

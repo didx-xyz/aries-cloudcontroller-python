@@ -44,21 +44,21 @@ class V10CredentialProposalRequestMand(BaseModel):
         default=None, description="Human-readable comment"
     )
     connection_id: StrictStr = Field(description="Connection identifier")
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     credential_proposal: CredentialPreview
-    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    issuer_did: Optional[StrictStr] = Field(
         default=None, description="Credential issuer DID"
     )
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
-    schema_issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_issuer_did: Optional[StrictStr] = Field(
         default=None, description="Schema issuer DID"
     )
     schema_name: Optional[StrictStr] = Field(default=None, description="Schema name")
-    schema_version: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_version: Optional[StrictStr] = Field(
         default=None, description="Schema version"
     )
     trace: Optional[StrictBool] = Field(

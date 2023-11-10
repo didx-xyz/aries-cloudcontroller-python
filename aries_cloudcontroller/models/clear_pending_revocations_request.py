@@ -34,7 +34,7 @@ class ClearPendingRevocationsRequest(BaseModel):
     ClearPendingRevocationsRequest
     """
 
-    purge: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
+    purge: Optional[Dict[str, List[StrictStr]]] = Field(
         default=None,
         description="Credential revocation ids by revocation registry id: omit for all, specify null or empty list for all pending per revocation registry",
     )

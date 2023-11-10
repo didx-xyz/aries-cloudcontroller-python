@@ -35,10 +35,10 @@ class EndpointsResult(BaseModel):
     EndpointsResult
     """
 
-    my_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+    my_endpoint: Optional[StrictStr] = Field(
         default=None, description="My endpoint"
     )
-    their_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+    their_endpoint: Optional[StrictStr] = Field(
         default=None, description="Their endpoint"
     )
     __properties: ClassVar[List[str]] = ["my_endpoint", "their_endpoint"]

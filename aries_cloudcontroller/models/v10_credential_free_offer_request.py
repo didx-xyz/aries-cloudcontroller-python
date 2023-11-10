@@ -48,7 +48,7 @@ class V10CredentialFreeOfferRequest(BaseModel):
         default=None, description="Human-readable comment"
     )
     connection_id: StrictStr = Field(description="Connection identifier")
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(
+    cred_def_id: StrictStr = Field(
         description="Credential definition identifier"
     )
     credential_preview: CredentialPreview

@@ -189,26 +189,26 @@ class CredentialDefinitionApi:
     async def get_created_cred_defs(
         self,
         cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential definition id"),
         ] = None,
         issuer_did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Issuer DID"),
         ] = None,
         schema_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema identifier"),
         ] = None,
         schema_issuer_did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema issuer DID"),
         ] = None,
         schema_name: Annotated[
             Optional[StrictStr], Field(description="Schema name")
         ] = None,
         schema_version: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema version"),
         ] = None,
         **kwargs,
@@ -256,26 +256,26 @@ class CredentialDefinitionApi:
     async def get_created_cred_defs_with_http_info(
         self,
         cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Credential definition id"),
         ] = None,
         issuer_did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Issuer DID"),
         ] = None,
         schema_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema identifier"),
         ] = None,
         schema_issuer_did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema issuer DID"),
         ] = None,
         schema_name: Annotated[
             Optional[StrictStr], Field(description="Schema name")
         ] = None,
         schema_version: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Schema version"),
         ] = None,
         **kwargs,

@@ -42,7 +42,7 @@ class DIDXRequest(BaseModel):
     type: Optional[StrictStr] = Field(
         default=None, description="Message type", alias="@type"
     )
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: Optional[StrictStr] = Field(
         default=None, description="DID of exchange"
     )
     did_docattach: Optional[AttachDecorator] = Field(

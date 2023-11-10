@@ -35,7 +35,7 @@ class DIFOptions(BaseModel):
     DIFOptions
     """
 
-    challenge: Optional[Annotated[str, Field(strict=True)]] = Field(
+    challenge: Optional[StrictStr] = Field(
         default=None, description="Challenge protect against replay attack"
     )
     domain: Optional[StrictStr] = Field(

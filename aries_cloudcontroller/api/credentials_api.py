@@ -585,15 +585,15 @@ class CredentialsApi:
     async def get_records(
         self,
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Maximum number to retrieve"),
         ] = None,
         start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Start index"),
         ] = None,
         wql: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) WQL query"),
         ] = None,
         **kwargs,
@@ -632,15 +632,15 @@ class CredentialsApi:
     async def get_records_with_http_info(
         self,
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Maximum number to retrieve"),
         ] = None,
         start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Start index"),
         ] = None,
         wql: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) WQL query"),
         ] = None,
         **kwargs,
@@ -759,13 +759,13 @@ class CredentialsApi:
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         var_from: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(
                 description="Earliest epoch of revocation status interval of interest"
             ),
         ] = None,
         to: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Latest epoch of revocation status interval of interest"),
         ] = None,
         **kwargs,
@@ -805,13 +805,13 @@ class CredentialsApi:
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
         var_from: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(
                 description="Earliest epoch of revocation status interval of interest"
             ),
         ] = None,
         to: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Latest epoch of revocation status interval of interest"),
         ] = None,
         **kwargs,
@@ -1062,15 +1062,15 @@ class CredentialsApi:
     async def get_w3c_credentials(
         self,
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Maximum number to retrieve"),
         ] = None,
         start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Start index"),
         ] = None,
         wql: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) WQL query"),
         ] = None,
         body: Optional[W3CCredentialsListRequest] = None,
@@ -1113,15 +1113,15 @@ class CredentialsApi:
     async def get_w3c_credentials_with_http_info(
         self,
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Maximum number to retrieve"),
         ] = None,
         start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Start index"),
         ] = None,
         wql: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) WQL query"),
         ] = None,
         body: Optional[W3CCredentialsListRequest] = None,

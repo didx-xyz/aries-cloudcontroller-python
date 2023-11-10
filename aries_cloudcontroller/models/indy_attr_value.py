@@ -35,7 +35,7 @@ class IndyAttrValue(BaseModel):
     IndyAttrValue
     """
 
-    encoded: Annotated[str, Field(strict=True)] = Field(
+    encoded: StrictStr = Field(
         description="Attribute encoded value"
     )
     raw: StrictStr = Field(description="Attribute raw value")

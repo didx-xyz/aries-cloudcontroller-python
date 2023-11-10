@@ -324,7 +324,7 @@ class WalletApi:
     async def get_dids(
         self,
         did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="DID of interest"),
         ] = None,
         key_type: Annotated[
@@ -343,7 +343,7 @@ class WalletApi:
             ),
         ] = None,
         verkey: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Verification key of interest"),
         ] = None,
         **kwargs,
@@ -388,7 +388,7 @@ class WalletApi:
     async def get_dids_with_http_info(
         self,
         did: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="DID of interest"),
         ] = None,
         key_type: Annotated[
@@ -407,7 +407,7 @@ class WalletApi:
             ),
         ] = None,
         verkey: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="Verification key of interest"),
         ] = None,
         **kwargs,
