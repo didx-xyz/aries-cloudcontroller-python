@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictStr
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 

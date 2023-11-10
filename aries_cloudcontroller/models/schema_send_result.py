@@ -19,7 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, StrictStr, field_validator
 
 from aries_cloudcontroller.models.model_schema import ModelSchema
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
