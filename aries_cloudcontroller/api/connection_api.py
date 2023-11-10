@@ -61,8 +61,7 @@ class ConnectionApi:
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[StrictStr],
-            Field(description="My URL endpoint"),
+            Optional[StrictStr], Field(description="My URL endpoint")
         ] = None,
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection")
@@ -111,8 +110,7 @@ class ConnectionApi:
             Field(description="Identifier for active mediation record to be used"),
         ] = None,
         my_endpoint: Annotated[
-            Optional[StrictStr],
-            Field(description="My URL endpoint"),
+            Optional[StrictStr], Field(description="My URL endpoint")
         ] = None,
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection")
@@ -237,8 +235,7 @@ class ConnectionApi:
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
-            Optional[StrictStr],
-            Field(description="My URL endpoint"),
+            Optional[StrictStr], Field(description="My URL endpoint")
         ] = None,
         **kwargs,
     ) -> ConnRecord:
@@ -274,8 +271,7 @@ class ConnectionApi:
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         my_endpoint: Annotated[
-            Optional[StrictStr],
-            Field(description="My URL endpoint"),
+            Optional[StrictStr], Field(description="My URL endpoint")
         ] = None,
         **kwargs,
     ) -> ApiResponse:
@@ -1284,8 +1280,7 @@ class ConnectionApi:
             Optional[StrictStr], Field(description="Connection protocol used")
         ] = None,
         invitation_key: Annotated[
-            Optional[StrictStr],
-            Field(description="invitation key"),
+            Optional[StrictStr], Field(description="invitation key")
         ] = None,
         invitation_msg_id: Annotated[
             Optional[StrictStr],
@@ -1299,8 +1294,7 @@ class ConnectionApi:
             Optional[StrictStr], Field(description="Their DID")
         ] = None,
         their_public_did: Annotated[
-            Optional[StrictStr],
-            Field(description="Their Public DID"),
+            Optional[StrictStr], Field(description="Their Public DID")
         ] = None,
         their_role: Annotated[
             Optional[StrictStr],
@@ -1364,8 +1358,7 @@ class ConnectionApi:
             Optional[StrictStr], Field(description="Connection protocol used")
         ] = None,
         invitation_key: Annotated[
-            Optional[StrictStr],
-            Field(description="invitation key"),
+            Optional[StrictStr], Field(description="invitation key")
         ] = None,
         invitation_msg_id: Annotated[
             Optional[StrictStr],
@@ -1379,8 +1372,7 @@ class ConnectionApi:
             Optional[StrictStr], Field(description="Their DID")
         ] = None,
         their_public_did: Annotated[
-            Optional[StrictStr],
-            Field(description="Their Public DID"),
+            Optional[StrictStr], Field(description="Their Public DID")
         ] = None,
         their_role: Annotated[
             Optional[StrictStr],

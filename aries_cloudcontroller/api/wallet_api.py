@@ -324,8 +324,7 @@ class WalletApi:
     async def get_dids(
         self,
         did: Annotated[
-            Optional[StrictStr],
-            Field(description="DID of interest"),
+            Optional[StrictStr], Field(description="DID of interest")
         ] = None,
         key_type: Annotated[
             Optional[StrictStr], Field(description="Key type to query for.")
@@ -343,8 +342,7 @@ class WalletApi:
             ),
         ] = None,
         verkey: Annotated[
-            Optional[StrictStr],
-            Field(description="Verification key of interest"),
+            Optional[StrictStr], Field(description="Verification key of interest")
         ] = None,
         **kwargs,
     ) -> DIDList:
@@ -388,8 +386,7 @@ class WalletApi:
     async def get_dids_with_http_info(
         self,
         did: Annotated[
-            Optional[StrictStr],
-            Field(description="DID of interest"),
+            Optional[StrictStr], Field(description="DID of interest")
         ] = None,
         key_type: Annotated[
             Optional[StrictStr], Field(description="Key type to query for.")
@@ -407,8 +404,7 @@ class WalletApi:
             ),
         ] = None,
         verkey: Annotated[
-            Optional[StrictStr],
-            Field(description="Verification key of interest"),
+            Optional[StrictStr], Field(description="Verification key of interest")
         ] = None,
         **kwargs,
     ) -> ApiResponse:

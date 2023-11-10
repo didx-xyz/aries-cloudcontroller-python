@@ -343,8 +343,7 @@ class PresentProofV20Api:
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
         count: Annotated[
-            Optional[StrictStr],
-            Field(description="Maximum number to retrieve"),
+            Optional[StrictStr], Field(description="Maximum number to retrieve")
         ] = None,
         extra_query: Annotated[
             Optional[StrictStr],
@@ -354,10 +353,7 @@ class PresentProofV20Api:
             Optional[StrictStr],
             Field(description="Proof request referents of interest, comma-separated"),
         ] = None,
-        start: Annotated[
-            Optional[StrictStr],
-            Field(description="Start index"),
-        ] = None,
+        start: Annotated[Optional[StrictStr], Field(description="Start index")] = None,
         **kwargs,
     ) -> List[IndyCredPrecis]:
         """Fetch credentials from wallet for presentation request  # noqa: E501
@@ -403,8 +399,7 @@ class PresentProofV20Api:
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
         count: Annotated[
-            Optional[StrictStr],
-            Field(description="Maximum number to retrieve"),
+            Optional[StrictStr], Field(description="Maximum number to retrieve")
         ] = None,
         extra_query: Annotated[
             Optional[StrictStr],
@@ -414,10 +409,7 @@ class PresentProofV20Api:
             Optional[StrictStr],
             Field(description="Proof request referents of interest, comma-separated"),
         ] = None,
-        start: Annotated[
-            Optional[StrictStr],
-            Field(description="Start index"),
-        ] = None,
+        start: Annotated[Optional[StrictStr], Field(description="Start index")] = None,
         **kwargs,
     ) -> ApiResponse:
         """Fetch credentials from wallet for presentation request  # noqa: E501
