@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,9 +34,7 @@ class EndpointsResult(BaseModel):
     EndpointsResult
     """
 
-    my_endpoint: Optional[StrictStr] = Field(
-        default=None, description="My endpoint"
-    )
+    my_endpoint: Optional[StrictStr] = Field(default=None, description="My endpoint")
     their_endpoint: Optional[StrictStr] = Field(
         default=None, description="Their endpoint"
     )

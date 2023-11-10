@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.indy_rev_reg_def import IndyRevRegDef
 from aries_cloudcontroller.models.indy_rev_reg_entry import IndyRevRegEntry
@@ -44,9 +43,7 @@ class IssuerRevRegRecord(BaseModel):
         default=None, description="Credential definition identifier"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
-    issuer_did: Optional[StrictStr] = Field(
-        default=None, description="Issuer DID"
-    )
+    issuer_did: Optional[StrictStr] = Field(default=None, description="Issuer DID")
     max_cred_num: Optional[StrictInt] = Field(
         default=None,
         description="Maximum number of credentials for revocation registry",
@@ -72,9 +69,7 @@ class IssuerRevRegRecord(BaseModel):
     tag: Optional[StrictStr] = Field(
         default=None, description="Tag within issuer revocation registry identifier"
     )
-    tails_hash: Optional[StrictStr] = Field(
-        default=None, description="Tails hash"
-    )
+    tails_hash: Optional[StrictStr] = Field(default=None, description="Tails hash")
     tails_local_path: Optional[StrictStr] = Field(
         default=None, description="Local path to tails file"
     )

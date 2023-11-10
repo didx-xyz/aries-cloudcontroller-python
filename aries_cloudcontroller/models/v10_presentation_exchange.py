@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.indy_proof import IndyProof
 from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest

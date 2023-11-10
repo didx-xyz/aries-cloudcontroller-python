@@ -17,10 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.credential_offer import CredentialOffer
 from aries_cloudcontroller.models.credential_proposal import CredentialProposal

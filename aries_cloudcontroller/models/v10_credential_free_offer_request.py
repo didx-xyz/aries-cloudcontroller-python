@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.credential_preview import CredentialPreview
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -48,9 +47,7 @@ class V10CredentialFreeOfferRequest(BaseModel):
         default=None, description="Human-readable comment"
     )
     connection_id: StrictStr = Field(description="Connection identifier")
-    cred_def_id: StrictStr = Field(
-        description="Credential definition identifier"
-    )
+    cred_def_id: StrictStr = Field(description="Credential definition identifier")
     credential_preview: CredentialPreview
     trace: Optional[StrictBool] = Field(
         default=None,

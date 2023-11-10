@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,9 +34,7 @@ class RawEncoded(BaseModel):
     RawEncoded
     """
 
-    encoded: Optional[StrictStr] = Field(
-        default=None, description="Encoded value"
-    )
+    encoded: Optional[StrictStr] = Field(default=None, description="Encoded value")
     raw: Optional[StrictStr] = Field(default=None, description="Raw value")
     __properties: ClassVar[List[str]] = ["encoded", "raw"]
 

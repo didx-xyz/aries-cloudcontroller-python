@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -42,9 +41,7 @@ class DIDXRequest(BaseModel):
     type: Optional[StrictStr] = Field(
         default=None, description="Message type", alias="@type"
     )
-    did: Optional[StrictStr] = Field(
-        default=None, description="DID of exchange"
-    )
+    did: Optional[StrictStr] = Field(default=None, description="DID of exchange")
     did_docattach: Optional[AttachDecorator] = Field(
         default=None, alias="did_doc~attach"
     )

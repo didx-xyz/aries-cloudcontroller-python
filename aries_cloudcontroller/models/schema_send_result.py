@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.model_schema import ModelSchema
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -37,9 +36,7 @@ class SchemaSendResult(BaseModel):
     """
 
     var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
-    schema_id: StrictStr = Field(
-        description="Schema identifier"
-    )
+    schema_id: StrictStr = Field(description="Schema identifier")
     __properties: ClassVar[List[str]] = ["schema", "schema_id"]
 
     @field_validator("schema_id")

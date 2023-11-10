@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, field_validator
 
 from aries_cloudcontroller.models.indy_ge_proof_pred import IndyGEProofPred
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG

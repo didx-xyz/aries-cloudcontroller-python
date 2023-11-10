@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,9 +34,7 @@ class IndyAttrValue(BaseModel):
     IndyAttrValue
     """
 
-    encoded: StrictStr = Field(
-        description="Attribute encoded value"
-    )
+    encoded: StrictStr = Field(description="Attribute encoded value")
     raw: StrictStr = Field(description="Attribute raw value")
     __properties: ClassVar[List[str]] = ["encoded", "raw"]
 

@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.attach_decorator_data1_jws import (
     AttachDecoratorData1JWS,
@@ -45,9 +44,7 @@ class AttachDecoratorDataJWS(BaseModel):
     protected: Optional[StrictStr] = Field(
         default=None, description="protected JWS header"
     )
-    signature: Optional[StrictStr] = Field(
-        default=None, description="signature"
-    )
+    signature: Optional[StrictStr] = Field(default=None, description="signature")
     signatures: Optional[List[AttachDecoratorData1JWS]] = Field(
         default=None, description="List of signatures"
     )

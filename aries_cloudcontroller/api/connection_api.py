@@ -1291,9 +1291,7 @@ class ConnectionApi:
             Optional[StrictStr],
             Field(description="Identifier of the associated Invitation Mesage"),
         ] = None,
-        my_did: Annotated[
-            Optional[StrictStr], Field(description="My DID")
-        ] = None,
+        my_did: Annotated[Optional[StrictStr], Field(description="My DID")] = None,
         state: Annotated[
             Optional[StrictStr], Field(description="Connection state")
         ] = None,
@@ -1373,9 +1371,7 @@ class ConnectionApi:
             Optional[StrictStr],
             Field(description="Identifier of the associated Invitation Mesage"),
         ] = None,
-        my_did: Annotated[
-            Optional[StrictStr], Field(description="My DID")
-        ] = None,
+        my_did: Annotated[Optional[StrictStr], Field(description="My DID")] = None,
         state: Annotated[
             Optional[StrictStr], Field(description="Connection state")
         ] = None,

@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,13 +34,9 @@ class IndyKeyCorrectnessProof(BaseModel):
     IndyKeyCorrectnessProof
     """
 
-    c: StrictStr = Field(
-        description="c in key correctness proof"
-    )
+    c: StrictStr = Field(description="c in key correctness proof")
     xr_cap: List[List[StrictStr]] = Field(description="xr_cap in key correctness proof")
-    xz_cap: StrictStr = Field(
-        description="xz_cap in key correctness proof"
-    )
+    xz_cap: StrictStr = Field(description="xz_cap in key correctness proof")
     __properties: ClassVar[List[str]] = ["c", "xr_cap", "xz_cap"]
 
     @field_validator("c")

@@ -17,10 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,9 +34,7 @@ class JWSCreate(BaseModel):
     JWSCreate
     """
 
-    did: Optional[StrictStr] = Field(
-        default=None, description="DID of interest"
-    )
+    did: Optional[StrictStr] = Field(default=None, description="DID of interest")
     headers: Optional[Dict[str, Any]] = None
     payload: Dict[str, Any]
     verification_method: Optional[StrictStr] = Field(

@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -36,9 +35,7 @@ class KeylistUpdateRule(BaseModel):
     """
 
     action: StrictStr = Field(description="Action for specific key")
-    recipient_key: StrictStr = Field(
-        description="Key to remove or add"
-    )
+    recipient_key: StrictStr = Field(description="Key to remove or add")
     __properties: ClassVar[List[str]] = ["action", "recipient_key"]
 
     @field_validator("action")

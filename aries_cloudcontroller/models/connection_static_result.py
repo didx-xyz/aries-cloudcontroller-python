@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.conn_record import ConnRecord
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -37,17 +36,11 @@ class ConnectionStaticResult(BaseModel):
     """
 
     my_did: StrictStr = Field(description="Local DID")
-    my_endpoint: StrictStr = Field(
-        description="My URL endpoint"
-    )
-    my_verkey: StrictStr = Field(
-        description="My verification key"
-    )
+    my_endpoint: StrictStr = Field(description="My URL endpoint")
+    my_verkey: StrictStr = Field(description="My verification key")
     record: ConnRecord
     their_did: StrictStr = Field(description="Remote DID")
-    their_verkey: StrictStr = Field(
-        description="Remote verification key"
-    )
+    their_verkey: StrictStr = Field(description="Remote verification key")
     __properties: ClassVar[List[str]] = [
         "my_did",
         "my_endpoint",

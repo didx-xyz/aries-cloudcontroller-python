@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,9 +34,7 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
     IndyProofRequestedProofRevealedAttr
     """
 
-    encoded: Optional[StrictStr] = Field(
-        default=None, description="Encoded value"
-    )
+    encoded: Optional[StrictStr] = Field(default=None, description="Encoded value")
     raw: Optional[StrictStr] = Field(default=None, description="Raw value")
     sub_proof_index: Optional[StrictInt] = Field(
         default=None, description="Sub-proof index"

@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.indy_key_correctness_proof import (
     IndyKeyCorrectnessProof,
@@ -38,16 +37,10 @@ class IndyCredAbstract(BaseModel):
     IndyCredAbstract
     """
 
-    cred_def_id: StrictStr = Field(
-        description="Credential definition identifier"
-    )
+    cred_def_id: StrictStr = Field(description="Credential definition identifier")
     key_correctness_proof: IndyKeyCorrectnessProof
-    nonce: StrictStr = Field(
-        description="Nonce in credential abstract"
-    )
-    schema_id: StrictStr = Field(
-        description="Schema identifier"
-    )
+    nonce: StrictStr = Field(description="Nonce in credential abstract")
+    schema_id: StrictStr = Field(description="Schema identifier")
     __properties: ClassVar[List[str]] = [
         "cred_def_id",
         "key_correctness_proof",

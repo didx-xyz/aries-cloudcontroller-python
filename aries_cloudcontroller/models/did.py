@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 from aries_cloudcontroller.util.regex_patterns import BBS_PATTERN, ED25519_PATTERN
@@ -36,9 +35,7 @@ class DID(BaseModel):
     DID
     """
 
-    did: Optional[StrictStr] = Field(
-        default=None, description="DID of interest"
-    )
+    did: Optional[StrictStr] = Field(default=None, description="DID of interest")
     key_type: Optional[Literal["ed25519", "bls12381g2"]] = Field(
         default=None, description="Key type associated with the DID"
     )
