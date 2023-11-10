@@ -33,7 +33,7 @@ class AdminConfig(BaseModel):
     AdminConfig
     """
 
-    config: Optional[Union[str, Any]] = Field(
+    config: Optional[Dict[str, Any]] = Field(
         default=None, description="Configuration settings"
     )
     __properties: ClassVar[List[str]] = ["config"]

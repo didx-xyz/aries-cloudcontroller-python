@@ -48,7 +48,7 @@ class V20CredExRecordIndy(BaseModel):
     cred_id_stored: Optional[StrictStr] = Field(
         default=None, description="Credential identifier stored in wallet"
     )
-    cred_request_metadata: Optional[Union[str, Any]] = Field(
+    cred_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Credential request metadata for indy holder"
     )
     cred_rev_id: Optional[Annotated[str, Field(strict=True)]] = Field(

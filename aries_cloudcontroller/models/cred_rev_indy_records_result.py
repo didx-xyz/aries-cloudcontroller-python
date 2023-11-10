@@ -33,7 +33,7 @@ class CredRevIndyRecordsResult(BaseModel):
     CredRevIndyRecordsResult
     """
 
-    rev_reg_delta: Optional[Union[str, Any]] = Field(
+    rev_reg_delta: Optional[Dict[str, Any]] = Field(
         default=None, description="Indy revocation registry delta"
     )
     __properties: ClassVar[List[str]] = ["rev_reg_delta"]

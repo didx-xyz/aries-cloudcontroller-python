@@ -34,7 +34,7 @@ class Doc(BaseModel):
     Doc
     """
 
-    credential: Union[str, Any] = Field(description="Credential to sign")
+    credential: Dict[str, Any] = Field(description="Credential to sign")
     options: SignatureOptions
     __properties: ClassVar[List[str]] = ["credential", "options"]
 

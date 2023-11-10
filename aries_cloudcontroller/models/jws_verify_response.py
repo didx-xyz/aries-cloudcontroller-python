@@ -34,9 +34,9 @@ class JWSVerifyResponse(BaseModel):
     """
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
-    headers: Union[str, Any] = Field(description="Headers from verified JWT.")
+    headers: Dict[str, Any] = Field(description="Headers from verified JWT.")
     kid: StrictStr = Field(description="kid of signer")
-    payload: Union[str, Any] = Field(description="Payload from verified JWT")
+    payload: Dict[str, Any] = Field(description="Payload from verified JWT")
     valid: StrictBool
     __properties: ClassVar[List[str]] = ["error", "headers", "kid", "payload", "valid"]
 

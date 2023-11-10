@@ -33,7 +33,7 @@ class UpdateWalletRequest(BaseModel):
     UpdateWalletRequest
     """
 
-    extra_settings: Optional[Union[str, Any]] = Field(
+    extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
     )
     image_url: Optional[StrictStr] = Field(

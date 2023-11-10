@@ -39,7 +39,7 @@ class Disclosures(BaseModel):
     type: Optional[StrictStr] = Field(
         default=None, description="Message type", alias="@type"
     )
-    disclosures: List[Union[str, Any]] = Field(
+    disclosures: List[Dict[str, Any]] = Field(
         description="List of protocol or goal_code descriptors"
     )
     __properties: ClassVar[List[str]] = ["@id", "@type", "disclosures"]

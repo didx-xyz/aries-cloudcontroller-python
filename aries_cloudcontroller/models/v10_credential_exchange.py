@@ -73,7 +73,7 @@ class V10CredentialExchange(BaseModel):
     credential_offer_dict: Optional[CredentialOffer] = None
     credential_proposal_dict: Optional[CredentialProposal] = None
     credential_request: Optional[IndyCredRequest] = None
-    credential_request_metadata: Optional[Union[str, Any]] = Field(
+    credential_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="(Indy) credential request metadata"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")

@@ -40,7 +40,7 @@ class InputDescriptors(BaseModel):
     constraints: Optional[Constraints] = None
     group: Optional[List[StrictStr]] = None
     id: Optional[StrictStr] = Field(default=None, description="ID")
-    metadata: Optional[Union[str, Any]] = Field(
+    metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Metadata dictionary"
     )
     name: Optional[StrictStr] = Field(default=None, description="Name")

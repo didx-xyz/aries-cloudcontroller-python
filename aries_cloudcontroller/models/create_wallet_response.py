@@ -41,7 +41,7 @@ class CreateWalletResponse(BaseModel):
     key_management_mode: StrictStr = Field(
         description="Mode regarding management of wallet key"
     )
-    settings: Optional[Union[str, Any]] = Field(
+    settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Settings for this wallet."
     )
     state: Optional[StrictStr] = Field(default=None, description="Current record state")

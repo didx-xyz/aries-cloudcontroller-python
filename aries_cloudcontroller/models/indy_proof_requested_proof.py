@@ -53,10 +53,10 @@ class IndyProofRequestedProof(BaseModel):
     revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = Field(
         default=None, description="Proof requested proof revealed attributes"
     )
-    self_attested_attrs: Optional[Union[str, Any]] = Field(
+    self_attested_attrs: Optional[Dict[str, Any]] = Field(
         default=None, description="Proof requested proof self-attested attributes"
     )
-    unrevealed_attrs: Optional[Union[str, Any]] = Field(
+    unrevealed_attrs: Optional[Dict[str, Any]] = Field(
         default=None, description="Unrevealed attributes"
     )
     __properties: ClassVar[List[str]] = [

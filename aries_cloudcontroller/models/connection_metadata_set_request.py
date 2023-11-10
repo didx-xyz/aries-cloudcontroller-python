@@ -33,7 +33,7 @@ class ConnectionMetadataSetRequest(BaseModel):
     ConnectionMetadataSetRequest
     """
 
-    metadata: Union[str, Any] = Field(
+    metadata: Dict[str, Any] = Field(
         description="Dictionary of metadata to set for connection."
     )
     __properties: ClassVar[List[str]] = ["metadata"]

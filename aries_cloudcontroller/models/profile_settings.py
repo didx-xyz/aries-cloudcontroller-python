@@ -33,7 +33,7 @@ class ProfileSettings(BaseModel):
     ProfileSettings
     """
 
-    settings: Optional[Union[str, Any]] = Field(
+    settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Profile settings dict"
     )
     __properties: ClassVar[List[str]] = ["settings"]

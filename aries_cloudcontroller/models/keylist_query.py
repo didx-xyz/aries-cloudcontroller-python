@@ -40,7 +40,7 @@ class KeylistQuery(BaseModel):
     type: Optional[StrictStr] = Field(
         default=None, description="Message type", alias="@type"
     )
-    filter: Optional[Union[str, Any]] = Field(
+    filter: Optional[Dict[str, Any]] = Field(
         default=None, description="Query dictionary object"
     )
     paginate: Optional[KeylistQueryPaginate] = None

@@ -33,13 +33,11 @@ class AdminStatus(BaseModel):
     AdminStatus
     """
 
-    conductor: Optional[Union[str, Any]] = Field(
+    conductor: Optional[Dict[str, Any]] = Field(
         default=None, description="Conductor statistics"
     )
     label: Optional[StrictStr] = Field(default=None, description="Default label")
-    timing: Optional[Union[str, Any]] = Field(
-        default=None, description="Timing results"
-    )
+    timing: Optional[Dict[str, Any]] = Field(default=None, description="Timing results")
     version: Optional[StrictStr] = Field(default=None, description="Version code")
     __properties: ClassVar[List[str]] = ["conductor", "label", "timing", "version"]
 

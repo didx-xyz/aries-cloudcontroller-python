@@ -36,7 +36,7 @@ class VCRecord(BaseModel):
 
     contexts: Optional[List[Annotated[str, Field(strict=True)]]] = None
     cred_tags: Optional[Dict[str, StrictStr]] = None
-    cred_value: Optional[Union[str, Any]] = Field(
+    cred_value: Optional[Dict[str, Any]] = Field(
         default=None, description="(JSON-serializable) credential value"
     )
     expanded_types: Optional[List[StrictStr]] = None

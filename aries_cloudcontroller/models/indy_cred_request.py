@@ -35,8 +35,8 @@ class IndyCredRequest(BaseModel):
     IndyCredRequest
     """
 
-    blinded_ms: Union[str, Any] = Field(description="Blinded master secret")
-    blinded_ms_correctness_proof: Union[str, Any] = Field(
+    blinded_ms: Dict[str, Any] = Field(description="Blinded master secret")
+    blinded_ms_correctness_proof: Dict[str, Any] = Field(
         description="Blinded master secret correctness proof"
     )
     cred_def_id: Annotated[str, Field(strict=True)] = Field(

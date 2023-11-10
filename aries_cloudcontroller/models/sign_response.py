@@ -34,7 +34,7 @@ class SignResponse(BaseModel):
     """
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
-    signed_doc: Optional[Union[str, Any]] = Field(
+    signed_doc: Optional[Dict[str, Any]] = Field(
         default=None, description="Signed document"
     )
     __properties: ClassVar[List[str]] = ["error", "signed_doc"]

@@ -39,7 +39,7 @@ class Credential(BaseModel):
     context: List[Union[str, Dict]] = Field(
         description="The JSON-LD context of the credential", alias="@context"
     )
-    credential_subject: Union[str, Any] = Field(alias="credentialSubject")
+    credential_subject: Dict[str, Any] = Field(alias="credentialSubject")
     expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The expiration date", alias="expirationDate"
     )

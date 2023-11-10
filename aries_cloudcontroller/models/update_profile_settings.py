@@ -33,7 +33,7 @@ class UpdateProfileSettings(BaseModel):
     UpdateProfileSettings
     """
 
-    extra_settings: Optional[Union[str, Any]] = Field(
+    extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
     )
     __properties: ClassVar[List[str]] = ["extra_settings"]

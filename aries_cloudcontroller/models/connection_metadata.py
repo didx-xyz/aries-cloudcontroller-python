@@ -33,7 +33,7 @@ class ConnectionMetadata(BaseModel):
     ConnectionMetadata
     """
 
-    results: Optional[Union[str, Any]] = Field(
+    results: Optional[Dict[str, Any]] = Field(
         default=None, description="Dictionary of metadata associated with connection."
     )
     __properties: ClassVar[List[str]] = ["results"]

@@ -39,11 +39,11 @@ class DIFPresSpec(BaseModel):
         description="Issuer identifier to sign the presentation, if different from current public DID",
     )
     presentation_definition: Optional[PresentationDefinition] = None
-    record_ids: Optional[Union[str, Any]] = Field(
+    record_ids: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Mapping of input_descriptor id to list of stored W3C credential record_id",
     )
-    reveal_doc: Optional[Union[str, Any]] = Field(
+    reveal_doc: Optional[Dict[str, Any]] = Field(
         default=None,
         description="reveal doc [JSON-LD frame] dict used to derive the credential when selective disclosure is required",
     )

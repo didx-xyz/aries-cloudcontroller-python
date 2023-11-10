@@ -38,8 +38,8 @@ class JWSCreate(BaseModel):
     did: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="DID of interest"
     )
-    headers: Optional[Union[str, Any]] = None
-    payload: Union[str, Any]
+    headers: Optional[Dict[str, Any]] = None
+    payload: Dict[str, Any]
     verification_method: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
         description="Information used for proof verification",

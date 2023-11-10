@@ -38,7 +38,7 @@ class CreateInvitationRequest(BaseModel):
     mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Identifier for active mediation record to be used"
     )
-    metadata: Optional[Union[str, Any]] = Field(
+    metadata: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Optional metadata to attach to the connection created with the invitation",
     )

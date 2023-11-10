@@ -33,10 +33,10 @@ class V20CredExRecordByFormat(BaseModel):
     V20CredExRecordByFormat
     """
 
-    cred_issue: Optional[Union[str, Any]] = None
-    cred_offer: Optional[Union[str, Any]] = None
-    cred_proposal: Optional[Union[str, Any]] = None
-    cred_request: Optional[Union[str, Any]] = None
+    cred_issue: Optional[Dict[str, Any]] = None
+    cred_offer: Optional[Dict[str, Any]] = None
+    cred_proposal: Optional[Dict[str, Any]] = None
+    cred_request: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = [
         "cred_issue",
         "cred_offer",

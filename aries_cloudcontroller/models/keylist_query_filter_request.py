@@ -33,7 +33,7 @@ class KeylistQueryFilterRequest(BaseModel):
     KeylistQueryFilterRequest
     """
 
-    filter: Optional[Union[str, Any]] = Field(
+    filter: Optional[Dict[str, Any]] = Field(
         default=None, description="Filter for keylist query"
     )
     __properties: ClassVar[List[str]] = ["filter"]
