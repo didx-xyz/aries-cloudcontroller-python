@@ -54,13 +54,17 @@ sed -i -e 's/context: List\[Union\[str, Any\]\]/context: List\[Union\[str, Dict\
 # Fix type in invitation_message.py: "Any" type in services should be a dict
 sed -i 's/services: Optional\[List\[Union\[str, Any\]\]\]/services: Optional\[List\[Union\[str, Dict\]\]\]/g' aries_cloudcontroller/models/invitation_message.py
 
+# Relax the model validation in verify_request (replace SignedDoc with a generic Dict[str, Any]):
+sed -i 's/doc: SignedDoc/doc: Dict[str, Any]/' aries_cloudcontroller/models/verify_request.py
+# Remove block of code associated with this previous change:
+sed -i '/# override the default output from pydantic by calling `to_dict()` of doc/,/self.doc.to_dict()/d' aries_cloudcontroller/models/verify_request.py
+
 # NB:
 # There are 3 more models, and 1 API Module, that we are not amending automatically. These should be reviewed manually:
 # - MultitenancyAPI has custom method to handle our groups plugin!
 # Models:
 # - credential_definition.py: `type`, for now, must be Literal["CL"]
 # - did.py: key_type, method, and posture each have literals. NB: Also: the validator: `verkey_validate_regular_expression` must include BBS_PATTERN regex
-# - verify_request: doc: SignedDoc must be relaxed to: doc: Dict[str, Any], and `if self.doc:` override block must be removed
 
 # Additionally, the API Client we modify so that query_params are converted from bool to str, before being submitted to ACA-Py
 # This change impacts multiple lines, calling `sanitize_for_serialization`
