@@ -32,7 +32,7 @@ except ImportError:
 class V20DiscoveryExchangeResult(BaseModel):
     """
     V20DiscoveryExchangeResult
-    """
+    """  # noqa: E501
 
     results: Optional[V20DiscoveryRecord] = None
     __properties: ClassVar[List[str]] = ["results"]

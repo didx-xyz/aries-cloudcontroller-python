@@ -32,7 +32,7 @@ except ImportError:
 class Doc(BaseModel):
     """
     Doc
-    """
+    """  # noqa: E501
 
     credential: Union[str, Any] = Field(description="Credential to sign")
     options: SignatureOptions

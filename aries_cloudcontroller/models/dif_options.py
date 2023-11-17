@@ -33,7 +33,7 @@ except ImportError:
 class DIFOptions(BaseModel):
     """
     DIFOptions
-    """
+    """  # noqa: E501
 
     challenge: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Challenge protect against replay attack"

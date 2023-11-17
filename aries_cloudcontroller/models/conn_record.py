@@ -33,7 +33,7 @@ except ImportError:
 class ConnRecord(BaseModel):
     """
     ConnRecord
-    """
+    """  # noqa: E501
 
     accept: Optional[StrictStr] = Field(
         default=None, description="Connection acceptance: manual or auto"

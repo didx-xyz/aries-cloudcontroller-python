@@ -38,7 +38,7 @@ except ImportError:
 class IndyProofRequest(BaseModel):
     """
     IndyProofRequest
-    """
+    """  # noqa: E501
 
     name: Optional[StrictStr] = Field(default=None, description="Proof request name")
     non_revoked: Optional[IndyProofRequestNonRevoked] = None

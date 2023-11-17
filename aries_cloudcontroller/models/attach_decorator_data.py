@@ -36,7 +36,7 @@ except ImportError:
 class AttachDecoratorData(BaseModel):
     """
     AttachDecoratorData
-    """
+    """  # noqa: E501
 
     var_base64: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Base64-encoded data", alias="base64"

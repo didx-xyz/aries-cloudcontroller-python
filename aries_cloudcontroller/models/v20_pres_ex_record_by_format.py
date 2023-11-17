@@ -31,7 +31,7 @@ except ImportError:
 class V20PresExRecordByFormat(BaseModel):
     """
     V20PresExRecordByFormat
-    """
+    """  # noqa: E501
 
     pres: Optional[Union[str, Any]] = None
     pres_proposal: Optional[Union[str, Any]] = None

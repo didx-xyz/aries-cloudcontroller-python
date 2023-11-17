@@ -34,7 +34,7 @@ except ImportError:
 class IndyGEProof(BaseModel):
     """
     IndyGEProof
-    """
+    """  # noqa: E501
 
     alpha: Optional[Annotated[str, Field(strict=True)]] = None
     mj: Optional[Annotated[str, Field(strict=True)]] = None

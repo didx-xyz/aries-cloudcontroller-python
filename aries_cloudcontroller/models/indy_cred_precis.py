@@ -35,7 +35,7 @@ except ImportError:
 class IndyCredPrecis(BaseModel):
     """
     IndyCredPrecis
-    """
+    """  # noqa: E501
 
     cred_info: Optional[IndyCredInfo] = None
     interval: Optional[IndyNonRevocationInterval] = None

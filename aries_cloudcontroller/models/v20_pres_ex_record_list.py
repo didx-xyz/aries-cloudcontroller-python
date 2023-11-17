@@ -32,7 +32,7 @@ except ImportError:
 class V20PresExRecordList(BaseModel):
     """
     V20PresExRecordList
-    """
+    """  # noqa: E501
 
     results: Optional[List[V20PresExRecord]] = Field(
         default=None, description="Presentation exchange records"

@@ -34,7 +34,7 @@ except ImportError:
 class IndyRevRegDefValuePublicKeys(BaseModel):
     """
     IndyRevRegDefValuePublicKeys
-    """
+    """  # noqa: E501
 
     accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = Field(
         default=None, alias="accumKey"

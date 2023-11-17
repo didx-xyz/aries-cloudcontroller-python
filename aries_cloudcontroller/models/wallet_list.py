@@ -32,7 +32,7 @@ except ImportError:
 class WalletList(BaseModel):
     """
     WalletList
-    """
+    """  # noqa: E501
 
     results: Optional[List[WalletRecord]] = Field(
         default=None, description="List of wallet records"

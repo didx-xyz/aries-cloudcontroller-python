@@ -34,7 +34,7 @@ except ImportError:
 class CredDefValuePrimary(BaseModel):
     """
     CredDefValuePrimary
-    """
+    """  # noqa: E501
 
     n: Optional[Annotated[str, Field(strict=True)]] = None
     r: Optional[Generated] = None

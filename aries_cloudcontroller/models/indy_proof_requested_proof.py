@@ -40,7 +40,7 @@ except ImportError:
 class IndyProofRequestedProof(BaseModel):
     """
     IndyProofRequestedProof
-    """
+    """  # noqa: E501
 
     predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = Field(
         default=None, description="Proof requested proof predicates."

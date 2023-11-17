@@ -32,7 +32,7 @@ except ImportError:
 class MenuJson(BaseModel):
     """
     MenuJson
-    """
+    """  # noqa: E501
 
     description: Optional[StrictStr] = Field(
         default=None, description="Introductory text for the menu"

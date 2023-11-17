@@ -33,7 +33,7 @@ except ImportError:
 class ConnectionStaticRequest(BaseModel):
     """
     ConnectionStaticRequest
-    """
+    """  # noqa: E501
 
     alias: Optional[StrictStr] = Field(
         default=None, description="Alias to assign to this connection"

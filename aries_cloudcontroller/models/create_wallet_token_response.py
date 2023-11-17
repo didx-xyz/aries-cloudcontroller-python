@@ -31,7 +31,7 @@ except ImportError:
 class CreateWalletTokenResponse(BaseModel):
     """
     CreateWalletTokenResponse
-    """
+    """  # noqa: E501
 
     token: Optional[StrictStr] = Field(
         default=None, description="Authorization token to authenticate wallet requests"

@@ -33,7 +33,7 @@ except ImportError:
 class JWSCreate(BaseModel):
     """
     JWSCreate
-    """
+    """  # noqa: E501
 
     did: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="DID of interest"

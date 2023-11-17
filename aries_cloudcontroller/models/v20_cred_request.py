@@ -33,7 +33,7 @@ except ImportError:
 class V20CredRequest(BaseModel):
     """
     V20CredRequest
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

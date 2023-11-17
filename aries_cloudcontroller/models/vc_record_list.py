@@ -32,7 +32,7 @@ except ImportError:
 class VCRecordList(BaseModel):
     """
     VCRecordList
-    """
+    """  # noqa: E501
 
     results: Optional[List[VCRecord]] = None
     __properties: ClassVar[List[str]] = ["results"]

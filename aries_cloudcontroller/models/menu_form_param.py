@@ -31,7 +31,7 @@ except ImportError:
 class MenuFormParam(BaseModel):
     """
     MenuFormParam
-    """
+    """  # noqa: E501
 
     default: Optional[StrictStr] = Field(
         default=None, description="Default parameter value"

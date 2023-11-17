@@ -32,7 +32,7 @@ except ImportError:
 class SendMenu(BaseModel):
     """
     SendMenu
-    """
+    """  # noqa: E501
 
     menu: MenuJson
     __properties: ClassVar[List[str]] = ["menu"]

@@ -32,7 +32,7 @@ except ImportError:
 class CredInfoList(BaseModel):
     """
     CredInfoList
-    """
+    """  # noqa: E501
 
     results: Optional[List[IndyCredInfo]] = None
     __properties: ClassVar[List[str]] = ["results"]

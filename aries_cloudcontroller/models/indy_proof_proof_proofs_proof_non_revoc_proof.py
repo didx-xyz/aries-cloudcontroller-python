@@ -31,7 +31,7 @@ except ImportError:
 class IndyProofProofProofsProofNonRevocProof(BaseModel):
     """
     Indy non-revocation proof  # noqa: E501
-    """
+    """  # noqa: E501
 
     c_list: Optional[Dict[str, StrictStr]] = None
     x_list: Optional[Dict[str, StrictStr]] = None

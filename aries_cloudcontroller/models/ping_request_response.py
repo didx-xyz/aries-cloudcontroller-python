@@ -31,7 +31,7 @@ except ImportError:
 class PingRequestResponse(BaseModel):
     """
     PingRequestResponse
-    """
+    """  # noqa: E501
 
     thread_id: Optional[StrictStr] = Field(
         default=None, description="Thread ID of the ping message"

@@ -32,7 +32,7 @@ except ImportError:
 class VerifyRequest(BaseModel):
     """
     VerifyRequest
-    """
+    """  # noqa: E501
 
     doc: Dict[str, Any]
     verkey: Optional[StrictStr] = Field(

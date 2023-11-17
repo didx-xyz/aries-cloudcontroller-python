@@ -32,7 +32,7 @@ except ImportError:
 class DIDCreate(BaseModel):
     """
     DIDCreate
-    """
+    """  # noqa: E501
 
     method: Optional[StrictStr] = Field(
         default=None,

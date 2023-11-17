@@ -36,7 +36,7 @@ except ImportError:
 class LDProofVCDetailOptions(BaseModel):
     """
     LDProofVCDetailOptions
-    """
+    """  # noqa: E501
 
     challenge: Optional[StrictStr] = Field(
         default=None,

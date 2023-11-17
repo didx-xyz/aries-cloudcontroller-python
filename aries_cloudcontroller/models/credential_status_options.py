@@ -31,7 +31,7 @@ except ImportError:
 class CredentialStatusOptions(BaseModel):
     """
     CredentialStatusOptions
-    """
+    """  # noqa: E501
 
     type: StrictStr = Field(
         description="Credential status method type to use for the credential. Should match status method registered in the Verifiable Credential Extension Registry"

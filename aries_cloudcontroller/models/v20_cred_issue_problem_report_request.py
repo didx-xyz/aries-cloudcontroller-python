@@ -31,7 +31,7 @@ except ImportError:
 class V20CredIssueProblemReportRequest(BaseModel):
     """
     V20CredIssueProblemReportRequest
-    """
+    """  # noqa: E501
 
     description: StrictStr
     __properties: ClassVar[List[str]] = ["description"]

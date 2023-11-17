@@ -31,7 +31,7 @@ except ImportError:
 class QueryItem(BaseModel):
     """
     QueryItem
-    """
+    """  # noqa: E501
 
     feature_type: StrictStr = Field(description="feature type", alias="feature-type")
     match: StrictStr = Field(description="match")

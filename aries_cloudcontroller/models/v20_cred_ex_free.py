@@ -33,7 +33,7 @@ except ImportError:
 class V20CredExFree(BaseModel):
     """
     V20CredExFree
-    """
+    """  # noqa: E501
 
     auto_remove: Optional[StrictBool] = Field(
         default=None,

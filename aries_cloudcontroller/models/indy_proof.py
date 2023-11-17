@@ -36,7 +36,7 @@ except ImportError:
 class IndyProof(BaseModel):
     """
     IndyProof
-    """
+    """  # noqa: E501
 
     identifiers: Optional[List[IndyProofIdentifier]] = Field(
         default=None, description="Indy proof.identifiers content"

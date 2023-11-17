@@ -34,7 +34,7 @@ except ImportError:
 class V20PresProposalRequest(BaseModel):
     """
     V20PresProposalRequest
-    """
+    """  # noqa: E501
 
     auto_present: Optional[StrictBool] = Field(
         default=None,

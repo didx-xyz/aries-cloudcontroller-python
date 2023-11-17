@@ -31,7 +31,7 @@ except ImportError:
 class MediationIdMatchInfo(BaseModel):
     """
     MediationIdMatchInfo
-    """
+    """  # noqa: E501
 
     mediation_id: Optional[StrictStr] = Field(
         default=None, description="Mediation record identifier"

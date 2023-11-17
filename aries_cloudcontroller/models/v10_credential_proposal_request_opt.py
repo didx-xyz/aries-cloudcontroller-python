@@ -34,7 +34,7 @@ except ImportError:
 class V10CredentialProposalRequestOpt(BaseModel):
     """
     V10CredentialProposalRequestOpt
-    """
+    """  # noqa: E501
 
     auto_remove: Optional[StrictBool] = Field(
         default=None,

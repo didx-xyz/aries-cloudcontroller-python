@@ -31,7 +31,7 @@ except ImportError:
 class TransactionJobs(BaseModel):
     """
     TransactionJobs
-    """
+    """  # noqa: E501
 
     transaction_my_job: Optional[StrictStr] = Field(
         default=None, description="My transaction related job"

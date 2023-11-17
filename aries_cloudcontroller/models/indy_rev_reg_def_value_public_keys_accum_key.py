@@ -31,7 +31,7 @@ except ImportError:
 class IndyRevRegDefValuePublicKeysAccumKey(BaseModel):
     """
     IndyRevRegDefValuePublicKeysAccumKey
-    """
+    """  # noqa: E501
 
     z: Optional[StrictStr] = Field(default=None, description="Value for z")
     __properties: ClassVar[List[str]] = ["z"]

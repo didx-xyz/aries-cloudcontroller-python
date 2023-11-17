@@ -33,7 +33,7 @@ except ImportError:
 class SchemaSendRequest(BaseModel):
     """
     SchemaSendRequest
-    """
+    """  # noqa: E501
 
     attributes: List[StrictStr] = Field(description="List of schema attributes")
     schema_name: StrictStr = Field(description="Schema name")

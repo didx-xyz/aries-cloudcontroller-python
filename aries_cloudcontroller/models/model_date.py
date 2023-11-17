@@ -32,7 +32,7 @@ except ImportError:
 class ModelDate(BaseModel):
     """
     ModelDate
-    """
+    """  # noqa: E501
 
     expires_time: datetime = Field(description="Expiry Date")
     __properties: ClassVar[List[str]] = ["expires_time"]

@@ -35,7 +35,7 @@ except ImportError:
 class OobRecord(BaseModel):
     """
     OobRecord
-    """
+    """  # noqa: E501
 
     attach_thread_id: Optional[StrictStr] = Field(
         default=None, description="Connection record identifier"

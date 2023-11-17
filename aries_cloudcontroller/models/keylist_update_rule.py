@@ -33,7 +33,7 @@ except ImportError:
 class KeylistUpdateRule(BaseModel):
     """
     KeylistUpdateRule
-    """
+    """  # noqa: E501
 
     action: StrictStr = Field(description="Action for specific key")
     recipient_key: Annotated[str, Field(strict=True)] = Field(

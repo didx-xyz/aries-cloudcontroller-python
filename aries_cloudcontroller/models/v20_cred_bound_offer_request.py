@@ -33,7 +33,7 @@ except ImportError:
 class V20CredBoundOfferRequest(BaseModel):
     """
     V20CredBoundOfferRequest
-    """
+    """  # noqa: E501
 
     counter_preview: Optional[V20CredPreview] = None
     filter: Optional[V20CredFilter] = None

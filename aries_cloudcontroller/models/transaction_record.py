@@ -33,7 +33,7 @@ except ImportError:
 class TransactionRecord(BaseModel):
     """
     TransactionRecord
-    """
+    """  # noqa: E501
 
     type: Optional[StrictStr] = Field(
         default=None, description="Transaction type", alias="_type"

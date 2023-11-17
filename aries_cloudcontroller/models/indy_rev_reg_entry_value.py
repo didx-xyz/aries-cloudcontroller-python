@@ -31,7 +31,7 @@ except ImportError:
 class IndyRevRegEntryValue(BaseModel):
     """
     IndyRevRegEntryValue
-    """
+    """  # noqa: E501
 
     accum: Optional[StrictStr] = Field(default=None, description="Accumulator value")
     prev_accum: Optional[StrictStr] = Field(

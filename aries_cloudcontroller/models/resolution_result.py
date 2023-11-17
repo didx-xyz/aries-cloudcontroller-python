@@ -31,7 +31,7 @@ except ImportError:
 class ResolutionResult(BaseModel):
     """
     ResolutionResult
-    """
+    """  # noqa: E501
 
     did_document: Union[str, Any] = Field(description="DID Document")
     metadata: Union[str, Any] = Field(description="Resolution metadata")

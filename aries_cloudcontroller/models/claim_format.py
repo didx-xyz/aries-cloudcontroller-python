@@ -31,7 +31,7 @@ except ImportError:
 class ClaimFormat(BaseModel):
     """
     ClaimFormat
-    """
+    """  # noqa: E501
 
     jwt: Optional[Union[str, Any]] = None
     jwt_vc: Optional[Union[str, Any]] = None

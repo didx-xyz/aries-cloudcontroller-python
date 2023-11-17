@@ -39,7 +39,7 @@ except ImportError:
 class V20PresExRecord(BaseModel):
     """
     V20PresExRecord
-    """
+    """  # noqa: E501
 
     auto_present: Optional[StrictBool] = Field(
         default=None,

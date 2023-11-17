@@ -32,7 +32,7 @@ except ImportError:
 class ConnectionList(BaseModel):
     """
     ConnectionList
-    """
+    """  # noqa: E501
 
     results: Optional[List[ConnRecord]] = Field(
         default=None, description="List of connection records"

@@ -32,7 +32,7 @@ except ImportError:
 class InvitationResult(BaseModel):
     """
     InvitationResult
-    """
+    """  # noqa: E501
 
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"

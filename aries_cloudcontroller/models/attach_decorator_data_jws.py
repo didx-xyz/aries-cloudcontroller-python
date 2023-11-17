@@ -39,7 +39,7 @@ except ImportError:
 class AttachDecoratorDataJWS(BaseModel):
     """
     AttachDecoratorDataJWS
-    """
+    """  # noqa: E501
 
     header: Optional[AttachDecoratorDataJWSHeader] = None
     protected: Optional[Annotated[str, Field(strict=True)]] = Field(

@@ -34,7 +34,7 @@ except ImportError:
 class IndyProofReqPredSpec(BaseModel):
     """
     IndyProofReqPredSpec
-    """
+    """  # noqa: E501
 
     name: StrictStr = Field(description="Attribute name")
     non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None

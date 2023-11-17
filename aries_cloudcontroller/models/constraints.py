@@ -33,7 +33,7 @@ except ImportError:
 class Constraints(BaseModel):
     """
     Constraints
-    """
+    """  # noqa: E501
 
     fields: Optional[List[DIFField]] = None
     is_holder: Optional[List[DIFHolder]] = None

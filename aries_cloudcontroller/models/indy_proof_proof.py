@@ -37,7 +37,7 @@ except ImportError:
 class IndyProofProof(BaseModel):
     """
     IndyProofProof
-    """
+    """  # noqa: E501
 
     aggregated_proof: Optional[IndyProofProofAggregatedProof] = None
     proofs: Optional[List[IndyProofProofProofsProof]] = Field(

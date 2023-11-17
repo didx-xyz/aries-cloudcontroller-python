@@ -33,7 +33,7 @@ except ImportError:
 class DIFProofRequest(BaseModel):
     """
     DIFProofRequest
-    """
+    """  # noqa: E501
 
     options: Optional[DIFOptions] = None
     presentation_definition: PresentationDefinition

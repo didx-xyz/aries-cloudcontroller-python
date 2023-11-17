@@ -31,7 +31,7 @@ except ImportError:
 class JWSVerifyResponse(BaseModel):
     """
     JWSVerifyResponse
-    """
+    """  # noqa: E501
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
     headers: Union[str, Any] = Field(description="Headers from verified JWT.")

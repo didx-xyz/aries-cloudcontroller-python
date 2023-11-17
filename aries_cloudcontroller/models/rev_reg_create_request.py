@@ -33,7 +33,7 @@ except ImportError:
 class RevRegCreateRequest(BaseModel):
     """
     RevRegCreateRequest
-    """
+    """  # noqa: E501
 
     credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier"

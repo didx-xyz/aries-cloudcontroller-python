@@ -33,7 +33,7 @@ except ImportError:
 class GetDIDVerkeyResponse(BaseModel):
     """
     GetDIDVerkeyResponse
-    """
+    """  # noqa: E501
 
     verkey: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Full verification key"

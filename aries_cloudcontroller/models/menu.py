@@ -32,7 +32,7 @@ except ImportError:
 class Menu(BaseModel):
     """
     Menu
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

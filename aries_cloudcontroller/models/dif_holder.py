@@ -32,7 +32,7 @@ except ImportError:
 class DIFHolder(BaseModel):
     """
     DIFHolder
-    """
+    """  # noqa: E501
 
     directive: Optional[StrictStr] = Field(default=None, description="Preference")
     field_id: Optional[List[Annotated[str, Field(strict=True)]]] = None

@@ -32,7 +32,7 @@ except ImportError:
 class ActionMenuFetchResult(BaseModel):
     """
     ActionMenuFetchResult
-    """
+    """  # noqa: E501
 
     result: Optional[Menu] = None
     __properties: ClassVar[List[str]] = ["result"]

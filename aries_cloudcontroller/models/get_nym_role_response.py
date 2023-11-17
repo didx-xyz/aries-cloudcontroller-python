@@ -31,7 +31,7 @@ except ImportError:
 class GetNymRoleResponse(BaseModel):
     """
     GetNymRoleResponse
-    """
+    """  # noqa: E501
 
     role: Optional[StrictStr] = Field(default=None, description="Ledger role")
     __properties: ClassVar[List[str]] = ["role"]

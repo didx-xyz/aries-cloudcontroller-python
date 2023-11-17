@@ -31,7 +31,7 @@ except ImportError:
 class CreateWalletRequest(BaseModel):
     """
     CreateWalletRequest
-    """
+    """  # noqa: E501
 
     extra_settings: Optional[Union[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"

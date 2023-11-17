@@ -32,7 +32,7 @@ except ImportError:
 class V20CredFilterLDProof(BaseModel):
     """
     V20CredFilterLDProof
-    """
+    """  # noqa: E501
 
     ld_proof: LDProofVCDetail
     __properties: ClassVar[List[str]] = ["ld_proof"]

@@ -31,7 +31,7 @@ except ImportError:
 class SubmissionRequirements(BaseModel):
     """
     SubmissionRequirements
-    """
+    """  # noqa: E501
 
     count: Optional[StrictInt] = Field(default=None, description="Count Value")
     var_from: Optional[StrictStr] = Field(

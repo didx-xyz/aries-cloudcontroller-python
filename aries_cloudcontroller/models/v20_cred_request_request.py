@@ -31,7 +31,7 @@ except ImportError:
 class V20CredRequestRequest(BaseModel):
     """
     V20CredRequestRequest
-    """
+    """  # noqa: E501
 
     holder_did: Optional[StrictStr] = Field(
         default=None,

@@ -32,7 +32,7 @@ except ImportError:
 class V10CredentialBoundOfferRequest(BaseModel):
     """
     V10CredentialBoundOfferRequest
-    """
+    """  # noqa: E501
 
     counter_proposal: Optional[CredentialProposal] = None
     __properties: ClassVar[List[str]] = ["counter_proposal"]

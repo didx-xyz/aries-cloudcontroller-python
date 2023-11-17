@@ -31,7 +31,7 @@ except ImportError:
 class RevRegUpdateTailsFileUri(BaseModel):
     """
     RevRegUpdateTailsFileUri
-    """
+    """  # noqa: E501
 
     tails_public_uri: StrictStr = Field(description="Public URI to the tails file")
     __properties: ClassVar[List[str]] = ["tails_public_uri"]

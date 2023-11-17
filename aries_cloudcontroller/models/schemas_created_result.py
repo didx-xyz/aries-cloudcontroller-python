@@ -32,7 +32,7 @@ except ImportError:
 class SchemasCreatedResult(BaseModel):
     """
     SchemasCreatedResult
-    """
+    """  # noqa: E501
 
     schema_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["schema_ids"]

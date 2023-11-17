@@ -32,7 +32,7 @@ except ImportError:
 class SchemaGetResult(BaseModel):
     """
     SchemaGetResult
-    """
+    """  # noqa: E501
 
     var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
     __properties: ClassVar[List[str]] = ["schema"]

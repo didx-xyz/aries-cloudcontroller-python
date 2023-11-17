@@ -34,7 +34,7 @@ except ImportError:
 class TAAInfo(BaseModel):
     """
     TAAInfo
-    """
+    """  # noqa: E501
 
     aml_record: Optional[AMLRecord] = None
     taa_accepted: Optional[TAAAcceptance] = None

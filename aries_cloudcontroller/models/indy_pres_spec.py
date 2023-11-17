@@ -37,7 +37,7 @@ except ImportError:
 class IndyPresSpec(BaseModel):
     """
     IndyPresSpec
-    """
+    """  # noqa: E501
 
     requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = Field(
         description="Nested object mapping proof request attribute referents to requested-attribute specifiers"

@@ -32,7 +32,7 @@ except ImportError:
 class RevRegResult(BaseModel):
     """
     RevRegResult
-    """
+    """  # noqa: E501
 
     result: Optional[IssuerRevRegRecord] = None
     __properties: ClassVar[List[str]] = ["result"]

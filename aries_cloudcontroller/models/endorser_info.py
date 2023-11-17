@@ -31,7 +31,7 @@ except ImportError:
 class EndorserInfo(BaseModel):
     """
     EndorserInfo
-    """
+    """  # noqa: E501
 
     endorser_did: StrictStr = Field(description="Endorser DID")
     endorser_name: Optional[StrictStr] = Field(

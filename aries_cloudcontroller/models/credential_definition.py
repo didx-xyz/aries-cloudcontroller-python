@@ -34,7 +34,7 @@ except ImportError:
 class CredentialDefinition(BaseModel):
     """
     CredentialDefinition
-    """
+    """  # noqa: E501
 
     id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier"

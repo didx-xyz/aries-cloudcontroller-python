@@ -33,7 +33,7 @@ except ImportError:
 class V20PresSpecByFormatRequest(BaseModel):
     """
     V20PresSpecByFormatRequest
-    """
+    """  # noqa: E501
 
     dif: Optional[DIFPresSpec] = None
     indy: Optional[IndyPresSpec] = None

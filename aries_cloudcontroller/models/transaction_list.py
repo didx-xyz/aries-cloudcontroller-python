@@ -32,7 +32,7 @@ except ImportError:
 class TransactionList(BaseModel):
     """
     TransactionList
-    """
+    """  # noqa: E501
 
     results: Optional[List[TransactionRecord]] = Field(
         default=None, description="List of transaction records"

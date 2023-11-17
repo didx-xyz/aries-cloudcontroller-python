@@ -33,7 +33,7 @@ except ImportError:
 class CredentialOffer(BaseModel):
     """
     CredentialOffer
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

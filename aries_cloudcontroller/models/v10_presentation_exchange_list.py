@@ -34,7 +34,7 @@ except ImportError:
 class V10PresentationExchangeList(BaseModel):
     """
     V10PresentationExchangeList
-    """
+    """  # noqa: E501
 
     results: Optional[List[V10PresentationExchange]] = Field(
         default=None, description="Aries RFC 37 v1.0 presentation exchange records"

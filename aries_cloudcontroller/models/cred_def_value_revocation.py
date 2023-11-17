@@ -31,7 +31,7 @@ except ImportError:
 class CredDefValueRevocation(BaseModel):
     """
     CredDefValueRevocation
-    """
+    """  # noqa: E501
 
     g: Optional[StrictStr] = None
     g_dash: Optional[StrictStr] = None

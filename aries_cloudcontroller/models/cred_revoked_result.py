@@ -31,7 +31,7 @@ except ImportError:
 class CredRevokedResult(BaseModel):
     """
     CredRevokedResult
-    """
+    """  # noqa: E501
 
     revoked: Optional[StrictBool] = Field(
         default=None, description="Whether credential is revoked on the ledger"

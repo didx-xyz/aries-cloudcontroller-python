@@ -32,7 +32,7 @@ except ImportError:
 class CredRevRecordResult(BaseModel):
     """
     CredRevRecordResult
-    """
+    """  # noqa: E501
 
     result: Optional[IssuerCredRevRecord] = None
     __properties: ClassVar[List[str]] = ["result"]

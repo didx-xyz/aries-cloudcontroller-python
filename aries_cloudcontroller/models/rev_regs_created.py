@@ -32,7 +32,7 @@ except ImportError:
 class RevRegsCreated(BaseModel):
     """
     RevRegsCreated
-    """
+    """  # noqa: E501
 
     rev_reg_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["rev_reg_ids"]

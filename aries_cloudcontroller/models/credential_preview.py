@@ -32,7 +32,7 @@ except ImportError:
 class CredentialPreview(BaseModel):
     """
     CredentialPreview
-    """
+    """  # noqa: E501
 
     type: Optional[StrictStr] = Field(
         default=None, description="Message type identifier", alias="@type"

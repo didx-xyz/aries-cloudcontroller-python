@@ -31,7 +31,7 @@ except ImportError:
 class ConnectionMetadataSetRequest(BaseModel):
     """
     ConnectionMetadataSetRequest
-    """
+    """  # noqa: E501
 
     metadata: Union[str, Any] = Field(
         description="Dictionary of metadata to set for connection."

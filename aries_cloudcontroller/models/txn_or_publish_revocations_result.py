@@ -33,7 +33,7 @@ except ImportError:
 class TxnOrPublishRevocationsResult(BaseModel):
     """
     TxnOrPublishRevocationsResult
-    """
+    """  # noqa: E501
 
     sent: Optional[PublishRevocations] = None
     txn: Optional[TransactionRecord] = None

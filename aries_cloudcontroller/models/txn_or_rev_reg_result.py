@@ -33,7 +33,7 @@ except ImportError:
 class TxnOrRevRegResult(BaseModel):
     """
     TxnOrRevRegResult
-    """
+    """  # noqa: E501
 
     sent: Optional[RevRegResult] = None
     txn: Optional[TransactionRecord] = None

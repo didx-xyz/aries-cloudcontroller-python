@@ -31,7 +31,7 @@ except ImportError:
 class CredRevIndyRecordsResult(BaseModel):
     """
     CredRevIndyRecordsResult
-    """
+    """  # noqa: E501
 
     rev_reg_delta: Optional[Union[str, Any]] = Field(
         default=None, description="Indy revocation registry delta"

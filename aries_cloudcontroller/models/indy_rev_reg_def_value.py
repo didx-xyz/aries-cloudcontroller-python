@@ -36,7 +36,7 @@ except ImportError:
 class IndyRevRegDefValue(BaseModel):
     """
     IndyRevRegDefValue
-    """
+    """  # noqa: E501
 
     issuance_type: Optional[StrictStr] = Field(
         default=None, description="Issuance type", alias="issuanceType"

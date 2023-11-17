@@ -31,7 +31,7 @@ except ImportError:
 class V20CredIssueRequest(BaseModel):
     """
     V20CredIssueRequest
-    """
+    """  # noqa: E501
 
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"

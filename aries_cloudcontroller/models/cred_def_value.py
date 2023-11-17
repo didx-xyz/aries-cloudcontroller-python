@@ -35,7 +35,7 @@ except ImportError:
 class CredDefValue(BaseModel):
     """
     CredDefValue
-    """
+    """  # noqa: E501
 
     primary: Optional[CredDefValuePrimary] = None
     revocation: Optional[CredDefValueRevocation] = None

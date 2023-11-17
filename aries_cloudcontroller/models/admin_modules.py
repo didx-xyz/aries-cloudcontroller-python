@@ -31,7 +31,7 @@ except ImportError:
 class AdminModules(BaseModel):
     """
     AdminModules
-    """
+    """  # noqa: E501
 
     result: Optional[List[StrictStr]] = Field(
         default=None, description="List of admin modules"

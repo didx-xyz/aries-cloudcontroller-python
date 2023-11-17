@@ -31,7 +31,7 @@ except ImportError:
 class V20CredStoreRequest(BaseModel):
     """
     V20CredStoreRequest
-    """
+    """  # noqa: E501
 
     credential_id: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["credential_id"]

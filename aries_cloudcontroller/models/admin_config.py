@@ -31,7 +31,7 @@ except ImportError:
 class AdminConfig(BaseModel):
     """
     AdminConfig
-    """
+    """  # noqa: E501
 
     config: Optional[Union[str, Any]] = Field(
         default=None, description="Configuration settings"

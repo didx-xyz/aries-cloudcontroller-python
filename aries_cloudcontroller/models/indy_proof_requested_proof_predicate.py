@@ -31,7 +31,7 @@ except ImportError:
 class IndyProofRequestedProofPredicate(BaseModel):
     """
     IndyProofRequestedProofPredicate
-    """
+    """  # noqa: E501
 
     sub_proof_index: Optional[StrictInt] = Field(
         default=None, description="Sub-proof index"

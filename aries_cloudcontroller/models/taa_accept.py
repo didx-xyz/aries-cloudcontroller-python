@@ -31,7 +31,7 @@ except ImportError:
 class TAAAccept(BaseModel):
     """
     TAAAccept
-    """
+    """  # noqa: E501
 
     mechanism: Optional[StrictStr] = None
     text: Optional[StrictStr] = None

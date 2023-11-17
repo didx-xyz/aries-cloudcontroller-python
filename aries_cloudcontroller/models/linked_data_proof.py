@@ -33,7 +33,7 @@ except ImportError:
 class LinkedDataProof(BaseModel):
     """
     LinkedDataProof
-    """
+    """  # noqa: E501
 
     challenge: Optional[StrictStr] = Field(
         default=None,

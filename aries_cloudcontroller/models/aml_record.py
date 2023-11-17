@@ -31,7 +31,7 @@ except ImportError:
 class AMLRecord(BaseModel):
     """
     AMLRecord
-    """
+    """  # noqa: E501
 
     aml: Optional[Dict[str, StrictStr]] = None
     aml_context: Optional[StrictStr] = Field(default=None, alias="amlContext")

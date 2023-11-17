@@ -36,7 +36,7 @@ except ImportError:
 class PresentationDefinition(BaseModel):
     """
     PresentationDefinition
-    """
+    """  # noqa: E501
 
     format: Optional[ClaimFormat] = None
     id: Optional[Annotated[str, Field(strict=True)]] = Field(

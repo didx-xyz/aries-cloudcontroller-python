@@ -32,7 +32,7 @@ except ImportError:
 class SignRequest(BaseModel):
     """
     SignRequest
-    """
+    """  # noqa: E501
 
     doc: Doc
     verkey: StrictStr = Field(description="Verkey to use for signing")

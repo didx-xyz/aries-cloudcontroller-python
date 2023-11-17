@@ -35,7 +35,7 @@ except ImportError:
 class IndyPrimaryProof(BaseModel):
     """
     IndyPrimaryProof
-    """
+    """  # noqa: E501
 
     eq_proof: Optional[IndyPrimaryProofEqProof] = None
     ge_proofs: Optional[List[IndyGEProof]] = Field(

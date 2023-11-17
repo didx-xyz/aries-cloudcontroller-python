@@ -31,7 +31,7 @@ except ImportError:
 class V20CredFormat(BaseModel):
     """
     V20CredFormat
-    """
+    """  # noqa: E501
 
     attach_id: StrictStr = Field(description="Attachment identifier")
     format: StrictStr = Field(description="Attachment format specifier")

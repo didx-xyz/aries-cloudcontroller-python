@@ -31,7 +31,7 @@ except ImportError:
 class V20PresFormat(BaseModel):
     """
     V20PresFormat
-    """
+    """  # noqa: E501
 
     attach_id: StrictStr = Field(description="Attachment identifier")
     format: StrictStr = Field(description="Attachment format specifier")

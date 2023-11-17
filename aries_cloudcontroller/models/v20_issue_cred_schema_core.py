@@ -33,7 +33,7 @@ except ImportError:
 class V20IssueCredSchemaCore(BaseModel):
     """
     V20IssueCredSchemaCore
-    """
+    """  # noqa: E501
 
     auto_remove: Optional[StrictBool] = Field(
         default=None,

@@ -33,7 +33,7 @@ except ImportError:
 class V20CredOfferConnFreeRequest(BaseModel):
     """
     V20CredOfferConnFreeRequest
-    """
+    """  # noqa: E501
 
     auto_issue: Optional[StrictBool] = Field(
         default=None,

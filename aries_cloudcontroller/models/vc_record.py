@@ -32,7 +32,7 @@ except ImportError:
 class VCRecord(BaseModel):
     """
     VCRecord
-    """
+    """  # noqa: E501
 
     contexts: Optional[List[Annotated[str, Field(strict=True)]]] = None
     cred_tags: Optional[Dict[str, StrictStr]] = None

@@ -34,7 +34,7 @@ except ImportError:
 class AttachDecorator(BaseModel):
     """
     AttachDecorator
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Attachment identifier", alias="@id"

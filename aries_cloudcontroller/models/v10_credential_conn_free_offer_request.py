@@ -34,7 +34,7 @@ except ImportError:
 class V10CredentialConnFreeOfferRequest(BaseModel):
     """
     V10CredentialConnFreeOfferRequest
-    """
+    """  # noqa: E501
 
     auto_issue: Optional[StrictBool] = Field(
         default=None,

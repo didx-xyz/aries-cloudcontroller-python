@@ -32,7 +32,7 @@ except ImportError:
 class SignedDoc(BaseModel):
     """
     SignedDoc
-    """
+    """  # noqa: E501
 
     proof: SignatureOptions
     __properties: ClassVar[List[str]] = ["proof"]

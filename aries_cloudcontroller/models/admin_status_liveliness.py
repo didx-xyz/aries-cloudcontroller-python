@@ -31,7 +31,7 @@ except ImportError:
 class AdminStatusLiveliness(BaseModel):
     """
     AdminStatusLiveliness
-    """
+    """  # noqa: E501
 
     alive: Optional[StrictBool] = Field(default=None, description="Liveliness status")
     __properties: ClassVar[List[str]] = ["alive"]

@@ -34,7 +34,7 @@ except ImportError:
 class V20CredOffer(BaseModel):
     """
     V20CredOffer
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

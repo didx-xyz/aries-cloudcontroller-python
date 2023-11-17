@@ -34,7 +34,7 @@ except ImportError:
 class InvitationRecord(BaseModel):
     """
     InvitationRecord
-    """
+    """  # noqa: E501
 
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"

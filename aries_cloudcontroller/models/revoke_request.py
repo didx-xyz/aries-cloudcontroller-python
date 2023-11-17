@@ -33,7 +33,7 @@ except ImportError:
 class RevokeRequest(BaseModel):
     """
     RevokeRequest
-    """
+    """  # noqa: E501
 
     comment: Optional[StrictStr] = Field(
         default=None,

@@ -39,7 +39,7 @@ except ImportError:
 class V10CredentialExchange(BaseModel):
     """
     V10CredentialExchange
-    """
+    """  # noqa: E501
 
     auto_issue: Optional[StrictBool] = Field(
         default=None,

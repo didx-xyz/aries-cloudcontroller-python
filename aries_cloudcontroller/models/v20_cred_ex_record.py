@@ -41,7 +41,7 @@ except ImportError:
 class V20CredExRecord(BaseModel):
     """
     V20CredExRecord
-    """
+    """  # noqa: E501
 
     auto_issue: Optional[StrictBool] = Field(
         default=None,

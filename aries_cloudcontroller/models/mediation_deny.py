@@ -31,7 +31,7 @@ except ImportError:
 class MediationDeny(BaseModel):
     """
     MediationDeny
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

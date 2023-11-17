@@ -31,7 +31,7 @@ except ImportError:
 class KeylistQueryPaginate(BaseModel):
     """
     KeylistQueryPaginate
-    """
+    """  # noqa: E501
 
     limit: Optional[StrictInt] = Field(
         default=None, description="Limit for keylist query"

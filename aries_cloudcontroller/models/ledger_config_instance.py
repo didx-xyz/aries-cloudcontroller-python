@@ -31,7 +31,7 @@ except ImportError:
 class LedgerConfigInstance(BaseModel):
     """
     LedgerConfigInstance
-    """
+    """  # noqa: E501
 
     genesis_file: Optional[StrictStr] = Field(default=None, description="genesis_file")
     genesis_transactions: Optional[StrictStr] = Field(

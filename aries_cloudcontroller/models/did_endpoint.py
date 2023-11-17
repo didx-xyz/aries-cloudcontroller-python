@@ -33,7 +33,7 @@ except ImportError:
 class DIDEndpoint(BaseModel):
     """
     DIDEndpoint
-    """
+    """  # noqa: E501
 
     did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
     endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(

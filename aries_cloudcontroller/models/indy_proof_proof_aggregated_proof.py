@@ -31,7 +31,7 @@ except ImportError:
 class IndyProofProofAggregatedProof(BaseModel):
     """
     IndyProofProofAggregatedProof
-    """
+    """  # noqa: E501
 
     c_hash: Optional[StrictStr] = Field(default=None, description="c_hash value")
     c_list: Optional[List[List[StrictInt]]] = Field(

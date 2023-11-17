@@ -31,7 +31,7 @@ except ImportError:
 class PerformRequest(BaseModel):
     """
     PerformRequest
-    """
+    """  # noqa: E501
 
     name: Optional[StrictStr] = Field(default=None, description="Menu option name")
     params: Optional[Dict[str, StrictStr]] = Field(

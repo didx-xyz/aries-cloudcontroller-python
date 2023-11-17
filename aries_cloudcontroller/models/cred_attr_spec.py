@@ -31,7 +31,7 @@ except ImportError:
 class CredAttrSpec(BaseModel):
     """
     CredAttrSpec
-    """
+    """  # noqa: E501
 
     mime_type: Optional[StrictStr] = Field(
         default=None,

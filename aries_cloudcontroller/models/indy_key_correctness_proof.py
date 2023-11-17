@@ -33,7 +33,7 @@ except ImportError:
 class IndyKeyCorrectnessProof(BaseModel):
     """
     IndyKeyCorrectnessProof
-    """
+    """  # noqa: E501
 
     c: Annotated[str, Field(strict=True)] = Field(
         description="c in key correctness proof"

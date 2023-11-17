@@ -31,7 +31,7 @@ except ImportError:
 class TailsDeleteResponse(BaseModel):
     """
     TailsDeleteResponse
-    """
+    """  # noqa: E501
 
     message: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["message"]

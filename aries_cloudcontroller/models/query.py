@@ -31,7 +31,7 @@ except ImportError:
 class Query(BaseModel):
     """
     Query
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

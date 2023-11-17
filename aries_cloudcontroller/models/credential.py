@@ -34,7 +34,7 @@ except ImportError:
 class Credential(BaseModel):
     """
     Credential
-    """
+    """  # noqa: E501
 
     context: List[Union[str, Dict]] = Field(
         description="The JSON-LD context of the credential", alias="@context"

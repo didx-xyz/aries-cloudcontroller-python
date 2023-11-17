@@ -33,7 +33,7 @@ except ImportError:
 class MediationRecord(BaseModel):
     """
     MediationRecord
-    """
+    """  # noqa: E501
 
     connection_id: StrictStr
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(

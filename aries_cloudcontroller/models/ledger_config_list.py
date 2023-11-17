@@ -32,7 +32,7 @@ except ImportError:
 class LedgerConfigList(BaseModel):
     """
     LedgerConfigList
-    """
+    """  # noqa: E501
 
     ledger_config_list: List[LedgerConfigInstance]
     __properties: ClassVar[List[str]] = ["ledger_config_list"]

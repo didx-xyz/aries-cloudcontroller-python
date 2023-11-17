@@ -31,7 +31,7 @@ except ImportError:
 class Disclosures(BaseModel):
     """
     Disclosures
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

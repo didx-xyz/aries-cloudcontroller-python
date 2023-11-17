@@ -32,7 +32,7 @@ except ImportError:
 class IndyProofReqPredSpecNonRevoked(BaseModel):
     """
     IndyProofReqPredSpecNonRevoked
-    """
+    """  # noqa: E501
 
     var_from: Optional[
         Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]

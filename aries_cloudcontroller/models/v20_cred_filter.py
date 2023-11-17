@@ -33,7 +33,7 @@ except ImportError:
 class V20CredFilter(BaseModel):
     """
     V20CredFilter
-    """
+    """  # noqa: E501
 
     indy: Optional[V20CredFilterIndy] = None
     ld_proof: Optional[LDProofVCDetail] = None

@@ -33,7 +33,7 @@ except ImportError:
 class IndyCredRequest(BaseModel):
     """
     IndyCredRequest
-    """
+    """  # noqa: E501
 
     blinded_ms: Union[str, Any] = Field(description="Blinded master secret")
     blinded_ms_correctness_proof: Union[str, Any] = Field(

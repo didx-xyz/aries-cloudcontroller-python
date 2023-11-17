@@ -31,7 +31,7 @@ except ImportError:
 class SchemaInputDescriptor(BaseModel):
     """
     SchemaInputDescriptor
-    """
+    """  # noqa: E501
 
     required: Optional[StrictBool] = Field(default=None, description="Required")
     uri: Optional[StrictStr] = Field(default=None, description="URI")

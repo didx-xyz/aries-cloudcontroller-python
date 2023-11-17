@@ -31,7 +31,7 @@ except ImportError:
 class AdminStatus(BaseModel):
     """
     AdminStatus
-    """
+    """  # noqa: E501
 
     conductor: Optional[Union[str, Any]] = Field(
         default=None, description="Conductor statistics"

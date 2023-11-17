@@ -35,7 +35,7 @@ except ImportError:
 class LDProofVCDetail(BaseModel):
     """
     LDProofVCDetail
-    """
+    """  # noqa: E501
 
     credential: Credential
     options: LDProofVCDetailOptions

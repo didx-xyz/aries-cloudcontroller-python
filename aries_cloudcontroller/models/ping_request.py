@@ -31,7 +31,7 @@ except ImportError:
 class PingRequest(BaseModel):
     """
     PingRequest
-    """
+    """  # noqa: E501
 
     comment: Optional[StrictStr] = Field(
         default=None, description="Comment for the ping message"

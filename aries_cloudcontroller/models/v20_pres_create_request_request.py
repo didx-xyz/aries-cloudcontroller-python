@@ -34,7 +34,7 @@ except ImportError:
 class V20PresCreateRequestRequest(BaseModel):
     """
     V20PresCreateRequestRequest
-    """
+    """  # noqa: E501
 
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"

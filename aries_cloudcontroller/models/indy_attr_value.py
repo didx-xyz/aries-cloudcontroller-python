@@ -33,7 +33,7 @@ except ImportError:
 class IndyAttrValue(BaseModel):
     """
     IndyAttrValue
-    """
+    """  # noqa: E501
 
     encoded: Annotated[str, Field(strict=True)] = Field(
         description="Attribute encoded value"

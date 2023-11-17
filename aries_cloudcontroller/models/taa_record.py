@@ -31,7 +31,7 @@ except ImportError:
 class TAARecord(BaseModel):
     """
     TAARecord
-    """
+    """  # noqa: E501
 
     digest: Optional[StrictStr] = None
     text: Optional[StrictStr] = None

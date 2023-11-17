@@ -32,7 +32,7 @@ except ImportError:
 class ServiceDecorator(BaseModel):
     """
     ServiceDecorator
-    """
+    """  # noqa: E501
 
     recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
         default=None, description="List of recipient keys", alias="recipientKeys"

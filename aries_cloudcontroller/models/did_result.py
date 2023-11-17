@@ -32,7 +32,7 @@ except ImportError:
 class DIDResult(BaseModel):
     """
     DIDResult
-    """
+    """  # noqa: E501
 
     result: Optional[DID] = None
     __properties: ClassVar[List[str]] = ["result"]

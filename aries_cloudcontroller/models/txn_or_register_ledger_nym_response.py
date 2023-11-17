@@ -32,7 +32,7 @@ except ImportError:
 class TxnOrRegisterLedgerNymResponse(BaseModel):
     """
     TxnOrRegisterLedgerNymResponse
-    """
+    """  # noqa: E501
 
     success: Optional[StrictBool] = Field(
         default=None, description="Success of nym registration operation"

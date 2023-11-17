@@ -33,7 +33,7 @@ except ImportError:
 class RawEncoded(BaseModel):
     """
     RawEncoded
-    """
+    """  # noqa: E501
 
     encoded: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Encoded value"

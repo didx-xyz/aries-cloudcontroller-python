@@ -31,7 +31,7 @@ except ImportError:
 class AdminMediationDeny(BaseModel):
     """
     AdminMediationDeny
-    """
+    """  # noqa: E501
 
     mediator_terms: Optional[List[StrictStr]] = Field(
         default=None, description="List of mediator rules for recipient"

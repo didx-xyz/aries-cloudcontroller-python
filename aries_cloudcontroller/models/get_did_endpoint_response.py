@@ -33,7 +33,7 @@ except ImportError:
 class GetDIDEndpointResponse(BaseModel):
     """
     GetDIDEndpointResponse
-    """
+    """  # noqa: E501
 
     endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Full verification key"

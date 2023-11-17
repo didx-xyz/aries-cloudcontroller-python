@@ -31,7 +31,7 @@ except ImportError:
 class SignResponse(BaseModel):
     """
     SignResponse
-    """
+    """  # noqa: E501
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
     signed_doc: Optional[Union[str, Any]] = Field(

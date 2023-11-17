@@ -31,7 +31,7 @@ except ImportError:
 class ProfileSettings(BaseModel):
     """
     ProfileSettings
-    """
+    """  # noqa: E501
 
     settings: Optional[Union[str, Any]] = Field(
         default=None, description="Profile settings dict"

@@ -33,7 +33,7 @@ except ImportError:
 class IndyPrimaryProofEqProof(BaseModel):
     """
     Indy equality proof  # noqa: E501
-    """
+    """  # noqa: E501
 
     a_prime: Optional[Annotated[str, Field(strict=True)]] = None
     e: Optional[Annotated[str, Field(strict=True)]] = None

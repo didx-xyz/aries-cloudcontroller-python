@@ -32,7 +32,7 @@ except ImportError:
 class RevRegIssuedResult(BaseModel):
     """
     RevRegIssuedResult
-    """
+    """  # noqa: E501
 
     result: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,

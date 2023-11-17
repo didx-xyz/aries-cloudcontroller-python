@@ -32,7 +32,7 @@ except ImportError:
 class V20CredExRecordListResult(BaseModel):
     """
     V20CredExRecordListResult
-    """
+    """  # noqa: E501
 
     results: Optional[List[V20CredExRecordDetail]] = Field(
         default=None,

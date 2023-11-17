@@ -33,7 +33,7 @@ except ImportError:
 class V20CredExRecordIndy(BaseModel):
     """
     V20CredExRecordIndy
-    """
+    """  # noqa: E501
 
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"

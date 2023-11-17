@@ -34,7 +34,7 @@ except ImportError:
 class V10CredentialCreate(BaseModel):
     """
     V10CredentialCreate
-    """
+    """  # noqa: E501
 
     auto_remove: Optional[StrictBool] = Field(
         default=None,

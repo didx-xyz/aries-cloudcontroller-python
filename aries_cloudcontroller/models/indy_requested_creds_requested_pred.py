@@ -32,7 +32,7 @@ except ImportError:
 class IndyRequestedCredsRequestedPred(BaseModel):
     """
     IndyRequestedCredsRequestedPred
-    """
+    """  # noqa: E501
 
     cred_id: StrictStr = Field(
         description="Wallet credential identifier (typically but not necessarily a UUID)"

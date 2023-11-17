@@ -32,7 +32,7 @@ except ImportError:
 class MediationList(BaseModel):
     """
     MediationList
-    """
+    """  # noqa: E501
 
     results: Optional[List[MediationRecord]] = Field(
         default=None, description="List of mediation records"

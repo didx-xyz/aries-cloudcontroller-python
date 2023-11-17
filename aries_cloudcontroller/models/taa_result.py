@@ -32,7 +32,7 @@ except ImportError:
 class TAAResult(BaseModel):
     """
     TAAResult
-    """
+    """  # noqa: E501
 
     result: Optional[TAAInfo] = None
     __properties: ClassVar[List[str]] = ["result"]

@@ -36,7 +36,7 @@ except ImportError:
 class V20CredExRecordDetail(BaseModel):
     """
     V20CredExRecordDetail
-    """
+    """  # noqa: E501
 
     cred_ex_record: Optional[V20CredExRecord] = None
     indy: Optional[V20CredExRecordIndy] = None

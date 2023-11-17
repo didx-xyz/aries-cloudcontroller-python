@@ -31,7 +31,7 @@ except ImportError:
 class RemoveWalletRequest(BaseModel):
     """
     RemoveWalletRequest
-    """
+    """  # noqa: E501
 
     wallet_key: Optional[StrictStr] = Field(
         default=None,

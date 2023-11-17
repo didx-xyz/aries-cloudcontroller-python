@@ -31,7 +31,7 @@ except ImportError:
 class IndyNonRevocProof(BaseModel):
     """
     IndyNonRevocProof
-    """
+    """  # noqa: E501
 
     c_list: Optional[Dict[str, StrictStr]] = None
     x_list: Optional[Dict[str, StrictStr]] = None

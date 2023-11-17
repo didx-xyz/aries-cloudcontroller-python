@@ -32,7 +32,7 @@ except ImportError:
 class DIFField(BaseModel):
     """
     DIFField
-    """
+    """  # noqa: E501
 
     filter: Optional[Filter] = None
     id: Optional[StrictStr] = Field(default=None, description="ID")

@@ -31,7 +31,7 @@ except ImportError:
 class V10PresentationSendRequestToProposal(BaseModel):
     """
     V10PresentationSendRequestToProposal
-    """
+    """  # noqa: E501
 
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"

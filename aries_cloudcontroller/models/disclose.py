@@ -32,7 +32,7 @@ except ImportError:
 class Disclose(BaseModel):
     """
     Disclose
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

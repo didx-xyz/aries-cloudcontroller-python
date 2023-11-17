@@ -33,7 +33,7 @@ except ImportError:
 class IndyCredInfo(BaseModel):
     """
     IndyCredInfo
-    """
+    """  # noqa: E501
 
     attrs: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="Attribute names and value"

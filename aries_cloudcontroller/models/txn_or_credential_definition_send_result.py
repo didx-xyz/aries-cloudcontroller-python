@@ -35,7 +35,7 @@ except ImportError:
 class TxnOrCredentialDefinitionSendResult(BaseModel):
     """
     TxnOrCredentialDefinitionSendResult
-    """
+    """  # noqa: E501
 
     sent: Optional[CredentialDefinitionSendResult] = None
     txn: Optional[TransactionRecord] = None

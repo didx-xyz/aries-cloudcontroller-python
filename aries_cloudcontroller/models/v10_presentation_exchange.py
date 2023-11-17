@@ -37,7 +37,7 @@ except ImportError:
 class V10PresentationExchange(BaseModel):
     """
     V10PresentationExchange
-    """
+    """  # noqa: E501
 
     auto_present: Optional[StrictBool] = Field(
         default=None,

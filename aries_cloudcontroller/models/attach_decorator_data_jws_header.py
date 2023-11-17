@@ -33,7 +33,7 @@ except ImportError:
 class AttachDecoratorDataJWSHeader(BaseModel):
     """
     AttachDecoratorDataJWSHeader
-    """
+    """  # noqa: E501
 
     kid: Annotated[str, Field(strict=True)] = Field(
         description="Key identifier, in W3C did:key or DID URL format"

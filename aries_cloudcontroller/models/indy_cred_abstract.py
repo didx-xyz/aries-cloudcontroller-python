@@ -36,7 +36,7 @@ except ImportError:
 class IndyCredAbstract(BaseModel):
     """
     IndyCredAbstract
-    """
+    """  # noqa: E501
 
     cred_def_id: Annotated[str, Field(strict=True)] = Field(
         description="Credential definition identifier"

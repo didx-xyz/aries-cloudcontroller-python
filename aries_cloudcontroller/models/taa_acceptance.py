@@ -32,7 +32,7 @@ except ImportError:
 class TAAAcceptance(BaseModel):
     """
     TAAAcceptance
-    """
+    """  # noqa: E501
 
     mechanism: Optional[StrictStr] = None
     time: Optional[

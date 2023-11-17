@@ -33,7 +33,7 @@ except ImportError:
 class CredentialDefinitionSendRequest(BaseModel):
     """
     CredentialDefinitionSendRequest
-    """
+    """  # noqa: E501
 
     revocation_registry_size: Optional[
         Annotated[int, Field(le=32768, strict=True, ge=4)]

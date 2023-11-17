@@ -32,7 +32,7 @@ except ImportError:
 class KeylistUpdateRequest(BaseModel):
     """
     KeylistUpdateRequest
-    """
+    """  # noqa: E501
 
     updates: Optional[List[KeylistUpdateRule]] = None
     __properties: ClassVar[List[str]] = ["updates"]

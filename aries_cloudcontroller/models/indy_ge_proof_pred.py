@@ -31,7 +31,7 @@ except ImportError:
 class IndyGEProofPred(BaseModel):
     """
     IndyGEProofPred
-    """
+    """  # noqa: E501
 
     attr_name: Optional[StrictStr] = Field(
         default=None, description="Attribute name, indy-canonicalized"

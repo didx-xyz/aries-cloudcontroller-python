@@ -31,7 +31,7 @@ except ImportError:
 class Filter(BaseModel):
     """
     Filter
-    """
+    """  # noqa: E501
 
     const: Optional[Union[str, int, float]] = Field(default=None, description="Const")
     enum: Optional[List[Union[str, int, float]]] = None

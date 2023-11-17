@@ -35,7 +35,7 @@ except ImportError:
 class V20DiscoveryRecord(BaseModel):
     """
     V20DiscoveryRecord
-    """
+    """  # noqa: E501
 
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"

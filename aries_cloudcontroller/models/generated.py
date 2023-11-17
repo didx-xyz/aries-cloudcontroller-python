@@ -33,7 +33,7 @@ except ImportError:
 class Generated(BaseModel):
     """
     Generated
-    """
+    """  # noqa: E501
 
     master_secret: Optional[Annotated[str, Field(strict=True)]] = None
     number: Optional[Annotated[str, Field(strict=True)]] = None

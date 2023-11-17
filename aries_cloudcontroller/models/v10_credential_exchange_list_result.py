@@ -32,7 +32,7 @@ except ImportError:
 class V10CredentialExchangeListResult(BaseModel):
     """
     V10CredentialExchangeListResult
-    """
+    """  # noqa: E501
 
     results: Optional[List[V10CredentialExchange]] = Field(
         default=None, description="Aries#0036 v1.0 credential exchange records"

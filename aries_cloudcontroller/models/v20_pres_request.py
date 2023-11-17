@@ -33,7 +33,7 @@ except ImportError:
 class V20PresRequest(BaseModel):
     """
     V20PresRequest
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

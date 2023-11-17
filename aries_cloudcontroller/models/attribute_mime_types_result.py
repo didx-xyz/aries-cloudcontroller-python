@@ -31,7 +31,7 @@ except ImportError:
 class AttributeMimeTypesResult(BaseModel):
     """
     AttributeMimeTypesResult
-    """
+    """  # noqa: E501
 
     results: Optional[Dict[str, StrictStr]] = None
     __properties: ClassVar[List[str]] = ["results"]

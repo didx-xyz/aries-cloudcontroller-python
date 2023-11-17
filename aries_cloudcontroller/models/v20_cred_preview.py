@@ -32,7 +32,7 @@ except ImportError:
 class V20CredPreview(BaseModel):
     """
     V20CredPreview
-    """
+    """  # noqa: E501
 
     type: Optional[StrictStr] = Field(
         default=None, description="Message type identifier", alias="@type"

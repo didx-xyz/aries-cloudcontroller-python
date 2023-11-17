@@ -32,7 +32,7 @@ except ImportError:
 class DIFPresSpec(BaseModel):
     """
     DIFPresSpec
-    """
+    """  # noqa: E501
 
     issuer_id: Optional[StrictStr] = Field(
         default=None,

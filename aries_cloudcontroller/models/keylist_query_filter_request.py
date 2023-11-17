@@ -31,7 +31,7 @@ except ImportError:
 class KeylistQueryFilterRequest(BaseModel):
     """
     KeylistQueryFilterRequest
-    """
+    """  # noqa: E501
 
     filter: Optional[Union[str, Any]] = Field(
         default=None, description="Filter for keylist query"

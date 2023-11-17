@@ -35,7 +35,7 @@ except ImportError:
 class InputDescriptors(BaseModel):
     """
     InputDescriptors
-    """
+    """  # noqa: E501
 
     constraints: Optional[Constraints] = None
     group: Optional[List[StrictStr]] = None

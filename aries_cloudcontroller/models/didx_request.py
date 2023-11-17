@@ -34,7 +34,7 @@ except ImportError:
 class DIDXRequest(BaseModel):
     """
     DIDXRequest
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"

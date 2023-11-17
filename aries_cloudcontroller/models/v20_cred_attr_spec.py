@@ -31,7 +31,7 @@ except ImportError:
 class V20CredAttrSpec(BaseModel):
     """
     V20CredAttrSpec
-    """
+    """  # noqa: E501
 
     mime_type: Optional[StrictStr] = Field(
         default=None,

@@ -31,7 +31,7 @@ except ImportError:
 class RevRegWalletUpdatedResult(BaseModel):
     """
     RevRegWalletUpdatedResult
-    """
+    """  # noqa: E501
 
     accum_calculated: Optional[Union[str, Any]] = Field(
         default=None, description="Calculated accumulator for phantom revocations"

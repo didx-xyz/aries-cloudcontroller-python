@@ -31,7 +31,7 @@ except ImportError:
 class SignatureOptions(BaseModel):
     """
     SignatureOptions
-    """
+    """  # noqa: E501
 
     challenge: Optional[StrictStr] = None
     domain: Optional[StrictStr] = None

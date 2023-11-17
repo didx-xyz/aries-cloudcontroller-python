@@ -34,7 +34,7 @@ except ImportError:
 class InvitationCreateRequest(BaseModel):
     """
     InvitationCreateRequest
-    """
+    """  # noqa: E501
 
     accept: Optional[List[StrictStr]] = Field(
         default=None,

@@ -31,7 +31,7 @@ except ImportError:
 class ProtocolDescriptor(BaseModel):
     """
     ProtocolDescriptor
-    """
+    """  # noqa: E501
 
     pid: StrictStr
     roles: Optional[List[StrictStr]] = Field(default=None, description="List of roles")

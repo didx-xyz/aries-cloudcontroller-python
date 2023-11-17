@@ -32,7 +32,7 @@ except ImportError:
 class SchemasInputDescriptorFilter(BaseModel):
     """
     SchemasInputDescriptorFilter
-    """
+    """  # noqa: E501
 
     oneof_filter: Optional[StrictBool] = Field(default=None, description="oneOf")
     uri_groups: Optional[List[List[SchemaInputDescriptor]]] = None

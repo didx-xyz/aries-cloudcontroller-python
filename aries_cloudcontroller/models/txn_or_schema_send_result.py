@@ -33,7 +33,7 @@ except ImportError:
 class TxnOrSchemaSendResult(BaseModel):
     """
     TxnOrSchemaSendResult
-    """
+    """  # noqa: E501
 
     sent: Optional[SchemaSendResult] = None
     txn: Optional[TransactionRecord] = None

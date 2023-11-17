@@ -32,7 +32,7 @@ except ImportError:
 class MenuForm(BaseModel):
     """
     MenuForm
-    """
+    """  # noqa: E501
 
     description: Optional[StrictStr] = Field(
         default=None, description="Additional descriptive text for menu form"

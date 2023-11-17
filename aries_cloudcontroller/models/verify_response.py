@@ -31,7 +31,7 @@ except ImportError:
 class VerifyResponse(BaseModel):
     """
     VerifyResponse
-    """
+    """  # noqa: E501
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
     valid: StrictBool

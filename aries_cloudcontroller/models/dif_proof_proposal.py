@@ -33,7 +33,7 @@ except ImportError:
 class DIFProofProposal(BaseModel):
     """
     DIFProofProposal
-    """
+    """  # noqa: E501
 
     input_descriptors: Optional[List[InputDescriptors]] = None
     options: Optional[DIFOptions] = None

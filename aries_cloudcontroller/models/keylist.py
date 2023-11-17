@@ -32,7 +32,7 @@ except ImportError:
 class Keylist(BaseModel):
     """
     Keylist
-    """
+    """  # noqa: E501
 
     results: Optional[List[RouteRecord]] = Field(
         default=None, description="List of keylist records"

@@ -32,7 +32,7 @@ except ImportError:
 class W3CCredentialsListRequest(BaseModel):
     """
     W3CCredentialsListRequest
-    """
+    """  # noqa: E501
 
     contexts: Optional[List[Annotated[str, Field(strict=True)]]] = None
     given_id: Optional[StrictStr] = Field(

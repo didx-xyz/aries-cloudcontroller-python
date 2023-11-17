@@ -33,7 +33,7 @@ except ImportError:
 class IndyEQProof(BaseModel):
     """
     IndyEQProof
-    """
+    """  # noqa: E501
 
     a_prime: Optional[Annotated[str, Field(strict=True)]] = None
     e: Optional[Annotated[str, Field(strict=True)]] = None

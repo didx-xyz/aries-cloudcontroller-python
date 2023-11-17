@@ -31,7 +31,7 @@ except ImportError:
 class AdminStatusReadiness(BaseModel):
     """
     AdminStatusReadiness
-    """
+    """  # noqa: E501
 
     ready: Optional[StrictBool] = Field(default=None, description="Readiness status")
     __properties: ClassVar[List[str]] = ["ready"]

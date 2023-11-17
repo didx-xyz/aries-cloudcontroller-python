@@ -33,7 +33,7 @@ except ImportError:
 class ModelSchema(BaseModel):
     """
     ModelSchema
-    """
+    """  # noqa: E501
 
     attr_names: Optional[List[StrictStr]] = Field(
         default=None, description="Schema attribute names", alias="attrNames"

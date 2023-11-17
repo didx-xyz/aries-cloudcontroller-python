@@ -34,7 +34,7 @@ except ImportError:
 class IndyRevRegEntry(BaseModel):
     """
     IndyRevRegEntry
-    """
+    """  # noqa: E501
 
     value: Optional[IndyRevRegEntryValue] = None
     ver: Optional[Annotated[str, Field(strict=True)]] = Field(

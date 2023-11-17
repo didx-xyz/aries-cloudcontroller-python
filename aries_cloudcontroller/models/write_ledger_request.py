@@ -31,7 +31,7 @@ except ImportError:
 class WriteLedgerRequest(BaseModel):
     """
     WriteLedgerRequest
-    """
+    """  # noqa: E501
 
     ledger_id: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["ledger_id"]

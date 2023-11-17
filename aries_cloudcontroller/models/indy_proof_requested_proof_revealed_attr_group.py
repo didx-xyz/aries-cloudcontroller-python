@@ -32,7 +32,7 @@ except ImportError:
 class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
     """
     IndyProofRequestedProofRevealedAttrGroup
-    """
+    """  # noqa: E501
 
     sub_proof_index: Optional[StrictInt] = Field(
         default=None, description="Sub-proof index"

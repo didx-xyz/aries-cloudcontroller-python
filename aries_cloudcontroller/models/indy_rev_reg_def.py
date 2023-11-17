@@ -34,7 +34,7 @@ except ImportError:
 class IndyRevRegDef(BaseModel):
     """
     IndyRevRegDef
-    """
+    """  # noqa: E501
 
     cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier", alias="credDefId"

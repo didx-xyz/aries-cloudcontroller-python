@@ -33,7 +33,7 @@ except ImportError:
 class WalletRecord(BaseModel):
     """
     WalletRecord
-    """
+    """  # noqa: E501
 
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"

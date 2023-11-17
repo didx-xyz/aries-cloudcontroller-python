@@ -31,7 +31,7 @@ except ImportError:
 class AttachmentDef(BaseModel):
     """
     AttachmentDef
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(default=None, description="Attachment identifier")
     type: Optional[StrictStr] = Field(default=None, description="Attachment type")

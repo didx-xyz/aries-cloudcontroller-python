@@ -32,7 +32,7 @@ except ImportError:
 class ClearPendingRevocationsRequest(BaseModel):
     """
     ClearPendingRevocationsRequest
-    """
+    """  # noqa: E501
 
     purge: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
         default=None,

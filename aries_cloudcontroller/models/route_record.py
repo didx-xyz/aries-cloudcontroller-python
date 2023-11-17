@@ -33,7 +33,7 @@ except ImportError:
 class RouteRecord(BaseModel):
     """
     RouteRecord
-    """
+    """  # noqa: E501
 
     connection_id: Optional[StrictStr] = None
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(

@@ -33,7 +33,7 @@ except ImportError:
 class DIDCreateOptions(BaseModel):
     """
     DIDCreateOptions
-    """
+    """  # noqa: E501
 
     did: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,

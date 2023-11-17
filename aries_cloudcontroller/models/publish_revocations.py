@@ -32,7 +32,7 @@ except ImportError:
 class PublishRevocations(BaseModel):
     """
     PublishRevocations
-    """
+    """  # noqa: E501
 
     rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
         default=None, description="Credential revocation ids by revocation registry id"

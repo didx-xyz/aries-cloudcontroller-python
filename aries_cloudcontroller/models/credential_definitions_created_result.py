@@ -32,7 +32,7 @@ except ImportError:
 class CredentialDefinitionsCreatedResult(BaseModel):
     """
     CredentialDefinitionsCreatedResult
-    """
+    """  # noqa: E501
 
     credential_definition_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["credential_definition_ids"]

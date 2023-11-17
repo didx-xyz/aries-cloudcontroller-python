@@ -32,7 +32,7 @@ except ImportError:
 class DIDList(BaseModel):
     """
     DIDList
-    """
+    """  # noqa: E501
 
     results: Optional[List[DID]] = Field(default=None, description="DID list")
     __properties: ClassVar[List[str]] = ["results"]

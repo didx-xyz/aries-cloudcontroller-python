@@ -31,7 +31,7 @@ except ImportError:
 class V20CredExRecordByFormat(BaseModel):
     """
     V20CredExRecordByFormat
-    """
+    """  # noqa: E501
 
     cred_issue: Optional[Union[str, Any]] = None
     cred_offer: Optional[Union[str, Any]] = None

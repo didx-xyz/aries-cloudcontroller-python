@@ -33,7 +33,7 @@ except ImportError:
 class JWSVerify(BaseModel):
     """
     JWSVerify
-    """
+    """  # noqa: E501
 
     jwt: Optional[Annotated[str, Field(strict=True)]] = None
     __properties: ClassVar[List[str]] = ["jwt"]

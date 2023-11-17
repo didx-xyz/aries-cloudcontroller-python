@@ -33,7 +33,7 @@ except ImportError:
 class EndpointsResult(BaseModel):
     """
     EndpointsResult
-    """
+    """  # noqa: E501
 
     my_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="My endpoint"
