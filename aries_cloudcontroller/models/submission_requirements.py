@@ -132,9 +132,5 @@ class SubmissionRequirements(BaseModel):
         return _obj
 
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    # TODO: pydantic v2
-    # SubmissionRequirements.model_rebuild()
-    pass
+# TODO: Rewrite to not use raise_errors
+SubmissionRequirements.model_rebuild(raise_errors=False)
