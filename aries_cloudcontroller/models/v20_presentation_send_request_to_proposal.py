@@ -74,7 +74,7 @@ class V20PresentationSendRequestToProposal(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20PresentationSendRequestToProposal from a dict"""
         if obj is None:
             return None

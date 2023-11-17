@@ -80,7 +80,7 @@ class TxnOrCredentialDefinitionSendResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TxnOrCredentialDefinitionSendResult from a dict"""
         if obj is None:
             return None
