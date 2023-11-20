@@ -459,4 +459,4 @@ from aries_cloudcontroller.models.wallet_record import WalletRecord
 from aries_cloudcontroller.models.wallet_record_with_groups import (
     WalletRecordWithGroups,
 )
-from aries_cloudcontroller.models.write_ledger_request import WriteLedgerRequest
+from aries_cloudcontroller.models.write_ledger import WriteLedger

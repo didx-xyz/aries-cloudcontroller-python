@@ -342,6 +342,6 @@ from aries_cloudcontroller.models import (
     WalletListWithGroups,
     WalletRecord,
     WalletRecordWithGroups,
-    WriteLedgerRequest,
+    WriteLedger,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
