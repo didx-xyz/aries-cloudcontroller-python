@@ -42,6 +42,9 @@ from aries_cloudcontroller.models.claim_format import ClaimFormat
 from aries_cloudcontroller.models.clear_pending_revocations_request import (
     ClearPendingRevocationsRequest,
 )
+from aries_cloudcontroller.models.configurable_write_ledgers import (
+    ConfigurableWriteLedgers,
+)
 from aries_cloudcontroller.models.conn_record import ConnRecord
 from aries_cloudcontroller.models.connection_invitation import ConnectionInvitation
 from aries_cloudcontroller.models.connection_list import ConnectionList
@@ -107,6 +110,7 @@ from aries_cloudcontroller.models.did_endpoint import DIDEndpoint
 from aries_cloudcontroller.models.did_endpoint_with_type import DIDEndpointWithType
 from aries_cloudcontroller.models.did_list import DIDList
 from aries_cloudcontroller.models.did_result import DIDResult
+from aries_cloudcontroller.models.didx_reject_request import DIDXRejectRequest
 from aries_cloudcontroller.models.didx_request import DIDXRequest
 from aries_cloudcontroller.models.dif_field import DIFField
 from aries_cloudcontroller.models.dif_holder import DIFHolder
@@ -320,6 +324,9 @@ from aries_cloudcontroller.models.v10_credential_conn_free_offer_request import 
 )
 from aries_cloudcontroller.models.v10_credential_create import V10CredentialCreate
 from aries_cloudcontroller.models.v10_credential_exchange import V10CredentialExchange
+from aries_cloudcontroller.models.v10_credential_exchange_auto_remove_request import (
+    V10CredentialExchangeAutoRemoveRequest,
+)
 from aries_cloudcontroller.models.v10_credential_exchange_list_result import (
     V10CredentialExchangeListResult,
 )
@@ -359,6 +366,9 @@ from aries_cloudcontroller.models.v10_presentation_problem_report_request import
 )
 from aries_cloudcontroller.models.v10_presentation_proposal_request import (
     V10PresentationProposalRequest,
+)
+from aries_cloudcontroller.models.v10_presentation_send_request import (
+    V10PresentationSendRequest,
 )
 from aries_cloudcontroller.models.v10_presentation_send_request_request import (
     V10PresentationSendRequestRequest,
