@@ -39,7 +39,7 @@ from aries_cloudcontroller.models.taa_result import TAAResult
 from aries_cloudcontroller.models.txn_or_register_ledger_nym_response import (
     TxnOrRegisterLedgerNymResponse,
 )
-from aries_cloudcontroller.models.write_ledger_request import WriteLedgerRequest
+from aries_cloudcontroller.models.write_ledger import WriteLedger
 from aries_cloudcontroller.rest import RESTResponseType
 
 
@@ -1230,7 +1230,7 @@ class LedgerApi:
         )
 
     @validate_call
-    async def ledger_multiple_config_get(
+    async def ledger_config_get(
         self,
         _request_timeout: Union[
             None,
@@ -1269,7 +1269,7 @@ class LedgerApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._ledger_multiple_config_get_serialize(
+        _param = self._ledger_config_get_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1287,7 +1287,7 @@ class LedgerApi:
         ).data
 
     @validate_call
-    async def ledger_multiple_config_get_with_http_info(
+    async def ledger_config_get_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -1326,7 +1326,7 @@ class LedgerApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._ledger_multiple_config_get_serialize(
+        _param = self._ledger_config_get_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1344,7 +1344,7 @@ class LedgerApi:
         )
 
     @validate_call
-    async def ledger_multiple_config_get_without_preload_content(
+    async def ledger_config_get_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -1383,7 +1383,7 @@ class LedgerApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._ledger_multiple_config_get_serialize(
+        _param = self._ledger_config_get_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1396,7 +1396,7 @@ class LedgerApi:
         )
         return response_data.response
 
-    def _ledger_multiple_config_get_serialize(
+    def _ledger_config_get_serialize(
         self,
         _request_auth,
         _content_type,
@@ -1430,7 +1430,7 @@ class LedgerApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/ledger/multiple/config",
+            resource_path="/ledger/config",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1444,7 +1444,7 @@ class LedgerApi:
         )
 
     @validate_call
-    async def ledger_multiple_get_write_ledger_get(
+    async def ledger_get_write_ledger_get(
         self,
         _request_timeout: Union[
             None,
@@ -1457,7 +1457,7 @@ class LedgerApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> WriteLedgerRequest:
+    ) -> WriteLedger:
         """Fetch the current write ledger
 
 
@@ -1483,14 +1483,14 @@ class LedgerApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._ledger_multiple_get_write_ledger_get_serialize(
+        _param = self._ledger_get_write_ledger_get_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedgerRequest"}
+        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1501,7 +1501,7 @@ class LedgerApi:
         ).data
 
     @validate_call
-    async def ledger_multiple_get_write_ledger_get_with_http_info(
+    async def ledger_get_write_ledger_get_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -1514,7 +1514,7 @@ class LedgerApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[WriteLedgerRequest]:
+    ) -> ApiResponse[WriteLedger]:
         """Fetch the current write ledger
 
 
@@ -1540,14 +1540,14 @@ class LedgerApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._ledger_multiple_get_write_ledger_get_serialize(
+        _param = self._ledger_get_write_ledger_get_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedgerRequest"}
+        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1558,7 +1558,7 @@ class LedgerApi:
         )
 
     @validate_call
-    async def ledger_multiple_get_write_ledger_get_without_preload_content(
+    async def ledger_get_write_ledger_get_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -1597,20 +1597,20 @@ class LedgerApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._ledger_multiple_get_write_ledger_get_serialize(
+        _param = self._ledger_get_write_ledger_get_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedgerRequest"}
+        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
         return response_data.response
 
-    def _ledger_multiple_get_write_ledger_get_serialize(
+    def _ledger_get_write_ledger_get_serialize(
         self,
         _request_auth,
         _content_type,
