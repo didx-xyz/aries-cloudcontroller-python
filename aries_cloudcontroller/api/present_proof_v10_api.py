@@ -29,7 +29,6 @@ from typing_extensions import Annotated
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis
-from aries_cloudcontroller.models.indy_pres_spec import IndyPresSpec
 from aries_cloudcontroller.models.v10_presentation_create_request_request import (
     V10PresentationCreateRequestRequest,
 )
@@ -44,6 +43,9 @@ from aries_cloudcontroller.models.v10_presentation_problem_report_request import
 )
 from aries_cloudcontroller.models.v10_presentation_proposal_request import (
     V10PresentationProposalRequest,
+)
+from aries_cloudcontroller.models.v10_presentation_send_request import (
+    V10PresentationSendRequest,
 )
 from aries_cloudcontroller.models.v10_presentation_send_request_request import (
     V10PresentationSendRequestRequest,
@@ -1699,7 +1701,7 @@ class PresentProofV10Api:
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
-        body: Optional[IndyPresSpec] = None,
+        body: Optional[V10PresentationSendRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1718,7 +1720,7 @@ class PresentProofV10Api:
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
-        :type body: IndyPresSpec
+        :type body: V10PresentationSendRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1768,7 +1770,7 @@ class PresentProofV10Api:
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
-        body: Optional[IndyPresSpec] = None,
+        body: Optional[V10PresentationSendRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1787,7 +1789,7 @@ class PresentProofV10Api:
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
-        :type body: IndyPresSpec
+        :type body: V10PresentationSendRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1837,7 +1839,7 @@ class PresentProofV10Api:
         pres_ex_id: Annotated[
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
-        body: Optional[IndyPresSpec] = None,
+        body: Optional[V10PresentationSendRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1856,7 +1858,7 @@ class PresentProofV10Api:
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         :param body:
-        :type body: IndyPresSpec
+        :type body: V10PresentationSendRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
