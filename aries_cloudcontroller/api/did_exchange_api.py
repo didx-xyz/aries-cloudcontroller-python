@@ -333,6 +333,10 @@ class DidExchangeApi:
             Optional[Annotated[str, Field(strict=True)]],
             Field(description="My URL endpoint"),
         ] = None,
+        use_public_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Use public DID for this connection"),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -354,6 +358,8 @@ class DidExchangeApi:
         :type mediation_id: str
         :param my_endpoint: My URL endpoint
         :type my_endpoint: str
+        :param use_public_did: Use public DID for this connection
+        :type use_public_did: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -380,6 +386,7 @@ class DidExchangeApi:
             conn_id=conn_id,
             mediation_id=mediation_id,
             my_endpoint=my_endpoint,
+            use_public_did=use_public_did,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -408,6 +415,10 @@ class DidExchangeApi:
             Optional[Annotated[str, Field(strict=True)]],
             Field(description="My URL endpoint"),
         ] = None,
+        use_public_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Use public DID for this connection"),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -429,6 +440,8 @@ class DidExchangeApi:
         :type mediation_id: str
         :param my_endpoint: My URL endpoint
         :type my_endpoint: str
+        :param use_public_did: Use public DID for this connection
+        :type use_public_did: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -455,6 +468,7 @@ class DidExchangeApi:
             conn_id=conn_id,
             mediation_id=mediation_id,
             my_endpoint=my_endpoint,
+            use_public_did=use_public_did,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -483,6 +497,10 @@ class DidExchangeApi:
             Optional[Annotated[str, Field(strict=True)]],
             Field(description="My URL endpoint"),
         ] = None,
+        use_public_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Use public DID for this connection"),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -504,6 +522,8 @@ class DidExchangeApi:
         :type mediation_id: str
         :param my_endpoint: My URL endpoint
         :type my_endpoint: str
+        :param use_public_did: Use public DID for this connection
+        :type use_public_did: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -530,6 +550,7 @@ class DidExchangeApi:
             conn_id=conn_id,
             mediation_id=mediation_id,
             my_endpoint=my_endpoint,
+            use_public_did=use_public_did,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -547,6 +568,7 @@ class DidExchangeApi:
         conn_id,
         mediation_id,
         my_endpoint,
+        use_public_did,
         _request_auth,
         _content_type,
         _headers,
@@ -572,6 +594,9 @@ class DidExchangeApi:
 
         if my_endpoint is not None:
             _query_params.append(("my_endpoint", my_endpoint))
+
+        if use_public_did is not None:
+            _query_params.append(("use_public_did", use_public_did))
 
         # process the header parameters
         # process the form parameters
