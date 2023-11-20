@@ -419,20 +419,8 @@ class ApiClient:
                 sub_kls = re.match(r"Dict\[([^,]*), (.*)]", klass).group(2)
                 return {k: self.__deserialize(v, sub_kls) for k, v in data.items()}
 
-            # Special handling for Union[RevRegResult, TxnOrRevRegResult]
-            # Fixed and no longer necessary in ACA-Py 0.10.1
-            if klass == "Union[RevRegResult, TxnOrRevRegResult]":
-                if "sent" in data or "txn" in data:
-                    klass = getattr(aries_cloudcontroller.models, "TxnOrRevRegResult")
-                elif "result" in data:
-                    klass = getattr(aries_cloudcontroller.models, "RevRegResult")
-                else:
-                    raise ValueError(
-                        "Unable to determine RevRegResult or TxnOrRevRegResult from the response data."
-                    )
-
             # convert str to class
-            elif klass in self.NATIVE_TYPES_MAPPING:
+            if klass in self.NATIVE_TYPES_MAPPING:
                 klass = self.NATIVE_TYPES_MAPPING[klass]
             else:
                 klass = getattr(aries_cloudcontroller.models, klass)

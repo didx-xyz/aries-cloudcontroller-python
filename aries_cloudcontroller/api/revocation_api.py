@@ -2062,7 +2062,7 @@ class RevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Union[RevRegResult, TxnOrRevRegResult]:
+    ) -> TxnOrRevRegResult:
         """Send revocation registry definition to ledger
 
 
@@ -2104,9 +2104,7 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Union[RevRegResult, TxnOrRevRegResult]"
-        }
+        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrRevRegResult"}
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2140,7 +2138,7 @@ class RevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Union[RevRegResult, TxnOrRevRegResult]]:
+    ) -> ApiResponse[TxnOrRevRegResult]:
         """Send revocation registry definition to ledger
 
 
@@ -2182,9 +2180,7 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Union[RevRegResult, TxnOrRevRegResult]"
-        }
+        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrRevRegResult"}
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2260,9 +2256,7 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Union[RevRegResult, TxnOrRevRegResult]"
-        }
+        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrRevRegResult"}
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
