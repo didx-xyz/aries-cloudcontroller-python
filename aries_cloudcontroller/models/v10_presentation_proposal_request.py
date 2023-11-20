@@ -38,6 +38,10 @@ class V10PresentationProposalRequest(BaseModel):
         default=None,
         description="Whether to respond automatically to presentation requests, building and presenting requested proof",
     )
+    auto_remove: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
+    )
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"
     )
@@ -48,6 +52,7 @@ class V10PresentationProposalRequest(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "auto_present",
+        "auto_remove",
         "comment",
         "connection_id",
         "presentation_proposal",
@@ -106,6 +111,7 @@ class V10PresentationProposalRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "auto_present": obj.get("auto_present"),
+                "auto_remove": obj.get("auto_remove"),
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
                 "presentation_proposal": IndyPresPreview.from_dict(

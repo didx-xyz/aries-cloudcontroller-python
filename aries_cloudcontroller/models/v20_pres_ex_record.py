@@ -45,6 +45,10 @@ class V20PresExRecord(BaseModel):
         default=None,
         description="Prover choice to auto-present proof as verifier requests",
     )
+    auto_remove: Optional[StrictBool] = Field(
+        default=None,
+        description="Verifier choice to remove this presentation exchange record when complete",
+    )
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"
     )
@@ -87,6 +91,7 @@ class V20PresExRecord(BaseModel):
     verified_msgs: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = [
         "auto_present",
+        "auto_remove",
         "auto_verify",
         "by_format",
         "connection_id",
@@ -244,6 +249,7 @@ class V20PresExRecord(BaseModel):
         _obj = cls.model_validate(
             {
                 "auto_present": obj.get("auto_present"),
+                "auto_remove": obj.get("auto_remove"),
                 "auto_verify": obj.get("auto_verify"),
                 "by_format": V20PresExRecordByFormat.from_dict(obj.get("by_format"))
                 if obj.get("by_format") is not None

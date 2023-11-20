@@ -34,6 +34,10 @@ class V10PresentationSendRequestRequest(BaseModel):
     V10PresentationSendRequestRequest
     """  # noqa: E501
 
+    auto_remove: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
+    )
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"
     )
@@ -44,6 +48,7 @@ class V10PresentationSendRequestRequest(BaseModel):
         default=None, description="Whether to trace event (default false)"
     )
     __properties: ClassVar[List[str]] = [
+        "auto_remove",
         "auto_verify",
         "comment",
         "connection_id",
@@ -102,6 +107,7 @@ class V10PresentationSendRequestRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "auto_remove": obj.get("auto_remove"),
                 "auto_verify": obj.get("auto_verify"),
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),

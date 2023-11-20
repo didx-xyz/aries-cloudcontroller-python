@@ -43,6 +43,10 @@ class V10PresentationExchange(BaseModel):
         default=None,
         description="Prover choice to auto-present proof as verifier requests",
     )
+    auto_remove: Optional[StrictBool] = Field(
+        default=None,
+        description="Verifier choice to remove this presentation exchange record when complete",
+    )
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"
     )
@@ -85,6 +89,7 @@ class V10PresentationExchange(BaseModel):
     verified_msgs: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = [
         "auto_present",
+        "auto_remove",
         "auto_verify",
         "connection_id",
         "created_at",
@@ -224,6 +229,7 @@ class V10PresentationExchange(BaseModel):
         _obj = cls.model_validate(
             {
                 "auto_present": obj.get("auto_present"),
+                "auto_remove": obj.get("auto_remove"),
                 "auto_verify": obj.get("auto_verify"),
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),

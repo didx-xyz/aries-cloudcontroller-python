@@ -35,13 +35,17 @@ class V20PresSpecByFormatRequest(BaseModel):
     V20PresSpecByFormatRequest
     """  # noqa: E501
 
+    auto_remove: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
+    )
     dif: Optional[DIFPresSpec] = None
     indy: Optional[IndyPresSpec] = None
     trace: Optional[StrictBool] = Field(
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    __properties: ClassVar[List[str]] = ["dif", "indy", "trace"]
+    __properties: ClassVar[List[str]] = ["auto_remove", "dif", "indy", "trace"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -92,6 +96,7 @@ class V20PresSpecByFormatRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "auto_remove": obj.get("auto_remove"),
                 "dif": DIFPresSpec.from_dict(obj.get("dif"))
                 if obj.get("dif") is not None
                 else None,

@@ -33,13 +33,17 @@ class V10PresentationSendRequestToProposal(BaseModel):
     V10PresentationSendRequestToProposal
     """  # noqa: E501
 
+    auto_remove: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
+    )
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"
     )
     trace: Optional[StrictBool] = Field(
         default=None, description="Whether to trace event (default false)"
     )
-    __properties: ClassVar[List[str]] = ["auto_verify", "trace"]
+    __properties: ClassVar[List[str]] = ["auto_remove", "auto_verify", "trace"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -83,6 +87,10 @@ class V10PresentationSendRequestToProposal(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"auto_verify": obj.get("auto_verify"), "trace": obj.get("trace")}
+            {
+                "auto_remove": obj.get("auto_remove"),
+                "auto_verify": obj.get("auto_verify"),
+                "trace": obj.get("trace"),
+            }
         )
         return _obj
