@@ -32,7 +32,7 @@ except ImportError:
 class W3CCredentialsListRequest(BaseModel):
     """
     W3CCredentialsListRequest
-    """
+    """  # noqa: E501
 
     contexts: Optional[List[Annotated[str, Field(strict=True)]]] = None
     given_id: Optional[StrictStr] = Field(
@@ -100,7 +100,7 @@ class W3CCredentialsListRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of W3CCredentialsListRequest from a dict"""
         if obj is None:
             return None

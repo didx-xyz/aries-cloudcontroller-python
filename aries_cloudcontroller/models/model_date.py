@@ -32,7 +32,7 @@ except ImportError:
 class ModelDate(BaseModel):
     """
     ModelDate
-    """
+    """  # noqa: E501
 
     expires_time: datetime = Field(description="Expiry Date")
     __properties: ClassVar[List[str]] = ["expires_time"]
@@ -70,7 +70,7 @@ class ModelDate(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ModelDate from a dict"""
         if obj is None:
             return None

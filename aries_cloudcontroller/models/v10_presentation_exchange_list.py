@@ -34,7 +34,7 @@ except ImportError:
 class V10PresentationExchangeList(BaseModel):
     """
     V10PresentationExchangeList
-    """
+    """  # noqa: E501
 
     results: Optional[List[V10PresentationExchange]] = Field(
         default=None, description="Aries RFC 37 v1.0 presentation exchange records"
@@ -81,7 +81,7 @@ class V10PresentationExchangeList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10PresentationExchangeList from a dict"""
         if obj is None:
             return None

@@ -32,7 +32,7 @@ except ImportError:
 class RevRegIssuedResult(BaseModel):
     """
     RevRegIssuedResult
-    """
+    """  # noqa: E501
 
     result: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
@@ -73,7 +73,7 @@ class RevRegIssuedResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of RevRegIssuedResult from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class CredentialStatusOptions(BaseModel):
     """
     CredentialStatusOptions
-    """
+    """  # noqa: E501
 
     type: StrictStr = Field(
         description="Credential status method type to use for the credential. Should match status method registered in the Verifiable Credential Extension Registry"
@@ -71,7 +71,7 @@ class CredentialStatusOptions(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CredentialStatusOptions from a dict"""
         if obj is None:
             return None

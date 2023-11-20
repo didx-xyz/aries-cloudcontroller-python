@@ -31,7 +31,7 @@ except ImportError:
 class WriteLedgerRequest(BaseModel):
     """
     WriteLedgerRequest
-    """
+    """  # noqa: E501
 
     ledger_id: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["ledger_id"]
@@ -69,7 +69,7 @@ class WriteLedgerRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of WriteLedgerRequest from a dict"""
         if obj is None:
             return None

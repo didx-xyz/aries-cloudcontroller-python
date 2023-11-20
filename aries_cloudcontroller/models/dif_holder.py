@@ -32,7 +32,7 @@ except ImportError:
 class DIFHolder(BaseModel):
     """
     DIFHolder
-    """
+    """  # noqa: E501
 
     directive: Optional[StrictStr] = Field(default=None, description="Preference")
     field_id: Optional[List[Annotated[str, Field(strict=True)]]] = None
@@ -81,7 +81,7 @@ class DIFHolder(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of DIFHolder from a dict"""
         if obj is None:
             return None

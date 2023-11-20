@@ -31,7 +31,7 @@ except ImportError:
 class IndyGEProofPred(BaseModel):
     """
     IndyGEProofPred
-    """
+    """  # noqa: E501
 
     attr_name: Optional[StrictStr] = Field(
         default=None, description="Attribute name, indy-canonicalized"
@@ -85,7 +85,7 @@ class IndyGEProofPred(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyGEProofPred from a dict"""
         if obj is None:
             return None

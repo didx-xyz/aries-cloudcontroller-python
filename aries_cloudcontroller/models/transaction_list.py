@@ -32,7 +32,7 @@ except ImportError:
 class TransactionList(BaseModel):
     """
     TransactionList
-    """
+    """  # noqa: E501
 
     results: Optional[List[TransactionRecord]] = Field(
         default=None, description="List of transaction records"
@@ -79,7 +79,7 @@ class TransactionList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TransactionList from a dict"""
         if obj is None:
             return None

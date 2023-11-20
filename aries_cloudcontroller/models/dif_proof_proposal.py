@@ -33,7 +33,7 @@ except ImportError:
 class DIFProofProposal(BaseModel):
     """
     DIFProofProposal
-    """
+    """  # noqa: E501
 
     input_descriptors: Optional[List[InputDescriptors]] = None
     options: Optional[DIFOptions] = None
@@ -82,7 +82,7 @@ class DIFProofProposal(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of DIFProofProposal from a dict"""
         if obj is None:
             return None

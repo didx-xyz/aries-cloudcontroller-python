@@ -32,7 +32,7 @@ except ImportError:
 class DIFField(BaseModel):
     """
     DIFField
-    """
+    """  # noqa: E501
 
     filter: Optional[Filter] = None
     id: Optional[StrictStr] = Field(default=None, description="ID")
@@ -87,7 +87,7 @@ class DIFField(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of DIFField from a dict"""
         if obj is None:
             return None

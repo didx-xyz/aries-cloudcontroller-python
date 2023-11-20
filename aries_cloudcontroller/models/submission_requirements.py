@@ -31,7 +31,7 @@ except ImportError:
 class SubmissionRequirements(BaseModel):
     """
     SubmissionRequirements
-    """
+    """  # noqa: E501
 
     count: Optional[StrictInt] = Field(default=None, description="Count Value")
     var_from: Optional[StrictStr] = Field(
@@ -104,7 +104,7 @@ class SubmissionRequirements(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SubmissionRequirements from a dict"""
         if obj is None:
             return None
@@ -132,9 +132,5 @@ class SubmissionRequirements(BaseModel):
         return _obj
 
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    # TODO: pydantic v2
-    # SubmissionRequirements.model_rebuild()
-    pass
+# TODO: Rewrite to not use raise_errors
+SubmissionRequirements.model_rebuild(raise_errors=False)

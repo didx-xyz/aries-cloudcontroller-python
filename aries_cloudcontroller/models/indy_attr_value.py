@@ -33,7 +33,7 @@ except ImportError:
 class IndyAttrValue(BaseModel):
     """
     IndyAttrValue
-    """
+    """  # noqa: E501
 
     encoded: Annotated[str, Field(strict=True)] = Field(
         description="Attribute encoded value"
@@ -81,7 +81,7 @@ class IndyAttrValue(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyAttrValue from a dict"""
         if obj is None:
             return None

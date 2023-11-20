@@ -31,7 +31,7 @@ except ImportError:
 class V20CredStoreRequest(BaseModel):
     """
     V20CredStoreRequest
-    """
+    """  # noqa: E501
 
     credential_id: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["credential_id"]
@@ -69,7 +69,7 @@ class V20CredStoreRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredStoreRequest from a dict"""
         if obj is None:
             return None

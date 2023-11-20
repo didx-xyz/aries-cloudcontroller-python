@@ -31,7 +31,7 @@ except ImportError:
 class JWSVerifyResponse(BaseModel):
     """
     JWSVerifyResponse
-    """
+    """  # noqa: E501
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
     headers: Union[str, Any] = Field(description="Headers from verified JWT.")
@@ -73,7 +73,7 @@ class JWSVerifyResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of JWSVerifyResponse from a dict"""
         if obj is None:
             return None

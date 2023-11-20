@@ -31,7 +31,7 @@ except ImportError:
 class AdminStatusReadiness(BaseModel):
     """
     AdminStatusReadiness
-    """
+    """  # noqa: E501
 
     ready: Optional[StrictBool] = Field(default=None, description="Readiness status")
     __properties: ClassVar[List[str]] = ["ready"]
@@ -69,7 +69,7 @@ class AdminStatusReadiness(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AdminStatusReadiness from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class TAAAccept(BaseModel):
     """
     TAAAccept
-    """
+    """  # noqa: E501
 
     mechanism: Optional[StrictStr] = None
     text: Optional[StrictStr] = None
@@ -71,7 +71,7 @@ class TAAAccept(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TAAAccept from a dict"""
         if obj is None:
             return None

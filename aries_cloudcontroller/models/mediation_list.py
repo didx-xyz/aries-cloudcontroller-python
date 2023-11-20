@@ -32,7 +32,7 @@ except ImportError:
 class MediationList(BaseModel):
     """
     MediationList
-    """
+    """  # noqa: E501
 
     results: Optional[List[MediationRecord]] = Field(
         default=None, description="List of mediation records"
@@ -79,7 +79,7 @@ class MediationList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of MediationList from a dict"""
         if obj is None:
             return None

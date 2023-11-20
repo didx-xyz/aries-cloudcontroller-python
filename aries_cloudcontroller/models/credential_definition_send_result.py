@@ -33,7 +33,7 @@ except ImportError:
 class CredentialDefinitionSendResult(BaseModel):
     """
     CredentialDefinitionSendResult
-    """
+    """  # noqa: E501
 
     credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier"
@@ -88,7 +88,7 @@ class CredentialDefinitionSendResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CredentialDefinitionSendResult from a dict"""
         if obj is None:
             return None

@@ -77,6 +77,9 @@ class AcaPyClient(AbstractAsyncContextManager):
                 " to use the controller without authentication."
             )
 
+        self.api_key = api_key
+        self.tenant_jwt = tenant_jwt
+
         # We will configure an ApiClient instance and pass it to our API modules
         self.configuration = Configuration(host=base_url)
         self.api_client = ApiClient(self.configuration)

@@ -39,7 +39,7 @@ except ImportError:
 class V20PresExRecord(BaseModel):
     """
     V20PresExRecord
-    """
+    """  # noqa: E501
 
     auto_present: Optional[StrictBool] = Field(
         default=None,
@@ -233,7 +233,7 @@ class V20PresExRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20PresExRecord from a dict"""
         if obj is None:
             return None

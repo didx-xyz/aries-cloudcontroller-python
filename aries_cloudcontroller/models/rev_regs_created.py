@@ -32,7 +32,7 @@ except ImportError:
 class RevRegsCreated(BaseModel):
     """
     RevRegsCreated
-    """
+    """  # noqa: E501
 
     rev_reg_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["rev_reg_ids"]
@@ -70,7 +70,7 @@ class RevRegsCreated(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of RevRegsCreated from a dict"""
         if obj is None:
             return None

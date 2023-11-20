@@ -31,7 +31,7 @@ except ImportError:
 class ClaimFormat(BaseModel):
     """
     ClaimFormat
-    """
+    """  # noqa: E501
 
     jwt: Optional[Union[str, Any]] = None
     jwt_vc: Optional[Union[str, Any]] = None
@@ -81,7 +81,7 @@ class ClaimFormat(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ClaimFormat from a dict"""
         if obj is None:
             return None

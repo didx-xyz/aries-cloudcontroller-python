@@ -31,7 +31,7 @@ except ImportError:
 class RevRegUpdateTailsFileUri(BaseModel):
     """
     RevRegUpdateTailsFileUri
-    """
+    """  # noqa: E501
 
     tails_public_uri: StrictStr = Field(description="Public URI to the tails file")
     __properties: ClassVar[List[str]] = ["tails_public_uri"]
@@ -69,7 +69,7 @@ class RevRegUpdateTailsFileUri(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of RevRegUpdateTailsFileUri from a dict"""
         if obj is None:
             return None

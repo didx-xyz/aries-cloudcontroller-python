@@ -34,7 +34,7 @@ except ImportError:
 class V10CredentialProposalRequestOpt(BaseModel):
     """
     V10CredentialProposalRequestOpt
-    """
+    """  # noqa: E501
 
     auto_remove: Optional[StrictBool] = Field(
         default=None,
@@ -190,7 +190,7 @@ class V10CredentialProposalRequestOpt(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10CredentialProposalRequestOpt from a dict"""
         if obj is None:
             return None

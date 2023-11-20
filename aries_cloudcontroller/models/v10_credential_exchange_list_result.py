@@ -32,7 +32,7 @@ except ImportError:
 class V10CredentialExchangeListResult(BaseModel):
     """
     V10CredentialExchangeListResult
-    """
+    """  # noqa: E501
 
     results: Optional[List[V10CredentialExchange]] = Field(
         default=None, description="Aries#0036 v1.0 credential exchange records"
@@ -79,7 +79,7 @@ class V10CredentialExchangeListResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10CredentialExchangeListResult from a dict"""
         if obj is None:
             return None

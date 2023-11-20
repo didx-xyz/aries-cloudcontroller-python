@@ -31,7 +31,7 @@ except ImportError:
 class ResolutionResult(BaseModel):
     """
     ResolutionResult
-    """
+    """  # noqa: E501
 
     did_document: Union[str, Any] = Field(description="DID Document")
     metadata: Union[str, Any] = Field(description="Resolution metadata")
@@ -70,7 +70,7 @@ class ResolutionResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ResolutionResult from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class SignatureOptions(BaseModel):
     """
     SignatureOptions
-    """
+    """  # noqa: E501
 
     challenge: Optional[StrictStr] = None
     domain: Optional[StrictStr] = None
@@ -79,7 +79,7 @@ class SignatureOptions(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SignatureOptions from a dict"""
         if obj is None:
             return None

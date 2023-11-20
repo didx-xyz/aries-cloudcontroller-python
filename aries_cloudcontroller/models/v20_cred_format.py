@@ -31,7 +31,7 @@ except ImportError:
 class V20CredFormat(BaseModel):
     """
     V20CredFormat
-    """
+    """  # noqa: E501
 
     attach_id: StrictStr = Field(description="Attachment identifier")
     format: StrictStr = Field(description="Attachment format specifier")
@@ -70,7 +70,7 @@ class V20CredFormat(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredFormat from a dict"""
         if obj is None:
             return None

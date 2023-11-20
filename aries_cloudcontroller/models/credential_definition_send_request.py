@@ -33,7 +33,7 @@ except ImportError:
 class CredentialDefinitionSendRequest(BaseModel):
     """
     CredentialDefinitionSendRequest
-    """
+    """  # noqa: E501
 
     revocation_registry_size: Optional[
         Annotated[int, Field(le=32768, strict=True, ge=4)]
@@ -102,7 +102,7 @@ class CredentialDefinitionSendRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CredentialDefinitionSendRequest from a dict"""
         if obj is None:
             return None

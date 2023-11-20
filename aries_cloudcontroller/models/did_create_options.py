@@ -33,7 +33,7 @@ except ImportError:
 class DIDCreateOptions(BaseModel):
     """
     DIDCreateOptions
-    """
+    """  # noqa: E501
 
     did: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
@@ -99,7 +99,7 @@ class DIDCreateOptions(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of DIDCreateOptions from a dict"""
         if obj is None:
             return None

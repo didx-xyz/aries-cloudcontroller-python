@@ -31,7 +31,7 @@ except ImportError:
 class ProfileSettings(BaseModel):
     """
     ProfileSettings
-    """
+    """  # noqa: E501
 
     settings: Optional[Union[str, Any]] = Field(
         default=None, description="Profile settings dict"
@@ -71,7 +71,7 @@ class ProfileSettings(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ProfileSettings from a dict"""
         if obj is None:
             return None

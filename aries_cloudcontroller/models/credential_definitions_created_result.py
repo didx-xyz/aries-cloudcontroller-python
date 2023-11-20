@@ -32,7 +32,7 @@ except ImportError:
 class CredentialDefinitionsCreatedResult(BaseModel):
     """
     CredentialDefinitionsCreatedResult
-    """
+    """  # noqa: E501
 
     credential_definition_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["credential_definition_ids"]
@@ -70,7 +70,7 @@ class CredentialDefinitionsCreatedResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CredentialDefinitionsCreatedResult from a dict"""
         if obj is None:
             return None

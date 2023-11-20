@@ -33,7 +33,7 @@ except ImportError:
 class MediationRecord(BaseModel):
     """
     MediationRecord
-    """
+    """  # noqa: E501
 
     connection_id: StrictStr
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -125,7 +125,7 @@ class MediationRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of MediationRecord from a dict"""
         if obj is None:
             return None

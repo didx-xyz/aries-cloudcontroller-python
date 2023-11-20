@@ -32,7 +32,7 @@ except ImportError:
 class V10PresentationSendRequestRequest(BaseModel):
     """
     V10PresentationSendRequestRequest
-    """
+    """  # noqa: E501
 
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"
@@ -92,7 +92,7 @@ class V10PresentationSendRequestRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10PresentationSendRequestRequest from a dict"""
         if obj is None:
             return None

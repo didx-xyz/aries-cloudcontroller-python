@@ -32,7 +32,7 @@ except ImportError:
 class V20CredFilterLDProof(BaseModel):
     """
     V20CredFilterLDProof
-    """
+    """  # noqa: E501
 
     ld_proof: LDProofVCDetail
     __properties: ClassVar[List[str]] = ["ld_proof"]
@@ -73,7 +73,7 @@ class V20CredFilterLDProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredFilterLDProof from a dict"""
         if obj is None:
             return None

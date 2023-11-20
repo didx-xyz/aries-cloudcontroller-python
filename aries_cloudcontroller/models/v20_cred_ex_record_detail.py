@@ -36,7 +36,7 @@ except ImportError:
 class V20CredExRecordDetail(BaseModel):
     """
     V20CredExRecordDetail
-    """
+    """  # noqa: E501
 
     cred_ex_record: Optional[V20CredExRecord] = None
     indy: Optional[V20CredExRecordIndy] = None
@@ -85,7 +85,7 @@ class V20CredExRecordDetail(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredExRecordDetail from a dict"""
         if obj is None:
             return None

@@ -17,7 +17,7 @@ class WalletListWithGroups(WalletList):
     results: Optional[List[WalletRecordWithGroups]] = None
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of WalletListWithGroups from a dict"""
         if obj is None:
             return None

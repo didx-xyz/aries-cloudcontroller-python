@@ -31,7 +31,7 @@ except ImportError:
 class V20PresProblemReportRequest(BaseModel):
     """
     V20PresProblemReportRequest
-    """
+    """  # noqa: E501
 
     description: StrictStr
     __properties: ClassVar[List[str]] = ["description"]
@@ -69,7 +69,7 @@ class V20PresProblemReportRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20PresProblemReportRequest from a dict"""
         if obj is None:
             return None

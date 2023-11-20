@@ -32,7 +32,7 @@ except ImportError:
 class V10DiscoveryExchangeListResult(BaseModel):
     """
     V10DiscoveryExchangeListResult
-    """
+    """  # noqa: E501
 
     results: Optional[List[V10DiscoveryRecord]] = None
     __properties: ClassVar[List[str]] = ["results"]
@@ -77,7 +77,7 @@ class V10DiscoveryExchangeListResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10DiscoveryExchangeListResult from a dict"""
         if obj is None:
             return None

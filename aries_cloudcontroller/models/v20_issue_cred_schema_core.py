@@ -33,7 +33,7 @@ except ImportError:
 class V20IssueCredSchemaCore(BaseModel):
     """
     V20IssueCredSchemaCore
-    """
+    """  # noqa: E501
 
     auto_remove: Optional[StrictBool] = Field(
         default=None,
@@ -110,7 +110,7 @@ class V20IssueCredSchemaCore(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20IssueCredSchemaCore from a dict"""
         if obj is None:
             return None

@@ -33,7 +33,7 @@ except ImportError:
 class CreateInvitationRequest(BaseModel):
     """
     CreateInvitationRequest
-    """
+    """  # noqa: E501
 
     mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Identifier for active mediation record to be used"
@@ -111,7 +111,7 @@ class CreateInvitationRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CreateInvitationRequest from a dict"""
         if obj is None:
             return None

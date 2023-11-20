@@ -33,7 +33,7 @@ except ImportError:
 class ModelSchema(BaseModel):
     """
     ModelSchema
-    """
+    """  # noqa: E501
 
     attr_names: Optional[List[StrictStr]] = Field(
         default=None, description="Schema attribute names", alias="attrNames"
@@ -128,7 +128,7 @@ class ModelSchema(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ModelSchema from a dict"""
         if obj is None:
             return None

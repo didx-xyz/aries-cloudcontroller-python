@@ -32,7 +32,7 @@ except ImportError:
 class DIDList(BaseModel):
     """
     DIDList
-    """
+    """  # noqa: E501
 
     results: Optional[List[DID]] = Field(default=None, description="DID list")
     __properties: ClassVar[List[str]] = ["results"]
@@ -77,7 +77,7 @@ class DIDList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of DIDList from a dict"""
         if obj is None:
             return None

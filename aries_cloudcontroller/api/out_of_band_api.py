@@ -12,20 +12,29 @@
 """  # noqa: E501
 
 
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictBool, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+
+try:
+    from typing import Annotated
+except ImportError:
+    from typing_extensions import Annotated
+
+from typing import Optional
+
+from pydantic import Field, StrictBool, StrictStr
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.exceptions import ApiTypeError
 from aries_cloudcontroller.models.invitation_create_request import (
     InvitationCreateRequest,
 )
 from aries_cloudcontroller.models.invitation_message import InvitationMessage
 from aries_cloudcontroller.models.invitation_record import InvitationRecord
 from aries_cloudcontroller.models.oob_record import OobRecord
+from aries_cloudcontroller.rest import RESTResponseType
 
 
 class OutOfBandApi:
@@ -52,9 +61,19 @@ class OutOfBandApi:
             Field(description="Create invitation for multiple use (default false)"),
         ] = None,
         body: Optional[InvitationCreateRequest] = None,
-        **kwargs,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> InvitationRecord:
-        """Create a new connection invitation  # noqa: E501
+        """Create a new connection invitation
 
 
         :param auto_accept: Auto-accept connection (defaults to configuration)
@@ -63,26 +82,47 @@ class OutOfBandApi:
         :type multi_use: bool
         :param body:
         :type body: InvitationCreateRequest
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: InvitationRecord
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the create_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
+        """  # noqa: E501
 
-        return await self.create_invitation_with_http_info.raw_function(
-            auto_accept,
-            multi_use,
-            body,
-            **kwargs,
+        _param = self._create_invitation_serialize(
+            auto_accept=auto_accept,
+            multi_use=multi_use,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "InvitationRecord"}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
     @validate_call
     async def create_invitation_with_http_info(
@@ -96,9 +136,19 @@ class OutOfBandApi:
             Field(description="Create invitation for multiple use (default false)"),
         ] = None,
         body: Optional[InvitationCreateRequest] = None,
-        **kwargs,
-    ) -> ApiResponse:
-        """Create a new connection invitation  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[InvitationRecord]:
+        """Create a new connection invitation
 
 
         :param auto_accept: Auto-accept connection (defaults to configuration)
@@ -107,112 +157,185 @@ class OutOfBandApi:
         :type multi_use: bool
         :param body:
         :type body: InvitationCreateRequest
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(InvitationRecord, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["auto_accept", "multi_use", "body"]
-        _all_params.extend(
-            [
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_invitation_serialize(
+            auto_accept=auto_accept,
+            multi_use=multi_use,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_invitation" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {"200": "InvitationRecord"}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    async def create_invitation_without_preload_content(
+        self,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        multi_use: Annotated[
+            Optional[StrictBool],
+            Field(description="Create invitation for multiple use (default false)"),
+        ] = None,
+        body: Optional[InvitationCreateRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a new connection invitation
+
+
+        :param auto_accept: Auto-accept connection (defaults to configuration)
+        :type auto_accept: bool
+        :param multi_use: Create invitation for multiple use (default false)
+        :type multi_use: bool
+        :param body:
+        :type body: InvitationCreateRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_invitation_serialize(
+            auto_accept=auto_accept,
+            multi_use=multi_use,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "InvitationRecord"}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _create_invitation_serialize(
+        self,
+        auto_accept,
+        multi_use,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
 
         _collection_formats: Dict[str, str] = {}
 
-        # process the path parameters
         _path_params: Dict[str, str] = {}
-
-        # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get("auto_accept") is not None:  # noqa: E501
-            _query_params.append(("auto_accept", _params["auto_accept"]))
-
-        if _params.get("multi_use") is not None:  # noqa: E501
-            _query_params.append(("multi_use", _params["multi_use"]))
-
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
+        _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if auto_accept is not None:
+            _query_params.append(("auto_accept", auto_accept))
+
+        if multi_use is not None:
+            _query_params.append(("multi_use", multi_use))
+
+        # process the header parameters
+        # process the form parameters
         # process the body parameter
-        _body_params = None
-        if _params["body"] is not None:
-            _body_params = _params["body"]
+        if body is not None:
+            _body_params = body
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "InvitationRecord",
-        }
-
-        return await self.api_client.call_api(
-            "/out-of-band/create-invitation",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/out-of-band/create-invitation",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
     @validate_call
@@ -234,9 +357,19 @@ class OutOfBandApi:
             Field(description="Use an existing connection, if possible"),
         ] = None,
         body: Optional[InvitationMessage] = None,
-        **kwargs,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> OobRecord:
-        """Receive a new connection invitation  # noqa: E501
+        """Receive a new connection invitation
 
 
         :param alias: Alias for connection
@@ -249,28 +382,49 @@ class OutOfBandApi:
         :type use_existing_connection: bool
         :param body:
         :type body: InvitationMessage
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: OobRecord
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the receive_invitation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
+        """  # noqa: E501
 
-        return await self.receive_invitation_with_http_info.raw_function(
-            alias,
-            auto_accept,
-            mediation_id,
-            use_existing_connection,
-            body,
-            **kwargs,
+        _param = self._receive_invitation_serialize(
+            alias=alias,
+            auto_accept=auto_accept,
+            mediation_id=mediation_id,
+            use_existing_connection=use_existing_connection,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "OobRecord"}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
     @validate_call
     async def receive_invitation_with_http_info(
@@ -291,9 +445,19 @@ class OutOfBandApi:
             Field(description="Use an existing connection, if possible"),
         ] = None,
         body: Optional[InvitationMessage] = None,
-        **kwargs,
-    ) -> ApiResponse:
-        """Receive a new connection invitation  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[OobRecord]:
+        """Receive a new connection invitation
 
 
         :param alias: Alias for connection
@@ -306,124 +470,206 @@ class OutOfBandApi:
         :type use_existing_connection: bool
         :param body:
         :type body: InvitationMessage
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(OobRecord, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            "alias",
-            "auto_accept",
-            "mediation_id",
-            "use_existing_connection",
-            "body",
-        ]
-        _all_params.extend(
-            [
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._receive_invitation_serialize(
+            alias=alias,
+            auto_accept=auto_accept,
+            mediation_id=mediation_id,
+            use_existing_connection=use_existing_connection,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method receive_invitation" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {"200": "OobRecord"}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    async def receive_invitation_without_preload_content(
+        self,
+        alias: Annotated[
+            Optional[StrictStr], Field(description="Alias for connection")
+        ] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
+        mediation_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Identifier for active mediation record to be used"),
+        ] = None,
+        use_existing_connection: Annotated[
+            Optional[StrictBool],
+            Field(description="Use an existing connection, if possible"),
+        ] = None,
+        body: Optional[InvitationMessage] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Receive a new connection invitation
+
+
+        :param alias: Alias for connection
+        :type alias: str
+        :param auto_accept: Auto-accept connection (defaults to configuration)
+        :type auto_accept: bool
+        :param mediation_id: Identifier for active mediation record to be used
+        :type mediation_id: str
+        :param use_existing_connection: Use an existing connection, if possible
+        :type use_existing_connection: bool
+        :param body:
+        :type body: InvitationMessage
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._receive_invitation_serialize(
+            alias=alias,
+            auto_accept=auto_accept,
+            mediation_id=mediation_id,
+            use_existing_connection=use_existing_connection,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "OobRecord"}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _receive_invitation_serialize(
+        self,
+        alias,
+        auto_accept,
+        mediation_id,
+        use_existing_connection,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
 
         _collection_formats: Dict[str, str] = {}
 
-        # process the path parameters
         _path_params: Dict[str, str] = {}
-
-        # process the query parameters
         _query_params: List[Tuple[str, str]] = []
-        if _params.get("alias") is not None:  # noqa: E501
-            _query_params.append(("alias", _params["alias"]))
-
-        if _params.get("auto_accept") is not None:  # noqa: E501
-            _query_params.append(("auto_accept", _params["auto_accept"]))
-
-        if _params.get("mediation_id") is not None:  # noqa: E501
-            _query_params.append(("mediation_id", _params["mediation_id"]))
-
-        if _params.get("use_existing_connection") is not None:  # noqa: E501
-            _query_params.append(
-                ("use_existing_connection", _params["use_existing_connection"])
-            )
-
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
+        _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
         _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if alias is not None:
+            _query_params.append(("alias", alias))
+
+        if auto_accept is not None:
+            _query_params.append(("auto_accept", auto_accept))
+
+        if mediation_id is not None:
+            _query_params.append(("mediation_id", mediation_id))
+
+        if use_existing_connection is not None:
+            _query_params.append(("use_existing_connection", use_existing_connection))
+
+        # process the header parameters
+        # process the form parameters
         # process the body parameter
-        _body_params = None
-        if _params["body"] is not None:
-            _body_params = _params["body"]
+        if body is not None:
+            _body_params = body
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]  # noqa: E501
+        _auth_settings: List[str] = ["AuthorizationHeader"]
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "OobRecord",
-        }
-
-        return await self.api_client.call_api(
-            "/out-of-band/receive-invitation",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/out-of-band/receive-invitation",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )

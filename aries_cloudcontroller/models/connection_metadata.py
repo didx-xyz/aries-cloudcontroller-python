@@ -31,7 +31,7 @@ except ImportError:
 class ConnectionMetadata(BaseModel):
     """
     ConnectionMetadata
-    """
+    """  # noqa: E501
 
     results: Optional[Union[str, Any]] = Field(
         default=None, description="Dictionary of metadata associated with connection."
@@ -71,7 +71,7 @@ class ConnectionMetadata(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ConnectionMetadata from a dict"""
         if obj is None:
             return None

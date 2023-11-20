@@ -31,7 +31,7 @@ except ImportError:
 class V20CredAttrSpec(BaseModel):
     """
     V20CredAttrSpec
-    """
+    """  # noqa: E501
 
     mime_type: Optional[StrictStr] = Field(
         default=None,
@@ -82,7 +82,7 @@ class V20CredAttrSpec(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredAttrSpec from a dict"""
         if obj is None:
             return None

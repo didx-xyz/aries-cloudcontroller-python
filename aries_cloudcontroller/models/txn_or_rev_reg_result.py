@@ -33,7 +33,7 @@ except ImportError:
 class TxnOrRevRegResult(BaseModel):
     """
     TxnOrRevRegResult
-    """
+    """  # noqa: E501
 
     sent: Optional[RevRegResult] = None
     txn: Optional[TransactionRecord] = None
@@ -78,7 +78,7 @@ class TxnOrRevRegResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TxnOrRevRegResult from a dict"""
         if obj is None:
             return None

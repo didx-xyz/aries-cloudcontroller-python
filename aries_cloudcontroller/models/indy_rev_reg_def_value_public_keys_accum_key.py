@@ -31,7 +31,7 @@ except ImportError:
 class IndyRevRegDefValuePublicKeysAccumKey(BaseModel):
     """
     IndyRevRegDefValuePublicKeysAccumKey
-    """
+    """  # noqa: E501
 
     z: Optional[StrictStr] = Field(default=None, description="Value for z")
     __properties: ClassVar[List[str]] = ["z"]
@@ -69,7 +69,7 @@ class IndyRevRegDefValuePublicKeysAccumKey(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyRevRegDefValuePublicKeysAccumKey from a dict"""
         if obj is None:
             return None

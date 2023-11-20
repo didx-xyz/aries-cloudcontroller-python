@@ -33,7 +33,7 @@ except ImportError:
 class TxnOrSchemaSendResult(BaseModel):
     """
     TxnOrSchemaSendResult
-    """
+    """  # noqa: E501
 
     sent: Optional[SchemaSendResult] = None
     txn: Optional[TransactionRecord] = None
@@ -78,7 +78,7 @@ class TxnOrSchemaSendResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TxnOrSchemaSendResult from a dict"""
         if obj is None:
             return None

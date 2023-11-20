@@ -35,7 +35,7 @@ except ImportError:
 class InputDescriptors(BaseModel):
     """
     InputDescriptors
-    """
+    """  # noqa: E501
 
     constraints: Optional[Constraints] = None
     group: Optional[List[StrictStr]] = None
@@ -97,7 +97,7 @@ class InputDescriptors(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of InputDescriptors from a dict"""
         if obj is None:
             return None

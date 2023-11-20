@@ -32,7 +32,7 @@ except ImportError:
 class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
     """
     IndyProofRequestedProofRevealedAttrGroup
-    """
+    """  # noqa: E501
 
     sub_proof_index: Optional[StrictInt] = Field(
         default=None, description="Sub-proof index"
@@ -83,7 +83,7 @@ class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofRequestedProofRevealedAttrGroup from a dict"""
         if obj is None:
             return None

@@ -38,7 +38,7 @@ except ImportError:
 class IndyProofRequest(BaseModel):
     """
     IndyProofRequest
-    """
+    """  # noqa: E501
 
     name: Optional[StrictStr] = Field(default=None, description="Proof request name")
     non_revoked: Optional[IndyProofRequestNonRevoked] = None
@@ -138,7 +138,7 @@ class IndyProofRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofRequest from a dict"""
         if obj is None:
             return None

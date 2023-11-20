@@ -33,7 +33,7 @@ except ImportError:
 class ConnectionStaticRequest(BaseModel):
     """
     ConnectionStaticRequest
-    """
+    """  # noqa: E501
 
     alias: Optional[StrictStr] = Field(
         default=None, description="Alias to assign to this connection"
@@ -148,7 +148,7 @@ class ConnectionStaticRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ConnectionStaticRequest from a dict"""
         if obj is None:
             return None

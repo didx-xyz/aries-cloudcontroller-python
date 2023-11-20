@@ -31,7 +31,7 @@ except ImportError:
 class LedgerConfigInstance(BaseModel):
     """
     LedgerConfigInstance
-    """
+    """  # noqa: E501
 
     genesis_file: Optional[StrictStr] = Field(default=None, description="genesis_file")
     genesis_transactions: Optional[StrictStr] = Field(
@@ -83,7 +83,7 @@ class LedgerConfigInstance(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of LedgerConfigInstance from a dict"""
         if obj is None:
             return None

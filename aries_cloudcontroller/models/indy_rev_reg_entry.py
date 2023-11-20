@@ -34,7 +34,7 @@ except ImportError:
 class IndyRevRegEntry(BaseModel):
     """
     IndyRevRegEntry
-    """
+    """  # noqa: E501
 
     value: Optional[IndyRevRegEntryValue] = None
     ver: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -88,7 +88,7 @@ class IndyRevRegEntry(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyRevRegEntry from a dict"""
         if obj is None:
             return None

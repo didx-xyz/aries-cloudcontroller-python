@@ -32,7 +32,7 @@ except ImportError:
 class SchemaGetResult(BaseModel):
     """
     SchemaGetResult
-    """
+    """  # noqa: E501
 
     var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
     __properties: ClassVar[List[str]] = ["schema"]
@@ -73,7 +73,7 @@ class SchemaGetResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SchemaGetResult from a dict"""
         if obj is None:
             return None

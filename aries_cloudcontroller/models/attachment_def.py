@@ -31,7 +31,7 @@ except ImportError:
 class AttachmentDef(BaseModel):
     """
     AttachmentDef
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(default=None, description="Attachment identifier")
     type: Optional[StrictStr] = Field(default=None, description="Attachment type")
@@ -82,7 +82,7 @@ class AttachmentDef(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AttachmentDef from a dict"""
         if obj is None:
             return None

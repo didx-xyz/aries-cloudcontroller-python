@@ -33,7 +33,7 @@ except ImportError:
 class TxnOrPublishRevocationsResult(BaseModel):
     """
     TxnOrPublishRevocationsResult
-    """
+    """  # noqa: E501
 
     sent: Optional[PublishRevocations] = None
     txn: Optional[TransactionRecord] = None
@@ -78,7 +78,7 @@ class TxnOrPublishRevocationsResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TxnOrPublishRevocationsResult from a dict"""
         if obj is None:
             return None

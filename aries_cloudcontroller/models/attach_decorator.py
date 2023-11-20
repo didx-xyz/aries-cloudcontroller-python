@@ -34,7 +34,7 @@ except ImportError:
 class AttachDecorator(BaseModel):
     """
     AttachDecorator
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Attachment identifier", alias="@id"
@@ -115,7 +115,7 @@ class AttachDecorator(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AttachDecorator from a dict"""
         if obj is None:
             return None

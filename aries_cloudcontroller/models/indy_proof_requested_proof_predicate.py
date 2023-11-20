@@ -31,7 +31,7 @@ except ImportError:
 class IndyProofRequestedProofPredicate(BaseModel):
     """
     IndyProofRequestedProofPredicate
-    """
+    """  # noqa: E501
 
     sub_proof_index: Optional[StrictInt] = Field(
         default=None, description="Sub-proof index"
@@ -71,7 +71,7 @@ class IndyProofRequestedProofPredicate(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofRequestedProofPredicate from a dict"""
         if obj is None:
             return None

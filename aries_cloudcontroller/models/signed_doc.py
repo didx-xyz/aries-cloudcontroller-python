@@ -32,7 +32,7 @@ except ImportError:
 class SignedDoc(BaseModel):
     """
     SignedDoc
-    """
+    """  # noqa: E501
 
     proof: SignatureOptions
     __properties: ClassVar[List[str]] = ["proof"]
@@ -73,7 +73,7 @@ class SignedDoc(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SignedDoc from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class TailsDeleteResponse(BaseModel):
     """
     TailsDeleteResponse
-    """
+    """  # noqa: E501
 
     message: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["message"]
@@ -69,7 +69,7 @@ class TailsDeleteResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TailsDeleteResponse from a dict"""
         if obj is None:
             return None

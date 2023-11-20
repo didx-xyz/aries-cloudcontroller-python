@@ -37,7 +37,7 @@ except ImportError:
 class IndyPresSpec(BaseModel):
     """
     IndyPresSpec
-    """
+    """  # noqa: E501
 
     requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = Field(
         description="Nested object mapping proof request attribute referents to requested-attribute specifiers"
@@ -105,7 +105,7 @@ class IndyPresSpec(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyPresSpec from a dict"""
         if obj is None:
             return None

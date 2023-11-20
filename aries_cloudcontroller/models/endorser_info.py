@@ -31,7 +31,7 @@ except ImportError:
 class EndorserInfo(BaseModel):
     """
     EndorserInfo
-    """
+    """  # noqa: E501
 
     endorser_did: StrictStr = Field(description="Endorser DID")
     endorser_name: Optional[StrictStr] = Field(
@@ -72,7 +72,7 @@ class EndorserInfo(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of EndorserInfo from a dict"""
         if obj is None:
             return None

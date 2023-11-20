@@ -33,7 +33,7 @@ except ImportError:
 class JWSVerify(BaseModel):
     """
     JWSVerify
-    """
+    """  # noqa: E501
 
     jwt: Optional[Annotated[str, Field(strict=True)]] = None
     __properties: ClassVar[List[str]] = ["jwt"]
@@ -83,7 +83,7 @@ class JWSVerify(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of JWSVerify from a dict"""
         if obj is None:
             return None

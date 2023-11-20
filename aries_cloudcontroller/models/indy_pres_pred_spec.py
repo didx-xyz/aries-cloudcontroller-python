@@ -33,7 +33,7 @@ except ImportError:
 class IndyPresPredSpec(BaseModel):
     """
     IndyPresPredSpec
-    """
+    """  # noqa: E501
 
     cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier"
@@ -103,7 +103,7 @@ class IndyPresPredSpec(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyPresPredSpec from a dict"""
         if obj is None:
             return None

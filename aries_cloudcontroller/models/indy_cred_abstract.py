@@ -36,7 +36,7 @@ except ImportError:
 class IndyCredAbstract(BaseModel):
     """
     IndyCredAbstract
-    """
+    """  # noqa: E501
 
     cred_def_id: Annotated[str, Field(strict=True)] = Field(
         description="Credential definition identifier"
@@ -122,7 +122,7 @@ class IndyCredAbstract(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyCredAbstract from a dict"""
         if obj is None:
             return None

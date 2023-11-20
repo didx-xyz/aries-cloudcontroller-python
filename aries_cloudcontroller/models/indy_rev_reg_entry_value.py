@@ -31,7 +31,7 @@ except ImportError:
 class IndyRevRegEntryValue(BaseModel):
     """
     IndyRevRegEntryValue
-    """
+    """  # noqa: E501
 
     accum: Optional[StrictStr] = Field(default=None, description="Accumulator value")
     prev_accum: Optional[StrictStr] = Field(
@@ -75,7 +75,7 @@ class IndyRevRegEntryValue(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyRevRegEntryValue from a dict"""
         if obj is None:
             return None

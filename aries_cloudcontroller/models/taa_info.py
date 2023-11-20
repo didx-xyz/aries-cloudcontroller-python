@@ -34,7 +34,7 @@ except ImportError:
 class TAAInfo(BaseModel):
     """
     TAAInfo
-    """
+    """  # noqa: E501
 
     aml_record: Optional[AMLRecord] = None
     taa_accepted: Optional[TAAAcceptance] = None
@@ -89,7 +89,7 @@ class TAAInfo(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TAAInfo from a dict"""
         if obj is None:
             return None

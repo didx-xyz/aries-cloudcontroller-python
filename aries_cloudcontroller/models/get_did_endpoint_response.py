@@ -33,7 +33,7 @@ except ImportError:
 class GetDIDEndpointResponse(BaseModel):
     """
     GetDIDEndpointResponse
-    """
+    """  # noqa: E501
 
     endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Full verification key"
@@ -93,7 +93,7 @@ class GetDIDEndpointResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of GetDIDEndpointResponse from a dict"""
         if obj is None:
             return None

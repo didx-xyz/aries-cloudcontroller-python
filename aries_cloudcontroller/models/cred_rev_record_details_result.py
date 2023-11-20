@@ -32,7 +32,7 @@ except ImportError:
 class CredRevRecordDetailsResult(BaseModel):
     """
     CredRevRecordDetailsResult
-    """
+    """  # noqa: E501
 
     results: Optional[List[IssuerCredRevRecord]] = None
     __properties: ClassVar[List[str]] = ["results"]
@@ -77,7 +77,7 @@ class CredRevRecordDetailsResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CredRevRecordDetailsResult from a dict"""
         if obj is None:
             return None

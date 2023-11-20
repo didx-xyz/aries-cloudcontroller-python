@@ -33,7 +33,7 @@ except ImportError:
 class V20PresProposal(BaseModel):
     """
     V20PresProposal
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"
@@ -107,7 +107,7 @@ class V20PresProposal(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20PresProposal from a dict"""
         if obj is None:
             return None

@@ -40,7 +40,7 @@ except ImportError:
 class IndyProofRequestedProof(BaseModel):
     """
     IndyProofRequestedProof
-    """
+    """  # noqa: E501
 
     predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = Field(
         default=None, description="Proof requested proof predicates."
@@ -134,7 +134,7 @@ class IndyProofRequestedProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofRequestedProof from a dict"""
         if obj is None:
             return None

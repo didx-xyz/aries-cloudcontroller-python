@@ -32,7 +32,7 @@ except ImportError:
 class MenuJson(BaseModel):
     """
     MenuJson
-    """
+    """  # noqa: E501
 
     description: Optional[StrictStr] = Field(
         default=None, description="Introductory text for the menu"
@@ -84,7 +84,7 @@ class MenuJson(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of MenuJson from a dict"""
         if obj is None:
             return None

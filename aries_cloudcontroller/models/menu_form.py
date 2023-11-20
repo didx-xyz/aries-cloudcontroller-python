@@ -32,7 +32,7 @@ except ImportError:
 class MenuForm(BaseModel):
     """
     MenuForm
-    """
+    """  # noqa: E501
 
     description: Optional[StrictStr] = Field(
         default=None, description="Additional descriptive text for menu form"
@@ -93,7 +93,7 @@ class MenuForm(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of MenuForm from a dict"""
         if obj is None:
             return None

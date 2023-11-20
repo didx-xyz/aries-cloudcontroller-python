@@ -33,7 +33,7 @@ except ImportError:
 class IndyEQProof(BaseModel):
     """
     IndyEQProof
-    """
+    """  # noqa: E501
 
     a_prime: Optional[Annotated[str, Field(strict=True)]] = None
     e: Optional[Annotated[str, Field(strict=True)]] = None
@@ -123,7 +123,7 @@ class IndyEQProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyEQProof from a dict"""
         if obj is None:
             return None

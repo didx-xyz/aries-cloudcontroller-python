@@ -33,7 +33,7 @@ except ImportError:
 class EndpointsResult(BaseModel):
     """
     EndpointsResult
-    """
+    """  # noqa: E501
 
     my_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="My endpoint"
@@ -106,7 +106,7 @@ class EndpointsResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of EndpointsResult from a dict"""
         if obj is None:
             return None

@@ -33,7 +33,7 @@ except ImportError:
 class ConnRecord(BaseModel):
     """
     ConnRecord
-    """
+    """  # noqa: E501
 
     accept: Optional[StrictStr] = Field(
         default=None, description="Connection acceptance: manual or auto"
@@ -281,7 +281,7 @@ class ConnRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ConnRecord from a dict"""
         if obj is None:
             return None

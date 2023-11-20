@@ -31,7 +31,7 @@ except ImportError:
 class PingRequest(BaseModel):
     """
     PingRequest
-    """
+    """  # noqa: E501
 
     comment: Optional[StrictStr] = Field(
         default=None, description="Comment for the ping message"
@@ -76,7 +76,7 @@ class PingRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of PingRequest from a dict"""
         if obj is None:
             return None

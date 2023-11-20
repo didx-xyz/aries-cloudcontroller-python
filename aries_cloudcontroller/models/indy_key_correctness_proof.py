@@ -33,7 +33,7 @@ except ImportError:
 class IndyKeyCorrectnessProof(BaseModel):
     """
     IndyKeyCorrectnessProof
-    """
+    """  # noqa: E501
 
     c: Annotated[str, Field(strict=True)] = Field(
         description="c in key correctness proof"
@@ -91,7 +91,7 @@ class IndyKeyCorrectnessProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyKeyCorrectnessProof from a dict"""
         if obj is None:
             return None

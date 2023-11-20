@@ -33,7 +33,7 @@ except ImportError:
 class Constraints(BaseModel):
     """
     Constraints
-    """
+    """  # noqa: E501
 
     fields: Optional[List[DIFField]] = None
     is_holder: Optional[List[DIFHolder]] = None
@@ -149,7 +149,7 @@ class Constraints(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of Constraints from a dict"""
         if obj is None:
             return None

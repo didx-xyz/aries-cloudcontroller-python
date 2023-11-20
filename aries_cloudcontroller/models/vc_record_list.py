@@ -32,7 +32,7 @@ except ImportError:
 class VCRecordList(BaseModel):
     """
     VCRecordList
-    """
+    """  # noqa: E501
 
     results: Optional[List[VCRecord]] = None
     __properties: ClassVar[List[str]] = ["results"]
@@ -77,7 +77,7 @@ class VCRecordList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of VCRecordList from a dict"""
         if obj is None:
             return None

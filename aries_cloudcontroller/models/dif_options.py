@@ -33,7 +33,7 @@ except ImportError:
 class DIFOptions(BaseModel):
     """
     DIFOptions
-    """
+    """  # noqa: E501
 
     challenge: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Challenge protect against replay attack"
@@ -91,7 +91,7 @@ class DIFOptions(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of DIFOptions from a dict"""
         if obj is None:
             return None

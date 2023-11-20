@@ -31,7 +31,7 @@ except ImportError:
 class AdminStatusLiveliness(BaseModel):
     """
     AdminStatusLiveliness
-    """
+    """  # noqa: E501
 
     alive: Optional[StrictBool] = Field(default=None, description="Liveliness status")
     __properties: ClassVar[List[str]] = ["alive"]
@@ -69,7 +69,7 @@ class AdminStatusLiveliness(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AdminStatusLiveliness from a dict"""
         if obj is None:
             return None

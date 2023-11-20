@@ -35,7 +35,7 @@ except ImportError:
 class IndyCredPrecis(BaseModel):
     """
     IndyCredPrecis
-    """
+    """  # noqa: E501
 
     cred_info: Optional[IndyCredInfo] = None
     interval: Optional[IndyNonRevocationInterval] = None
@@ -85,7 +85,7 @@ class IndyCredPrecis(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyCredPrecis from a dict"""
         if obj is None:
             return None

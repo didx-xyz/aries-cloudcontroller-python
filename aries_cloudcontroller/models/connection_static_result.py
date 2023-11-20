@@ -34,7 +34,7 @@ except ImportError:
 class ConnectionStaticResult(BaseModel):
     """
     ConnectionStaticResult
-    """
+    """  # noqa: E501
 
     my_did: Annotated[str, Field(strict=True)] = Field(description="Local DID")
     my_endpoint: Annotated[str, Field(strict=True)] = Field(
@@ -153,7 +153,7 @@ class ConnectionStaticResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ConnectionStaticResult from a dict"""
         if obj is None:
             return None

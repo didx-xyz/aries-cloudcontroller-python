@@ -36,7 +36,7 @@ except ImportError:
 class IndyProof(BaseModel):
     """
     IndyProof
-    """
+    """  # noqa: E501
 
     identifiers: Optional[List[IndyProofIdentifier]] = Field(
         default=None, description="Indy proof.identifiers content"
@@ -91,7 +91,7 @@ class IndyProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProof from a dict"""
         if obj is None:
             return None

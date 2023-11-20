@@ -36,7 +36,7 @@ except ImportError:
 class IndyRevRegDefValue(BaseModel):
     """
     IndyRevRegDefValue
-    """
+    """  # noqa: E501
 
     issuance_type: Optional[StrictStr] = Field(
         default=None, description="Issuance type", alias="issuanceType"
@@ -126,7 +126,7 @@ class IndyRevRegDefValue(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyRevRegDefValue from a dict"""
         if obj is None:
             return None

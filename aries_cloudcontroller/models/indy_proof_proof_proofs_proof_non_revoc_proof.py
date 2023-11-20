@@ -30,8 +30,8 @@ except ImportError:
 
 class IndyProofProofProofsProofNonRevocProof(BaseModel):
     """
-    Indy non-revocation proof  # noqa: E501
-    """
+    Indy non-revocation proof
+    """  # noqa: E501
 
     c_list: Optional[Dict[str, StrictStr]] = None
     x_list: Optional[Dict[str, StrictStr]] = None
@@ -70,7 +70,7 @@ class IndyProofProofProofsProofNonRevocProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofProofProofsProofNonRevocProof from a dict"""
         if obj is None:
             return None

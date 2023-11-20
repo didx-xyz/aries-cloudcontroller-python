@@ -31,7 +31,7 @@ except ImportError:
 class CreateWalletTokenResponse(BaseModel):
     """
     CreateWalletTokenResponse
-    """
+    """  # noqa: E501
 
     token: Optional[StrictStr] = Field(
         default=None, description="Authorization token to authenticate wallet requests"
@@ -71,7 +71,7 @@ class CreateWalletTokenResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CreateWalletTokenResponse from a dict"""
         if obj is None:
             return None

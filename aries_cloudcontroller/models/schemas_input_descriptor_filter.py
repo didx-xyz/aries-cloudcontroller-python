@@ -32,7 +32,7 @@ except ImportError:
 class SchemasInputDescriptorFilter(BaseModel):
     """
     SchemasInputDescriptorFilter
-    """
+    """  # noqa: E501
 
     oneof_filter: Optional[StrictBool] = Field(default=None, description="oneOf")
     uri_groups: Optional[List[List[SchemaInputDescriptor]]] = None
@@ -84,7 +84,7 @@ class SchemasInputDescriptorFilter(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SchemasInputDescriptorFilter from a dict"""
         if obj is None:
             return None

@@ -32,7 +32,7 @@ except ImportError:
 class SendMenu(BaseModel):
     """
     SendMenu
-    """
+    """  # noqa: E501
 
     menu: MenuJson
     __properties: ClassVar[List[str]] = ["menu"]
@@ -73,7 +73,7 @@ class SendMenu(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SendMenu from a dict"""
         if obj is None:
             return None

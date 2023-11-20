@@ -31,7 +31,7 @@ except ImportError:
 class SendMessage(BaseModel):
     """
     SendMessage
-    """
+    """  # noqa: E501
 
     content: Optional[StrictStr] = Field(default=None, description="Message content")
     __properties: ClassVar[List[str]] = ["content"]
@@ -69,7 +69,7 @@ class SendMessage(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SendMessage from a dict"""
         if obj is None:
             return None

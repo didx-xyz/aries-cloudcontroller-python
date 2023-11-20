@@ -33,7 +33,7 @@ except ImportError:
 class IndyPresPreview(BaseModel):
     """
     IndyPresPreview
-    """
+    """  # noqa: E501
 
     type: Optional[StrictStr] = Field(
         default=None, description="Message type identifier", alias="@type"
@@ -89,7 +89,7 @@ class IndyPresPreview(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyPresPreview from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class AMLRecord(BaseModel):
     """
     AMLRecord
-    """
+    """  # noqa: E501
 
     aml: Optional[Dict[str, StrictStr]] = None
     aml_context: Optional[StrictStr] = Field(default=None, alias="amlContext")
@@ -71,7 +71,7 @@ class AMLRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AMLRecord from a dict"""
         if obj is None:
             return None

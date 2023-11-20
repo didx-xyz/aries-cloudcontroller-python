@@ -35,7 +35,7 @@ except ImportError:
 class IndyProofProofProofsProof(BaseModel):
     """
     IndyProofProofProofsProof
-    """
+    """  # noqa: E501
 
     non_revoc_proof: Optional[IndyProofProofProofsProofNonRevocProof] = None
     primary_proof: Optional[IndyPrimaryProof] = None
@@ -85,7 +85,7 @@ class IndyProofProofProofsProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofProofProofsProof from a dict"""
         if obj is None:
             return None

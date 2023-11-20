@@ -32,7 +32,7 @@ except ImportError:
 class VerifyRequest(BaseModel):
     """
     VerifyRequest
-    """
+    """  # noqa: E501
 
     doc: Dict[str, Any]
     verkey: Optional[StrictStr] = Field(
@@ -73,7 +73,7 @@ class VerifyRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of VerifyRequest from a dict"""
         if obj is None:
             return None

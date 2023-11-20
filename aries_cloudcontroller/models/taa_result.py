@@ -32,7 +32,7 @@ except ImportError:
 class TAAResult(BaseModel):
     """
     TAAResult
-    """
+    """  # noqa: E501
 
     result: Optional[TAAInfo] = None
     __properties: ClassVar[List[str]] = ["result"]
@@ -73,7 +73,7 @@ class TAAResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of TAAResult from a dict"""
         if obj is None:
             return None

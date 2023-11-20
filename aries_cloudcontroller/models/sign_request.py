@@ -32,7 +32,7 @@ except ImportError:
 class SignRequest(BaseModel):
     """
     SignRequest
-    """
+    """  # noqa: E501
 
     doc: Doc
     verkey: StrictStr = Field(description="Verkey to use for signing")
@@ -74,7 +74,7 @@ class SignRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SignRequest from a dict"""
         if obj is None:
             return None

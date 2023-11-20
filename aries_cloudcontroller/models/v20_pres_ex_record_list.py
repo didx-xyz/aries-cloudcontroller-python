@@ -32,7 +32,7 @@ except ImportError:
 class V20PresExRecordList(BaseModel):
     """
     V20PresExRecordList
-    """
+    """  # noqa: E501
 
     results: Optional[List[V20PresExRecord]] = Field(
         default=None, description="Presentation exchange records"
@@ -79,7 +79,7 @@ class V20PresExRecordList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20PresExRecordList from a dict"""
         if obj is None:
             return None

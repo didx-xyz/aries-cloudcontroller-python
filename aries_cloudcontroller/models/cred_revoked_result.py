@@ -31,7 +31,7 @@ except ImportError:
 class CredRevokedResult(BaseModel):
     """
     CredRevokedResult
-    """
+    """  # noqa: E501
 
     revoked: Optional[StrictBool] = Field(
         default=None, description="Whether credential is revoked on the ledger"
@@ -71,7 +71,7 @@ class CredRevokedResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CredRevokedResult from a dict"""
         if obj is None:
             return None

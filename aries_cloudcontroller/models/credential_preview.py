@@ -32,7 +32,7 @@ except ImportError:
 class CredentialPreview(BaseModel):
     """
     CredentialPreview
-    """
+    """  # noqa: E501
 
     type: Optional[StrictStr] = Field(
         default=None, description="Message type identifier", alias="@type"
@@ -80,7 +80,7 @@ class CredentialPreview(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CredentialPreview from a dict"""
         if obj is None:
             return None

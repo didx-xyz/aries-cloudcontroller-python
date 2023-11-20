@@ -34,7 +34,7 @@ except ImportError:
 class IndyProofReqPredSpec(BaseModel):
     """
     IndyProofReqPredSpec
-    """
+    """  # noqa: E501
 
     name: StrictStr = Field(description="Attribute name")
     non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None
@@ -100,7 +100,7 @@ class IndyProofReqPredSpec(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofReqPredSpec from a dict"""
         if obj is None:
             return None

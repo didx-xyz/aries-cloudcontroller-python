@@ -31,7 +31,7 @@ except ImportError:
 class Filter(BaseModel):
     """
     Filter
-    """
+    """  # noqa: E501
 
     const: Optional[Union[str, int, float]] = Field(default=None, description="Const")
     enum: Optional[List[Union[str, int, float]]] = None
@@ -105,7 +105,7 @@ class Filter(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of Filter from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class AdminConfig(BaseModel):
     """
     AdminConfig
-    """
+    """  # noqa: E501
 
     config: Optional[Union[str, Any]] = Field(
         default=None, description="Configuration settings"
@@ -71,7 +71,7 @@ class AdminConfig(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AdminConfig from a dict"""
         if obj is None:
             return None

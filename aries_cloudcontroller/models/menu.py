@@ -32,7 +32,7 @@ except ImportError:
 class Menu(BaseModel):
     """
     Menu
-    """
+    """  # noqa: E501
 
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"
@@ -100,7 +100,7 @@ class Menu(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of Menu from a dict"""
         if obj is None:
             return None

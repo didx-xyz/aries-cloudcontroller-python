@@ -32,7 +32,7 @@ except ImportError:
 class LedgerConfigList(BaseModel):
     """
     LedgerConfigList
-    """
+    """  # noqa: E501
 
     ledger_config_list: List[LedgerConfigInstance]
     __properties: ClassVar[List[str]] = ["ledger_config_list"]
@@ -77,7 +77,7 @@ class LedgerConfigList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of LedgerConfigList from a dict"""
         if obj is None:
             return None

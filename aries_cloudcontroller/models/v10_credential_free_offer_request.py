@@ -34,7 +34,7 @@ except ImportError:
 class V10CredentialFreeOfferRequest(BaseModel):
     """
     V10CredentialFreeOfferRequest
-    """
+    """  # noqa: E501
 
     auto_issue: Optional[StrictBool] = Field(
         default=None,
@@ -119,7 +119,7 @@ class V10CredentialFreeOfferRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10CredentialFreeOfferRequest from a dict"""
         if obj is None:
             return None

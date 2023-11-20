@@ -33,7 +33,7 @@ except ImportError:
 class RouteRecord(BaseModel):
     """
     RouteRecord
-    """
+    """  # noqa: E501
 
     connection_id: Optional[StrictStr] = None
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -121,7 +121,7 @@ class RouteRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of RouteRecord from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class MenuFormParam(BaseModel):
     """
     MenuFormParam
-    """
+    """  # noqa: E501
 
     default: Optional[StrictStr] = Field(
         default=None, description="Default parameter value"
@@ -89,7 +89,7 @@ class MenuFormParam(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of MenuFormParam from a dict"""
         if obj is None:
             return None

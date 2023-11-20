@@ -33,7 +33,7 @@ except ImportError:
 class V20CredFilter(BaseModel):
     """
     V20CredFilter
-    """
+    """  # noqa: E501
 
     indy: Optional[V20CredFilterIndy] = None
     ld_proof: Optional[LDProofVCDetail] = None
@@ -78,7 +78,7 @@ class V20CredFilter(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredFilter from a dict"""
         if obj is None:
             return None

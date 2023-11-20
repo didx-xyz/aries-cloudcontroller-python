@@ -34,7 +34,7 @@ except ImportError:
 class InvitationCreateRequest(BaseModel):
     """
     InvitationCreateRequest
-    """
+    """  # noqa: E501
 
     accept: Optional[List[StrictStr]] = Field(
         default=None,
@@ -138,7 +138,7 @@ class InvitationCreateRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of InvitationCreateRequest from a dict"""
         if obj is None:
             return None

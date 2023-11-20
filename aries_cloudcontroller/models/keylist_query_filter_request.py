@@ -31,7 +31,7 @@ except ImportError:
 class KeylistQueryFilterRequest(BaseModel):
     """
     KeylistQueryFilterRequest
-    """
+    """  # noqa: E501
 
     filter: Optional[Union[str, Any]] = Field(
         default=None, description="Filter for keylist query"
@@ -71,7 +71,7 @@ class KeylistQueryFilterRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of KeylistQueryFilterRequest from a dict"""
         if obj is None:
             return None

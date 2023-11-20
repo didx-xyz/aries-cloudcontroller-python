@@ -31,7 +31,7 @@ except ImportError:
 class KeylistQueryPaginate(BaseModel):
     """
     KeylistQueryPaginate
-    """
+    """  # noqa: E501
 
     limit: Optional[StrictInt] = Field(
         default=None, description="Limit for keylist query"
@@ -74,7 +74,7 @@ class KeylistQueryPaginate(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of KeylistQueryPaginate from a dict"""
         if obj is None:
             return None

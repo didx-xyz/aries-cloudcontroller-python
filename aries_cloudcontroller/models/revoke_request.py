@@ -33,7 +33,7 @@ except ImportError:
 class RevokeRequest(BaseModel):
     """
     RevokeRequest
-    """
+    """  # noqa: E501
 
     comment: Optional[StrictStr] = Field(
         default=None,
@@ -177,7 +177,7 @@ class RevokeRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of RevokeRequest from a dict"""
         if obj is None:
             return None

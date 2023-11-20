@@ -35,7 +35,7 @@ except ImportError:
 class IndyPrimaryProof(BaseModel):
     """
     IndyPrimaryProof
-    """
+    """  # noqa: E501
 
     eq_proof: Optional[IndyPrimaryProofEqProof] = None
     ge_proofs: Optional[List[IndyGEProof]] = Field(
@@ -96,7 +96,7 @@ class IndyPrimaryProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyPrimaryProof from a dict"""
         if obj is None:
             return None

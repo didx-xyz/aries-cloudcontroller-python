@@ -31,7 +31,7 @@ except ImportError:
 class AdminMediationDeny(BaseModel):
     """
     AdminMediationDeny
-    """
+    """  # noqa: E501
 
     mediator_terms: Optional[List[StrictStr]] = Field(
         default=None, description="List of mediator rules for recipient"
@@ -74,7 +74,7 @@ class AdminMediationDeny(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AdminMediationDeny from a dict"""
         if obj is None:
             return None

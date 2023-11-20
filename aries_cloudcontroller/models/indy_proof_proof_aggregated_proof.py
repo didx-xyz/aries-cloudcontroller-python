@@ -31,7 +31,7 @@ except ImportError:
 class IndyProofProofAggregatedProof(BaseModel):
     """
     IndyProofProofAggregatedProof
-    """
+    """  # noqa: E501
 
     c_hash: Optional[StrictStr] = Field(default=None, description="c_hash value")
     c_list: Optional[List[List[StrictInt]]] = Field(
@@ -72,7 +72,7 @@ class IndyProofProofAggregatedProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofProofAggregatedProof from a dict"""
         if obj is None:
             return None

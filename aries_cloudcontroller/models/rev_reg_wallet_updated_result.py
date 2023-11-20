@@ -31,7 +31,7 @@ except ImportError:
 class RevRegWalletUpdatedResult(BaseModel):
     """
     RevRegWalletUpdatedResult
-    """
+    """  # noqa: E501
 
     accum_calculated: Optional[Union[str, Any]] = Field(
         default=None, description="Calculated accumulator for phantom revocations"
@@ -81,7 +81,7 @@ class RevRegWalletUpdatedResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of RevRegWalletUpdatedResult from a dict"""
         if obj is None:
             return None

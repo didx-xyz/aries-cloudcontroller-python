@@ -32,7 +32,7 @@ except ImportError:
 class WalletList(BaseModel):
     """
     WalletList
-    """
+    """  # noqa: E501
 
     results: Optional[List[WalletRecord]] = Field(
         default=None, description="List of wallet records"
@@ -79,7 +79,7 @@ class WalletList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of WalletList from a dict"""
         if obj is None:
             return None

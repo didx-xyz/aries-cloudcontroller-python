@@ -35,7 +35,7 @@ except ImportError:
 class V20DiscoveryRecord(BaseModel):
     """
     V20DiscoveryRecord
-    """
+    """  # noqa: E501
 
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
@@ -140,7 +140,7 @@ class V20DiscoveryRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20DiscoveryRecord from a dict"""
         if obj is None:
             return None

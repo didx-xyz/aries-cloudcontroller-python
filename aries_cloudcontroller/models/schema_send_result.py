@@ -34,7 +34,7 @@ except ImportError:
 class SchemaSendResult(BaseModel):
     """
     SchemaSendResult
-    """
+    """  # noqa: E501
 
     var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
     schema_id: Annotated[str, Field(strict=True)] = Field(
@@ -90,7 +90,7 @@ class SchemaSendResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SchemaSendResult from a dict"""
         if obj is None:
             return None

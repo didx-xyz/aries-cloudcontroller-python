@@ -31,7 +31,7 @@ except ImportError:
 class PerformRequest(BaseModel):
     """
     PerformRequest
-    """
+    """  # noqa: E501
 
     name: Optional[StrictStr] = Field(default=None, description="Menu option name")
     params: Optional[Dict[str, StrictStr]] = Field(
@@ -72,7 +72,7 @@ class PerformRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of PerformRequest from a dict"""
         if obj is None:
             return None

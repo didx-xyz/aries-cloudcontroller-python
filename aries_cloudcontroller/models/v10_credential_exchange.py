@@ -39,7 +39,7 @@ except ImportError:
 class V10CredentialExchange(BaseModel):
     """
     V10CredentialExchange
-    """
+    """  # noqa: E501
 
     auto_issue: Optional[StrictBool] = Field(
         default=None,
@@ -270,7 +270,7 @@ class V10CredentialExchange(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10CredentialExchange from a dict"""
         if obj is None:
             return None

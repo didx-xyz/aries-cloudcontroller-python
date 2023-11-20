@@ -33,7 +33,7 @@ except ImportError:
 class V20CredExRecordIndy(BaseModel):
     """
     V20CredExRecordIndy
-    """
+    """  # noqa: E501
 
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
@@ -162,7 +162,7 @@ class V20CredExRecordIndy(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredExRecordIndy from a dict"""
         if obj is None:
             return None

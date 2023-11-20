@@ -33,7 +33,7 @@ except ImportError:
 class IndyProofRequestedProofRevealedAttr(BaseModel):
     """
     IndyProofRequestedProofRevealedAttr
-    """
+    """  # noqa: E501
 
     encoded: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Encoded value"
@@ -87,7 +87,7 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofRequestedProofRevealedAttr from a dict"""
         if obj is None:
             return None

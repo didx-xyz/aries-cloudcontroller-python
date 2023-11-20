@@ -31,7 +31,7 @@ except ImportError:
 class VerifyResponse(BaseModel):
     """
     VerifyResponse
-    """
+    """  # noqa: E501
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
     valid: StrictBool
@@ -70,7 +70,7 @@ class VerifyResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of VerifyResponse from a dict"""
         if obj is None:
             return None

@@ -31,7 +31,7 @@ except ImportError:
 class V10CredentialIssueRequest(BaseModel):
     """
     V10CredentialIssueRequest
-    """
+    """  # noqa: E501
 
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"
@@ -76,7 +76,7 @@ class V10CredentialIssueRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V10CredentialIssueRequest from a dict"""
         if obj is None:
             return None

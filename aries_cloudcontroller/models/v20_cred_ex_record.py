@@ -41,7 +41,7 @@ except ImportError:
 class V20CredExRecord(BaseModel):
     """
     V20CredExRecord
-    """
+    """  # noqa: E501
 
     auto_issue: Optional[StrictBool] = Field(
         default=None,
@@ -243,7 +243,7 @@ class V20CredExRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredExRecord from a dict"""
         if obj is None:
             return None

@@ -32,7 +32,7 @@ except ImportError:
 class SchemasCreatedResult(BaseModel):
     """
     SchemasCreatedResult
-    """
+    """  # noqa: E501
 
     schema_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
     __properties: ClassVar[List[str]] = ["schema_ids"]
@@ -70,7 +70,7 @@ class SchemasCreatedResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SchemasCreatedResult from a dict"""
         if obj is None:
             return None

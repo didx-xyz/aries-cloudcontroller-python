@@ -31,7 +31,7 @@ except ImportError:
 class SignResponse(BaseModel):
     """
     SignResponse
-    """
+    """  # noqa: E501
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
     signed_doc: Optional[Union[str, Any]] = Field(
@@ -72,7 +72,7 @@ class SignResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SignResponse from a dict"""
         if obj is None:
             return None

@@ -34,7 +34,7 @@ except ImportError:
 class IndyProofReqAttrSpec(BaseModel):
     """
     IndyProofReqAttrSpec
-    """
+    """  # noqa: E501
 
     name: Optional[StrictStr] = Field(default=None, description="Attribute name")
     names: Optional[List[StrictStr]] = Field(
@@ -88,7 +88,7 @@ class IndyProofReqAttrSpec(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyProofReqAttrSpec from a dict"""
         if obj is None:
             return None

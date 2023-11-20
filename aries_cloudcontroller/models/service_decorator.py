@@ -32,7 +32,7 @@ except ImportError:
 class ServiceDecorator(BaseModel):
     """
     ServiceDecorator
-    """
+    """  # noqa: E501
 
     recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
         default=None, description="List of recipient keys", alias="recipientKeys"
@@ -84,7 +84,7 @@ class ServiceDecorator(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ServiceDecorator from a dict"""
         if obj is None:
             return None

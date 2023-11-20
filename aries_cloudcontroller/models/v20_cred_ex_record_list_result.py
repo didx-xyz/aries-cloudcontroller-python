@@ -32,7 +32,7 @@ except ImportError:
 class V20CredExRecordListResult(BaseModel):
     """
     V20CredExRecordListResult
-    """
+    """  # noqa: E501
 
     results: Optional[List[V20CredExRecordDetail]] = Field(
         default=None,
@@ -80,7 +80,7 @@ class V20CredExRecordListResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20CredExRecordListResult from a dict"""
         if obj is None:
             return None

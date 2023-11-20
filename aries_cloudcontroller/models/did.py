@@ -34,7 +34,7 @@ except ImportError:
 class DID(BaseModel):
     """
     DID
-    """
+    """  # noqa: E501
 
     did: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="DID of interest"
@@ -142,7 +142,7 @@ class DID(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of DID from a dict"""
         if obj is None:
             return None

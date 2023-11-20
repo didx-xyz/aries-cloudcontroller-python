@@ -31,7 +31,7 @@ except ImportError:
 class ProtocolDescriptor(BaseModel):
     """
     ProtocolDescriptor
-    """
+    """  # noqa: E501
 
     pid: StrictStr
     roles: Optional[List[StrictStr]] = Field(default=None, description="List of roles")
@@ -75,7 +75,7 @@ class ProtocolDescriptor(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ProtocolDescriptor from a dict"""
         if obj is None:
             return None

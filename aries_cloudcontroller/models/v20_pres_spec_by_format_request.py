@@ -33,7 +33,7 @@ except ImportError:
 class V20PresSpecByFormatRequest(BaseModel):
     """
     V20PresSpecByFormatRequest
-    """
+    """  # noqa: E501
 
     dif: Optional[DIFPresSpec] = None
     indy: Optional[IndyPresSpec] = None
@@ -82,7 +82,7 @@ class V20PresSpecByFormatRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of V20PresSpecByFormatRequest from a dict"""
         if obj is None:
             return None

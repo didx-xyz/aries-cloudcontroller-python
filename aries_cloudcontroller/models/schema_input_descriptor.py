@@ -31,7 +31,7 @@ except ImportError:
 class SchemaInputDescriptor(BaseModel):
     """
     SchemaInputDescriptor
-    """
+    """  # noqa: E501
 
     required: Optional[StrictBool] = Field(default=None, description="Required")
     uri: Optional[StrictStr] = Field(default=None, description="URI")
@@ -70,7 +70,7 @@ class SchemaInputDescriptor(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of SchemaInputDescriptor from a dict"""
         if obj is None:
             return None

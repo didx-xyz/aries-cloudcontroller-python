@@ -33,7 +33,7 @@ except ImportError:
 class IndyCredInfo(BaseModel):
     """
     IndyCredInfo
-    """
+    """  # noqa: E501
 
     attrs: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="Attribute names and value"
@@ -158,7 +158,7 @@ class IndyCredInfo(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IndyCredInfo from a dict"""
         if obj is None:
             return None

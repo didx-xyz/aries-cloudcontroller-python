@@ -36,7 +36,7 @@ except ImportError:
 class AttachDecoratorData(BaseModel):
     """
     AttachDecoratorData
-    """
+    """  # noqa: E501
 
     var_base64: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Base64-encoded data", alias="base64"
@@ -113,7 +113,7 @@ class AttachDecoratorData(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AttachDecoratorData from a dict"""
         if obj is None:
             return None

@@ -32,7 +32,7 @@ except ImportError:
 class ConnectionList(BaseModel):
     """
     ConnectionList
-    """
+    """  # noqa: E501
 
     results: Optional[List[ConnRecord]] = Field(
         default=None, description="List of connection records"
@@ -79,7 +79,7 @@ class ConnectionList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ConnectionList from a dict"""
         if obj is None:
             return None

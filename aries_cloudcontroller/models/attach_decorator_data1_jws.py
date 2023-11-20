@@ -36,7 +36,7 @@ except ImportError:
 class AttachDecoratorData1JWS(BaseModel):
     """
     AttachDecoratorData1JWS
-    """
+    """  # noqa: E501
 
     header: AttachDecoratorDataJWSHeader
     protected: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -98,7 +98,7 @@ class AttachDecoratorData1JWS(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of AttachDecoratorData1JWS from a dict"""
         if obj is None:
             return None

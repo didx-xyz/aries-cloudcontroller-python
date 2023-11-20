@@ -32,7 +32,7 @@ except ImportError:
 class RevRegResult(BaseModel):
     """
     RevRegResult
-    """
+    """  # noqa: E501
 
     result: Optional[IssuerRevRegRecord] = None
     __properties: ClassVar[List[str]] = ["result"]
@@ -73,7 +73,7 @@ class RevRegResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of RevRegResult from a dict"""
         if obj is None:
             return None
