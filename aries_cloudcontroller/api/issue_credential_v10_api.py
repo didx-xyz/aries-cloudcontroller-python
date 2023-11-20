@@ -36,6 +36,9 @@ from aries_cloudcontroller.models.v10_credential_conn_free_offer_request import 
 )
 from aries_cloudcontroller.models.v10_credential_create import V10CredentialCreate
 from aries_cloudcontroller.models.v10_credential_exchange import V10CredentialExchange
+from aries_cloudcontroller.models.v10_credential_exchange_auto_remove_request import (
+    V10CredentialExchangeAutoRemoveRequest,
+)
 from aries_cloudcontroller.models.v10_credential_exchange_list_result import (
     V10CredentialExchangeListResult,
 )
@@ -2834,6 +2837,7 @@ class IssueCredentialV10Api:
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
         ],
+        body: Optional[V10CredentialExchangeAutoRemoveRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2851,6 +2855,8 @@ class IssueCredentialV10Api:
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
+        :param body:
+        :type body: V10CredentialExchangeAutoRemoveRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2875,6 +2881,7 @@ class IssueCredentialV10Api:
 
         _param = self._send_request_serialize(
             cred_ex_id=cred_ex_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2897,6 +2904,7 @@ class IssueCredentialV10Api:
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
         ],
+        body: Optional[V10CredentialExchangeAutoRemoveRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2914,6 +2922,8 @@ class IssueCredentialV10Api:
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
+        :param body:
+        :type body: V10CredentialExchangeAutoRemoveRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2938,6 +2948,7 @@ class IssueCredentialV10Api:
 
         _param = self._send_request_serialize(
             cred_ex_id=cred_ex_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2960,6 +2971,7 @@ class IssueCredentialV10Api:
         cred_ex_id: Annotated[
             str, Field(strict=True, description="Credential exchange identifier")
         ],
+        body: Optional[V10CredentialExchangeAutoRemoveRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2977,6 +2989,8 @@ class IssueCredentialV10Api:
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
+        :param body:
+        :type body: V10CredentialExchangeAutoRemoveRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3001,6 +3015,7 @@ class IssueCredentialV10Api:
 
         _param = self._send_request_serialize(
             cred_ex_id=cred_ex_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3016,6 +3031,7 @@ class IssueCredentialV10Api:
     def _send_request_serialize(
         self,
         cred_ex_id,
+        body,
         _request_auth,
         _content_type,
         _headers,
@@ -3039,11 +3055,23 @@ class IssueCredentialV10Api:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if body is not None:
+            _body_params = body
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
         )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = ["AuthorizationHeader"]
