@@ -19,7 +19,7 @@ def parse_requirements(filename: str):
 if __name__ == "__main__":
     setup(
         name=PACKAGE_NAME,
-        version="0.10.1",
+        version="0.10.2-beta0",
         description="A simple python client for controlling an ACA-Py agent",
         long_description=long_description,
         long_description_content_type="text/markdown",
