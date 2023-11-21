@@ -2,10 +2,10 @@ import asyncio
 
 from aries_cloudcontroller import (
     AcaPyClient,
+    ConnRecord,
     CreateInvitationRequest,
     InvitationResult,
     ReceiveInvitationRequest,
-    ConnRecord,
 )
 
 client = AcaPyClient(base_url="https://agent.community.animo.id", admin_insecure=True)
