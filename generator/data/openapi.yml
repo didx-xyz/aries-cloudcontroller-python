@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.10.1
+  version: v0.10.2
 servers:
 - url: /
 security:
@@ -275,15 +275,15 @@ paths:
         schema:
           type: string
           enum:
-          - init
-          - request
-          - invitation
           - start
           - response
           - completed
-          - error
           - abandoned
+          - request
           - active
+          - invitation
+          - error
+          - init
       - name: their_did
         in: query
         description: Their DID
