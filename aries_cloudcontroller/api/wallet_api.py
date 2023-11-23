@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -51,7 +51,6 @@ class WalletApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def create_did(
         self,
         body: Optional[DIDCreate] = None,
@@ -112,7 +111,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def create_did_with_http_info(
         self,
         body: Optional[DIDCreate] = None,
@@ -173,7 +171,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def create_did_without_preload_content(
         self,
         body: Optional[DIDCreate] = None,
@@ -290,7 +287,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_did_endpoint(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -351,7 +347,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_did_endpoint_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -412,7 +407,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_did_endpoint_without_preload_content(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -520,7 +514,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_dids(
         self,
         did: Annotated[
@@ -615,7 +608,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_dids_with_http_info(
         self,
         did: Annotated[
@@ -710,7 +702,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_dids_without_preload_content(
         self,
         did: Annotated[
@@ -868,7 +859,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_public_did(
         self,
         _request_timeout: Union[
@@ -925,7 +915,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_public_did_with_http_info(
         self,
         _request_timeout: Union[
@@ -982,7 +971,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_public_did_without_preload_content(
         self,
         _request_timeout: Union[
@@ -1082,7 +1070,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def rotate_keypair(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1143,7 +1130,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def rotate_keypair_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1204,7 +1190,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def rotate_keypair_without_preload_content(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1312,7 +1297,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def set_did_endpoint(
         self,
         conn_id: Annotated[
@@ -1386,7 +1370,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def set_did_endpoint_with_http_info(
         self,
         conn_id: Annotated[
@@ -1460,7 +1443,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def set_did_endpoint_without_preload_content(
         self,
         conn_id: Annotated[
@@ -1600,7 +1582,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def set_public_did(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1680,7 +1661,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def set_public_did_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1760,7 +1740,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def set_public_did_without_preload_content(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1901,7 +1880,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def wallet_jwt_sign_post(
         self,
         body: Optional[JWSCreate] = None,
@@ -1962,7 +1940,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def wallet_jwt_sign_post_with_http_info(
         self,
         body: Optional[JWSCreate] = None,
@@ -2023,7 +2000,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def wallet_jwt_sign_post_without_preload_content(
         self,
         body: Optional[JWSCreate] = None,
@@ -2140,7 +2116,6 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def wallet_jwt_verify_post(
         self,
         body: Optional[JWSVerify] = None,
@@ -2201,7 +2176,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def wallet_jwt_verify_post_with_http_info(
         self,
         body: Optional[JWSVerify] = None,
@@ -2262,7 +2236,6 @@ class WalletApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def wallet_jwt_verify_post_without_preload_content(
         self,
         body: Optional[JWSVerify] = None,

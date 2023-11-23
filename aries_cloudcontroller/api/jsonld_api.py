@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -44,7 +44,6 @@ class JsonldApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def sign(
         self,
         body: Optional[SignRequest] = None,
@@ -105,7 +104,6 @@ class JsonldApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def sign_with_http_info(
         self,
         body: Optional[SignRequest] = None,
@@ -166,7 +164,6 @@ class JsonldApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def sign_without_preload_content(
         self,
         body: Optional[SignRequest] = None,
@@ -283,7 +280,6 @@ class JsonldApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def verify(
         self,
         body: Optional[VerifyRequest] = None,
@@ -344,7 +340,6 @@ class JsonldApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def verify_with_http_info(
         self,
         body: Optional[VerifyRequest] = None,
@@ -405,7 +400,6 @@ class JsonldApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def verify_without_preload_content(
         self,
         body: Optional[VerifyRequest] = None,

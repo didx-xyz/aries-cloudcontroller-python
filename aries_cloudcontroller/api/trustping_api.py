@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -45,7 +45,6 @@ class TrustpingApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def send_ping(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -110,7 +109,6 @@ class TrustpingApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_ping_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -175,7 +173,6 @@ class TrustpingApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_ping_without_preload_content(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],

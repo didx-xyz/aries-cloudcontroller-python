@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -55,7 +55,6 @@ class CredentialDefinitionApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def credential_definitions_cred_def_id_write_record_post(
         self,
         cred_def_id: Annotated[
@@ -120,7 +119,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def credential_definitions_cred_def_id_write_record_post_with_http_info(
         self,
         cred_def_id: Annotated[
@@ -185,7 +183,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def credential_definitions_cred_def_id_write_record_post_without_preload_content(
         self,
         cred_def_id: Annotated[
@@ -296,7 +293,6 @@ class CredentialDefinitionApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_created_cred_defs(
         self,
         cred_def_id: Annotated[
@@ -396,7 +392,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_created_cred_defs_with_http_info(
         self,
         cred_def_id: Annotated[
@@ -496,7 +491,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_created_cred_defs_without_preload_content(
         self,
         cred_def_id: Annotated[
@@ -663,7 +657,6 @@ class CredentialDefinitionApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_cred_def(
         self,
         cred_def_id: Annotated[
@@ -728,7 +721,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_cred_def_with_http_info(
         self,
         cred_def_id: Annotated[
@@ -793,7 +785,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_cred_def_without_preload_content(
         self,
         cred_def_id: Annotated[
@@ -904,7 +895,6 @@ class CredentialDefinitionApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def publish_cred_def(
         self,
         conn_id: Annotated[
@@ -980,7 +970,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def publish_cred_def_with_http_info(
         self,
         conn_id: Annotated[
@@ -1056,7 +1045,6 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def publish_cred_def_without_preload_content(
         self,
         conn_id: Annotated[

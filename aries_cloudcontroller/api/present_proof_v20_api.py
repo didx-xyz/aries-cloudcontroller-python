@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -64,7 +64,6 @@ class PresentProofV20Api:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def create_proof_request(
         self,
         body: Optional[V20PresCreateRequestRequest] = None,
@@ -125,7 +124,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def create_proof_request_with_http_info(
         self,
         body: Optional[V20PresCreateRequestRequest] = None,
@@ -186,7 +184,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def create_proof_request_without_preload_content(
         self,
         body: Optional[V20PresCreateRequestRequest] = None,
@@ -303,7 +300,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def delete_record(
         self,
         pres_ex_id: Annotated[
@@ -366,7 +362,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def delete_record_with_http_info(
         self,
         pres_ex_id: Annotated[
@@ -429,7 +424,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def delete_record_without_preload_content(
         self,
         pres_ex_id: Annotated[
@@ -538,7 +532,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_matching_credentials(
         self,
         pres_ex_id: Annotated[
@@ -629,7 +622,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_matching_credentials_with_http_info(
         self,
         pres_ex_id: Annotated[
@@ -720,7 +712,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_matching_credentials_without_preload_content(
         self,
         pres_ex_id: Annotated[
@@ -873,7 +864,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_record(
         self,
         pres_ex_id: Annotated[
@@ -936,7 +926,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_record_with_http_info(
         self,
         pres_ex_id: Annotated[
@@ -999,7 +988,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_record_without_preload_content(
         self,
         pres_ex_id: Annotated[
@@ -1108,7 +1096,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_records(
         self,
         connection_id: Annotated[
@@ -1190,7 +1177,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_records_with_http_info(
         self,
         connection_id: Annotated[
@@ -1272,7 +1258,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_records_without_preload_content(
         self,
         connection_id: Annotated[
@@ -1413,7 +1398,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def report_problem(
         self,
         pres_ex_id: Annotated[
@@ -1480,7 +1464,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def report_problem_with_http_info(
         self,
         pres_ex_id: Annotated[
@@ -1547,7 +1530,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def report_problem_without_preload_content(
         self,
         pres_ex_id: Annotated[
@@ -1673,7 +1655,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_presentation(
         self,
         pres_ex_id: Annotated[
@@ -1740,7 +1721,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_presentation_with_http_info(
         self,
         pres_ex_id: Annotated[
@@ -1807,7 +1787,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_presentation_without_preload_content(
         self,
         pres_ex_id: Annotated[
@@ -1933,7 +1912,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_proposal(
         self,
         body: Optional[V20PresProposalRequest] = None,
@@ -1994,7 +1972,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_proposal_with_http_info(
         self,
         body: Optional[V20PresProposalRequest] = None,
@@ -2055,7 +2032,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_proposal_without_preload_content(
         self,
         body: Optional[V20PresProposalRequest] = None,
@@ -2172,7 +2148,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_request(
         self,
         pres_ex_id: Annotated[
@@ -2239,7 +2214,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_request_with_http_info(
         self,
         pres_ex_id: Annotated[
@@ -2306,7 +2280,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_request_without_preload_content(
         self,
         pres_ex_id: Annotated[
@@ -2432,7 +2405,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_request_free(
         self,
         body: Optional[V20PresSendRequestRequest] = None,
@@ -2493,7 +2465,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_request_free_with_http_info(
         self,
         body: Optional[V20PresSendRequestRequest] = None,
@@ -2554,7 +2525,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_request_free_without_preload_content(
         self,
         body: Optional[V20PresSendRequestRequest] = None,
@@ -2671,7 +2641,6 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def verify_presentation(
         self,
         pres_ex_id: Annotated[
@@ -2734,7 +2703,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def verify_presentation_with_http_info(
         self,
         pres_ex_id: Annotated[
@@ -2797,7 +2765,6 @@ class PresentProofV20Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def verify_presentation_without_preload_content(
         self,
         pres_ex_id: Annotated[

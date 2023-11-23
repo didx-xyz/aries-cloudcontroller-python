@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -58,7 +58,6 @@ class LedgerApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def accept_taa(
         self,
         body: Optional[TAAAccept] = None,
@@ -119,7 +118,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def accept_taa_with_http_info(
         self,
         body: Optional[TAAAccept] = None,
@@ -180,7 +178,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def accept_taa_without_preload_content(
         self,
         body: Optional[TAAAccept] = None,
@@ -297,7 +294,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def fetch_taa(
         self,
         _request_timeout: Union[
@@ -354,7 +350,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def fetch_taa_with_http_info(
         self,
         _request_timeout: Union[
@@ -411,7 +406,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def fetch_taa_without_preload_content(
         self,
         _request_timeout: Union[
@@ -511,7 +505,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_did_endpoint(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -581,7 +574,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_did_endpoint_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -651,7 +643,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_did_endpoint_without_preload_content(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -772,7 +763,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_did_nym_role(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -833,7 +823,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_did_nym_role_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -894,7 +883,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_did_nym_role_without_preload_content(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1002,7 +990,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_did_verkey(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1063,7 +1050,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_did_verkey_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1124,7 +1110,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_did_verkey_without_preload_content(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1232,7 +1217,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def ledger_config_get(
         self,
         _request_timeout: Union[
@@ -1289,7 +1273,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def ledger_config_get_with_http_info(
         self,
         _request_timeout: Union[
@@ -1346,7 +1329,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def ledger_config_get_without_preload_content(
         self,
         _request_timeout: Union[
@@ -1446,7 +1428,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def ledger_get_write_ledger_get(
         self,
         _request_timeout: Union[
@@ -1503,7 +1484,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def ledger_get_write_ledger_get_with_http_info(
         self,
         _request_timeout: Union[
@@ -1560,7 +1540,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def ledger_get_write_ledger_get_without_preload_content(
         self,
         _request_timeout: Union[
@@ -1660,7 +1639,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def ledger_get_write_ledgers_get(
         self,
         _request_timeout: Union[
@@ -1719,7 +1697,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def ledger_get_write_ledgers_get_with_http_info(
         self,
         _request_timeout: Union[
@@ -1778,7 +1755,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def ledger_get_write_ledgers_get_without_preload_content(
         self,
         _request_timeout: Union[
@@ -1880,7 +1856,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def ledger_ledger_id_set_write_ledger_put(
         self,
         ledger_id: StrictStr,
@@ -1941,7 +1916,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def ledger_ledger_id_set_write_ledger_put_with_http_info(
         self,
         ledger_id: StrictStr,
@@ -2002,7 +1976,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def ledger_ledger_id_set_write_ledger_put_without_preload_content(
         self,
         ledger_id: StrictStr,
@@ -2109,7 +2082,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def register_nym(
         self,
         did: Annotated[str, Field(strict=True, description="DID to register")],
@@ -2197,7 +2169,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def register_nym_with_http_info(
         self,
         did: Annotated[str, Field(strict=True, description="DID to register")],
@@ -2285,7 +2256,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def register_nym_without_preload_content(
         self,
         did: Annotated[str, Field(strict=True, description="DID to register")],
@@ -2442,7 +2412,6 @@ class LedgerApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def rotate_public_did_keypair(
         self,
         _request_timeout: Union[
@@ -2499,7 +2468,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def rotate_public_did_keypair_with_http_info(
         self,
         _request_timeout: Union[
@@ -2556,7 +2524,6 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def rotate_public_did_keypair_without_preload_content(
         self,
         _request_timeout: Union[

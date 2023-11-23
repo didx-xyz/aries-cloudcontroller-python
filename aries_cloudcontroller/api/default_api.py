@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -38,7 +38,6 @@ class DefaultApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def get_features(
         self,
         _request_timeout: Union[
@@ -95,7 +94,6 @@ class DefaultApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_features_with_http_info(
         self,
         _request_timeout: Union[
@@ -152,7 +150,6 @@ class DefaultApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_features_without_preload_content(
         self,
         _request_timeout: Union[

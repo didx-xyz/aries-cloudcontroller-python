@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -75,7 +75,6 @@ class IssueCredentialV10Api:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def create_credential(
         self,
         body: Optional[V10CredentialCreate] = None,
@@ -136,7 +135,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def create_credential_with_http_info(
         self,
         body: Optional[V10CredentialCreate] = None,
@@ -197,7 +195,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def create_credential_without_preload_content(
         self,
         body: Optional[V10CredentialCreate] = None,
@@ -314,7 +311,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def create_offer(
         self,
         body: Optional[V10CredentialConnFreeOfferRequest] = None,
@@ -375,7 +371,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def create_offer_with_http_info(
         self,
         body: Optional[V10CredentialConnFreeOfferRequest] = None,
@@ -436,7 +431,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def create_offer_without_preload_content(
         self,
         body: Optional[V10CredentialConnFreeOfferRequest] = None,
@@ -553,7 +547,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def delete_record(
         self,
         cred_ex_id: Annotated[
@@ -616,7 +609,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def delete_record_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -679,7 +671,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def delete_record_without_preload_content(
         self,
         cred_ex_id: Annotated[
@@ -788,7 +779,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_record(
         self,
         cred_ex_id: Annotated[
@@ -851,7 +841,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_record_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -914,7 +903,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_record_without_preload_content(
         self,
         cred_ex_id: Annotated[
@@ -1023,7 +1011,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_records(
         self,
         connection_id: Annotated[
@@ -1107,7 +1094,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_records_with_http_info(
         self,
         connection_id: Annotated[
@@ -1191,7 +1177,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_records_without_preload_content(
         self,
         connection_id: Annotated[
@@ -1334,7 +1319,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def issue_credential(
         self,
         cred_ex_id: Annotated[
@@ -1401,7 +1385,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def issue_credential_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -1468,7 +1451,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def issue_credential_without_preload_content(
         self,
         cred_ex_id: Annotated[
@@ -1594,7 +1576,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def issue_credential_automated(
         self,
         body: Optional[V10CredentialProposalRequestMand] = None,
@@ -1655,7 +1636,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def issue_credential_automated_with_http_info(
         self,
         body: Optional[V10CredentialProposalRequestMand] = None,
@@ -1716,7 +1696,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def issue_credential_automated_without_preload_content(
         self,
         body: Optional[V10CredentialProposalRequestMand] = None,
@@ -1833,7 +1812,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def report_problem(
         self,
         cred_ex_id: Annotated[
@@ -1900,7 +1878,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def report_problem_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -1967,7 +1944,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def report_problem_without_preload_content(
         self,
         cred_ex_id: Annotated[
@@ -2093,7 +2069,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_offer(
         self,
         cred_ex_id: Annotated[
@@ -2160,7 +2135,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_offer_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -2227,7 +2201,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_offer_without_preload_content(
         self,
         cred_ex_id: Annotated[
@@ -2353,7 +2326,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_offer_free(
         self,
         body: Optional[V10CredentialFreeOfferRequest] = None,
@@ -2414,7 +2386,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_offer_free_with_http_info(
         self,
         body: Optional[V10CredentialFreeOfferRequest] = None,
@@ -2475,7 +2446,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_offer_free_without_preload_content(
         self,
         body: Optional[V10CredentialFreeOfferRequest] = None,
@@ -2592,7 +2562,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_proposal(
         self,
         body: Optional[V10CredentialProposalRequestOpt] = None,
@@ -2653,7 +2622,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_proposal_with_http_info(
         self,
         body: Optional[V10CredentialProposalRequestOpt] = None,
@@ -2714,7 +2682,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_proposal_without_preload_content(
         self,
         body: Optional[V10CredentialProposalRequestOpt] = None,
@@ -2831,7 +2798,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def send_request(
         self,
         cred_ex_id: Annotated[
@@ -2898,7 +2864,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def send_request_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -2965,7 +2930,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def send_request_without_preload_content(
         self,
         cred_ex_id: Annotated[
@@ -3091,7 +3055,6 @@ class IssueCredentialV10Api:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def store_credential(
         self,
         cred_ex_id: Annotated[
@@ -3158,7 +3121,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def store_credential_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -3225,7 +3187,6 @@ class IssueCredentialV10Api:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def store_credential_without_preload_content(
         self,
         cred_ex_id: Annotated[

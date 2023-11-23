@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 try:
     from typing import Annotated
@@ -70,7 +70,6 @@ class RevocationApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_call
     async def clear_pending_revocations(
         self,
         body: Optional[ClearPendingRevocationsRequest] = None,
@@ -131,7 +130,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def clear_pending_revocations_with_http_info(
         self,
         body: Optional[ClearPendingRevocationsRequest] = None,
@@ -192,7 +190,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def clear_pending_revocations_without_preload_content(
         self,
         body: Optional[ClearPendingRevocationsRequest] = None,
@@ -309,7 +306,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def create_registry(
         self,
         body: Optional[RevRegCreateRequest] = None,
@@ -370,7 +366,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def create_registry_with_http_info(
         self,
         body: Optional[RevRegCreateRequest] = None,
@@ -431,7 +426,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def create_registry_without_preload_content(
         self,
         body: Optional[RevRegCreateRequest] = None,
@@ -548,7 +542,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def download_tails_file(
         self,
         rev_reg_id: Annotated[
@@ -611,7 +604,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def download_tails_file_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -674,7 +666,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def download_tails_file_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -783,7 +774,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_active_registry_for_cred_def(
         self,
         cred_def_id: Annotated[
@@ -846,7 +836,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_active_registry_for_cred_def_with_http_info(
         self,
         cred_def_id: Annotated[
@@ -909,7 +898,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_active_registry_for_cred_def_without_preload_content(
         self,
         cred_def_id: Annotated[
@@ -1018,7 +1006,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_created_registries(
         self,
         cred_def_id: Annotated[
@@ -1088,7 +1075,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_created_registries_with_http_info(
         self,
         cred_def_id: Annotated[
@@ -1158,7 +1144,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_created_registries_without_preload_content(
         self,
         cred_def_id: Annotated[
@@ -1279,7 +1264,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_registry(
         self,
         rev_reg_id: Annotated[
@@ -1342,7 +1326,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_registry_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -1405,7 +1388,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_registry_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -1514,7 +1496,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_registry_issued_credentials_count(
         self,
         rev_reg_id: Annotated[
@@ -1577,7 +1558,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_registry_issued_credentials_count_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -1640,7 +1620,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_registry_issued_credentials_count_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -1749,7 +1728,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def get_revocation_status(
         self,
         cred_ex_id: Annotated[
@@ -1827,7 +1805,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def get_revocation_status_with_http_info(
         self,
         cred_ex_id: Annotated[
@@ -1905,7 +1882,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def get_revocation_status_without_preload_content(
         self,
         cred_ex_id: Annotated[
@@ -2038,7 +2014,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def publish_rev_reg_def(
         self,
         rev_reg_id: Annotated[
@@ -2114,7 +2089,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def publish_rev_reg_def_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -2190,7 +2164,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def publish_rev_reg_def_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -2322,7 +2295,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def publish_rev_reg_entry(
         self,
         rev_reg_id: Annotated[
@@ -2398,7 +2370,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def publish_rev_reg_entry_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -2474,7 +2445,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def publish_rev_reg_entry_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -2606,7 +2576,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def publish_revocations(
         self,
         body: Optional[PublishRevocations] = None,
@@ -2669,7 +2638,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def publish_revocations_with_http_info(
         self,
         body: Optional[PublishRevocations] = None,
@@ -2732,7 +2700,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def publish_revocations_without_preload_content(
         self,
         body: Optional[PublishRevocations] = None,
@@ -2851,7 +2818,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def revocation_active_registry_cred_def_id_rotate_post(
         self,
         cred_def_id: Annotated[
@@ -2914,7 +2880,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def revocation_active_registry_cred_def_id_rotate_post_with_http_info(
         self,
         cred_def_id: Annotated[
@@ -2977,7 +2942,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def revocation_active_registry_cred_def_id_rotate_post_without_preload_content(
         self,
         cred_def_id: Annotated[
@@ -3086,7 +3050,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def revocation_registry_delete_tails_file_delete(
         self,
         cred_def_id: Annotated[
@@ -3157,7 +3120,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def revocation_registry_delete_tails_file_delete_with_http_info(
         self,
         cred_def_id: Annotated[
@@ -3228,7 +3190,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def revocation_registry_delete_tails_file_delete_without_preload_content(
         self,
         cred_def_id: Annotated[
@@ -3350,7 +3311,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
         self,
         rev_reg_id: Annotated[
@@ -3422,7 +3382,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -3494,7 +3453,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -3616,7 +3574,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def revocation_registry_rev_reg_id_issued_details_get(
         self,
         rev_reg_id: Annotated[
@@ -3681,7 +3638,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def revocation_registry_rev_reg_id_issued_details_get_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -3746,7 +3702,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def revocation_registry_rev_reg_id_issued_details_get_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -3857,7 +3812,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def revocation_registry_rev_reg_id_issued_indy_recs_get(
         self,
         rev_reg_id: Annotated[
@@ -3922,7 +3876,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -3987,7 +3940,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def revocation_registry_rev_reg_id_issued_indy_recs_get_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -4098,7 +4050,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def revoke_credential(
         self,
         body: Optional[RevokeRequest] = None,
@@ -4159,7 +4110,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def revoke_credential_with_http_info(
         self,
         body: Optional[RevokeRequest] = None,
@@ -4220,7 +4170,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def revoke_credential_without_preload_content(
         self,
         body: Optional[RevokeRequest] = None,
@@ -4337,7 +4286,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def set_registry_state(
         self,
         rev_reg_id: Annotated[
@@ -4406,7 +4354,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def set_registry_state_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -4475,7 +4422,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def set_registry_state_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -4594,7 +4540,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def update_registry(
         self,
         rev_reg_id: Annotated[
@@ -4661,7 +4606,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def update_registry_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -4728,7 +4672,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def update_registry_without_preload_content(
         self,
         rev_reg_id: Annotated[
@@ -4854,7 +4797,6 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
-    @validate_call
     async def upload_tails_file(
         self,
         rev_reg_id: Annotated[
@@ -4917,7 +4859,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    @validate_call
     async def upload_tails_file_with_http_info(
         self,
         rev_reg_id: Annotated[
@@ -4980,7 +4921,6 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    @validate_call
     async def upload_tails_file_without_preload_content(
         self,
         rev_reg_id: Annotated[
