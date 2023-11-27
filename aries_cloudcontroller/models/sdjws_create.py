@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated
@@ -30,44 +30,55 @@ except ImportError:
     from typing_extensions import Self
 
 
-class Generated(BaseModel):
+class SDJWSCreate(BaseModel):
     """
-    Generated
+    SDJWSCreate
     """  # noqa: E501
 
-    master_secret: Optional[Annotated[str, Field(strict=True)]] = None
-    number: Optional[Annotated[str, Field(strict=True)]] = None
-    remainder: Optional[Annotated[str, Field(strict=True)]] = None
-    __properties: ClassVar[List[str]] = ["master_secret", "number", "remainder"]
+    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="DID of interest"
+    )
+    headers: Optional[Union[str, Any]] = None
+    non_sd_list: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    payload: Union[str, Any]
+    verification_method: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description="Information used for proof verification",
+        alias="verificationMethod",
+    )
+    __properties: ClassVar[List[str]] = [
+        "did",
+        "headers",
+        "non_sd_list",
+        "payload",
+        "verificationMethod",
+    ]
 
-    @field_validator("master_secret")
-    def master_secret_validate_regular_expression(cls, value):
+    @field_validator("did")
+    def did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[0-9]*$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9]*$/")
+        if not re.match(
+            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$/"
+            )
         return value
 
-    @field_validator("number")
-    def number_validate_regular_expression(cls, value):
+    @field_validator("verification_method")
+    def verification_method_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
-        if not re.match(r"^[0-9]*$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9]*$/")
-        return value
-
-    @field_validator("remainder")
-    def remainder_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[0-9]*$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9]*$/")
+        if not re.match(r"\w+:(\/?\/?)[^\s]+", value):
+            raise ValueError(
+                r"must validate the regular expression /\w+:(\/?\/?)[^\s]+/"
+            )
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -82,7 +93,7 @@ class Generated(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Generated from a JSON string"""
+        """Create an instance of SDJWSCreate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -104,7 +115,7 @@ class Generated(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Generated from a dict"""
+        """Create an instance of SDJWSCreate from a dict"""
         if obj is None:
             return None
 
@@ -113,9 +124,11 @@ class Generated(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "master_secret": obj.get("master_secret"),
-                "number": obj.get("number"),
-                "remainder": obj.get("remainder"),
+                "did": obj.get("did"),
+                "headers": obj.get("headers"),
+                "non_sd_list": obj.get("non_sd_list"),
+                "payload": obj.get("payload"),
+                "verificationMethod": obj.get("verificationMethod"),
             }
         )
         return _obj
