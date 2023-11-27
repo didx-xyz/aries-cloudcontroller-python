@@ -21,14 +21,13 @@ try:
 except ImportError:
     from typing_extensions import Annotated
 
-from typing import List, Optional
+from typing import Any, Dict, Optional
 
 from pydantic import Field, StrictInt, StrictStr
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient
 from aries_cloudcontroller.api_response import ApiResponse
-from aries_cloudcontroller.models.admin_mediation_deny import AdminMediationDeny
 from aries_cloudcontroller.models.keylist import Keylist
 from aries_cloudcontroller.models.keylist_query import KeylistQuery
 from aries_cloudcontroller.models.keylist_query_filter_request import (
@@ -36,7 +35,6 @@ from aries_cloudcontroller.models.keylist_query_filter_request import (
 )
 from aries_cloudcontroller.models.keylist_update import KeylistUpdate
 from aries_cloudcontroller.models.keylist_update_request import KeylistUpdateRequest
-from aries_cloudcontroller.models.mediation_create_request import MediationCreateRequest
 from aries_cloudcontroller.models.mediation_deny import MediationDeny
 from aries_cloudcontroller.models.mediation_grant import MediationGrant
 from aries_cloudcontroller.models.mediation_id_match_info import MediationIdMatchInfo
@@ -505,7 +503,7 @@ class MediationApi:
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
         ],
-        body: Optional[AdminMediationDeny] = None,
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -524,7 +522,7 @@ class MediationApi:
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
         :param body:
-        :type body: AdminMediationDeny
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -571,7 +569,7 @@ class MediationApi:
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
         ],
-        body: Optional[AdminMediationDeny] = None,
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -590,7 +588,7 @@ class MediationApi:
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
         :param body:
-        :type body: AdminMediationDeny
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -637,7 +635,7 @@ class MediationApi:
         mediation_id: Annotated[
             StrictStr, Field(description="Mediation record identifier")
         ],
-        body: Optional[AdminMediationDeny] = None,
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -656,7 +654,7 @@ class MediationApi:
         :param mediation_id: Mediation record identifier (required)
         :type mediation_id: str
         :param body:
-        :type body: AdminMediationDeny
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1994,7 +1992,7 @@ class MediationApi:
     async def request_mediation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        body: Optional[MediationCreateRequest] = None,
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2013,7 +2011,7 @@ class MediationApi:
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
-        :type body: MediationCreateRequest
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2058,7 +2056,7 @@ class MediationApi:
     async def request_mediation_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        body: Optional[MediationCreateRequest] = None,
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2077,7 +2075,7 @@ class MediationApi:
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
-        :type body: MediationCreateRequest
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2122,7 +2120,7 @@ class MediationApi:
     async def request_mediation_without_preload_content(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        body: Optional[MediationCreateRequest] = None,
+        body: Optional[Dict[str, Any]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2141,7 +2139,7 @@ class MediationApi:
         :param conn_id: Connection identifier (required)
         :type conn_id: str
         :param body:
-        :type body: MediationCreateRequest
+        :type body: object
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

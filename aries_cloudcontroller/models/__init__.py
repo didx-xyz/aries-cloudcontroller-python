@@ -15,7 +15,6 @@
 
 from aries_cloudcontroller.models.action_menu_fetch_result import ActionMenuFetchResult
 from aries_cloudcontroller.models.admin_config import AdminConfig
-from aries_cloudcontroller.models.admin_mediation_deny import AdminMediationDeny
 from aries_cloudcontroller.models.admin_modules import AdminModules
 from aries_cloudcontroller.models.admin_status import AdminStatus
 from aries_cloudcontroller.models.admin_status_liveliness import AdminStatusLiveliness
@@ -234,7 +233,6 @@ from aries_cloudcontroller.models.ld_proof_vc_detail_options import (
 from aries_cloudcontroller.models.ledger_config_instance import LedgerConfigInstance
 from aries_cloudcontroller.models.ledger_config_list import LedgerConfigList
 from aries_cloudcontroller.models.linked_data_proof import LinkedDataProof
-from aries_cloudcontroller.models.mediation_create_request import MediationCreateRequest
 from aries_cloudcontroller.models.mediation_deny import MediationDeny
 from aries_cloudcontroller.models.mediation_grant import MediationGrant
 from aries_cloudcontroller.models.mediation_id_match_info import MediationIdMatchInfo
