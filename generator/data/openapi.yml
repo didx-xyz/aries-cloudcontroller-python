@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.10.5
+  version: v0.11.0
 servers:
 - url: /
 security:
@@ -275,15 +275,15 @@ paths:
         schema:
           type: string
           enum:
-          - request
+          - invitation
           - abandoned
           - response
-          - init
-          - invitation
-          - completed
-          - error
           - start
+          - error
+          - init
+          - completed
           - active
+          - request
       - name: their_did
         in: query
         description: Their DID
@@ -534,32 +534,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/EndpointsResult'
       operationId: get_connection_endpoint
-  /connections/{conn_id}/establish-inbound/{ref_id}:
-    post:
-      tags:
-      - connection
-      summary: Assign another connection as the inbound connection
-      parameters:
-      - name: conn_id
-        in: path
-        description: Connection identifier
-        required: true
-        schema:
-          type: string
-      - name: ref_id
-        in: path
-        description: Inbound connection identifier
-        required: true
-        schema:
-          type: string
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionModuleResponse'
-      operationId: establish_inbound
   /connections/{conn_id}/metadata:
     get:
       tags:
@@ -2425,28 +2399,6 @@ paths:
         schema:
           type: string
           format: uuid
-      - name: mediator_terms
-        in: query
-        description: List of mediator rules for recipient
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-            description: Indicate terms to which the mediator requires the recipient
-              to agree
-      - name: recipient_terms
-        in: query
-        description: List of recipient rules for mediation
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-            description: Indicate terms to which the recipient requires the mediator
-              to agree
       - name: state
         in: query
         description: Mediation state (optional)
@@ -4577,6 +4529,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/JWSVerifyResponse'
       x-codegen-request-body-name: body
+  /wallet/sd-jwt/sign:
+    post:
+      tags:
+      - wallet
+      summary: Create a EdDSA sd-jws using did keys with a given payload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SDJWSCreate'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletModuleResponse'
+      x-codegen-request-body-name: body
+  /wallet/sd-jwt/verify:
+    post:
+      tags:
+      - wallet
+      summary: Verify a EdDSA sd-jws using did keys with a given SD-JWS with optional
+        key binding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SDJWSVerify'
+        required: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SDJWSVerifyResponse'
+      x-codegen-request-body-name: body
   /wallet/set-did-endpoint:
     post:
       tags:
@@ -4608,6 +4599,9 @@ paths:
                 $ref: '#/components/schemas/WalletModuleResponse'
       x-codegen-request-body-name: body
       operationId: set_did_endpoint
+  /connections/{conn_id}/establish-inbound/{ref_id}:
+    post:
+      operationId: establish_inbound
   /features:
     get:
       operationId: get_features
@@ -4643,21 +4637,6 @@ components:
           description: Configuration settings
     AdminMediationDeny:
       type: object
-      properties:
-        mediator_terms:
-          type: array
-          description: List of mediator rules for recipient
-          items:
-            type: string
-            description: Indicate terms to which the mediator requires the recipient
-              to agree
-        recipient_terms:
-          type: array
-          description: List of recipient rules for mediation
-          items:
-            type: string
-            description: Indicate terms to which the recipient requires the mediator
-              to agree
     AdminModules:
       type: object
       properties:
@@ -4950,15 +4929,6 @@ components:
           description: State per RFC 23
           readOnly: true
           example: invitation-sent
-        routing_state:
-          type: string
-          description: Routing state of connection
-          example: active
-          enum:
-          - none
-          - request
-          - active
-          - error
         state:
           type: string
           description: Current record state
@@ -7366,7 +7336,7 @@ components:
       type: object
       properties:
         jwt:
-          pattern: ^[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*$
+          pattern: ^[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]*\.[a-zA-Z0-9_-]+$
           type: string
           example: eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
     JWSVerifyResponse:
@@ -7641,21 +7611,6 @@ components:
           example: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
     MediationCreateRequest:
       type: object
-      properties:
-        mediator_terms:
-          type: array
-          description: List of mediator rules for recipient
-          items:
-            type: string
-            description: Indicate terms to which the mediator requires the recipient
-              to agree
-        recipient_terms:
-          type: array
-          description: List of recipient rules for mediation
-          items:
-            type: string
-            description: Indicate terms to which the recipient requires the mediator
-              to agree
     MediationDeny:
       type: object
       properties:
@@ -7668,16 +7623,6 @@ components:
           description: Message type
           readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
-        mediator_terms:
-          type: array
-          items:
-            type: string
-            description: Terms for mediator to agree
-        recipient_terms:
-          type: array
-          items:
-            type: string
-            description: Terms for recipient to agree
     MediationGrant:
       type: object
       properties:
@@ -8356,6 +8301,79 @@ components:
           example: 2021-12-31 23:59:59+00:00
         wallet_id:
           type: string
+    SDJWSCreate:
+      required:
+      - payload
+      type: object
+      properties:
+        did:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          type: string
+          description: DID of interest
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
+        headers:
+          type: object
+          properties: {}
+        non_sd_list:
+          type: array
+          items:
+            pattern: '[a-z0-9:\[\]_\.@?\(\)]'
+            type: string
+            example: ''
+        payload:
+          type: object
+          properties: {}
+        verificationMethod:
+          pattern: \w+:(\/?\/?)[^\s]+
+          type: string
+          description: Information used for proof verification
+          example: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+    SDJWSVerify:
+      type: object
+      properties:
+        sd_jwt:
+          pattern: ^[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]*\.[a-zA-Z0-9_-]+(?:~[a-zA-Z0-9._-]+)*~?$
+          type: string
+          example: eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk~WyJEM3BUSFdCYWNRcFdpREc2TWZKLUZnIiwgIkRFIl0~WyJPMTFySVRjRTdHcXExYW9oRkd0aDh3IiwgIlNBIl0~WyJkVmEzX1JlTGNsWTU0R1FHZm5oWlRnIiwgInVwZGF0ZWRfYXQiLCAxNTcwMDAwMDAwXQ
+    SDJWSVerifyResponse:
+      required:
+      - headers
+      - kid
+      - payload
+      - valid
+      type: object
+      properties:
+        disclosures:
+          type: array
+          description: Disclosure arrays associated with the SD-JWT
+          example:
+          - - fx1iT_mETjGiC-JzRARnVg
+            - name
+            - Alice
+          - - n4-t3mlh8jSS6yMIT7QHnA
+            - street_address
+            - _sd:
+              - kLZrLK7enwfqeOzJ9-Ss88YS3mhjOAEk9lr_ix2Heng
+          items:
+            type: array
+            items:
+              type: object
+        error:
+          type: string
+          description: Error text
+        headers:
+          type: object
+          properties: {}
+          description: Headers from verified JWT.
+        kid:
+          type: string
+          description: kid of signer
+        payload:
+          type: object
+          properties: {}
+          description: Payload from verified JWT
+        valid:
+          type: boolean
     Schema:
       type: object
       properties:
