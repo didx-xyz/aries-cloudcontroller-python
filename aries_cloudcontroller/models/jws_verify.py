@@ -44,9 +44,9 @@ class JWSVerify(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*$", value):
+        if not re.match(r"^[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]*\.[a-zA-Z0-9_-]+$", value):
             raise ValueError(
-                r"must validate the regular expression /^[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*\.[-_a-zA-Z0-9]*$/"
+                r"must validate the regular expression /^[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]*\.[a-zA-Z0-9_-]+$/"
             )
         return value
 
