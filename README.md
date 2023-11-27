@@ -6,15 +6,11 @@
     height="250px"
   />
 </p>
-<h1 align="center"><b>Aries Cloud Controller Python</b></h1>
+<h1 align="center"><b>Aries CloudController Python</b></h1>
 <p align="center">
-  <img
-    alt="Pipeline Status"
-    src="https://github.com/didx-xyz/aries-cloudcontroller-python/actions/workflows/python-publish.yml/badge.svg?branch=main"
-  />
-        <a href="https://pypi.org/project/aries-cloudcontroller/">
-        <img alt="aries-cloudcontroller version" src="https://badge.fury.io/py/aries-cloudcontroller.svg"/>
-      </a>
+  <a href="https://pypi.org/project/aries-cloudcontroller/">
+    <img alt="aries-cloudcontroller version" src="https://badge.fury.io/py/aries-cloudcontroller.svg"/>
+  </a>
   <a
     href="https://raw.githubusercontent.com/didx-xyz/aries-cloudcontroller-python/main/LICENSE"
     ><img
@@ -34,42 +30,39 @@
   <a href="#usage">Usage</a> &nbsp;|&nbsp;
   <a href="#available-apis">Available APIs</a> &nbsp;|&nbsp;
   <a href="#contributing">Contributing</a> &nbsp;|&nbsp;
-  <a href="#license">License</a> 
+  <a href="#license">License</a>
 </p>
 
-The Aries CloudController is a client library, written in Python, for interacting with an [Aries Cloud Agent](https://github.com/hyperledger/aries-cloudagent-python) instance. It is generated based on the OpenAPI definition provided by ACA-Py, giving a fully-typed, rich API for interacting with the cloud agent.
+The Aries CloudController is a Python-based client library for interacting with an instance of [Aries Cloud Agent](https://github.com/hyperledger/aries-cloudagent-python) (ACA-Py). It leverages the OpenAPI definition from ACA-Py to provide a fully-typed, rich API experience for cloud agent interaction.
 
-Each Cloud Controller version maps to a specific ACA-Py version, which is outlined in the table below. Although not strictly adhered to in the past, a new ACA-Py version will result in a new Minor version bump for the Cloud Controller, as there are often times breaking changes.
+**Versioning Update:**
+As of version 0.8.0, the Aries CloudController has aligned its versioning with ACA-Py. This means that each new version of ACA-Py will correspond directly to the same version of the Aries CloudController. This change ensures a more straightforward and predictable upgrade path for users.
 
-| Aries Cloud Controller Version | Aries Cloud Agent Python Version |
-| ------------------------------ | -------------------------------- |
-| 0.5.1-0.5.2                    | 0.7.3                            |
-| 0.6.0-0.6.3                    | 0.7.4                            |
-| 0.7.0                          | 0.7.5                            |
-| 0.8.0                          | 0.8.0                            |
-| 0.8.1                          | 0.8.1                            |
-| 0.8.2                          | 0.8.2                            |
-| 0.9.0                          | 0.9.0                            |
+In other words, CloudController 0.8.0 is compatible with ACA-Py 0.8.0, CloudController 0.9.0 is compatible with ACA-Py 0.9.0, etc.
+
+For legacy versions, please review our release history to found the version compatible with ACA-Py pre-0.8.0.
 
 ## Features
 
-Aries Cloud Controller Python is a fully featured client for interacting with ACA-Py.
+Aries CloudController Python provides a robust client for interacting with Aries Cloud Agents (ACA-Py).
 
-- Fully Typed wrapper around Aries Cloud Agent Python
-- Supports latest ACA-Py version (0.9.0)
-- Client is auto generated based on OpenAPI definitions, allowing us to keep up to date with new releases.
-- Supports multi-tenant APIs and authentication
-- Async API
+- **Fully Typed**: Offers a strongly-typed wrapper around the Aries Cloud Agent Python, enhancing developer experience and reducing errors.
+- **Up-to-Date Support**: Compatible with the latest ACA-Py version (0.10.1), ensuring access to the most recent features and improvements.
+- **Auto-Generated Client**: Utilizes OpenAPI definitions for automatic generation, ensuring timely updates in line with new ACA-Py releases.
+- **Multi-Tenancy and Authentication Support**: Facilitates working with multi-tenant APIs and integrates various authentication mechanisms.
+- **Asynchronous API**: Supports asynchronous operations, enabling efficient handling of I/O-bound tasks.
 
 ## Usage
 
-Aries Cloud Controller Python is published to PyPi and can be installed using pip:
+Install Aries Cloud Controller Python via pip:
 
 ```sh
 pip install aries-cloudcontroller
 ```
 
-### Creating a client
+### Creating a Client
+
+Easily initialize the AcaPyClient:
 
 ```python
 from aries_cloudcontroller import AcaPyClient
@@ -80,21 +73,16 @@ client = AcaPyClient(
 )
 ```
 
-**Admin insecure mode**
-
-If you are running ACA-Py with the admin insecure flag and don't have the API key, you must set the `admin_insecure` property:
+**Admin Insecure Mode**: If running ACA-Py with the `--admin-insecure-mode` flag and without an API key:
 
 ```python
 client = AcaPyClient(
     base_url="http://localhost:8000",
-    # Explicitly mark that no api key is used
-    admin_insecure=True
+    admin_insecure=True  # No API key needed
 )
 ```
 
-**Multitenancy**
-
-To provision the agent in the context of specific tenant of the agent, the `tenant_jwt` property must be set:
+**Multitenancy**: For specific tenant contexts:
 
 ```python
 client = AcaPyClient(
@@ -103,23 +91,23 @@ client = AcaPyClient(
 )
 ```
 
-### Interacting with the client
+### Interacting with the Client
 
-Once you have the client set up, you're ready to interact with it. Because the API is fully typed, the best way to know what is available is by looking at the ACA-Py swagger UI, and the available properties on the client.
+The API, being fully typed, is best explored through the ACA-Py Swagger UI, which mirrors the available client properties.
 
-For example to create and receive an invitation the following methods can be called:
+**Example**: Creating and receiving an invitation:
 
 ```python
 invitation = await client.connection.create_invitation(
     body=CreateInvitationRequest(my_label="Cloud Controller")
 )
 
-connection = await client.connection.receive_invitation(body=result.invitation)
+connection = await client.connection.receive_invitation(body=invitation.invitation)
 ```
 
 ## Available APIs
 
-Currently the following top-level APIs are available in the client. Each api maps to the topics as used by the ACA-Py swagger UI.
+The client encompasses various APIs, each corresponding to ACA-Py Swagger UI topics:
 
 - `action_menu`
 - `basicmessage`
@@ -151,8 +139,8 @@ Currently the following top-level APIs are available in the client. Each api map
 
 ## Contributing
 
-If you would like to contribute to the framework, please read [CONTRIBUTING](/CONTRIBUTING.md) guidelines. These documents will provide more information to get you started!
+Contributions are welcome! Please see our [CONTRIBUTING](/CONTRIBUTING.md) guidelines for more information on how to get involved.
 
 ## License
 
-Aries Cloud Controller Python is licensed under the [Apache License Version 2.0 (Apache-2.0)](/LICENSE).
+This project is licensed under the [Apache License Version 2.0 (Apache-2.0)](/LICENSE).
