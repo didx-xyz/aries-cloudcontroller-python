@@ -38,24 +38,13 @@ The Aries CloudController is a Python-based client library for interacting with 
 **Versioning Update:**
 As of version 0.8.0, the Aries CloudController has aligned its versioning with ACA-Py. This means that each new version of ACA-Py will correspond directly to the same version of the Aries CloudController. This change ensures a more straightforward and predictable upgrade path for users.
 
-For example:
+In other words, CloudController 0.8.0 is compatible with ACA-Py 0.8.0, CloudController 0.9.0 is compatible with ACA-Py 0.9.0, etc.
 
-- CloudController 0.8.0 is compatible with ACA-Py 0.8.0
-- CloudController 0.9.0 is compatible with ACA-Py 0.9.0
-- ... and so on for subsequent versions.
-
-**Legacy Version Compatibility:**
-For versions prior to 0.8.0, the CloudController followed a different versioning approach. Below is a brief compatibility guide for these older versions:
-
-- CloudController versions 0.5.1 to 0.5.2 are compatible with ACA-Py 0.7.3.
-- CloudController versions 0.6.0 to 0.6.3 are compatible with ACA-Py 0.7.4.
-- CloudController version 0.7.0 is compatible with ACA-Py 0.7.5.
-
-We recommend users of these legacy versions to plan for an upgrade to newer versions to ensure compatibility and access to the latest features and improvements.
+For legacy versions, please review our release history to found the version compatible with ACA-Py pre-0.8.0.
 
 ## Features
 
-Aries Cloud Controller Python provides a robust client for interacting with the Aries Cloud Agent Python (ACA-Py).
+Aries CloudController Python provides a robust client for interacting with Aries Cloud Agents (ACA-Py).
 
 - **Fully Typed**: Offers a strongly-typed wrapper around the Aries Cloud Agent Python, enhancing developer experience and reducing errors.
 - **Up-to-Date Support**: Compatible with the latest ACA-Py version (0.10.1), ensuring access to the most recent features and improvements.
