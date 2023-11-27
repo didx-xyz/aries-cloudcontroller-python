@@ -39,14 +39,7 @@ class MediationDeny(BaseModel):
     type: Optional[StrictStr] = Field(
         default=None, description="Message type", alias="@type"
     )
-    mediator_terms: Optional[List[StrictStr]] = None
-    recipient_terms: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = [
-        "@id",
-        "@type",
-        "mediator_terms",
-        "recipient_terms",
-    ]
+    __properties: ClassVar[List[str]] = ["@id", "@type"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -92,12 +85,5 @@ class MediationDeny(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "@id": obj.get("@id"),
-                "@type": obj.get("@type"),
-                "mediator_terms": obj.get("mediator_terms"),
-                "recipient_terms": obj.get("recipient_terms"),
-            }
-        )
+        _obj = cls.model_validate({"@id": obj.get("@id"), "@type": obj.get("@type")})
         return _obj

@@ -1203,14 +1203,6 @@ class MediationApi:
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier (optional)")
         ] = None,
-        mediator_terms: Annotated[
-            Optional[List[StrictStr]],
-            Field(description="List of mediator rules for recipient"),
-        ] = None,
-        recipient_terms: Annotated[
-            Optional[List[StrictStr]],
-            Field(description="List of recipient rules for mediation"),
-        ] = None,
         state: Annotated[
             Optional[StrictStr], Field(description="Mediation state (optional)")
         ] = None,
@@ -1231,10 +1223,6 @@ class MediationApi:
 
         :param conn_id: Connection identifier (optional)
         :type conn_id: str
-        :param mediator_terms: List of mediator rules for recipient
-        :type mediator_terms: List[str]
-        :param recipient_terms: List of recipient rules for mediation
-        :type recipient_terms: List[str]
         :param state: Mediation state (optional)
         :type state: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1261,8 +1249,6 @@ class MediationApi:
 
         _param = self._get_records_serialize(
             conn_id=conn_id,
-            mediator_terms=mediator_terms,
-            recipient_terms=recipient_terms,
             state=state,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1285,14 +1271,6 @@ class MediationApi:
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier (optional)")
         ] = None,
-        mediator_terms: Annotated[
-            Optional[List[StrictStr]],
-            Field(description="List of mediator rules for recipient"),
-        ] = None,
-        recipient_terms: Annotated[
-            Optional[List[StrictStr]],
-            Field(description="List of recipient rules for mediation"),
-        ] = None,
         state: Annotated[
             Optional[StrictStr], Field(description="Mediation state (optional)")
         ] = None,
@@ -1313,10 +1291,6 @@ class MediationApi:
 
         :param conn_id: Connection identifier (optional)
         :type conn_id: str
-        :param mediator_terms: List of mediator rules for recipient
-        :type mediator_terms: List[str]
-        :param recipient_terms: List of recipient rules for mediation
-        :type recipient_terms: List[str]
         :param state: Mediation state (optional)
         :type state: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1343,8 +1317,6 @@ class MediationApi:
 
         _param = self._get_records_serialize(
             conn_id=conn_id,
-            mediator_terms=mediator_terms,
-            recipient_terms=recipient_terms,
             state=state,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1367,14 +1339,6 @@ class MediationApi:
         conn_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier (optional)")
         ] = None,
-        mediator_terms: Annotated[
-            Optional[List[StrictStr]],
-            Field(description="List of mediator rules for recipient"),
-        ] = None,
-        recipient_terms: Annotated[
-            Optional[List[StrictStr]],
-            Field(description="List of recipient rules for mediation"),
-        ] = None,
         state: Annotated[
             Optional[StrictStr], Field(description="Mediation state (optional)")
         ] = None,
@@ -1395,10 +1359,6 @@ class MediationApi:
 
         :param conn_id: Connection identifier (optional)
         :type conn_id: str
-        :param mediator_terms: List of mediator rules for recipient
-        :type mediator_terms: List[str]
-        :param recipient_terms: List of recipient rules for mediation
-        :type recipient_terms: List[str]
         :param state: Mediation state (optional)
         :type state: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1425,8 +1385,6 @@ class MediationApi:
 
         _param = self._get_records_serialize(
             conn_id=conn_id,
-            mediator_terms=mediator_terms,
-            recipient_terms=recipient_terms,
             state=state,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1443,8 +1401,6 @@ class MediationApi:
     def _get_records_serialize(
         self,
         conn_id,
-        mediator_terms,
-        recipient_terms,
         state,
         _request_auth,
         _content_type,
@@ -1453,10 +1409,7 @@ class MediationApi:
     ) -> Tuple:
         _host = None
 
-        _collection_formats: Dict[str, str] = {
-            "mediator_terms": "multi",
-            "recipient_terms": "multi",
-        }
+        _collection_formats: Dict[str, str] = {}
 
         _path_params: Dict[str, str] = {}
         _query_params: List[Tuple[str, str]] = []
@@ -1469,12 +1422,6 @@ class MediationApi:
         # process the query parameters
         if conn_id is not None:
             _query_params.append(("conn_id", conn_id))
-
-        if mediator_terms is not None:
-            _query_params.append(("mediator_terms", mediator_terms))
-
-        if recipient_terms is not None:
-            _query_params.append(("recipient_terms", recipient_terms))
 
         if state is not None:
             _query_params.append(("state", state))
