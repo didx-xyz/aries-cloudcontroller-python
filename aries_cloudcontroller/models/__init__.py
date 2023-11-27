@@ -284,6 +284,9 @@ from aries_cloudcontroller.models.schemas_created_result import SchemasCreatedRe
 from aries_cloudcontroller.models.schemas_input_descriptor_filter import (
     SchemasInputDescriptorFilter,
 )
+from aries_cloudcontroller.models.sdjws_create import SDJWSCreate
+from aries_cloudcontroller.models.sdjws_verify import SDJWSVerify
+from aries_cloudcontroller.models.sdjws_verify_response import SDJWSVerifyResponse
 from aries_cloudcontroller.models.send_menu import SendMenu
 from aries_cloudcontroller.models.send_message import SendMessage
 from aries_cloudcontroller.models.service_decorator import ServiceDecorator
