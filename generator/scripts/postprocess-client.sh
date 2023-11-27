@@ -59,6 +59,9 @@ sed -i 's/doc: SignedDoc/doc: Dict[str, Any]/' aries_cloudcontroller/models/veri
 # Remove block of code associated with this previous change:
 sed -i '/# override the default output from pydantic by calling `to_dict()` of doc/,/self.doc.to_dict()/d' aries_cloudcontroller/models/verify_request.py
 
+# Remove @validate_call decorator to avoid memory leak issue from pydantic
+sed -i '/@validate_call/d' aries_cloudcontroller/api/*.py
+
 # NB:
 # There are 3 more models, and 1 API Module, that we are not amending automatically. These should be reviewed manually:
 # - MultitenancyAPI has custom method to handle our groups plugin!
@@ -69,6 +72,8 @@ sed -i '/# override the default output from pydantic by calling `to_dict()` of d
 # Additionally, the API Client we modify so that query_params are converted from bool to str, before being submitted to ACA-Py
 # This change impacts multiple lines, calling `sanitize_for_serialization`
 
+# autoflake again to remove newly unused imports
+autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
 # Black format and optimise imports
 black aries_cloudcontroller
 isort aries_cloudcontroller --profile black
