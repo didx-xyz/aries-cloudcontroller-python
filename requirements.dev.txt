@@ -1,5 +1,5 @@
 anyio>=3.7.1
-autoflake~=2.2.1
+autoflake~=2.3.0
 black~=23.12.1
 isort~=5.13.2
 pytest~=7.4.0
