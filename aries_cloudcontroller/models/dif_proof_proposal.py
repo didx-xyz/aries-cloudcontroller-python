@@ -92,15 +92,19 @@ class DIFProofProposal(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "input_descriptors": [
-                    InputDescriptors.from_dict(_item)
-                    for _item in obj.get("input_descriptors")
-                ]
-                if obj.get("input_descriptors") is not None
-                else None,
-                "options": DIFOptions.from_dict(obj.get("options"))
-                if obj.get("options") is not None
-                else None,
+                "input_descriptors": (
+                    [
+                        InputDescriptors.from_dict(_item)
+                        for _item in obj.get("input_descriptors")
+                    ]
+                    if obj.get("input_descriptors") is not None
+                    else None
+                ),
+                "options": (
+                    DIFOptions.from_dict(obj.get("options"))
+                    if obj.get("options") is not None
+                    else None
+                ),
             }
         )
         return _obj

@@ -97,9 +97,11 @@ class DIFField(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "filter": Filter.from_dict(obj.get("filter"))
-                if obj.get("filter") is not None
-                else None,
+                "filter": (
+                    Filter.from_dict(obj.get("filter"))
+                    if obj.get("filter") is not None
+                    else None
+                ),
                 "id": obj.get("id"),
                 "path": obj.get("path"),
                 "predicate": obj.get("predicate"),

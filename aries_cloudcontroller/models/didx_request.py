@@ -134,9 +134,11 @@ class DIDXRequest(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "did": obj.get("did"),
-                "did_doc~attach": AttachDecorator.from_dict(obj.get("did_doc~attach"))
-                if obj.get("did_doc~attach") is not None
-                else None,
+                "did_doc~attach": (
+                    AttachDecorator.from_dict(obj.get("did_doc~attach"))
+                    if obj.get("did_doc~attach") is not None
+                    else None
+                ),
                 "goal": obj.get("goal"),
                 "goal_code": obj.get("goal_code"),
                 "label": obj.get("label"),

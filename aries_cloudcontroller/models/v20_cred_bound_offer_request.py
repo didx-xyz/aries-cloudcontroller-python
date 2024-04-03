@@ -88,12 +88,16 @@ class V20CredBoundOfferRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "counter_preview": V20CredPreview.from_dict(obj.get("counter_preview"))
-                if obj.get("counter_preview") is not None
-                else None,
-                "filter": V20CredFilter.from_dict(obj.get("filter"))
-                if obj.get("filter") is not None
-                else None,
+                "counter_preview": (
+                    V20CredPreview.from_dict(obj.get("counter_preview"))
+                    if obj.get("counter_preview") is not None
+                    else None
+                ),
+                "filter": (
+                    V20CredFilter.from_dict(obj.get("filter"))
+                    if obj.get("filter") is not None
+                    else None
+                ),
             }
         )
         return _obj

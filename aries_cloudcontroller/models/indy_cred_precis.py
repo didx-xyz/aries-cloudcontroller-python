@@ -95,12 +95,16 @@ class IndyCredPrecis(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cred_info": IndyCredInfo.from_dict(obj.get("cred_info"))
-                if obj.get("cred_info") is not None
-                else None,
-                "interval": IndyNonRevocationInterval.from_dict(obj.get("interval"))
-                if obj.get("interval") is not None
-                else None,
+                "cred_info": (
+                    IndyCredInfo.from_dict(obj.get("cred_info"))
+                    if obj.get("cred_info") is not None
+                    else None
+                ),
+                "interval": (
+                    IndyNonRevocationInterval.from_dict(obj.get("interval"))
+                    if obj.get("interval") is not None
+                    else None
+                ),
                 "presentation_referents": obj.get("presentation_referents"),
             }
         )

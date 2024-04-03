@@ -177,12 +177,14 @@ class IndyCredential(BaseModel):
                 "schema_id": obj.get("schema_id"),
                 "signature": obj.get("signature"),
                 "signature_correctness_proof": obj.get("signature_correctness_proof"),
-                "values": dict(
-                    (_k, IndyAttrValue.from_dict(_v))
-                    for _k, _v in obj.get("values").items()
-                )
-                if obj.get("values") is not None
-                else None,
+                "values": (
+                    dict(
+                        (_k, IndyAttrValue.from_dict(_v))
+                        for _k, _v in obj.get("values").items()
+                    )
+                    if obj.get("values") is not None
+                    else None
+                ),
                 "witness": obj.get("witness"),
             }
         )

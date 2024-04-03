@@ -95,15 +95,17 @@ class SchemasInputDescriptorFilter(BaseModel):
         _obj = cls.model_validate(
             {
                 "oneof_filter": obj.get("oneof_filter"),
-                "uri_groups": [
+                "uri_groups": (
                     [
-                        SchemaInputDescriptor.from_dict(_inner_item)
-                        for _inner_item in _item
+                        [
+                            SchemaInputDescriptor.from_dict(_inner_item)
+                            for _inner_item in _item
+                        ]
+                        for _item in obj.get("uri_groups")
                     ]
-                    for _item in obj.get("uri_groups")
-                ]
-                if obj.get("uri_groups") is not None
-                else None,
+                    if obj.get("uri_groups") is not None
+                    else None
+                ),
             }
         )
         return _obj

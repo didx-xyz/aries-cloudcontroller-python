@@ -152,13 +152,17 @@ class V20DiscoveryRecord(BaseModel):
             {
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
-                "disclosures": Disclosures.from_dict(obj.get("disclosures"))
-                if obj.get("disclosures") is not None
-                else None,
+                "disclosures": (
+                    Disclosures.from_dict(obj.get("disclosures"))
+                    if obj.get("disclosures") is not None
+                    else None
+                ),
                 "discovery_exchange_id": obj.get("discovery_exchange_id"),
-                "queries_msg": Queries.from_dict(obj.get("queries_msg"))
-                if obj.get("queries_msg") is not None
-                else None,
+                "queries_msg": (
+                    Queries.from_dict(obj.get("queries_msg"))
+                    if obj.get("queries_msg") is not None
+                    else None
+                ),
                 "state": obj.get("state"),
                 "thread_id": obj.get("thread_id"),
                 "trace": obj.get("trace"),

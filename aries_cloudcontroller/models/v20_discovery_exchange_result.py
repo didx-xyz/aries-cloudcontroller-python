@@ -83,9 +83,11 @@ class V20DiscoveryExchangeResult(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "results": V20DiscoveryRecord.from_dict(obj.get("results"))
-                if obj.get("results") is not None
-                else None
+                "results": (
+                    V20DiscoveryRecord.from_dict(obj.get("results"))
+                    if obj.get("results") is not None
+                    else None
+                )
             }
         )
         return _obj

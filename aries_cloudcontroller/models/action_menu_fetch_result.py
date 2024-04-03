@@ -83,9 +83,11 @@ class ActionMenuFetchResult(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "result": Menu.from_dict(obj.get("result"))
-                if obj.get("result") is not None
-                else None
+                "result": (
+                    Menu.from_dict(obj.get("result"))
+                    if obj.get("result") is not None
+                    else None
+                )
             }
         )
         return _obj

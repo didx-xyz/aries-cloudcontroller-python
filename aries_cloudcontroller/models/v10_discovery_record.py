@@ -152,13 +152,17 @@ class V10DiscoveryRecord(BaseModel):
             {
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
-                "disclose": Disclose.from_dict(obj.get("disclose"))
-                if obj.get("disclose") is not None
-                else None,
+                "disclose": (
+                    Disclose.from_dict(obj.get("disclose"))
+                    if obj.get("disclose") is not None
+                    else None
+                ),
                 "discovery_exchange_id": obj.get("discovery_exchange_id"),
-                "query_msg": Query.from_dict(obj.get("query_msg"))
-                if obj.get("query_msg") is not None
-                else None,
+                "query_msg": (
+                    Query.from_dict(obj.get("query_msg"))
+                    if obj.get("query_msg") is not None
+                    else None
+                ),
                 "state": obj.get("state"),
                 "thread_id": obj.get("thread_id"),
                 "trace": obj.get("trace"),

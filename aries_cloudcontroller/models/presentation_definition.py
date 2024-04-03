@@ -136,24 +136,30 @@ class PresentationDefinition(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "format": ClaimFormat.from_dict(obj.get("format"))
-                if obj.get("format") is not None
-                else None,
+                "format": (
+                    ClaimFormat.from_dict(obj.get("format"))
+                    if obj.get("format") is not None
+                    else None
+                ),
                 "id": obj.get("id"),
-                "input_descriptors": [
-                    InputDescriptors.from_dict(_item)
-                    for _item in obj.get("input_descriptors")
-                ]
-                if obj.get("input_descriptors") is not None
-                else None,
+                "input_descriptors": (
+                    [
+                        InputDescriptors.from_dict(_item)
+                        for _item in obj.get("input_descriptors")
+                    ]
+                    if obj.get("input_descriptors") is not None
+                    else None
+                ),
                 "name": obj.get("name"),
                 "purpose": obj.get("purpose"),
-                "submission_requirements": [
-                    SubmissionRequirements.from_dict(_item)
-                    for _item in obj.get("submission_requirements")
-                ]
-                if obj.get("submission_requirements") is not None
-                else None,
+                "submission_requirements": (
+                    [
+                        SubmissionRequirements.from_dict(_item)
+                        for _item in obj.get("submission_requirements")
+                    ]
+                    if obj.get("submission_requirements") is not None
+                    else None
+                ),
             }
         )
         return _obj

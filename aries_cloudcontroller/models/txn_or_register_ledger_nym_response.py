@@ -87,9 +87,11 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "success": obj.get("success"),
-                "txn": TransactionRecord.from_dict(obj.get("txn"))
-                if obj.get("txn") is not None
-                else None,
+                "txn": (
+                    TransactionRecord.from_dict(obj.get("txn"))
+                    if obj.get("txn") is not None
+                    else None
+                ),
             }
         )
         return _obj

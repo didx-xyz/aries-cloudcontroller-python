@@ -27,12 +27,14 @@ class WalletListWithGroups(WalletList):
 
         _obj = cls.model_validate(
             {
-                "results": [
-                    WalletRecordWithGroups.from_dict(_item)
-                    for _item in obj.get("results")
-                ]
-                if obj.get("results") is not None
-                else None
+                "results": (
+                    [
+                        WalletRecordWithGroups.from_dict(_item)
+                        for _item in obj.get("results")
+                    ]
+                    if obj.get("results") is not None
+                    else None
+                )
             }
         )
         return _obj

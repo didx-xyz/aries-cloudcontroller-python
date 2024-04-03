@@ -83,9 +83,11 @@ class SendMenu(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "menu": MenuJson.from_dict(obj.get("menu"))
-                if obj.get("menu") is not None
-                else None
+                "menu": (
+                    MenuJson.from_dict(obj.get("menu"))
+                    if obj.get("menu") is not None
+                    else None
+                )
             }
         )
         return _obj

@@ -111,9 +111,11 @@ class V10PresentationSendRequestRequest(BaseModel):
                 "auto_verify": obj.get("auto_verify"),
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
-                "proof_request": IndyProofRequest.from_dict(obj.get("proof_request"))
-                if obj.get("proof_request") is not None
-                else None,
+                "proof_request": (
+                    IndyProofRequest.from_dict(obj.get("proof_request"))
+                    if obj.get("proof_request") is not None
+                    else None
+                ),
                 "trace": obj.get("trace"),
             }
         )

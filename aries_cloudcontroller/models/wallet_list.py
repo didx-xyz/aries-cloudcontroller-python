@@ -89,11 +89,11 @@ class WalletList(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "results": [
-                    WalletRecord.from_dict(_item) for _item in obj.get("results")
-                ]
-                if obj.get("results") is not None
-                else None
+                "results": (
+                    [WalletRecord.from_dict(_item) for _item in obj.get("results")]
+                    if obj.get("results") is not None
+                    else None
+                )
             }
         )
         return _obj

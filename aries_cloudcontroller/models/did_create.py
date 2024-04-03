@@ -92,9 +92,11 @@ class DIDCreate(BaseModel):
         _obj = cls.model_validate(
             {
                 "method": obj.get("method"),
-                "options": DIDCreateOptions.from_dict(obj.get("options"))
-                if obj.get("options") is not None
-                else None,
+                "options": (
+                    DIDCreateOptions.from_dict(obj.get("options"))
+                    if obj.get("options") is not None
+                    else None
+                ),
                 "seed": obj.get("seed"),
             }
         )

@@ -201,11 +201,11 @@ class V10CredentialCreate(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "comment": obj.get("comment"),
                 "cred_def_id": obj.get("cred_def_id"),
-                "credential_proposal": CredentialPreview.from_dict(
-                    obj.get("credential_proposal")
-                )
-                if obj.get("credential_proposal") is not None
-                else None,
+                "credential_proposal": (
+                    CredentialPreview.from_dict(obj.get("credential_proposal"))
+                    if obj.get("credential_proposal") is not None
+                    else None
+                ),
                 "issuer_did": obj.get("issuer_did"),
                 "schema_id": obj.get("schema_id"),
                 "schema_issuer_did": obj.get("schema_issuer_did"),

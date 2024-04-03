@@ -121,18 +121,22 @@ class V10PresentationSendRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "auto_remove": obj.get("auto_remove"),
-                "requested_attributes": dict(
-                    (_k, IndyRequestedCredsRequestedAttr.from_dict(_v))
-                    for _k, _v in obj.get("requested_attributes").items()
-                )
-                if obj.get("requested_attributes") is not None
-                else None,
-                "requested_predicates": dict(
-                    (_k, IndyRequestedCredsRequestedPred.from_dict(_v))
-                    for _k, _v in obj.get("requested_predicates").items()
-                )
-                if obj.get("requested_predicates") is not None
-                else None,
+                "requested_attributes": (
+                    dict(
+                        (_k, IndyRequestedCredsRequestedAttr.from_dict(_v))
+                        for _k, _v in obj.get("requested_attributes").items()
+                    )
+                    if obj.get("requested_attributes") is not None
+                    else None
+                ),
+                "requested_predicates": (
+                    dict(
+                        (_k, IndyRequestedCredsRequestedPred.from_dict(_v))
+                        for _k, _v in obj.get("requested_predicates").items()
+                    )
+                    if obj.get("requested_predicates") is not None
+                    else None
+                ),
                 "self_attested_attributes": obj.get("self_attested_attributes"),
                 "trace": obj.get("trace"),
             }

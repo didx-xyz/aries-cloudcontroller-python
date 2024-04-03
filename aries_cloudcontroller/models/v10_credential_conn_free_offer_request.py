@@ -131,11 +131,11 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "comment": obj.get("comment"),
                 "cred_def_id": obj.get("cred_def_id"),
-                "credential_preview": CredentialPreview.from_dict(
-                    obj.get("credential_preview")
-                )
-                if obj.get("credential_preview") is not None
-                else None,
+                "credential_preview": (
+                    CredentialPreview.from_dict(obj.get("credential_preview"))
+                    if obj.get("credential_preview") is not None
+                    else None
+                ),
                 "trace": obj.get("trace"),
             }
         )

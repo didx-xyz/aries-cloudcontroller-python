@@ -256,27 +256,39 @@ class V20CredExRecord(BaseModel):
                 "auto_issue": obj.get("auto_issue"),
                 "auto_offer": obj.get("auto_offer"),
                 "auto_remove": obj.get("auto_remove"),
-                "by_format": V20CredExRecordByFormat.from_dict(obj.get("by_format"))
-                if obj.get("by_format") is not None
-                else None,
+                "by_format": (
+                    V20CredExRecordByFormat.from_dict(obj.get("by_format"))
+                    if obj.get("by_format") is not None
+                    else None
+                ),
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
                 "cred_ex_id": obj.get("cred_ex_id"),
-                "cred_issue": V20CredIssue.from_dict(obj.get("cred_issue"))
-                if obj.get("cred_issue") is not None
-                else None,
-                "cred_offer": V20CredOffer.from_dict(obj.get("cred_offer"))
-                if obj.get("cred_offer") is not None
-                else None,
-                "cred_preview": V20CredPreview.from_dict(obj.get("cred_preview"))
-                if obj.get("cred_preview") is not None
-                else None,
-                "cred_proposal": V20CredProposal.from_dict(obj.get("cred_proposal"))
-                if obj.get("cred_proposal") is not None
-                else None,
-                "cred_request": V20CredRequest.from_dict(obj.get("cred_request"))
-                if obj.get("cred_request") is not None
-                else None,
+                "cred_issue": (
+                    V20CredIssue.from_dict(obj.get("cred_issue"))
+                    if obj.get("cred_issue") is not None
+                    else None
+                ),
+                "cred_offer": (
+                    V20CredOffer.from_dict(obj.get("cred_offer"))
+                    if obj.get("cred_offer") is not None
+                    else None
+                ),
+                "cred_preview": (
+                    V20CredPreview.from_dict(obj.get("cred_preview"))
+                    if obj.get("cred_preview") is not None
+                    else None
+                ),
+                "cred_proposal": (
+                    V20CredProposal.from_dict(obj.get("cred_proposal"))
+                    if obj.get("cred_proposal") is not None
+                    else None
+                ),
+                "cred_request": (
+                    V20CredRequest.from_dict(obj.get("cred_request"))
+                    if obj.get("cred_request") is not None
+                    else None
+                ),
                 "error_msg": obj.get("error_msg"),
                 "initiator": obj.get("initiator"),
                 "parent_thread_id": obj.get("parent_thread_id"),
