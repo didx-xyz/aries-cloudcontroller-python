@@ -2,5 +2,5 @@ anyio>=3.7.1
 autoflake~=2.2.1
 black~=24.3.0
 isort~=5.13.2
-pytest~=7.4.0
+pytest~=8.1.1
 pytest-mock~=3.12.0
