@@ -41,7 +41,7 @@ class DIDCreate(BaseModel):
     options: Optional[DIDCreateOptions] = None
     seed: Optional[StrictStr] = Field(
         default=None,
-        description="Optional seed to use for DID, Must beenabled in configuration before use.",
+        description="Optional seed to use for DID, Must be enabled in configuration before use.",
     )
     __properties: ClassVar[List[str]] = ["method", "options", "seed"]
 
