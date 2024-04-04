@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -103,11 +103,15 @@ class DIDXRequest(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set(
+            [
+                "type",
+            ]
+        )
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "type",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of did_docattach

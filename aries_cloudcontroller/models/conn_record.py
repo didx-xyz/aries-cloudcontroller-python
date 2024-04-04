@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -250,11 +250,15 @@ class ConnRecord(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set(
+            [
+                "rfc23_state",
+            ]
+        )
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "rfc23_state",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict

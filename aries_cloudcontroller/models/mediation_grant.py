@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
@@ -68,11 +68,15 @@ class MediationGrant(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set(
+            [
+                "type",
+            ]
+        )
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "type",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
