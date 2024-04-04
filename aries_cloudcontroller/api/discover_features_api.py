@@ -290,12 +290,15 @@ class DiscoverFeaturesApi:
         # process the path parameters
         # process the query parameters
         if comment is not None:
+
             _query_params.append(("comment", comment))
 
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         if query is not None:
+
             _query_params.append(("query", query))
 
         # process the header parameters
@@ -537,6 +540,7 @@ class DiscoverFeaturesApi:
         # process the path parameters
         # process the query parameters
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         # process the header parameters

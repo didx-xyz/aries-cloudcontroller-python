@@ -1447,9 +1447,11 @@ class MediationApi:
         # process the path parameters
         # process the query parameters
         if conn_id is not None:
+
             _query_params.append(("conn_id", conn_id))
 
         if state is not None:
+
             _query_params.append(("state", state))
 
         # process the header parameters
@@ -2465,9 +2467,11 @@ class MediationApi:
         # process the path parameters
         # process the query parameters
         if conn_id is not None:
+
             _query_params.append(("conn_id", conn_id))
 
         if role is not None:
+
             _query_params.append(("role", role))
 
         # process the header parameters
@@ -2756,9 +2760,11 @@ class MediationApi:
             _path_params["mediation_id"] = mediation_id
         # process the query parameters
         if paginate_limit is not None:
+
             _query_params.append(("paginate_limit", paginate_limit))
 
         if paginate_offset is not None:
+
             _query_params.append(("paginate_offset", paginate_offset))
 
         # process the header parameters

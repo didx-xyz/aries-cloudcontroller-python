@@ -739,9 +739,11 @@ class LedgerApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
+
             _query_params.append(("did", did))
 
         if endpoint_type is not None:
+
             _query_params.append(("endpoint_type", endpoint_type))
 
         # process the header parameters
@@ -977,6 +979,7 @@ class LedgerApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
+
             _query_params.append(("did", did))
 
         # process the header parameters
@@ -1212,6 +1215,7 @@ class LedgerApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
+
             _query_params.append(("did", did))
 
         # process the header parameters
@@ -2418,23 +2422,29 @@ class LedgerApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
+
             _query_params.append(("did", did))
 
         if verkey is not None:
+
             _query_params.append(("verkey", verkey))
 
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if conn_id is not None:
+
             _query_params.append(("conn_id", conn_id))
 
         if create_transaction_for_endorser is not None:
+
             _query_params.append(
                 ("create_transaction_for_endorser", create_transaction_for_endorser)
             )
 
         if role is not None:
+
             _query_params.append(("role", role))
 
         # process the header parameters

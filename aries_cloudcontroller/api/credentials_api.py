@@ -1239,12 +1239,15 @@ class CredentialsApi:
         # process the path parameters
         # process the query parameters
         if count is not None:
+
             _query_params.append(("count", count))
 
         if start is not None:
+
             _query_params.append(("start", start))
 
         if wql is not None:
+
             _query_params.append(("wql", wql))
 
         # process the header parameters
@@ -1532,9 +1535,11 @@ class CredentialsApi:
             _path_params["credential_id"] = credential_id
         # process the query parameters
         if var_from is not None:
+
             _query_params.append(("from", var_from))
 
         if to is not None:
+
             _query_params.append(("to", to))
 
         # process the header parameters
@@ -2070,12 +2075,15 @@ class CredentialsApi:
         # process the path parameters
         # process the query parameters
         if count is not None:
+
             _query_params.append(("count", count))
 
         if start is not None:
+
             _query_params.append(("start", start))
 
         if wql is not None:
+
             _query_params.append(("wql", wql))
 
         # process the header parameters

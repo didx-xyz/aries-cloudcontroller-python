@@ -285,9 +285,11 @@ class DidExchangeApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         if my_label is not None:
+
             _query_params.append(("my_label", my_label))
 
         # process the header parameters
@@ -591,12 +593,15 @@ class DidExchangeApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         if use_public_did is not None:
+
             _query_params.append(("use_public_did", use_public_did))
 
         # process the header parameters
@@ -1010,27 +1015,35 @@ class DidExchangeApi:
         # process the path parameters
         # process the query parameters
         if their_public_did is not None:
+
             _query_params.append(("their_public_did", their_public_did))
 
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if goal is not None:
+
             _query_params.append(("goal", goal))
 
         if goal_code is not None:
+
             _query_params.append(("goal_code", goal_code))
 
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         if my_label is not None:
+
             _query_params.append(("my_label", my_label))
 
         if use_public_did is not None:
+
             _query_params.append(("use_public_did", use_public_did))
 
         # process the header parameters
@@ -1610,15 +1623,19 @@ class DidExchangeApi:
         # process the path parameters
         # process the query parameters
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if auto_accept is not None:
+
             _query_params.append(("auto_accept", auto_accept))
 
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         # process the header parameters

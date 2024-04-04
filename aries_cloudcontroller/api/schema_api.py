@@ -315,15 +315,19 @@ class SchemaApi:
         # process the path parameters
         # process the query parameters
         if schema_id is not None:
+
             _query_params.append(("schema_id", schema_id))
 
         if schema_issuer_did is not None:
+
             _query_params.append(("schema_issuer_did", schema_issuer_did))
 
         if schema_name is not None:
+
             _query_params.append(("schema_name", schema_name))
 
         if schema_version is not None:
+
             _query_params.append(("schema_version", schema_version))
 
         # process the header parameters
@@ -834,9 +838,11 @@ class SchemaApi:
         # process the path parameters
         # process the query parameters
         if conn_id is not None:
+
             _query_params.append(("conn_id", conn_id))
 
         if create_transaction_for_endorser is not None:
+
             _query_params.append(
                 ("create_transaction_for_endorser", create_transaction_for_endorser)
             )

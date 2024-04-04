@@ -298,12 +298,15 @@ class DiscoverFeaturesV20Api:
         # process the path parameters
         # process the query parameters
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         if query_goal_code is not None:
+
             _query_params.append(("query_goal_code", query_goal_code))
 
         if query_protocol is not None:
+
             _query_params.append(("query_protocol", query_protocol))
 
         # process the header parameters
@@ -545,6 +548,7 @@ class DiscoverFeaturesV20Api:
         # process the path parameters
         # process the query parameters
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         # process the header parameters

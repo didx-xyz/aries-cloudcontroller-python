@@ -1052,15 +1052,19 @@ class IssueCredentialV20Api:
         # process the path parameters
         # process the query parameters
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         if role is not None:
+
             _query_params.append(("role", role))
 
         if state is not None:
+
             _query_params.append(("state", state))
 
         if thread_id is not None:
+
             _query_params.append(("thread_id", thread_id))
 
         # process the header parameters

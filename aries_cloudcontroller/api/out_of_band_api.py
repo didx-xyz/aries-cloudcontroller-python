@@ -289,9 +289,11 @@ class OutOfBandApi:
         # process the path parameters
         # process the query parameters
         if auto_accept is not None:
+
             _query_params.append(("auto_accept", auto_accept))
 
         if multi_use is not None:
+
             _query_params.append(("multi_use", multi_use))
 
         # process the header parameters
@@ -624,15 +626,19 @@ class OutOfBandApi:
         # process the path parameters
         # process the query parameters
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if auto_accept is not None:
+
             _query_params.append(("auto_accept", auto_accept))
 
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if use_existing_connection is not None:
+
             _query_params.append(("use_existing_connection", use_existing_connection))
 
         # process the header parameters

@@ -322,12 +322,15 @@ class ConnectionApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         if my_label is not None:
+
             _query_params.append(("my_label", my_label))
 
         # process the header parameters
@@ -587,6 +590,7 @@ class ConnectionApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         # process the header parameters
@@ -901,15 +905,19 @@ class ConnectionApi:
         # process the path parameters
         # process the query parameters
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if auto_accept is not None:
+
             _query_params.append(("auto_accept", auto_accept))
 
         if multi_use is not None:
+
             _query_params.append(("multi_use", multi_use))
 
         if public is not None:
+
             _query_params.append(("public", public))
 
         # process the header parameters
@@ -2267,30 +2275,39 @@ class ConnectionApi:
         # process the path parameters
         # process the query parameters
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if connection_protocol is not None:
+
             _query_params.append(("connection_protocol", connection_protocol))
 
         if invitation_key is not None:
+
             _query_params.append(("invitation_key", invitation_key))
 
         if invitation_msg_id is not None:
+
             _query_params.append(("invitation_msg_id", invitation_msg_id))
 
         if my_did is not None:
+
             _query_params.append(("my_did", my_did))
 
         if state is not None:
+
             _query_params.append(("state", state))
 
         if their_did is not None:
+
             _query_params.append(("their_did", their_did))
 
         if their_public_did is not None:
+
             _query_params.append(("their_public_did", their_public_did))
 
         if their_role is not None:
+
             _query_params.append(("their_role", their_role))
 
         # process the header parameters
@@ -2547,6 +2564,7 @@ class ConnectionApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if key is not None:
+
             _query_params.append(("key", key))
 
         # process the header parameters
@@ -2839,12 +2857,15 @@ class ConnectionApi:
         # process the path parameters
         # process the query parameters
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if auto_accept is not None:
+
             _query_params.append(("auto_accept", auto_accept))
 
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         # process the header parameters

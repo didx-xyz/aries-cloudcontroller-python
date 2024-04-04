@@ -1254,6 +1254,7 @@ class MultitenancyApi:
         # process the path parameters
         # process the query parameters
         if wallet_name is not None:
+
             _query_params.append(("wallet_name", wallet_name))
 
         # process the header parameters
@@ -1517,9 +1518,11 @@ class MultitenancyApi:
         # process the path parameters
         # process the query parameters
         if wallet_name is not None:
+
             _query_params.append(("wallet_name", wallet_name))
 
         if group_id is not None:
+
             _query_params.append(("group_id", group_id))
 
         # process the header parameters

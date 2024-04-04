@@ -1262,9 +1262,11 @@ class RevocationApi:
         # process the path parameters
         # process the query parameters
         if cred_def_id is not None:
+
             _query_params.append(("cred_def_id", cred_def_id))
 
         if state is not None:
+
             _query_params.append(("state", state))
 
         # process the header parameters
@@ -2033,12 +2035,15 @@ class RevocationApi:
         # process the path parameters
         # process the query parameters
         if cred_ex_id is not None:
+
             _query_params.append(("cred_ex_id", cred_ex_id))
 
         if cred_rev_id is not None:
+
             _query_params.append(("cred_rev_id", cred_rev_id))
 
         if rev_reg_id is not None:
+
             _query_params.append(("rev_reg_id", rev_reg_id))
 
         # process the header parameters
@@ -2323,9 +2328,11 @@ class RevocationApi:
             _path_params["rev_reg_id"] = rev_reg_id
         # process the query parameters
         if conn_id is not None:
+
             _query_params.append(("conn_id", conn_id))
 
         if create_transaction_for_endorser is not None:
+
             _query_params.append(
                 ("create_transaction_for_endorser", create_transaction_for_endorser)
             )
@@ -2612,9 +2619,11 @@ class RevocationApi:
             _path_params["rev_reg_id"] = rev_reg_id
         # process the query parameters
         if conn_id is not None:
+
             _query_params.append(("conn_id", conn_id))
 
         if create_transaction_for_endorser is not None:
+
             _query_params.append(
                 ("create_transaction_for_endorser", create_transaction_for_endorser)
             )
@@ -3367,9 +3376,11 @@ class RevocationApi:
         # process the path parameters
         # process the query parameters
         if cred_def_id is not None:
+
             _query_params.append(("cred_def_id", cred_def_id))
 
         if rev_reg_id is not None:
+
             _query_params.append(("rev_reg_id", rev_reg_id))
 
         # process the header parameters
@@ -3635,6 +3646,7 @@ class RevocationApi:
             _path_params["rev_reg_id"] = rev_reg_id
         # process the query parameters
         if apply_ledger_update is not None:
+
             _query_params.append(("apply_ledger_update", apply_ledger_update))
 
         # process the header parameters
@@ -4621,6 +4633,7 @@ class RevocationApi:
             _path_params["rev_reg_id"] = rev_reg_id
         # process the query parameters
         if state is not None:
+
             _query_params.append(("state", state))
 
         # process the header parameters

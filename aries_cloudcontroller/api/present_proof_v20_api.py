@@ -840,15 +840,19 @@ class PresentProofV20Api:
             _path_params["pres_ex_id"] = pres_ex_id
         # process the query parameters
         if count is not None:
+
             _query_params.append(("count", count))
 
         if extra_query is not None:
+
             _query_params.append(("extra_query", extra_query))
 
         if referent is not None:
+
             _query_params.append(("referent", referent))
 
         if start is not None:
+
             _query_params.append(("start", start))
 
         # process the header parameters
@@ -1390,15 +1394,19 @@ class PresentProofV20Api:
         # process the path parameters
         # process the query parameters
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         if role is not None:
+
             _query_params.append(("role", role))
 
         if state is not None:
+
             _query_params.append(("state", state))
 
         if thread_id is not None:
+
             _query_params.append(("thread_id", thread_id))
 
         # process the header parameters

@@ -273,9 +273,11 @@ class IntroductionApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if target_connection_id is not None:
+
             _query_params.append(("target_connection_id", target_connection_id))
 
         if message is not None:
+
             _query_params.append(("message", message))
 
         # process the header parameters

@@ -513,9 +513,11 @@ class EndorseTransactionApi:
         # process the path parameters
         # process the query parameters
         if tran_id is not None:
+
             _query_params.append(("tran_id", tran_id))
 
         if endorser_write_txn is not None:
+
             _query_params.append(("endorser_write_txn", endorser_write_txn))
 
         # process the header parameters
@@ -784,6 +786,7 @@ class EndorseTransactionApi:
             _path_params["tran_id"] = tran_id
         # process the query parameters
         if endorser_did is not None:
+
             _query_params.append(("endorser_did", endorser_did))
 
         # process the header parameters
@@ -1974,9 +1977,11 @@ class EndorseTransactionApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if endorser_did is not None:
+
             _query_params.append(("endorser_did", endorser_did))
 
         if endorser_name is not None:
+
             _query_params.append(("endorser_name", endorser_name))
 
         # process the header parameters
@@ -2233,6 +2238,7 @@ class EndorseTransactionApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if transaction_my_job is not None:
+
             _query_params.append(("transaction_my_job", transaction_my_job))
 
         # process the header parameters
