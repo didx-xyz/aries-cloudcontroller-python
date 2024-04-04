@@ -11,7 +11,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
