@@ -92,7 +92,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatusLiveliness"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatusLiveliness",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -148,7 +150,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatusLiveliness"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatusLiveliness",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -204,7 +208,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatusLiveliness"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatusLiveliness",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -304,7 +310,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminConfig"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminConfig",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -360,7 +368,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminConfig"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminConfig",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -416,7 +426,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminConfig"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminConfig",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -516,7 +528,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminModules"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminModules",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -572,7 +586,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminModules"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminModules",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -628,7 +644,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminModules"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminModules",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -728,7 +746,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatusReadiness"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatusReadiness",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -784,7 +804,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatusReadiness"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatusReadiness",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -840,7 +862,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatusReadiness"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatusReadiness",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -940,7 +964,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatus"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatus",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -996,7 +1022,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatus"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatus",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1052,7 +1080,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "AdminStatus"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AdminStatus",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1152,7 +1182,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1208,7 +1240,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1264,7 +1298,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1364,7 +1400,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1420,7 +1458,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1476,7 +1516,9 @@ class ServerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

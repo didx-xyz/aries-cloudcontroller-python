@@ -107,7 +107,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateWalletResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreateWalletResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -167,7 +169,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateWalletResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreateWalletResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -227,7 +231,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateWalletResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreateWalletResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -348,7 +354,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -412,7 +420,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -476,7 +486,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -854,7 +866,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -914,7 +928,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -974,7 +990,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1083,7 +1101,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1145,7 +1165,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1207,7 +1229,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1324,7 +1348,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletListWithGroups"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletListWithGroups",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1393,7 +1419,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletListWithGroups"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletListWithGroups",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1462,7 +1490,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletListWithGroups"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletListWithGroups",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1578,7 +1608,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1642,7 +1674,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1706,7 +1740,9 @@ class MultitenancyApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WalletRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WalletRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

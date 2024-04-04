@@ -95,7 +95,9 @@ class JsonldApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SignResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SignResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -155,7 +157,9 @@ class JsonldApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SignResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SignResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -215,7 +219,9 @@ class JsonldApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SignResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SignResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -332,7 +338,9 @@ class JsonldApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VerifyResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VerifyResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -392,7 +400,9 @@ class JsonldApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VerifyResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VerifyResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -452,7 +462,9 @@ class JsonldApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VerifyResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VerifyResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

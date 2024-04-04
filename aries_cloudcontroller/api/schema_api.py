@@ -121,7 +121,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemasCreatedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemasCreatedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -204,7 +206,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemasCreatedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemasCreatedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -287,7 +291,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemasCreatedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemasCreatedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -407,7 +413,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemaGetResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemaGetResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -467,7 +475,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemaGetResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemaGetResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -527,7 +537,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemaGetResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemaGetResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -647,7 +659,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrSchemaSendResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TxnOrSchemaSendResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -720,7 +734,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrSchemaSendResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TxnOrSchemaSendResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -793,7 +809,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrSchemaSendResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TxnOrSchemaSendResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -920,7 +938,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemaGetResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemaGetResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -980,7 +1000,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemaGetResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemaGetResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1040,7 +1062,9 @@ class SchemaApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "SchemaGetResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SchemaGetResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

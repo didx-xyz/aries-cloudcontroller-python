@@ -99,7 +99,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -159,7 +161,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -219,7 +223,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -337,7 +343,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -408,7 +416,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -479,7 +489,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -610,7 +622,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -676,7 +690,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -742,7 +758,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -849,7 +867,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -905,7 +925,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -961,7 +983,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1065,7 +1089,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1125,7 +1151,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1185,7 +1213,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1292,7 +1322,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1352,7 +1384,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1412,7 +1446,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1519,7 +1555,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1579,7 +1617,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1639,7 +1679,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1756,7 +1798,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "EndorserInfo"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "EndorserInfo",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1826,7 +1870,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "EndorserInfo"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "EndorserInfo",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1896,7 +1942,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "EndorserInfo"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "EndorserInfo",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2017,7 +2065,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionJobs"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionJobs",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2083,7 +2133,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionJobs"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionJobs",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2149,7 +2201,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionJobs"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionJobs",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2260,7 +2314,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2320,7 +2376,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2380,7 +2438,9 @@ class EndorseTransactionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TransactionRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TransactionRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

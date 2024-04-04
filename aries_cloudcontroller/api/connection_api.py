@@ -132,7 +132,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -212,7 +214,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -292,7 +296,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -418,7 +424,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -485,7 +493,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -552,7 +562,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -688,7 +700,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "InvitationResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "InvitationResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -773,7 +787,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "InvitationResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "InvitationResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -858,7 +874,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "InvitationResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "InvitationResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1234,7 +1252,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1294,7 +1314,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1354,7 +1376,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1461,7 +1485,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1521,7 +1547,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1581,7 +1609,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1688,7 +1718,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "EndpointsResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "EndpointsResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1748,7 +1780,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "EndpointsResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "EndpointsResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1808,7 +1842,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "EndpointsResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "EndpointsResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1967,7 +2003,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2079,7 +2117,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2191,7 +2231,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2337,7 +2379,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionMetadata"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionMetadata",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2403,7 +2447,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionMetadata"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionMetadata",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2469,7 +2515,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionMetadata"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionMetadata",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2598,7 +2646,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2676,7 +2726,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2754,7 +2806,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2887,7 +2941,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionMetadata"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionMetadata",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2951,7 +3007,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionMetadata"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionMetadata",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3015,7 +3073,9 @@ class ConnectionApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnectionMetadata"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnectionMetadata",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

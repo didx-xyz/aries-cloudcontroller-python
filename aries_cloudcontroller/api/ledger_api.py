@@ -109,7 +109,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -169,7 +171,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -229,7 +233,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -342,7 +348,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TAAResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TAAResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -398,7 +406,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TAAResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TAAResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -454,7 +464,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TAAResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TAAResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -817,7 +829,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "GetNymRoleResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetNymRoleResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -877,7 +891,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "GetNymRoleResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetNymRoleResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -937,7 +953,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "GetNymRoleResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetNymRoleResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1045,7 +1063,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "GetDIDVerkeyResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetDIDVerkeyResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1105,7 +1125,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "GetDIDVerkeyResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetDIDVerkeyResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1165,7 +1187,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "GetDIDVerkeyResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetDIDVerkeyResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1269,7 +1293,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "LedgerConfigList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "LedgerConfigList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1325,7 +1351,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "LedgerConfigList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "LedgerConfigList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1381,7 +1409,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "LedgerConfigList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "LedgerConfigList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1481,7 +1511,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1537,7 +1569,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1593,7 +1627,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1915,7 +1951,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1975,7 +2013,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2035,7 +2075,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "WriteLedger"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2469,7 +2511,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2525,7 +2569,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2581,7 +2627,9 @@ class LedgerApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

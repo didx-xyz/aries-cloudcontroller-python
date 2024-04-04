@@ -117,7 +117,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -177,7 +179,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -237,7 +241,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -356,7 +362,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -418,7 +426,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -480,7 +490,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -589,7 +601,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -651,7 +665,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -713,7 +729,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1135,7 +1153,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1201,7 +1221,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1267,7 +1289,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1387,7 +1411,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1447,7 +1473,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1507,7 +1535,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1624,7 +1654,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1684,7 +1716,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1744,7 +1778,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1867,7 +1903,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1933,7 +1971,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1999,7 +2039,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2125,7 +2167,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2191,7 +2235,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2257,7 +2303,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2377,7 +2425,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2437,7 +2487,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2497,7 +2549,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2614,7 +2668,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2674,7 +2730,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2734,7 +2792,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2857,7 +2917,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2923,7 +2985,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2989,7 +3053,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3109,7 +3175,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3169,7 +3237,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3229,7 +3299,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3352,7 +3424,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3418,7 +3492,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3484,7 +3560,9 @@ class IssueCredentialV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20CredExRecordDetail"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20CredExRecordDetail",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

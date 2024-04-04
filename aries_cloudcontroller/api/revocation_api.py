@@ -121,7 +121,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "PublishRevocations"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "PublishRevocations",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -181,7 +183,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "PublishRevocations"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "PublishRevocations",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -241,7 +245,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "PublishRevocations"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "PublishRevocations",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -358,7 +364,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -418,7 +426,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -478,7 +488,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -597,7 +609,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "bytearray"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "bytearray",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -659,7 +673,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "bytearray"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "bytearray",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -721,7 +737,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "bytearray"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "bytearray",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -830,7 +848,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -892,7 +912,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -954,7 +976,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1070,7 +1094,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegsCreated"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1139,7 +1165,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegsCreated"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1208,7 +1236,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegsCreated"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1322,7 +1352,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1384,7 +1416,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1446,7 +1480,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1555,7 +1591,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegIssuedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegIssuedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1617,7 +1655,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegIssuedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegIssuedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1679,7 +1719,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegIssuedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegIssuedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1803,7 +1845,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredRevRecordResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1880,7 +1924,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredRevRecordResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1957,7 +2003,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredRevRecordResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2088,7 +2136,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrRevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TxnOrRevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2163,7 +2213,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrRevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TxnOrRevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2238,7 +2290,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TxnOrRevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TxnOrRevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2370,7 +2424,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2445,7 +2501,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2520,7 +2578,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2882,7 +2942,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegsCreated"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2944,7 +3006,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegsCreated"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3006,7 +3070,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegsCreated"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3123,7 +3189,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TailsDeleteResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TailsDeleteResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3193,7 +3261,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TailsDeleteResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TailsDeleteResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3263,7 +3333,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "TailsDeleteResponse"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TailsDeleteResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4117,7 +4189,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4177,7 +4251,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4237,7 +4313,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4362,7 +4440,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4430,7 +4510,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4498,7 +4580,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4615,7 +4699,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4681,7 +4767,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4747,7 +4835,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "RevRegResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4869,7 +4959,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4931,7 +5023,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -4993,7 +5087,9 @@ class RevocationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

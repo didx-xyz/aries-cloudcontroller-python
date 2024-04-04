@@ -105,7 +105,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -165,7 +167,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -225,7 +229,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -332,7 +338,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -392,7 +400,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -452,7 +462,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -792,7 +804,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "IndyCredInfo"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "IndyCredInfo",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -852,7 +866,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "IndyCredInfo"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "IndyCredInfo",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -912,7 +928,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "IndyCredInfo"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "IndyCredInfo",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1036,7 +1054,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredInfoList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredInfoList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1113,7 +1133,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredInfoList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredInfoList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1190,7 +1212,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredInfoList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredInfoList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1322,7 +1346,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredRevokedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevokedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1398,7 +1424,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredRevokedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevokedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1474,7 +1502,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "CredRevokedResult"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevokedResult",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1589,7 +1619,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VCRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VCRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1649,7 +1681,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VCRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VCRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1709,7 +1743,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VCRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VCRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1837,7 +1873,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VCRecordList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VCRecordList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1918,7 +1956,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VCRecordList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VCRecordList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1999,7 +2039,9 @@ class CredentialsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "VCRecordList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VCRecordList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )

@@ -115,7 +115,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -175,7 +177,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -235,7 +239,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -354,7 +360,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -416,7 +424,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -478,7 +488,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -615,7 +627,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "List[IndyCredPrecis]"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "List[IndyCredPrecis]",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -705,7 +719,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "List[IndyCredPrecis]"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "List[IndyCredPrecis]",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -795,7 +811,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "List[IndyCredPrecis]"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "List[IndyCredPrecis]",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -920,7 +938,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -982,7 +1002,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1044,7 +1066,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1172,7 +1196,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecordList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecordList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1253,7 +1279,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecordList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecordList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1334,7 +1362,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecordList"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecordList",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1460,7 +1490,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1526,7 +1558,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1592,7 +1626,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "object"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1718,7 +1754,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1784,7 +1822,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1850,7 +1890,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1970,7 +2012,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2030,7 +2074,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2090,7 +2136,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2213,7 +2261,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2279,7 +2329,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2345,7 +2397,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2465,7 +2519,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2525,7 +2581,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2585,7 +2643,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2704,7 +2764,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2766,7 +2828,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2828,7 +2892,9 @@ class PresentProofV20Api:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "V20PresExRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "V20PresExRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
