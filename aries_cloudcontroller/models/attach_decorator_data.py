@@ -39,7 +39,9 @@ class AttachDecoratorData(BaseModel):
     var_json: Optional[Union[Dict[str, Any], List[Dict[str, Any]]]] = Field(
         default=None, description="JSON-serialized data", alias="json"
     )
-    jws: Optional[AttachDecoratorDataJWS] = None
+    jws: Optional[AttachDecoratorDataJWS] = Field(
+        default=None, description="Detached Java Web Signature"
+    )
     links: Optional[List[StrictStr]] = Field(
         default=None, description="List of hypertext links to data"
     )
