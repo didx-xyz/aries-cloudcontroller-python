@@ -105,7 +105,7 @@ class PresentationProposal(BaseModel):
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
                 "presentation_proposal": (
-                    IndyPresPreview.from_dict(obj.get("presentation_proposal"))
+                    IndyPresPreview.from_dict(obj["presentation_proposal"])
                     if obj.get("presentation_proposal") is not None
                     else None
                 ),

@@ -113,7 +113,7 @@ class V10PresentationProposalRequest(BaseModel):
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
                 "presentation_proposal": (
-                    IndyPresPreview.from_dict(obj.get("presentation_proposal"))
+                    IndyPresPreview.from_dict(obj["presentation_proposal"])
                     if obj.get("presentation_proposal") is not None
                     else None
                 ),

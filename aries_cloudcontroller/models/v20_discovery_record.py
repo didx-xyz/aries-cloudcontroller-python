@@ -150,13 +150,13 @@ class V20DiscoveryRecord(BaseModel):
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
                 "disclosures": (
-                    Disclosures.from_dict(obj.get("disclosures"))
+                    Disclosures.from_dict(obj["disclosures"])
                     if obj.get("disclosures") is not None
                     else None
                 ),
                 "discovery_exchange_id": obj.get("discovery_exchange_id"),
                 "queries_msg": (
-                    Queries.from_dict(obj.get("queries_msg"))
+                    Queries.from_dict(obj["queries_msg"])
                     if obj.get("queries_msg") is not None
                     else None
                 ),

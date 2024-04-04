@@ -83,9 +83,7 @@ class SignRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "doc": (
-                    Doc.from_dict(obj.get("doc"))
-                    if obj.get("doc") is not None
-                    else None
+                    Doc.from_dict(obj["doc"]) if obj.get("doc") is not None else None
                 ),
                 "verkey": obj.get("verkey"),
             }

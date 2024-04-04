@@ -254,7 +254,7 @@ class V20CredExRecord(BaseModel):
                 "auto_offer": obj.get("auto_offer"),
                 "auto_remove": obj.get("auto_remove"),
                 "by_format": (
-                    V20CredExRecordByFormat.from_dict(obj.get("by_format"))
+                    V20CredExRecordByFormat.from_dict(obj["by_format"])
                     if obj.get("by_format") is not None
                     else None
                 ),
@@ -262,27 +262,27 @@ class V20CredExRecord(BaseModel):
                 "created_at": obj.get("created_at"),
                 "cred_ex_id": obj.get("cred_ex_id"),
                 "cred_issue": (
-                    V20CredIssue.from_dict(obj.get("cred_issue"))
+                    V20CredIssue.from_dict(obj["cred_issue"])
                     if obj.get("cred_issue") is not None
                     else None
                 ),
                 "cred_offer": (
-                    V20CredOffer.from_dict(obj.get("cred_offer"))
+                    V20CredOffer.from_dict(obj["cred_offer"])
                     if obj.get("cred_offer") is not None
                     else None
                 ),
                 "cred_preview": (
-                    V20CredPreview.from_dict(obj.get("cred_preview"))
+                    V20CredPreview.from_dict(obj["cred_preview"])
                     if obj.get("cred_preview") is not None
                     else None
                 ),
                 "cred_proposal": (
-                    V20CredProposal.from_dict(obj.get("cred_proposal"))
+                    V20CredProposal.from_dict(obj["cred_proposal"])
                     if obj.get("cred_proposal") is not None
                     else None
                 ),
                 "cred_request": (
-                    V20CredRequest.from_dict(obj.get("cred_request"))
+                    V20CredRequest.from_dict(obj["cred_request"])
                     if obj.get("cred_request") is not None
                     else None
                 ),

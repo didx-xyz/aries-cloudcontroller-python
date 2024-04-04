@@ -82,7 +82,7 @@ class RevRegResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "result": (
-                    IssuerRevRegRecord.from_dict(obj.get("result"))
+                    IssuerRevRegRecord.from_dict(obj["result"])
                     if obj.get("result") is not None
                     else None
                 )

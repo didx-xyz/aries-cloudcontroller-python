@@ -131,7 +131,7 @@ class IndyCredAbstract(BaseModel):
             {
                 "cred_def_id": obj.get("cred_def_id"),
                 "key_correctness_proof": (
-                    IndyKeyCorrectnessProof.from_dict(obj.get("key_correctness_proof"))
+                    IndyKeyCorrectnessProof.from_dict(obj["key_correctness_proof"])
                     if obj.get("key_correctness_proof") is not None
                     else None
                 ),

@@ -82,7 +82,7 @@ class CredentialDefinitionGetResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "credential_definition": (
-                    CredentialDefinition.from_dict(obj.get("credential_definition"))
+                    CredentialDefinition.from_dict(obj["credential_definition"])
                     if obj.get("credential_definition") is not None
                     else None
                 )

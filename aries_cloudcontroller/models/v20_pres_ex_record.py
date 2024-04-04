@@ -249,7 +249,7 @@ class V20PresExRecord(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "auto_verify": obj.get("auto_verify"),
                 "by_format": (
-                    V20PresExRecordByFormat.from_dict(obj.get("by_format"))
+                    V20PresExRecordByFormat.from_dict(obj["by_format"])
                     if obj.get("by_format") is not None
                     else None
                 ),
@@ -258,18 +258,18 @@ class V20PresExRecord(BaseModel):
                 "error_msg": obj.get("error_msg"),
                 "initiator": obj.get("initiator"),
                 "pres": (
-                    V20Pres.from_dict(obj.get("pres"))
+                    V20Pres.from_dict(obj["pres"])
                     if obj.get("pres") is not None
                     else None
                 ),
                 "pres_ex_id": obj.get("pres_ex_id"),
                 "pres_proposal": (
-                    V20PresProposal.from_dict(obj.get("pres_proposal"))
+                    V20PresProposal.from_dict(obj["pres_proposal"])
                     if obj.get("pres_proposal") is not None
                     else None
                 ),
                 "pres_request": (
-                    V20PresRequest.from_dict(obj.get("pres_request"))
+                    V20PresRequest.from_dict(obj["pres_request"])
                     if obj.get("pres_request") is not None
                     else None
                 ),

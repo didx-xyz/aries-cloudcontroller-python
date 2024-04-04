@@ -115,7 +115,7 @@ class CredentialOffer(BaseModel):
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
                 "credential_preview": (
-                    CredentialPreview.from_dict(obj.get("credential_preview"))
+                    CredentialPreview.from_dict(obj["credential_preview"])
                     if obj.get("credential_preview") is not None
                     else None
                 ),

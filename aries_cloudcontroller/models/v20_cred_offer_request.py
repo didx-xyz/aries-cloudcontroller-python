@@ -130,12 +130,12 @@ class V20CredOfferRequest(BaseModel):
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
                 "credential_preview": (
-                    V20CredPreview.from_dict(obj.get("credential_preview"))
+                    V20CredPreview.from_dict(obj["credential_preview"])
                     if obj.get("credential_preview") is not None
                     else None
                 ),
                 "filter": (
-                    V20CredFilter.from_dict(obj.get("filter"))
+                    V20CredFilter.from_dict(obj["filter"])
                     if obj.get("filter") is not None
                     else None
                 ),

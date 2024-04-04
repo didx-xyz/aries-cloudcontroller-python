@@ -91,7 +91,7 @@ class DIDCreate(BaseModel):
             {
                 "method": obj.get("method"),
                 "options": (
-                    DIDCreateOptions.from_dict(obj.get("options"))
+                    DIDCreateOptions.from_dict(obj["options"])
                     if obj.get("options") is not None
                     else None
                 ),

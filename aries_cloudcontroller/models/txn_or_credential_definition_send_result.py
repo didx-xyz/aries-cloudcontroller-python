@@ -89,12 +89,12 @@ class TxnOrCredentialDefinitionSendResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "sent": (
-                    CredentialDefinitionSendResult.from_dict(obj.get("sent"))
+                    CredentialDefinitionSendResult.from_dict(obj["sent"])
                     if obj.get("sent") is not None
                     else None
                 ),
                 "txn": (
-                    TransactionRecord.from_dict(obj.get("txn"))
+                    TransactionRecord.from_dict(obj["txn"])
                     if obj.get("txn") is not None
                     else None
                 ),

@@ -110,7 +110,7 @@ class V10PresentationSendRequestRequest(BaseModel):
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
                 "proof_request": (
-                    IndyProofRequest.from_dict(obj.get("proof_request"))
+                    IndyProofRequest.from_dict(obj["proof_request"])
                     if obj.get("proof_request") is not None
                     else None
                 ),

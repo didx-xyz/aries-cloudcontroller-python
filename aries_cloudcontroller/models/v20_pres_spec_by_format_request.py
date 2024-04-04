@@ -96,12 +96,12 @@ class V20PresSpecByFormatRequest(BaseModel):
             {
                 "auto_remove": obj.get("auto_remove"),
                 "dif": (
-                    DIFPresSpec.from_dict(obj.get("dif"))
+                    DIFPresSpec.from_dict(obj["dif"])
                     if obj.get("dif") is not None
                     else None
                 ),
                 "indy": (
-                    IndyPresSpec.from_dict(obj.get("indy"))
+                    IndyPresSpec.from_dict(obj["indy"])
                     if obj.get("indy") is not None
                     else None
                 ),

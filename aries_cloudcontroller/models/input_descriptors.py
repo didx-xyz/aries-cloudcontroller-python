@@ -106,7 +106,7 @@ class InputDescriptors(BaseModel):
         _obj = cls.model_validate(
             {
                 "constraints": (
-                    Constraints.from_dict(obj.get("constraints"))
+                    Constraints.from_dict(obj["constraints"])
                     if obj.get("constraints") is not None
                     else None
                 ),
@@ -116,7 +116,7 @@ class InputDescriptors(BaseModel):
                 "name": obj.get("name"),
                 "purpose": obj.get("purpose"),
                 "schema": (
-                    SchemasInputDescriptorFilter.from_dict(obj.get("schema"))
+                    SchemasInputDescriptorFilter.from_dict(obj["schema"])
                     if obj.get("schema") is not None
                     else None
                 ),

@@ -128,9 +128,7 @@ class CredDefValuePrimary(BaseModel):
             {
                 "n": obj.get("n"),
                 "r": (
-                    Generated.from_dict(obj.get("r"))
-                    if obj.get("r") is not None
-                    else None
+                    Generated.from_dict(obj["r"]) if obj.get("r") is not None else None
                 ),
                 "rctxt": obj.get("rctxt"),
                 "s": obj.get("s"),

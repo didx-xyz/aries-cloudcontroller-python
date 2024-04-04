@@ -202,7 +202,7 @@ class V10CredentialProposalRequestOpt(BaseModel):
                 "connection_id": obj.get("connection_id"),
                 "cred_def_id": obj.get("cred_def_id"),
                 "credential_proposal": (
-                    CredentialPreview.from_dict(obj.get("credential_proposal"))
+                    CredentialPreview.from_dict(obj["credential_proposal"])
                     if obj.get("credential_proposal") is not None
                     else None
                 ),

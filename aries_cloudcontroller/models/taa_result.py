@@ -82,7 +82,7 @@ class TAAResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "result": (
-                    TAAInfo.from_dict(obj.get("result"))
+                    TAAInfo.from_dict(obj["result"])
                     if obj.get("result") is not None
                     else None
                 )

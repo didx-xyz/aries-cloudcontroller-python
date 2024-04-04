@@ -110,7 +110,7 @@ class IndyGEProof(BaseModel):
                 "alpha": obj.get("alpha"),
                 "mj": obj.get("mj"),
                 "predicate": (
-                    IndyGEProofPred.from_dict(obj.get("predicate"))
+                    IndyGEProofPred.from_dict(obj["predicate"])
                     if obj.get("predicate") is not None
                     else None
                 ),

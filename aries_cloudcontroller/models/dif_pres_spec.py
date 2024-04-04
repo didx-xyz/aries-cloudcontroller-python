@@ -100,7 +100,7 @@ class DIFPresSpec(BaseModel):
             {
                 "issuer_id": obj.get("issuer_id"),
                 "presentation_definition": (
-                    PresentationDefinition.from_dict(obj.get("presentation_definition"))
+                    PresentationDefinition.from_dict(obj["presentation_definition"])
                     if obj.get("presentation_definition") is not None
                     else None
                 ),

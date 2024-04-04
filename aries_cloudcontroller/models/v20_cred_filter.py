@@ -87,12 +87,12 @@ class V20CredFilter(BaseModel):
         _obj = cls.model_validate(
             {
                 "indy": (
-                    V20CredFilterIndy.from_dict(obj.get("indy"))
+                    V20CredFilterIndy.from_dict(obj["indy"])
                     if obj.get("indy") is not None
                     else None
                 ),
                 "ld_proof": (
-                    LDProofVCDetail.from_dict(obj.get("ld_proof"))
+                    LDProofVCDetail.from_dict(obj["ld_proof"])
                     if obj.get("ld_proof") is not None
                     else None
                 ),

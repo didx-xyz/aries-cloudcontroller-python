@@ -82,7 +82,7 @@ class V10CredentialBoundOfferRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "counter_proposal": (
-                    CredentialProposal.from_dict(obj.get("counter_proposal"))
+                    CredentialProposal.from_dict(obj["counter_proposal"])
                     if obj.get("counter_proposal") is not None
                     else None
                 )

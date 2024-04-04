@@ -164,7 +164,7 @@ class ConnectionStaticResult(BaseModel):
                 "my_endpoint": obj.get("my_endpoint"),
                 "my_verkey": obj.get("my_verkey"),
                 "record": (
-                    ConnRecord.from_dict(obj.get("record"))
+                    ConnRecord.from_dict(obj["record"])
                     if obj.get("record") is not None
                     else None
                 ),

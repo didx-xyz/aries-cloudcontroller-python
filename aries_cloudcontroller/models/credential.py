@@ -152,7 +152,7 @@ class Credential(BaseModel):
                 "issuanceDate": obj.get("issuanceDate"),
                 "issuer": obj.get("issuer"),
                 "proof": (
-                    LinkedDataProof.from_dict(obj.get("proof"))
+                    LinkedDataProof.from_dict(obj["proof"])
                     if obj.get("proof") is not None
                     else None
                 ),

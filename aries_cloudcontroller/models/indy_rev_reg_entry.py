@@ -96,7 +96,7 @@ class IndyRevRegEntry(BaseModel):
         _obj = cls.model_validate(
             {
                 "value": (
-                    IndyRevRegEntryValue.from_dict(obj.get("value"))
+                    IndyRevRegEntryValue.from_dict(obj["value"])
                     if obj.get("value") is not None
                     else None
                 ),

@@ -87,12 +87,12 @@ class V20PresProposalByFormat(BaseModel):
         _obj = cls.model_validate(
             {
                 "dif": (
-                    DIFProofProposal.from_dict(obj.get("dif"))
+                    DIFProofProposal.from_dict(obj["dif"])
                     if obj.get("dif") is not None
                     else None
                 ),
                 "indy": (
-                    IndyProofRequest.from_dict(obj.get("indy"))
+                    IndyProofRequest.from_dict(obj["indy"])
                     if obj.get("indy") is not None
                     else None
                 ),

@@ -112,7 +112,7 @@ class V20PresSendRequestRequest(BaseModel):
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
                 "presentation_request": (
-                    V20PresRequestByFormat.from_dict(obj.get("presentation_request"))
+                    V20PresRequestByFormat.from_dict(obj["presentation_request"])
                     if obj.get("presentation_request") is not None
                     else None
                 ),

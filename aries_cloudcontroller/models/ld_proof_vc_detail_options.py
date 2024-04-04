@@ -131,7 +131,7 @@ class LDProofVCDetailOptions(BaseModel):
                 "challenge": obj.get("challenge"),
                 "created": obj.get("created"),
                 "credentialStatus": (
-                    CredentialStatusOptions.from_dict(obj.get("credentialStatus"))
+                    CredentialStatusOptions.from_dict(obj["credentialStatus"])
                     if obj.get("credentialStatus") is not None
                     else None
                 ),

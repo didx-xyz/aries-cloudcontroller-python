@@ -161,7 +161,7 @@ class IndyRevRegDef(BaseModel):
                 "revocDefType": obj.get("revocDefType"),
                 "tag": obj.get("tag"),
                 "value": (
-                    IndyRevRegDefValue.from_dict(obj.get("value"))
+                    IndyRevRegDefValue.from_dict(obj["value"])
                     if obj.get("value") is not None
                     else None
                 ),

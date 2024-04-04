@@ -93,7 +93,7 @@ class InvitationResult(BaseModel):
             {
                 "connection_id": obj.get("connection_id"),
                 "invitation": (
-                    ConnectionInvitation.from_dict(obj.get("invitation"))
+                    ConnectionInvitation.from_dict(obj["invitation"])
                     if obj.get("invitation") is not None
                     else None
                 ),

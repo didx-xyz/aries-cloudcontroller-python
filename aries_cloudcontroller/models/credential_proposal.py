@@ -189,7 +189,7 @@ class CredentialProposal(BaseModel):
                 "comment": obj.get("comment"),
                 "cred_def_id": obj.get("cred_def_id"),
                 "credential_proposal": (
-                    CredentialPreview.from_dict(obj.get("credential_proposal"))
+                    CredentialPreview.from_dict(obj["credential_proposal"])
                     if obj.get("credential_proposal") is not None
                     else None
                 ),

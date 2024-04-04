@@ -136,7 +136,7 @@ class CredentialDefinition(BaseModel):
                 "tag": obj.get("tag"),
                 "type": obj.get("type"),
                 "value": (
-                    CredDefValue.from_dict(obj.get("value"))
+                    CredDefValue.from_dict(obj["value"])
                     if obj.get("value") is not None
                     else None
                 ),

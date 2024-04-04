@@ -99,7 +99,7 @@ class DIFProofProposal(BaseModel):
                     else None
                 ),
                 "options": (
-                    DIFOptions.from_dict(obj.get("options"))
+                    DIFOptions.from_dict(obj["options"])
                     if obj.get("options") is not None
                     else None
                 ),

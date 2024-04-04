@@ -101,7 +101,7 @@ class IndyProofProofProofsProof(BaseModel):
                     else None
                 ),
                 "primary_proof": (
-                    IndyPrimaryProof.from_dict(obj.get("primary_proof"))
+                    IndyPrimaryProof.from_dict(obj["primary_proof"])
                     if obj.get("primary_proof") is not None
                     else None
                 ),

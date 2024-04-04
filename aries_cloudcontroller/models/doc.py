@@ -84,7 +84,7 @@ class Doc(BaseModel):
             {
                 "credential": obj.get("credential"),
                 "options": (
-                    SignatureOptions.from_dict(obj.get("options"))
+                    SignatureOptions.from_dict(obj["options"])
                     if obj.get("options") is not None
                     else None
                 ),

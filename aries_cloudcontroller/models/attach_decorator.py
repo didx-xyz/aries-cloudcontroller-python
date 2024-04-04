@@ -125,7 +125,7 @@ class AttachDecorator(BaseModel):
                 "@id": obj.get("@id"),
                 "byte_count": obj.get("byte_count"),
                 "data": (
-                    AttachDecoratorData.from_dict(obj.get("data"))
+                    AttachDecoratorData.from_dict(obj["data"])
                     if obj.get("data") is not None
                     else None
                 ),

@@ -89,12 +89,12 @@ class CredDefValue(BaseModel):
         _obj = cls.model_validate(
             {
                 "primary": (
-                    CredDefValuePrimary.from_dict(obj.get("primary"))
+                    CredDefValuePrimary.from_dict(obj["primary"])
                     if obj.get("primary") is not None
                     else None
                 ),
                 "revocation": (
-                    CredDefValueRevocation.from_dict(obj.get("revocation"))
+                    CredDefValueRevocation.from_dict(obj["revocation"])
                     if obj.get("revocation") is not None
                     else None
                 ),

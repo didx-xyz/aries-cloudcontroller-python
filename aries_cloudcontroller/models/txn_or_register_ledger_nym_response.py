@@ -86,7 +86,7 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
             {
                 "success": obj.get("success"),
                 "txn": (
-                    TransactionRecord.from_dict(obj.get("txn"))
+                    TransactionRecord.from_dict(obj["txn"])
                     if obj.get("txn") is not None
                     else None
                 ),

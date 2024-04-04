@@ -89,12 +89,12 @@ class LDProofVCDetail(BaseModel):
         _obj = cls.model_validate(
             {
                 "credential": (
-                    Credential.from_dict(obj.get("credential"))
+                    Credential.from_dict(obj["credential"])
                     if obj.get("credential") is not None
                     else None
                 ),
                 "options": (
-                    LDProofVCDetailOptions.from_dict(obj.get("options"))
+                    LDProofVCDetailOptions.from_dict(obj["options"])
                     if obj.get("options") is not None
                     else None
                 ),

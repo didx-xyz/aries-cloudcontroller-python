@@ -110,7 +110,7 @@ class IndyProofReqPredSpec(BaseModel):
             {
                 "name": obj.get("name"),
                 "non_revoked": (
-                    IndyProofReqPredSpecNonRevoked.from_dict(obj.get("non_revoked"))
+                    IndyProofReqPredSpecNonRevoked.from_dict(obj["non_revoked"])
                     if obj.get("non_revoked") is not None
                     else None
                 ),

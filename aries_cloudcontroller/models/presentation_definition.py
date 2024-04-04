@@ -134,7 +134,7 @@ class PresentationDefinition(BaseModel):
         _obj = cls.model_validate(
             {
                 "format": (
-                    ClaimFormat.from_dict(obj.get("format"))
+                    ClaimFormat.from_dict(obj["format"])
                     if obj.get("format") is not None
                     else None
                 ),

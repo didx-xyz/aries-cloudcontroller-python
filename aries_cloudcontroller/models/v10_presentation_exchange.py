@@ -233,7 +233,7 @@ class V10PresentationExchange(BaseModel):
                 "error_msg": obj.get("error_msg"),
                 "initiator": obj.get("initiator"),
                 "presentation": (
-                    IndyProof.from_dict(obj.get("presentation"))
+                    IndyProof.from_dict(obj["presentation"])
                     if obj.get("presentation") is not None
                     else None
                 ),
@@ -246,12 +246,12 @@ class V10PresentationExchange(BaseModel):
                     else None
                 ),
                 "presentation_request": (
-                    IndyProofRequest.from_dict(obj.get("presentation_request"))
+                    IndyProofRequest.from_dict(obj["presentation_request"])
                     if obj.get("presentation_request") is not None
                     else None
                 ),
                 "presentation_request_dict": (
-                    PresentationRequest.from_dict(obj.get("presentation_request_dict"))
+                    PresentationRequest.from_dict(obj["presentation_request_dict"])
                     if obj.get("presentation_request_dict") is not None
                     else None
                 ),

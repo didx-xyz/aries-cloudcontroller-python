@@ -117,7 +117,7 @@ class V20CredRequestFree(BaseModel):
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
                 "filter": (
-                    V20CredFilterLDProof.from_dict(obj.get("filter"))
+                    V20CredFilterLDProof.from_dict(obj["filter"])
                     if obj.get("filter") is not None
                     else None
                 ),

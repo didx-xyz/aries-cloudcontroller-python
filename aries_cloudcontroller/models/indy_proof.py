@@ -108,12 +108,12 @@ class IndyProof(BaseModel):
                     else None
                 ),
                 "proof": (
-                    IndyProofProof.from_dict(obj.get("proof"))
+                    IndyProofProof.from_dict(obj["proof"])
                     if obj.get("proof") is not None
                     else None
                 ),
                 "requested_proof": (
-                    IndyProofRequestedProof.from_dict(obj.get("requested_proof"))
+                    IndyProofRequestedProof.from_dict(obj["requested_proof"])
                     if obj.get("requested_proof") is not None
                     else None
                 ),

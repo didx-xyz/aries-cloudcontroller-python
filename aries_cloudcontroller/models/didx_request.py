@@ -130,7 +130,7 @@ class DIDXRequest(BaseModel):
                 "@type": obj.get("@type"),
                 "did": obj.get("did"),
                 "did_doc~attach": (
-                    AttachDecorator.from_dict(obj.get("did_doc~attach"))
+                    AttachDecorator.from_dict(obj["did_doc~attach"])
                     if obj.get("did_doc~attach") is not None
                     else None
                 ),

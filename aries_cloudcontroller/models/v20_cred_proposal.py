@@ -128,7 +128,7 @@ class V20CredProposal(BaseModel):
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
                 "credential_preview": (
-                    V20CredPreview.from_dict(obj.get("credential_preview"))
+                    V20CredPreview.from_dict(obj["credential_preview"])
                     if obj.get("credential_preview") is not None
                     else None
                 ),

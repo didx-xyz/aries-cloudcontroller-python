@@ -105,7 +105,7 @@ class IndyPrimaryProof(BaseModel):
         _obj = cls.model_validate(
             {
                 "eq_proof": (
-                    IndyPrimaryProofEqProof.from_dict(obj.get("eq_proof"))
+                    IndyPrimaryProofEqProof.from_dict(obj["eq_proof"])
                     if obj.get("eq_proof") is not None
                     else None
                 ),

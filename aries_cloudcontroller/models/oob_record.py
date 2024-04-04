@@ -185,7 +185,7 @@ class OobRecord(BaseModel):
                 "created_at": obj.get("created_at"),
                 "invi_msg_id": obj.get("invi_msg_id"),
                 "invitation": (
-                    InvitationMessage.from_dict(obj.get("invitation"))
+                    InvitationMessage.from_dict(obj["invitation"])
                     if obj.get("invitation") is not None
                     else None
                 ),
@@ -194,7 +194,7 @@ class OobRecord(BaseModel):
                 "role": obj.get("role"),
                 "state": obj.get("state"),
                 "their_service": (
-                    ServiceDecorator.from_dict(obj.get("their_service"))
+                    ServiceDecorator.from_dict(obj["their_service"])
                     if obj.get("their_service") is not None
                     else None
                 ),

@@ -150,13 +150,13 @@ class V10DiscoveryRecord(BaseModel):
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
                 "disclose": (
-                    Disclose.from_dict(obj.get("disclose"))
+                    Disclose.from_dict(obj["disclose"])
                     if obj.get("disclose") is not None
                     else None
                 ),
                 "discovery_exchange_id": obj.get("discovery_exchange_id"),
                 "query_msg": (
-                    Query.from_dict(obj.get("query_msg"))
+                    Query.from_dict(obj["query_msg"])
                     if obj.get("query_msg") is not None
                     else None
                 ),

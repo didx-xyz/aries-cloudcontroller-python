@@ -82,7 +82,7 @@ class SchemaGetResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "schema": (
-                    ModelSchema.from_dict(obj.get("schema"))
+                    ModelSchema.from_dict(obj["schema"])
                     if obj.get("schema") is not None
                     else None
                 )
