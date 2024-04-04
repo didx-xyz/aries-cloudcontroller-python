@@ -100,14 +100,16 @@ class OobRecord(BaseModel):
     @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in (
-            "initial",
-            "prepare-response",
-            "await-response",
-            "reuse-not-accepted",
-            "reuse-accepted",
-            "done",
-            "deleted",
+        if value not in set(
+            [
+                "initial",
+                "prepare-response",
+                "await-response",
+                "reuse-not-accepted",
+                "reuse-accepted",
+                "done",
+                "deleted",
+            ]
         ):
             raise ValueError(
                 "must be one of enum values ('initial', 'prepare-response', 'await-response', 'reuse-not-accepted', 'reuse-accepted', 'done', 'deleted')"

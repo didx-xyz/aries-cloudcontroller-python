@@ -166,19 +166,21 @@ class V20CredExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in (
-            "proposal-sent",
-            "proposal-received",
-            "offer-sent",
-            "offer-received",
-            "request-sent",
-            "request-received",
-            "credential-issued",
-            "credential-received",
-            "done",
-            "credential-revoked",
-            "abandoned",
-            "deleted",
+        if value not in set(
+            [
+                "proposal-sent",
+                "proposal-received",
+                "offer-sent",
+                "offer-received",
+                "request-sent",
+                "request-received",
+                "credential-issued",
+                "credential-received",
+                "done",
+                "credential-revoked",
+                "abandoned",
+                "deleted",
+            ]
         ):
             raise ValueError(
                 "must be one of enum values ('proposal-sent', 'proposal-received', 'offer-sent', 'offer-received', 'request-sent', 'request-received', 'credential-issued', 'credential-received', 'done', 'credential-revoked', 'abandoned', 'deleted')"

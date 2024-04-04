@@ -38,13 +38,8 @@ class GetNymRoleResponse(BaseModel):
         if value is None:
             return value
 
-        if value not in (
-            "STEWARD",
-            "TRUSTEE",
-            "ENDORSER",
-            "NETWORK_MONITOR",
-            "USER",
-            "ROLE_REMOVE",
+        if value not in set(
+            ["STEWARD", "TRUSTEE", "ENDORSER", "NETWORK_MONITOR", "USER", "ROLE_REMOVE"]
         ):
             raise ValueError(
                 "must be one of enum values ('STEWARD', 'TRUSTEE', 'ENDORSER', 'NETWORK_MONITOR', 'USER', 'ROLE_REMOVE')"

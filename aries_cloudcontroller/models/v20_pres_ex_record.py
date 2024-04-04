@@ -154,16 +154,18 @@ class V20PresExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in (
-            "proposal-sent",
-            "proposal-received",
-            "request-sent",
-            "request-received",
-            "presentation-sent",
-            "presentation-received",
-            "done",
-            "abandoned",
-            "deleted",
+        if value not in set(
+            [
+                "proposal-sent",
+                "proposal-received",
+                "request-sent",
+                "request-received",
+                "presentation-sent",
+                "presentation-received",
+                "done",
+                "abandoned",
+                "deleted",
+            ]
         ):
             raise ValueError(
                 "must be one of enum values ('proposal-sent', 'proposal-received', 'request-sent', 'request-received', 'presentation-sent', 'presentation-received', 'done', 'abandoned', 'deleted')"
