@@ -108,7 +108,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeResult"
+            "200": "V20DiscoveryExchangeResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -187,7 +187,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeResult"
+            "200": "V20DiscoveryExchangeResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -266,7 +266,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeResult"
+            "200": "V20DiscoveryExchangeResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -390,7 +390,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeListResult"
+            "200": "V20DiscoveryExchangeListResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -454,7 +454,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeListResult"
+            "200": "V20DiscoveryExchangeListResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -518,7 +518,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeListResult"
+            "200": "V20DiscoveryExchangeListResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
