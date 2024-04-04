@@ -67,7 +67,7 @@ class V20PresProblemReportRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20PresProblemReportRequest from a dict"""
         if obj is None:
             return None

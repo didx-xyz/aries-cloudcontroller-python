@@ -75,7 +75,7 @@ class QueryItem(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of QueryItem from a dict"""
         if obj is None:
             return None

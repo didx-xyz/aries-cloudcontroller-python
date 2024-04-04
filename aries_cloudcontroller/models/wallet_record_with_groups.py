@@ -12,7 +12,7 @@ class WalletRecordWithGroups(WalletRecord):
     group_id: Optional[str] = Field(None, examples=["SomeGroupId"])
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of WalletRecord from a dict"""
         if obj is None:
             return None
