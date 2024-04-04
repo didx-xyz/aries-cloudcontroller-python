@@ -138,9 +138,11 @@ class CredentialDefinition(BaseModel):
                 "schemaId": obj.get("schemaId"),
                 "tag": obj.get("tag"),
                 "type": obj.get("type"),
-                "value": CredDefValue.from_dict(obj.get("value"))
-                if obj.get("value") is not None
-                else None,
+                "value": (
+                    CredDefValue.from_dict(obj.get("value"))
+                    if obj.get("value") is not None
+                    else None
+                ),
                 "ver": obj.get("ver"),
             }
         )

@@ -91,11 +91,11 @@ class CredentialPreview(BaseModel):
         _obj = cls.model_validate(
             {
                 "@type": obj.get("@type"),
-                "attributes": [
-                    CredAttrSpec.from_dict(_item) for _item in obj.get("attributes")
-                ]
-                if obj.get("attributes") is not None
-                else None,
+                "attributes": (
+                    [CredAttrSpec.from_dict(_item) for _item in obj.get("attributes")]
+                    if obj.get("attributes") is not None
+                    else None
+                ),
             }
         )
         return _obj

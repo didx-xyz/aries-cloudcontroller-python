@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from aries_cloudcontroller.models.wallet_list import WalletList
 from aries_cloudcontroller.models.wallet_record_with_groups import (
@@ -27,12 +27,14 @@ class WalletListWithGroups(WalletList):
 
         _obj = cls.model_validate(
             {
-                "results": [
-                    WalletRecordWithGroups.from_dict(_item)
-                    for _item in obj.get("results")
-                ]
-                if obj.get("results") is not None
-                else None
+                "results": (
+                    [
+                        WalletRecordWithGroups.from_dict(_item)
+                        for _item in obj.get("results")
+                    ]
+                    if obj.get("results") is not None
+                    else None
+                )
             }
         )
         return _obj

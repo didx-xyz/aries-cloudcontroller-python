@@ -95,15 +95,21 @@ class V20CredExRecordDetail(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cred_ex_record": V20CredExRecord.from_dict(obj.get("cred_ex_record"))
-                if obj.get("cred_ex_record") is not None
-                else None,
-                "indy": V20CredExRecordIndy.from_dict(obj.get("indy"))
-                if obj.get("indy") is not None
-                else None,
-                "ld_proof": V20CredExRecordLDProof.from_dict(obj.get("ld_proof"))
-                if obj.get("ld_proof") is not None
-                else None,
+                "cred_ex_record": (
+                    V20CredExRecord.from_dict(obj.get("cred_ex_record"))
+                    if obj.get("cred_ex_record") is not None
+                    else None
+                ),
+                "indy": (
+                    V20CredExRecordIndy.from_dict(obj.get("indy"))
+                    if obj.get("indy") is not None
+                    else None
+                ),
+                "ld_proof": (
+                    V20CredExRecordLDProof.from_dict(obj.get("ld_proof"))
+                    if obj.get("ld_proof") is not None
+                    else None
+                ),
             }
         )
         return _obj

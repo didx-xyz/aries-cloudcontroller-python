@@ -98,9 +98,11 @@ class KeylistQuery(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "filter": obj.get("filter"),
-                "paginate": KeylistQueryPaginate.from_dict(obj.get("paginate"))
-                if obj.get("paginate") is not None
-                else None,
+                "paginate": (
+                    KeylistQueryPaginate.from_dict(obj.get("paginate"))
+                    if obj.get("paginate") is not None
+                    else None
+                ),
             }
         )
         return _obj

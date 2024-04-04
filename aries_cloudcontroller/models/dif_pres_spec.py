@@ -101,11 +101,11 @@ class DIFPresSpec(BaseModel):
         _obj = cls.model_validate(
             {
                 "issuer_id": obj.get("issuer_id"),
-                "presentation_definition": PresentationDefinition.from_dict(
-                    obj.get("presentation_definition")
-                )
-                if obj.get("presentation_definition") is not None
-                else None,
+                "presentation_definition": (
+                    PresentationDefinition.from_dict(obj.get("presentation_definition"))
+                    if obj.get("presentation_definition") is not None
+                    else None
+                ),
                 "record_ids": obj.get("record_ids"),
                 "reveal_doc": obj.get("reveal_doc"),
             }

@@ -41,7 +41,7 @@ class DIDCreate(BaseModel):
     options: Optional[DIDCreateOptions] = None
     seed: Optional[StrictStr] = Field(
         default=None,
-        description="Optional seed to use for DID, Must beenabled in configuration before use.",
+        description="Optional seed to use for DID, Must be enabled in configuration before use.",
     )
     __properties: ClassVar[List[str]] = ["method", "options", "seed"]
 
@@ -92,9 +92,11 @@ class DIDCreate(BaseModel):
         _obj = cls.model_validate(
             {
                 "method": obj.get("method"),
-                "options": DIDCreateOptions.from_dict(obj.get("options"))
-                if obj.get("options") is not None
-                else None,
+                "options": (
+                    DIDCreateOptions.from_dict(obj.get("options"))
+                    if obj.get("options") is not None
+                    else None
+                ),
                 "seed": obj.get("seed"),
             }
         )

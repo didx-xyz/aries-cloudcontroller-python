@@ -144,24 +144,30 @@ class IndyProofRequestedProof(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "predicates": dict(
-                    (_k, IndyProofRequestedProofPredicate.from_dict(_v))
-                    for _k, _v in obj.get("predicates").items()
-                )
-                if obj.get("predicates") is not None
-                else None,
-                "revealed_attr_groups": dict(
-                    (_k, IndyProofRequestedProofRevealedAttrGroup.from_dict(_v))
-                    for _k, _v in obj.get("revealed_attr_groups").items()
-                )
-                if obj.get("revealed_attr_groups") is not None
-                else None,
-                "revealed_attrs": dict(
-                    (_k, IndyProofRequestedProofRevealedAttr.from_dict(_v))
-                    for _k, _v in obj.get("revealed_attrs").items()
-                )
-                if obj.get("revealed_attrs") is not None
-                else None,
+                "predicates": (
+                    dict(
+                        (_k, IndyProofRequestedProofPredicate.from_dict(_v))
+                        for _k, _v in obj.get("predicates").items()
+                    )
+                    if obj.get("predicates") is not None
+                    else None
+                ),
+                "revealed_attr_groups": (
+                    dict(
+                        (_k, IndyProofRequestedProofRevealedAttrGroup.from_dict(_v))
+                        for _k, _v in obj.get("revealed_attr_groups").items()
+                    )
+                    if obj.get("revealed_attr_groups") is not None
+                    else None
+                ),
+                "revealed_attrs": (
+                    dict(
+                        (_k, IndyProofRequestedProofRevealedAttr.from_dict(_v))
+                        for _k, _v in obj.get("revealed_attrs").items()
+                    )
+                    if obj.get("revealed_attrs") is not None
+                    else None
+                ),
                 "self_attested_attrs": obj.get("self_attested_attrs"),
                 "unrevealed_attrs": obj.get("unrevealed_attrs"),
             }

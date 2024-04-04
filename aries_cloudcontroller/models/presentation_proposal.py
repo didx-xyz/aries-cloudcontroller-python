@@ -108,11 +108,11 @@ class PresentationProposal(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "presentation_proposal": IndyPresPreview.from_dict(
-                    obj.get("presentation_proposal")
-                )
-                if obj.get("presentation_proposal") is not None
-                else None,
+                "presentation_proposal": (
+                    IndyPresPreview.from_dict(obj.get("presentation_proposal"))
+                    if obj.get("presentation_proposal") is not None
+                    else None
+                ),
             }
         )
         return _obj

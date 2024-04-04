@@ -87,12 +87,14 @@ class LedgerConfigList(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "ledger_config_list": [
-                    LedgerConfigInstance.from_dict(_item)
-                    for _item in obj.get("ledger_config_list")
-                ]
-                if obj.get("ledger_config_list") is not None
-                else None
+                "ledger_config_list": (
+                    [
+                        LedgerConfigInstance.from_dict(_item)
+                        for _item in obj.get("ledger_config_list")
+                    ]
+                    if obj.get("ledger_config_list") is not None
+                    else None
+                )
             }
         )
         return _obj

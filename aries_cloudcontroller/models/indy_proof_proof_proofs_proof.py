@@ -95,14 +95,18 @@ class IndyProofProofProofsProof(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "non_revoc_proof": IndyProofProofProofsProofNonRevocProof.from_dict(
-                    obj.get("non_revoc_proof")
-                )
-                if obj.get("non_revoc_proof") is not None
-                else None,
-                "primary_proof": IndyPrimaryProof.from_dict(obj.get("primary_proof"))
-                if obj.get("primary_proof") is not None
-                else None,
+                "non_revoc_proof": (
+                    IndyProofProofProofsProofNonRevocProof.from_dict(
+                        obj.get("non_revoc_proof")
+                    )
+                    if obj.get("non_revoc_proof") is not None
+                    else None
+                ),
+                "primary_proof": (
+                    IndyPrimaryProof.from_dict(obj.get("primary_proof"))
+                    if obj.get("primary_proof") is not None
+                    else None
+                ),
             }
         )
         return _obj

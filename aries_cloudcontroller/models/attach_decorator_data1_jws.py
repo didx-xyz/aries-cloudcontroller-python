@@ -108,9 +108,11 @@ class AttachDecoratorData1JWS(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "header": AttachDecoratorDataJWSHeader.from_dict(obj.get("header"))
-                if obj.get("header") is not None
-                else None,
+                "header": (
+                    AttachDecoratorDataJWSHeader.from_dict(obj.get("header"))
+                    if obj.get("header") is not None
+                    else None
+                ),
                 "protected": obj.get("protected"),
                 "signature": obj.get("signature"),
             }

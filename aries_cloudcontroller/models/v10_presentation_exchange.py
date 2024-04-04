@@ -204,17 +204,17 @@ class V10PresentationExchange(BaseModel):
             _dict["presentation"] = self.presentation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of presentation_proposal_dict
         if self.presentation_proposal_dict:
-            _dict[
-                "presentation_proposal_dict"
-            ] = self.presentation_proposal_dict.to_dict()
+            _dict["presentation_proposal_dict"] = (
+                self.presentation_proposal_dict.to_dict()
+            )
         # override the default output from pydantic by calling `to_dict()` of presentation_request
         if self.presentation_request:
             _dict["presentation_request"] = self.presentation_request.to_dict()
         # override the default output from pydantic by calling `to_dict()` of presentation_request_dict
         if self.presentation_request_dict:
-            _dict[
-                "presentation_request_dict"
-            ] = self.presentation_request_dict.to_dict()
+            _dict["presentation_request_dict"] = (
+                self.presentation_request_dict.to_dict()
+            )
         return _dict
 
     @classmethod
@@ -235,25 +235,29 @@ class V10PresentationExchange(BaseModel):
                 "created_at": obj.get("created_at"),
                 "error_msg": obj.get("error_msg"),
                 "initiator": obj.get("initiator"),
-                "presentation": IndyProof.from_dict(obj.get("presentation"))
-                if obj.get("presentation") is not None
-                else None,
+                "presentation": (
+                    IndyProof.from_dict(obj.get("presentation"))
+                    if obj.get("presentation") is not None
+                    else None
+                ),
                 "presentation_exchange_id": obj.get("presentation_exchange_id"),
-                "presentation_proposal_dict": PresentationProposal.from_dict(
-                    obj.get("presentation_proposal_dict")
-                )
-                if obj.get("presentation_proposal_dict") is not None
-                else None,
-                "presentation_request": IndyProofRequest.from_dict(
-                    obj.get("presentation_request")
-                )
-                if obj.get("presentation_request") is not None
-                else None,
-                "presentation_request_dict": PresentationRequest.from_dict(
-                    obj.get("presentation_request_dict")
-                )
-                if obj.get("presentation_request_dict") is not None
-                else None,
+                "presentation_proposal_dict": (
+                    PresentationProposal.from_dict(
+                        obj.get("presentation_proposal_dict")
+                    )
+                    if obj.get("presentation_proposal_dict") is not None
+                    else None
+                ),
+                "presentation_request": (
+                    IndyProofRequest.from_dict(obj.get("presentation_request"))
+                    if obj.get("presentation_request") is not None
+                    else None
+                ),
+                "presentation_request_dict": (
+                    PresentationRequest.from_dict(obj.get("presentation_request_dict"))
+                    if obj.get("presentation_request_dict") is not None
+                    else None
+                ),
                 "role": obj.get("role"),
                 "state": obj.get("state"),
                 "thread_id": obj.get("thread_id"),

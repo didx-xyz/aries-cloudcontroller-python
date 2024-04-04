@@ -94,9 +94,11 @@ class InvitationResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "connection_id": obj.get("connection_id"),
-                "invitation": ConnectionInvitation.from_dict(obj.get("invitation"))
-                if obj.get("invitation") is not None
-                else None,
+                "invitation": (
+                    ConnectionInvitation.from_dict(obj.get("invitation"))
+                    if obj.get("invitation") is not None
+                    else None
+                ),
                 "invitation_url": obj.get("invitation_url"),
             }
         )

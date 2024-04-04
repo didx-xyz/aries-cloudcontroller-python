@@ -41,10 +41,11 @@ class IndyProofReqAttrSpecNonRevoked(BaseModel):
         description="Earliest time of interest in non-revocation interval",
         alias="from",
     )
-    to: Optional[
-        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
-    ] = Field(
-        default=None, description="Latest time of interest in non-revocation interval"
+    to: Optional[Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]] = (
+        Field(
+            default=None,
+            description="Latest time of interest in non-revocation interval",
+        )
     )
     __properties: ClassVar[List[str]] = ["from", "to"]
 

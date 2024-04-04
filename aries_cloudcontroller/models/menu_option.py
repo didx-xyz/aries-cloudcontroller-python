@@ -99,9 +99,11 @@ class MenuOption(BaseModel):
             {
                 "description": obj.get("description"),
                 "disabled": obj.get("disabled"),
-                "form": MenuForm.from_dict(obj.get("form"))
-                if obj.get("form") is not None
-                else None,
+                "form": (
+                    MenuForm.from_dict(obj.get("form"))
+                    if obj.get("form") is not None
+                    else None
+                ),
                 "name": obj.get("name"),
                 "title": obj.get("title"),
             }

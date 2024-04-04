@@ -83,9 +83,11 @@ class V20CredFilterLDProof(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "ld_proof": LDProofVCDetail.from_dict(obj.get("ld_proof"))
-                if obj.get("ld_proof") is not None
-                else None
+                "ld_proof": (
+                    LDProofVCDetail.from_dict(obj.get("ld_proof"))
+                    if obj.get("ld_proof") is not None
+                    else None
+                )
             }
         )
         return _obj

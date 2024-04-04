@@ -107,17 +107,21 @@ class InputDescriptors(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "constraints": Constraints.from_dict(obj.get("constraints"))
-                if obj.get("constraints") is not None
-                else None,
+                "constraints": (
+                    Constraints.from_dict(obj.get("constraints"))
+                    if obj.get("constraints") is not None
+                    else None
+                ),
                 "group": obj.get("group"),
                 "id": obj.get("id"),
                 "metadata": obj.get("metadata"),
                 "name": obj.get("name"),
                 "purpose": obj.get("purpose"),
-                "schema": SchemasInputDescriptorFilter.from_dict(obj.get("schema"))
-                if obj.get("schema") is not None
-                else None,
+                "schema": (
+                    SchemasInputDescriptorFilter.from_dict(obj.get("schema"))
+                    if obj.get("schema") is not None
+                    else None
+                ),
             }
         )
         return _obj

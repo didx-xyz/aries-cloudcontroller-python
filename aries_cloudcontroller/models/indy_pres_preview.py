@@ -100,16 +100,22 @@ class IndyPresPreview(BaseModel):
         _obj = cls.model_validate(
             {
                 "@type": obj.get("@type"),
-                "attributes": [
-                    IndyPresAttrSpec.from_dict(_item) for _item in obj.get("attributes")
-                ]
-                if obj.get("attributes") is not None
-                else None,
-                "predicates": [
-                    IndyPresPredSpec.from_dict(_item) for _item in obj.get("predicates")
-                ]
-                if obj.get("predicates") is not None
-                else None,
+                "attributes": (
+                    [
+                        IndyPresAttrSpec.from_dict(_item)
+                        for _item in obj.get("attributes")
+                    ]
+                    if obj.get("attributes") is not None
+                    else None
+                ),
+                "predicates": (
+                    [
+                        IndyPresPredSpec.from_dict(_item)
+                        for _item in obj.get("predicates")
+                    ]
+                    if obj.get("predicates") is not None
+                    else None
+                ),
             }
         )
         return _obj

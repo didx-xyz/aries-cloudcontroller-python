@@ -128,14 +128,16 @@ class V20CredOfferConnFreeRequest(BaseModel):
                 "auto_issue": obj.get("auto_issue"),
                 "auto_remove": obj.get("auto_remove"),
                 "comment": obj.get("comment"),
-                "credential_preview": V20CredPreview.from_dict(
-                    obj.get("credential_preview")
-                )
-                if obj.get("credential_preview") is not None
-                else None,
-                "filter": V20CredFilter.from_dict(obj.get("filter"))
-                if obj.get("filter") is not None
-                else None,
+                "credential_preview": (
+                    V20CredPreview.from_dict(obj.get("credential_preview"))
+                    if obj.get("credential_preview") is not None
+                    else None
+                ),
+                "filter": (
+                    V20CredFilter.from_dict(obj.get("filter"))
+                    if obj.get("filter") is not None
+                    else None
+                ),
                 "replacement_id": obj.get("replacement_id"),
                 "trace": obj.get("trace"),
             }

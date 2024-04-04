@@ -89,9 +89,11 @@ class ConnectionList(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "results": [ConnRecord.from_dict(_item) for _item in obj.get("results")]
-                if obj.get("results") is not None
-                else None
+                "results": (
+                    [ConnRecord.from_dict(_item) for _item in obj.get("results")]
+                    if obj.get("results") is not None
+                    else None
+                )
             }
         )
         return _obj

@@ -40,7 +40,7 @@ class TransactionRecord(BaseModel):
     )
     connection_id: Optional[StrictStr] = Field(
         default=None,
-        description="The connection identifier for thie particular transaction record",
+        description="The connection identifier for this particular transaction record",
     )
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"

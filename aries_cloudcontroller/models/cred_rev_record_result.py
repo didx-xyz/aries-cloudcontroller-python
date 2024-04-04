@@ -83,9 +83,11 @@ class CredRevRecordResult(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "result": IssuerCredRevRecord.from_dict(obj.get("result"))
-                if obj.get("result") is not None
-                else None
+                "result": (
+                    IssuerCredRevRecord.from_dict(obj.get("result"))
+                    if obj.get("result") is not None
+                    else None
+                )
             }
         )
         return _obj

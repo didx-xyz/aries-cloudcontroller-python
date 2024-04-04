@@ -124,17 +124,19 @@ class V20PresRequest(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "formats": [
-                    V20PresFormat.from_dict(_item) for _item in obj.get("formats")
-                ]
-                if obj.get("formats") is not None
-                else None,
-                "request_presentations~attach": [
-                    AttachDecorator.from_dict(_item)
-                    for _item in obj.get("request_presentations~attach")
-                ]
-                if obj.get("request_presentations~attach") is not None
-                else None,
+                "formats": (
+                    [V20PresFormat.from_dict(_item) for _item in obj.get("formats")]
+                    if obj.get("formats") is not None
+                    else None
+                ),
+                "request_presentations~attach": (
+                    [
+                        AttachDecorator.from_dict(_item)
+                        for _item in obj.get("request_presentations~attach")
+                    ]
+                    if obj.get("request_presentations~attach") is not None
+                    else None
+                ),
                 "will_confirm": obj.get("will_confirm"),
             }
         )

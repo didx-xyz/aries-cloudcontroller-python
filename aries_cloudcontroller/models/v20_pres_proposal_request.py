@@ -116,11 +116,11 @@ class V20PresProposalRequest(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
-                "presentation_proposal": V20PresProposalByFormat.from_dict(
-                    obj.get("presentation_proposal")
-                )
-                if obj.get("presentation_proposal") is not None
-                else None,
+                "presentation_proposal": (
+                    V20PresProposalByFormat.from_dict(obj.get("presentation_proposal"))
+                    if obj.get("presentation_proposal") is not None
+                    else None
+                ),
                 "trace": obj.get("trace"),
             }
         )

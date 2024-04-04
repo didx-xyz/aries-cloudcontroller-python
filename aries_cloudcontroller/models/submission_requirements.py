@@ -116,12 +116,14 @@ class SubmissionRequirements(BaseModel):
             {
                 "count": obj.get("count"),
                 "from": obj.get("from"),
-                "from_nested": [
-                    SubmissionRequirements.from_dict(_item)
-                    for _item in obj.get("from_nested")
-                ]
-                if obj.get("from_nested") is not None
-                else None,
+                "from_nested": (
+                    [
+                        SubmissionRequirements.from_dict(_item)
+                        for _item in obj.get("from_nested")
+                    ]
+                    if obj.get("from_nested") is not None
+                    else None
+                ),
                 "max": obj.get("max"),
                 "min": obj.get("min"),
                 "name": obj.get("name"),

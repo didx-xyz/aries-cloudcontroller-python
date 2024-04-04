@@ -113,11 +113,11 @@ class V20PresSendRequestRequest(BaseModel):
                 "auto_verify": obj.get("auto_verify"),
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
-                "presentation_request": V20PresRequestByFormat.from_dict(
-                    obj.get("presentation_request")
-                )
-                if obj.get("presentation_request") is not None
-                else None,
+                "presentation_request": (
+                    V20PresRequestByFormat.from_dict(obj.get("presentation_request"))
+                    if obj.get("presentation_request") is not None
+                    else None
+                ),
                 "trace": obj.get("trace"),
             }
         )

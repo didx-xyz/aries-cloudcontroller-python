@@ -100,12 +100,14 @@ class Disclose(BaseModel):
             {
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
-                "protocols": [
-                    ProtocolDescriptor.from_dict(_item)
-                    for _item in obj.get("protocols")
-                ]
-                if obj.get("protocols") is not None
-                else None,
+                "protocols": (
+                    [
+                        ProtocolDescriptor.from_dict(_item)
+                        for _item in obj.get("protocols")
+                    ]
+                    if obj.get("protocols") is not None
+                    else None
+                ),
             }
         )
         return _obj

@@ -83,9 +83,11 @@ class DIDResult(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "result": DID.from_dict(obj.get("result"))
-                if obj.get("result") is not None
-                else None
+                "result": (
+                    DID.from_dict(obj.get("result"))
+                    if obj.get("result") is not None
+                    else None
+                )
             }
         )
         return _obj

@@ -88,12 +88,16 @@ class TxnOrRevRegResult(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "sent": RevRegResult.from_dict(obj.get("sent"))
-                if obj.get("sent") is not None
-                else None,
-                "txn": TransactionRecord.from_dict(obj.get("txn"))
-                if obj.get("txn") is not None
-                else None,
+                "sent": (
+                    RevRegResult.from_dict(obj.get("sent"))
+                    if obj.get("sent") is not None
+                    else None
+                ),
+                "txn": (
+                    TransactionRecord.from_dict(obj.get("txn"))
+                    if obj.get("txn") is not None
+                    else None
+                ),
             }
         )
         return _obj
