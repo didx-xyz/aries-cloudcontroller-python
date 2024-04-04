@@ -26,7 +26,7 @@ from typing import Optional
 from pydantic import Field, StrictStr
 from typing_extensions import Annotated
 
-from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
 from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.ping_request import PingRequest
 from aries_cloudcontroller.models.ping_request_response import PingRequestResponse
@@ -248,7 +248,8 @@ class TrustpingApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}

@@ -23,7 +23,7 @@ except ImportError:
 
 from typing import Optional
 
-from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
 from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.profile_settings import ProfileSettings
 from aries_cloudcontroller.models.update_profile_settings import UpdateProfileSettings
@@ -219,7 +219,8 @@ class SettingsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -450,7 +451,8 @@ class SettingsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}

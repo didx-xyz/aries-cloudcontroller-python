@@ -24,7 +24,7 @@ except ImportError:
 from pydantic import Field
 from typing_extensions import Annotated
 
-from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
 from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.resolution_result import ResolutionResult
 from aries_cloudcontroller.rest import RESTResponseType
@@ -232,7 +232,8 @@ class ResolverApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
