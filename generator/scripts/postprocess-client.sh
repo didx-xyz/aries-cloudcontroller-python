@@ -59,9 +59,6 @@ sed -i 's/doc: SignedDoc/doc: Dict[str, Any]/' aries_cloudcontroller/models/veri
 # Remove block of code associated with this previous change:
 sed -i '/# override the default output from pydantic by calling `to_dict()` of doc/,/self.doc.to_dict()/d' aries_cloudcontroller/models/verify_request.py
 
-# Remove @validate_call decorator to avoid memory leak issue from pydantic
-sed -i '/@validate_call/d' aries_cloudcontroller/api/*.py
-
 # NB:
 # There are 3 more models, and 1 API Module, that we are not amending automatically. These should be reviewed manually:
 # - MultitenancyAPI has custom method to handle our groups plugin!

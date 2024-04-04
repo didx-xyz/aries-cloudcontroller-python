@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -49,6 +49,7 @@ class DiscoverFeaturesV20Api:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def discover_features20_queries_get(
         self,
         connection_id: Annotated[
@@ -341,6 +342,7 @@ class DiscoverFeaturesV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def discover_features20_records_get(
         self,
         connection_id: Annotated[

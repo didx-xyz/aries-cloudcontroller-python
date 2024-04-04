@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -54,6 +54,7 @@ class WalletApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def create_did(
         self,
         body: Optional[DIDCreate] = None,
@@ -290,6 +291,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_did_endpoint(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -517,6 +519,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_dids(
         self,
         did: Annotated[
@@ -862,6 +865,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_public_did(
         self,
         _request_timeout: Union[
@@ -1073,6 +1077,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def rotate_keypair(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1300,6 +1305,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def set_did_endpoint(
         self,
         conn_id: Annotated[
@@ -1585,6 +1591,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def set_public_did(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -1883,6 +1890,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def wallet_jwt_sign_post(
         self,
         body: Optional[JWSCreate] = None,
@@ -2119,6 +2127,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def wallet_jwt_verify_post(
         self,
         body: Optional[JWSVerify] = None,
@@ -2355,6 +2364,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def wallet_sd_jwt_sign_post(
         self,
         body: Optional[SDJWSCreate] = None,
@@ -2591,6 +2601,7 @@ class WalletApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def wallet_sd_jwt_verify_post(
         self,
         body: Optional[SDJWSVerify] = None,

@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -48,6 +48,7 @@ class EndorseTransactionApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def cancel_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
@@ -274,6 +275,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def create_request(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
@@ -551,6 +553,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def endorse_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
@@ -799,6 +802,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_records(
         self,
         _request_timeout: Union[
@@ -1010,6 +1014,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
@@ -1236,6 +1241,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def refuse_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
@@ -1462,6 +1468,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def resend_transaction_request(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
@@ -1688,6 +1695,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def set_endorser_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -1952,6 +1960,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def set_endorser_role(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -2200,6 +2209,7 @@ class EndorseTransactionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def write_transaction(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],

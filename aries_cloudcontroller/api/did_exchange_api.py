@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -46,6 +46,7 @@ class DidExchangeApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def accept_invitation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -319,6 +320,7 @@ class DidExchangeApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def accept_request(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -620,6 +622,7 @@ class DidExchangeApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def create_request(
         self,
         their_public_did: Annotated[
@@ -1046,6 +1049,7 @@ class DidExchangeApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def didexchange_conn_id_reject_post(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -1297,6 +1301,7 @@ class DidExchangeApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def receive_request(
         self,
         alias: Annotated[

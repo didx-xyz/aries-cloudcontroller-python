@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -45,6 +45,7 @@ class ServerApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def check_liveliness(
         self,
         _request_timeout: Union[
@@ -256,6 +257,7 @@ class ServerApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_config(
         self,
         _request_timeout: Union[
@@ -467,6 +469,7 @@ class ServerApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_plugins(
         self,
         _request_timeout: Union[
@@ -678,6 +681,7 @@ class ServerApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_ready_state(
         self,
         _request_timeout: Union[
@@ -889,6 +893,7 @@ class ServerApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_status(
         self,
         _request_timeout: Union[
@@ -1100,6 +1105,7 @@ class ServerApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def reset_statistics(
         self,
         _request_timeout: Union[
@@ -1311,6 +1317,7 @@ class ServerApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def shutdown_server(
         self,
         _request_timeout: Union[

@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -61,6 +61,7 @@ class ConnectionApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def accept_invitation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -359,6 +360,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def accept_request(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -610,6 +612,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def create_invitation(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
@@ -937,6 +940,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def create_static_connection(
         self,
         body: Optional[ConnectionStaticRequest] = None,
@@ -1179,6 +1183,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def delete_connection(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -1405,6 +1410,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_connection(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -1631,6 +1637,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_connection_endpoint(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -1857,6 +1864,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_connections(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
@@ -2272,6 +2280,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_metadata(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -2520,6 +2529,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def receive_invitation(
         self,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
@@ -2822,6 +2832,7 @@ class ConnectionApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def set_metadata(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],

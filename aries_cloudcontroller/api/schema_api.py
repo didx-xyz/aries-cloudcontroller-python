@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -47,6 +47,7 @@ class SchemaApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def get_created_schemas(
         self,
         schema_id: Annotated[
@@ -355,6 +356,7 @@ class SchemaApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_schema(
         self,
         schema_id: Annotated[str, Field(strict=True, description="Schema identifier")],
@@ -581,6 +583,7 @@ class SchemaApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def publish_schema(
         self,
         conn_id: Annotated[
@@ -866,6 +869,7 @@ class SchemaApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def write_record(
         self,
         schema_id: Annotated[str, Field(strict=True, description="Schema identifier")],

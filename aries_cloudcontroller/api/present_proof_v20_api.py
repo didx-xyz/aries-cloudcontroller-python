@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -64,6 +64,7 @@ class PresentProofV20Api:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def create_proof_request(
         self,
         body: Optional[V20PresCreateRequestRequest] = None,
@@ -300,6 +301,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def delete_record(
         self,
         pres_ex_id: Annotated[
@@ -532,6 +534,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_matching_credentials(
         self,
         pres_ex_id: Annotated[
@@ -864,6 +867,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_record(
         self,
         pres_ex_id: Annotated[
@@ -1096,6 +1100,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_records(
         self,
         connection_id: Annotated[
@@ -1398,6 +1403,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def report_problem(
         self,
         pres_ex_id: Annotated[
@@ -1655,6 +1661,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def send_presentation(
         self,
         pres_ex_id: Annotated[
@@ -1912,6 +1919,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def send_proposal(
         self,
         body: Optional[V20PresProposalRequest] = None,
@@ -2148,6 +2156,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def send_request(
         self,
         pres_ex_id: Annotated[
@@ -2405,6 +2414,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def send_request_free(
         self,
         body: Optional[V20PresSendRequestRequest] = None,
@@ -2641,6 +2651,7 @@ class PresentProofV20Api:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def verify_presentation(
         self,
         pres_ex_id: Annotated[

@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -42,6 +42,7 @@ class SettingsApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def settings_get(
         self,
         _request_timeout: Union[
@@ -253,6 +254,7 @@ class SettingsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def settings_put(
         self,
         body: Optional[UpdateProfileSettings] = None,
