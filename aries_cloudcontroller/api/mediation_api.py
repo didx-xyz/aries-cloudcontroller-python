@@ -92,7 +92,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -148,7 +150,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -204,7 +208,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -555,7 +561,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationDeny"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationDeny",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -621,7 +629,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationDeny"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationDeny",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -687,7 +697,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationDeny"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationDeny",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1534,7 +1546,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationGrant"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationGrant",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1596,7 +1610,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationGrant"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationGrant",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1658,7 +1674,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationGrant"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationGrant",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2029,7 +2047,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2093,7 +2113,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2157,7 +2179,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2570,7 +2594,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "KeylistQuery"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "KeylistQuery",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2648,7 +2674,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "KeylistQuery"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "KeylistQuery",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2726,7 +2754,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "KeylistQuery"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "KeylistQuery",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2863,7 +2893,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "KeylistUpdate"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "KeylistUpdate",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2929,7 +2961,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "KeylistUpdate"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "KeylistUpdate",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -2995,7 +3029,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "KeylistUpdate"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "KeylistUpdate",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3118,7 +3154,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3180,7 +3218,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -3242,7 +3282,9 @@ class MediationApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"201": "MediationRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "MediationRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
