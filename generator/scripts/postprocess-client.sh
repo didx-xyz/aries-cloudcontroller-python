@@ -12,12 +12,11 @@ autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-
 # Cleanup generated models
 for file in aries_cloudcontroller/models/*.py; do
     # Replace the model config with DEFAULT_PYDANTIC_MODEL_CONFIG
-    sed -i '/model_config = {/,/}/c\    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG' "$file"
+    sed -i '/protected_namespaces=()/d' "$file" # first remove this line to make bracket matching easier
+    sed -i '/model_config = ConfigDict(/,/)/c\    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG' "$file"
 
     # Add import statement for this default config, and re-add ClassVar, List imports, as autoflake mistakenly removes them
-    sed -i '/try:$/N;/try:\n    from typing import Self/i \
-from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG\
-from typing import ClassVar, List' "$file"
+    sed -i '/from typing_extensions import Self/i from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG' "$file"
 
     # Replace the TODO lines
     sed -i '/# TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead/N; s/# TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead\n        return json.dumps(self.to_dict())/return self.model_dump_json(by_alias=True, exclude_unset=True)/' "$file"
