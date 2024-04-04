@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -44,6 +44,7 @@ class JsonldApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def sign(
         self,
         body: Optional[SignRequest] = None,
@@ -280,6 +281,7 @@ class JsonldApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def verify(
         self,
         body: Optional[VerifyRequest] = None,

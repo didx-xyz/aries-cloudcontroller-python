@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -42,6 +42,7 @@ class ResolverApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def get_did(
         self,
         did: Annotated[str, Field(strict=True, description="DID")],

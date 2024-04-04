@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -45,6 +45,7 @@ class TrustpingApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def send_ping(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],

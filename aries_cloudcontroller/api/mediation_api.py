@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -55,6 +55,7 @@ class MediationApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def clear_default_mediator(
         self,
         _request_timeout: Union[
@@ -266,6 +267,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def delete_record(
         self,
         mediation_id: Annotated[
@@ -498,6 +500,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def deny_mediation_request(
         self,
         mediation_id: Annotated[
@@ -755,6 +758,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_default_mediator(
         self,
         _request_timeout: Union[
@@ -966,6 +970,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_record(
         self,
         mediation_id: Annotated[
@@ -1198,6 +1203,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_records(
         self,
         conn_id: Annotated[
@@ -1453,6 +1459,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def grant_mediation_request(
         self,
         mediation_id: Annotated[
@@ -1685,6 +1692,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def mediation_update_keylist_conn_id_post(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -1936,6 +1944,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def request_mediation(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -2187,6 +2196,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def retrieve_keylists(
         self,
         conn_id: Annotated[
@@ -2451,6 +2461,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def send_keylist_query(
         self,
         mediation_id: Annotated[
@@ -2752,6 +2763,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def send_keylist_update(
         self,
         mediation_id: Annotated[
@@ -3009,6 +3021,7 @@ class MediationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def set_default_mediator(
         self,
         mediation_id: Annotated[

@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -70,6 +70,7 @@ class RevocationApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def clear_pending_revocations(
         self,
         body: Optional[ClearPendingRevocationsRequest] = None,
@@ -306,6 +307,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def create_registry(
         self,
         body: Optional[RevRegCreateRequest] = None,
@@ -542,6 +544,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def download_tails_file(
         self,
         rev_reg_id: Annotated[
@@ -774,6 +777,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_active_registry_for_cred_def(
         self,
         cred_def_id: Annotated[
@@ -1006,6 +1010,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_created_registries(
         self,
         cred_def_id: Annotated[
@@ -1264,6 +1269,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_registry(
         self,
         rev_reg_id: Annotated[
@@ -1496,6 +1502,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_registry_issued_credentials_count(
         self,
         rev_reg_id: Annotated[
@@ -1728,6 +1735,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_revocation_status(
         self,
         cred_ex_id: Annotated[
@@ -2014,6 +2022,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def publish_rev_reg_def(
         self,
         rev_reg_id: Annotated[
@@ -2295,6 +2304,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def publish_rev_reg_entry(
         self,
         rev_reg_id: Annotated[
@@ -2576,6 +2586,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def publish_revocations(
         self,
         body: Optional[PublishRevocations] = None,
@@ -2818,6 +2829,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def revocation_active_registry_cred_def_id_rotate_post(
         self,
         cred_def_id: Annotated[
@@ -3050,6 +3062,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def revocation_registry_delete_tails_file_delete(
         self,
         cred_def_id: Annotated[
@@ -3311,6 +3324,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
         self,
         rev_reg_id: Annotated[
@@ -3574,6 +3588,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def revocation_registry_rev_reg_id_issued_details_get(
         self,
         rev_reg_id: Annotated[
@@ -3812,6 +3827,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def revocation_registry_rev_reg_id_issued_indy_recs_get(
         self,
         rev_reg_id: Annotated[
@@ -4050,6 +4066,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def revoke_credential(
         self,
         body: Optional[RevokeRequest] = None,
@@ -4286,6 +4303,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def set_registry_state(
         self,
         rev_reg_id: Annotated[
@@ -4540,6 +4558,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def update_registry(
         self,
         rev_reg_id: Annotated[
@@ -4797,6 +4816,7 @@ class RevocationApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def upload_tails_file(
         self,
         rev_reg_id: Annotated[

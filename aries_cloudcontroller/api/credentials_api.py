@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -54,6 +54,7 @@ class CredentialsApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def delete_record(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
@@ -280,6 +281,7 @@ class CredentialsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def delete_w3c_credential(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
@@ -506,6 +508,7 @@ class CredentialsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_credential_mime_types(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
@@ -738,6 +741,7 @@ class CredentialsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_record(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
@@ -964,6 +968,7 @@ class CredentialsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_records(
         self,
         count: Annotated[
@@ -1250,6 +1255,7 @@ class CredentialsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_revocation_status(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
@@ -1532,6 +1538,7 @@ class CredentialsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_w3c_credential(
         self,
         credential_id: Annotated[StrictStr, Field(description="Credential identifier")],
@@ -1758,6 +1765,7 @@ class CredentialsApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_w3c_credentials(
         self,
         count: Annotated[

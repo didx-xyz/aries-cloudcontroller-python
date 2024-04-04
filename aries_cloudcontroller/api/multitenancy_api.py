@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -56,6 +56,7 @@ class MultitenancyApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def create_wallet(
         self,
         body: Optional[CreateWalletRequest] = None,
@@ -292,6 +293,7 @@ class MultitenancyApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def delete_wallet(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
@@ -543,6 +545,7 @@ class MultitenancyApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_auth_token(
         self,
         wallet_id: StrictStr,
@@ -800,6 +803,7 @@ class MultitenancyApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_wallet(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],
@@ -1026,6 +1030,7 @@ class MultitenancyApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_wallets(
         self,
         wallet_name: Annotated[
@@ -1259,6 +1264,7 @@ class MultitenancyApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_wallets(
         self,
         wallet_name: Annotated[
@@ -1517,6 +1523,7 @@ class MultitenancyApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def update_wallet(
         self,
         wallet_id: Annotated[StrictStr, Field(description="Subwallet identifier")],

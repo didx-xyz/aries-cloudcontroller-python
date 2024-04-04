@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -38,6 +38,7 @@ class DefaultApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def establish_inbound(
         self,
         _request_timeout: Union[
@@ -244,6 +245,7 @@ class DefaultApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def get_features(
         self,
         _request_timeout: Union[

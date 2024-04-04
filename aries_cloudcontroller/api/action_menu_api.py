@@ -14,7 +14,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 
 try:
     from typing import Annotated
@@ -46,6 +46,7 @@ class ActionMenuApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_call
     async def close_active_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -272,6 +273,7 @@ class ActionMenuApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def fetch_active_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -498,6 +500,7 @@ class ActionMenuApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def perform_action(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -749,6 +752,7 @@ class ActionMenuApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def request_active_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
@@ -975,6 +979,7 @@ class ActionMenuApi:
             _request_auth=_request_auth,
         )
 
+    @validate_call
     async def send_menu(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
