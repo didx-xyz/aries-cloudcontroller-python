@@ -68,9 +68,3 @@ sed -i '/# override the default output from pydantic by calling `to_dict()` of d
 
 # Additionally, the API Client we modify so that query_params are converted from bool to str, before being submitted to ACA-Py
 # This change impacts multiple lines, calling `sanitize_for_serialization`
-
-# autoflake again to remove newly unused imports
-autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
-# Black format and optimise imports
-black aries_cloudcontroller
-isort aries_cloudcontroller --profile black
