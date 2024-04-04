@@ -88,10 +88,7 @@ class V10CredentialExchangeListResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "results": (
-                    [
-                        V10CredentialExchange.from_dict(_item)
-                        for _item in obj["results"]
-                    ]
+                    [V10CredentialExchange.from_dict(_item) for _item in obj["results"]]
                     if obj.get("results") is not None
                     else None
                 )
