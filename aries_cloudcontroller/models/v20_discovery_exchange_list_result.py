@@ -88,7 +88,7 @@ class V20DiscoveryExchangeListResult(BaseModel):
                 "results": (
                     [
                         V20DiscoveryRecord.from_dict(_item)
-                        for _item in obj.get("results")
+                        for _item in obj["results"]
                     ]
                     if obj.get("results") is not None
                     else None
