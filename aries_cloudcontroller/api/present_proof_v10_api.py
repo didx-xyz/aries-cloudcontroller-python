@@ -15,15 +15,6 @@
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
-
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
-
-from typing import Any, Dict, List, Optional, Union
-
-from pydantic import Field, StrictStr
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
