@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.menu import Menu

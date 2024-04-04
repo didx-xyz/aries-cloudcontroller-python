@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field
 from typing_extensions import Self
