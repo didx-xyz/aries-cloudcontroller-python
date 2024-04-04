@@ -88,7 +88,7 @@ class LedgerConfigList(BaseModel):
                 "ledger_config_list": (
                     [
                         LedgerConfigInstance.from_dict(_item)
-                        for _item in obj.get("ledger_config_list")
+                        for _item in obj["ledger_config_list"]
                     ]
                     if obj.get("ledger_config_list") is not None
                     else None

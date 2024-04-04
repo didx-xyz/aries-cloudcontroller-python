@@ -117,7 +117,7 @@ class SubmissionRequirements(BaseModel):
                 "from_nested": (
                     [
                         SubmissionRequirements.from_dict(_item)
-                        for _item in obj.get("from_nested")
+                        for _item in obj["from_nested"]
                     ]
                     if obj.get("from_nested") is not None
                     else None

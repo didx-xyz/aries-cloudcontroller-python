@@ -99,18 +99,12 @@ class IndyPresPreview(BaseModel):
             {
                 "@type": obj.get("@type"),
                 "attributes": (
-                    [
-                        IndyPresAttrSpec.from_dict(_item)
-                        for _item in obj.get("attributes")
-                    ]
+                    [IndyPresAttrSpec.from_dict(_item) for _item in obj["attributes"]]
                     if obj.get("attributes") is not None
                     else None
                 ),
                 "predicates": (
-                    [
-                        IndyPresPredSpec.from_dict(_item)
-                        for _item in obj.get("predicates")
-                    ]
+                    [IndyPresPredSpec.from_dict(_item) for _item in obj["predicates"]]
                     if obj.get("predicates") is not None
                     else None
                 ),

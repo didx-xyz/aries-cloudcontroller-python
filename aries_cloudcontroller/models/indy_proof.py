@@ -102,7 +102,7 @@ class IndyProof(BaseModel):
                 "identifiers": (
                     [
                         IndyProofIdentifier.from_dict(_item)
-                        for _item in obj.get("identifiers")
+                        for _item in obj["identifiers"]
                     ]
                     if obj.get("identifiers") is not None
                     else None

@@ -120,10 +120,7 @@ class CredentialOffer(BaseModel):
                     else None
                 ),
                 "offers~attach": (
-                    [
-                        AttachDecorator.from_dict(_item)
-                        for _item in obj.get("offers~attach")
-                    ]
+                    [AttachDecorator.from_dict(_item) for _item in obj["offers~attach"]]
                     if obj.get("offers~attach") is not None
                     else None
                 ),

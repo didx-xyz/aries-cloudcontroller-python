@@ -90,10 +90,7 @@ class V20CredPreview(BaseModel):
             {
                 "@type": obj.get("@type"),
                 "attributes": (
-                    [
-                        V20CredAttrSpec.from_dict(_item)
-                        for _item in obj.get("attributes")
-                    ]
+                    [V20CredAttrSpec.from_dict(_item) for _item in obj["attributes"]]
                     if obj.get("attributes") is not None
                     else None
                 ),

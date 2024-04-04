@@ -97,7 +97,7 @@ class KeylistUpdate(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "updates": (
-                    [KeylistUpdateRule.from_dict(_item) for _item in obj.get("updates")]
+                    [KeylistUpdateRule.from_dict(_item) for _item in obj["updates"]]
                     if obj.get("updates") is not None
                     else None
                 ),

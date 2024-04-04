@@ -128,13 +128,13 @@ class V20CredIssue(BaseModel):
                 "credentials~attach": (
                     [
                         AttachDecorator.from_dict(_item)
-                        for _item in obj.get("credentials~attach")
+                        for _item in obj["credentials~attach"]
                     ]
                     if obj.get("credentials~attach") is not None
                     else None
                 ),
                 "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj.get("formats")]
+                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
                     if obj.get("formats") is not None
                     else None
                 ),

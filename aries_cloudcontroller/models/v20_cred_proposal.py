@@ -135,13 +135,13 @@ class V20CredProposal(BaseModel):
                 "filters~attach": (
                     [
                         AttachDecorator.from_dict(_item)
-                        for _item in obj.get("filters~attach")
+                        for _item in obj["filters~attach"]
                     ]
                     if obj.get("filters~attach") is not None
                     else None
                 ),
                 "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj.get("formats")]
+                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
                     if obj.get("formats") is not None
                     else None
                 ),

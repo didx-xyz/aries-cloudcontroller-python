@@ -158,12 +158,12 @@ class Constraints(BaseModel):
         _obj = cls.model_validate(
             {
                 "fields": (
-                    [DIFField.from_dict(_item) for _item in obj.get("fields")]
+                    [DIFField.from_dict(_item) for _item in obj["fields"]]
                     if obj.get("fields") is not None
                     else None
                 ),
                 "is_holder": (
-                    [DIFHolder.from_dict(_item) for _item in obj.get("is_holder")]
+                    [DIFHolder.from_dict(_item) for _item in obj["is_holder"]]
                     if obj.get("is_holder") is not None
                     else None
                 ),

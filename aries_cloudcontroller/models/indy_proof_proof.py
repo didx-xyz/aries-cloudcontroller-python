@@ -104,7 +104,7 @@ class IndyProofProof(BaseModel):
                 "proofs": (
                     [
                         IndyProofProofProofsProof.from_dict(_item)
-                        for _item in obj.get("proofs")
+                        for _item in obj["proofs"]
                     ]
                     if obj.get("proofs") is not None
                     else None

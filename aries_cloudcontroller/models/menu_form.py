@@ -103,7 +103,7 @@ class MenuForm(BaseModel):
             {
                 "description": obj.get("description"),
                 "params": (
-                    [MenuFormParam.from_dict(_item) for _item in obj.get("params")]
+                    [MenuFormParam.from_dict(_item) for _item in obj["params"]]
                     if obj.get("params") is not None
                     else None
                 ),

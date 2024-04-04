@@ -95,7 +95,7 @@ class Queries(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "queries": (
-                    [QueryItem.from_dict(_item) for _item in obj.get("queries")]
+                    [QueryItem.from_dict(_item) for _item in obj["queries"]]
                     if obj.get("queries") is not None
                     else None
                 ),

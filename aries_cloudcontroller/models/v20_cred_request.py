@@ -121,14 +121,14 @@ class V20CredRequest(BaseModel):
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
                 "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj.get("formats")]
+                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
                     if obj.get("formats") is not None
                     else None
                 ),
                 "requests~attach": (
                     [
                         AttachDecorator.from_dict(_item)
-                        for _item in obj.get("requests~attach")
+                        for _item in obj["requests~attach"]
                     ]
                     if obj.get("requests~attach") is not None
                     else None

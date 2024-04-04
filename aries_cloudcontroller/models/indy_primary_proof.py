@@ -110,7 +110,7 @@ class IndyPrimaryProof(BaseModel):
                     else None
                 ),
                 "ge_proofs": (
-                    [IndyGEProof.from_dict(_item) for _item in obj.get("ge_proofs")]
+                    [IndyGEProof.from_dict(_item) for _item in obj["ge_proofs"]]
                     if obj.get("ge_proofs") is not None
                     else None
                 ),

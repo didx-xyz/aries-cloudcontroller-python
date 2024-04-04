@@ -95,7 +95,7 @@ class MenuJson(BaseModel):
                 "description": obj.get("description"),
                 "errormsg": obj.get("errormsg"),
                 "options": (
-                    [MenuOption.from_dict(_item) for _item in obj.get("options")]
+                    [MenuOption.from_dict(_item) for _item in obj["options"]]
                     if obj.get("options") is not None
                     else None
                 ),

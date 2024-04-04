@@ -137,15 +137,12 @@ class V20CredOffer(BaseModel):
                     else None
                 ),
                 "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj.get("formats")]
+                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
                     if obj.get("formats") is not None
                     else None
                 ),
                 "offers~attach": (
-                    [
-                        AttachDecorator.from_dict(_item)
-                        for _item in obj.get("offers~attach")
-                    ]
+                    [AttachDecorator.from_dict(_item) for _item in obj["offers~attach"]]
                     if obj.get("offers~attach") is not None
                     else None
                 ),

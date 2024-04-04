@@ -139,7 +139,7 @@ class InvitationMessage(BaseModel):
                 "requests~attach": (
                     [
                         AttachDecorator.from_dict(_item)
-                        for _item in obj.get("requests~attach")
+                        for _item in obj["requests~attach"]
                     ]
                     if obj.get("requests~attach") is not None
                     else None

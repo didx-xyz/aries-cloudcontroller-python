@@ -99,7 +99,7 @@ class SchemasInputDescriptorFilter(BaseModel):
                             SchemaInputDescriptor.from_dict(_inner_item)
                             for _inner_item in _item
                         ]
-                        for _item in obj.get("uri_groups")
+                        for _item in obj["uri_groups"]
                     ]
                     if obj.get("uri_groups") is not None
                     else None

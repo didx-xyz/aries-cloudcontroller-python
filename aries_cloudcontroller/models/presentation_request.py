@@ -113,7 +113,7 @@ class PresentationRequest(BaseModel):
                 "request_presentations~attach": (
                     [
                         AttachDecorator.from_dict(_item)
-                        for _item in obj.get("request_presentations~attach")
+                        for _item in obj["request_presentations~attach"]
                     ]
                     if obj.get("request_presentations~attach") is not None
                     else None

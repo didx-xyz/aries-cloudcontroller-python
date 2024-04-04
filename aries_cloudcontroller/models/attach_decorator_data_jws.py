@@ -138,7 +138,7 @@ class AttachDecoratorDataJWS(BaseModel):
                 "signatures": (
                     [
                         AttachDecoratorData1JWS.from_dict(_item)
-                        for _item in obj.get("signatures")
+                        for _item in obj["signatures"]
                     ]
                     if obj.get("signatures") is not None
                     else None

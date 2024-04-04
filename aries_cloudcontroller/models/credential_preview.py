@@ -90,7 +90,7 @@ class CredentialPreview(BaseModel):
             {
                 "@type": obj.get("@type"),
                 "attributes": (
-                    [CredAttrSpec.from_dict(_item) for _item in obj.get("attributes")]
+                    [CredAttrSpec.from_dict(_item) for _item in obj["attributes"]]
                     if obj.get("attributes") is not None
                     else None
                 ),

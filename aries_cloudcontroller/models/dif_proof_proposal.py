@@ -93,7 +93,7 @@ class DIFProofProposal(BaseModel):
                 "input_descriptors": (
                     [
                         InputDescriptors.from_dict(_item)
-                        for _item in obj.get("input_descriptors")
+                        for _item in obj["input_descriptors"]
                     ]
                     if obj.get("input_descriptors") is not None
                     else None
