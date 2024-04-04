@@ -73,7 +73,7 @@ class W3CCredentialsListRequest(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of W3CCredentialsListRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
