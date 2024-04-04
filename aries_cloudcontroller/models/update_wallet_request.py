@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -29,7 +29,7 @@ class UpdateWalletRequest(BaseModel):
     UpdateWalletRequest
     """  # noqa: E501
 
-    extra_settings: Optional[Union[str, Any]] = Field(
+    extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
     )
     image_url: Optional[StrictStr] = Field(

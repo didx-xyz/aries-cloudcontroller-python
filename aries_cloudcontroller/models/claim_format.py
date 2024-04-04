@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel
 from typing_extensions import Self
@@ -29,12 +29,12 @@ class ClaimFormat(BaseModel):
     ClaimFormat
     """  # noqa: E501
 
-    jwt: Optional[Union[str, Any]] = None
-    jwt_vc: Optional[Union[str, Any]] = None
-    jwt_vp: Optional[Union[str, Any]] = None
-    ldp: Optional[Union[str, Any]] = None
-    ldp_vc: Optional[Union[str, Any]] = None
-    ldp_vp: Optional[Union[str, Any]] = None
+    jwt: Optional[Dict[str, Any]] = None
+    jwt_vc: Optional[Dict[str, Any]] = None
+    jwt_vp: Optional[Dict[str, Any]] = None
+    ldp: Optional[Dict[str, Any]] = None
+    ldp_vc: Optional[Dict[str, Any]] = None
+    ldp_vp: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = [
         "jwt",
         "jwt_vc",

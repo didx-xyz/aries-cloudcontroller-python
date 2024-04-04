@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
@@ -29,13 +29,11 @@ class AdminStatus(BaseModel):
     AdminStatus
     """  # noqa: E501
 
-    conductor: Optional[Union[str, Any]] = Field(
+    conductor: Optional[Dict[str, Any]] = Field(
         default=None, description="Conductor statistics"
     )
     label: Optional[StrictStr] = Field(default=None, description="Default label")
-    timing: Optional[Union[str, Any]] = Field(
-        default=None, description="Timing results"
-    )
+    timing: Optional[Dict[str, Any]] = Field(default=None, description="Timing results")
     version: Optional[StrictStr] = Field(default=None, description="Version code")
     __properties: ClassVar[List[str]] = ["conductor", "label", "timing", "version"]
 

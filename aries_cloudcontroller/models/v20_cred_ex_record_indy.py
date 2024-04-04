@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -43,7 +43,7 @@ class V20CredExRecordIndy(BaseModel):
     cred_id_stored: Optional[StrictStr] = Field(
         default=None, description="Credential identifier stored in wallet"
     )
-    cred_request_metadata: Optional[Union[str, Any]] = Field(
+    cred_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Credential request metadata for indy holder"
     )
     cred_rev_id: Optional[Annotated[str, Field(strict=True)]] = Field(

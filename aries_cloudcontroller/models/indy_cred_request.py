@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated, Self
@@ -30,8 +30,8 @@ class IndyCredRequest(BaseModel):
     IndyCredRequest
     """  # noqa: E501
 
-    blinded_ms: Union[str, Any] = Field(description="Blinded master secret")
-    blinded_ms_correctness_proof: Union[str, Any] = Field(
+    blinded_ms: Dict[str, Any] = Field(description="Blinded master secret")
+    blinded_ms_correctness_proof: Dict[str, Any] = Field(
         description="Blinded master secret correctness proof"
     )
     cred_def_id: Annotated[str, Field(strict=True)] = Field(

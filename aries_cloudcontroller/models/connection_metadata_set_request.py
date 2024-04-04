@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field
 from typing_extensions import Self
@@ -29,7 +29,7 @@ class ConnectionMetadataSetRequest(BaseModel):
     ConnectionMetadataSetRequest
     """  # noqa: E501
 
-    metadata: Union[str, Any] = Field(
+    metadata: Dict[str, Any] = Field(
         description="Dictionary of metadata to set for connection."
     )
     __properties: ClassVar[List[str]] = ["metadata"]

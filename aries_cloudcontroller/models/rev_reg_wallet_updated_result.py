@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field
 from typing_extensions import Self
@@ -29,13 +29,13 @@ class RevRegWalletUpdatedResult(BaseModel):
     RevRegWalletUpdatedResult
     """  # noqa: E501
 
-    accum_calculated: Optional[Union[str, Any]] = Field(
+    accum_calculated: Optional[Dict[str, Any]] = Field(
         default=None, description="Calculated accumulator for phantom revocations"
     )
-    accum_fixed: Optional[Union[str, Any]] = Field(
+    accum_fixed: Optional[Dict[str, Any]] = Field(
         default=None, description="Applied ledger transaction to fix revocations"
     )
-    rev_reg_delta: Optional[Union[str, Any]] = Field(
+    rev_reg_delta: Optional[Dict[str, Any]] = Field(
         default=None, description="Indy revocation registry delta"
     )
     __properties: ClassVar[List[str]] = [

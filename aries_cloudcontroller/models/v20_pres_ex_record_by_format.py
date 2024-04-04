@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel
 from typing_extensions import Self
@@ -29,9 +29,9 @@ class V20PresExRecordByFormat(BaseModel):
     V20PresExRecordByFormat
     """  # noqa: E501
 
-    pres: Optional[Union[str, Any]] = None
-    pres_proposal: Optional[Union[str, Any]] = None
-    pres_request: Optional[Union[str, Any]] = None
+    pres: Optional[Dict[str, Any]] = None
+    pres_proposal: Optional[Dict[str, Any]] = None
+    pres_request: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = ["pres", "pres_proposal", "pres_request"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

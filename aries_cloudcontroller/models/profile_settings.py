@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field
 from typing_extensions import Self
@@ -29,7 +29,7 @@ class ProfileSettings(BaseModel):
     ProfileSettings
     """  # noqa: E501
 
-    settings: Optional[Union[str, Any]] = Field(
+    settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Profile settings dict"
     )
     __properties: ClassVar[List[str]] = ["settings"]

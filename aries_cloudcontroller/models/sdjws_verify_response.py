@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr
 from typing_extensions import Self
@@ -29,13 +29,13 @@ class SDJWSVerifyResponse(BaseModel):
     SDJWSVerifyResponse
     """  # noqa: E501
 
-    disclosures: Optional[List[List[Union[str, Any]]]] = Field(
+    disclosures: Optional[List[List[Dict[str, Any]]]] = Field(
         default=None, description="Disclosure arrays associated with the SD-JWT"
     )
     error: Optional[StrictStr] = Field(default=None, description="Error text")
-    headers: Union[str, Any] = Field(description="Headers from verified JWT.")
+    headers: Dict[str, Any] = Field(description="Headers from verified JWT.")
     kid: StrictStr = Field(description="kid of signer")
-    payload: Union[str, Any] = Field(description="Payload from verified JWT")
+    payload: Dict[str, Any] = Field(description="Payload from verified JWT")
     valid: StrictBool
     __properties: ClassVar[List[str]] = [
         "disclosures",

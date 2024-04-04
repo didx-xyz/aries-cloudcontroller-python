@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
@@ -36,7 +36,7 @@ class KeylistQuery(BaseModel):
     type: Optional[StrictStr] = Field(
         default=None, description="Message type", alias="@type"
     )
-    filter: Optional[Union[str, Any]] = Field(
+    filter: Optional[Dict[str, Any]] = Field(
         default=None, description="Query dictionary object"
     )
     paginate: Optional[KeylistQueryPaginate] = None

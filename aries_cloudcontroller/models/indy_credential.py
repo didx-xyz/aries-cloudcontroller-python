@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated, Self
@@ -34,7 +34,7 @@ class IndyCredential(BaseModel):
     cred_def_id: Annotated[str, Field(strict=True)] = Field(
         description="Credential definition identifier"
     )
-    rev_reg: Optional[Union[str, Any]] = Field(
+    rev_reg: Optional[Dict[str, Any]] = Field(
         default=None, description="Revocation registry state"
     )
     rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -43,12 +43,12 @@ class IndyCredential(BaseModel):
     schema_id: Annotated[str, Field(strict=True)] = Field(
         description="Schema identifier"
     )
-    signature: Union[str, Any] = Field(description="Credential signature")
-    signature_correctness_proof: Union[str, Any] = Field(
+    signature: Dict[str, Any] = Field(description="Credential signature")
+    signature_correctness_proof: Dict[str, Any] = Field(
         description="Credential signature correctness proof"
     )
     values: Dict[str, IndyAttrValue] = Field(description="Credential attributes")
-    witness: Optional[Union[str, Any]] = Field(
+    witness: Optional[Dict[str, Any]] = Field(
         default=None, description="Witness for revocation proof"
     )
     __properties: ClassVar[List[str]] = [

@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
@@ -36,7 +36,7 @@ class InputDescriptors(BaseModel):
     constraints: Optional[Constraints] = None
     group: Optional[List[StrictStr]] = None
     id: Optional[StrictStr] = Field(default=None, description="ID")
-    metadata: Optional[Union[str, Any]] = Field(
+    metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Metadata dictionary"
     )
     name: Optional[StrictStr] = Field(default=None, description="Name")

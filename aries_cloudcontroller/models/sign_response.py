@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
@@ -30,7 +30,7 @@ class SignResponse(BaseModel):
     """  # noqa: E501
 
     error: Optional[StrictStr] = Field(default=None, description="Error text")
-    signed_doc: Optional[Union[str, Any]] = Field(
+    signed_doc: Optional[Dict[str, Any]] = Field(
         default=None, description="Signed document"
     )
     __properties: ClassVar[List[str]] = ["error", "signed_doc"]

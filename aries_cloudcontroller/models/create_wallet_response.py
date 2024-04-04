@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -36,7 +36,7 @@ class CreateWalletResponse(BaseModel):
     key_management_mode: StrictStr = Field(
         description="Mode regarding management of wallet key"
     )
-    settings: Optional[Union[str, Any]] = Field(
+    settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Settings for this wallet."
     )
     state: Optional[StrictStr] = Field(default=None, description="Current record state")

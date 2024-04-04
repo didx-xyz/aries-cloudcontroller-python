@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -45,15 +45,15 @@ class TransactionRecord(BaseModel):
         description="If True, Endorser will write the transaction after endorsing it",
     )
     formats: Optional[List[Dict[str, StrictStr]]] = None
-    messages_attach: Optional[List[Union[str, Any]]] = None
-    meta_data: Optional[Union[str, Any]] = None
-    signature_request: Optional[List[Union[str, Any]]] = None
-    signature_response: Optional[List[Union[str, Any]]] = None
+    messages_attach: Optional[List[Dict[str, Any]]] = None
+    meta_data: Optional[Dict[str, Any]] = None
+    signature_request: Optional[List[Dict[str, Any]]] = None
+    signature_response: Optional[List[Dict[str, Any]]] = None
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
     thread_id: Optional[StrictStr] = Field(
         default=None, description="Thread Identifier"
     )
-    timing: Optional[Union[str, Any]] = None
+    timing: Optional[Dict[str, Any]] = None
     trace: Optional[StrictBool] = Field(
         default=None,
         description="Record trace information, based on agent configuration",

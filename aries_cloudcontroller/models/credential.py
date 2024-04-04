@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -34,7 +34,7 @@ class Credential(BaseModel):
     context: List[Union[str, Dict]] = Field(
         description="The JSON-LD context of the credential", alias="@context"
     )
-    credential_subject: Union[str, Any] = Field(alias="credentialSubject")
+    credential_subject: Dict[str, Any] = Field(alias="credentialSubject")
     expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The expiration date", alias="expirationDate"
     )
