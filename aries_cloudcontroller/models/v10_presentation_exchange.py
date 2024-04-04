@@ -20,18 +20,13 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.indy_proof import IndyProof
 from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.models.presentation_proposal import PresentationProposal
 from aries_cloudcontroller.models.presentation_request import PresentationRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V10PresentationExchange(BaseModel):

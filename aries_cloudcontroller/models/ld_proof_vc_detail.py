@@ -19,17 +19,13 @@ import pprint
 from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.credential import Credential
 from aries_cloudcontroller.models.ld_proof_vc_detail_options import (
     LDProofVCDetailOptions,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class LDProofVCDetail(BaseModel):

@@ -20,17 +20,12 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.claim_format import ClaimFormat
 from aries_cloudcontroller.models.input_descriptors import InputDescriptors
 from aries_cloudcontroller.models.submission_requirements import SubmissionRequirements
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class PresentationDefinition(BaseModel):

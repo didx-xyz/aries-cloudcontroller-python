@@ -19,14 +19,10 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.v10_credential_exchange import V10CredentialExchange
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V10CredentialExchangeListResult(BaseModel):

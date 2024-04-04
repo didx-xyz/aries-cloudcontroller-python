@@ -20,16 +20,11 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.disclosures import Disclosures
 from aries_cloudcontroller.models.queries import Queries
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20DiscoveryRecord(BaseModel):

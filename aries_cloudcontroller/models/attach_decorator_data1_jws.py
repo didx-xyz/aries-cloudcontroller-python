@@ -20,17 +20,12 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.attach_decorator_data_jws_header import (
     AttachDecoratorDataJWSHeader,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class AttachDecoratorData1JWS(BaseModel):

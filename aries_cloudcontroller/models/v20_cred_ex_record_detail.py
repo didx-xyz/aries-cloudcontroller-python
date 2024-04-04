@@ -19,6 +19,7 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.v20_cred_ex_record import V20CredExRecord
 from aries_cloudcontroller.models.v20_cred_ex_record_indy import V20CredExRecordIndy
@@ -26,11 +27,6 @@ from aries_cloudcontroller.models.v20_cred_ex_record_ld_proof import (
     V20CredExRecordLDProof,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20CredExRecordDetail(BaseModel):

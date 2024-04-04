@@ -20,15 +20,10 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.linked_data_proof import LinkedDataProof
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class Credential(BaseModel):

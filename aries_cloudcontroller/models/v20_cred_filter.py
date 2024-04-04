@@ -19,15 +19,11 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20CredFilter(BaseModel):

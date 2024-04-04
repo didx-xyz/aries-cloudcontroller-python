@@ -3,13 +3,9 @@ from __future__ import annotations
 from typing import Dict, Optional
 
 from pydantic import Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.wallet_record import WalletRecord
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class WalletRecordWithGroups(WalletRecord):

@@ -2,15 +2,12 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional
 
+from typing_extensions import Self
+
 from aries_cloudcontroller.models.wallet_list import WalletList
 from aries_cloudcontroller.models.wallet_record_with_groups import (
     WalletRecordWithGroups,
 )
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class WalletListWithGroups(WalletList):

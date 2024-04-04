@@ -19,14 +19,10 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.presentation_definition import PresentationDefinition
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class DIFPresSpec(BaseModel):

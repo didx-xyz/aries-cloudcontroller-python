@@ -19,6 +19,7 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_proof_identifier import IndyProofIdentifier
 from aries_cloudcontroller.models.indy_proof_proof import IndyProofProof
@@ -26,11 +27,6 @@ from aries_cloudcontroller.models.indy_proof_requested_proof import (
     IndyProofRequestedProof,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyProof(BaseModel):

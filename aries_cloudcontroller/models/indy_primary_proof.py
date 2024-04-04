@@ -19,17 +19,13 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_ge_proof import IndyGEProof
 from aries_cloudcontroller.models.indy_primary_proof_eq_proof import (
     IndyPrimaryProofEqProof,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyPrimaryProof(BaseModel):

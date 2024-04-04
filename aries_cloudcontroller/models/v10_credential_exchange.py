@@ -20,7 +20,7 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.credential_offer import CredentialOffer
 from aries_cloudcontroller.models.credential_proposal import CredentialProposal
@@ -29,11 +29,6 @@ from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.indy_cred_request import IndyCredRequest
 from aries_cloudcontroller.models.indy_credential import IndyCredential
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V10CredentialExchange(BaseModel):

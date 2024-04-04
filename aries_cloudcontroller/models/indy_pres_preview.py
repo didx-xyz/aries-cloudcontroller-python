@@ -19,15 +19,11 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_pres_attr_spec import IndyPresAttrSpec
 from aries_cloudcontroller.models.indy_pres_pred_spec import IndyPresPredSpec
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyPresPreview(BaseModel):

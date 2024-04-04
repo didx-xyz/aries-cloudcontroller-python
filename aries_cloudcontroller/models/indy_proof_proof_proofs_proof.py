@@ -19,17 +19,13 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_primary_proof import IndyPrimaryProof
 from aries_cloudcontroller.models.indy_proof_proof_proofs_proof_non_revoc_proof import (
     IndyProofProofProofsProofNonRevocProof,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyProofProofProofsProof(BaseModel):

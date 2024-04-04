@@ -19,15 +19,11 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.schema_send_result import SchemaSendResult
 from aries_cloudcontroller.models.transaction_record import TransactionRecord
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class TxnOrSchemaSendResult(BaseModel):
