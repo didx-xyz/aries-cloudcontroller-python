@@ -1,5 +1,5 @@
-import sys
 import re
+import sys
 
 
 def clean_file(file_path):
