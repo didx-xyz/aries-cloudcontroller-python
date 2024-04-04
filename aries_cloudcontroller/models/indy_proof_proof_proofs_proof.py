@@ -97,7 +97,7 @@ class IndyProofProofProofsProof(BaseModel):
             {
                 "non_revoc_proof": (
                     IndyProofProofProofsProofNonRevocProof.from_dict(
-                        obj.get("non_revoc_proof")
+                        obj["non_revoc_proof"]
                     )
                     if obj.get("non_revoc_proof") is not None
                     else None

@@ -145,7 +145,7 @@ class IndyProofRequestedProof(BaseModel):
                 "predicates": (
                     dict(
                         (_k, IndyProofRequestedProofPredicate.from_dict(_v))
-                        for _k, _v in obj.get("predicates").items()
+                        for _k, _v in obj["predicates"].items()
                     )
                     if obj.get("predicates") is not None
                     else None
@@ -153,7 +153,7 @@ class IndyProofRequestedProof(BaseModel):
                 "revealed_attr_groups": (
                     dict(
                         (_k, IndyProofRequestedProofRevealedAttrGroup.from_dict(_v))
-                        for _k, _v in obj.get("revealed_attr_groups").items()
+                        for _k, _v in obj["revealed_attr_groups"].items()
                     )
                     if obj.get("revealed_attr_groups") is not None
                     else None
@@ -161,7 +161,7 @@ class IndyProofRequestedProof(BaseModel):
                 "revealed_attrs": (
                     dict(
                         (_k, IndyProofRequestedProofRevealedAttr.from_dict(_v))
-                        for _k, _v in obj.get("revealed_attrs").items()
+                        for _k, _v in obj["revealed_attrs"].items()
                     )
                     if obj.get("revealed_attrs") is not None
                     else None

@@ -177,7 +177,7 @@ class IndyCredential(BaseModel):
                 "values": (
                     dict(
                         (_k, IndyAttrValue.from_dict(_v))
-                        for _k, _v in obj.get("values").items()
+                        for _k, _v in obj["values"].items()
                     )
                     if obj.get("values") is not None
                     else None

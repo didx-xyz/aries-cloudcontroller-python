@@ -248,9 +248,7 @@ class V10PresentationExchange(BaseModel):
                 ),
                 "presentation_exchange_id": obj.get("presentation_exchange_id"),
                 "presentation_proposal_dict": (
-                    PresentationProposal.from_dict(
-                        obj.get("presentation_proposal_dict")
-                    )
+                    PresentationProposal.from_dict(obj["presentation_proposal_dict"])
                     if obj.get("presentation_proposal_dict") is not None
                     else None
                 ),
