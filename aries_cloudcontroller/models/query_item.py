@@ -36,7 +36,7 @@ class QueryItem(BaseModel):
     @field_validator("feature_type")
     def feature_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ("protocol", "goal-code"):
+        if value not in set(["protocol", "goal-code"]):
             raise ValueError("must be one of enum values ('protocol', 'goal-code')")
         return value
 

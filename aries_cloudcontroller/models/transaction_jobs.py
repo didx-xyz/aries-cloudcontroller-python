@@ -43,7 +43,7 @@ class TransactionJobs(BaseModel):
         if value is None:
             return value
 
-        if value not in ("TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"):
+        if value not in set(["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]):
             raise ValueError(
                 "must be one of enum values ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset')"
             )
@@ -55,7 +55,7 @@ class TransactionJobs(BaseModel):
         if value is None:
             return value
 
-        if value not in ("TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"):
+        if value not in set(["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]):
             raise ValueError(
                 "must be one of enum values ('TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset')"
             )

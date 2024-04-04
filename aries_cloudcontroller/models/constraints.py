@@ -58,7 +58,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "allowed", "disallowed"):
+        if value not in set(["required", "allowed", "disallowed"]):
             raise ValueError(
                 "must be one of enum values ('required', 'allowed', 'disallowed')"
             )
@@ -70,7 +70,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "allowed", "disallowed"):
+        if value not in set(["required", "allowed", "disallowed"]):
             raise ValueError(
                 "must be one of enum values ('required', 'allowed', 'disallowed')"
             )
@@ -82,7 +82,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "allowed", "disallowed"):
+        if value not in set(["required", "allowed", "disallowed"]):
             raise ValueError(
                 "must be one of enum values ('required', 'allowed', 'disallowed')"
             )
@@ -94,7 +94,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "preferred"):
+        if value not in set(["required", "preferred"]):
             raise ValueError("must be one of enum values ('required', 'preferred')")
         return value
 

@@ -79,7 +79,7 @@ class CreateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in ("managed"):
+        if value not in set(["managed"]):
             raise ValueError("must be one of enum values ('managed')")
         return value
 
@@ -89,7 +89,7 @@ class CreateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in ("default", "both", "base"):
+        if value not in set(["default", "both", "base"]):
             raise ValueError("must be one of enum values ('default', 'both', 'base')")
         return value
 
@@ -99,7 +99,7 @@ class CreateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in ("ARGON2I_MOD", "ARGON2I_INT", "RAW"):
+        if value not in set(["ARGON2I_MOD", "ARGON2I_INT", "RAW"]):
             raise ValueError(
                 "must be one of enum values ('ARGON2I_MOD', 'ARGON2I_INT', 'RAW')"
             )
@@ -111,7 +111,7 @@ class CreateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in ("askar", "in_memory", "indy"):
+        if value not in set(["askar", "in_memory", "indy"]):
             raise ValueError(
                 "must be one of enum values ('askar', 'in_memory', 'indy')"
             )

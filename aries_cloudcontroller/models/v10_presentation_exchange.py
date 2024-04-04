@@ -125,7 +125,7 @@ class V10PresentationExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("self", "external"):
+        if value not in set(["self", "external"]):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
@@ -135,7 +135,7 @@ class V10PresentationExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("prover", "verifier"):
+        if value not in set(["prover", "verifier"]):
             raise ValueError("must be one of enum values ('prover', 'verifier')")
         return value
 
@@ -160,7 +160,7 @@ class V10PresentationExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("true", "false"):
+        if value not in set(["true", "false"]):
             raise ValueError("must be one of enum values ('true', 'false')")
         return value
 

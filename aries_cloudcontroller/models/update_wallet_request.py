@@ -61,7 +61,7 @@ class UpdateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in ("default", "both", "base"):
+        if value not in set(["default", "both", "base"]):
             raise ValueError("must be one of enum values ('default', 'both', 'base')")
         return value
 

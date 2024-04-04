@@ -44,7 +44,7 @@ class IndyGEProofPred(BaseModel):
         if value is None:
             return value
 
-        if value not in ("LT", "LE", "GE", "GT"):
+        if value not in set(["LT", "LE", "GE", "GT"]):
             raise ValueError("must be one of enum values ('LT', 'LE', 'GE', 'GT')")
         return value
 

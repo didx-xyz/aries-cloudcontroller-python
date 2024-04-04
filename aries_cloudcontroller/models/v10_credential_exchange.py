@@ -170,7 +170,7 @@ class V10CredentialExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("self", "external"):
+        if value not in set(["self", "external"]):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
@@ -180,7 +180,7 @@ class V10CredentialExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("holder", "issuer"):
+        if value not in set(["holder", "issuer"]):
             raise ValueError("must be one of enum values ('holder', 'issuer')")
         return value
 

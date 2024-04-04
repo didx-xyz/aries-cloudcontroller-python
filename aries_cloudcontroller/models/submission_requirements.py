@@ -56,7 +56,7 @@ class SubmissionRequirements(BaseModel):
         if value is None:
             return value
 
-        if value not in ("all", "pick"):
+        if value not in set(["all", "pick"]):
             raise ValueError("must be one of enum values ('all', 'pick')")
         return value
 

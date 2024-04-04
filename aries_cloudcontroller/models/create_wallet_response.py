@@ -75,7 +75,7 @@ class CreateWalletResponse(BaseModel):
     @field_validator("key_management_mode")
     def key_management_mode_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ("managed", "unmanaged"):
+        if value not in set(["managed", "unmanaged"]):
             raise ValueError("must be one of enum values ('managed', 'unmanaged')")
         return value
 

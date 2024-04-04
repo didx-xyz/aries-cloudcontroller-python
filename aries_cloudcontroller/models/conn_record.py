@@ -111,7 +111,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("manual", "auto"):
+        if value not in set(["manual", "auto"]):
             raise ValueError("must be one of enum values ('manual', 'auto')")
         return value
 
@@ -121,7 +121,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("connections/1.0", "didexchange/1.0"):
+        if value not in set(["connections/1.0", "didexchange/1.0"]):
             raise ValueError(
                 "must be one of enum values ('connections/1.0', 'didexchange/1.0')"
             )
@@ -163,7 +163,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("once", "multi", "static"):
+        if value not in set(["once", "multi", "static"]):
             raise ValueError("must be one of enum values ('once', 'multi', 'static')")
         return value
 
@@ -203,7 +203,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("invitee", "requester", "inviter", "responder"):
+        if value not in set(["invitee", "requester", "inviter", "responder"]):
             raise ValueError(
                 "must be one of enum values ('invitee', 'requester', 'inviter', 'responder')"
             )

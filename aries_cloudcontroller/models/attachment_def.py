@@ -39,7 +39,7 @@ class AttachmentDef(BaseModel):
         if value is None:
             return value
 
-        if value not in ("credential-offer", "present-proof"):
+        if value not in set(["credential-offer", "present-proof"]):
             raise ValueError(
                 "must be one of enum values ('credential-offer', 'present-proof')"
             )

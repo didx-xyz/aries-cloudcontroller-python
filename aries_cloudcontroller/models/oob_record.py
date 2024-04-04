@@ -93,7 +93,7 @@ class OobRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("sender", "receiver"):
+        if value not in set(["sender", "receiver"]):
             raise ValueError("must be one of enum values ('sender', 'receiver')")
         return value
 

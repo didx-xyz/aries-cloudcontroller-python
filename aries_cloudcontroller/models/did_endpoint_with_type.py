@@ -73,7 +73,7 @@ class DIDEndpointWithType(BaseModel):
         if value is None:
             return value
 
-        if value not in ("Endpoint", "Profile", "LinkedDomains"):
+        if value not in set(["Endpoint", "Profile", "LinkedDomains"]):
             raise ValueError(
                 "must be one of enum values ('Endpoint', 'Profile', 'LinkedDomains')"
             )

@@ -39,7 +39,7 @@ class KeylistUpdateRule(BaseModel):
     @field_validator("action")
     def action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ("add", "remove"):
+        if value not in set(["add", "remove"]):
             raise ValueError("must be one of enum values ('add', 'remove')")
         return value
 

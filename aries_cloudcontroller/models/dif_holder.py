@@ -39,7 +39,7 @@ class DIFHolder(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "preferred"):
+        if value not in set(["required", "preferred"]):
             raise ValueError("must be one of enum values ('required', 'preferred')")
         return value
 

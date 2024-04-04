@@ -51,7 +51,7 @@ class IndyProofReqPredSpec(BaseModel):
     @field_validator("p_type")
     def p_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ("<", "<=", ">=", ">"):
+        if value not in set(["<", "<=", ">=", ">"]):
             raise ValueError("must be one of enum values ('<', '<=', '>=', '>')")
         return value
 

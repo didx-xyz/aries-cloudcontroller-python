@@ -120,7 +120,7 @@ class RevokeRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in ("v1_0", "v2_0"):
+        if value not in set(["v1_0", "v2_0"]):
             raise ValueError("must be one of enum values ('v1_0', 'v2_0')")
         return value
 

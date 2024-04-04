@@ -94,7 +94,7 @@ class IndyRevRegDef(BaseModel):
         if value is None:
             return value
 
-        if value not in ("CL_ACCUM"):
+        if value not in set(["CL_ACCUM"]):
             raise ValueError("must be one of enum values ('CL_ACCUM')")
         return value
 

@@ -64,7 +64,7 @@ class IndyRevRegDefValue(BaseModel):
         if value is None:
             return value
 
-        if value not in ("ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"):
+        if value not in set(["ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"]):
             raise ValueError(
                 "must be one of enum values ('ISSUANCE_ON_DEMAND', 'ISSUANCE_BY_DEFAULT')"
             )

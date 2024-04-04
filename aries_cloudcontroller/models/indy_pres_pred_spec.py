@@ -61,7 +61,7 @@ class IndyPresPredSpec(BaseModel):
     @field_validator("predicate")
     def predicate_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ("<", "<=", ">=", ">"):
+        if value not in set(["<", "<=", ">=", ">"]):
             raise ValueError("must be one of enum values ('<', '<=', '>=', '>')")
         return value
 

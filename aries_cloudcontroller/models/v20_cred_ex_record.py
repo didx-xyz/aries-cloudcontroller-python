@@ -133,7 +133,7 @@ class V20CredExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("self", "external"):
+        if value not in set(["self", "external"]):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
@@ -143,7 +143,7 @@ class V20CredExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("issuer", "holder"):
+        if value not in set(["issuer", "holder"]):
             raise ValueError("must be one of enum values ('issuer', 'holder')")
         return value
 

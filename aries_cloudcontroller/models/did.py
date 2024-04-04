@@ -76,7 +76,7 @@ class DID(BaseModel):
         if value is None:
             return value
 
-        if value not in ("ed25519", "bls12381g2"):
+        if value not in set(["ed25519", "bls12381g2"]):
             raise ValueError("must be one of enum values ('ed25519', 'bls12381g2')")
         return value
 
@@ -86,7 +86,7 @@ class DID(BaseModel):
         if value is None:
             return value
 
-        if value not in ("public", "posted", "wallet_only"):
+        if value not in set(["public", "posted", "wallet_only"]):
             raise ValueError(
                 "must be one of enum values ('public', 'posted', 'wallet_only')"
             )
