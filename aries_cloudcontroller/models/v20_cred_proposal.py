@@ -41,7 +41,9 @@ class V20CredProposal(BaseModel):
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"
     )
-    credential_preview: Optional[V20CredPreview] = None
+    credential_preview: Optional[V20CredPreview] = Field(
+        default=None, description="Credential preview"
+    )
     filtersattach: List[AttachDecorator] = Field(
         description="Credential filter per acceptable format on corresponding identifier",
         alias="filters~attach",

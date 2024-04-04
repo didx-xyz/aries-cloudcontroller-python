@@ -45,7 +45,9 @@ class IndyRevRegDef(BaseModel):
     tag: Optional[StrictStr] = Field(
         default=None, description="Revocation registry tag"
     )
-    value: Optional[IndyRevRegDefValue] = None
+    value: Optional[IndyRevRegDefValue] = Field(
+        default=None, description="Revocation registry definition value"
+    )
     ver: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Version of revocation registry definition"
     )

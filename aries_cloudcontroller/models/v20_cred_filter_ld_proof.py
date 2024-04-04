@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
@@ -30,7 +30,9 @@ class V20CredFilterLDProof(BaseModel):
     V20CredFilterLDProof
     """  # noqa: E501
 
-    ld_proof: LDProofVCDetail
+    ld_proof: LDProofVCDetail = Field(
+        description="Credential filter for linked data proof"
+    )
     __properties: ClassVar[List[str]] = ["ld_proof"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

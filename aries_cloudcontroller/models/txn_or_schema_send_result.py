@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.schema_send_result import SchemaSendResult
@@ -31,8 +31,10 @@ class TxnOrSchemaSendResult(BaseModel):
     TxnOrSchemaSendResult
     """  # noqa: E501
 
-    sent: Optional[SchemaSendResult] = None
-    txn: Optional[TransactionRecord] = None
+    sent: Optional[SchemaSendResult] = Field(default=None, description="Content sent")
+    txn: Optional[TransactionRecord] = Field(
+        default=None, description="Schema transaction to endorse"
+    )
     __properties: ClassVar[List[str]] = ["sent", "txn"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

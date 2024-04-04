@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.credential_proposal import CredentialProposal
@@ -30,7 +30,9 @@ class V10CredentialBoundOfferRequest(BaseModel):
     V10CredentialBoundOfferRequest
     """  # noqa: E501
 
-    counter_proposal: Optional[CredentialProposal] = None
+    counter_proposal: Optional[CredentialProposal] = Field(
+        default=None, description="Optional counter-proposal"
+    )
     __properties: ClassVar[List[str]] = ["counter_proposal"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.credential_definition_send_result import (
@@ -34,7 +34,9 @@ class TxnOrCredentialDefinitionSendResult(BaseModel):
     """  # noqa: E501
 
     sent: Optional[CredentialDefinitionSendResult] = None
-    txn: Optional[TransactionRecord] = None
+    txn: Optional[TransactionRecord] = Field(
+        default=None, description="Credential definition transaction to endorse"
+    )
     __properties: ClassVar[List[str]] = ["sent", "txn"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

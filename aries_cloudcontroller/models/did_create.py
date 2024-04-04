@@ -34,7 +34,10 @@ class DIDCreate(BaseModel):
         default=None,
         description="Method for the requested DID.Supported methods are 'key', 'sov', and any other registered method.",
     )
-    options: Optional[DIDCreateOptions] = None
+    options: Optional[DIDCreateOptions] = Field(
+        default=None,
+        description="To define a key type and/or a did depending on chosen DID method.",
+    )
     seed: Optional[StrictStr] = Field(
         default=None,
         description="Optional seed to use for DID, Must be enabled in configuration before use.",

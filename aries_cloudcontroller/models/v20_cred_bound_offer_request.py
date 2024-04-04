@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.v20_cred_filter import V20CredFilter
@@ -31,8 +31,12 @@ class V20CredBoundOfferRequest(BaseModel):
     V20CredBoundOfferRequest
     """  # noqa: E501
 
-    counter_preview: Optional[V20CredPreview] = None
-    filter: Optional[V20CredFilter] = None
+    counter_preview: Optional[V20CredPreview] = Field(
+        default=None, description="Optional content for counter-proposal"
+    )
+    filter: Optional[V20CredFilter] = Field(
+        default=None, description="Credential specification criteria by format"
+    )
     __properties: ClassVar[List[str]] = ["counter_preview", "filter"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

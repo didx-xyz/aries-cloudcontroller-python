@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.v20_discovery_record import V20DiscoveryRecord
@@ -30,7 +30,9 @@ class V20DiscoveryExchangeResult(BaseModel):
     V20DiscoveryExchangeResult
     """  # noqa: E501
 
-    results: Optional[V20DiscoveryRecord] = None
+    results: Optional[V20DiscoveryRecord] = Field(
+        default=None, description="Discover Features v2.0 exchange record"
+    )
     __properties: ClassVar[List[str]] = ["results"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

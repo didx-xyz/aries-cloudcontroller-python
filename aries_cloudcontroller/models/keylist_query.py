@@ -39,7 +39,9 @@ class KeylistQuery(BaseModel):
     filter: Optional[Dict[str, Any]] = Field(
         default=None, description="Query dictionary object"
     )
-    paginate: Optional[KeylistQueryPaginate] = None
+    paginate: Optional[KeylistQueryPaginate] = Field(
+        default=None, description="Pagination info"
+    )
     __properties: ClassVar[List[str]] = ["@id", "@type", "filter", "paginate"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

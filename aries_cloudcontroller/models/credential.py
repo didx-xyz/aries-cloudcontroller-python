@@ -45,7 +45,9 @@ class Credential(BaseModel):
     issuer: Union[str, Dict[str, Any]] = Field(
         description="The JSON-LD Verifiable Credential Issuer. Either string of object with id field."
     )
-    proof: Optional[LinkedDataProof] = None
+    proof: Optional[LinkedDataProof] = Field(
+        default=None, description="The proof of the credential"
+    )
     type: List[StrictStr] = Field(description="The JSON-LD type of the credential")
     __properties: ClassVar[List[str]] = [
         "@context",

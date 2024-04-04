@@ -38,11 +38,13 @@ class V20DiscoveryRecord(BaseModel):
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
     )
-    disclosures: Optional[Disclosures] = None
+    disclosures: Optional[Disclosures] = Field(
+        default=None, description="Disclosures message"
+    )
     discovery_exchange_id: Optional[StrictStr] = Field(
         default=None, description="Credential exchange identifier"
     )
-    queries_msg: Optional[Queries] = None
+    queries_msg: Optional[Queries] = Field(default=None, description="Queries message")
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
     thread_id: Optional[StrictStr] = Field(
         default=None, description="Thread identifier"

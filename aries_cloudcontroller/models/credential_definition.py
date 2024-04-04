@@ -45,7 +45,9 @@ class CredentialDefinition(BaseModel):
     type: Optional[Literal["CL"]] = Field(
         default=None, description="Signature type: CL for Camenisch-Lysyanskaya"
     )
-    value: Optional[CredDefValue] = None
+    value: Optional[CredDefValue] = Field(
+        default=None, description="Credential definition primary and revocation values"
+    )
     ver: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Node protocol version"
     )

@@ -35,8 +35,13 @@ class V20PresSpecByFormatRequest(BaseModel):
         default=None,
         description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    dif: Optional[DIFPresSpec] = None
-    indy: Optional[IndyPresSpec] = None
+    dif: Optional[DIFPresSpec] = Field(
+        default=None,
+        description="Optional Presentation specification for DIF, overrides the PresentationExchange record's PresRequest",
+    )
+    indy: Optional[IndyPresSpec] = Field(
+        default=None, description="Presentation specification for indy"
+    )
     trace: Optional[StrictBool] = Field(
         default=None,
         description="Record trace information, based on agent configuration",

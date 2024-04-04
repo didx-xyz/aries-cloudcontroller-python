@@ -47,7 +47,10 @@ class V20PresExRecord(BaseModel):
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"
     )
-    by_format: Optional[V20PresExRecordByFormat] = None
+    by_format: Optional[V20PresExRecordByFormat] = Field(
+        default=None,
+        description="Attachment content by format for proposal, request, and presentation",
+    )
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
@@ -58,12 +61,16 @@ class V20PresExRecord(BaseModel):
     initiator: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange initiator: self or external"
     )
-    pres: Optional[V20Pres] = None
+    pres: Optional[V20Pres] = Field(default=None, description="Presentation message")
     pres_ex_id: Optional[StrictStr] = Field(
         default=None, description="Presentation exchange identifier"
     )
-    pres_proposal: Optional[V20PresProposal] = None
-    pres_request: Optional[V20PresRequest] = None
+    pres_proposal: Optional[V20PresProposal] = Field(
+        default=None, description="Presentation proposal message"
+    )
+    pres_request: Optional[V20PresRequest] = Field(
+        default=None, description="Presentation request message"
+    )
     role: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange role: prover or verifier"
     )

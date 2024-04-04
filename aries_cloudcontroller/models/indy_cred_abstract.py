@@ -36,7 +36,9 @@ class IndyCredAbstract(BaseModel):
     cred_def_id: Annotated[str, Field(strict=True)] = Field(
         description="Credential definition identifier"
     )
-    key_correctness_proof: IndyKeyCorrectnessProof
+    key_correctness_proof: IndyKeyCorrectnessProof = Field(
+        description="Key correctness proof"
+    )
     nonce: Annotated[str, Field(strict=True)] = Field(
         description="Nonce in credential abstract"
     )

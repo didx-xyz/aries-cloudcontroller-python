@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.v20_cred_ex_record import V20CredExRecord
@@ -34,7 +34,9 @@ class V20CredExRecordDetail(BaseModel):
     V20CredExRecordDetail
     """  # noqa: E501
 
-    cred_ex_record: Optional[V20CredExRecord] = None
+    cred_ex_record: Optional[V20CredExRecord] = Field(
+        default=None, description="Credential exchange record"
+    )
     indy: Optional[V20CredExRecordIndy] = None
     ld_proof: Optional[V20CredExRecordLDProof] = None
     __properties: ClassVar[List[str]] = ["cred_ex_record", "indy", "ld_proof"]

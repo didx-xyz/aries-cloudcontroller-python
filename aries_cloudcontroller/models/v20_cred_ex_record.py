@@ -50,7 +50,10 @@ class V20CredExRecord(BaseModel):
         default=None,
         description="Issuer choice to remove this credential exchange record when complete",
     )
-    by_format: Optional[V20CredExRecordByFormat] = None
+    by_format: Optional[V20CredExRecordByFormat] = Field(
+        default=None,
+        description="Attachment content by format for proposal, offer, request, and issue",
+    )
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
@@ -60,11 +63,21 @@ class V20CredExRecord(BaseModel):
     cred_ex_id: Optional[StrictStr] = Field(
         default=None, description="Credential exchange identifier"
     )
-    cred_issue: Optional[V20CredIssue] = None
-    cred_offer: Optional[V20CredOffer] = None
-    cred_preview: Optional[V20CredPreview] = None
-    cred_proposal: Optional[V20CredProposal] = None
-    cred_request: Optional[V20CredRequest] = None
+    cred_issue: Optional[V20CredIssue] = Field(
+        default=None, description="Serialized credential issue message"
+    )
+    cred_offer: Optional[V20CredOffer] = Field(
+        default=None, description="Credential offer message"
+    )
+    cred_preview: Optional[V20CredPreview] = Field(
+        default=None, description="Credential preview from credential proposal"
+    )
+    cred_proposal: Optional[V20CredProposal] = Field(
+        default=None, description="Credential proposal message"
+    )
+    cred_request: Optional[V20CredRequest] = Field(
+        default=None, description="Serialized credential request message"
+    )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
     initiator: Optional[StrictStr] = Field(
         default=None,

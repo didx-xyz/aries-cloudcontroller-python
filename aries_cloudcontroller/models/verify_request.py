@@ -30,7 +30,7 @@ class VerifyRequest(BaseModel):
     VerifyRequest
     """  # noqa: E501
 
-    doc: Dict[str, Any]
+    doc: Dict[str, Any] = Field(description="Signed document")
     verkey: Optional[StrictStr] = Field(
         default=None, description="Verkey to use for doc verification"
     )

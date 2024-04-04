@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.menu_json import MenuJson
@@ -30,7 +30,7 @@ class SendMenu(BaseModel):
     SendMenu
     """  # noqa: E501
 
-    menu: MenuJson
+    menu: MenuJson = Field(description="Menu to send to connection")
     __properties: ClassVar[List[str]] = ["menu"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

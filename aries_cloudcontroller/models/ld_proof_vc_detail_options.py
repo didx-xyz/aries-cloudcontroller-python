@@ -42,7 +42,9 @@ class LDProofVCDetailOptions(BaseModel):
         description="The date and time of the proof (with a maximum accuracy in seconds). Defaults to current system time",
     )
     credential_status: Optional[CredentialStatusOptions] = Field(
-        default=None, alias="credentialStatus"
+        default=None,
+        description="The credential status mechanism to use for the credential. Omitting the property indicates the issued credential will not include a credential status",
+        alias="credentialStatus",
     )
     domain: Optional[StrictStr] = Field(
         default=None, description="The intended domain of validity for the proof"

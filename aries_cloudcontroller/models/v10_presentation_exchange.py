@@ -55,13 +55,22 @@ class V10PresentationExchange(BaseModel):
     initiator: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange initiator: self or external"
     )
-    presentation: Optional[IndyProof] = None
+    presentation: Optional[IndyProof] = Field(
+        default=None, description="(Indy) presentation (also known as proof)"
+    )
     presentation_exchange_id: Optional[StrictStr] = Field(
         default=None, description="Presentation exchange identifier"
     )
-    presentation_proposal_dict: Optional[PresentationProposal] = None
-    presentation_request: Optional[IndyProofRequest] = None
-    presentation_request_dict: Optional[PresentationRequest] = None
+    presentation_proposal_dict: Optional[PresentationProposal] = Field(
+        default=None, description="Presentation proposal message"
+    )
+    presentation_request: Optional[IndyProofRequest] = Field(
+        default=None,
+        description="(Indy) presentation request (also known as proof request)",
+    )
+    presentation_request_dict: Optional[PresentationRequest] = Field(
+        default=None, description="Presentation request message"
+    )
     role: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange role: prover or verifier"
     )

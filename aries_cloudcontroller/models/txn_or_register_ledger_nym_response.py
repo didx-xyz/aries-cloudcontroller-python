@@ -33,7 +33,9 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
     success: Optional[StrictBool] = Field(
         default=None, description="Success of nym registration operation"
     )
-    txn: Optional[TransactionRecord] = None
+    txn: Optional[TransactionRecord] = Field(
+        default=None, description="DID transaction to endorse"
+    )
     __properties: ClassVar[List[str]] = ["success", "txn"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.cred_def_value_primary import CredDefValuePrimary
@@ -33,8 +33,12 @@ class CredDefValue(BaseModel):
     CredDefValue
     """  # noqa: E501
 
-    primary: Optional[CredDefValuePrimary] = None
-    revocation: Optional[CredDefValueRevocation] = None
+    primary: Optional[CredDefValuePrimary] = Field(
+        default=None, description="Primary value for credential definition"
+    )
+    revocation: Optional[CredDefValueRevocation] = Field(
+        default=None, description="Revocation value for credential definition"
+    )
     __properties: ClassVar[List[str]] = ["primary", "revocation"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

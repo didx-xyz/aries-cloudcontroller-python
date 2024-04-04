@@ -41,7 +41,9 @@ class DIDXRequest(BaseModel):
         default=None, description="DID of exchange"
     )
     did_docattach: Optional[AttachDecorator] = Field(
-        default=None, alias="did_doc~attach"
+        default=None,
+        description="As signed attachment, DID Doc associated with DID",
+        alias="did_doc~attach",
     )
     goal: Optional[StrictStr] = Field(
         default=None,

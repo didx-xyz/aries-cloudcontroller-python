@@ -44,7 +44,9 @@ class V20CredOfferRequest(BaseModel):
     )
     connection_id: StrictStr = Field(description="Connection identifier")
     credential_preview: Optional[V20CredPreview] = None
-    filter: V20CredFilter
+    filter: V20CredFilter = Field(
+        description="Credential specification criteria by format"
+    )
     replacement_id: Optional[StrictStr] = Field(
         default=None,
         description="Optional identifier used to manage credential replacement",

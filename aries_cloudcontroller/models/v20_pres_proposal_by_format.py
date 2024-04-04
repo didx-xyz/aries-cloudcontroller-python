@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.dif_proof_proposal import DIFProofProposal
@@ -31,8 +31,12 @@ class V20PresProposalByFormat(BaseModel):
     V20PresProposalByFormat
     """  # noqa: E501
 
-    dif: Optional[DIFProofProposal] = None
-    indy: Optional[IndyProofRequest] = None
+    dif: Optional[DIFProofProposal] = Field(
+        default=None, description="Presentation proposal for DIF"
+    )
+    indy: Optional[IndyProofRequest] = Field(
+        default=None, description="Presentation proposal for indy"
+    )
     __properties: ClassVar[List[str]] = ["dif", "indy"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

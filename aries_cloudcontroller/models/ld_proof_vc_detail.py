@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.credential import Credential
@@ -33,8 +33,12 @@ class LDProofVCDetail(BaseModel):
     LDProofVCDetail
     """  # noqa: E501
 
-    credential: Credential
-    options: LDProofVCDetailOptions
+    credential: Credential = Field(
+        description="Detail of the JSON-LD Credential to be issued"
+    )
+    options: LDProofVCDetailOptions = Field(
+        description="Options for specifying how the linked data proof is created."
+    )
     __properties: ClassVar[List[str]] = ["credential", "options"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

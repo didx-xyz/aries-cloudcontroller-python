@@ -37,8 +37,12 @@ class IndyProof(BaseModel):
     identifiers: Optional[List[IndyProofIdentifier]] = Field(
         default=None, description="Indy proof.identifiers content"
     )
-    proof: Optional[IndyProofProof] = None
-    requested_proof: Optional[IndyProofRequestedProof] = None
+    proof: Optional[IndyProofProof] = Field(
+        default=None, description="Indy proof.proof content"
+    )
+    requested_proof: Optional[IndyProofRequestedProof] = Field(
+        default=None, description="Indy proof.requested_proof content"
+    )
     __properties: ClassVar[List[str]] = ["identifiers", "proof", "requested_proof"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

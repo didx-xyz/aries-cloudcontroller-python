@@ -31,7 +31,9 @@ class SchemaSendResult(BaseModel):
     SchemaSendResult
     """  # noqa: E501
 
-    var_schema: Optional[ModelSchema] = Field(default=None, alias="schema")
+    var_schema: Optional[ModelSchema] = Field(
+        default=None, description="Schema definition", alias="schema"
+    )
     schema_id: Annotated[str, Field(strict=True)] = Field(
         description="Schema identifier"
     )

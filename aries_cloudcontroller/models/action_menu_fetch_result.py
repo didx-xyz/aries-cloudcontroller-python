@@ -30,7 +30,7 @@ class ActionMenuFetchResult(BaseModel):
     ActionMenuFetchResult
     """  # noqa: E501
 
-    result: Optional[Menu] = None
+    result: Optional[Menu] = Field(default=None, description="Action menu")
     __properties: ClassVar[List[str]] = ["result"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

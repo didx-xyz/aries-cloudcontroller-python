@@ -54,7 +54,9 @@ class V10CredentialExchange(BaseModel):
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
     )
-    credential: Optional[IndyCredInfo] = None
+    credential: Optional[IndyCredInfo] = Field(
+        default=None, description="Credential as stored"
+    )
     credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier"
     )
@@ -64,10 +66,18 @@ class V10CredentialExchange(BaseModel):
     credential_id: Optional[StrictStr] = Field(
         default=None, description="Credential identifier"
     )
-    credential_offer: Optional[IndyCredAbstract] = None
-    credential_offer_dict: Optional[CredentialOffer] = None
-    credential_proposal_dict: Optional[CredentialProposal] = None
-    credential_request: Optional[IndyCredRequest] = None
+    credential_offer: Optional[IndyCredAbstract] = Field(
+        default=None, description="(Indy) credential offer"
+    )
+    credential_offer_dict: Optional[CredentialOffer] = Field(
+        default=None, description="Credential offer message"
+    )
+    credential_proposal_dict: Optional[CredentialProposal] = Field(
+        default=None, description="Credential proposal message"
+    )
+    credential_request: Optional[IndyCredRequest] = Field(
+        default=None, description="(Indy) credential request"
+    )
     credential_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="(Indy) credential request metadata"
     )
@@ -79,7 +89,10 @@ class V10CredentialExchange(BaseModel):
     parent_thread_id: Optional[StrictStr] = Field(
         default=None, description="Parent thread identifier"
     )
-    raw_credential: Optional[IndyCredential] = None
+    raw_credential: Optional[IndyCredential] = Field(
+        default=None,
+        description="Credential as received, prior to storage in holder wallet",
+    )
     revoc_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )

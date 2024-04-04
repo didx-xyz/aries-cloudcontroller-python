@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.signature_options import SignatureOptions
@@ -30,7 +30,7 @@ class SignedDoc(BaseModel):
     SignedDoc
     """  # noqa: E501
 
-    proof: SignatureOptions
+    proof: SignatureOptions = Field(description="Linked data proof")
     __properties: ClassVar[List[str]] = ["proof"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

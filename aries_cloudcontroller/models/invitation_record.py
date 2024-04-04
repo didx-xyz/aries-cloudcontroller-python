@@ -37,7 +37,9 @@ class InvitationRecord(BaseModel):
     invi_msg_id: Optional[StrictStr] = Field(
         default=None, description="Invitation message identifier"
     )
-    invitation: Optional[InvitationMessage] = None
+    invitation: Optional[InvitationMessage] = Field(
+        default=None, description="Out of band invitation message"
+    )
     invitation_id: Optional[StrictStr] = Field(
         default=None, description="Invitation record identifier"
     )

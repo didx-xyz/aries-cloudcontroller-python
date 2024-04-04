@@ -42,7 +42,7 @@ class OobRecord(BaseModel):
         default=None, description="Time of record creation"
     )
     invi_msg_id: StrictStr = Field(description="Invitation message identifier")
-    invitation: InvitationMessage
+    invitation: InvitationMessage = Field(description="Out of band invitation message")
     oob_id: StrictStr = Field(description="Oob record identifier")
     our_recipient_key: Optional[StrictStr] = Field(
         default=None, description="Recipient key used for oob invitation"

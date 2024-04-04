@@ -42,7 +42,9 @@ class InputDescriptors(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Name")
     purpose: Optional[StrictStr] = Field(default=None, description="Purpose")
     var_schema: Optional[SchemasInputDescriptorFilter] = Field(
-        default=None, alias="schema"
+        default=None,
+        description="Accepts a list of schema or a dict containing filters like oneof_filter.",
+        alias="schema",
     )
     __properties: ClassVar[List[str]] = [
         "constraints",

@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, StrictStr
+from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
@@ -33,8 +33,12 @@ class IndyCredPrecis(BaseModel):
     IndyCredPrecis
     """  # noqa: E501
 
-    cred_info: Optional[IndyCredInfo] = None
-    interval: Optional[IndyNonRevocationInterval] = None
+    cred_info: Optional[IndyCredInfo] = Field(
+        default=None, description="Credential info"
+    )
+    interval: Optional[IndyNonRevocationInterval] = Field(
+        default=None, description="Non-revocation interval from presentation request"
+    )
     presentation_referents: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = [
         "cred_info",

@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_primary_proof import IndyPrimaryProof
@@ -34,7 +34,9 @@ class IndyProofProofProofsProof(BaseModel):
     """  # noqa: E501
 
     non_revoc_proof: Optional[IndyProofProofProofsProofNonRevocProof] = None
-    primary_proof: Optional[IndyPrimaryProof] = None
+    primary_proof: Optional[IndyPrimaryProof] = Field(
+        default=None, description="Indy primary proof"
+    )
     __properties: ClassVar[List[str]] = ["non_revoc_proof", "primary_proof"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

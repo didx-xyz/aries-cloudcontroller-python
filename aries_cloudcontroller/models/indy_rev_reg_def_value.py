@@ -42,7 +42,7 @@ class IndyRevRegDefValue(BaseModel):
         alias="maxCredNum",
     )
     public_keys: Optional[IndyRevRegDefValuePublicKeys] = Field(
-        default=None, alias="publicKeys"
+        default=None, description="Public keys", alias="publicKeys"
     )
     tails_hash: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Tails hash value", alias="tailsHash"

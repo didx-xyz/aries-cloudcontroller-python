@@ -38,7 +38,9 @@ class V20CredRequestFree(BaseModel):
         default=None, description="Human-readable comment"
     )
     connection_id: StrictStr = Field(description="Connection identifier")
-    filter: V20CredFilterLDProof
+    filter: V20CredFilterLDProof = Field(
+        description="Credential specification criteria by format"
+    )
     holder_did: Optional[StrictStr] = Field(
         default=None,
         description="Holder DID to substitute for the credentialSubject.id",

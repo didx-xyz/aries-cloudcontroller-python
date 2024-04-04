@@ -56,8 +56,12 @@ class IssuerRevRegRecord(BaseModel):
     revoc_def_type: Optional[StrictStr] = Field(
         default=None, description="Revocation registry type (specify CL_ACCUM)"
     )
-    revoc_reg_def: Optional[IndyRevRegDef] = None
-    revoc_reg_entry: Optional[IndyRevRegEntry] = None
+    revoc_reg_def: Optional[IndyRevRegDef] = Field(
+        default=None, description="Revocation registry definition"
+    )
+    revoc_reg_entry: Optional[IndyRevRegEntry] = Field(
+        default=None, description="Revocation registry entry"
+    )
     revoc_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Revocation registry identifier"
     )

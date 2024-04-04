@@ -35,7 +35,9 @@ class IndyProofProof(BaseModel):
     IndyProofProof
     """  # noqa: E501
 
-    aggregated_proof: Optional[IndyProofProofAggregatedProof] = None
+    aggregated_proof: Optional[IndyProofProofAggregatedProof] = Field(
+        default=None, description="Indy proof aggregated proof"
+    )
     proofs: Optional[List[IndyProofProofProofsProof]] = Field(
         default=None, description="Indy proof proofs"
     )

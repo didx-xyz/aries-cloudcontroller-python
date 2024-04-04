@@ -31,7 +31,9 @@ class IndyRevRegEntry(BaseModel):
     IndyRevRegEntry
     """  # noqa: E501
 
-    value: Optional[IndyRevRegEntryValue] = None
+    value: Optional[IndyRevRegEntryValue] = Field(
+        default=None, description="Revocation registry entry value"
+    )
     ver: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Version of revocation registry entry"
     )

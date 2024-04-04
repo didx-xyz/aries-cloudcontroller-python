@@ -31,7 +31,7 @@ class Doc(BaseModel):
     """  # noqa: E501
 
     credential: Dict[str, Any] = Field(description="Credential to sign")
-    options: SignatureOptions
+    options: SignatureOptions = Field(description="Signature options")
     __properties: ClassVar[List[str]] = ["credential", "options"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
