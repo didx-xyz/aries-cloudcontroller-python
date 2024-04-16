@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Set
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr
 from typing_extensions import Self
@@ -29,7 +29,7 @@ class SDJWSVerifyResponse(BaseModel):
     SDJWSVerifyResponse
     """  # noqa: E501
 
-    disclosures: Optional[List[List[Dict[str, Any]]]] = Field(
+    disclosures: Optional[List[List[Union[str, Dict[str, Any]]]]] = Field(
         default=None, description="Disclosure arrays associated with the SD-JWT"
     )
     error: Optional[StrictStr] = Field(default=None, description="Error text")
