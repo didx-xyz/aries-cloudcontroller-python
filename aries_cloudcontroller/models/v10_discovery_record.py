@@ -17,19 +17,14 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.disclose import Disclose
 from aries_cloudcontroller.models.query import Query
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V10DiscoveryRecord(BaseModel):
@@ -43,11 +38,11 @@ class V10DiscoveryRecord(BaseModel):
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
     )
-    disclose: Optional[Disclose] = None
+    disclose: Optional[Disclose] = Field(default=None, description="Disclose message")
     discovery_exchange_id: Optional[StrictStr] = Field(
         default=None, description="Credential exchange identifier"
     )
-    query_msg: Optional[Query] = None
+    query_msg: Optional[Query] = Field(default=None, description="Query message")
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
     thread_id: Optional[StrictStr] = Field(
         default=None, description="Thread identifier"
@@ -112,7 +107,7 @@ class V10DiscoveryRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V10DiscoveryRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -126,9 +121,11 @@ class V10DiscoveryRecord(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of disclose
@@ -140,7 +137,7 @@ class V10DiscoveryRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V10DiscoveryRecord from a dict"""
         if obj is None:
             return None
@@ -153,13 +150,13 @@ class V10DiscoveryRecord(BaseModel):
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
                 "disclose": (
-                    Disclose.from_dict(obj.get("disclose"))
+                    Disclose.from_dict(obj["disclose"])
                     if obj.get("disclose") is not None
                     else None
                 ),
                 "discovery_exchange_id": obj.get("discovery_exchange_id"),
                 "query_msg": (
-                    Query.from_dict(obj.get("query_msg"))
+                    Query.from_dict(obj["query_msg"])
                     if obj.get("query_msg") is not None
                     else None
                 ),

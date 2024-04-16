@@ -12,18 +12,23 @@ autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-
 # Cleanup generated models
 for file in aries_cloudcontroller/models/*.py; do
     # Replace the model config with DEFAULT_PYDANTIC_MODEL_CONFIG
-    sed -i '/model_config = {/,/}/c\    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG' "$file"
+    sed -i '/protected_namespaces=()/d' "$file" # first remove this line to make bracket matching easier
+    sed -i '/model_config = ConfigDict(/,/)/c\    model_config = DEFAULT_PYDANTIC_MODEL_CONFIG' "$file"
 
     # Add import statement for this default config, and re-add ClassVar, List imports, as autoflake mistakenly removes them
-    sed -i '/try:$/N;/try:\n    from typing import Self/i \
-from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG\
-from typing import ClassVar, List' "$file"
+    sed -i '/from typing_extensions import Self/i from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG' "$file"
 
     # Replace the TODO lines
     sed -i '/# TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead/N; s/# TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead\n        return json.dumps(self.to_dict())/return self.model_dump_json(by_alias=True, exclude_unset=True)/' "$file"
 
     # Fix autogeneration of very long number
     sed -i 's/Field(le=-1,/Field(le=18446744073709551615,/g' "$file"
+done
+
+echo "Removing redundant validate_call decorators"
+for file in aries_cloudcontroller/api/*.py; do
+    # Use python script to clean unnecessary validate_call decorators
+    python ../generator/scripts/clean_validate_decorators.py "$file"
 done
 
 # Deduplication for __init__.py -- just helps get SonarCloud duplication report to be under threshold!
@@ -68,9 +73,3 @@ sed -i '/# override the default output from pydantic by calling `to_dict()` of d
 
 # Additionally, the API Client we modify so that query_params are converted from bool to str, before being submitted to ACA-Py
 # This change impacts multiple lines, calling `sanitize_for_serialization`
-
-# autoflake again to remove newly unused imports
-autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
-# Black format and optimise imports
-black aries_cloudcontroller
-isort aries_cloudcontroller --profile black

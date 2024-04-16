@@ -11,22 +11,12 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
-
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
-
-from typing import Optional
-
-from pydantic import Field, StrictBool, StrictStr
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
-from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
 from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.conn_record import ConnRecord
 from aries_cloudcontroller.models.didx_reject_request import DIDXRejectRequest
@@ -78,26 +68,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._accept_invitation_serialize(
@@ -110,7 +81,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -151,26 +124,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._accept_invitation_serialize(
@@ -183,7 +137,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -224,26 +180,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._accept_invitation_serialize(
@@ -256,7 +193,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -271,7 +210,8 @@ class DidExchangeApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -288,9 +228,11 @@ class DidExchangeApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         if my_label is not None:
+
             _query_params.append(("my_label", my_label))
 
         # process the header parameters
@@ -359,26 +301,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._accept_request_serialize(
@@ -392,7 +315,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -440,26 +365,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._accept_request_serialize(
@@ -473,7 +379,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -521,26 +429,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._accept_request_serialize(
@@ -554,7 +443,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -570,7 +461,8 @@ class DidExchangeApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -587,12 +479,15 @@ class DidExchangeApi:
             _path_params["conn_id"] = conn_id
         # process the query parameters
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         if use_public_did is not None:
+
             _query_params.append(("use_public_did", use_public_did))
 
         # process the header parameters
@@ -693,26 +588,7 @@ class DidExchangeApi:
         :type my_label: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._create_request_serialize(
@@ -730,7 +606,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -810,26 +688,7 @@ class DidExchangeApi:
         :type my_label: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._create_request_serialize(
@@ -847,7 +706,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -927,26 +788,7 @@ class DidExchangeApi:
         :type my_label: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._create_request_serialize(
@@ -964,7 +806,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -984,7 +828,8 @@ class DidExchangeApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -999,27 +844,35 @@ class DidExchangeApi:
         # process the path parameters
         # process the query parameters
         if their_public_did is not None:
+
             _query_params.append(("their_public_did", their_public_did))
 
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if goal is not None:
+
             _query_params.append(("goal", goal))
 
         if goal_code is not None:
+
             _query_params.append(("goal_code", goal_code))
 
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         if my_label is not None:
+
             _query_params.append(("my_label", my_label))
 
         if use_public_did is not None:
+
             _query_params.append(("use_public_did", use_public_did))
 
         # process the header parameters
@@ -1073,26 +926,7 @@ class DidExchangeApi:
         :type conn_id: str
         :param body:
         :type body: DIDXRejectRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._didexchange_conn_id_reject_post_serialize(
@@ -1104,7 +938,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1137,26 +973,7 @@ class DidExchangeApi:
         :type conn_id: str
         :param body:
         :type body: DIDXRejectRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._didexchange_conn_id_reject_post_serialize(
@@ -1168,7 +985,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1201,26 +1020,7 @@ class DidExchangeApi:
         :type conn_id: str
         :param body:
         :type body: DIDXRejectRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._didexchange_conn_id_reject_post_serialize(
@@ -1232,7 +1032,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1246,7 +1048,8 @@ class DidExchangeApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1345,26 +1148,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param body:
         :type body: DIDXRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._receive_request_serialize(
@@ -1379,7 +1163,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1432,26 +1218,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param body:
         :type body: DIDXRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._receive_request_serialize(
@@ -1466,7 +1233,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1519,26 +1288,7 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param body:
         :type body: DIDXRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._receive_request_serialize(
@@ -1553,7 +1303,9 @@ class DidExchangeApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {"200": "ConnRecord"}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ConnRecord",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -1570,7 +1322,8 @@ class DidExchangeApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1585,15 +1338,19 @@ class DidExchangeApi:
         # process the path parameters
         # process the query parameters
         if alias is not None:
+
             _query_params.append(("alias", alias))
 
         if auto_accept is not None:
+
             _query_params.append(("auto_accept", auto_accept))
 
         if mediation_id is not None:
+
             _query_params.append(("mediation_id", mediation_id))
 
         if my_endpoint is not None:
+
             _query_params.append(("my_endpoint", my_endpoint))
 
         # process the header parameters

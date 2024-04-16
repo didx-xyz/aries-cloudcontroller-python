@@ -17,18 +17,13 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.indy_rev_reg_def_value import IndyRevRegDefValue
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyRevRegDef(BaseModel):
@@ -50,7 +45,9 @@ class IndyRevRegDef(BaseModel):
     tag: Optional[StrictStr] = Field(
         default=None, description="Revocation registry tag"
     )
-    value: Optional[IndyRevRegDefValue] = None
+    value: Optional[IndyRevRegDefValue] = Field(
+        default=None, description="Revocation registry definition value"
+    )
     ver: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Version of revocation registry definition"
     )
@@ -99,7 +96,7 @@ class IndyRevRegDef(BaseModel):
         if value is None:
             return value
 
-        if value not in ("CL_ACCUM"):
+        if value not in set(["CL_ACCUM"]):
             raise ValueError("must be one of enum values ('CL_ACCUM')")
         return value
 
@@ -124,7 +121,7 @@ class IndyRevRegDef(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IndyRevRegDef from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -138,9 +135,11 @@ class IndyRevRegDef(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of value
@@ -149,7 +148,7 @@ class IndyRevRegDef(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IndyRevRegDef from a dict"""
         if obj is None:
             return None
@@ -164,7 +163,7 @@ class IndyRevRegDef(BaseModel):
                 "revocDefType": obj.get("revocDefType"),
                 "tag": obj.get("tag"),
                 "value": (
-                    IndyRevRegDefValue.from_dict(obj.get("value"))
+                    IndyRevRegDefValue.from_dict(obj["value"])
                     if obj.get("value") is not None
                     else None
                 ),

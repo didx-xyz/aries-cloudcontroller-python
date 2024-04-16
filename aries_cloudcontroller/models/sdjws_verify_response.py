@@ -16,16 +16,12 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class SDJWSVerifyResponse(BaseModel):
@@ -33,13 +29,13 @@ class SDJWSVerifyResponse(BaseModel):
     SDJWSVerifyResponse
     """  # noqa: E501
 
-    disclosures: Optional[List[List[Union[str, Any]]]] = Field(
+    disclosures: Optional[List[List[Union[str, Dict[str, Any]]]]] = Field(
         default=None, description="Disclosure arrays associated with the SD-JWT"
     )
     error: Optional[StrictStr] = Field(default=None, description="Error text")
-    headers: Union[str, Any] = Field(description="Headers from verified JWT.")
+    headers: Dict[str, Any] = Field(description="Headers from verified JWT.")
     kid: StrictStr = Field(description="kid of signer")
-    payload: Union[str, Any] = Field(description="Payload from verified JWT")
+    payload: Dict[str, Any] = Field(description="Payload from verified JWT")
     valid: StrictBool
     __properties: ClassVar[List[str]] = [
         "disclosures",
@@ -61,7 +57,7 @@ class SDJWSVerifyResponse(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SDJWSVerifyResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -75,15 +71,17 @@ class SDJWSVerifyResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SDJWSVerifyResponse from a dict"""
         if obj is None:
             return None

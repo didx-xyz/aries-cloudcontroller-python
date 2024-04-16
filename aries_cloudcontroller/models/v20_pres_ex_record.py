@@ -17,10 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.v20_pres import V20Pres
 from aries_cloudcontroller.models.v20_pres_ex_record_by_format import (
@@ -29,11 +29,6 @@ from aries_cloudcontroller.models.v20_pres_ex_record_by_format import (
 from aries_cloudcontroller.models.v20_pres_proposal import V20PresProposal
 from aries_cloudcontroller.models.v20_pres_request import V20PresRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20PresExRecord(BaseModel):
@@ -52,7 +47,10 @@ class V20PresExRecord(BaseModel):
     auto_verify: Optional[StrictBool] = Field(
         default=None, description="Verifier choice to auto-verify proof presentation"
     )
-    by_format: Optional[V20PresExRecordByFormat] = None
+    by_format: Optional[V20PresExRecordByFormat] = Field(
+        default=None,
+        description="Attachment content by format for proposal, request, and presentation",
+    )
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
@@ -63,12 +61,16 @@ class V20PresExRecord(BaseModel):
     initiator: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange initiator: self or external"
     )
-    pres: Optional[V20Pres] = None
+    pres: Optional[V20Pres] = Field(default=None, description="Presentation message")
     pres_ex_id: Optional[StrictStr] = Field(
         default=None, description="Presentation exchange identifier"
     )
-    pres_proposal: Optional[V20PresProposal] = None
-    pres_request: Optional[V20PresRequest] = None
+    pres_proposal: Optional[V20PresProposal] = Field(
+        default=None, description="Presentation proposal message"
+    )
+    pres_request: Optional[V20PresRequest] = Field(
+        default=None, description="Presentation request message"
+    )
     role: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange role: prover or verifier"
     )
@@ -132,7 +134,7 @@ class V20PresExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("self", "external"):
+        if value not in set(["self", "external"]):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
@@ -142,7 +144,7 @@ class V20PresExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("prover", "verifier"):
+        if value not in set(["prover", "verifier"]):
             raise ValueError("must be one of enum values ('prover', 'verifier')")
         return value
 
@@ -152,16 +154,18 @@ class V20PresExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in (
-            "proposal-sent",
-            "proposal-received",
-            "request-sent",
-            "request-received",
-            "presentation-sent",
-            "presentation-received",
-            "done",
-            "abandoned",
-            "deleted",
+        if value not in set(
+            [
+                "proposal-sent",
+                "proposal-received",
+                "request-sent",
+                "request-received",
+                "presentation-sent",
+                "presentation-received",
+                "done",
+                "abandoned",
+                "deleted",
+            ]
         ):
             raise ValueError(
                 "must be one of enum values ('proposal-sent', 'proposal-received', 'request-sent', 'request-received', 'presentation-sent', 'presentation-received', 'done', 'abandoned', 'deleted')"
@@ -189,7 +193,7 @@ class V20PresExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("true", "false"):
+        if value not in set(["true", "false"]):
             raise ValueError("must be one of enum values ('true', 'false')")
         return value
 
@@ -204,7 +208,7 @@ class V20PresExRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20PresExRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -218,9 +222,11 @@ class V20PresExRecord(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of by_format
@@ -238,7 +244,7 @@ class V20PresExRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20PresExRecord from a dict"""
         if obj is None:
             return None
@@ -252,7 +258,7 @@ class V20PresExRecord(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "auto_verify": obj.get("auto_verify"),
                 "by_format": (
-                    V20PresExRecordByFormat.from_dict(obj.get("by_format"))
+                    V20PresExRecordByFormat.from_dict(obj["by_format"])
                     if obj.get("by_format") is not None
                     else None
                 ),
@@ -261,18 +267,18 @@ class V20PresExRecord(BaseModel):
                 "error_msg": obj.get("error_msg"),
                 "initiator": obj.get("initiator"),
                 "pres": (
-                    V20Pres.from_dict(obj.get("pres"))
+                    V20Pres.from_dict(obj["pres"])
                     if obj.get("pres") is not None
                     else None
                 ),
                 "pres_ex_id": obj.get("pres_ex_id"),
                 "pres_proposal": (
-                    V20PresProposal.from_dict(obj.get("pres_proposal"))
+                    V20PresProposal.from_dict(obj["pres_proposal"])
                     if obj.get("pres_proposal") is not None
                     else None
                 ),
                 "pres_request": (
-                    V20PresRequest.from_dict(obj.get("pres_request"))
+                    V20PresRequest.from_dict(obj["pres_request"])
                     if obj.get("pres_request") is not None
                     else None
                 ),

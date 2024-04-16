@@ -16,16 +16,12 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class QueryItem(BaseModel):
@@ -40,7 +36,7 @@ class QueryItem(BaseModel):
     @field_validator("feature_type")
     def feature_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ("protocol", "goal-code"):
+        if value not in set(["protocol", "goal-code"]):
             raise ValueError("must be one of enum values ('protocol', 'goal-code')")
         return value
 
@@ -55,7 +51,7 @@ class QueryItem(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of QueryItem from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -69,15 +65,17 @@ class QueryItem(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of QueryItem from a dict"""
         if obj is None:
             return None

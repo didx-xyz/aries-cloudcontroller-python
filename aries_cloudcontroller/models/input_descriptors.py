@@ -16,20 +16,16 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.constraints import Constraints
 from aries_cloudcontroller.models.schemas_input_descriptor_filter import (
     SchemasInputDescriptorFilter,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class InputDescriptors(BaseModel):
@@ -40,13 +36,15 @@ class InputDescriptors(BaseModel):
     constraints: Optional[Constraints] = None
     group: Optional[List[StrictStr]] = None
     id: Optional[StrictStr] = Field(default=None, description="ID")
-    metadata: Optional[Union[str, Any]] = Field(
+    metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Metadata dictionary"
     )
     name: Optional[StrictStr] = Field(default=None, description="Name")
     purpose: Optional[StrictStr] = Field(default=None, description="Purpose")
     var_schema: Optional[SchemasInputDescriptorFilter] = Field(
-        default=None, alias="schema"
+        default=None,
+        description="Accepts a list of schema or a dict containing filters like oneof_filter.",
+        alias="schema",
     )
     __properties: ClassVar[List[str]] = [
         "constraints",
@@ -69,7 +67,7 @@ class InputDescriptors(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of InputDescriptors from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -83,9 +81,11 @@ class InputDescriptors(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of constraints
@@ -97,7 +97,7 @@ class InputDescriptors(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of InputDescriptors from a dict"""
         if obj is None:
             return None
@@ -108,7 +108,7 @@ class InputDescriptors(BaseModel):
         _obj = cls.model_validate(
             {
                 "constraints": (
-                    Constraints.from_dict(obj.get("constraints"))
+                    Constraints.from_dict(obj["constraints"])
                     if obj.get("constraints") is not None
                     else None
                 ),
@@ -118,7 +118,7 @@ class InputDescriptors(BaseModel):
                 "name": obj.get("name"),
                 "purpose": obj.get("purpose"),
                 "schema": (
-                    SchemasInputDescriptorFilter.from_dict(obj.get("schema"))
+                    SchemasInputDescriptorFilter.from_dict(obj["schema"])
                     if obj.get("schema") is not None
                     else None
                 ),

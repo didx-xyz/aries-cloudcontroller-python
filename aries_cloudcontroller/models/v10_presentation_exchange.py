@@ -17,21 +17,16 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.indy_proof import IndyProof
 from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.models.presentation_proposal import PresentationProposal
 from aries_cloudcontroller.models.presentation_request import PresentationRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V10PresentationExchange(BaseModel):
@@ -60,13 +55,22 @@ class V10PresentationExchange(BaseModel):
     initiator: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange initiator: self or external"
     )
-    presentation: Optional[IndyProof] = None
+    presentation: Optional[IndyProof] = Field(
+        default=None, description="(Indy) presentation (also known as proof)"
+    )
     presentation_exchange_id: Optional[StrictStr] = Field(
         default=None, description="Presentation exchange identifier"
     )
-    presentation_proposal_dict: Optional[PresentationProposal] = None
-    presentation_request: Optional[IndyProofRequest] = None
-    presentation_request_dict: Optional[PresentationRequest] = None
+    presentation_proposal_dict: Optional[PresentationProposal] = Field(
+        default=None, description="Presentation proposal message"
+    )
+    presentation_request: Optional[IndyProofRequest] = Field(
+        default=None,
+        description="(Indy) presentation request (also known as proof request)",
+    )
+    presentation_request_dict: Optional[PresentationRequest] = Field(
+        default=None, description="Presentation request message"
+    )
     role: Optional[StrictStr] = Field(
         default=None, description="Present-proof exchange role: prover or verifier"
     )
@@ -130,7 +134,7 @@ class V10PresentationExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("self", "external"):
+        if value not in set(["self", "external"]):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
@@ -140,7 +144,7 @@ class V10PresentationExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("prover", "verifier"):
+        if value not in set(["prover", "verifier"]):
             raise ValueError("must be one of enum values ('prover', 'verifier')")
         return value
 
@@ -165,7 +169,7 @@ class V10PresentationExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("true", "false"):
+        if value not in set(["true", "false"]):
             raise ValueError("must be one of enum values ('true', 'false')")
         return value
 
@@ -180,7 +184,7 @@ class V10PresentationExchange(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V10PresentationExchange from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -194,9 +198,11 @@ class V10PresentationExchange(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of presentation
@@ -218,7 +224,7 @@ class V10PresentationExchange(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V10PresentationExchange from a dict"""
         if obj is None:
             return None
@@ -236,25 +242,23 @@ class V10PresentationExchange(BaseModel):
                 "error_msg": obj.get("error_msg"),
                 "initiator": obj.get("initiator"),
                 "presentation": (
-                    IndyProof.from_dict(obj.get("presentation"))
+                    IndyProof.from_dict(obj["presentation"])
                     if obj.get("presentation") is not None
                     else None
                 ),
                 "presentation_exchange_id": obj.get("presentation_exchange_id"),
                 "presentation_proposal_dict": (
-                    PresentationProposal.from_dict(
-                        obj.get("presentation_proposal_dict")
-                    )
+                    PresentationProposal.from_dict(obj["presentation_proposal_dict"])
                     if obj.get("presentation_proposal_dict") is not None
                     else None
                 ),
                 "presentation_request": (
-                    IndyProofRequest.from_dict(obj.get("presentation_request"))
+                    IndyProofRequest.from_dict(obj["presentation_request"])
                     if obj.get("presentation_request") is not None
                     else None
                 ),
                 "presentation_request_dict": (
-                    PresentationRequest.from_dict(obj.get("presentation_request_dict"))
+                    PresentationRequest.from_dict(obj["presentation_request_dict"])
                     if obj.get("presentation_request_dict") is not None
                     else None
                 ),

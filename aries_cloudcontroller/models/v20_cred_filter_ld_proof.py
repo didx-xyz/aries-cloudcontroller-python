@@ -16,17 +16,13 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20CredFilterLDProof(BaseModel):
@@ -34,7 +30,9 @@ class V20CredFilterLDProof(BaseModel):
     V20CredFilterLDProof
     """  # noqa: E501
 
-    ld_proof: LDProofVCDetail
+    ld_proof: LDProofVCDetail = Field(
+        description="Credential filter for linked data proof"
+    )
     __properties: ClassVar[List[str]] = ["ld_proof"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -48,7 +46,7 @@ class V20CredFilterLDProof(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20CredFilterLDProof from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -62,9 +60,11 @@ class V20CredFilterLDProof(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of ld_proof
@@ -73,7 +73,7 @@ class V20CredFilterLDProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20CredFilterLDProof from a dict"""
         if obj is None:
             return None
@@ -84,7 +84,7 @@ class V20CredFilterLDProof(BaseModel):
         _obj = cls.model_validate(
             {
                 "ld_proof": (
-                    LDProofVCDetail.from_dict(obj.get("ld_proof"))
+                    LDProofVCDetail.from_dict(obj["ld_proof"])
                     if obj.get("ld_proof") is not None
                     else None
                 )

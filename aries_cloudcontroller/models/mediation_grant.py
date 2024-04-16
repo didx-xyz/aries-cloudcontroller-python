@@ -16,16 +16,12 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class MediationGrant(BaseModel):
@@ -57,7 +53,7 @@ class MediationGrant(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of MediationGrant from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -72,17 +68,21 @@ class MediationGrant(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set(
+            [
+                "type",
+            ]
+        )
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "type",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of MediationGrant from a dict"""
         if obj is None:
             return None

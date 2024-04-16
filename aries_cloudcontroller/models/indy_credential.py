@@ -17,18 +17,13 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.indy_attr_value import IndyAttrValue
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyCredential(BaseModel):
@@ -39,7 +34,7 @@ class IndyCredential(BaseModel):
     cred_def_id: Annotated[str, Field(strict=True)] = Field(
         description="Credential definition identifier"
     )
-    rev_reg: Optional[Union[str, Any]] = Field(
+    rev_reg: Optional[Dict[str, Any]] = Field(
         default=None, description="Revocation registry state"
     )
     rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -48,12 +43,12 @@ class IndyCredential(BaseModel):
     schema_id: Annotated[str, Field(strict=True)] = Field(
         description="Schema identifier"
     )
-    signature: Union[str, Any] = Field(description="Credential signature")
-    signature_correctness_proof: Union[str, Any] = Field(
+    signature: Dict[str, Any] = Field(description="Credential signature")
+    signature_correctness_proof: Dict[str, Any] = Field(
         description="Credential signature correctness proof"
     )
     values: Dict[str, IndyAttrValue] = Field(description="Credential attributes")
-    witness: Optional[Union[str, Any]] = Field(
+    witness: Optional[Dict[str, Any]] = Field(
         default=None, description="Witness for revocation proof"
     )
     __properties: ClassVar[List[str]] = [
@@ -117,7 +112,7 @@ class IndyCredential(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IndyCredential from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -131,9 +126,11 @@ class IndyCredential(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each value in values (dict)
@@ -161,7 +158,7 @@ class IndyCredential(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IndyCredential from a dict"""
         if obj is None:
             return None
@@ -180,7 +177,7 @@ class IndyCredential(BaseModel):
                 "values": (
                     dict(
                         (_k, IndyAttrValue.from_dict(_v))
-                        for _k, _v in obj.get("values").items()
+                        for _k, _v in obj["values"].items()
                     )
                     if obj.get("values") is not None
                     else None

@@ -16,6 +16,8 @@ import copy
 import http.client as httplib
 import logging
 import sys
+from logging import FileHandler
+from typing import Optional
 
 import urllib3
 
@@ -147,7 +149,7 @@ class Configuration:
         self.logger_stream_handler = None
         """Log stream handler
         """
-        self.logger_file_handler = None
+        self.logger_file_handler: Optional[FileHandler] = None
         """Log file handler
         """
         self.logger_file = None
@@ -184,7 +186,7 @@ class Configuration:
            Default values is 100, None means no-limit.
         """
 
-        self.proxy = None
+        self.proxy: Optional[str] = None
         """Proxy URL
         """
         self.proxy_headers = None

@@ -16,19 +16,15 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, StrictBool
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.aml_record import AMLRecord
 from aries_cloudcontroller.models.taa_acceptance import TAAAcceptance
 from aries_cloudcontroller.models.taa_record import TAARecord
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class TAAInfo(BaseModel):
@@ -58,7 +54,7 @@ class TAAInfo(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TAAInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -72,9 +68,11 @@ class TAAInfo(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of aml_record
@@ -89,7 +87,7 @@ class TAAInfo(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TAAInfo from a dict"""
         if obj is None:
             return None
@@ -100,17 +98,17 @@ class TAAInfo(BaseModel):
         _obj = cls.model_validate(
             {
                 "aml_record": (
-                    AMLRecord.from_dict(obj.get("aml_record"))
+                    AMLRecord.from_dict(obj["aml_record"])
                     if obj.get("aml_record") is not None
                     else None
                 ),
                 "taa_accepted": (
-                    TAAAcceptance.from_dict(obj.get("taa_accepted"))
+                    TAAAcceptance.from_dict(obj["taa_accepted"])
                     if obj.get("taa_accepted") is not None
                     else None
                 ),
                 "taa_record": (
-                    TAARecord.from_dict(obj.get("taa_record"))
+                    TAARecord.from_dict(obj["taa_record"])
                     if obj.get("taa_record") is not None
                     else None
                 ),

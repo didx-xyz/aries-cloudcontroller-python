@@ -16,17 +16,13 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.schema_input_descriptor import SchemaInputDescriptor
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class SchemasInputDescriptorFilter(BaseModel):
@@ -49,7 +45,7 @@ class SchemasInputDescriptorFilter(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SchemasInputDescriptorFilter from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -63,9 +59,11 @@ class SchemasInputDescriptorFilter(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in uri_groups (list of list)
@@ -84,7 +82,7 @@ class SchemasInputDescriptorFilter(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SchemasInputDescriptorFilter from a dict"""
         if obj is None:
             return None
@@ -101,7 +99,7 @@ class SchemasInputDescriptorFilter(BaseModel):
                             SchemaInputDescriptor.from_dict(_inner_item)
                             for _inner_item in _item
                         ]
-                        for _item in obj.get("uri_groups")
+                        for _item in obj["uri_groups"]
                     ]
                     if obj.get("uri_groups") is not None
                     else None

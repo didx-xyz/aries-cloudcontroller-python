@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Generic, Optional, TypeVar
+from typing import Generic, Mapping, Optional, TypeVar
 
-from pydantic import BaseModel, Field, StrictBytes, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictBytes, StrictInt
 
 T = TypeVar("T")
 
@@ -15,9 +15,7 @@ class ApiResponse(BaseModel, Generic[T]):
     """
 
     status_code: StrictInt = Field(description="HTTP status code")
-    headers: Optional[Dict[StrictStr, StrictStr]] = Field(
-        None, description="HTTP headers"
-    )
+    headers: Optional[Mapping[str, str]] = Field(None, description="HTTP headers")
     data: T = Field(description="Deserialized data given the data type")
     raw_data: StrictBytes = Field(description="Raw data (HTTP response body)")
 

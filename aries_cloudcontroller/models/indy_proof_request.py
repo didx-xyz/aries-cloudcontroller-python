@@ -17,10 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.indy_proof_req_attr_spec import IndyProofReqAttrSpec
 from aries_cloudcontroller.models.indy_proof_req_pred_spec import IndyProofReqPredSpec
@@ -28,11 +28,6 @@ from aries_cloudcontroller.models.indy_proof_request_non_revoked import (
     IndyProofRequestNonRevoked,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyProofRequest(BaseModel):
@@ -94,7 +89,7 @@ class IndyProofRequest(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IndyProofRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -108,9 +103,11 @@ class IndyProofRequest(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of non_revoked
@@ -138,7 +135,7 @@ class IndyProofRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IndyProofRequest from a dict"""
         if obj is None:
             return None
@@ -150,7 +147,7 @@ class IndyProofRequest(BaseModel):
             {
                 "name": obj.get("name"),
                 "non_revoked": (
-                    IndyProofRequestNonRevoked.from_dict(obj.get("non_revoked"))
+                    IndyProofRequestNonRevoked.from_dict(obj["non_revoked"])
                     if obj.get("non_revoked") is not None
                     else None
                 ),
@@ -158,7 +155,7 @@ class IndyProofRequest(BaseModel):
                 "requested_attributes": (
                     dict(
                         (_k, IndyProofReqAttrSpec.from_dict(_v))
-                        for _k, _v in obj.get("requested_attributes").items()
+                        for _k, _v in obj["requested_attributes"].items()
                     )
                     if obj.get("requested_attributes") is not None
                     else None
@@ -166,7 +163,7 @@ class IndyProofRequest(BaseModel):
                 "requested_predicates": (
                     dict(
                         (_k, IndyProofReqPredSpec.from_dict(_v))
-                        for _k, _v in obj.get("requested_predicates").items()
+                        for _k, _v in obj["requested_predicates"].items()
                     )
                     if obj.get("requested_predicates") is not None
                     else None

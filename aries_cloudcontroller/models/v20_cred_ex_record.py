@@ -17,10 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.v20_cred_ex_record_by_format import (
     V20CredExRecordByFormat,
@@ -31,11 +31,6 @@ from aries_cloudcontroller.models.v20_cred_preview import V20CredPreview
 from aries_cloudcontroller.models.v20_cred_proposal import V20CredProposal
 from aries_cloudcontroller.models.v20_cred_request import V20CredRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20CredExRecord(BaseModel):
@@ -55,7 +50,10 @@ class V20CredExRecord(BaseModel):
         default=None,
         description="Issuer choice to remove this credential exchange record when complete",
     )
-    by_format: Optional[V20CredExRecordByFormat] = None
+    by_format: Optional[V20CredExRecordByFormat] = Field(
+        default=None,
+        description="Attachment content by format for proposal, offer, request, and issue",
+    )
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
@@ -65,11 +63,21 @@ class V20CredExRecord(BaseModel):
     cred_ex_id: Optional[StrictStr] = Field(
         default=None, description="Credential exchange identifier"
     )
-    cred_issue: Optional[V20CredIssue] = None
-    cred_offer: Optional[V20CredOffer] = None
-    cred_preview: Optional[V20CredPreview] = None
-    cred_proposal: Optional[V20CredProposal] = None
-    cred_request: Optional[V20CredRequest] = None
+    cred_issue: Optional[V20CredIssue] = Field(
+        default=None, description="Serialized credential issue message"
+    )
+    cred_offer: Optional[V20CredOffer] = Field(
+        default=None, description="Credential offer message"
+    )
+    cred_preview: Optional[V20CredPreview] = Field(
+        default=None, description="Credential preview from credential proposal"
+    )
+    cred_proposal: Optional[V20CredProposal] = Field(
+        default=None, description="Credential proposal message"
+    )
+    cred_request: Optional[V20CredRequest] = Field(
+        default=None, description="Serialized credential request message"
+    )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
     initiator: Optional[StrictStr] = Field(
         default=None,
@@ -138,7 +146,7 @@ class V20CredExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("self", "external"):
+        if value not in set(["self", "external"]):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
@@ -148,7 +156,7 @@ class V20CredExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("issuer", "holder"):
+        if value not in set(["issuer", "holder"]):
             raise ValueError("must be one of enum values ('issuer', 'holder')")
         return value
 
@@ -158,19 +166,21 @@ class V20CredExRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in (
-            "proposal-sent",
-            "proposal-received",
-            "offer-sent",
-            "offer-received",
-            "request-sent",
-            "request-received",
-            "credential-issued",
-            "credential-received",
-            "done",
-            "credential-revoked",
-            "abandoned",
-            "deleted",
+        if value not in set(
+            [
+                "proposal-sent",
+                "proposal-received",
+                "offer-sent",
+                "offer-received",
+                "request-sent",
+                "request-received",
+                "credential-issued",
+                "credential-received",
+                "done",
+                "credential-revoked",
+                "abandoned",
+                "deleted",
+            ]
         ):
             raise ValueError(
                 "must be one of enum values ('proposal-sent', 'proposal-received', 'offer-sent', 'offer-received', 'request-sent', 'request-received', 'credential-issued', 'credential-received', 'done', 'credential-revoked', 'abandoned', 'deleted')"
@@ -203,7 +213,7 @@ class V20CredExRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20CredExRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -217,9 +227,11 @@ class V20CredExRecord(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of by_format
@@ -243,7 +255,7 @@ class V20CredExRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20CredExRecord from a dict"""
         if obj is None:
             return None
@@ -257,7 +269,7 @@ class V20CredExRecord(BaseModel):
                 "auto_offer": obj.get("auto_offer"),
                 "auto_remove": obj.get("auto_remove"),
                 "by_format": (
-                    V20CredExRecordByFormat.from_dict(obj.get("by_format"))
+                    V20CredExRecordByFormat.from_dict(obj["by_format"])
                     if obj.get("by_format") is not None
                     else None
                 ),
@@ -265,27 +277,27 @@ class V20CredExRecord(BaseModel):
                 "created_at": obj.get("created_at"),
                 "cred_ex_id": obj.get("cred_ex_id"),
                 "cred_issue": (
-                    V20CredIssue.from_dict(obj.get("cred_issue"))
+                    V20CredIssue.from_dict(obj["cred_issue"])
                     if obj.get("cred_issue") is not None
                     else None
                 ),
                 "cred_offer": (
-                    V20CredOffer.from_dict(obj.get("cred_offer"))
+                    V20CredOffer.from_dict(obj["cred_offer"])
                     if obj.get("cred_offer") is not None
                     else None
                 ),
                 "cred_preview": (
-                    V20CredPreview.from_dict(obj.get("cred_preview"))
+                    V20CredPreview.from_dict(obj["cred_preview"])
                     if obj.get("cred_preview") is not None
                     else None
                 ),
                 "cred_proposal": (
-                    V20CredProposal.from_dict(obj.get("cred_proposal"))
+                    V20CredProposal.from_dict(obj["cred_proposal"])
                     if obj.get("cred_proposal") is not None
                     else None
                 ),
                 "cred_request": (
-                    V20CredRequest.from_dict(obj.get("cred_request"))
+                    V20CredRequest.from_dict(obj["cred_request"])
                     if obj.get("cred_request") is not None
                     else None
                 ),

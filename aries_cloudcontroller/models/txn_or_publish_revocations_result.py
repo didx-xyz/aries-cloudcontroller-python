@@ -16,18 +16,14 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.publish_revocations import PublishRevocations
 from aries_cloudcontroller.models.transaction_record import TransactionRecord
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class TxnOrPublishRevocationsResult(BaseModel):
@@ -36,7 +32,10 @@ class TxnOrPublishRevocationsResult(BaseModel):
     """  # noqa: E501
 
     sent: Optional[PublishRevocations] = None
-    txn: Optional[TransactionRecord] = None
+    txn: Optional[TransactionRecord] = Field(
+        default=None,
+        description="Revocation registry revocations transaction to endorse",
+    )
     __properties: ClassVar[List[str]] = ["sent", "txn"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -50,7 +49,7 @@ class TxnOrPublishRevocationsResult(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TxnOrPublishRevocationsResult from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -64,9 +63,11 @@ class TxnOrPublishRevocationsResult(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of sent
@@ -78,7 +79,7 @@ class TxnOrPublishRevocationsResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TxnOrPublishRevocationsResult from a dict"""
         if obj is None:
             return None
@@ -89,12 +90,12 @@ class TxnOrPublishRevocationsResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "sent": (
-                    PublishRevocations.from_dict(obj.get("sent"))
+                    PublishRevocations.from_dict(obj["sent"])
                     if obj.get("sent") is not None
                     else None
                 ),
                 "txn": (
-                    TransactionRecord.from_dict(obj.get("txn"))
+                    TransactionRecord.from_dict(obj["txn"])
                     if obj.get("txn") is not None
                     else None
                 ),

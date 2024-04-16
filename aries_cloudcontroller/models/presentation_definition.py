@@ -17,20 +17,15 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.claim_format import ClaimFormat
 from aries_cloudcontroller.models.input_descriptors import InputDescriptors
 from aries_cloudcontroller.models.submission_requirements import SubmissionRequirements
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class PresentationDefinition(BaseModel):
@@ -87,7 +82,7 @@ class PresentationDefinition(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PresentationDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -101,9 +96,11 @@ class PresentationDefinition(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of format
@@ -126,7 +123,7 @@ class PresentationDefinition(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PresentationDefinition from a dict"""
         if obj is None:
             return None
@@ -137,7 +134,7 @@ class PresentationDefinition(BaseModel):
         _obj = cls.model_validate(
             {
                 "format": (
-                    ClaimFormat.from_dict(obj.get("format"))
+                    ClaimFormat.from_dict(obj["format"])
                     if obj.get("format") is not None
                     else None
                 ),
@@ -145,7 +142,7 @@ class PresentationDefinition(BaseModel):
                 "input_descriptors": (
                     [
                         InputDescriptors.from_dict(_item)
-                        for _item in obj.get("input_descriptors")
+                        for _item in obj["input_descriptors"]
                     ]
                     if obj.get("input_descriptors") is not None
                     else None
@@ -155,7 +152,7 @@ class PresentationDefinition(BaseModel):
                 "submission_requirements": (
                     [
                         SubmissionRequirements.from_dict(_item)
-                        for _item in obj.get("submission_requirements")
+                        for _item in obj["submission_requirements"]
                     ]
                     if obj.get("submission_requirements") is not None
                     else None

@@ -17,17 +17,12 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class DIDCreateOptions(BaseModel):
@@ -62,7 +57,7 @@ class DIDCreateOptions(BaseModel):
     @field_validator("key_type")
     def key_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ("ed25519", "bls12381g2"):
+        if value not in set(["ed25519", "bls12381g2"]):
             raise ValueError("must be one of enum values ('ed25519', 'bls12381g2')")
         return value
 
@@ -77,7 +72,7 @@ class DIDCreateOptions(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of DIDCreateOptions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -91,15 +86,17 @@ class DIDCreateOptions(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of DIDCreateOptions from a dict"""
         if obj is None:
             return None

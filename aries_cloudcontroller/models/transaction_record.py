@@ -17,17 +17,12 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class TransactionRecord(BaseModel):
@@ -50,15 +45,15 @@ class TransactionRecord(BaseModel):
         description="If True, Endorser will write the transaction after endorsing it",
     )
     formats: Optional[List[Dict[str, StrictStr]]] = None
-    messages_attach: Optional[List[Union[str, Any]]] = None
-    meta_data: Optional[Union[str, Any]] = None
-    signature_request: Optional[List[Union[str, Any]]] = None
-    signature_response: Optional[List[Union[str, Any]]] = None
+    messages_attach: Optional[List[Dict[str, Any]]] = None
+    meta_data: Optional[Dict[str, Any]] = None
+    signature_request: Optional[List[Dict[str, Any]]] = None
+    signature_response: Optional[List[Dict[str, Any]]] = None
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
     thread_id: Optional[StrictStr] = Field(
         default=None, description="Thread Identifier"
     )
-    timing: Optional[Union[str, Any]] = None
+    timing: Optional[Dict[str, Any]] = None
     trace: Optional[StrictBool] = Field(
         default=None,
         description="Record trace information, based on agent configuration",
@@ -128,7 +123,7 @@ class TransactionRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TransactionRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -142,15 +137,17 @@ class TransactionRecord(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TransactionRecord from a dict"""
         if obj is None:
             return None

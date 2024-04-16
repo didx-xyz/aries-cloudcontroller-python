@@ -11,22 +11,12 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
-
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
-
-from typing import Optional
-
-from pydantic import Field, StrictStr
 from typing_extensions import Annotated
 
-from aries_cloudcontroller.api_client import ApiClient
+from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
 from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.v20_discovery_exchange_list_result import (
     V20DiscoveryExchangeListResult,
@@ -85,26 +75,7 @@ class DiscoverFeaturesV20Api:
         :type query_goal_code: str
         :param query_protocol: Protocol feature-type query
         :type query_protocol: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._discover_features20_queries_get_serialize(
@@ -118,7 +89,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeResult"
+            "200": "V20DiscoveryExchangeResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -164,26 +135,7 @@ class DiscoverFeaturesV20Api:
         :type query_goal_code: str
         :param query_protocol: Protocol feature-type query
         :type query_protocol: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._discover_features20_queries_get_serialize(
@@ -197,7 +149,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeResult"
+            "200": "V20DiscoveryExchangeResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -243,26 +195,7 @@ class DiscoverFeaturesV20Api:
         :type query_goal_code: str
         :param query_protocol: Protocol feature-type query
         :type query_protocol: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._discover_features20_queries_get_serialize(
@@ -276,7 +209,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeResult"
+            "200": "V20DiscoveryExchangeResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -292,7 +225,8 @@ class DiscoverFeaturesV20Api:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -307,12 +241,15 @@ class DiscoverFeaturesV20Api:
         # process the path parameters
         # process the query parameters
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         if query_goal_code is not None:
+
             _query_params.append(("query_goal_code", query_goal_code))
 
         if query_protocol is not None:
+
             _query_params.append(("query_protocol", query_protocol))
 
         # process the header parameters
@@ -365,26 +302,7 @@ class DiscoverFeaturesV20Api:
 
         :param connection_id: Connection identifier
         :type connection_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._discover_features20_records_get_serialize(
@@ -396,7 +314,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeListResult"
+            "200": "V20DiscoveryExchangeListResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -429,26 +347,7 @@ class DiscoverFeaturesV20Api:
 
         :param connection_id: Connection identifier
         :type connection_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._discover_features20_records_get_serialize(
@@ -460,7 +359,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeListResult"
+            "200": "V20DiscoveryExchangeListResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -493,26 +392,7 @@ class DiscoverFeaturesV20Api:
 
         :param connection_id: Connection identifier
         :type connection_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
         _param = self._discover_features20_records_get_serialize(
@@ -524,7 +404,7 @@ class DiscoverFeaturesV20Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V20DiscoveryExchangeListResult"
+            "200": "V20DiscoveryExchangeListResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -538,7 +418,8 @@ class DiscoverFeaturesV20Api:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -553,6 +434,7 @@ class DiscoverFeaturesV20Api:
         # process the path parameters
         # process the query parameters
         if connection_id is not None:
+
             _query_params.append(("connection_id", connection_id))
 
         # process the header parameters

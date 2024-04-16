@@ -17,18 +17,13 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Literal, Optional
+from typing import Any, ClassVar, Dict, List, Literal, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.cred_def_value import CredDefValue
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class CredentialDefinition(BaseModel):
@@ -50,7 +45,9 @@ class CredentialDefinition(BaseModel):
     type: Optional[Literal["CL"]] = Field(
         default=None, description="Signature type: CL for Camenisch-Lysyanskaya"
     )
-    value: Optional[CredDefValue] = None
+    value: Optional[CredDefValue] = Field(
+        default=None, description="Credential definition primary and revocation values"
+    )
     ver: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Node protocol version"
     )
@@ -99,7 +96,7 @@ class CredentialDefinition(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of CredentialDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -113,9 +110,11 @@ class CredentialDefinition(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of value
@@ -124,7 +123,7 @@ class CredentialDefinition(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of CredentialDefinition from a dict"""
         if obj is None:
             return None
@@ -139,7 +138,7 @@ class CredentialDefinition(BaseModel):
                 "tag": obj.get("tag"),
                 "type": obj.get("type"),
                 "value": (
-                    CredDefValue.from_dict(obj.get("value"))
+                    CredDefValue.from_dict(obj["value"])
                     if obj.get("value") is not None
                     else None
                 ),

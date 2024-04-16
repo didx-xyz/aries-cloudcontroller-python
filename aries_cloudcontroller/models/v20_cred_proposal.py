@@ -16,19 +16,15 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
 from aries_cloudcontroller.models.v20_cred_format import V20CredFormat
 from aries_cloudcontroller.models.v20_cred_preview import V20CredPreview
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20CredProposal(BaseModel):
@@ -45,7 +41,9 @@ class V20CredProposal(BaseModel):
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"
     )
-    credential_preview: Optional[V20CredPreview] = None
+    credential_preview: Optional[V20CredPreview] = Field(
+        default=None, description="Credential preview"
+    )
     filtersattach: List[AttachDecorator] = Field(
         description="Credential filter per acceptable format on corresponding identifier",
         alias="filters~attach",
@@ -71,7 +69,7 @@ class V20CredProposal(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20CredProposal from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -86,11 +84,15 @@ class V20CredProposal(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set(
+            [
+                "type",
+            ]
+        )
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "type",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of credential_preview
@@ -118,7 +120,7 @@ class V20CredProposal(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20CredProposal from a dict"""
         if obj is None:
             return None
@@ -132,20 +134,20 @@ class V20CredProposal(BaseModel):
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
                 "credential_preview": (
-                    V20CredPreview.from_dict(obj.get("credential_preview"))
+                    V20CredPreview.from_dict(obj["credential_preview"])
                     if obj.get("credential_preview") is not None
                     else None
                 ),
                 "filters~attach": (
                     [
                         AttachDecorator.from_dict(_item)
-                        for _item in obj.get("filters~attach")
+                        for _item in obj["filters~attach"]
                     ]
                     if obj.get("filters~attach") is not None
                     else None
                 ),
                 "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj.get("formats")]
+                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
                     if obj.get("formats") is not None
                     else None
                 ),

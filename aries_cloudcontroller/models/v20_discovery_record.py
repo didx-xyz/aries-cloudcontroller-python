@@ -17,19 +17,14 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.disclosures import Disclosures
 from aries_cloudcontroller.models.queries import Queries
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20DiscoveryRecord(BaseModel):
@@ -43,11 +38,13 @@ class V20DiscoveryRecord(BaseModel):
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
     )
-    disclosures: Optional[Disclosures] = None
+    disclosures: Optional[Disclosures] = Field(
+        default=None, description="Disclosures message"
+    )
     discovery_exchange_id: Optional[StrictStr] = Field(
         default=None, description="Credential exchange identifier"
     )
-    queries_msg: Optional[Queries] = None
+    queries_msg: Optional[Queries] = Field(default=None, description="Queries message")
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
     thread_id: Optional[StrictStr] = Field(
         default=None, description="Thread identifier"
@@ -112,7 +109,7 @@ class V20DiscoveryRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20DiscoveryRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -126,9 +123,11 @@ class V20DiscoveryRecord(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of disclosures
@@ -140,7 +139,7 @@ class V20DiscoveryRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20DiscoveryRecord from a dict"""
         if obj is None:
             return None
@@ -153,13 +152,13 @@ class V20DiscoveryRecord(BaseModel):
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
                 "disclosures": (
-                    Disclosures.from_dict(obj.get("disclosures"))
+                    Disclosures.from_dict(obj["disclosures"])
                     if obj.get("disclosures") is not None
                     else None
                 ),
                 "discovery_exchange_id": obj.get("discovery_exchange_id"),
                 "queries_msg": (
-                    Queries.from_dict(obj.get("queries_msg"))
+                    Queries.from_dict(obj["queries_msg"])
                     if obj.get("queries_msg") is not None
                     else None
                 ),

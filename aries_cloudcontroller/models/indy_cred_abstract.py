@@ -17,20 +17,15 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.indy_key_correctness_proof import (
     IndyKeyCorrectnessProof,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyCredAbstract(BaseModel):
@@ -41,7 +36,9 @@ class IndyCredAbstract(BaseModel):
     cred_def_id: Annotated[str, Field(strict=True)] = Field(
         description="Credential definition identifier"
     )
-    key_correctness_proof: IndyKeyCorrectnessProof
+    key_correctness_proof: IndyKeyCorrectnessProof = Field(
+        description="Key correctness proof"
+    )
     nonce: Annotated[str, Field(strict=True)] = Field(
         description="Nonce in credential abstract"
     )
@@ -97,7 +94,7 @@ class IndyCredAbstract(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IndyCredAbstract from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -111,9 +108,11 @@ class IndyCredAbstract(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of key_correctness_proof
@@ -122,7 +121,7 @@ class IndyCredAbstract(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IndyCredAbstract from a dict"""
         if obj is None:
             return None
@@ -134,7 +133,7 @@ class IndyCredAbstract(BaseModel):
             {
                 "cred_def_id": obj.get("cred_def_id"),
                 "key_correctness_proof": (
-                    IndyKeyCorrectnessProof.from_dict(obj.get("key_correctness_proof"))
+                    IndyKeyCorrectnessProof.from_dict(obj["key_correctness_proof"])
                     if obj.get("key_correctness_proof") is not None
                     else None
                 ),

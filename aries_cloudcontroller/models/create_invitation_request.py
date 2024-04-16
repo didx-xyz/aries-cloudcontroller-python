@@ -17,17 +17,12 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class CreateInvitationRequest(BaseModel):
@@ -38,7 +33,7 @@ class CreateInvitationRequest(BaseModel):
     mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Identifier for active mediation record to be used"
     )
-    metadata: Optional[Union[str, Any]] = Field(
+    metadata: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Optional metadata to attach to the connection created with the invitation",
     )
@@ -89,7 +84,7 @@ class CreateInvitationRequest(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of CreateInvitationRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -103,15 +98,17 @@ class CreateInvitationRequest(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of CreateInvitationRequest from a dict"""
         if obj is None:
             return None

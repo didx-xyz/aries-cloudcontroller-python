@@ -16,17 +16,13 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.signature_options import SignatureOptions
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class Doc(BaseModel):
@@ -34,8 +30,8 @@ class Doc(BaseModel):
     Doc
     """  # noqa: E501
 
-    credential: Union[str, Any] = Field(description="Credential to sign")
-    options: SignatureOptions
+    credential: Dict[str, Any] = Field(description="Credential to sign")
+    options: SignatureOptions = Field(description="Signature options")
     __properties: ClassVar[List[str]] = ["credential", "options"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -49,7 +45,7 @@ class Doc(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Doc from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -63,9 +59,11 @@ class Doc(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of options
@@ -74,7 +72,7 @@ class Doc(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Doc from a dict"""
         if obj is None:
             return None
@@ -86,7 +84,7 @@ class Doc(BaseModel):
             {
                 "credential": obj.get("credential"),
                 "options": (
-                    SignatureOptions.from_dict(obj.get("options"))
+                    SignatureOptions.from_dict(obj["options"])
                     if obj.get("options") is not None
                     else None
                 ),

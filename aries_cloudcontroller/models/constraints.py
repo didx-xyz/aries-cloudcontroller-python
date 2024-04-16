@@ -16,18 +16,14 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.dif_field import DIFField
 from aries_cloudcontroller.models.dif_holder import DIFHolder
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class Constraints(BaseModel):
@@ -62,7 +58,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "allowed", "disallowed"):
+        if value not in set(["required", "allowed", "disallowed"]):
             raise ValueError(
                 "must be one of enum values ('required', 'allowed', 'disallowed')"
             )
@@ -74,7 +70,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "allowed", "disallowed"):
+        if value not in set(["required", "allowed", "disallowed"]):
             raise ValueError(
                 "must be one of enum values ('required', 'allowed', 'disallowed')"
             )
@@ -86,7 +82,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "allowed", "disallowed"):
+        if value not in set(["required", "allowed", "disallowed"]):
             raise ValueError(
                 "must be one of enum values ('required', 'allowed', 'disallowed')"
             )
@@ -98,7 +94,7 @@ class Constraints(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "preferred"):
+        if value not in set(["required", "preferred"]):
             raise ValueError("must be one of enum values ('required', 'preferred')")
         return value
 
@@ -113,7 +109,7 @@ class Constraints(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Constraints from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -127,9 +123,11 @@ class Constraints(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in fields (list)
@@ -149,7 +147,7 @@ class Constraints(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Constraints from a dict"""
         if obj is None:
             return None
@@ -160,12 +158,12 @@ class Constraints(BaseModel):
         _obj = cls.model_validate(
             {
                 "fields": (
-                    [DIFField.from_dict(_item) for _item in obj.get("fields")]
+                    [DIFField.from_dict(_item) for _item in obj["fields"]]
                     if obj.get("fields") is not None
                     else None
                 ),
                 "is_holder": (
-                    [DIFHolder.from_dict(_item) for _item in obj.get("is_holder")]
+                    [DIFHolder.from_dict(_item) for _item in obj["is_holder"]]
                     if obj.get("is_holder") is not None
                     else None
                 ),

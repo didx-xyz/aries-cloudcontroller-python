@@ -2,22 +2,19 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional
 
+from typing_extensions import Self
+
 from aries_cloudcontroller.models.wallet_list import WalletList
 from aries_cloudcontroller.models.wallet_record_with_groups import (
     WalletRecordWithGroups,
 )
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class WalletListWithGroups(WalletList):
     results: Optional[List[WalletRecordWithGroups]] = None
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of WalletListWithGroups from a dict"""
         if obj is None:
             return None
@@ -30,7 +27,7 @@ class WalletListWithGroups(WalletList):
                 "results": (
                     [
                         WalletRecordWithGroups.from_dict(_item)
-                        for _item in obj.get("results")
+                        for _item in obj["results"]
                     ]
                     if obj.get("results") is not None
                     else None

@@ -16,16 +16,12 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20CredExRecordByFormat(BaseModel):
@@ -33,10 +29,10 @@ class V20CredExRecordByFormat(BaseModel):
     V20CredExRecordByFormat
     """  # noqa: E501
 
-    cred_issue: Optional[Union[str, Any]] = None
-    cred_offer: Optional[Union[str, Any]] = None
-    cred_proposal: Optional[Union[str, Any]] = None
-    cred_request: Optional[Union[str, Any]] = None
+    cred_issue: Optional[Dict[str, Any]] = None
+    cred_offer: Optional[Dict[str, Any]] = None
+    cred_proposal: Optional[Dict[str, Any]] = None
+    cred_request: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = [
         "cred_issue",
         "cred_offer",
@@ -55,7 +51,7 @@ class V20CredExRecordByFormat(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20CredExRecordByFormat from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -69,15 +65,17 @@ class V20CredExRecordByFormat(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20CredExRecordByFormat from a dict"""
         if obj is None:
             return None

@@ -16,17 +16,13 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.filter import Filter
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class DIFField(BaseModel):
@@ -47,7 +43,7 @@ class DIFField(BaseModel):
         if value is None:
             return value
 
-        if value not in ("required", "preferred"):
+        if value not in set(["required", "preferred"]):
             raise ValueError("must be one of enum values ('required', 'preferred')")
         return value
 
@@ -62,7 +58,7 @@ class DIFField(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of DIFField from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -76,9 +72,11 @@ class DIFField(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of filter
@@ -87,7 +85,7 @@ class DIFField(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of DIFField from a dict"""
         if obj is None:
             return None
@@ -98,7 +96,7 @@ class DIFField(BaseModel):
         _obj = cls.model_validate(
             {
                 "filter": (
-                    Filter.from_dict(obj.get("filter"))
+                    Filter.from_dict(obj["filter"])
                     if obj.get("filter") is not None
                     else None
                 ),

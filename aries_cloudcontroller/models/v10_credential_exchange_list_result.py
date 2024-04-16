@@ -16,17 +16,13 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.v10_credential_exchange import V10CredentialExchange
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V10CredentialExchangeListResult(BaseModel):
@@ -50,7 +46,7 @@ class V10CredentialExchangeListResult(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V10CredentialExchangeListResult from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -64,9 +60,11 @@ class V10CredentialExchangeListResult(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in results (list)
@@ -79,7 +77,7 @@ class V10CredentialExchangeListResult(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V10CredentialExchangeListResult from a dict"""
         if obj is None:
             return None
@@ -90,10 +88,7 @@ class V10CredentialExchangeListResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "results": (
-                    [
-                        V10CredentialExchange.from_dict(_item)
-                        for _item in obj.get("results")
-                    ]
+                    [V10CredentialExchange.from_dict(_item) for _item in obj["results"]]
                     if obj.get("results") is not None
                     else None
                 )

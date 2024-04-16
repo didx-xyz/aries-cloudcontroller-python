@@ -17,10 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.credential_offer import CredentialOffer
 from aries_cloudcontroller.models.credential_proposal import CredentialProposal
@@ -29,11 +29,6 @@ from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.indy_cred_request import IndyCredRequest
 from aries_cloudcontroller.models.indy_credential import IndyCredential
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V10CredentialExchange(BaseModel):
@@ -59,7 +54,9 @@ class V10CredentialExchange(BaseModel):
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
     )
-    credential: Optional[IndyCredInfo] = None
+    credential: Optional[IndyCredInfo] = Field(
+        default=None, description="Credential as stored"
+    )
     credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier"
     )
@@ -69,11 +66,19 @@ class V10CredentialExchange(BaseModel):
     credential_id: Optional[StrictStr] = Field(
         default=None, description="Credential identifier"
     )
-    credential_offer: Optional[IndyCredAbstract] = None
-    credential_offer_dict: Optional[CredentialOffer] = None
-    credential_proposal_dict: Optional[CredentialProposal] = None
-    credential_request: Optional[IndyCredRequest] = None
-    credential_request_metadata: Optional[Union[str, Any]] = Field(
+    credential_offer: Optional[IndyCredAbstract] = Field(
+        default=None, description="(Indy) credential offer"
+    )
+    credential_offer_dict: Optional[CredentialOffer] = Field(
+        default=None, description="Credential offer message"
+    )
+    credential_proposal_dict: Optional[CredentialProposal] = Field(
+        default=None, description="Credential proposal message"
+    )
+    credential_request: Optional[IndyCredRequest] = Field(
+        default=None, description="(Indy) credential request"
+    )
+    credential_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="(Indy) credential request metadata"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
@@ -84,7 +89,10 @@ class V10CredentialExchange(BaseModel):
     parent_thread_id: Optional[StrictStr] = Field(
         default=None, description="Parent thread identifier"
     )
-    raw_credential: Optional[IndyCredential] = None
+    raw_credential: Optional[IndyCredential] = Field(
+        default=None,
+        description="Credential as received, prior to storage in holder wallet",
+    )
     revoc_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
@@ -175,7 +183,7 @@ class V10CredentialExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("self", "external"):
+        if value not in set(["self", "external"]):
             raise ValueError("must be one of enum values ('self', 'external')")
         return value
 
@@ -185,7 +193,7 @@ class V10CredentialExchange(BaseModel):
         if value is None:
             return value
 
-        if value not in ("holder", "issuer"):
+        if value not in set(["holder", "issuer"]):
             raise ValueError("must be one of enum values ('holder', 'issuer')")
         return value
 
@@ -230,7 +238,7 @@ class V10CredentialExchange(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V10CredentialExchange from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -244,9 +252,11 @@ class V10CredentialExchange(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of credential
@@ -270,7 +280,7 @@ class V10CredentialExchange(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V10CredentialExchange from a dict"""
         if obj is None:
             return None
@@ -286,7 +296,7 @@ class V10CredentialExchange(BaseModel):
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
                 "credential": (
-                    IndyCredInfo.from_dict(obj.get("credential"))
+                    IndyCredInfo.from_dict(obj["credential"])
                     if obj.get("credential") is not None
                     else None
                 ),
@@ -294,22 +304,22 @@ class V10CredentialExchange(BaseModel):
                 "credential_exchange_id": obj.get("credential_exchange_id"),
                 "credential_id": obj.get("credential_id"),
                 "credential_offer": (
-                    IndyCredAbstract.from_dict(obj.get("credential_offer"))
+                    IndyCredAbstract.from_dict(obj["credential_offer"])
                     if obj.get("credential_offer") is not None
                     else None
                 ),
                 "credential_offer_dict": (
-                    CredentialOffer.from_dict(obj.get("credential_offer_dict"))
+                    CredentialOffer.from_dict(obj["credential_offer_dict"])
                     if obj.get("credential_offer_dict") is not None
                     else None
                 ),
                 "credential_proposal_dict": (
-                    CredentialProposal.from_dict(obj.get("credential_proposal_dict"))
+                    CredentialProposal.from_dict(obj["credential_proposal_dict"])
                     if obj.get("credential_proposal_dict") is not None
                     else None
                 ),
                 "credential_request": (
-                    IndyCredRequest.from_dict(obj.get("credential_request"))
+                    IndyCredRequest.from_dict(obj["credential_request"])
                     if obj.get("credential_request") is not None
                     else None
                 ),
@@ -318,7 +328,7 @@ class V10CredentialExchange(BaseModel):
                 "initiator": obj.get("initiator"),
                 "parent_thread_id": obj.get("parent_thread_id"),
                 "raw_credential": (
-                    IndyCredential.from_dict(obj.get("raw_credential"))
+                    IndyCredential.from_dict(obj["raw_credential"])
                     if obj.get("raw_credential") is not None
                     else None
                 ),

@@ -16,9 +16,10 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_proof_requested_proof_predicate import (
     IndyProofRequestedProofPredicate,
@@ -30,11 +31,6 @@ from aries_cloudcontroller.models.indy_proof_requested_proof_revealed_attr_group
     IndyProofRequestedProofRevealedAttrGroup,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyProofRequestedProof(BaseModel):
@@ -53,10 +49,10 @@ class IndyProofRequestedProof(BaseModel):
     revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = Field(
         default=None, description="Proof requested proof revealed attributes"
     )
-    self_attested_attrs: Optional[Union[str, Any]] = Field(
+    self_attested_attrs: Optional[Dict[str, Any]] = Field(
         default=None, description="Proof requested proof self-attested attributes"
     )
-    unrevealed_attrs: Optional[Union[str, Any]] = Field(
+    unrevealed_attrs: Optional[Dict[str, Any]] = Field(
         default=None, description="Unrevealed attributes"
     )
     __properties: ClassVar[List[str]] = [
@@ -78,7 +74,7 @@ class IndyProofRequestedProof(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IndyProofRequestedProof from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -92,9 +88,11 @@ class IndyProofRequestedProof(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each value in predicates (dict)
@@ -134,7 +132,7 @@ class IndyProofRequestedProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IndyProofRequestedProof from a dict"""
         if obj is None:
             return None
@@ -147,7 +145,7 @@ class IndyProofRequestedProof(BaseModel):
                 "predicates": (
                     dict(
                         (_k, IndyProofRequestedProofPredicate.from_dict(_v))
-                        for _k, _v in obj.get("predicates").items()
+                        for _k, _v in obj["predicates"].items()
                     )
                     if obj.get("predicates") is not None
                     else None
@@ -155,7 +153,7 @@ class IndyProofRequestedProof(BaseModel):
                 "revealed_attr_groups": (
                     dict(
                         (_k, IndyProofRequestedProofRevealedAttrGroup.from_dict(_v))
-                        for _k, _v in obj.get("revealed_attr_groups").items()
+                        for _k, _v in obj["revealed_attr_groups"].items()
                     )
                     if obj.get("revealed_attr_groups") is not None
                     else None
@@ -163,7 +161,7 @@ class IndyProofRequestedProof(BaseModel):
                 "revealed_attrs": (
                     dict(
                         (_k, IndyProofRequestedProofRevealedAttr.from_dict(_v))
-                        for _k, _v in obj.get("revealed_attrs").items()
+                        for _k, _v in obj["revealed_attrs"].items()
                     )
                     if obj.get("revealed_attrs") is not None
                     else None

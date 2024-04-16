@@ -17,20 +17,15 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.attach_decorator_data_jws import (
     AttachDecoratorDataJWS,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class AttachDecoratorData(BaseModel):
@@ -44,7 +39,9 @@ class AttachDecoratorData(BaseModel):
     var_json: Optional[Union[Dict[str, Any], List[Dict[str, Any]]]] = Field(
         default=None, description="JSON-serialized data", alias="json"
     )
-    jws: Optional[AttachDecoratorDataJWS] = None
+    jws: Optional[AttachDecoratorDataJWS] = Field(
+        default=None, description="Detached Java Web Signature"
+    )
     links: Optional[List[StrictStr]] = Field(
         default=None, description="List of hypertext links to data"
     )
@@ -88,7 +85,7 @@ class AttachDecoratorData(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of AttachDecoratorData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -102,9 +99,11 @@ class AttachDecoratorData(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of jws
@@ -113,7 +112,7 @@ class AttachDecoratorData(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of AttachDecoratorData from a dict"""
         if obj is None:
             return None
@@ -126,7 +125,7 @@ class AttachDecoratorData(BaseModel):
                 "base64": obj.get("base64"),
                 "json": obj.get("json"),
                 "jws": (
-                    AttachDecoratorDataJWS.from_dict(obj.get("jws"))
+                    AttachDecoratorDataJWS.from_dict(obj["jws"])
                     if obj.get("jws") is not None
                     else None
                 ),

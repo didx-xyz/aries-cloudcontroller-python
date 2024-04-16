@@ -16,9 +16,10 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.credential import Credential
 from aries_cloudcontroller.models.ld_proof_vc_detail_options import (
@@ -26,19 +27,18 @@ from aries_cloudcontroller.models.ld_proof_vc_detail_options import (
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
-
 
 class LDProofVCDetail(BaseModel):
     """
     LDProofVCDetail
     """  # noqa: E501
 
-    credential: Credential
-    options: LDProofVCDetailOptions
+    credential: Credential = Field(
+        description="Detail of the JSON-LD Credential to be issued"
+    )
+    options: LDProofVCDetailOptions = Field(
+        description="Options for specifying how the linked data proof is created."
+    )
     __properties: ClassVar[List[str]] = ["credential", "options"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -52,7 +52,7 @@ class LDProofVCDetail(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of LDProofVCDetail from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -66,9 +66,11 @@ class LDProofVCDetail(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of credential
@@ -80,7 +82,7 @@ class LDProofVCDetail(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of LDProofVCDetail from a dict"""
         if obj is None:
             return None
@@ -91,12 +93,12 @@ class LDProofVCDetail(BaseModel):
         _obj = cls.model_validate(
             {
                 "credential": (
-                    Credential.from_dict(obj.get("credential"))
+                    Credential.from_dict(obj["credential"])
                     if obj.get("credential") is not None
                     else None
                 ),
                 "options": (
-                    LDProofVCDetailOptions.from_dict(obj.get("options"))
+                    LDProofVCDetailOptions.from_dict(obj["options"])
                     if obj.get("options") is not None
                     else None
                 ),

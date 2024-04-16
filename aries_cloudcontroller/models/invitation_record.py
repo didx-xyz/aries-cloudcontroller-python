@@ -17,18 +17,13 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.invitation_message import InvitationMessage
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class InvitationRecord(BaseModel):
@@ -42,7 +37,9 @@ class InvitationRecord(BaseModel):
     invi_msg_id: Optional[StrictStr] = Field(
         default=None, description="Invitation message identifier"
     )
-    invitation: Optional[InvitationMessage] = None
+    invitation: Optional[InvitationMessage] = Field(
+        default=None, description="Out of band invitation message"
+    )
     invitation_id: Optional[StrictStr] = Field(
         default=None, description="Invitation record identifier"
     )
@@ -115,7 +112,7 @@ class InvitationRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of InvitationRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -129,9 +126,11 @@ class InvitationRecord(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of invitation
@@ -140,7 +139,7 @@ class InvitationRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of InvitationRecord from a dict"""
         if obj is None:
             return None
@@ -153,7 +152,7 @@ class InvitationRecord(BaseModel):
                 "created_at": obj.get("created_at"),
                 "invi_msg_id": obj.get("invi_msg_id"),
                 "invitation": (
-                    InvitationMessage.from_dict(obj.get("invitation"))
+                    InvitationMessage.from_dict(obj["invitation"])
                     if obj.get("invitation") is not None
                     else None
                 ),

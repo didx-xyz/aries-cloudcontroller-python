@@ -17,17 +17,12 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class SDJWSCreate(BaseModel):
@@ -38,9 +33,9 @@ class SDJWSCreate(BaseModel):
     did: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="DID of interest"
     )
-    headers: Optional[Union[str, Any]] = None
+    headers: Optional[Dict[str, Any]] = None
     non_sd_list: Optional[List[Annotated[str, Field(strict=True)]]] = None
-    payload: Union[str, Any]
+    payload: Dict[str, Any]
     verification_method: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
         description="Information used for proof verification",
@@ -92,7 +87,7 @@ class SDJWSCreate(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SDJWSCreate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -106,15 +101,17 @@ class SDJWSCreate(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SDJWSCreate from a dict"""
         if obj is None:
             return None

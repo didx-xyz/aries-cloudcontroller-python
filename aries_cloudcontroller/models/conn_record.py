@@ -17,17 +17,12 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class ConnRecord(BaseModel):
@@ -116,7 +111,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("manual", "auto"):
+        if value not in set(["manual", "auto"]):
             raise ValueError("must be one of enum values ('manual', 'auto')")
         return value
 
@@ -126,7 +121,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("connections/1.0", "didexchange/1.0"):
+        if value not in set(["connections/1.0", "didexchange/1.0"]):
             raise ValueError(
                 "must be one of enum values ('connections/1.0', 'didexchange/1.0')"
             )
@@ -168,7 +163,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("once", "multi", "static"):
+        if value not in set(["once", "multi", "static"]):
             raise ValueError("must be one of enum values ('once', 'multi', 'static')")
         return value
 
@@ -208,7 +203,7 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("invitee", "requester", "inviter", "responder"):
+        if value not in set(["invitee", "requester", "inviter", "responder"]):
             raise ValueError(
                 "must be one of enum values ('invitee', 'requester', 'inviter', 'responder')"
             )
@@ -240,7 +235,7 @@ class ConnRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of ConnRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -255,17 +250,21 @@ class ConnRecord(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set(
+            [
+                "rfc23_state",
+            ]
+        )
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "rfc23_state",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of ConnRecord from a dict"""
         if obj is None:
             return None

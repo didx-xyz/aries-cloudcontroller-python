@@ -16,16 +16,12 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class ClaimFormat(BaseModel):
@@ -33,12 +29,12 @@ class ClaimFormat(BaseModel):
     ClaimFormat
     """  # noqa: E501
 
-    jwt: Optional[Union[str, Any]] = None
-    jwt_vc: Optional[Union[str, Any]] = None
-    jwt_vp: Optional[Union[str, Any]] = None
-    ldp: Optional[Union[str, Any]] = None
-    ldp_vc: Optional[Union[str, Any]] = None
-    ldp_vp: Optional[Union[str, Any]] = None
+    jwt: Optional[Dict[str, Any]] = None
+    jwt_vc: Optional[Dict[str, Any]] = None
+    jwt_vp: Optional[Dict[str, Any]] = None
+    ldp: Optional[Dict[str, Any]] = None
+    ldp_vc: Optional[Dict[str, Any]] = None
+    ldp_vp: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = [
         "jwt",
         "jwt_vc",
@@ -59,7 +55,7 @@ class ClaimFormat(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of ClaimFormat from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -73,15 +69,17 @@ class ClaimFormat(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of ClaimFormat from a dict"""
         if obj is None:
             return None

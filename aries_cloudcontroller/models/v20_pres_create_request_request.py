@@ -16,19 +16,15 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.v20_pres_request_by_format import (
     V20PresRequestByFormat,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20PresCreateRequestRequest(BaseModel):
@@ -67,7 +63,7 @@ class V20PresCreateRequestRequest(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20PresCreateRequestRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -81,9 +77,11 @@ class V20PresCreateRequestRequest(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of presentation_request
@@ -97,7 +95,7 @@ class V20PresCreateRequestRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20PresCreateRequestRequest from a dict"""
         if obj is None:
             return None
@@ -111,7 +109,7 @@ class V20PresCreateRequestRequest(BaseModel):
                 "auto_verify": obj.get("auto_verify"),
                 "comment": obj.get("comment"),
                 "presentation_request": (
-                    V20PresRequestByFormat.from_dict(obj.get("presentation_request"))
+                    V20PresRequestByFormat.from_dict(obj["presentation_request"])
                     if obj.get("presentation_request") is not None
                     else None
                 ),

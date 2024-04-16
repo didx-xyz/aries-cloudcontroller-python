@@ -16,18 +16,14 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.dif_proof_proposal import DIFProofProposal
 from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class V20PresProposalByFormat(BaseModel):
@@ -35,8 +31,12 @@ class V20PresProposalByFormat(BaseModel):
     V20PresProposalByFormat
     """  # noqa: E501
 
-    dif: Optional[DIFProofProposal] = None
-    indy: Optional[IndyProofRequest] = None
+    dif: Optional[DIFProofProposal] = Field(
+        default=None, description="Presentation proposal for DIF"
+    )
+    indy: Optional[IndyProofRequest] = Field(
+        default=None, description="Presentation proposal for indy"
+    )
     __properties: ClassVar[List[str]] = ["dif", "indy"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -50,7 +50,7 @@ class V20PresProposalByFormat(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20PresProposalByFormat from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -64,9 +64,11 @@ class V20PresProposalByFormat(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of dif
@@ -78,7 +80,7 @@ class V20PresProposalByFormat(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20PresProposalByFormat from a dict"""
         if obj is None:
             return None
@@ -89,12 +91,12 @@ class V20PresProposalByFormat(BaseModel):
         _obj = cls.model_validate(
             {
                 "dif": (
-                    DIFProofProposal.from_dict(obj.get("dif"))
+                    DIFProofProposal.from_dict(obj["dif"])
                     if obj.get("dif") is not None
                     else None
                 ),
                 "indy": (
-                    IndyProofRequest.from_dict(obj.get("indy"))
+                    IndyProofRequest.from_dict(obj["indy"])
                     if obj.get("indy") is not None
                     else None
                 ),

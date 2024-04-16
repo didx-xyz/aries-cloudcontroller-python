@@ -17,19 +17,14 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.invitation_message import InvitationMessage
 from aries_cloudcontroller.models.service_decorator import ServiceDecorator
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class OobRecord(BaseModel):
@@ -47,7 +42,7 @@ class OobRecord(BaseModel):
         default=None, description="Time of record creation"
     )
     invi_msg_id: StrictStr = Field(description="Invitation message identifier")
-    invitation: InvitationMessage
+    invitation: InvitationMessage = Field(description="Out of band invitation message")
     oob_id: StrictStr = Field(description="Oob record identifier")
     our_recipient_key: Optional[StrictStr] = Field(
         default=None, description="Recipient key used for oob invitation"
@@ -98,21 +93,23 @@ class OobRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in ("sender", "receiver"):
+        if value not in set(["sender", "receiver"]):
             raise ValueError("must be one of enum values ('sender', 'receiver')")
         return value
 
     @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in (
-            "initial",
-            "prepare-response",
-            "await-response",
-            "reuse-not-accepted",
-            "reuse-accepted",
-            "done",
-            "deleted",
+        if value not in set(
+            [
+                "initial",
+                "prepare-response",
+                "await-response",
+                "reuse-not-accepted",
+                "reuse-accepted",
+                "done",
+                "deleted",
+            ]
         ):
             raise ValueError(
                 "must be one of enum values ('initial', 'prepare-response', 'await-response', 'reuse-not-accepted', 'reuse-accepted', 'done', 'deleted')"
@@ -145,7 +142,7 @@ class OobRecord(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of OobRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -159,9 +156,11 @@ class OobRecord(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of invitation
@@ -173,7 +172,7 @@ class OobRecord(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of OobRecord from a dict"""
         if obj is None:
             return None
@@ -188,7 +187,7 @@ class OobRecord(BaseModel):
                 "created_at": obj.get("created_at"),
                 "invi_msg_id": obj.get("invi_msg_id"),
                 "invitation": (
-                    InvitationMessage.from_dict(obj.get("invitation"))
+                    InvitationMessage.from_dict(obj["invitation"])
                     if obj.get("invitation") is not None
                     else None
                 ),
@@ -197,7 +196,7 @@ class OobRecord(BaseModel):
                 "role": obj.get("role"),
                 "state": obj.get("state"),
                 "their_service": (
-                    ServiceDecorator.from_dict(obj.get("their_service"))
+                    ServiceDecorator.from_dict(obj["their_service"])
                     if obj.get("their_service") is not None
                     else None
                 ),

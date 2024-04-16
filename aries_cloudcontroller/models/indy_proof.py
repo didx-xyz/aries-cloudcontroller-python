@@ -16,9 +16,10 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.indy_proof_identifier import IndyProofIdentifier
 from aries_cloudcontroller.models.indy_proof_proof import IndyProofProof
@@ -26,11 +27,6 @@ from aries_cloudcontroller.models.indy_proof_requested_proof import (
     IndyProofRequestedProof,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 
 class IndyProof(BaseModel):
@@ -41,8 +37,12 @@ class IndyProof(BaseModel):
     identifiers: Optional[List[IndyProofIdentifier]] = Field(
         default=None, description="Indy proof.identifiers content"
     )
-    proof: Optional[IndyProofProof] = None
-    requested_proof: Optional[IndyProofRequestedProof] = None
+    proof: Optional[IndyProofProof] = Field(
+        default=None, description="Indy proof.proof content"
+    )
+    requested_proof: Optional[IndyProofRequestedProof] = Field(
+        default=None, description="Indy proof.requested_proof content"
+    )
     __properties: ClassVar[List[str]] = ["identifiers", "proof", "requested_proof"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -56,7 +56,7 @@ class IndyProof(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IndyProof from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -70,9 +70,11 @@ class IndyProof(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in identifiers (list)
@@ -91,7 +93,7 @@ class IndyProof(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IndyProof from a dict"""
         if obj is None:
             return None
@@ -104,18 +106,18 @@ class IndyProof(BaseModel):
                 "identifiers": (
                     [
                         IndyProofIdentifier.from_dict(_item)
-                        for _item in obj.get("identifiers")
+                        for _item in obj["identifiers"]
                     ]
                     if obj.get("identifiers") is not None
                     else None
                 ),
                 "proof": (
-                    IndyProofProof.from_dict(obj.get("proof"))
+                    IndyProofProof.from_dict(obj["proof"])
                     if obj.get("proof") is not None
                     else None
                 ),
                 "requested_proof": (
-                    IndyProofRequestedProof.from_dict(obj.get("requested_proof"))
+                    IndyProofRequestedProof.from_dict(obj["requested_proof"])
                     if obj.get("requested_proof") is not None
                     else None
                 ),

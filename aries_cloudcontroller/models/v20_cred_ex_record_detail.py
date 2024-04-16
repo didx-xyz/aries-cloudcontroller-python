@@ -16,9 +16,10 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.models.v20_cred_ex_record import V20CredExRecord
 from aries_cloudcontroller.models.v20_cred_ex_record_indy import V20CredExRecordIndy
@@ -27,18 +28,15 @@ from aries_cloudcontroller.models.v20_cred_ex_record_ld_proof import (
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
-
 
 class V20CredExRecordDetail(BaseModel):
     """
     V20CredExRecordDetail
     """  # noqa: E501
 
-    cred_ex_record: Optional[V20CredExRecord] = None
+    cred_ex_record: Optional[V20CredExRecord] = Field(
+        default=None, description="Credential exchange record"
+    )
     indy: Optional[V20CredExRecordIndy] = None
     ld_proof: Optional[V20CredExRecordLDProof] = None
     __properties: ClassVar[List[str]] = ["cred_ex_record", "indy", "ld_proof"]
@@ -54,7 +52,7 @@ class V20CredExRecordDetail(BaseModel):
         return self.model_dump_json(by_alias=True, exclude_unset=True)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20CredExRecordDetail from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -68,9 +66,11 @@ class V20CredExRecordDetail(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={},
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of cred_ex_record
@@ -85,7 +85,7 @@ class V20CredExRecordDetail(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of V20CredExRecordDetail from a dict"""
         if obj is None:
             return None
@@ -96,17 +96,17 @@ class V20CredExRecordDetail(BaseModel):
         _obj = cls.model_validate(
             {
                 "cred_ex_record": (
-                    V20CredExRecord.from_dict(obj.get("cred_ex_record"))
+                    V20CredExRecord.from_dict(obj["cred_ex_record"])
                     if obj.get("cred_ex_record") is not None
                     else None
                 ),
                 "indy": (
-                    V20CredExRecordIndy.from_dict(obj.get("indy"))
+                    V20CredExRecordIndy.from_dict(obj["indy"])
                     if obj.get("indy") is not None
                     else None
                 ),
                 "ld_proof": (
-                    V20CredExRecordLDProof.from_dict(obj.get("ld_proof"))
+                    V20CredExRecordLDProof.from_dict(obj["ld_proof"])
                     if obj.get("ld_proof") is not None
                     else None
                 ),
