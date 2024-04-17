@@ -23,5 +23,5 @@ mvn -B --no-snapshot-updates clean package -DskipTests=true -Dmaven.javadoc.skip
 cd aries-cloudcontroller-python
 pip install -r requirements.txt -r requirements.dev.txt --upgrade
 
-./generator/scripts/generate-client.sh 0.9.0 # Or other ACA-Py version
+./generator/scripts/generate-client.sh 0.11.0 # Or other ACA-Py version
 ```
