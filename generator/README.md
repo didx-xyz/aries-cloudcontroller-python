@@ -12,7 +12,7 @@ git clone https://github.com/didx-xyz/openapi-generator
 
 # Build OpenAPI generator JAR
 cd openapi-generator
-git checkout cloudcontroller/0.9.0  # A snapshot of the openapi-generator version used to generate cloudcontroller
+git checkout v7.5.0  # A tag of the openapi-generator version used to generate cloudcontroller
 
 mvn -B --no-snapshot-updates clean package -DskipTests=true -Dmaven.javadoc.skip=true -Djacoco.skip=true
 ```
