@@ -55,7 +55,8 @@ class CreateWalletRequest(BaseModel):
     )
     wallet_name: Optional[StrictStr] = Field(default=None, description="Wallet name")
     wallet_type: Optional[StrictStr] = Field(
-        default=None, description="Type of the wallet to create"
+        default=None,
+        description="Type of the wallet to create. Must be same as base wallet.",
     )
     wallet_webhook_urls: Optional[List[StrictStr]] = Field(
         default=None, description="List of Webhook URLs associated with this subwallet"
@@ -111,9 +112,9 @@ class CreateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["askar", "in_memory", "indy"]):
+        if value not in set(["askar", "askar-anoncreds", "in_memory", "indy"]):
             raise ValueError(
-                "must be one of enum values ('askar', 'in_memory', 'indy')"
+                "must be one of enum values ('askar', 'askar-anoncreds', 'in_memory', 'indy')"
             )
         return value
 
