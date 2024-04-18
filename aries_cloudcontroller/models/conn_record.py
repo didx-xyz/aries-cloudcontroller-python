@@ -119,9 +119,9 @@ class ConnRecord(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["connections/1.0", "didexchange/1.0"]):
+        if value not in set(["connections/1.0", "didexchange/1.0", "didexchange/1.1"]):
             raise ValueError(
-                "must be one of enum values ('connections/1.0', 'didexchange/1.0')"
+                "must be one of enum values ('connections/1.0', 'didexchange/1.0', 'didexchange/1.1')"
             )
         return value
 
