@@ -531,6 +531,10 @@ class DidExchangeApi:
         alias: Annotated[
             Optional[StrictStr], Field(description="Alias for connection")
         ] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
         goal: Annotated[
             Optional[StrictStr],
             Field(
@@ -553,6 +557,20 @@ class DidExchangeApi:
         ] = None,
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection request")
+        ] = None,
+        protocol: Annotated[
+            Optional[StrictStr],
+            Field(description="Which DID Exchange Protocol version to use"),
+        ] = None,
+        use_did: Annotated[
+            Optional[StrictStr],
+            Field(description="The DID to use to for this connection"),
+        ] = None,
+        use_did_method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The DID method to use to generate a DID for this connection"
+            ),
         ] = None,
         use_public_did: Annotated[
             Optional[StrictBool],
@@ -577,6 +595,8 @@ class DidExchangeApi:
         :type their_public_did: str
         :param alias: Alias for connection
         :type alias: str
+        :param auto_accept: Auto-accept connection (defaults to configuration)
+        :type auto_accept: bool
         :param goal: A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message
         :type goal: str
         :param goal_code: A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message
@@ -587,6 +607,12 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
+        :param protocol: Which DID Exchange Protocol version to use
+        :type protocol: str
+        :param use_did: The DID to use to for this connection
+        :type use_did: str
+        :param use_did_method: The DID method to use to generate a DID for this connection
+        :type use_did_method: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
         ...
@@ -595,11 +621,15 @@ class DidExchangeApi:
         _param = self._create_request_serialize(
             their_public_did=their_public_did,
             alias=alias,
+            auto_accept=auto_accept,
             goal=goal,
             goal_code=goal_code,
             mediation_id=mediation_id,
             my_endpoint=my_endpoint,
             my_label=my_label,
+            protocol=protocol,
+            use_did=use_did,
+            use_did_method=use_did_method,
             use_public_did=use_public_did,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -631,6 +661,10 @@ class DidExchangeApi:
         alias: Annotated[
             Optional[StrictStr], Field(description="Alias for connection")
         ] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
         goal: Annotated[
             Optional[StrictStr],
             Field(
@@ -653,6 +687,20 @@ class DidExchangeApi:
         ] = None,
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection request")
+        ] = None,
+        protocol: Annotated[
+            Optional[StrictStr],
+            Field(description="Which DID Exchange Protocol version to use"),
+        ] = None,
+        use_did: Annotated[
+            Optional[StrictStr],
+            Field(description="The DID to use to for this connection"),
+        ] = None,
+        use_did_method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The DID method to use to generate a DID for this connection"
+            ),
         ] = None,
         use_public_did: Annotated[
             Optional[StrictBool],
@@ -677,6 +725,8 @@ class DidExchangeApi:
         :type their_public_did: str
         :param alias: Alias for connection
         :type alias: str
+        :param auto_accept: Auto-accept connection (defaults to configuration)
+        :type auto_accept: bool
         :param goal: A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message
         :type goal: str
         :param goal_code: A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message
@@ -687,6 +737,12 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
+        :param protocol: Which DID Exchange Protocol version to use
+        :type protocol: str
+        :param use_did: The DID to use to for this connection
+        :type use_did: str
+        :param use_did_method: The DID method to use to generate a DID for this connection
+        :type use_did_method: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
         ...
@@ -695,11 +751,15 @@ class DidExchangeApi:
         _param = self._create_request_serialize(
             their_public_did=their_public_did,
             alias=alias,
+            auto_accept=auto_accept,
             goal=goal,
             goal_code=goal_code,
             mediation_id=mediation_id,
             my_endpoint=my_endpoint,
             my_label=my_label,
+            protocol=protocol,
+            use_did=use_did,
+            use_did_method=use_did_method,
             use_public_did=use_public_did,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -731,6 +791,10 @@ class DidExchangeApi:
         alias: Annotated[
             Optional[StrictStr], Field(description="Alias for connection")
         ] = None,
+        auto_accept: Annotated[
+            Optional[StrictBool],
+            Field(description="Auto-accept connection (defaults to configuration)"),
+        ] = None,
         goal: Annotated[
             Optional[StrictStr],
             Field(
@@ -753,6 +817,20 @@ class DidExchangeApi:
         ] = None,
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection request")
+        ] = None,
+        protocol: Annotated[
+            Optional[StrictStr],
+            Field(description="Which DID Exchange Protocol version to use"),
+        ] = None,
+        use_did: Annotated[
+            Optional[StrictStr],
+            Field(description="The DID to use to for this connection"),
+        ] = None,
+        use_did_method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The DID method to use to generate a DID for this connection"
+            ),
         ] = None,
         use_public_did: Annotated[
             Optional[StrictBool],
@@ -777,6 +855,8 @@ class DidExchangeApi:
         :type their_public_did: str
         :param alias: Alias for connection
         :type alias: str
+        :param auto_accept: Auto-accept connection (defaults to configuration)
+        :type auto_accept: bool
         :param goal: A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message
         :type goal: str
         :param goal_code: A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message
@@ -787,6 +867,12 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
+        :param protocol: Which DID Exchange Protocol version to use
+        :type protocol: str
+        :param use_did: The DID to use to for this connection
+        :type use_did: str
+        :param use_did_method: The DID method to use to generate a DID for this connection
+        :type use_did_method: str
         :param use_public_did: Use public DID for this connection
         :type use_public_did: bool
         ...
@@ -795,11 +881,15 @@ class DidExchangeApi:
         _param = self._create_request_serialize(
             their_public_did=their_public_did,
             alias=alias,
+            auto_accept=auto_accept,
             goal=goal,
             goal_code=goal_code,
             mediation_id=mediation_id,
             my_endpoint=my_endpoint,
             my_label=my_label,
+            protocol=protocol,
+            use_did=use_did,
+            use_did_method=use_did_method,
             use_public_did=use_public_did,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -819,11 +909,15 @@ class DidExchangeApi:
         self,
         their_public_did,
         alias,
+        auto_accept,
         goal,
         goal_code,
         mediation_id,
         my_endpoint,
         my_label,
+        protocol,
+        use_did,
+        use_did_method,
         use_public_did,
         _request_auth,
         _content_type,
@@ -852,6 +946,10 @@ class DidExchangeApi:
 
             _query_params.append(("alias", alias))
 
+        if auto_accept is not None:
+
+            _query_params.append(("auto_accept", auto_accept))
+
         if goal is not None:
 
             _query_params.append(("goal", goal))
@@ -871,6 +969,18 @@ class DidExchangeApi:
         if my_label is not None:
 
             _query_params.append(("my_label", my_label))
+
+        if protocol is not None:
+
+            _query_params.append(("protocol", protocol))
+
+        if use_did is not None:
+
+            _query_params.append(("use_did", use_did))
+
+        if use_did_method is not None:
+
+            _query_params.append(("use_did_method", use_did_method))
 
         if use_public_did is not None:
 
