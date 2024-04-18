@@ -22,6 +22,7 @@ from aries_cloudcontroller.models.admin_status_readiness import AdminStatusReadi
 
 # import models into model package
 from aries_cloudcontroller.models.aml_record import AMLRecord
+from aries_cloudcontroller.models.anon_creds_schema import AnonCredsSchema
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
 from aries_cloudcontroller.models.attach_decorator_data import AttachDecoratorData
 from aries_cloudcontroller.models.attach_decorator_data1_jws import (
@@ -133,6 +134,8 @@ from aries_cloudcontroller.models.get_did_endpoint_response import (
 from aries_cloudcontroller.models.get_did_verkey_response import GetDIDVerkeyResponse
 from aries_cloudcontroller.models.get_nym_role_response import GetNymRoleResponse
 from aries_cloudcontroller.models.indy_attr_value import IndyAttrValue
+from aries_cloudcontroller.models.get_schema_result import GetSchemaResult
+from aries_cloudcontroller.models.get_schemas_response import GetSchemasResponse
 from aries_cloudcontroller.models.indy_cred_abstract import IndyCredAbstract
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis
@@ -291,8 +294,12 @@ from aries_cloudcontroller.models.revoke_request import RevokeRequest
 from aries_cloudcontroller.models.route_record import RouteRecord
 from aries_cloudcontroller.models.schema_get_result import SchemaGetResult
 from aries_cloudcontroller.models.schema_input_descriptor import SchemaInputDescriptor
+from aries_cloudcontroller.models.schema_post_option import SchemaPostOption
+from aries_cloudcontroller.models.schema_post_request import SchemaPostRequest
+from aries_cloudcontroller.models.schema_result import SchemaResult
 from aries_cloudcontroller.models.schema_send_request import SchemaSendRequest
 from aries_cloudcontroller.models.schema_send_result import SchemaSendResult
+from aries_cloudcontroller.models.schema_state import SchemaState
 from aries_cloudcontroller.models.schemas_created_result import SchemasCreatedResult
 from aries_cloudcontroller.models.schemas_input_descriptor_filter import (
     SchemasInputDescriptorFilter,
