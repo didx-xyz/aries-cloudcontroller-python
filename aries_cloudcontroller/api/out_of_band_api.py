@@ -46,6 +46,10 @@ class OutOfBandApi:
             Optional[StrictBool],
             Field(description="Auto-accept connection (defaults to configuration)"),
         ] = None,
+        create_unique_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Create unique DID for this invitation (default false)"),
+        ] = None,
         multi_use: Annotated[
             Optional[StrictBool],
             Field(description="Create invitation for multiple use (default false)"),
@@ -68,6 +72,8 @@ class OutOfBandApi:
 
         :param auto_accept: Auto-accept connection (defaults to configuration)
         :type auto_accept: bool
+        :param create_unique_did: Create unique DID for this invitation (default false)
+        :type create_unique_did: bool
         :param multi_use: Create invitation for multiple use (default false)
         :type multi_use: bool
         :param body:
@@ -77,6 +83,7 @@ class OutOfBandApi:
 
         _param = self._create_invitation_serialize(
             auto_accept=auto_accept,
+            create_unique_did=create_unique_did,
             multi_use=multi_use,
             body=body,
             _request_auth=_request_auth,
@@ -103,6 +110,10 @@ class OutOfBandApi:
             Optional[StrictBool],
             Field(description="Auto-accept connection (defaults to configuration)"),
         ] = None,
+        create_unique_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Create unique DID for this invitation (default false)"),
+        ] = None,
         multi_use: Annotated[
             Optional[StrictBool],
             Field(description="Create invitation for multiple use (default false)"),
@@ -125,6 +136,8 @@ class OutOfBandApi:
 
         :param auto_accept: Auto-accept connection (defaults to configuration)
         :type auto_accept: bool
+        :param create_unique_did: Create unique DID for this invitation (default false)
+        :type create_unique_did: bool
         :param multi_use: Create invitation for multiple use (default false)
         :type multi_use: bool
         :param body:
@@ -134,6 +147,7 @@ class OutOfBandApi:
 
         _param = self._create_invitation_serialize(
             auto_accept=auto_accept,
+            create_unique_did=create_unique_did,
             multi_use=multi_use,
             body=body,
             _request_auth=_request_auth,
@@ -160,6 +174,10 @@ class OutOfBandApi:
             Optional[StrictBool],
             Field(description="Auto-accept connection (defaults to configuration)"),
         ] = None,
+        create_unique_did: Annotated[
+            Optional[StrictBool],
+            Field(description="Create unique DID for this invitation (default false)"),
+        ] = None,
         multi_use: Annotated[
             Optional[StrictBool],
             Field(description="Create invitation for multiple use (default false)"),
@@ -182,6 +200,8 @@ class OutOfBandApi:
 
         :param auto_accept: Auto-accept connection (defaults to configuration)
         :type auto_accept: bool
+        :param create_unique_did: Create unique DID for this invitation (default false)
+        :type create_unique_did: bool
         :param multi_use: Create invitation for multiple use (default false)
         :type multi_use: bool
         :param body:
@@ -191,6 +211,7 @@ class OutOfBandApi:
 
         _param = self._create_invitation_serialize(
             auto_accept=auto_accept,
+            create_unique_did=create_unique_did,
             multi_use=multi_use,
             body=body,
             _request_auth=_request_auth,
@@ -210,6 +231,7 @@ class OutOfBandApi:
     def _create_invitation_serialize(
         self,
         auto_accept,
+        create_unique_did,
         multi_use,
         body,
         _request_auth,
@@ -234,6 +256,10 @@ class OutOfBandApi:
         if auto_accept is not None:
 
             _query_params.append(("auto_accept", auto_accept))
+
+        if create_unique_did is not None:
+
+            _query_params.append(("create_unique_did", create_unique_did))
 
         if multi_use is not None:
 
