@@ -30,9 +30,7 @@ class ConnectionList(BaseModel):
     ConnectionList
     """  # noqa: E501
 
-    results: Optional[List[ConnRecord]] = Field(
-        default=None, description="List of connection records"
-    )
+    results: List[ConnRecord] = Field(description="List of connection records")
     __properties: ClassVar[List[str]] = ["results"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

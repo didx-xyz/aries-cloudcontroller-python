@@ -30,9 +30,7 @@ class MediationList(BaseModel):
     MediationList
     """  # noqa: E501
 
-    results: Optional[List[MediationRecord]] = Field(
-        default=None, description="List of mediation records"
-    )
+    results: List[MediationRecord] = Field(description="List of mediation records")
     __properties: ClassVar[List[str]] = ["results"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
