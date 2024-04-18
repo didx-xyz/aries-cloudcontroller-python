@@ -30,13 +30,9 @@ class InvitationResult(BaseModel):
     InvitationResult
     """  # noqa: E501
 
-    connection_id: Optional[StrictStr] = Field(
-        default=None, description="Connection identifier"
-    )
-    invitation: Optional[ConnectionInvitation] = None
-    invitation_url: Optional[StrictStr] = Field(
-        default=None, description="Invitation URL"
-    )
+    connection_id: StrictStr = Field(description="Connection identifier")
+    invitation: ConnectionInvitation
+    invitation_url: StrictStr = Field(description="Invitation URL")
     __properties: ClassVar[List[str]] = [
         "connection_id",
         "invitation",
