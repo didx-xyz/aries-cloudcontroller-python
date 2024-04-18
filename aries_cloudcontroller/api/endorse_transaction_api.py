@@ -13,7 +13,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
@@ -219,10 +219,6 @@ class EndorseTransactionApi:
     async def create_request(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
-        endorser_write_txn: Annotated[
-            Optional[StrictBool],
-            Field(description="Endorser will write the transaction after endorsing it"),
-        ] = None,
         body: Optional[ModelDate] = None,
         _request_timeout: Union[
             None,
@@ -241,8 +237,6 @@ class EndorseTransactionApi:
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param endorser_write_txn: Endorser will write the transaction after endorsing it
-        :type endorser_write_txn: bool
         :param body:
         :type body: ModelDate
         ...
@@ -250,7 +244,6 @@ class EndorseTransactionApi:
 
         _param = self._create_request_serialize(
             tran_id=tran_id,
-            endorser_write_txn=endorser_write_txn,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -273,10 +266,6 @@ class EndorseTransactionApi:
     async def create_request_with_http_info(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
-        endorser_write_txn: Annotated[
-            Optional[StrictBool],
-            Field(description="Endorser will write the transaction after endorsing it"),
-        ] = None,
         body: Optional[ModelDate] = None,
         _request_timeout: Union[
             None,
@@ -295,8 +284,6 @@ class EndorseTransactionApi:
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param endorser_write_txn: Endorser will write the transaction after endorsing it
-        :type endorser_write_txn: bool
         :param body:
         :type body: ModelDate
         ...
@@ -304,7 +291,6 @@ class EndorseTransactionApi:
 
         _param = self._create_request_serialize(
             tran_id=tran_id,
-            endorser_write_txn=endorser_write_txn,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -327,10 +313,6 @@ class EndorseTransactionApi:
     async def create_request_without_preload_content(
         self,
         tran_id: Annotated[StrictStr, Field(description="Transaction identifier")],
-        endorser_write_txn: Annotated[
-            Optional[StrictBool],
-            Field(description="Endorser will write the transaction after endorsing it"),
-        ] = None,
         body: Optional[ModelDate] = None,
         _request_timeout: Union[
             None,
@@ -349,8 +331,6 @@ class EndorseTransactionApi:
 
         :param tran_id: Transaction identifier (required)
         :type tran_id: str
-        :param endorser_write_txn: Endorser will write the transaction after endorsing it
-        :type endorser_write_txn: bool
         :param body:
         :type body: ModelDate
         ...
@@ -358,7 +338,6 @@ class EndorseTransactionApi:
 
         _param = self._create_request_serialize(
             tran_id=tran_id,
-            endorser_write_txn=endorser_write_txn,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -377,7 +356,6 @@ class EndorseTransactionApi:
     def _create_request_serialize(
         self,
         tran_id,
-        endorser_write_txn,
         body,
         _request_auth,
         _content_type,
@@ -401,10 +379,6 @@ class EndorseTransactionApi:
         if tran_id is not None:
 
             _query_params.append(("tran_id", tran_id))
-
-        if endorser_write_txn is not None:
-
-            _query_params.append(("endorser_write_txn", endorser_write_txn))
 
         # process the header parameters
         # process the form parameters

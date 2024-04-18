@@ -42,7 +42,7 @@ class TransactionRecord(BaseModel):
     )
     endorser_write_txn: Optional[StrictBool] = Field(
         default=None,
-        description="If True, Endorser will write the transaction after endorsing it",
+        description="Request Endorser to write the ledger transaction, this parameter is deprecated and no longer supported.",
     )
     formats: Optional[List[Dict[str, StrictStr]]] = None
     messages_attach: Optional[List[Dict[str, Any]]] = None
