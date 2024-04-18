@@ -4894,6 +4894,134 @@
         "produces": ["application/json"]
       }
     },
+    "/vc/credentials": {
+      "get": {
+        "responses": {
+          "200": {
+            "schema": { "$ref": "#/definitions/ListCredentialsResponse" },
+            "description": ""
+          }
+        },
+        "parameters": [],
+        "tags": ["vc-api"],
+        "summary": "List credentials",
+        "produces": ["application/json"]
+      }
+    },
+    "/vc/credentials/issue": {
+      "post": {
+        "responses": {
+          "200": {
+            "schema": { "$ref": "#/definitions/IssueCredentialResponse" },
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "required": false,
+            "name": "body",
+            "schema": { "$ref": "#/definitions/IssueCredentialRequest" }
+          }
+        ],
+        "tags": ["vc-api"],
+        "summary": "Issue a credential",
+        "produces": ["application/json"]
+      }
+    },
+    "/vc/credentials/store": {
+      "post": {
+        "responses": {},
+        "parameters": [],
+        "tags": ["vc-api"],
+        "summary": "Store a credential",
+        "produces": ["application/json"]
+      }
+    },
+    "/vc/credentials/verify": {
+      "post": {
+        "responses": {
+          "200": {
+            "schema": { "$ref": "#/definitions/VerifyCredentialResponse" },
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "required": false,
+            "name": "body",
+            "schema": { "$ref": "#/definitions/VerifyCredentialRequest" }
+          }
+        ],
+        "tags": ["vc-api"],
+        "summary": "Verify a credential",
+        "produces": ["application/json"]
+      }
+    },
+    "/vc/credentials/{credential_id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "schema": { "$ref": "#/definitions/FetchCredentialResponse" },
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "credential_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["vc-api"],
+        "summary": "Fetch credential by ID",
+        "produces": ["application/json"]
+      }
+    },
+    "/vc/presentations/prove": {
+      "post": {
+        "responses": {
+          "200": {
+            "schema": { "$ref": "#/definitions/ProvePresentationResponse" },
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "required": false,
+            "name": "body",
+            "schema": { "$ref": "#/definitions/ProvePresentationRequest" }
+          }
+        ],
+        "tags": ["vc-api"],
+        "summary": "Prove a presentation",
+        "produces": ["application/json"]
+      }
+    },
+    "/vc/presentations/verify": {
+      "post": {
+        "responses": {
+          "200": {
+            "schema": { "$ref": "#/definitions/VerifyPresentationResponse" },
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "required": false,
+            "name": "body",
+            "schema": { "$ref": "#/definitions/VerifyPresentationRequest" }
+          }
+        ],
+        "tags": ["vc-api"],
+        "summary": "Verify a Presentation",
+        "produces": ["application/json"]
+      }
+    },
     "/wallet/did": {
       "get": {
         "responses": {
@@ -6745,6 +6873,12 @@
       },
       "type": "object"
     },
+    "FetchCredentialResponse": {
+      "properties": {
+        "results": { "$ref": "#/definitions/VerifiableCredential" }
+      },
+      "type": "object"
+    },
     "Filter": {
       "properties": {
         "const": { "description": "Const" },
@@ -8037,6 +8171,19 @@
       "type": "object"
     },
     "IssueCredentialModuleResponse": { "properties": {}, "type": "object" },
+    "IssueCredentialRequest": {
+      "properties": {
+        "credential": { "$ref": "#/definitions/Credential" },
+        "options": { "$ref": "#/definitions/LDProofVCOptions" }
+      },
+      "type": "object"
+    },
+    "IssueCredentialResponse": {
+      "properties": {
+        "verifiableCredential": { "$ref": "#/definitions/VerifiableCredential" }
+      },
+      "type": "object"
+    },
     "IssuerCredRevRecord": {
       "properties": {
         "created_at": {
@@ -8957,6 +9104,21 @@
         }
       },
       "required": ["pid"],
+      "type": "object"
+    },
+    "ProvePresentationRequest": {
+      "properties": {
+        "options": { "$ref": "#/definitions/LDProofVCOptions" },
+        "presentation": { "$ref": "#/definitions/Presentation" }
+      },
+      "type": "object"
+    },
+    "ProvePresentationResponse": {
+      "properties": {
+        "verifiablePresentation": {
+          "$ref": "#/definitions/VerifiablePresentation"
+        }
+      },
       "type": "object"
     },
     "PublishRevocations": {
@@ -11903,6 +12065,151 @@
       },
       "type": "object"
     },
+    "VerifiableCredential": {
+      "properties": {
+        "@context": {
+          "description": "The JSON-LD context of the credential",
+          "example": [
+            "https://www.w3.org/2018/credentials/v1",
+            "https://www.w3.org/2018/credentials/examples/v1"
+          ],
+          "items": {},
+          "type": "array"
+        },
+        "credentialStatus": {
+          "example": {
+            "id": "https://example.com/credentials/status/3#94567",
+            "statusListCredential": "https://example.com/credentials/status/3",
+            "statusListIndex": "94567",
+            "statusPurpose": "revocation",
+            "type": "BitstringStatusListEntry"
+          }
+        },
+        "credentialSubject": {
+          "example": {
+            "alumniOf": { "id": "did:example:c276e12ec21ebfeb1f712ebc6f1" },
+            "id": "did:example:ebfeb1f712ebc6f1c276e12ec21"
+          }
+        },
+        "expirationDate": {
+          "description": "The expiration date",
+          "example": "2010-01-01T19:23:24Z",
+          "pattern": "^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+          "type": "string"
+        },
+        "id": {
+          "example": "http://example.edu/credentials/1872",
+          "pattern": "\\w+:(\\/?\\/?)[^\\s]+",
+          "type": "string"
+        },
+        "issuanceDate": {
+          "description": "The issuance date",
+          "example": "2010-01-01T19:23:24Z",
+          "pattern": "^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+          "type": "string"
+        },
+        "issuer": {
+          "description": "The JSON-LD Verifiable Credential Issuer. Either string of object with id field.",
+          "example": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH"
+        },
+        "proof": {
+          "allOf": [{ "$ref": "#/definitions/LinkedDataProof" }],
+          "description": "The proof of the credential",
+          "example": {
+            "created": "2019-12-11T03:50:55",
+            "jws": "eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ",
+            "proofPurpose": "assertionMethod",
+            "type": "Ed25519Signature2018",
+            "verificationMethod": "did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL"
+          }
+        },
+        "type": {
+          "description": "The JSON-LD type of the credential",
+          "example": ["VerifiableCredential", "AlumniCredential"],
+          "items": { "type": "string" },
+          "type": "array"
+        }
+      },
+      "required": [
+        "@context",
+        "credentialSubject",
+        "issuanceDate",
+        "issuer",
+        "proof",
+        "type"
+      ],
+      "type": "object"
+    },
+    "VerifiablePresentation": {
+      "properties": {
+        "@context": {
+          "description": "The JSON-LD context of the presentation",
+          "example": ["https://www.w3.org/2018/credentials/v1"],
+          "items": {},
+          "type": "array"
+        },
+        "holder": {
+          "description": "The JSON-LD Verifiable Credential Holder. Either string of object with id field.",
+          "example": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH"
+        },
+        "id": {
+          "example": "http://example.edu/presentations/1872",
+          "pattern": "\\w+:(\\/?\\/?)[^\\s]+",
+          "type": "string"
+        },
+        "proof": {
+          "allOf": [{ "$ref": "#/definitions/LinkedDataProof" }],
+          "description": "The proof of the presentation",
+          "example": {
+            "created": "2019-12-11T03:50:55",
+            "jws": "eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ",
+            "proofPurpose": "assertionMethod",
+            "type": "Ed25519Signature2018",
+            "verificationMethod": "did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL"
+          }
+        },
+        "type": {
+          "description": "The JSON-LD type of the presentation",
+          "example": ["VerifiablePresentation"],
+          "items": { "type": "string" },
+          "type": "array"
+        },
+        "verifiableCredential": {
+          "items": { "type": "object" },
+          "type": "array"
+        }
+      },
+      "required": ["@context", "proof", "type"],
+      "type": "object"
+    },
+    "VerifyCredentialRequest": {
+      "properties": {
+        "options": { "$ref": "#/definitions/LDProofVCOptions" },
+        "verifiableCredential": { "$ref": "#/definitions/VerifiableCredential" }
+      },
+      "type": "object"
+    },
+    "VerifyCredentialResponse": {
+      "properties": {
+        "results": { "$ref": "#/definitions/PresentationVerificationResult" }
+      },
+      "type": "object"
+    },
+    "VerifyPresentationRequest": {
+      "properties": {
+        "options": { "$ref": "#/definitions/LDProofVCOptions" },
+        "verifiablePresentation": {
+          "$ref": "#/definitions/VerifiablePresentation"
+        }
+      },
+      "type": "object"
+    },
+    "VerifyPresentationResponse": {
+      "properties": {
+        "results": { "$ref": "#/definitions/PresentationVerificationResult" }
+      },
+      "type": "object"
+    },
     "VerifyRequest": {
       "properties": {
         "doc": {
@@ -12210,6 +12517,14 @@
       "externalDocs": {
         "description": "Specification",
         "url": "https://github.com/hyperledger/aries-rfcs/tree/527849ec3aa2a8fd47a7bb6c57f918ff8bcb5e8c/features/0048-trust-ping"
+      }
+    },
+    {
+      "name": "vc-api",
+      "description": "Endpoints for managing w3c credentials and presentations",
+      "externalDocs": {
+        "description": "Specification",
+        "url": "https://w3c-ccg.github.io/vc-api/"
       }
     },
     {

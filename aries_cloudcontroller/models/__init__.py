@@ -122,6 +122,9 @@ from aries_cloudcontroller.models.disclosures import Disclosures
 from aries_cloudcontroller.models.doc import Doc
 from aries_cloudcontroller.models.endorser_info import EndorserInfo
 from aries_cloudcontroller.models.endpoints_result import EndpointsResult
+from aries_cloudcontroller.models.fetch_credential_response import (
+    FetchCredentialResponse,
+)
 from aries_cloudcontroller.models.filter import Filter
 from aries_cloudcontroller.models.generated import Generated
 from aries_cloudcontroller.models.get_did_endpoint_response import (
@@ -212,6 +215,10 @@ from aries_cloudcontroller.models.invitation_create_request import (
 from aries_cloudcontroller.models.invitation_message import InvitationMessage
 from aries_cloudcontroller.models.invitation_record import InvitationRecord
 from aries_cloudcontroller.models.invitation_result import InvitationResult
+from aries_cloudcontroller.models.issue_credential_request import IssueCredentialRequest
+from aries_cloudcontroller.models.issue_credential_response import (
+    IssueCredentialResponse,
+)
 from aries_cloudcontroller.models.issuer_cred_rev_record import IssuerCredRevRecord
 from aries_cloudcontroller.models.issuer_rev_reg_record import IssuerRevRegRecord
 from aries_cloudcontroller.models.jws_create import JWSCreate
@@ -254,6 +261,12 @@ from aries_cloudcontroller.models.presentation_proposal import PresentationPropo
 from aries_cloudcontroller.models.presentation_request import PresentationRequest
 from aries_cloudcontroller.models.profile_settings import ProfileSettings
 from aries_cloudcontroller.models.protocol_descriptor import ProtocolDescriptor
+from aries_cloudcontroller.models.prove_presentation_request import (
+    ProvePresentationRequest,
+)
+from aries_cloudcontroller.models.prove_presentation_response import (
+    ProvePresentationResponse,
+)
 from aries_cloudcontroller.models.publish_revocations import PublishRevocations
 from aries_cloudcontroller.models.queries import Queries
 from aries_cloudcontroller.models.query import Query
@@ -459,6 +472,20 @@ from aries_cloudcontroller.models.v20_presentation_send_request_to_proposal impo
 )
 from aries_cloudcontroller.models.vc_record import VCRecord
 from aries_cloudcontroller.models.vc_record_list import VCRecordList
+from aries_cloudcontroller.models.verifiable_credential import VerifiableCredential
+from aries_cloudcontroller.models.verifiable_presentation import VerifiablePresentation
+from aries_cloudcontroller.models.verify_credential_request import (
+    VerifyCredentialRequest,
+)
+from aries_cloudcontroller.models.verify_credential_response import (
+    VerifyCredentialResponse,
+)
+from aries_cloudcontroller.models.verify_presentation_request import (
+    VerifyPresentationRequest,
+)
+from aries_cloudcontroller.models.verify_presentation_response import (
+    VerifyPresentationResponse,
+)
 from aries_cloudcontroller.models.verify_request import VerifyRequest
 from aries_cloudcontroller.models.verify_response import VerifyResponse
 from aries_cloudcontroller.models.w3_c_credentials_list_request import (
