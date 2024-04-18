@@ -43,6 +43,9 @@ class OobRecord(BaseModel):
     )
     invi_msg_id: StrictStr = Field(description="Invitation message identifier")
     invitation: InvitationMessage = Field(description="Out of band invitation message")
+    multi_use: Optional[StrictBool] = Field(
+        default=None, description="Allow for multiple uses of the oob invitation"
+    )
     oob_id: StrictStr = Field(description="Oob record identifier")
     our_recipient_key: Optional[StrictStr] = Field(
         default=None, description="Recipient key used for oob invitation"
@@ -63,6 +66,7 @@ class OobRecord(BaseModel):
         "created_at",
         "invi_msg_id",
         "invitation",
+        "multi_use",
         "oob_id",
         "our_recipient_key",
         "role",
@@ -191,6 +195,7 @@ class OobRecord(BaseModel):
                     if obj.get("invitation") is not None
                     else None
                 ),
+                "multi_use": obj.get("multi_use"),
                 "oob_id": obj.get("oob_id"),
                 "our_recipient_key": obj.get("our_recipient_key"),
                 "role": obj.get("role"),
