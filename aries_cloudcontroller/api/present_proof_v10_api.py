@@ -11,6 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
@@ -74,13 +75,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchange:
-        """Creates a presentation request not bound to any proposal or connection
+        """(Deprecated) Creates a presentation request not bound to any proposal or connection
 
 
         :param body:
         :type body: V10PresentationCreateRequestRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/create-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_proof_request_serialize(
             body=body,
@@ -117,13 +121,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchange]:
-        """Creates a presentation request not bound to any proposal or connection
+        """(Deprecated) Creates a presentation request not bound to any proposal or connection
 
 
         :param body:
         :type body: V10PresentationCreateRequestRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/create-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_proof_request_serialize(
             body=body,
@@ -160,13 +167,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Creates a presentation request not bound to any proposal or connection
+        """(Deprecated) Creates a presentation request not bound to any proposal or connection
 
 
         :param body:
         :type body: V10PresentationCreateRequestRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/create-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_proof_request_serialize(
             body=body,
@@ -263,13 +273,17 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Remove an existing presentation exchange record
+        """(Deprecated) Remove an existing presentation exchange record
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "DELETE /present-proof/records/{pres_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._delete_record_serialize(
             pres_ex_id=pres_ex_id,
@@ -308,13 +322,17 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[object]:
-        """Remove an existing presentation exchange record
+        """(Deprecated) Remove an existing presentation exchange record
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "DELETE /present-proof/records/{pres_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._delete_record_serialize(
             pres_ex_id=pres_ex_id,
@@ -353,13 +371,17 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Remove an existing presentation exchange record
+        """(Deprecated) Remove an existing presentation exchange record
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "DELETE /present-proof/records/{pres_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._delete_record_serialize(
             pres_ex_id=pres_ex_id,
@@ -462,7 +484,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> List[IndyCredPrecis]:
-        """Fetch credentials for a presentation request from wallet
+        """(Deprecated) Fetch credentials for a presentation request from wallet
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -477,6 +499,10 @@ class PresentProofV10Api:
         :type start: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /present-proof/records/{pres_ex_id}/credentials is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._get_matching_credentials_serialize(
             pres_ex_id=pres_ex_id,
@@ -535,7 +561,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[List[IndyCredPrecis]]:
-        """Fetch credentials for a presentation request from wallet
+        """(Deprecated) Fetch credentials for a presentation request from wallet
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -550,6 +576,10 @@ class PresentProofV10Api:
         :type start: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /present-proof/records/{pres_ex_id}/credentials is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._get_matching_credentials_serialize(
             pres_ex_id=pres_ex_id,
@@ -608,7 +638,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fetch credentials for a presentation request from wallet
+        """(Deprecated) Fetch credentials for a presentation request from wallet
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -623,6 +653,10 @@ class PresentProofV10Api:
         :type start: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /present-proof/records/{pres_ex_id}/credentials is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._get_matching_credentials_serialize(
             pres_ex_id=pres_ex_id,
@@ -733,13 +767,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchange:
-        """Fetch a single presentation exchange record
+        """(Deprecated) Fetch a single presentation exchange record
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /present-proof/records/{pres_ex_id} is deprecated.", DeprecationWarning
+        )
 
         _param = self._get_record_serialize(
             pres_ex_id=pres_ex_id,
@@ -778,13 +815,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchange]:
-        """Fetch a single presentation exchange record
+        """(Deprecated) Fetch a single presentation exchange record
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /present-proof/records/{pres_ex_id} is deprecated.", DeprecationWarning
+        )
 
         _param = self._get_record_serialize(
             pres_ex_id=pres_ex_id,
@@ -823,13 +863,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fetch a single presentation exchange record
+        """(Deprecated) Fetch a single presentation exchange record
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /present-proof/records/{pres_ex_id} is deprecated.", DeprecationWarning
+        )
 
         _param = self._get_record_serialize(
             pres_ex_id=pres_ex_id,
@@ -926,7 +969,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchangeList:
-        """Fetch all present-proof exchange records
+        """(Deprecated) Fetch all present-proof exchange records
 
 
         :param connection_id: Connection identifier
@@ -939,6 +982,7 @@ class PresentProofV10Api:
         :type thread_id: str
         ...
         """  # noqa: E501
+        warnings.warn("GET /present-proof/records is deprecated.", DeprecationWarning)
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
@@ -990,7 +1034,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchangeList]:
-        """Fetch all present-proof exchange records
+        """(Deprecated) Fetch all present-proof exchange records
 
 
         :param connection_id: Connection identifier
@@ -1003,6 +1047,7 @@ class PresentProofV10Api:
         :type thread_id: str
         ...
         """  # noqa: E501
+        warnings.warn("GET /present-proof/records is deprecated.", DeprecationWarning)
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
@@ -1054,7 +1099,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fetch all present-proof exchange records
+        """(Deprecated) Fetch all present-proof exchange records
 
 
         :param connection_id: Connection identifier
@@ -1067,6 +1112,7 @@ class PresentProofV10Api:
         :type thread_id: str
         ...
         """  # noqa: E501
+        warnings.warn("GET /present-proof/records is deprecated.", DeprecationWarning)
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
@@ -1174,7 +1220,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Send a problem report for presentation exchange
+        """(Deprecated) Send a problem report for presentation exchange
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1183,6 +1229,10 @@ class PresentProofV10Api:
         :type body: V10PresentationProblemReportRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/problem-report is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._report_problem_serialize(
             pres_ex_id=pres_ex_id,
@@ -1223,7 +1273,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[object]:
-        """Send a problem report for presentation exchange
+        """(Deprecated) Send a problem report for presentation exchange
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1232,6 +1282,10 @@ class PresentProofV10Api:
         :type body: V10PresentationProblemReportRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/problem-report is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._report_problem_serialize(
             pres_ex_id=pres_ex_id,
@@ -1272,7 +1326,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send a problem report for presentation exchange
+        """(Deprecated) Send a problem report for presentation exchange
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1281,6 +1335,10 @@ class PresentProofV10Api:
         :type body: V10PresentationProblemReportRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/problem-report is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._report_problem_serialize(
             pres_ex_id=pres_ex_id,
@@ -1382,7 +1440,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchange:
-        """Sends a proof presentation
+        """(Deprecated) Sends a proof presentation
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1391,6 +1449,10 @@ class PresentProofV10Api:
         :type body: V10PresentationSendRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/send-presentation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_presentation_serialize(
             pres_ex_id=pres_ex_id,
@@ -1431,7 +1493,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchange]:
-        """Sends a proof presentation
+        """(Deprecated) Sends a proof presentation
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1440,6 +1502,10 @@ class PresentProofV10Api:
         :type body: V10PresentationSendRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/send-presentation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_presentation_serialize(
             pres_ex_id=pres_ex_id,
@@ -1480,7 +1546,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sends a proof presentation
+        """(Deprecated) Sends a proof presentation
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1489,6 +1555,10 @@ class PresentProofV10Api:
         :type body: V10PresentationSendRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/send-presentation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_presentation_serialize(
             pres_ex_id=pres_ex_id,
@@ -1587,13 +1657,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchange:
-        """Sends a presentation proposal
+        """(Deprecated) Sends a presentation proposal
 
 
         :param body:
         :type body: V10PresentationProposalRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/send-proposal is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_proposal_serialize(
             body=body,
@@ -1630,13 +1703,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchange]:
-        """Sends a presentation proposal
+        """(Deprecated) Sends a presentation proposal
 
 
         :param body:
         :type body: V10PresentationProposalRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/send-proposal is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_proposal_serialize(
             body=body,
@@ -1673,13 +1749,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sends a presentation proposal
+        """(Deprecated) Sends a presentation proposal
 
 
         :param body:
         :type body: V10PresentationProposalRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/send-proposal is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_proposal_serialize(
             body=body,
@@ -1777,7 +1856,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchange:
-        """Sends a presentation request in reference to a proposal
+        """(Deprecated) Sends a presentation request in reference to a proposal
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1786,6 +1865,10 @@ class PresentProofV10Api:
         :type body: V10PresentationSendRequestToProposal
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/send-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_request_serialize(
             pres_ex_id=pres_ex_id,
@@ -1826,7 +1909,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchange]:
-        """Sends a presentation request in reference to a proposal
+        """(Deprecated) Sends a presentation request in reference to a proposal
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1835,6 +1918,10 @@ class PresentProofV10Api:
         :type body: V10PresentationSendRequestToProposal
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/send-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_request_serialize(
             pres_ex_id=pres_ex_id,
@@ -1875,7 +1962,7 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sends a presentation request in reference to a proposal
+        """(Deprecated) Sends a presentation request in reference to a proposal
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
@@ -1884,6 +1971,10 @@ class PresentProofV10Api:
         :type body: V10PresentationSendRequestToProposal
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/send-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_request_serialize(
             pres_ex_id=pres_ex_id,
@@ -1982,13 +2073,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchange:
-        """Sends a free presentation request not bound to any proposal
+        """(Deprecated) Sends a free presentation request not bound to any proposal
 
 
         :param body:
         :type body: V10PresentationSendRequestRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/send-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_request_free_serialize(
             body=body,
@@ -2025,13 +2119,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchange]:
-        """Sends a free presentation request not bound to any proposal
+        """(Deprecated) Sends a free presentation request not bound to any proposal
 
 
         :param body:
         :type body: V10PresentationSendRequestRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/send-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_request_free_serialize(
             body=body,
@@ -2068,13 +2165,16 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sends a free presentation request not bound to any proposal
+        """(Deprecated) Sends a free presentation request not bound to any proposal
 
 
         :param body:
         :type body: V10PresentationSendRequestRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/send-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_request_free_serialize(
             body=body,
@@ -2171,13 +2271,17 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10PresentationExchange:
-        """Verify a received presentation
+        """(Deprecated) Verify a received presentation
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/verify-presentation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._verify_presentation_serialize(
             pres_ex_id=pres_ex_id,
@@ -2216,13 +2320,17 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10PresentationExchange]:
-        """Verify a received presentation
+        """(Deprecated) Verify a received presentation
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/verify-presentation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._verify_presentation_serialize(
             pres_ex_id=pres_ex_id,
@@ -2261,13 +2369,17 @@ class PresentProofV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Verify a received presentation
+        """(Deprecated) Verify a received presentation
 
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /present-proof/records/{pres_ex_id}/verify-presentation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._verify_presentation_serialize(
             pres_ex_id=pres_ex_id,

@@ -11,6 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
@@ -53,13 +54,14 @@ class JsonldApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> SignResponse:
-        """Sign a JSON-LD structure and return it
+        """(Deprecated) Sign a JSON-LD structure and return it
 
 
         :param body:
         :type body: SignRequest
         ...
         """  # noqa: E501
+        warnings.warn("POST /jsonld/sign is deprecated.", DeprecationWarning)
 
         _param = self._sign_serialize(
             body=body,
@@ -96,13 +98,14 @@ class JsonldApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[SignResponse]:
-        """Sign a JSON-LD structure and return it
+        """(Deprecated) Sign a JSON-LD structure and return it
 
 
         :param body:
         :type body: SignRequest
         ...
         """  # noqa: E501
+        warnings.warn("POST /jsonld/sign is deprecated.", DeprecationWarning)
 
         _param = self._sign_serialize(
             body=body,
@@ -139,13 +142,14 @@ class JsonldApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Sign a JSON-LD structure and return it
+        """(Deprecated) Sign a JSON-LD structure and return it
 
 
         :param body:
         :type body: SignRequest
         ...
         """  # noqa: E501
+        warnings.warn("POST /jsonld/sign is deprecated.", DeprecationWarning)
 
         _param = self._sign_serialize(
             body=body,
@@ -240,13 +244,14 @@ class JsonldApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> VerifyResponse:
-        """Verify a JSON-LD structure.
+        """(Deprecated) Verify a JSON-LD structure.
 
 
         :param body:
         :type body: VerifyRequest
         ...
         """  # noqa: E501
+        warnings.warn("POST /jsonld/verify is deprecated.", DeprecationWarning)
 
         _param = self._verify_serialize(
             body=body,
@@ -283,13 +288,14 @@ class JsonldApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[VerifyResponse]:
-        """Verify a JSON-LD structure.
+        """(Deprecated) Verify a JSON-LD structure.
 
 
         :param body:
         :type body: VerifyRequest
         ...
         """  # noqa: E501
+        warnings.warn("POST /jsonld/verify is deprecated.", DeprecationWarning)
 
         _param = self._verify_serialize(
             body=body,
@@ -326,13 +332,14 @@ class JsonldApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Verify a JSON-LD structure.
+        """(Deprecated) Verify a JSON-LD structure.
 
 
         :param body:
         :type body: VerifyRequest
         ...
         """  # noqa: E501
+        warnings.warn("POST /jsonld/verify is deprecated.", DeprecationWarning)
 
         _param = self._verify_serialize(
             body=body,

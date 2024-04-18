@@ -11,6 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
@@ -81,13 +82,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Create a credential record without sending (generally for use with Out-Of-Band)
+        """(Deprecated) Create a credential record without sending (generally for use with Out-Of-Band)
 
 
         :param body:
         :type body: V10CredentialCreate
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/create is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_credential_serialize(
             body=body,
@@ -124,13 +128,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Create a credential record without sending (generally for use with Out-Of-Band)
+        """(Deprecated) Create a credential record without sending (generally for use with Out-Of-Band)
 
 
         :param body:
         :type body: V10CredentialCreate
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/create is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_credential_serialize(
             body=body,
@@ -167,13 +174,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a credential record without sending (generally for use with Out-Of-Band)
+        """(Deprecated) Create a credential record without sending (generally for use with Out-Of-Band)
 
 
         :param body:
         :type body: V10CredentialCreate
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/create is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_credential_serialize(
             body=body,
@@ -268,13 +278,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Create a credential offer, independent of any proposal or connection
+        """(Deprecated) Create a credential offer, independent of any proposal or connection
 
 
         :param body:
         :type body: V10CredentialConnFreeOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/create-offer is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_offer_serialize(
             body=body,
@@ -311,13 +324,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Create a credential offer, independent of any proposal or connection
+        """(Deprecated) Create a credential offer, independent of any proposal or connection
 
 
         :param body:
         :type body: V10CredentialConnFreeOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/create-offer is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_offer_serialize(
             body=body,
@@ -354,13 +370,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a credential offer, independent of any proposal or connection
+        """(Deprecated) Create a credential offer, independent of any proposal or connection
 
 
         :param body:
         :type body: V10CredentialConnFreeOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/create-offer is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_offer_serialize(
             body=body,
@@ -457,13 +476,17 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Remove an existing credential exchange record
+        """(Deprecated) Remove an existing credential exchange record
 
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "DELETE /issue-credential/records/{cred_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._delete_record_serialize(
             cred_ex_id=cred_ex_id,
@@ -502,13 +525,17 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[object]:
-        """Remove an existing credential exchange record
+        """(Deprecated) Remove an existing credential exchange record
 
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "DELETE /issue-credential/records/{cred_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._delete_record_serialize(
             cred_ex_id=cred_ex_id,
@@ -547,13 +574,17 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Remove an existing credential exchange record
+        """(Deprecated) Remove an existing credential exchange record
 
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "DELETE /issue-credential/records/{cred_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._delete_record_serialize(
             cred_ex_id=cred_ex_id,
@@ -640,13 +671,17 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Fetch a single credential exchange record
+        """(Deprecated) Fetch a single credential exchange record
 
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /issue-credential/records/{cred_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._get_record_serialize(
             cred_ex_id=cred_ex_id,
@@ -685,13 +720,17 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Fetch a single credential exchange record
+        """(Deprecated) Fetch a single credential exchange record
 
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /issue-credential/records/{cred_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._get_record_serialize(
             cred_ex_id=cred_ex_id,
@@ -730,13 +769,17 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fetch a single credential exchange record
+        """(Deprecated) Fetch a single credential exchange record
 
 
         :param cred_ex_id: Credential exchange identifier (required)
         :type cred_ex_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /issue-credential/records/{cred_ex_id} is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._get_record_serialize(
             cred_ex_id=cred_ex_id,
@@ -833,7 +876,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchangeListResult:
-        """Fetch all credential exchange records
+        """(Deprecated) Fetch all credential exchange records
 
 
         :param connection_id: Connection identifier
@@ -846,6 +889,9 @@ class IssueCredentialV10Api:
         :type thread_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /issue-credential/records is deprecated.", DeprecationWarning
+        )
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
@@ -897,7 +943,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchangeListResult]:
-        """Fetch all credential exchange records
+        """(Deprecated) Fetch all credential exchange records
 
 
         :param connection_id: Connection identifier
@@ -910,6 +956,9 @@ class IssueCredentialV10Api:
         :type thread_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /issue-credential/records is deprecated.", DeprecationWarning
+        )
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
@@ -961,7 +1010,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fetch all credential exchange records
+        """(Deprecated) Fetch all credential exchange records
 
 
         :param connection_id: Connection identifier
@@ -974,6 +1023,9 @@ class IssueCredentialV10Api:
         :type thread_id: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "GET /issue-credential/records is deprecated.", DeprecationWarning
+        )
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
@@ -1081,7 +1133,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Send holder a credential
+        """(Deprecated) Send holder a credential
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1090,6 +1142,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialIssueRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/issue is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._issue_credential_serialize(
             cred_ex_id=cred_ex_id,
@@ -1130,7 +1186,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Send holder a credential
+        """(Deprecated) Send holder a credential
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1139,6 +1195,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialIssueRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/issue is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._issue_credential_serialize(
             cred_ex_id=cred_ex_id,
@@ -1179,7 +1239,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send holder a credential
+        """(Deprecated) Send holder a credential
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1188,6 +1248,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialIssueRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/issue is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._issue_credential_serialize(
             cred_ex_id=cred_ex_id,
@@ -1286,13 +1350,14 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Send holder a credential, automating entire flow
+        """(Deprecated) Send holder a credential, automating entire flow
 
 
         :param body:
         :type body: V10CredentialProposalRequestMand
         ...
         """  # noqa: E501
+        warnings.warn("POST /issue-credential/send is deprecated.", DeprecationWarning)
 
         _param = self._issue_credential_automated_serialize(
             body=body,
@@ -1329,13 +1394,14 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Send holder a credential, automating entire flow
+        """(Deprecated) Send holder a credential, automating entire flow
 
 
         :param body:
         :type body: V10CredentialProposalRequestMand
         ...
         """  # noqa: E501
+        warnings.warn("POST /issue-credential/send is deprecated.", DeprecationWarning)
 
         _param = self._issue_credential_automated_serialize(
             body=body,
@@ -1372,13 +1438,14 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send holder a credential, automating entire flow
+        """(Deprecated) Send holder a credential, automating entire flow
 
 
         :param body:
         :type body: V10CredentialProposalRequestMand
         ...
         """  # noqa: E501
+        warnings.warn("POST /issue-credential/send is deprecated.", DeprecationWarning)
 
         _param = self._issue_credential_automated_serialize(
             body=body,
@@ -1476,7 +1543,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Send a problem report for credential exchange
+        """(Deprecated) Send a problem report for credential exchange
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1485,6 +1552,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialProblemReportRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/problem-report is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._report_problem_serialize(
             cred_ex_id=cred_ex_id,
@@ -1525,7 +1596,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[object]:
-        """Send a problem report for credential exchange
+        """(Deprecated) Send a problem report for credential exchange
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1534,6 +1605,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialProblemReportRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/problem-report is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._report_problem_serialize(
             cred_ex_id=cred_ex_id,
@@ -1574,7 +1649,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send a problem report for credential exchange
+        """(Deprecated) Send a problem report for credential exchange
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1583,6 +1658,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialProblemReportRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/problem-report is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._report_problem_serialize(
             cred_ex_id=cred_ex_id,
@@ -1684,7 +1763,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Send holder a credential offer in reference to a proposal with preview
+        """(Deprecated) Send holder a credential offer in reference to a proposal with preview
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1693,6 +1772,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialBoundOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/send-offer is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_offer_serialize(
             cred_ex_id=cred_ex_id,
@@ -1733,7 +1816,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Send holder a credential offer in reference to a proposal with preview
+        """(Deprecated) Send holder a credential offer in reference to a proposal with preview
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1742,6 +1825,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialBoundOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/send-offer is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_offer_serialize(
             cred_ex_id=cred_ex_id,
@@ -1782,7 +1869,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send holder a credential offer in reference to a proposal with preview
+        """(Deprecated) Send holder a credential offer in reference to a proposal with preview
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -1791,6 +1878,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialBoundOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/send-offer is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_offer_serialize(
             cred_ex_id=cred_ex_id,
@@ -1889,13 +1980,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Send holder a credential offer, independent of any proposal
+        """(Deprecated) Send holder a credential offer, independent of any proposal
 
 
         :param body:
         :type body: V10CredentialFreeOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/send-offer is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_offer_free_serialize(
             body=body,
@@ -1932,13 +2026,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Send holder a credential offer, independent of any proposal
+        """(Deprecated) Send holder a credential offer, independent of any proposal
 
 
         :param body:
         :type body: V10CredentialFreeOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/send-offer is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_offer_free_serialize(
             body=body,
@@ -1975,13 +2072,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send holder a credential offer, independent of any proposal
+        """(Deprecated) Send holder a credential offer, independent of any proposal
 
 
         :param body:
         :type body: V10CredentialFreeOfferRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/send-offer is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_offer_free_serialize(
             body=body,
@@ -2076,13 +2176,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Send issuer a credential proposal
+        """(Deprecated) Send issuer a credential proposal
 
 
         :param body:
         :type body: V10CredentialProposalRequestOpt
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/send-proposal is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_proposal_serialize(
             body=body,
@@ -2119,13 +2222,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Send issuer a credential proposal
+        """(Deprecated) Send issuer a credential proposal
 
 
         :param body:
         :type body: V10CredentialProposalRequestOpt
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/send-proposal is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_proposal_serialize(
             body=body,
@@ -2162,13 +2268,16 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send issuer a credential proposal
+        """(Deprecated) Send issuer a credential proposal
 
 
         :param body:
         :type body: V10CredentialProposalRequestOpt
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/send-proposal is deprecated.", DeprecationWarning
+        )
 
         _param = self._send_proposal_serialize(
             body=body,
@@ -2266,7 +2375,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Send issuer a credential request
+        """(Deprecated) Send issuer a credential request
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -2275,6 +2384,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialExchangeAutoRemoveRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/send-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_request_serialize(
             cred_ex_id=cred_ex_id,
@@ -2315,7 +2428,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Send issuer a credential request
+        """(Deprecated) Send issuer a credential request
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -2324,6 +2437,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialExchangeAutoRemoveRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/send-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_request_serialize(
             cred_ex_id=cred_ex_id,
@@ -2364,7 +2481,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Send issuer a credential request
+        """(Deprecated) Send issuer a credential request
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -2373,6 +2490,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialExchangeAutoRemoveRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/send-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._send_request_serialize(
             cred_ex_id=cred_ex_id,
@@ -2474,7 +2595,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> V10CredentialExchange:
-        """Store a received credential
+        """(Deprecated) Store a received credential
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -2483,6 +2604,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialStoreRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/store is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._store_credential_serialize(
             cred_ex_id=cred_ex_id,
@@ -2523,7 +2648,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[V10CredentialExchange]:
-        """Store a received credential
+        """(Deprecated) Store a received credential
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -2532,6 +2657,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialStoreRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/store is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._store_credential_serialize(
             cred_ex_id=cred_ex_id,
@@ -2572,7 +2701,7 @@ class IssueCredentialV10Api:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Store a received credential
+        """(Deprecated) Store a received credential
 
 
         :param cred_ex_id: Credential exchange identifier (required)
@@ -2581,6 +2710,10 @@ class IssueCredentialV10Api:
         :type body: V10CredentialStoreRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /issue-credential/records/{cred_ex_id}/store is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._store_credential_serialize(
             cred_ex_id=cred_ex_id,

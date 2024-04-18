@@ -11,6 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
@@ -1135,7 +1136,7 @@ class DidExchangeApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ConnRecord:
-        """Receive request against public DID's implicit invitation
+        """(Deprecated) Receive request against public DID's implicit invitation
 
 
         :param alias: Alias for connection
@@ -1150,6 +1151,9 @@ class DidExchangeApi:
         :type body: DIDXRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /didexchange/receive-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._receive_request_serialize(
             alias=alias,
@@ -1205,7 +1209,7 @@ class DidExchangeApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ConnRecord]:
-        """Receive request against public DID's implicit invitation
+        """(Deprecated) Receive request against public DID's implicit invitation
 
 
         :param alias: Alias for connection
@@ -1220,6 +1224,9 @@ class DidExchangeApi:
         :type body: DIDXRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /didexchange/receive-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._receive_request_serialize(
             alias=alias,
@@ -1275,7 +1282,7 @@ class DidExchangeApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Receive request against public DID's implicit invitation
+        """(Deprecated) Receive request against public DID's implicit invitation
 
 
         :param alias: Alias for connection
@@ -1290,6 +1297,9 @@ class DidExchangeApi:
         :type body: DIDXRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /didexchange/receive-request is deprecated.", DeprecationWarning
+        )
 
         _param = self._receive_request_serialize(
             alias=alias,

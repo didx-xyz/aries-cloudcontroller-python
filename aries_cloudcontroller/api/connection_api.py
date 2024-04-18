@@ -11,6 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
@@ -78,7 +79,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ConnRecord:
-        """Accept a stored connection invitation
+        """(Deprecated) Accept a stored connection invitation
 
 
         :param conn_id: Connection identifier (required)
@@ -91,6 +92,10 @@ class ConnectionApi:
         :type my_label: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/{conn_id}/accept-invitation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._accept_invitation_serialize(
             conn_id=conn_id,
@@ -141,7 +146,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ConnRecord]:
-        """Accept a stored connection invitation
+        """(Deprecated) Accept a stored connection invitation
 
 
         :param conn_id: Connection identifier (required)
@@ -154,6 +159,10 @@ class ConnectionApi:
         :type my_label: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/{conn_id}/accept-invitation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._accept_invitation_serialize(
             conn_id=conn_id,
@@ -204,7 +213,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Accept a stored connection invitation
+        """(Deprecated) Accept a stored connection invitation
 
 
         :param conn_id: Connection identifier (required)
@@ -217,6 +226,10 @@ class ConnectionApi:
         :type my_label: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/{conn_id}/accept-invitation is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._accept_invitation_serialize(
             conn_id=conn_id,
@@ -323,7 +336,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ConnRecord:
-        """Accept a stored connection request
+        """(Deprecated) Accept a stored connection request
 
 
         :param conn_id: Connection identifier (required)
@@ -332,6 +345,10 @@ class ConnectionApi:
         :type my_endpoint: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/{conn_id}/accept-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._accept_request_serialize(
             conn_id=conn_id,
@@ -373,7 +390,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ConnRecord]:
-        """Accept a stored connection request
+        """(Deprecated) Accept a stored connection request
 
 
         :param conn_id: Connection identifier (required)
@@ -382,6 +399,10 @@ class ConnectionApi:
         :type my_endpoint: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/{conn_id}/accept-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._accept_request_serialize(
             conn_id=conn_id,
@@ -423,7 +444,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Accept a stored connection request
+        """(Deprecated) Accept a stored connection request
 
 
         :param conn_id: Connection identifier (required)
@@ -432,6 +453,10 @@ class ConnectionApi:
         :type my_endpoint: str
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/{conn_id}/accept-request is deprecated.",
+            DeprecationWarning,
+        )
 
         _param = self._accept_request_serialize(
             conn_id=conn_id,
@@ -535,7 +560,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> InvitationResult:
-        """Create a new connection invitation
+        """(Deprecated) Create a new connection invitation
 
 
         :param alias: Alias
@@ -550,6 +575,9 @@ class ConnectionApi:
         :type body: CreateInvitationRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/create-invitation is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_invitation_serialize(
             alias=alias,
@@ -603,7 +631,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[InvitationResult]:
-        """Create a new connection invitation
+        """(Deprecated) Create a new connection invitation
 
 
         :param alias: Alias
@@ -618,6 +646,9 @@ class ConnectionApi:
         :type body: CreateInvitationRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/create-invitation is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_invitation_serialize(
             alias=alias,
@@ -671,7 +702,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a new connection invitation
+        """(Deprecated) Create a new connection invitation
 
 
         :param alias: Alias
@@ -686,6 +717,9 @@ class ConnectionApi:
         :type body: CreateInvitationRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/create-invitation is deprecated.", DeprecationWarning
+        )
 
         _param = self._create_invitation_serialize(
             alias=alias,
@@ -2106,7 +2140,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ConnRecord:
-        """Receive a new connection invitation
+        """(Deprecated) Receive a new connection invitation
 
 
         :param alias: Alias
@@ -2119,6 +2153,9 @@ class ConnectionApi:
         :type body: ReceiveInvitationRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/receive-invitation is deprecated.", DeprecationWarning
+        )
 
         _param = self._receive_invitation_serialize(
             alias=alias,
@@ -2167,7 +2204,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ConnRecord]:
-        """Receive a new connection invitation
+        """(Deprecated) Receive a new connection invitation
 
 
         :param alias: Alias
@@ -2180,6 +2217,9 @@ class ConnectionApi:
         :type body: ReceiveInvitationRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/receive-invitation is deprecated.", DeprecationWarning
+        )
 
         _param = self._receive_invitation_serialize(
             alias=alias,
@@ -2228,7 +2268,7 @@ class ConnectionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Receive a new connection invitation
+        """(Deprecated) Receive a new connection invitation
 
 
         :param alias: Alias
@@ -2241,6 +2281,9 @@ class ConnectionApi:
         :type body: ReceiveInvitationRequest
         ...
         """  # noqa: E501
+        warnings.warn(
+            "POST /connections/receive-invitation is deprecated.", DeprecationWarning
+        )
 
         _param = self._receive_invitation_serialize(
             alias=alias,
