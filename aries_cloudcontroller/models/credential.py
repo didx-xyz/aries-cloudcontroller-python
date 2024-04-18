@@ -34,6 +34,9 @@ class Credential(BaseModel):
     context: List[Union[str, Dict]] = Field(
         description="The JSON-LD context of the credential", alias="@context"
     )
+    credential_status: Optional[Dict[str, Any]] = Field(
+        default=None, alias="credentialStatus"
+    )
     credential_subject: Dict[str, Any] = Field(alias="credentialSubject")
     expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The expiration date", alias="expirationDate"
@@ -51,6 +54,7 @@ class Credential(BaseModel):
     type: List[StrictStr] = Field(description="The JSON-LD type of the credential")
     __properties: ClassVar[List[str]] = [
         "@context",
+        "credentialStatus",
         "credentialSubject",
         "expirationDate",
         "id",
@@ -148,6 +152,7 @@ class Credential(BaseModel):
         _obj = cls.model_validate(
             {
                 "@context": obj.get("@context"),
+                "credentialStatus": obj.get("credentialStatus"),
                 "credentialSubject": obj.get("credentialSubject"),
                 "expirationDate": obj.get("expirationDate"),
                 "id": obj.get("id"),
