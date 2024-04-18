@@ -48,6 +48,16 @@ class DidExchangeApi:
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection request")
         ] = None,
+        use_did: Annotated[
+            Optional[StrictStr],
+            Field(description="The DID to use to for this connection"),
+        ] = None,
+        use_did_method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The DID method to use to generate a DID for this connection"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -69,6 +79,10 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
+        :param use_did: The DID to use to for this connection
+        :type use_did: str
+        :param use_did_method: The DID method to use to generate a DID for this connection
+        :type use_did_method: str
         ...
         """  # noqa: E501
 
@@ -76,6 +90,8 @@ class DidExchangeApi:
             conn_id=conn_id,
             my_endpoint=my_endpoint,
             my_label=my_label,
+            use_did=use_did,
+            use_did_method=use_did_method,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -104,6 +120,16 @@ class DidExchangeApi:
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection request")
         ] = None,
+        use_did: Annotated[
+            Optional[StrictStr],
+            Field(description="The DID to use to for this connection"),
+        ] = None,
+        use_did_method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The DID method to use to generate a DID for this connection"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -125,6 +151,10 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
+        :param use_did: The DID to use to for this connection
+        :type use_did: str
+        :param use_did_method: The DID method to use to generate a DID for this connection
+        :type use_did_method: str
         ...
         """  # noqa: E501
 
@@ -132,6 +162,8 @@ class DidExchangeApi:
             conn_id=conn_id,
             my_endpoint=my_endpoint,
             my_label=my_label,
+            use_did=use_did,
+            use_did_method=use_did_method,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -160,6 +192,16 @@ class DidExchangeApi:
         my_label: Annotated[
             Optional[StrictStr], Field(description="Label for connection request")
         ] = None,
+        use_did: Annotated[
+            Optional[StrictStr],
+            Field(description="The DID to use to for this connection"),
+        ] = None,
+        use_did_method: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The DID method to use to generate a DID for this connection"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -181,6 +223,10 @@ class DidExchangeApi:
         :type my_endpoint: str
         :param my_label: Label for connection request
         :type my_label: str
+        :param use_did: The DID to use to for this connection
+        :type use_did: str
+        :param use_did_method: The DID method to use to generate a DID for this connection
+        :type use_did_method: str
         ...
         """  # noqa: E501
 
@@ -188,6 +234,8 @@ class DidExchangeApi:
             conn_id=conn_id,
             my_endpoint=my_endpoint,
             my_label=my_label,
+            use_did=use_did,
+            use_did_method=use_did_method,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -207,6 +255,8 @@ class DidExchangeApi:
         conn_id,
         my_endpoint,
         my_label,
+        use_did,
+        use_did_method,
         _request_auth,
         _content_type,
         _headers,
@@ -235,6 +285,14 @@ class DidExchangeApi:
         if my_label is not None:
 
             _query_params.append(("my_label", my_label))
+
+        if use_did is not None:
+
+            _query_params.append(("use_did", use_did))
+
+        if use_did_method is not None:
+
+            _query_params.append(("use_did_method", use_did_method))
 
         # process the header parameters
         # process the form parameters
