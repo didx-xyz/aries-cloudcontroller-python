@@ -33,9 +33,7 @@ class IndyCredPrecis(BaseModel):
     IndyCredPrecis
     """  # noqa: E501
 
-    cred_info: Optional[IndyCredInfo] = Field(
-        default=None, description="Credential info"
-    )
+    cred_info: IndyCredInfo = Field(description="Credential info")
     interval: Optional[IndyNonRevocationInterval] = Field(
         default=None, description="Non-revocation interval from presentation request"
     )

@@ -30,17 +30,14 @@ class CredentialDefinitionSendResult(BaseModel):
     CredentialDefinitionSendResult
     """  # noqa: E501
 
-    credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Credential definition identifier"
+    credential_definition_id: Annotated[str, Field(strict=True)] = Field(
+        description="Credential definition identifier"
     )
     __properties: ClassVar[List[str]] = ["credential_definition_id"]
 
     @field_validator("credential_definition_id")
     def credential_definition_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(
             r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
             value,

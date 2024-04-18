@@ -29,9 +29,7 @@ class MediationIdMatchInfo(BaseModel):
     MediationIdMatchInfo
     """  # noqa: E501
 
-    mediation_id: Optional[StrictStr] = Field(
-        default=None, description="Mediation record identifier"
-    )
+    mediation_id: StrictStr = Field(description="Mediation record identifier")
     __properties: ClassVar[List[str]] = ["mediation_id"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

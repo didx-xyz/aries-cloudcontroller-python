@@ -29,9 +29,7 @@ class AdminConfig(BaseModel):
     AdminConfig
     """  # noqa: E501
 
-    config: Optional[Dict[str, Any]] = Field(
-        default=None, description="Configuration settings"
-    )
+    config: Dict[str, Any] = Field(description="Configuration settings")
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
