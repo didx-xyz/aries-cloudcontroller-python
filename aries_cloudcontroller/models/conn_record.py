@@ -36,9 +36,7 @@ class ConnRecord(BaseModel):
     alias: Optional[StrictStr] = Field(
         default=None, description="Optional alias to apply to connection for later use"
     )
-    connection_id: Optional[StrictStr] = Field(
-        default=None, description="Connection identifier"
-    )
+    connection_id: StrictStr = Field(description="Connection identifier")
     connection_protocol: Optional[StrictStr] = Field(
         default=None, description="Connection protocol used"
     )
