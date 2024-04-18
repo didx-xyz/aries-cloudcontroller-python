@@ -2088,6 +2088,13 @@ class RevocationApi:
     @validate_call
     async def publish_revocations(
         self,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[PublishRevocations] = None,
         _request_timeout: Union[
             None,
@@ -2104,12 +2111,18 @@ class RevocationApi:
         """Publish pending revocations to ledger
 
 
+        :param conn_id: Connection identifier
+        :type conn_id: str
+        :param create_transaction_for_endorser: Create Transaction For Endorser's signature
+        :type create_transaction_for_endorser: bool
         :param body:
         :type body: PublishRevocations
         ...
         """  # noqa: E501
 
         _param = self._publish_revocations_serialize(
+            conn_id=conn_id,
+            create_transaction_for_endorser=create_transaction_for_endorser,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2131,6 +2144,13 @@ class RevocationApi:
 
     async def publish_revocations_with_http_info(
         self,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[PublishRevocations] = None,
         _request_timeout: Union[
             None,
@@ -2147,12 +2167,18 @@ class RevocationApi:
         """Publish pending revocations to ledger
 
 
+        :param conn_id: Connection identifier
+        :type conn_id: str
+        :param create_transaction_for_endorser: Create Transaction For Endorser's signature
+        :type create_transaction_for_endorser: bool
         :param body:
         :type body: PublishRevocations
         ...
         """  # noqa: E501
 
         _param = self._publish_revocations_serialize(
+            conn_id=conn_id,
+            create_transaction_for_endorser=create_transaction_for_endorser,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2174,6 +2200,13 @@ class RevocationApi:
 
     async def publish_revocations_without_preload_content(
         self,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[PublishRevocations] = None,
         _request_timeout: Union[
             None,
@@ -2190,12 +2223,18 @@ class RevocationApi:
         """Publish pending revocations to ledger
 
 
+        :param conn_id: Connection identifier
+        :type conn_id: str
+        :param create_transaction_for_endorser: Create Transaction For Endorser's signature
+        :type create_transaction_for_endorser: bool
         :param body:
         :type body: PublishRevocations
         ...
         """  # noqa: E501
 
         _param = self._publish_revocations_serialize(
+            conn_id=conn_id,
+            create_transaction_for_endorser=create_transaction_for_endorser,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2213,6 +2252,8 @@ class RevocationApi:
 
     def _publish_revocations_serialize(
         self,
+        conn_id,
+        create_transaction_for_endorser,
         body,
         _request_auth,
         _content_type,
@@ -2233,6 +2274,16 @@ class RevocationApi:
 
         # process the path parameters
         # process the query parameters
+        if conn_id is not None:
+
+            _query_params.append(("conn_id", conn_id))
+
+        if create_transaction_for_endorser is not None:
+
+            _query_params.append(
+                ("create_transaction_for_endorser", create_transaction_for_endorser)
+            )
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -3247,6 +3298,13 @@ class RevocationApi:
     @validate_call
     async def revoke_credential(
         self,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[RevokeRequest] = None,
         _request_timeout: Union[
             None,
@@ -3263,12 +3321,18 @@ class RevocationApi:
         """Revoke an issued credential
 
 
+        :param conn_id: Connection identifier
+        :type conn_id: str
+        :param create_transaction_for_endorser: Create Transaction For Endorser's signature
+        :type create_transaction_for_endorser: bool
         :param body:
         :type body: RevokeRequest
         ...
         """  # noqa: E501
 
         _param = self._revoke_credential_serialize(
+            conn_id=conn_id,
+            create_transaction_for_endorser=create_transaction_for_endorser,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3290,6 +3354,13 @@ class RevocationApi:
 
     async def revoke_credential_with_http_info(
         self,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[RevokeRequest] = None,
         _request_timeout: Union[
             None,
@@ -3306,12 +3377,18 @@ class RevocationApi:
         """Revoke an issued credential
 
 
+        :param conn_id: Connection identifier
+        :type conn_id: str
+        :param create_transaction_for_endorser: Create Transaction For Endorser's signature
+        :type create_transaction_for_endorser: bool
         :param body:
         :type body: RevokeRequest
         ...
         """  # noqa: E501
 
         _param = self._revoke_credential_serialize(
+            conn_id=conn_id,
+            create_transaction_for_endorser=create_transaction_for_endorser,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3333,6 +3410,13 @@ class RevocationApi:
 
     async def revoke_credential_without_preload_content(
         self,
+        conn_id: Annotated[
+            Optional[StrictStr], Field(description="Connection identifier")
+        ] = None,
+        create_transaction_for_endorser: Annotated[
+            Optional[StrictBool],
+            Field(description="Create Transaction For Endorser's signature"),
+        ] = None,
         body: Optional[RevokeRequest] = None,
         _request_timeout: Union[
             None,
@@ -3349,12 +3433,18 @@ class RevocationApi:
         """Revoke an issued credential
 
 
+        :param conn_id: Connection identifier
+        :type conn_id: str
+        :param create_transaction_for_endorser: Create Transaction For Endorser's signature
+        :type create_transaction_for_endorser: bool
         :param body:
         :type body: RevokeRequest
         ...
         """  # noqa: E501
 
         _param = self._revoke_credential_serialize(
+            conn_id=conn_id,
+            create_transaction_for_endorser=create_transaction_for_endorser,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3372,6 +3462,8 @@ class RevocationApi:
 
     def _revoke_credential_serialize(
         self,
+        conn_id,
+        create_transaction_for_endorser,
         body,
         _request_auth,
         _content_type,
@@ -3392,6 +3484,16 @@ class RevocationApi:
 
         # process the path parameters
         # process the query parameters
+        if conn_id is not None:
+
+            _query_params.append(("conn_id", conn_id))
+
+        if create_transaction_for_endorser is not None:
+
+            _query_params.append(
+                ("create_transaction_for_endorser", create_transaction_for_endorser)
+            )
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
