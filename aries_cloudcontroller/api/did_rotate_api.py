@@ -17,11 +17,9 @@ from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
-from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.did_rotate_request_json import DIDRotateRequestJSON
 from aries_cloudcontroller.models.hangup import Hangup
 from aries_cloudcontroller.models.rotate import Rotate
-from aries_cloudcontroller.rest import RESTResponseType
 
 
 class DidRotateApi:
@@ -79,88 +77,6 @@ class DidRotateApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def hangup_with_http_info(
-        self,
-        conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Hangup]:
-        """Send hangup of DID rotation as a rotator
-
-
-        :param conn_id: Connection identifier (required)
-        :type conn_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._hangup_serialize(
-            conn_id=conn_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Hangup",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def hangup_without_preload_content(
-        self,
-        conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Send hangup of DID rotation as a rotator
-
-
-        :param conn_id: Connection identifier (required)
-        :type conn_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._hangup_serialize(
-            conn_id=conn_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Hangup",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _hangup_serialize(
         self,
@@ -260,96 +176,6 @@ class DidRotateApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def rotate_with_http_info(
-        self,
-        conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        body: Optional[DIDRotateRequestJSON] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Rotate]:
-        """Begin rotation of a DID as a rotator
-
-
-        :param conn_id: Connection identifier (required)
-        :type conn_id: str
-        :param body:
-        :type body: DIDRotateRequestJSON
-        ...
-        """  # noqa: E501
-
-        _param = self._rotate_serialize(
-            conn_id=conn_id,
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Rotate",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def rotate_without_preload_content(
-        self,
-        conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
-        body: Optional[DIDRotateRequestJSON] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Begin rotation of a DID as a rotator
-
-
-        :param conn_id: Connection identifier (required)
-        :type conn_id: str
-        :param body:
-        :type body: DIDRotateRequestJSON
-        ...
-        """  # noqa: E501
-
-        _param = self._rotate_serialize(
-            conn_id=conn_id,
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Rotate",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _rotate_serialize(
         self,

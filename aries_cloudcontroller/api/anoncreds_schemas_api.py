@@ -17,12 +17,10 @@ from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
-from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.get_schema_result import GetSchemaResult
 from aries_cloudcontroller.models.get_schemas_response import GetSchemasResponse
 from aries_cloudcontroller.models.schema_post_request import SchemaPostRequest
 from aries_cloudcontroller.models.schema_result import SchemaResult
-from aries_cloudcontroller.rest import RESTResponseType
 
 
 class AnoncredsSchemasApi:
@@ -80,88 +78,6 @@ class AnoncredsSchemasApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def create_schema_with_http_info(
-        self,
-        body: Optional[SchemaPostRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SchemaResult]:
-        """Create a schema on the connected ledger
-
-
-        :param body:
-        :type body: SchemaPostRequest
-        ...
-        """  # noqa: E501
-
-        _param = self._create_schema_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "SchemaResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def create_schema_without_preload_content(
-        self,
-        body: Optional[SchemaPostRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Create a schema on the connected ledger
-
-
-        :param body:
-        :type body: SchemaPostRequest
-        ...
-        """  # noqa: E501
-
-        _param = self._create_schema_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "SchemaResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _create_schema_serialize(
         self,
@@ -267,88 +183,6 @@ class AnoncredsSchemasApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def get_schema_with_http_info(
-        self,
-        schema_id: Annotated[StrictStr, Field(description="Schema identifier")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[GetSchemaResult]:
-        """Retrieve an individual schemas details
-
-
-        :param schema_id: Schema identifier (required)
-        :type schema_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._get_schema_serialize(
-            schema_id=schema_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetSchemaResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def get_schema_without_preload_content(
-        self,
-        schema_id: Annotated[StrictStr, Field(description="Schema identifier")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Retrieve an individual schemas details
-
-
-        :param schema_id: Schema identifier (required)
-        :type schema_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._get_schema_serialize(
-            schema_id=schema_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetSchemaResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _get_schema_serialize(
         self,
@@ -458,116 +292,6 @@ class AnoncredsSchemasApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def get_schemas_with_http_info(
-        self,
-        schema_issuer_id: Annotated[
-            Optional[StrictStr], Field(description="Schema issuer identifier")
-        ] = None,
-        schema_name: Annotated[
-            Optional[StrictStr], Field(description="Schema name")
-        ] = None,
-        schema_version: Annotated[
-            Optional[StrictStr], Field(description="Schema version")
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[GetSchemasResponse]:
-        """Retrieve all schema ids
-
-
-        :param schema_issuer_id: Schema issuer identifier
-        :type schema_issuer_id: str
-        :param schema_name: Schema name
-        :type schema_name: str
-        :param schema_version: Schema version
-        :type schema_version: str
-        ...
-        """  # noqa: E501
-
-        _param = self._get_schemas_serialize(
-            schema_issuer_id=schema_issuer_id,
-            schema_name=schema_name,
-            schema_version=schema_version,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetSchemasResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def get_schemas_without_preload_content(
-        self,
-        schema_issuer_id: Annotated[
-            Optional[StrictStr], Field(description="Schema issuer identifier")
-        ] = None,
-        schema_name: Annotated[
-            Optional[StrictStr], Field(description="Schema name")
-        ] = None,
-        schema_version: Annotated[
-            Optional[StrictStr], Field(description="Schema version")
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Retrieve all schema ids
-
-
-        :param schema_issuer_id: Schema issuer identifier
-        :type schema_issuer_id: str
-        :param schema_name: Schema name
-        :type schema_name: str
-        :param schema_version: Schema version
-        :type schema_version: str
-        ...
-        """  # noqa: E501
-
-        _param = self._get_schemas_serialize(
-            schema_issuer_id=schema_issuer_id,
-            schema_name=schema_name,
-            schema_version=schema_version,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetSchemasResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _get_schemas_serialize(
         self,

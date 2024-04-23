@@ -17,12 +17,10 @@ from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
-from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.v10_discovery_exchange_list_result import (
     V10DiscoveryExchangeListResult,
 )
 from aries_cloudcontroller.models.v10_discovery_record import V10DiscoveryRecord
-from aries_cloudcontroller.rest import RESTResponseType
 
 
 class DiscoverFeaturesApi:
@@ -95,118 +93,6 @@ class DiscoverFeaturesApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def query_features_with_http_info(
-        self,
-        comment: Annotated[Optional[StrictStr], Field(description="Comment")] = None,
-        connection_id: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Connection identifier, if none specified, then the query will provide features for this agent."
-            ),
-        ] = None,
-        query: Annotated[
-            Optional[StrictStr], Field(description="Protocol feature query")
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[V10DiscoveryRecord]:
-        """Query supported features
-
-
-        :param comment: Comment
-        :type comment: str
-        :param connection_id: Connection identifier, if none specified, then the query will provide features for this agent.
-        :type connection_id: str
-        :param query: Protocol feature query
-        :type query: str
-        ...
-        """  # noqa: E501
-
-        _param = self._query_features_serialize(
-            comment=comment,
-            connection_id=connection_id,
-            query=query,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V10DiscoveryRecord",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def query_features_without_preload_content(
-        self,
-        comment: Annotated[Optional[StrictStr], Field(description="Comment")] = None,
-        connection_id: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Connection identifier, if none specified, then the query will provide features for this agent."
-            ),
-        ] = None,
-        query: Annotated[
-            Optional[StrictStr], Field(description="Protocol feature query")
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Query supported features
-
-
-        :param comment: Comment
-        :type comment: str
-        :param connection_id: Connection identifier, if none specified, then the query will provide features for this agent.
-        :type connection_id: str
-        :param query: Protocol feature query
-        :type query: str
-        ...
-        """  # noqa: E501
-
-        _param = self._query_features_serialize(
-            comment=comment,
-            connection_id=connection_id,
-            query=query,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V10DiscoveryRecord",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _query_features_serialize(
         self,
@@ -316,92 +202,6 @@ class DiscoverFeaturesApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def query_records_with_http_info(
-        self,
-        connection_id: Annotated[
-            Optional[StrictStr], Field(description="Connection identifier")
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[V10DiscoveryExchangeListResult]:
-        """Discover Features records
-
-
-        :param connection_id: Connection identifier
-        :type connection_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._query_records_serialize(
-            connection_id=connection_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V10DiscoveryExchangeListResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def query_records_without_preload_content(
-        self,
-        connection_id: Annotated[
-            Optional[StrictStr], Field(description="Connection identifier")
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Discover Features records
-
-
-        :param connection_id: Connection identifier
-        :type connection_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._query_records_serialize(
-            connection_id=connection_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V10DiscoveryExchangeListResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _query_records_serialize(
         self,

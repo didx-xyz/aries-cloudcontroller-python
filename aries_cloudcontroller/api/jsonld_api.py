@@ -18,12 +18,10 @@ from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
-from aries_cloudcontroller.api_response import ApiResponse
 from aries_cloudcontroller.models.sign_request import SignRequest
 from aries_cloudcontroller.models.sign_response import SignResponse
 from aries_cloudcontroller.models.verify_request import VerifyRequest
 from aries_cloudcontroller.models.verify_response import VerifyResponse
-from aries_cloudcontroller.rest import RESTResponseType
 
 
 class JsonldApi:
@@ -82,90 +80,6 @@ class JsonldApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def sign_with_http_info(
-        self,
-        body: Optional[SignRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SignResponse]:
-        """(Deprecated) Sign a JSON-LD structure and return it
-
-
-        :param body:
-        :type body: SignRequest
-        ...
-        """  # noqa: E501
-        warnings.warn("POST /jsonld/sign is deprecated.", DeprecationWarning)
-
-        _param = self._sign_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "SignResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def sign_without_preload_content(
-        self,
-        body: Optional[SignRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """(Deprecated) Sign a JSON-LD structure and return it
-
-
-        :param body:
-        :type body: SignRequest
-        ...
-        """  # noqa: E501
-        warnings.warn("POST /jsonld/sign is deprecated.", DeprecationWarning)
-
-        _param = self._sign_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "SignResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _sign_serialize(
         self,
@@ -272,90 +186,6 @@ class JsonldApi:
             response_data=response_data,
             response_types_map=_response_types_map,
         ).data
-
-    async def verify_with_http_info(
-        self,
-        body: Optional[VerifyRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[VerifyResponse]:
-        """(Deprecated) Verify a JSON-LD structure.
-
-
-        :param body:
-        :type body: VerifyRequest
-        ...
-        """  # noqa: E501
-        warnings.warn("POST /jsonld/verify is deprecated.", DeprecationWarning)
-
-        _param = self._verify_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VerifyResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def verify_without_preload_content(
-        self,
-        body: Optional[VerifyRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """(Deprecated) Verify a JSON-LD structure.
-
-
-        :param body:
-        :type body: VerifyRequest
-        ...
-        """  # noqa: E501
-        warnings.warn("POST /jsonld/verify is deprecated.", DeprecationWarning)
-
-        _param = self._verify_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VerifyResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
 
     def _verify_serialize(
         self,
