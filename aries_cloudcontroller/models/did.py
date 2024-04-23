@@ -31,20 +31,20 @@ class DID(BaseModel):
     DID
     """  # noqa: E501
 
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: Annotated[str, Field(strict=True)] = Field(
         default=None, description="DID of interest"
     )
-    key_type: Optional[Literal["ed25519", "bls12381g2"]] = Field(
+    key_type: Literal["ed25519", "bls12381g2"] = Field(
         default=None, description="Key type associated with the DID"
     )
-    method: Optional[Literal["sov", "key"]] = Field(
+    method: Literal["sov", "key"] = Field(
         default=None, description="Did method associated with the DID"
     )
-    posture: Optional[Literal["public", "posted", "wallet_only"]] = Field(
+    posture: Literal["public", "posted", "wallet_only"] = Field(
         default=None,
         description="Whether DID is current public DID, posted to ledger but not current public DID, or local to the wallet",
     )
-    verkey: Optional[Annotated[str, Field(strict=True)]] = Field(
+    verkey: Annotated[str, Field(strict=True)] = Field(
         default=None, description="Public verification key"
     )
     __properties: ClassVar[List[str]] = [
@@ -58,9 +58,6 @@ class DID(BaseModel):
     @field_validator("did")
     def did_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(
             r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$",
             value,
@@ -73,9 +70,6 @@ class DID(BaseModel):
     @field_validator("key_type")
     def key_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(["ed25519", "bls12381g2"]):
             raise ValueError("must be one of enum values ('ed25519', 'bls12381g2')")
         return value
@@ -83,9 +77,6 @@ class DID(BaseModel):
     @field_validator("posture")
     def posture_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(["public", "posted", "wallet_only"]):
             raise ValueError(
                 "must be one of enum values ('public', 'posted', 'wallet_only')"
@@ -95,9 +86,6 @@ class DID(BaseModel):
     @field_validator("verkey")
     def verkey_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(ED25519_PATTERN, value) and not re.match(BBS_PATTERN, value):
             raise ValueError(
                 f"Invalid verkey format. Expected either an ED25519 format matching: {ED25519_PATTERN} or BBS+ format matching: {BBS_PATTERN}"
