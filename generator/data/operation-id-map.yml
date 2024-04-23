@@ -281,6 +281,9 @@ paths:
   /jsonld/verify:
     post:
       operationId: verify
+  /ledger/config:
+    get:
+      operationId: get_config
   /ledger/did-endpoint:
     get:
       operationId: get_did_endpoint
@@ -290,12 +293,21 @@ paths:
   /ledger/get-nym-role:
     get:
       operationId: get_did_nym_role
+  /ledger/get-write-ledger:
+    get:
+      operationId: get_write_ledger
+  /ledger/get-write-ledgers:
+    get:
+      operationId: get_write_ledgers
   /ledger/register-nym:
     post:
       operationId: register_nym
   /ledger/rotate-public-did-keypair:
     patch:
       operationId: rotate_public_did_keypair
+  /ledger/{ledger_id}/set-write-ledger:
+    put:
+      operationId: set_write_ledger
   /ledger/taa:
     get:
       operationId: fetch_taa
