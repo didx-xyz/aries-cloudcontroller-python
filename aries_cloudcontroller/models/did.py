@@ -31,21 +31,18 @@ class DID(BaseModel):
     DID
     """  # noqa: E501
 
-    did: Annotated[str, Field(strict=True)] = Field(
-        default=None, description="DID of interest"
-    )
+    did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
     key_type: Literal["ed25519", "bls12381g2"] = Field(
-        default=None, description="Key type associated with the DID"
+        description="Key type associated with the DID"
     )
     method: Literal["sov", "key"] = Field(
-        default=None, description="Did method associated with the DID"
+        description="Did method associated with the DID"
     )
     posture: Literal["public", "posted", "wallet_only"] = Field(
-        default=None,
         description="Whether DID is current public DID, posted to ledger but not current public DID, or local to the wallet",
     )
     verkey: Annotated[str, Field(strict=True)] = Field(
-        default=None, description="Public verification key"
+        description="Public verification key"
     )
     __properties: ClassVar[List[str]] = [
         "did",
