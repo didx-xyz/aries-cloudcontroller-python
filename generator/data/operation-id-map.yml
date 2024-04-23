@@ -181,6 +181,18 @@ paths:
   /didexchange/{conn_id}/reject:
     post:
       operationId: reject
+  /discover-features-2.0/queries:
+    get:
+      operationId: query_features
+  /discover-features-2.0/records:
+    get:
+      operationId: query_records
+  /discover-features/query:
+    get:
+      operationId: query_features
+  /discover-features/records:
+    get:
+      operationId: query_records
   /features:
     get:
       operationId: get_features
