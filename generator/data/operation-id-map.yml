@@ -517,6 +517,11 @@ paths:
   /schemas/{schema_id}/write_record:
     post:
       operationId: write_record
+  /settings:
+    get:
+      operationId: get_settings
+    put:
+      operationId: update_settings
   /shutdown:
     get:
       operationId: shutdown_server
