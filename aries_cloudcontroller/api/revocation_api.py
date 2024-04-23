@@ -435,6 +435,220 @@ class RevocationApi:
         )
 
     @validate_call
+    async def delete_tails_file(
+        self,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        rev_reg_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Revocation registry identifier"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TailsDeleteResponse:
+        """Delete the tail files
+
+
+        :param cred_def_id: Credential definition identifier
+        :type cred_def_id: str
+        :param rev_reg_id: Revocation registry identifier
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._delete_tails_file_serialize(
+            cred_def_id=cred_def_id,
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TailsDeleteResponse",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def delete_tails_file_with_http_info(
+        self,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        rev_reg_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Revocation registry identifier"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TailsDeleteResponse]:
+        """Delete the tail files
+
+
+        :param cred_def_id: Credential definition identifier
+        :type cred_def_id: str
+        :param rev_reg_id: Revocation registry identifier
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._delete_tails_file_serialize(
+            cred_def_id=cred_def_id,
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TailsDeleteResponse",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def delete_tails_file_without_preload_content(
+        self,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        rev_reg_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Revocation registry identifier"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete the tail files
+
+
+        :param cred_def_id: Credential definition identifier
+        :type cred_def_id: str
+        :param rev_reg_id: Revocation registry identifier
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._delete_tails_file_serialize(
+            cred_def_id=cred_def_id,
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "TailsDeleteResponse",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_tails_file_serialize(
+        self,
+        cred_def_id,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if cred_def_id is not None:
+
+            _query_params.append(("cred_def_id", cred_def_id))
+
+        if rev_reg_id is not None:
+
+            _query_params.append(("rev_reg_id", rev_reg_id))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/revocation/registry/delete-tails-file",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     async def download_tails_file(
         self,
         rev_reg_id: Annotated[
@@ -1195,7 +1409,190 @@ class RevocationApi:
         )
 
     @validate_call
-    async def get_registry_issued_credentials_count(
+    async def get_rev_reg_indy_recs(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CredRevIndyRecordsResult:
+        """Get details of revoked credentials from ledger
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_indy_recs_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevIndyRecordsResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_rev_reg_indy_recs_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CredRevIndyRecordsResult]:
+        """Get details of revoked credentials from ledger
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_indy_recs_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevIndyRecordsResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_rev_reg_indy_recs_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details of revoked credentials from ledger
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_indy_recs_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevIndyRecordsResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_rev_reg_indy_recs_serialize(
+        self,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/revocation/registry/{rev_reg_id}/issued/indy_recs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def get_rev_reg_issued_count(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1220,7 +1617,7 @@ class RevocationApi:
         ...
         """  # noqa: E501
 
-        _param = self._get_registry_issued_credentials_count_serialize(
+        _param = self._get_rev_reg_issued_count_serialize(
             rev_reg_id=rev_reg_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1240,7 +1637,7 @@ class RevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def get_registry_issued_credentials_count_with_http_info(
+    async def get_rev_reg_issued_count_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1265,7 +1662,7 @@ class RevocationApi:
         ...
         """  # noqa: E501
 
-        _param = self._get_registry_issued_credentials_count_serialize(
+        _param = self._get_rev_reg_issued_count_serialize(
             rev_reg_id=rev_reg_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1285,7 +1682,7 @@ class RevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def get_registry_issued_credentials_count_without_preload_content(
+    async def get_rev_reg_issued_count_without_preload_content(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -1310,7 +1707,7 @@ class RevocationApi:
         ...
         """  # noqa: E501
 
-        _param = self._get_registry_issued_credentials_count_serialize(
+        _param = self._get_rev_reg_issued_count_serialize(
             rev_reg_id=rev_reg_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1326,7 +1723,7 @@ class RevocationApi:
         )
         return response_data.response
 
-    def _get_registry_issued_credentials_count_serialize(
+    def _get_rev_reg_issued_count_serialize(
         self,
         rev_reg_id,
         _request_auth,
@@ -1365,6 +1762,189 @@ class RevocationApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/revocation/registry/{rev_reg_id}/issued",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def get_rev_reg_issued_issued_details(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CredRevRecordDetailsResult:
+        """Get details of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_issued_details_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordDetailsResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_rev_reg_issued_issued_details_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CredRevRecordDetailsResult]:
+        """Get details of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_issued_details_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordDetailsResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_rev_reg_issued_issued_details_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_issued_details_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordDetailsResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_rev_reg_issued_issued_details_serialize(
+        self,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/revocation/registry/{rev_reg_id}/issued/details",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2324,978 +2904,6 @@ class RevocationApi:
         )
 
     @validate_call
-    async def revocation_active_registry_cred_def_id_rotate_post(
-        self,
-        cred_def_id: Annotated[
-            str, Field(strict=True, description="Credential definition identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegsCreated:
-        """Rotate revocation registry
-
-
-        :param cred_def_id: Credential definition identifier (required)
-        :type cred_def_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_active_registry_cred_def_id_rotate_post_serialize(
-            cred_def_id=cred_def_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreated",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def revocation_active_registry_cred_def_id_rotate_post_with_http_info(
-        self,
-        cred_def_id: Annotated[
-            str, Field(strict=True, description="Credential definition identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegsCreated]:
-        """Rotate revocation registry
-
-
-        :param cred_def_id: Credential definition identifier (required)
-        :type cred_def_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_active_registry_cred_def_id_rotate_post_serialize(
-            cred_def_id=cred_def_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreated",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def revocation_active_registry_cred_def_id_rotate_post_without_preload_content(
-        self,
-        cred_def_id: Annotated[
-            str, Field(strict=True, description="Credential definition identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Rotate revocation registry
-
-
-        :param cred_def_id: Credential definition identifier (required)
-        :type cred_def_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_active_registry_cred_def_id_rotate_post_serialize(
-            cred_def_id=cred_def_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreated",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _revocation_active_registry_cred_def_id_rotate_post_serialize(
-        self,
-        cred_def_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if cred_def_id is not None:
-            _path_params["cred_def_id"] = cred_def_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/revocation/active-registry/{cred_def_id}/rotate",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def revocation_registry_delete_tails_file_delete(
-        self,
-        cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Credential definition identifier"),
-        ] = None,
-        rev_reg_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Revocation registry identifier"),
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TailsDeleteResponse:
-        """Delete the tail files
-
-
-        :param cred_def_id: Credential definition identifier
-        :type cred_def_id: str
-        :param rev_reg_id: Revocation registry identifier
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_delete_tails_file_delete_serialize(
-            cred_def_id=cred_def_id,
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "TailsDeleteResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def revocation_registry_delete_tails_file_delete_with_http_info(
-        self,
-        cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Credential definition identifier"),
-        ] = None,
-        rev_reg_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Revocation registry identifier"),
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TailsDeleteResponse]:
-        """Delete the tail files
-
-
-        :param cred_def_id: Credential definition identifier
-        :type cred_def_id: str
-        :param rev_reg_id: Revocation registry identifier
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_delete_tails_file_delete_serialize(
-            cred_def_id=cred_def_id,
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "TailsDeleteResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def revocation_registry_delete_tails_file_delete_without_preload_content(
-        self,
-        cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Credential definition identifier"),
-        ] = None,
-        rev_reg_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Revocation registry identifier"),
-        ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Delete the tail files
-
-
-        :param cred_def_id: Credential definition identifier
-        :type cred_def_id: str
-        :param rev_reg_id: Revocation registry identifier
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_delete_tails_file_delete_serialize(
-            cred_def_id=cred_def_id,
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "TailsDeleteResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _revocation_registry_delete_tails_file_delete_serialize(
-        self,
-        cred_def_id,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if cred_def_id is not None:
-
-            _query_params.append(("cred_def_id", cred_def_id))
-
-        if rev_reg_id is not None:
-
-            _query_params.append(("rev_reg_id", rev_reg_id))
-
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="DELETE",
-            resource_path="/revocation/registry/delete-tails-file",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        apply_ledger_update: Annotated[
-            StrictBool,
-            Field(description="Apply updated accumulator transaction to ledger"),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegWalletUpdatedResult:
-        """Fix revocation state in wallet and return number of updated entries
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
-        :type apply_ledger_update: bool
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
-            rev_reg_id=rev_reg_id,
-            apply_ledger_update=apply_ledger_update,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegWalletUpdatedResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        apply_ledger_update: Annotated[
-            StrictBool,
-            Field(description="Apply updated accumulator transaction to ledger"),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegWalletUpdatedResult]:
-        """Fix revocation state in wallet and return number of updated entries
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
-        :type apply_ledger_update: bool
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
-            rev_reg_id=rev_reg_id,
-            apply_ledger_update=apply_ledger_update,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegWalletUpdatedResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def revocation_registry_rev_reg_id_fix_revocation_entry_state_put_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        apply_ledger_update: Annotated[
-            StrictBool,
-            Field(description="Apply updated accumulator transaction to ledger"),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Fix revocation state in wallet and return number of updated entries
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
-        :type apply_ledger_update: bool
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
-            rev_reg_id=rev_reg_id,
-            apply_ledger_update=apply_ledger_update,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegWalletUpdatedResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
-        self,
-        rev_reg_id,
-        apply_ledger_update,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        if apply_ledger_update is not None:
-
-            _query_params.append(("apply_ledger_update", apply_ledger_update))
-
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="PUT",
-            resource_path="/revocation/registry/{rev_reg_id}/fix-revocation-entry-state",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def revocation_registry_rev_reg_id_issued_details_get(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CredRevRecordDetailsResult:
-        """Get details of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_issued_details_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevRecordDetailsResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def revocation_registry_rev_reg_id_issued_details_get_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CredRevRecordDetailsResult]:
-        """Get details of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_issued_details_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevRecordDetailsResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def revocation_registry_rev_reg_id_issued_details_get_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get details of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_issued_details_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevRecordDetailsResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _revocation_registry_rev_reg_id_issued_details_get_serialize(
-        self,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/revocation/registry/{rev_reg_id}/issued/details",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def revocation_registry_rev_reg_id_issued_indy_recs_get(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CredRevIndyRecordsResult:
-        """Get details of revoked credentials from ledger
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevIndyRecordsResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CredRevIndyRecordsResult]:
-        """Get details of revoked credentials from ledger
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevIndyRecordsResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def revocation_registry_rev_reg_id_issued_indy_recs_get_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get details of revoked credentials from ledger
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevIndyRecordsResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-        self,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/revocation/registry/{rev_reg_id}/issued/indy_recs",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
     async def revoke_credential(
         self,
         conn_id: Annotated[
@@ -3521,6 +3129,189 @@ class RevocationApi:
         return self.api_client.param_serialize(
             method="POST",
             resource_path="/revocation/revoke",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def rotate_rev_reg(
+        self,
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RevRegsCreated:
+        """Rotate revocation registry
+
+
+        :param cred_def_id: Credential definition identifier (required)
+        :type cred_def_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._rotate_rev_reg_serialize(
+            cred_def_id=cred_def_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def rotate_rev_reg_with_http_info(
+        self,
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RevRegsCreated]:
+        """Rotate revocation registry
+
+
+        :param cred_def_id: Credential definition identifier (required)
+        :type cred_def_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._rotate_rev_reg_serialize(
+            cred_def_id=cred_def_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def rotate_rev_reg_without_preload_content(
+        self,
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Rotate revocation registry
+
+
+        :param cred_def_id: Credential definition identifier (required)
+        :type cred_def_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._rotate_rev_reg_serialize(
+            cred_def_id=cred_def_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreated",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _rotate_rev_reg_serialize(
+        self,
+        cred_def_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if cred_def_id is not None:
+            _path_params["cred_def_id"] = cred_def_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/revocation/active-registry/{cred_def_id}/rotate",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3935,6 +3726,215 @@ class RevocationApi:
         return self.api_client.param_serialize(
             method="PATCH",
             resource_path="/revocation/registry/{rev_reg_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def update_rev_reg_revoked_state(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RevRegWalletUpdatedResult:
+        """Fix revocation state in wallet and return number of updated entries
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
+        :type apply_ledger_update: bool
+        ...
+        """  # noqa: E501
+
+        _param = self._update_rev_reg_revoked_state_serialize(
+            rev_reg_id=rev_reg_id,
+            apply_ledger_update=apply_ledger_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegWalletUpdatedResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def update_rev_reg_revoked_state_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RevRegWalletUpdatedResult]:
+        """Fix revocation state in wallet and return number of updated entries
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
+        :type apply_ledger_update: bool
+        ...
+        """  # noqa: E501
+
+        _param = self._update_rev_reg_revoked_state_serialize(
+            rev_reg_id=rev_reg_id,
+            apply_ledger_update=apply_ledger_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegWalletUpdatedResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def update_rev_reg_revoked_state_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fix revocation state in wallet and return number of updated entries
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
+        :type apply_ledger_update: bool
+        ...
+        """  # noqa: E501
+
+        _param = self._update_rev_reg_revoked_state_serialize(
+            rev_reg_id=rev_reg_id,
+            apply_ledger_update=apply_ledger_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegWalletUpdatedResult",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _update_rev_reg_revoked_state_serialize(
+        self,
+        rev_reg_id,
+        apply_ledger_update,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        if apply_ledger_update is not None:
+
+            _query_params.append(("apply_ledger_update", apply_ledger_update))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/revocation/registry/{rev_reg_id}/fix-revocation-entry-state",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

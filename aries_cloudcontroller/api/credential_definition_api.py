@@ -46,7 +46,7 @@ class CredentialDefinitionApi:
         self.api_client = api_client
 
     @validate_call
-    async def credential_definitions_cred_def_id_write_record_post(
+    async def fix_cred_def_wallet_record(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -71,7 +71,7 @@ class CredentialDefinitionApi:
         ...
         """  # noqa: E501
 
-        _param = self._credential_definitions_cred_def_id_write_record_post_serialize(
+        _param = self._fix_cred_def_wallet_record_serialize(
             cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -91,7 +91,7 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def credential_definitions_cred_def_id_write_record_post_with_http_info(
+    async def fix_cred_def_wallet_record_with_http_info(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -116,7 +116,7 @@ class CredentialDefinitionApi:
         ...
         """  # noqa: E501
 
-        _param = self._credential_definitions_cred_def_id_write_record_post_serialize(
+        _param = self._fix_cred_def_wallet_record_serialize(
             cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -136,7 +136,7 @@ class CredentialDefinitionApi:
             response_types_map=_response_types_map,
         )
 
-    async def credential_definitions_cred_def_id_write_record_post_without_preload_content(
+    async def fix_cred_def_wallet_record_without_preload_content(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -161,7 +161,7 @@ class CredentialDefinitionApi:
         ...
         """  # noqa: E501
 
-        _param = self._credential_definitions_cred_def_id_write_record_post_serialize(
+        _param = self._fix_cred_def_wallet_record_serialize(
             cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -177,7 +177,7 @@ class CredentialDefinitionApi:
         )
         return response_data.response
 
-    def _credential_definitions_cred_def_id_write_record_post_serialize(
+    def _fix_cred_def_wallet_record_serialize(
         self,
         cred_def_id,
         _request_auth,

@@ -36,7 +36,7 @@ class SettingsApi:
         self.api_client = api_client
 
     @validate_call
-    async def settings_get(
+    async def get_settings(
         self,
         _request_timeout: Union[
             None,
@@ -56,7 +56,7 @@ class SettingsApi:
         ...
         """  # noqa: E501
 
-        _param = self._settings_get_serialize(
+        _param = self._get_settings_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -75,7 +75,7 @@ class SettingsApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def settings_get_with_http_info(
+    async def get_settings_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -95,7 +95,7 @@ class SettingsApi:
         ...
         """  # noqa: E501
 
-        _param = self._settings_get_serialize(
+        _param = self._get_settings_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -114,7 +114,7 @@ class SettingsApi:
             response_types_map=_response_types_map,
         )
 
-    async def settings_get_without_preload_content(
+    async def get_settings_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -134,7 +134,7 @@ class SettingsApi:
         ...
         """  # noqa: E501
 
-        _param = self._settings_get_serialize(
+        _param = self._get_settings_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -149,7 +149,7 @@ class SettingsApi:
         )
         return response_data.response
 
-    def _settings_get_serialize(
+    def _get_settings_serialize(
         self,
         _request_auth,
         _content_type,
@@ -198,7 +198,7 @@ class SettingsApi:
         )
 
     @validate_call
-    async def settings_put(
+    async def update_settings(
         self,
         body: Optional[UpdateProfileSettings] = None,
         _request_timeout: Union[
@@ -221,7 +221,7 @@ class SettingsApi:
         ...
         """  # noqa: E501
 
-        _param = self._settings_put_serialize(
+        _param = self._update_settings_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -241,7 +241,7 @@ class SettingsApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def settings_put_with_http_info(
+    async def update_settings_with_http_info(
         self,
         body: Optional[UpdateProfileSettings] = None,
         _request_timeout: Union[
@@ -264,7 +264,7 @@ class SettingsApi:
         ...
         """  # noqa: E501
 
-        _param = self._settings_put_serialize(
+        _param = self._update_settings_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -284,7 +284,7 @@ class SettingsApi:
             response_types_map=_response_types_map,
         )
 
-    async def settings_put_without_preload_content(
+    async def update_settings_without_preload_content(
         self,
         body: Optional[UpdateProfileSettings] = None,
         _request_timeout: Union[
@@ -307,7 +307,7 @@ class SettingsApi:
         ...
         """  # noqa: E501
 
-        _param = self._settings_put_serialize(
+        _param = self._update_settings_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -323,7 +323,7 @@ class SettingsApi:
         )
         return response_data.response
 
-    def _settings_put_serialize(
+    def _update_settings_serialize(
         self,
         body,
         _request_auth,

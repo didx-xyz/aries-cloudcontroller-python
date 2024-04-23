@@ -38,7 +38,7 @@ class DiscoverFeaturesApi:
         self.api_client = api_client
 
     @validate_call
-    async def discover_features_query_get(
+    async def query_features(
         self,
         comment: Annotated[Optional[StrictStr], Field(description="Comment")] = None,
         connection_id: Annotated[
@@ -74,7 +74,7 @@ class DiscoverFeaturesApi:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features_query_get_serialize(
+        _param = self._query_features_serialize(
             comment=comment,
             connection_id=connection_id,
             query=query,
@@ -96,7 +96,7 @@ class DiscoverFeaturesApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def discover_features_query_get_with_http_info(
+    async def query_features_with_http_info(
         self,
         comment: Annotated[Optional[StrictStr], Field(description="Comment")] = None,
         connection_id: Annotated[
@@ -132,7 +132,7 @@ class DiscoverFeaturesApi:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features_query_get_serialize(
+        _param = self._query_features_serialize(
             comment=comment,
             connection_id=connection_id,
             query=query,
@@ -154,7 +154,7 @@ class DiscoverFeaturesApi:
             response_types_map=_response_types_map,
         )
 
-    async def discover_features_query_get_without_preload_content(
+    async def query_features_without_preload_content(
         self,
         comment: Annotated[Optional[StrictStr], Field(description="Comment")] = None,
         connection_id: Annotated[
@@ -190,7 +190,7 @@ class DiscoverFeaturesApi:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features_query_get_serialize(
+        _param = self._query_features_serialize(
             comment=comment,
             connection_id=connection_id,
             query=query,
@@ -208,7 +208,7 @@ class DiscoverFeaturesApi:
         )
         return response_data.response
 
-    def _discover_features_query_get_serialize(
+    def _query_features_serialize(
         self,
         comment,
         connection_id,
@@ -272,7 +272,7 @@ class DiscoverFeaturesApi:
         )
 
     @validate_call
-    async def discover_features_records_get(
+    async def query_records(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -297,7 +297,7 @@ class DiscoverFeaturesApi:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features_records_get_serialize(
+        _param = self._query_records_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -317,7 +317,7 @@ class DiscoverFeaturesApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def discover_features_records_get_with_http_info(
+    async def query_records_with_http_info(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -342,7 +342,7 @@ class DiscoverFeaturesApi:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features_records_get_serialize(
+        _param = self._query_records_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -362,7 +362,7 @@ class DiscoverFeaturesApi:
             response_types_map=_response_types_map,
         )
 
-    async def discover_features_records_get_without_preload_content(
+    async def query_records_without_preload_content(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -387,7 +387,7 @@ class DiscoverFeaturesApi:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features_records_get_serialize(
+        _param = self._query_records_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -403,7 +403,7 @@ class DiscoverFeaturesApi:
         )
         return response_data.response
 
-    def _discover_features_records_get_serialize(
+    def _query_records_serialize(
         self,
         connection_id,
         _request_auth,

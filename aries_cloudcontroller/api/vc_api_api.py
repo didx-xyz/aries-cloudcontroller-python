@@ -59,7 +59,7 @@ class VcApiApi:
         self.api_client = api_client
 
     @validate_call
-    async def vc_credentials_credential_id_get(
+    async def get_credential(
         self,
         credential_id: StrictStr,
         _request_timeout: Union[
@@ -82,7 +82,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_credential_id_get_serialize(
+        _param = self._get_credential_serialize(
             credential_id=credential_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -102,7 +102,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def vc_credentials_credential_id_get_with_http_info(
+    async def get_credential_with_http_info(
         self,
         credential_id: StrictStr,
         _request_timeout: Union[
@@ -125,7 +125,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_credential_id_get_serialize(
+        _param = self._get_credential_serialize(
             credential_id=credential_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -145,7 +145,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         )
 
-    async def vc_credentials_credential_id_get_without_preload_content(
+    async def get_credential_without_preload_content(
         self,
         credential_id: StrictStr,
         _request_timeout: Union[
@@ -168,7 +168,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_credential_id_get_serialize(
+        _param = self._get_credential_serialize(
             credential_id=credential_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -184,7 +184,7 @@ class VcApiApi:
         )
         return response_data.response
 
-    def _vc_credentials_credential_id_get_serialize(
+    def _get_credential_serialize(
         self,
         credential_id,
         _request_auth,
@@ -236,169 +236,7 @@ class VcApiApi:
         )
 
     @validate_call
-    async def vc_credentials_get(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
-        """List credentials
-
-
-        ...
-        """  # noqa: E501
-
-        _param = self._vc_credentials_get_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def vc_credentials_get_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
-        """List credentials
-
-
-        ...
-        """  # noqa: E501
-
-        _param = self._vc_credentials_get_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def vc_credentials_get_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """List credentials
-
-
-        ...
-        """  # noqa: E501
-
-        _param = self._vc_credentials_get_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _vc_credentials_get_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/vc/credentials",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def vc_credentials_issue_post(
+    async def issue_credential(
         self,
         body: Optional[IssueCredentialRequest] = None,
         _request_timeout: Union[
@@ -421,7 +259,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_issue_post_serialize(
+        _param = self._issue_credential_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -441,7 +279,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def vc_credentials_issue_post_with_http_info(
+    async def issue_credential_with_http_info(
         self,
         body: Optional[IssueCredentialRequest] = None,
         _request_timeout: Union[
@@ -464,7 +302,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_issue_post_serialize(
+        _param = self._issue_credential_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -484,7 +322,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         )
 
-    async def vc_credentials_issue_post_without_preload_content(
+    async def issue_credential_without_preload_content(
         self,
         body: Optional[IssueCredentialRequest] = None,
         _request_timeout: Union[
@@ -507,7 +345,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_issue_post_serialize(
+        _param = self._issue_credential_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -523,7 +361,7 @@ class VcApiApi:
         )
         return response_data.response
 
-    def _vc_credentials_issue_post_serialize(
+    def _issue_credential_serialize(
         self,
         body,
         _request_auth,
@@ -585,7 +423,7 @@ class VcApiApi:
         )
 
     @validate_call
-    async def vc_credentials_store_post(
+    async def list_credentials(
         self,
         _request_timeout: Union[
             None,
@@ -598,21 +436,23 @@ class VcApiApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """Store a credential
+    ) -> object:
+        """List credentials
 
 
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_store_post_serialize(
+        _param = self._list_credentials_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -622,7 +462,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def vc_credentials_store_post_with_http_info(
+    async def list_credentials_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -635,21 +475,23 @@ class VcApiApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """Store a credential
+    ) -> ApiResponse[object]:
+        """List credentials
 
 
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_store_post_serialize(
+        _param = self._list_credentials_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -659,7 +501,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         )
 
-    async def vc_credentials_store_post_without_preload_content(
+    async def list_credentials_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -673,26 +515,28 @@ class VcApiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Store a credential
+        """List credentials
 
 
         ...
         """  # noqa: E501
 
-        _param = self._vc_credentials_store_post_serialize(
+        _param = self._list_credentials_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
         return response_data.response
 
-    def _vc_credentials_store_post_serialize(
+    def _list_credentials_serialize(
         self,
         _request_auth,
         _content_type,
@@ -716,200 +560,18 @@ class VcApiApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/vc/credentials/store",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def vc_credentials_verify_post(
-        self,
-        body: Optional[VerifyCredentialRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> VerifyCredentialResponse:
-        """Verify a credential
-
-
-        :param body:
-        :type body: VerifyCredentialRequest
-        ...
-        """  # noqa: E501
-
-        _param = self._vc_credentials_verify_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VerifyCredentialResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def vc_credentials_verify_post_with_http_info(
-        self,
-        body: Optional[VerifyCredentialRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[VerifyCredentialResponse]:
-        """Verify a credential
-
-
-        :param body:
-        :type body: VerifyCredentialRequest
-        ...
-        """  # noqa: E501
-
-        _param = self._vc_credentials_verify_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VerifyCredentialResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def vc_credentials_verify_post_without_preload_content(
-        self,
-        body: Optional[VerifyCredentialRequest] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Verify a credential
-
-
-        :param body:
-        :type body: VerifyCredentialRequest
-        ...
-        """  # noqa: E501
-
-        _param = self._vc_credentials_verify_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VerifyCredentialResponse",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _vc_credentials_verify_post_serialize(
-        self,
-        body,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if body is not None:
-            _body_params = body
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
         )
 
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params["Content-Type"] = _content_type
-        else:
-            _default_content_type = self.api_client.select_header_content_type(
-                ["application/json"]
-            )
-            if _default_content_type is not None:
-                _header_params["Content-Type"] = _default_content_type
-
         # authentication setting
         _auth_settings: List[str] = ["AuthorizationHeader"]
 
         return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/vc/credentials/verify",
+            method="GET",
+            resource_path="/vc/credentials",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -923,7 +585,7 @@ class VcApiApi:
         )
 
     @validate_call
-    async def vc_presentations_prove_post(
+    async def prove_presentation(
         self,
         body: Optional[ProvePresentationRequest] = None,
         _request_timeout: Union[
@@ -946,7 +608,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_presentations_prove_post_serialize(
+        _param = self._prove_presentation_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -966,7 +628,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def vc_presentations_prove_post_with_http_info(
+    async def prove_presentation_with_http_info(
         self,
         body: Optional[ProvePresentationRequest] = None,
         _request_timeout: Union[
@@ -989,7 +651,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_presentations_prove_post_serialize(
+        _param = self._prove_presentation_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1009,7 +671,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         )
 
-    async def vc_presentations_prove_post_without_preload_content(
+    async def prove_presentation_without_preload_content(
         self,
         body: Optional[ProvePresentationRequest] = None,
         _request_timeout: Union[
@@ -1032,7 +694,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_presentations_prove_post_serialize(
+        _param = self._prove_presentation_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1048,7 +710,7 @@ class VcApiApi:
         )
         return response_data.response
 
-    def _vc_presentations_prove_post_serialize(
+    def _prove_presentation_serialize(
         self,
         body,
         _request_auth,
@@ -1110,7 +772,345 @@ class VcApiApi:
         )
 
     @validate_call
-    async def vc_presentations_verify_post(
+    async def store_credential(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Store a credential
+
+
+        ...
+        """  # noqa: E501
+
+        _param = self._store_credential_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def store_credential_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Store a credential
+
+
+        ...
+        """  # noqa: E501
+
+        _param = self._store_credential_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def store_credential_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Store a credential
+
+
+        ...
+        """  # noqa: E501
+
+        _param = self._store_credential_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _store_credential_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/vc/credentials/store",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def verify_credential(
+        self,
+        body: Optional[VerifyCredentialRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> VerifyCredentialResponse:
+        """Verify a credential
+
+
+        :param body:
+        :type body: VerifyCredentialRequest
+        ...
+        """  # noqa: E501
+
+        _param = self._verify_credential_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VerifyCredentialResponse",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def verify_credential_with_http_info(
+        self,
+        body: Optional[VerifyCredentialRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[VerifyCredentialResponse]:
+        """Verify a credential
+
+
+        :param body:
+        :type body: VerifyCredentialRequest
+        ...
+        """  # noqa: E501
+
+        _param = self._verify_credential_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VerifyCredentialResponse",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def verify_credential_without_preload_content(
+        self,
+        body: Optional[VerifyCredentialRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Verify a credential
+
+
+        :param body:
+        :type body: VerifyCredentialRequest
+        ...
+        """  # noqa: E501
+
+        _param = self._verify_credential_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "VerifyCredentialResponse",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _verify_credential_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/vc/credentials/verify",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def verify_presentation(
         self,
         body: Optional[VerifyPresentationRequest] = None,
         _request_timeout: Union[
@@ -1133,7 +1133,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_presentations_verify_post_serialize(
+        _param = self._verify_presentation_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1153,7 +1153,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def vc_presentations_verify_post_with_http_info(
+    async def verify_presentation_with_http_info(
         self,
         body: Optional[VerifyPresentationRequest] = None,
         _request_timeout: Union[
@@ -1176,7 +1176,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_presentations_verify_post_serialize(
+        _param = self._verify_presentation_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1196,7 +1196,7 @@ class VcApiApi:
             response_types_map=_response_types_map,
         )
 
-    async def vc_presentations_verify_post_without_preload_content(
+    async def verify_presentation_without_preload_content(
         self,
         body: Optional[VerifyPresentationRequest] = None,
         _request_timeout: Union[
@@ -1219,7 +1219,7 @@ class VcApiApi:
         ...
         """  # noqa: E501
 
-        _param = self._vc_presentations_verify_post_serialize(
+        _param = self._verify_presentation_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1235,7 +1235,7 @@ class VcApiApi:
         )
         return response_data.response
 
-    def _vc_presentations_verify_post_serialize(
+    def _verify_presentation_serialize(
         self,
         body,
         _request_auth,

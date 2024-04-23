@@ -70,11 +70,9 @@ class AnoncredsRevocationApi:
         self.api_client = api_client
 
     @validate_call
-    async def anoncreds_registry_rev_reg_id_active_put(
+    async def create_rev_reg_definition(
         self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
+        body: Optional[RevRegCreateRequestSchemaAnoncreds] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -86,36 +84,17 @@ class AnoncredsRevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
-        """Update the active registry
+    ) -> RevRegDefResult:
+        """Create and publish a registration revocation on the connected ledger
 
 
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param body:
+        :type body: RevRegCreateRequestSchemaAnoncreds
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_registry_rev_reg_id_active_put_serialize(
-            rev_reg_id=rev_reg_id,
+        _param = self._create_rev_reg_definition_serialize(
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -123,7 +102,7 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
+            "200": "RevRegDefResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -134,11 +113,9 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_registry_rev_reg_id_active_put_with_http_info(
+    async def create_rev_reg_definition_with_http_info(
         self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
+        body: Optional[RevRegCreateRequestSchemaAnoncreds] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -150,36 +127,17 @@ class AnoncredsRevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
-        """Update the active registry
+    ) -> ApiResponse[RevRegDefResult]:
+        """Create and publish a registration revocation on the connected ledger
 
 
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param body:
+        :type body: RevRegCreateRequestSchemaAnoncreds
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_registry_rev_reg_id_active_put_serialize(
-            rev_reg_id=rev_reg_id,
+        _param = self._create_rev_reg_definition_serialize(
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -187,7 +145,7 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
+            "200": "RevRegDefResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -198,11 +156,9 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_registry_rev_reg_id_active_put_without_preload_content(
+    async def create_rev_reg_definition_without_preload_content(
         self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
+        body: Optional[RevRegCreateRequestSchemaAnoncreds] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -215,35 +171,16 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update the active registry
+        """Create and publish a registration revocation on the connected ledger
 
 
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param body:
+        :type body: RevRegCreateRequestSchemaAnoncreds
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_registry_rev_reg_id_active_put_serialize(
-            rev_reg_id=rev_reg_id,
+        _param = self._create_rev_reg_definition_serialize(
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -251,16 +188,16 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
+            "200": "RevRegDefResult",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
         return response_data.response
 
-    def _anoncreds_registry_rev_reg_id_active_put_serialize(
+    def _create_rev_reg_definition_serialize(
         self,
-        rev_reg_id,
+        body,
         _request_auth,
         _content_type,
         _headers,
@@ -279,24 +216,34 @@ class AnoncredsRevocationApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if body is not None:
+            _body_params = body
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
         )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
         # authentication setting
         _auth_settings: List[str] = ["AuthorizationHeader"]
 
         return self.api_client.param_serialize(
-            method="PUT",
-            resource_path="/anoncreds/registry/{rev_reg_id}/active",
+            method="POST",
+            resource_path="/anoncreds/revocation-registry-definition",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -310,247 +257,7 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_registry_rev_reg_id_tails_file_put(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
-        """Upload local tails file to server
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_registry_rev_reg_id_tails_file_put_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_registry_rev_reg_id_tails_file_put_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
-        """Upload local tails file to server
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_registry_rev_reg_id_tails_file_put_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_registry_rev_reg_id_tails_file_put_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Upload local tails file to server
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_registry_rev_reg_id_tails_file_put_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_registry_rev_reg_id_tails_file_put_serialize(
-        self,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="PUT",
-            resource_path="/anoncreds/registry/{rev_reg_id}/tails-file",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_active_registry_cred_def_id_get(
+    async def get_active_revocation_registry(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -572,29 +279,10 @@ class AnoncredsRevocationApi:
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_active_registry_cred_def_id_get_serialize(
+        _param = self._get_active_revocation_registry_serialize(
             cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -614,7 +302,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_active_registry_cred_def_id_get_with_http_info(
+    async def get_active_revocation_registry_with_http_info(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -636,29 +324,10 @@ class AnoncredsRevocationApi:
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_active_registry_cred_def_id_get_serialize(
+        _param = self._get_active_revocation_registry_serialize(
             cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -678,7 +347,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_active_registry_cred_def_id_get_without_preload_content(
+    async def get_active_revocation_registry_without_preload_content(
         self,
         cred_def_id: Annotated[
             str, Field(strict=True, description="Credential definition identifier")
@@ -700,29 +369,10 @@ class AnoncredsRevocationApi:
 
         :param cred_def_id: Credential definition identifier (required)
         :type cred_def_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_active_registry_cred_def_id_get_serialize(
+        _param = self._get_active_revocation_registry_serialize(
             cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -738,7 +388,7 @@ class AnoncredsRevocationApi:
         )
         return response_data.response
 
-    def _anoncreds_revocation_active_registry_cred_def_id_get_serialize(
+    def _get_active_revocation_registry_serialize(
         self,
         cred_def_id,
         _request_auth,
@@ -790,247 +440,7 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_revocation_active_registry_cred_def_id_rotate_post(
-        self,
-        cred_def_id: Annotated[
-            str, Field(strict=True, description="Credential definition identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegsCreatedSchemaAnoncreds:
-        """Rotate revocation registry
-
-
-        :param cred_def_id: Credential definition identifier (required)
-        :type cred_def_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_active_registry_cred_def_id_rotate_post_serialize(
-            cred_def_id=cred_def_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreatedSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_revocation_active_registry_cred_def_id_rotate_post_with_http_info(
-        self,
-        cred_def_id: Annotated[
-            str, Field(strict=True, description="Credential definition identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegsCreatedSchemaAnoncreds]:
-        """Rotate revocation registry
-
-
-        :param cred_def_id: Credential definition identifier (required)
-        :type cred_def_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_active_registry_cred_def_id_rotate_post_serialize(
-            cred_def_id=cred_def_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreatedSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_revocation_active_registry_cred_def_id_rotate_post_without_preload_content(
-        self,
-        cred_def_id: Annotated[
-            str, Field(strict=True, description="Credential definition identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Rotate revocation registry
-
-
-        :param cred_def_id: Credential definition identifier (required)
-        :type cred_def_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_active_registry_cred_def_id_rotate_post_serialize(
-            cred_def_id=cred_def_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreatedSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_revocation_active_registry_cred_def_id_rotate_post_serialize(
-        self,
-        cred_def_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if cred_def_id is not None:
-            _path_params["cred_def_id"] = cred_def_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/anoncreds/revocation/active-registry/{cred_def_id}/rotate",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_credential_record_get(
+    async def get_cred_rev_record(
         self,
         cred_ex_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -1065,29 +475,10 @@ class AnoncredsRevocationApi:
         :type cred_rev_id: str
         :param rev_reg_id: Revocation registry identifier
         :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_credential_record_get_serialize(
+        _param = self._get_cred_rev_record_serialize(
             cred_ex_id=cred_ex_id,
             cred_rev_id=cred_rev_id,
             rev_reg_id=rev_reg_id,
@@ -1109,7 +500,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_credential_record_get_with_http_info(
+    async def get_cred_rev_record_with_http_info(
         self,
         cred_ex_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -1144,29 +535,10 @@ class AnoncredsRevocationApi:
         :type cred_rev_id: str
         :param rev_reg_id: Revocation registry identifier
         :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_credential_record_get_serialize(
+        _param = self._get_cred_rev_record_serialize(
             cred_ex_id=cred_ex_id,
             cred_rev_id=cred_rev_id,
             rev_reg_id=rev_reg_id,
@@ -1188,7 +560,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_credential_record_get_without_preload_content(
+    async def get_cred_rev_record_without_preload_content(
         self,
         cred_ex_id: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -1223,29 +595,10 @@ class AnoncredsRevocationApi:
         :type cred_rev_id: str
         :param rev_reg_id: Revocation registry identifier
         :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_credential_record_get_serialize(
+        _param = self._get_cred_rev_record_serialize(
             cred_ex_id=cred_ex_id,
             cred_rev_id=cred_rev_id,
             rev_reg_id=rev_reg_id,
@@ -1263,7 +616,7 @@ class AnoncredsRevocationApi:
         )
         return response_data.response
 
-    def _anoncreds_revocation_credential_record_get_serialize(
+    def _get_cred_rev_record_serialize(
         self,
         cred_ex_id,
         cred_rev_id,
@@ -1327,7 +680,1133 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_revocation_list_post(
+    async def get_rev_reg_issued_count(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RevRegIssuedResultSchemaAnoncreds:
+        """Get number of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_count_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegIssuedResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_rev_reg_issued_count_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RevRegIssuedResultSchemaAnoncreds]:
+        """Get number of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_count_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegIssuedResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_rev_reg_issued_count_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get number of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_count_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegIssuedResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_rev_reg_issued_count_serialize(
+        self,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/issued",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def get_rev_reg_issued_details(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CredRevRecordDetailsResultSchemaAnoncreds:
+        """Get details of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_details_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordDetailsResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_rev_reg_issued_details_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CredRevRecordDetailsResultSchemaAnoncreds]:
+        """Get details of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_details_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordDetailsResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_rev_reg_issued_details_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details of credentials issued against revocation registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_details_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevRecordDetailsResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_rev_reg_issued_details_serialize(
+        self,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/issued/details",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def get_rev_reg_issued_indy_recs(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CredRevIndyRecordsResultSchemaAnoncreds:
+        """Get details of revoked credentials from ledger
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_indy_recs_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevIndyRecordsResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_rev_reg_issued_indy_recs_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CredRevIndyRecordsResultSchemaAnoncreds]:
+        """Get details of revoked credentials from ledger
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_indy_recs_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevIndyRecordsResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_rev_reg_issued_indy_recs_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details of revoked credentials from ledger
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_rev_reg_issued_indy_recs_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CredRevIndyRecordsResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_rev_reg_issued_indy_recs_serialize(
+        self,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/issued/indy_recs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def get_revocation_registries(
+        self,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Revocation registry state")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RevRegsCreatedSchemaAnoncreds:
+        """Search for matching revocation registries that current agent created
+
+
+        :param cred_def_id: Credential definition identifier
+        :type cred_def_id: str
+        :param state: Revocation registry state
+        :type state: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_revocation_registries_serialize(
+            cred_def_id=cred_def_id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreatedSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_revocation_registries_with_http_info(
+        self,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Revocation registry state")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RevRegsCreatedSchemaAnoncreds]:
+        """Search for matching revocation registries that current agent created
+
+
+        :param cred_def_id: Credential definition identifier
+        :type cred_def_id: str
+        :param state: Revocation registry state
+        :type state: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_revocation_registries_serialize(
+            cred_def_id=cred_def_id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreatedSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_revocation_registries_without_preload_content(
+        self,
+        cred_def_id: Annotated[
+            Optional[Annotated[str, Field(strict=True)]],
+            Field(description="Credential definition identifier"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Revocation registry state")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Search for matching revocation registries that current agent created
+
+
+        :param cred_def_id: Credential definition identifier
+        :type cred_def_id: str
+        :param state: Revocation registry state
+        :type state: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_revocation_registries_serialize(
+            cred_def_id=cred_def_id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegsCreatedSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_revocation_registries_serialize(
+        self,
+        cred_def_id,
+        state,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if cred_def_id is not None:
+
+            _query_params.append(("cred_def_id", cred_def_id))
+
+        if state is not None:
+
+            _query_params.append(("state", state))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/anoncreds/revocation/registries",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def get_revocation_registry(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RevRegResultSchemaAnoncreds:
+        """Get revocation registry by revocation registry id
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_revocation_registry_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_revocation_registry_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RevRegResultSchemaAnoncreds]:
+        """Get revocation registry by revocation registry id
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_revocation_registry_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_revocation_registry_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get revocation registry by revocation registry id
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_revocation_registry_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_revocation_registry_serialize(
+        self,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/anoncreds/revocation/registry/{rev_reg_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def get_tails_file(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Download tails file
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_tails_file_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_tails_file_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Download tails file
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_tails_file_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_tails_file_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Download tails file
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._get_tails_file_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_tails_file_serialize(
+        self,
+        rev_reg_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/octet-stream"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/tails-file",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def post_revocation_list(
         self,
         body: Optional[RevListCreateRequest] = None,
         _request_timeout: Union[
@@ -1347,29 +1826,10 @@ class AnoncredsRevocationApi:
 
         :param body:
         :type body: RevListCreateRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_list_post_serialize(
+        _param = self._post_revocation_list_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1389,7 +1849,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_list_post_with_http_info(
+    async def post_revocation_list_with_http_info(
         self,
         body: Optional[RevListCreateRequest] = None,
         _request_timeout: Union[
@@ -1409,29 +1869,10 @@ class AnoncredsRevocationApi:
 
         :param body:
         :type body: RevListCreateRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_list_post_serialize(
+        _param = self._post_revocation_list_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1451,7 +1892,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_list_post_without_preload_content(
+    async def post_revocation_list_without_preload_content(
         self,
         body: Optional[RevListCreateRequest] = None,
         _request_timeout: Union[
@@ -1471,29 +1912,10 @@ class AnoncredsRevocationApi:
 
         :param body:
         :type body: RevListCreateRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_list_post_serialize(
+        _param = self._post_revocation_list_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1509,7 +1931,7 @@ class AnoncredsRevocationApi:
         )
         return response_data.response
 
-    def _anoncreds_revocation_list_post_serialize(
+    def _post_revocation_list_serialize(
         self,
         body,
         _request_auth,
@@ -1571,7 +1993,7 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_revocation_publish_revocations_post(
+    async def publish_revocations(
         self,
         body: Optional[PublishRevocationsSchemaAnoncreds] = None,
         _request_timeout: Union[
@@ -1591,29 +2013,10 @@ class AnoncredsRevocationApi:
 
         :param body:
         :type body: PublishRevocationsSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_publish_revocations_post_serialize(
+        _param = self._publish_revocations_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1633,7 +2036,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_publish_revocations_post_with_http_info(
+    async def publish_revocations_with_http_info(
         self,
         body: Optional[PublishRevocationsSchemaAnoncreds] = None,
         _request_timeout: Union[
@@ -1653,29 +2056,10 @@ class AnoncredsRevocationApi:
 
         :param body:
         :type body: PublishRevocationsSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_publish_revocations_post_serialize(
+        _param = self._publish_revocations_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1695,7 +2079,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_publish_revocations_post_without_preload_content(
+    async def publish_revocations_without_preload_content(
         self,
         body: Optional[PublishRevocationsSchemaAnoncreds] = None,
         _request_timeout: Union[
@@ -1715,29 +2099,10 @@ class AnoncredsRevocationApi:
 
         :param body:
         :type body: PublishRevocationsSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_publish_revocations_post_serialize(
+        _param = self._publish_revocations_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1753,7 +2118,7 @@ class AnoncredsRevocationApi:
         )
         return response_data.response
 
-    def _anoncreds_revocation_publish_revocations_post_serialize(
+    def _publish_revocations_serialize(
         self,
         body,
         _request_auth,
@@ -1815,15 +2180,9 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_revocation_registries_get(
+    async def revoke(
         self,
-        cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Credential definition identifier"),
-        ] = None,
-        state: Annotated[
-            Optional[StrictStr], Field(description="Revocation registry state")
-        ] = None,
+        body: Optional[RevokeRequestSchemaAnoncreds] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1835,39 +2194,17 @@ class AnoncredsRevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegsCreatedSchemaAnoncreds:
-        """Search for matching revocation registries that current agent created
+    ) -> object:
+        """Revoke an issued credential
 
 
-        :param cred_def_id: Credential definition identifier
-        :type cred_def_id: str
-        :param state: Revocation registry state
-        :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param body:
+        :type body: RevokeRequestSchemaAnoncreds
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_registries_get_serialize(
-            cred_def_id=cred_def_id,
-            state=state,
+        _param = self._revoke_serialize(
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1875,7 +2212,7 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreatedSchemaAnoncreds",
+            "200": "object",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1886,15 +2223,9 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_registries_get_with_http_info(
+    async def revoke_with_http_info(
         self,
-        cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Credential definition identifier"),
-        ] = None,
-        state: Annotated[
-            Optional[StrictStr], Field(description="Revocation registry state")
-        ] = None,
+        body: Optional[RevokeRequestSchemaAnoncreds] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1906,39 +2237,17 @@ class AnoncredsRevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegsCreatedSchemaAnoncreds]:
-        """Search for matching revocation registries that current agent created
+    ) -> ApiResponse[object]:
+        """Revoke an issued credential
 
 
-        :param cred_def_id: Credential definition identifier
-        :type cred_def_id: str
-        :param state: Revocation registry state
-        :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param body:
+        :type body: RevokeRequestSchemaAnoncreds
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_registries_get_serialize(
-            cred_def_id=cred_def_id,
-            state=state,
+        _param = self._revoke_serialize(
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1946,7 +2255,7 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreatedSchemaAnoncreds",
+            "200": "object",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1957,15 +2266,9 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_registries_get_without_preload_content(
+    async def revoke_without_preload_content(
         self,
-        cred_def_id: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Credential definition identifier"),
-        ] = None,
-        state: Annotated[
-            Optional[StrictStr], Field(description="Revocation registry state")
-        ] = None,
+        body: Optional[RevokeRequestSchemaAnoncreds] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1978,38 +2281,16 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Search for matching revocation registries that current agent created
+        """Revoke an issued credential
 
 
-        :param cred_def_id: Credential definition identifier
-        :type cred_def_id: str
-        :param state: Revocation registry state
-        :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param body:
+        :type body: RevokeRequestSchemaAnoncreds
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_registries_get_serialize(
-            cred_def_id=cred_def_id,
-            state=state,
+        _param = self._revoke_serialize(
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2017,255 +2298,14 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegsCreatedSchemaAnoncreds",
+            "200": "object",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
         return response_data.response
 
-    def _anoncreds_revocation_registries_get_serialize(
-        self,
-        cred_def_id,
-        state,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if cred_def_id is not None:
-
-            _query_params.append(("cred_def_id", cred_def_id))
-
-        if state is not None:
-
-            _query_params.append(("state", state))
-
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/anoncreds/revocation/registries",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_registry_definition_post(
-        self,
-        body: Optional[RevRegCreateRequestSchemaAnoncreds] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegDefResult:
-        """Create and publish a registration revocation on the connected ledger
-
-
-        :param body:
-        :type body: RevRegCreateRequestSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_definition_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegDefResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_revocation_registry_definition_post_with_http_info(
-        self,
-        body: Optional[RevRegCreateRequestSchemaAnoncreds] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegDefResult]:
-        """Create and publish a registration revocation on the connected ledger
-
-
-        :param body:
-        :type body: RevRegCreateRequestSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_definition_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegDefResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_revocation_registry_definition_post_without_preload_content(
-        self,
-        body: Optional[RevRegCreateRequestSchemaAnoncreds] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Create and publish a registration revocation on the connected ledger
-
-
-        :param body:
-        :type body: RevRegCreateRequestSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_definition_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegDefResult",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_revocation_registry_definition_post_serialize(
+    def _revoke_serialize(
         self,
         body,
         _request_auth,
@@ -2313,7 +2353,7 @@ class AnoncredsRevocationApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/anoncreds/revocation-registry-definition",
+            resource_path="/anoncreds/revocation/revoke",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2327,14 +2367,10 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_revocation_registry_rev_reg_id_fix_revocation_entry_state_put(
+    async def rotate_active_revocation_registry(
         self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        apply_ledger_update: Annotated[
-            StrictBool,
-            Field(description="Apply updated accumulator transaction to ledger"),
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
         ],
         _request_timeout: Union[
             None,
@@ -2347,39 +2383,17 @@ class AnoncredsRevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegWalletUpdatedResultSchemaAnoncreds:
-        """Fix revocation state in wallet and return number of updated entries
+    ) -> RevRegsCreatedSchemaAnoncreds:
+        """Rotate revocation registry
 
 
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
-        :type apply_ledger_update: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param cred_def_id: Credential definition identifier (required)
+        :type cred_def_id: str
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
-            rev_reg_id=rev_reg_id,
-            apply_ledger_update=apply_ledger_update,
+        _param = self._rotate_active_revocation_registry_serialize(
+            cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2387,7 +2401,7 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegWalletUpdatedResultSchemaAnoncreds",
+            "200": "RevRegsCreatedSchemaAnoncreds",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2398,14 +2412,10 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_registry_rev_reg_id_fix_revocation_entry_state_put_with_http_info(
+    async def rotate_active_revocation_registry_with_http_info(
         self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        apply_ledger_update: Annotated[
-            StrictBool,
-            Field(description="Apply updated accumulator transaction to ledger"),
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
         ],
         _request_timeout: Union[
             None,
@@ -2418,39 +2428,17 @@ class AnoncredsRevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegWalletUpdatedResultSchemaAnoncreds]:
-        """Fix revocation state in wallet and return number of updated entries
+    ) -> ApiResponse[RevRegsCreatedSchemaAnoncreds]:
+        """Rotate revocation registry
 
 
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
-        :type apply_ledger_update: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param cred_def_id: Credential definition identifier (required)
+        :type cred_def_id: str
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
-            rev_reg_id=rev_reg_id,
-            apply_ledger_update=apply_ledger_update,
+        _param = self._rotate_active_revocation_registry_serialize(
+            cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2458,7 +2446,7 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegWalletUpdatedResultSchemaAnoncreds",
+            "200": "RevRegsCreatedSchemaAnoncreds",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2469,14 +2457,10 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_registry_rev_reg_id_fix_revocation_entry_state_put_without_preload_content(
+    async def rotate_active_revocation_registry_without_preload_content(
         self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        apply_ledger_update: Annotated[
-            StrictBool,
-            Field(description="Apply updated accumulator transaction to ledger"),
+        cred_def_id: Annotated[
+            str, Field(strict=True, description="Credential definition identifier")
         ],
         _request_timeout: Union[
             None,
@@ -2490,38 +2474,16 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fix revocation state in wallet and return number of updated entries
+        """Rotate revocation registry
 
 
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
-        :type apply_ledger_update: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        :param cred_def_id: Credential definition identifier (required)
+        :type cred_def_id: str
+        ...
         """  # noqa: E501
 
-        _param = self._anoncreds_revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
-            rev_reg_id=rev_reg_id,
-            apply_ledger_update=apply_ledger_update,
+        _param = self._rotate_active_revocation_registry_serialize(
+            cred_def_id=cred_def_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2529,17 +2491,199 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegWalletUpdatedResultSchemaAnoncreds",
+            "200": "RevRegsCreatedSchemaAnoncreds",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
         return response_data.response
 
-    def _anoncreds_revocation_registry_rev_reg_id_fix_revocation_entry_state_put_serialize(
+    def _rotate_active_revocation_registry_serialize(
+        self,
+        cred_def_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if cred_def_id is not None:
+            _path_params["cred_def_id"] = cred_def_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/anoncreds/revocation/active-registry/{cred_def_id}/rotate",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def set_active_registry(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Update the active registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._set_active_registry_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def set_active_registry_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Update the active registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._set_active_registry_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def set_active_registry_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update the active registry
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._set_active_registry_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "object",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _set_active_registry_serialize(
         self,
         rev_reg_id,
-        apply_ledger_update,
         _request_auth,
         _content_type,
         _headers,
@@ -2561,10 +2705,6 @@ class AnoncredsRevocationApi:
         if rev_reg_id is not None:
             _path_params["rev_reg_id"] = rev_reg_id
         # process the query parameters
-        if apply_ledger_update is not None:
-
-            _query_params.append(("apply_ledger_update", apply_ledger_update))
-
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -2579,7 +2719,7 @@ class AnoncredsRevocationApi:
 
         return self.api_client.param_serialize(
             method="PUT",
-            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/fix-revocation-entry-state",
+            resource_path="/anoncreds/registry/{rev_reg_id}/active",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2593,973 +2733,7 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_revocation_registry_rev_reg_id_get(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegResultSchemaAnoncreds:
-        """Get revocation registry by revocation registry id
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_revocation_registry_rev_reg_id_get_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegResultSchemaAnoncreds]:
-        """Get revocation registry by revocation registry id
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_revocation_registry_rev_reg_id_get_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get revocation registry by revocation registry id
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_revocation_registry_rev_reg_id_get_serialize(
-        self,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/anoncreds/revocation/registry/{rev_reg_id}",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_registry_rev_reg_id_issued_details_get(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CredRevRecordDetailsResultSchemaAnoncreds:
-        """Get details of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_issued_details_get_serialize(
-                rev_reg_id=rev_reg_id,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevRecordDetailsResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_revocation_registry_rev_reg_id_issued_details_get_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CredRevRecordDetailsResultSchemaAnoncreds]:
-        """Get details of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_issued_details_get_serialize(
-                rev_reg_id=rev_reg_id,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevRecordDetailsResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_revocation_registry_rev_reg_id_issued_details_get_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get details of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_issued_details_get_serialize(
-                rev_reg_id=rev_reg_id,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevRecordDetailsResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_revocation_registry_rev_reg_id_issued_details_get_serialize(
-        self,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/issued/details",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_registry_rev_reg_id_issued_get(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RevRegIssuedResultSchemaAnoncreds:
-        """Get number of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_issued_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegIssuedResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_revocation_registry_rev_reg_id_issued_get_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RevRegIssuedResultSchemaAnoncreds]:
-        """Get number of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_issued_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegIssuedResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_revocation_registry_rev_reg_id_issued_get_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get number of credentials issued against revocation registry
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_issued_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "RevRegIssuedResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_revocation_registry_rev_reg_id_issued_get_serialize(
-        self,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/issued",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_registry_rev_reg_id_issued_indy_recs_get(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CredRevIndyRecordsResultSchemaAnoncreds:
-        """Get details of revoked credentials from ledger
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevIndyRecordsResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_revocation_registry_rev_reg_id_issued_indy_recs_get_with_http_info(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CredRevIndyRecordsResultSchemaAnoncreds]:
-        """Get details of revoked credentials from ledger
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevIndyRecordsResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_revocation_registry_rev_reg_id_issued_indy_recs_get_without_preload_content(
-        self,
-        rev_reg_id: Annotated[
-            str, Field(strict=True, description="Revocation Registry identifier")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get details of revoked credentials from ledger
-
-
-        :param rev_reg_id: Revocation Registry identifier (required)
-        :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-            rev_reg_id=rev_reg_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CredRevIndyRecordsResultSchemaAnoncreds",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_revocation_registry_rev_reg_id_issued_indy_recs_get_serialize(
-        self,
-        rev_reg_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if rev_reg_id is not None:
-            _path_params["rev_reg_id"] = rev_reg_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/issued/indy_recs",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_registry_rev_reg_id_set_state_patch(
+    async def set_rev_reg_state(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3586,37 +2760,16 @@ class AnoncredsRevocationApi:
         :type rev_reg_id: str
         :param state: Revocation registry state to set (required)
         :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_set_state_patch_serialize(
-                rev_reg_id=rev_reg_id,
-                state=state,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
+        _param = self._set_rev_reg_state_serialize(
+            rev_reg_id=rev_reg_id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
@@ -3631,7 +2784,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_registry_rev_reg_id_set_state_patch_with_http_info(
+    async def set_rev_reg_state_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3658,37 +2811,16 @@ class AnoncredsRevocationApi:
         :type rev_reg_id: str
         :param state: Revocation registry state to set (required)
         :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_set_state_patch_serialize(
-                rev_reg_id=rev_reg_id,
-                state=state,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
+        _param = self._set_rev_reg_state_serialize(
+            rev_reg_id=rev_reg_id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
@@ -3703,7 +2835,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_registry_rev_reg_id_set_state_patch_without_preload_content(
+    async def set_rev_reg_state_without_preload_content(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3730,37 +2862,16 @@ class AnoncredsRevocationApi:
         :type rev_reg_id: str
         :param state: Revocation registry state to set (required)
         :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_set_state_patch_serialize(
-                rev_reg_id=rev_reg_id,
-                state=state,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
+        _param = self._set_rev_reg_state_serialize(
+            rev_reg_id=rev_reg_id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
@@ -3771,7 +2882,7 @@ class AnoncredsRevocationApi:
         )
         return response_data.response
 
-    def _anoncreds_revocation_registry_rev_reg_id_set_state_patch_serialize(
+    def _set_rev_reg_state_serialize(
         self,
         rev_reg_id,
         state,
@@ -3828,7 +2939,216 @@ class AnoncredsRevocationApi:
         )
 
     @validate_call
-    async def anoncreds_revocation_registry_rev_reg_id_tails_file_get(
+    async def update_rev_reg_revoked_state(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RevRegWalletUpdatedResultSchemaAnoncreds:
+        """Fix revocation state in wallet and return number of updated entries
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
+        :type apply_ledger_update: bool
+        ...
+        """  # noqa: E501
+
+        _param = self._update_rev_reg_revoked_state_serialize(
+            rev_reg_id=rev_reg_id,
+            apply_ledger_update=apply_ledger_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegWalletUpdatedResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def update_rev_reg_revoked_state_with_http_info(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RevRegWalletUpdatedResultSchemaAnoncreds]:
+        """Fix revocation state in wallet and return number of updated entries
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
+        :type apply_ledger_update: bool
+        ...
+        """  # noqa: E501
+
+        _param = self._update_rev_reg_revoked_state_serialize(
+            rev_reg_id=rev_reg_id,
+            apply_ledger_update=apply_ledger_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegWalletUpdatedResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def update_rev_reg_revoked_state_without_preload_content(
+        self,
+        rev_reg_id: Annotated[
+            str, Field(strict=True, description="Revocation Registry identifier")
+        ],
+        apply_ledger_update: Annotated[
+            StrictBool,
+            Field(description="Apply updated accumulator transaction to ledger"),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fix revocation state in wallet and return number of updated entries
+
+
+        :param rev_reg_id: Revocation Registry identifier (required)
+        :type rev_reg_id: str
+        :param apply_ledger_update: Apply updated accumulator transaction to ledger (required)
+        :type apply_ledger_update: bool
+        ...
+        """  # noqa: E501
+
+        _param = self._update_rev_reg_revoked_state_serialize(
+            rev_reg_id=rev_reg_id,
+            apply_ledger_update=apply_ledger_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RevRegWalletUpdatedResultSchemaAnoncreds",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _update_rev_reg_revoked_state_serialize(
+        self,
+        rev_reg_id,
+        apply_ledger_update,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if rev_reg_id is not None:
+            _path_params["rev_reg_id"] = rev_reg_id
+        # process the query parameters
+        if apply_ledger_update is not None:
+
+            _query_params.append(("apply_ledger_update", apply_ledger_update))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/fix-revocation-entry-state",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def upload_tails_file(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3845,41 +3165,20 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Download tails file
+        """Upload local tails file to server
 
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_tails_file_get_serialize(
-                rev_reg_id=rev_reg_id,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
+        _param = self._upload_tails_file_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
@@ -3894,7 +3193,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_revocation_registry_rev_reg_id_tails_file_get_with_http_info(
+    async def upload_tails_file_with_http_info(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3911,41 +3210,20 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[object]:
-        """Download tails file
+        """Upload local tails file to server
 
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_tails_file_get_serialize(
-                rev_reg_id=rev_reg_id,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
+        _param = self._upload_tails_file_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
@@ -3960,7 +3238,7 @@ class AnoncredsRevocationApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_revocation_registry_rev_reg_id_tails_file_get_without_preload_content(
+    async def upload_tails_file_without_preload_content(
         self,
         rev_reg_id: Annotated[
             str, Field(strict=True, description="Revocation Registry identifier")
@@ -3977,41 +3255,20 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Download tails file
+        """Upload local tails file to server
 
 
         :param rev_reg_id: Revocation Registry identifier (required)
         :type rev_reg_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
+        ...
         """  # noqa: E501
 
-        _param = (
-            self._anoncreds_revocation_registry_rev_reg_id_tails_file_get_serialize(
-                rev_reg_id=rev_reg_id,
-                _request_auth=_request_auth,
-                _content_type=_content_type,
-                _headers=_headers,
-                _host_index=_host_index,
-            )
+        _param = self._upload_tails_file_serialize(
+            rev_reg_id=rev_reg_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
@@ -4022,7 +3279,7 @@ class AnoncredsRevocationApi:
         )
         return response_data.response
 
-    def _anoncreds_revocation_registry_rev_reg_id_tails_file_get_serialize(
+    def _upload_tails_file_serialize(
         self,
         rev_reg_id,
         _request_auth,
@@ -4052,259 +3309,15 @@ class AnoncredsRevocationApi:
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/octet-stream"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/anoncreds/revocation/registry/{rev_reg_id}/tails-file",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def anoncreds_revocation_revoke_post(
-        self,
-        body: Optional[RevokeRequestSchemaAnoncreds] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
-        """Revoke an issued credential
-
-
-        :param body:
-        :type body: RevokeRequestSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_revoke_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def anoncreds_revocation_revoke_post_with_http_info(
-        self,
-        body: Optional[RevokeRequestSchemaAnoncreds] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
-        """Revoke an issued credential
-
-
-        :param body:
-        :type body: RevokeRequestSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_revoke_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def anoncreds_revocation_revoke_post_without_preload_content(
-        self,
-        body: Optional[RevokeRequestSchemaAnoncreds] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Revoke an issued credential
-
-
-        :param body:
-        :type body: RevokeRequestSchemaAnoncreds
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._anoncreds_revocation_revoke_post_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _anoncreds_revocation_revoke_post_serialize(
-        self,
-        body,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if body is not None:
-            _body_params = body
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
         )
 
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params["Content-Type"] = _content_type
-        else:
-            _default_content_type = self.api_client.select_header_content_type(
-                ["application/json"]
-            )
-            if _default_content_type is not None:
-                _header_params["Content-Type"] = _default_content_type
-
         # authentication setting
         _auth_settings: List[str] = ["AuthorizationHeader"]
 
         return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/anoncreds/revocation/revoke",
+            method="PUT",
+            resource_path="/anoncreds/registry/{rev_reg_id}/tails-file",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

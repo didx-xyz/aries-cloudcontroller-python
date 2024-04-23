@@ -37,7 +37,7 @@ class DidRotateApi:
         self.api_client = api_client
 
     @validate_call
-    async def did_rotate_conn_id_hangup_post(
+    async def hangup(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         _request_timeout: Union[
@@ -60,7 +60,7 @@ class DidRotateApi:
         ...
         """  # noqa: E501
 
-        _param = self._did_rotate_conn_id_hangup_post_serialize(
+        _param = self._hangup_serialize(
             conn_id=conn_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -80,7 +80,7 @@ class DidRotateApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def did_rotate_conn_id_hangup_post_with_http_info(
+    async def hangup_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         _request_timeout: Union[
@@ -103,7 +103,7 @@ class DidRotateApi:
         ...
         """  # noqa: E501
 
-        _param = self._did_rotate_conn_id_hangup_post_serialize(
+        _param = self._hangup_serialize(
             conn_id=conn_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -123,7 +123,7 @@ class DidRotateApi:
             response_types_map=_response_types_map,
         )
 
-    async def did_rotate_conn_id_hangup_post_without_preload_content(
+    async def hangup_without_preload_content(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         _request_timeout: Union[
@@ -146,7 +146,7 @@ class DidRotateApi:
         ...
         """  # noqa: E501
 
-        _param = self._did_rotate_conn_id_hangup_post_serialize(
+        _param = self._hangup_serialize(
             conn_id=conn_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -162,7 +162,7 @@ class DidRotateApi:
         )
         return response_data.response
 
-    def _did_rotate_conn_id_hangup_post_serialize(
+    def _hangup_serialize(
         self,
         conn_id,
         _request_auth,
@@ -214,7 +214,7 @@ class DidRotateApi:
         )
 
     @validate_call
-    async def did_rotate_conn_id_rotate_post(
+    async def rotate(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[DIDRotateRequestJSON] = None,
@@ -240,7 +240,7 @@ class DidRotateApi:
         ...
         """  # noqa: E501
 
-        _param = self._did_rotate_conn_id_rotate_post_serialize(
+        _param = self._rotate_serialize(
             conn_id=conn_id,
             body=body,
             _request_auth=_request_auth,
@@ -261,7 +261,7 @@ class DidRotateApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def did_rotate_conn_id_rotate_post_with_http_info(
+    async def rotate_with_http_info(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[DIDRotateRequestJSON] = None,
@@ -287,7 +287,7 @@ class DidRotateApi:
         ...
         """  # noqa: E501
 
-        _param = self._did_rotate_conn_id_rotate_post_serialize(
+        _param = self._rotate_serialize(
             conn_id=conn_id,
             body=body,
             _request_auth=_request_auth,
@@ -308,7 +308,7 @@ class DidRotateApi:
             response_types_map=_response_types_map,
         )
 
-    async def did_rotate_conn_id_rotate_post_without_preload_content(
+    async def rotate_without_preload_content(
         self,
         conn_id: Annotated[StrictStr, Field(description="Connection identifier")],
         body: Optional[DIDRotateRequestJSON] = None,
@@ -334,7 +334,7 @@ class DidRotateApi:
         ...
         """  # noqa: E501
 
-        _param = self._did_rotate_conn_id_rotate_post_serialize(
+        _param = self._rotate_serialize(
             conn_id=conn_id,
             body=body,
             _request_auth=_request_auth,
@@ -351,7 +351,7 @@ class DidRotateApi:
         )
         return response_data.response
 
-    def _did_rotate_conn_id_rotate_post_serialize(
+    def _rotate_serialize(
         self,
         conn_id,
         body,

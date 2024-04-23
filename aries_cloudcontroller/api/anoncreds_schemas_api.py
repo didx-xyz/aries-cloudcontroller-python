@@ -38,7 +38,7 @@ class AnoncredsSchemasApi:
         self.api_client = api_client
 
     @validate_call
-    async def anoncreds_schema_post(
+    async def create_schema(
         self,
         body: Optional[SchemaPostRequest] = None,
         _request_timeout: Union[
@@ -61,7 +61,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schema_post_serialize(
+        _param = self._create_schema_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -81,7 +81,7 @@ class AnoncredsSchemasApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_schema_post_with_http_info(
+    async def create_schema_with_http_info(
         self,
         body: Optional[SchemaPostRequest] = None,
         _request_timeout: Union[
@@ -104,7 +104,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schema_post_serialize(
+        _param = self._create_schema_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -124,7 +124,7 @@ class AnoncredsSchemasApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_schema_post_without_preload_content(
+    async def create_schema_without_preload_content(
         self,
         body: Optional[SchemaPostRequest] = None,
         _request_timeout: Union[
@@ -147,7 +147,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schema_post_serialize(
+        _param = self._create_schema_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -163,7 +163,7 @@ class AnoncredsSchemasApi:
         )
         return response_data.response
 
-    def _anoncreds_schema_post_serialize(
+    def _create_schema_serialize(
         self,
         body,
         _request_auth,
@@ -225,7 +225,7 @@ class AnoncredsSchemasApi:
         )
 
     @validate_call
-    async def anoncreds_schema_schema_id_get(
+    async def get_schema(
         self,
         schema_id: Annotated[StrictStr, Field(description="Schema identifier")],
         _request_timeout: Union[
@@ -248,7 +248,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schema_schema_id_get_serialize(
+        _param = self._get_schema_serialize(
             schema_id=schema_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -268,7 +268,7 @@ class AnoncredsSchemasApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_schema_schema_id_get_with_http_info(
+    async def get_schema_with_http_info(
         self,
         schema_id: Annotated[StrictStr, Field(description="Schema identifier")],
         _request_timeout: Union[
@@ -291,7 +291,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schema_schema_id_get_serialize(
+        _param = self._get_schema_serialize(
             schema_id=schema_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -311,7 +311,7 @@ class AnoncredsSchemasApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_schema_schema_id_get_without_preload_content(
+    async def get_schema_without_preload_content(
         self,
         schema_id: Annotated[StrictStr, Field(description="Schema identifier")],
         _request_timeout: Union[
@@ -334,7 +334,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schema_schema_id_get_serialize(
+        _param = self._get_schema_serialize(
             schema_id=schema_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -350,7 +350,7 @@ class AnoncredsSchemasApi:
         )
         return response_data.response
 
-    def _anoncreds_schema_schema_id_get_serialize(
+    def _get_schema_serialize(
         self,
         schema_id,
         _request_auth,
@@ -402,7 +402,7 @@ class AnoncredsSchemasApi:
         )
 
     @validate_call
-    async def anoncreds_schemas_get(
+    async def get_schemas(
         self,
         schema_issuer_id: Annotated[
             Optional[StrictStr], Field(description="Schema issuer identifier")
@@ -437,7 +437,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schemas_get_serialize(
+        _param = self._get_schemas_serialize(
             schema_issuer_id=schema_issuer_id,
             schema_name=schema_name,
             schema_version=schema_version,
@@ -459,7 +459,7 @@ class AnoncredsSchemasApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def anoncreds_schemas_get_with_http_info(
+    async def get_schemas_with_http_info(
         self,
         schema_issuer_id: Annotated[
             Optional[StrictStr], Field(description="Schema issuer identifier")
@@ -494,7 +494,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schemas_get_serialize(
+        _param = self._get_schemas_serialize(
             schema_issuer_id=schema_issuer_id,
             schema_name=schema_name,
             schema_version=schema_version,
@@ -516,7 +516,7 @@ class AnoncredsSchemasApi:
             response_types_map=_response_types_map,
         )
 
-    async def anoncreds_schemas_get_without_preload_content(
+    async def get_schemas_without_preload_content(
         self,
         schema_issuer_id: Annotated[
             Optional[StrictStr], Field(description="Schema issuer identifier")
@@ -551,7 +551,7 @@ class AnoncredsSchemasApi:
         ...
         """  # noqa: E501
 
-        _param = self._anoncreds_schemas_get_serialize(
+        _param = self._get_schemas_serialize(
             schema_issuer_id=schema_issuer_id,
             schema_name=schema_name,
             schema_version=schema_version,
@@ -569,7 +569,7 @@ class AnoncredsSchemasApi:
         )
         return response_data.response
 
-    def _anoncreds_schemas_get_serialize(
+    def _get_schemas_serialize(
         self,
         schema_issuer_id,
         schema_name,

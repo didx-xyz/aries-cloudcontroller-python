@@ -40,7 +40,7 @@ class DiscoverFeaturesV20Api:
         self.api_client = api_client
 
     @validate_call
-    async def discover_features20_queries_get(
+    async def query_features(
         self,
         connection_id: Annotated[
             Optional[StrictStr],
@@ -78,7 +78,7 @@ class DiscoverFeaturesV20Api:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features20_queries_get_serialize(
+        _param = self._query_features_serialize(
             connection_id=connection_id,
             query_goal_code=query_goal_code,
             query_protocol=query_protocol,
@@ -100,7 +100,7 @@ class DiscoverFeaturesV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    async def discover_features20_queries_get_with_http_info(
+    async def query_features_with_http_info(
         self,
         connection_id: Annotated[
             Optional[StrictStr],
@@ -138,7 +138,7 @@ class DiscoverFeaturesV20Api:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features20_queries_get_serialize(
+        _param = self._query_features_serialize(
             connection_id=connection_id,
             query_goal_code=query_goal_code,
             query_protocol=query_protocol,
@@ -160,7 +160,7 @@ class DiscoverFeaturesV20Api:
             response_types_map=_response_types_map,
         )
 
-    async def discover_features20_queries_get_without_preload_content(
+    async def query_features_without_preload_content(
         self,
         connection_id: Annotated[
             Optional[StrictStr],
@@ -198,7 +198,7 @@ class DiscoverFeaturesV20Api:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features20_queries_get_serialize(
+        _param = self._query_features_serialize(
             connection_id=connection_id,
             query_goal_code=query_goal_code,
             query_protocol=query_protocol,
@@ -216,7 +216,7 @@ class DiscoverFeaturesV20Api:
         )
         return response_data.response
 
-    def _discover_features20_queries_get_serialize(
+    def _query_features_serialize(
         self,
         connection_id,
         query_goal_code,
@@ -280,7 +280,7 @@ class DiscoverFeaturesV20Api:
         )
 
     @validate_call
-    async def discover_features20_records_get(
+    async def query_records(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -305,7 +305,7 @@ class DiscoverFeaturesV20Api:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features20_records_get_serialize(
+        _param = self._query_records_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -325,7 +325,7 @@ class DiscoverFeaturesV20Api:
             response_types_map=_response_types_map,
         ).data
 
-    async def discover_features20_records_get_with_http_info(
+    async def query_records_with_http_info(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -350,7 +350,7 @@ class DiscoverFeaturesV20Api:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features20_records_get_serialize(
+        _param = self._query_records_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -370,7 +370,7 @@ class DiscoverFeaturesV20Api:
             response_types_map=_response_types_map,
         )
 
-    async def discover_features20_records_get_without_preload_content(
+    async def query_records_without_preload_content(
         self,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
@@ -395,7 +395,7 @@ class DiscoverFeaturesV20Api:
         ...
         """  # noqa: E501
 
-        _param = self._discover_features20_records_get_serialize(
+        _param = self._query_records_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -411,7 +411,7 @@ class DiscoverFeaturesV20Api:
         )
         return response_data.response
 
-    def _discover_features20_records_get_serialize(
+    def _query_records_serialize(
         self,
         connection_id,
         _request_auth,

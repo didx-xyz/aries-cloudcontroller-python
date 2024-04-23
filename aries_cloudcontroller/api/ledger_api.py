@@ -398,6 +398,168 @@ class LedgerApi:
         )
 
     @validate_call
+    async def get_config(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> LedgerConfigList:
+        """Fetch the multiple ledger configuration currently in use
+
+
+        ...
+        """  # noqa: E501
+
+        _param = self._get_config_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "LedgerConfigList",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def get_config_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[LedgerConfigList]:
+        """Fetch the multiple ledger configuration currently in use
+
+
+        ...
+        """  # noqa: E501
+
+        _param = self._get_config_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "LedgerConfigList",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def get_config_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fetch the multiple ledger configuration currently in use
+
+
+        ...
+        """  # noqa: E501
+
+        _param = self._get_config_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "LedgerConfigList",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_config_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/ledger/config",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     async def get_did_endpoint(
         self,
         did: Annotated[str, Field(strict=True, description="DID of interest")],
@@ -961,169 +1123,7 @@ class LedgerApi:
         )
 
     @validate_call
-    async def ledger_config_get(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> LedgerConfigList:
-        """Fetch the multiple ledger configuration currently in use
-
-
-        ...
-        """  # noqa: E501
-
-        _param = self._ledger_config_get_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "LedgerConfigList",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def ledger_config_get_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[LedgerConfigList]:
-        """Fetch the multiple ledger configuration currently in use
-
-
-        ...
-        """  # noqa: E501
-
-        _param = self._ledger_config_get_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "LedgerConfigList",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def ledger_config_get_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Fetch the multiple ledger configuration currently in use
-
-
-        ...
-        """  # noqa: E501
-
-        _param = self._ledger_config_get_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "LedgerConfigList",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _ledger_config_get_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/ledger/config",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def ledger_get_write_ledger_get(
+    async def get_write_ledger(
         self,
         _request_timeout: Union[
             None,
@@ -1143,7 +1143,7 @@ class LedgerApi:
         ...
         """  # noqa: E501
 
-        _param = self._ledger_get_write_ledger_get_serialize(
+        _param = self._get_write_ledger_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1162,7 +1162,7 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def ledger_get_write_ledger_get_with_http_info(
+    async def get_write_ledger_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -1182,7 +1182,7 @@ class LedgerApi:
         ...
         """  # noqa: E501
 
-        _param = self._ledger_get_write_ledger_get_serialize(
+        _param = self._get_write_ledger_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1201,7 +1201,7 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    async def ledger_get_write_ledger_get_without_preload_content(
+    async def get_write_ledger_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -1221,7 +1221,7 @@ class LedgerApi:
         ...
         """  # noqa: E501
 
-        _param = self._ledger_get_write_ledger_get_serialize(
+        _param = self._get_write_ledger_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1236,7 +1236,7 @@ class LedgerApi:
         )
         return response_data.response
 
-    def _ledger_get_write_ledger_get_serialize(
+    def _get_write_ledger_serialize(
         self,
         _request_auth,
         _content_type,
@@ -1285,7 +1285,7 @@ class LedgerApi:
         )
 
     @validate_call
-    async def ledger_get_write_ledgers_get(
+    async def get_write_ledgers(
         self,
         _request_timeout: Union[
             None,
@@ -1305,7 +1305,7 @@ class LedgerApi:
         ...
         """  # noqa: E501
 
-        _param = self._ledger_get_write_ledgers_get_serialize(
+        _param = self._get_write_ledgers_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1324,7 +1324,7 @@ class LedgerApi:
             response_types_map=_response_types_map,
         ).data
 
-    async def ledger_get_write_ledgers_get_with_http_info(
+    async def get_write_ledgers_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -1344,7 +1344,7 @@ class LedgerApi:
         ...
         """  # noqa: E501
 
-        _param = self._ledger_get_write_ledgers_get_serialize(
+        _param = self._get_write_ledgers_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1363,7 +1363,7 @@ class LedgerApi:
             response_types_map=_response_types_map,
         )
 
-    async def ledger_get_write_ledgers_get_without_preload_content(
+    async def get_write_ledgers_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -1383,7 +1383,7 @@ class LedgerApi:
         ...
         """  # noqa: E501
 
-        _param = self._ledger_get_write_ledgers_get_serialize(
+        _param = self._get_write_ledgers_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1398,7 +1398,7 @@ class LedgerApi:
         )
         return response_data.response
 
-    def _ledger_get_write_ledgers_get_serialize(
+    def _get_write_ledgers_serialize(
         self,
         _request_auth,
         _content_type,
@@ -1434,183 +1434,6 @@ class LedgerApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/ledger/get-write-ledgers",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    async def ledger_ledger_id_set_write_ledger_put(
-        self,
-        ledger_id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> WriteLedger:
-        """Set write ledger
-
-
-        :param ledger_id: (required)
-        :type ledger_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._ledger_ledger_id_set_write_ledger_put_serialize(
-            ledger_id=ledger_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "WriteLedger",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    async def ledger_ledger_id_set_write_ledger_put_with_http_info(
-        self,
-        ledger_id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[WriteLedger]:
-        """Set write ledger
-
-
-        :param ledger_id: (required)
-        :type ledger_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._ledger_ledger_id_set_write_ledger_put_serialize(
-            ledger_id=ledger_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "WriteLedger",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    async def ledger_ledger_id_set_write_ledger_put_without_preload_content(
-        self,
-        ledger_id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
-            ],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Set write ledger
-
-
-        :param ledger_id: (required)
-        :type ledger_id: str
-        ...
-        """  # noqa: E501
-
-        _param = self._ledger_ledger_id_set_write_ledger_put_serialize(
-            ledger_id=ledger_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "WriteLedger",
-        }
-        response_data = await self.api_client.call_api(
-            *_param, _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-    def _ledger_ledger_id_set_write_ledger_put_serialize(
-        self,
-        ledger_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if ledger_id is not None:
-            _path_params["ledger_id"] = ledger_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )
-
-        # authentication setting
-        _auth_settings: List[str] = ["AuthorizationHeader"]
-
-        return self.api_client.param_serialize(
-            method="PUT",
-            resource_path="/ledger/{ledger_id}/set-write-ledger",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2054,6 +1877,183 @@ class LedgerApi:
         return self.api_client.param_serialize(
             method="PATCH",
             resource_path="/ledger/rotate-public-did-keypair",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    async def set_write_ledger(
+        self,
+        ledger_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> WriteLedger:
+        """Set write ledger
+
+
+        :param ledger_id: (required)
+        :type ledger_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._set_write_ledger_serialize(
+            ledger_id=ledger_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    async def set_write_ledger_with_http_info(
+        self,
+        ledger_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[WriteLedger]:
+        """Set write ledger
+
+
+        :param ledger_id: (required)
+        :type ledger_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._set_write_ledger_serialize(
+            ledger_id=ledger_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    async def set_write_ledger_without_preload_content(
+        self,
+        ledger_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Set write ledger
+
+
+        :param ledger_id: (required)
+        :type ledger_id: str
+        ...
+        """  # noqa: E501
+
+        _param = self._set_write_ledger_serialize(
+            ledger_id=ledger_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "WriteLedger",
+        }
+        response_data = await self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _set_write_ledger_serialize(
+        self,
+        ledger_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if ledger_id is not None:
+            _path_params["ledger_id"] = ledger_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # authentication setting
+        _auth_settings: List[str] = ["AuthorizationHeader"]
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/ledger/{ledger_id}/set-write-ledger",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
