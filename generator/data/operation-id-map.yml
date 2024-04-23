@@ -570,6 +570,27 @@ paths:
   /transactions/{tran_id}/write:
     post:
       operationId: write_transaction
+  /vc/credentials:
+    get:
+      operationId: list_credentials
+  /vc/credentials/issue:
+    post:
+      operationId: issue_credential
+  /vc/credentials/store:
+    post:
+      operationId: store_credential
+  /vc/credentials/verify:
+    post:
+      operationId: verify_credential
+  /vc/credentials/{credential_id}:
+    get:
+      operationId: get_credential
+  /vc/presentations/prove:
+    post:
+      operationId: prove_presentation
+  /vc/presentations/verify:
+    post:
+      operationId: verify_presentation
   /wallet/did:
     get:
       operationId: get_dids
