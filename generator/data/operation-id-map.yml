@@ -371,6 +371,9 @@ paths:
   /out-of-band/create-invitation:
     post:
       operationId: create_invitation
+  /out-of-band/invitations/{invi_msg_id}:
+    delete:
+      operationId: remove_invitation_record
   /out-of-band/receive-invitation:
     post:
       operationId: receive_invitation
