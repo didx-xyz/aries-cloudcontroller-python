@@ -160,6 +160,12 @@ paths:
   /credentials/w3c:
     post:
       operationId: get_w3c_credentials
+  /did-rotate/{conn_id}/hangup:
+    post:
+      operationId: hangup
+  /did-rotate/{conn_id}/rotate:
+    post:
+      operationId: rotate
   /didexchange/create-request:
     post:
       operationId: create_request
