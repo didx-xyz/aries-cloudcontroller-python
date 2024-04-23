@@ -22,9 +22,7 @@ from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.credential import Credential
-from aries_cloudcontroller.models.ld_proof_vc_detail_options import (
-    LDProofVCDetailOptions,
-)
+from aries_cloudcontroller.models.ld_proof_vc_options import LDProofVCOptions
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
@@ -36,7 +34,7 @@ class LDProofVCDetail(BaseModel):
     credential: Credential = Field(
         description="Detail of the JSON-LD Credential to be issued"
     )
-    options: LDProofVCDetailOptions = Field(
+    options: LDProofVCOptions = Field(
         description="Options for specifying how the linked data proof is created."
     )
     __properties: ClassVar[List[str]] = ["credential", "options"]
@@ -98,7 +96,7 @@ class LDProofVCDetail(BaseModel):
                     else None
                 ),
                 "options": (
-                    LDProofVCDetailOptions.from_dict(obj["options"])
+                    LDProofVCOptions.from_dict(obj["options"])
                     if obj.get("options") is not None
                     else None
                 ),
