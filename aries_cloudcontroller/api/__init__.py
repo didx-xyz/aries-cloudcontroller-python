@@ -2,6 +2,9 @@
 
 # import apis into api package
 from aries_cloudcontroller.api.action_menu_api import ActionMenuApi
+from aries_cloudcontroller.api.anoncreds_credential_definitions_api import (
+    AnoncredsCredentialDefinitionsApi,
+)
 from aries_cloudcontroller.api.anoncreds_schemas_api import AnoncredsSchemasApi
 from aries_cloudcontroller.api.basicmessage_api import BasicmessageApi
 from aries_cloudcontroller.api.connection_api import ConnectionApi

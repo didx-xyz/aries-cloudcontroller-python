@@ -69,10 +69,24 @@ from aries_cloudcontroller.models.create_wallet_token_response import (
     CreateWalletTokenResponse,
 )
 from aries_cloudcontroller.models.cred_attr_spec import CredAttrSpec
+from aries_cloudcontroller.models.cred_def import CredDef
+from aries_cloudcontroller.models.cred_def_post_options import CredDefPostOptions
+from aries_cloudcontroller.models.cred_def_post_request import CredDefPostRequest
+from aries_cloudcontroller.models.cred_def_result import CredDefResult
+from aries_cloudcontroller.models.cred_def_state import CredDefState
 from aries_cloudcontroller.models.cred_def_value import CredDefValue
 from aries_cloudcontroller.models.cred_def_value_primary import CredDefValuePrimary
+from aries_cloudcontroller.models.cred_def_value_primary_schema_anoncreds import (
+    CredDefValuePrimarySchemaAnoncreds,
+)
 from aries_cloudcontroller.models.cred_def_value_revocation import (
     CredDefValueRevocation,
+)
+from aries_cloudcontroller.models.cred_def_value_revocation_schema_anoncreds import (
+    CredDefValueRevocationSchemaAnoncreds,
+)
+from aries_cloudcontroller.models.cred_def_value_schema_anoncreds import (
+    CredDefValueSchemaAnoncreds,
 )
 from aries_cloudcontroller.models.cred_info_list import CredInfoList
 from aries_cloudcontroller.models.cred_rev_indy_records_result import (
@@ -129,6 +143,8 @@ from aries_cloudcontroller.models.fetch_credential_response import (
 )
 from aries_cloudcontroller.models.filter import Filter
 from aries_cloudcontroller.models.generated import Generated
+from aries_cloudcontroller.models.get_cred_def_result import GetCredDefResult
+from aries_cloudcontroller.models.get_cred_defs_response import GetCredDefsResponse
 from aries_cloudcontroller.models.get_did_endpoint_response import (
     GetDIDEndpointResponse,
 )
@@ -213,6 +229,7 @@ from aries_cloudcontroller.models.indy_rev_reg_def_value_public_keys_accum_key i
 )
 from aries_cloudcontroller.models.indy_rev_reg_entry import IndyRevRegEntry
 from aries_cloudcontroller.models.indy_rev_reg_entry_value import IndyRevRegEntryValue
+from aries_cloudcontroller.models.inner_cred_def import InnerCredDef
 from aries_cloudcontroller.models.input_descriptors import InputDescriptors
 from aries_cloudcontroller.models.invitation_create_request import (
     InvitationCreateRequest,
