@@ -605,9 +605,21 @@ paths:
       operationId: get_public_did
     post:
       operationId: set_public_did
+  /wallet/jwt/sign:
+    post:
+      operationId: sign_jwt
+  /wallet/jwt/verify:
+    post:
+      operationId: verify_jwt
   /wallet/get-did-endpoint:
     get:
       operationId: get_did_endpoint
   /wallet/set-did-endpoint:
     post:
       operationId: set_did_endpoint
+  /wallet/sd-jwt/sign:
+    post:
+      operationId: sign_sd_jwt
+  /wallet/sd-jwt/verify:
+    post:
+      operationId: verify_sd_jwt
