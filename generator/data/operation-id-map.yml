@@ -14,6 +14,75 @@ paths:
   /action-menu/{conn_id}/send-menu:
     post:
       operationId: send_menu
+  /anoncreds/credential-definition:
+    post:
+      operationId: create_credential_definition
+  /anoncreds/credential-definition/{cred_def_id}:
+    get:
+      operationId: get_credential_definition
+  /anoncreds/credential-definitions:
+    get:
+      operationId: get_credential_definitions
+  /anoncreds/registry/{rev_reg_id}/active:
+    put:
+      operationId: set_active_registry
+  /anoncreds/registry/{rev_reg_id}/tails-file:
+    put:
+      operationId: upload_tails_file
+  /anoncreds/revocation-list:
+    post:
+      operationId: post_revocation_list
+  /anoncreds/revocation-registry-definition:
+    post:
+      operationId: create_rev_reg_definition
+  /anoncreds/revocation/active-registry/{cred_def_id}:
+    get:
+      operationId: get_active_revocation_registry
+  /anoncreds/revocation/active-registry/{cred_def_id}/rotate:
+    post:
+      operationId: rotate_active_revocation_registry
+  /anoncreds/revocation/credential-record:
+    get:
+      operationId: get_cred_rev_record
+  /anoncreds/revocation/publish-revocations:
+    post:
+      operationId: publish_revocations
+  /anoncreds/revocation/registries:
+    get:
+      operationId: get_revocation_registries
+  /anoncreds/revocation/registry/{rev_reg_id}:
+    get:
+      operationId: get_revocation_registry
+  /anoncreds/revocation/registry/{rev_reg_id}/fix-revocation-entry-state:
+    put:
+      operationId: update_rev_reg_revoked_state
+  /anoncreds/revocation/registry/{rev_reg_id}/issued:
+    get:
+      operationId: get_rev_reg_issued_count
+  /anoncreds/revocation/registry/{rev_reg_id}/issued/details:
+    get:
+      operationId: get_rev_reg_issued_details
+  /anoncreds/revocation/registry/{rev_reg_id}/issued/indy_recs:
+    get:
+      operationId: get_rev_reg_issued_indy_recs
+  /anoncreds/revocation/registry/{rev_reg_id}/set-state:
+    patch:
+      operationId: set_rev_reg_state
+  /anoncreds/revocation/registry/{rev_reg_id}/tails-file:
+    get:
+      operationId: get_tails_file
+  /anoncreds/revocation/revoke:
+    post:
+      operationId: revoke
+  /anoncreds/schema:
+    post:
+      operationId: create_schema
+  /anoncreds/schema/{schema_id}:
+    get:
+      operationId: get_schema
+  /anoncreds/schemas:
+    get:
+      operationId: get_schemas
   /connections:
     get:
       operationId: get_connections
