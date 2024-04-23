@@ -35,6 +35,9 @@ class DID(BaseModel):
     key_type: Literal["ed25519", "bls12381g2"] = Field(
         description="Key type associated with the DID"
     )
+    metadata: Optional[Dict[str, Any]] = Field(
+        default=None, description="Additional metadata associated with the DID"
+    )
     method: Literal["sov", "key"] = Field(
         description="Did method associated with the DID"
     )
@@ -47,6 +50,7 @@ class DID(BaseModel):
     __properties: ClassVar[List[str]] = [
         "did",
         "key_type",
+        "metadata",
         "method",
         "posture",
         "verkey",
@@ -136,6 +140,7 @@ class DID(BaseModel):
             {
                 "did": obj.get("did"),
                 "key_type": obj.get("key_type"),
+                "metadata": obj.get("metadata"),
                 "method": obj.get("method"),
                 "posture": obj.get("posture"),
                 "verkey": obj.get("verkey"),
