@@ -9,6 +9,7 @@ from aries_cloudcontroller.api.credential_definition_api import CredentialDefini
 from aries_cloudcontroller.api.credentials_api import CredentialsApi
 from aries_cloudcontroller.api.default_api import DefaultApi
 from aries_cloudcontroller.api.did_exchange_api import DidExchangeApi
+from aries_cloudcontroller.api.did_rotate_api import DidRotateApi
 from aries_cloudcontroller.api.discover_features_api import DiscoverFeaturesApi
 from aries_cloudcontroller.api.discover_features_v20_api import DiscoverFeaturesV20Api
 from aries_cloudcontroller.api.endorse_transaction_api import EndorseTransactionApi

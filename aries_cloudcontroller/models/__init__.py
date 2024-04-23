@@ -110,6 +110,7 @@ from aries_cloudcontroller.models.did_endpoint import DIDEndpoint
 from aries_cloudcontroller.models.did_endpoint_with_type import DIDEndpointWithType
 from aries_cloudcontroller.models.did_list import DIDList
 from aries_cloudcontroller.models.did_result import DIDResult
+from aries_cloudcontroller.models.did_rotate_request_json import DIDRotateRequestJSON
 from aries_cloudcontroller.models.didx_reject_request import DIDXRejectRequest
 from aries_cloudcontroller.models.didx_request import DIDXRequest
 from aries_cloudcontroller.models.dif_field import DIFField
@@ -136,6 +137,7 @@ from aries_cloudcontroller.models.get_nym_role_response import GetNymRoleRespons
 from aries_cloudcontroller.models.indy_attr_value import IndyAttrValue
 from aries_cloudcontroller.models.get_schema_result import GetSchemaResult
 from aries_cloudcontroller.models.get_schemas_response import GetSchemasResponse
+from aries_cloudcontroller.models.hangup import Hangup
 from aries_cloudcontroller.models.indy_cred_abstract import IndyCredAbstract
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis
@@ -291,6 +293,7 @@ from aries_cloudcontroller.models.rev_reg_wallet_updated_result import (
 )
 from aries_cloudcontroller.models.rev_regs_created import RevRegsCreated
 from aries_cloudcontroller.models.revoke_request import RevokeRequest
+from aries_cloudcontroller.models.rotate import Rotate
 from aries_cloudcontroller.models.route_record import RouteRecord
 from aries_cloudcontroller.models.schema_get_result import SchemaGetResult
 from aries_cloudcontroller.models.schema_input_descriptor import SchemaInputDescriptor
