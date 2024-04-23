@@ -50,7 +50,7 @@ from aries_cloudcontroller.api import (
     ServerApi,
     SettingsApi,
     TrustpingApi,
-    VcApiApi,
+    VcApi,
     WalletApi,
 )
 from aries_cloudcontroller.api_client import ApiClient

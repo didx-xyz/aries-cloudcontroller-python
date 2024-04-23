@@ -33,5 +33,5 @@ from aries_cloudcontroller.api.schema_api import SchemaApi
 from aries_cloudcontroller.api.server_api import ServerApi
 from aries_cloudcontroller.api.settings_api import SettingsApi
 from aries_cloudcontroller.api.trustping_api import TrustpingApi
-from aries_cloudcontroller.api.vc_api_api import VcApiApi
+from aries_cloudcontroller.api.vc_api import VcApi
 from aries_cloudcontroller.api.wallet_api import WalletApi
