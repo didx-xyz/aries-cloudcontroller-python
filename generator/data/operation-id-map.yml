@@ -135,6 +135,9 @@ paths:
   /credential-definitions/{cred_def_id}:
     get:
       operationId: get_cred_def
+  /credential-definitions/{cred_def_id}/write_record:
+    post:
+      operationId: fix_cred_def_wallet_record
   /credential/mime-types/{credential_id}:
     get:
       operationId: get_credential_mime_types
