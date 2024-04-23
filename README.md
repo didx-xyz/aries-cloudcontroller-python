@@ -110,12 +110,16 @@ connection = await client.connection.receive_invitation(body=invitation.invitati
 The client encompasses various APIs, each corresponding to ACA-Py Swagger UI topics:
 
 - `action_menu`
+- `anoncreds_credential_definitions`
+- `anoncreds_revocation`
+- `anoncreds_schemas`
 - `basicmessage`
 - `connection`
 - `credential_definition`
 - `credentials`
 - `default`
 - `did_exchange`
+- `did_rotate`
 - `discover_features`
 - `discover_features_v2_0`
 - `endorse_transaction`
@@ -135,6 +139,7 @@ The client encompasses various APIs, each corresponding to ACA-Py Swagger UI top
 - `server`
 - `settings`
 - `trustping`
+- `vc`
 - `wallet`
 
 ## Contributing
