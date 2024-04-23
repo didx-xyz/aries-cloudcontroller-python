@@ -25,10 +25,10 @@ for file in aries_cloudcontroller/models/*.py; do
     sed -i 's/Field(le=-1,/Field(le=18446744073709551615,/g' "$file"
 done
 
-echo "Removing redundant validate_call decorators"
+echo "Removing unwanted methods"
 for file in aries_cloudcontroller/api/*.py; do
-    # Use python script to clean unnecessary validate_call decorators
-    python ../generator/scripts/clean_validate_decorators.py "$file"
+    python ../generator/scripts/remove_unwanted_methods.py "$file"
+    echo "Cleaned file: $file"
 done
 
 # Deduplication for __init__.py -- just helps get SonarCloud duplication report to be under threshold!
