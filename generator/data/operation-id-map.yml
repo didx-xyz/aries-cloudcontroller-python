@@ -345,6 +345,9 @@ paths:
   /mediation/requests/{mediation_id}/grant:
     post:
       operationId: grant_mediation_request
+  /mediation/update-keylist/{conn_id}:
+    post:
+      operationId: update_keylist_for_connection
   /mediation/{mediation_id}/default-mediator:
     put:
       operationId: set_default_mediator
