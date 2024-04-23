@@ -92,10 +92,19 @@ from aries_cloudcontroller.models.cred_info_list import CredInfoList
 from aries_cloudcontroller.models.cred_rev_indy_records_result import (
     CredRevIndyRecordsResult,
 )
+from aries_cloudcontroller.models.cred_rev_indy_records_result_schema_anoncreds import (
+    CredRevIndyRecordsResultSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.cred_rev_record_details_result import (
     CredRevRecordDetailsResult,
 )
+from aries_cloudcontroller.models.cred_rev_record_details_result_schema_anoncreds import (
+    CredRevRecordDetailsResultSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.cred_rev_record_result import CredRevRecordResult
+from aries_cloudcontroller.models.cred_rev_record_result_schema_anoncreds import (
+    CredRevRecordResultSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.cred_revoked_result import CredRevokedResult
 from aries_cloudcontroller.models.credential import Credential
 from aries_cloudcontroller.models.credential_definition import CredentialDefinition
@@ -136,6 +145,9 @@ from aries_cloudcontroller.models.dif_proof_request import DIFProofRequest
 from aries_cloudcontroller.models.disclose import Disclose
 from aries_cloudcontroller.models.disclosures import Disclosures
 from aries_cloudcontroller.models.doc import Doc
+from aries_cloudcontroller.models.document_verification_result import (
+    DocumentVerificationResult,
+)
 from aries_cloudcontroller.models.endorser_info import EndorserInfo
 from aries_cloudcontroller.models.endpoints_result import EndpointsResult
 from aries_cloudcontroller.models.fetch_credential_response import (
@@ -230,6 +242,7 @@ from aries_cloudcontroller.models.indy_rev_reg_def_value_public_keys_accum_key i
 from aries_cloudcontroller.models.indy_rev_reg_entry import IndyRevRegEntry
 from aries_cloudcontroller.models.indy_rev_reg_entry_value import IndyRevRegEntryValue
 from aries_cloudcontroller.models.inner_cred_def import InnerCredDef
+from aries_cloudcontroller.models.inner_rev_reg_def import InnerRevRegDef
 from aries_cloudcontroller.models.input_descriptors import InputDescriptors
 from aries_cloudcontroller.models.invitation_create_request import (
     InvitationCreateRequest,
@@ -242,6 +255,9 @@ from aries_cloudcontroller.models.issue_credential_response import (
     IssueCredentialResponse,
 )
 from aries_cloudcontroller.models.issuer_cred_rev_record import IssuerCredRevRecord
+from aries_cloudcontroller.models.issuer_cred_rev_record_schema_anoncreds import (
+    IssuerCredRevRecordSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.issuer_rev_reg_record import IssuerRevRegRecord
 from aries_cloudcontroller.models.jws_create import JWSCreate
 from aries_cloudcontroller.models.jws_verify import JWSVerify
@@ -256,9 +272,7 @@ from aries_cloudcontroller.models.keylist_update import KeylistUpdate
 from aries_cloudcontroller.models.keylist_update_request import KeylistUpdateRequest
 from aries_cloudcontroller.models.keylist_update_rule import KeylistUpdateRule
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
-from aries_cloudcontroller.models.ld_proof_vc_detail_options import (
-    LDProofVCDetailOptions,
-)
+from aries_cloudcontroller.models.ld_proof_vc_options import LDProofVCOptions
 from aries_cloudcontroller.models.ledger_config_instance import LedgerConfigInstance
 from aries_cloudcontroller.models.ledger_config_list import LedgerConfigList
 from aries_cloudcontroller.models.linked_data_proof import LinkedDataProof
@@ -278,10 +292,15 @@ from aries_cloudcontroller.models.oob_record import OobRecord
 from aries_cloudcontroller.models.perform_request import PerformRequest
 from aries_cloudcontroller.models.ping_request import PingRequest
 from aries_cloudcontroller.models.ping_request_response import PingRequestResponse
+from aries_cloudcontroller.models.presentation import Presentation
 from aries_cloudcontroller.models.presentation_definition import PresentationDefinition
 from aries_cloudcontroller.models.presentation_proposal import PresentationProposal
 from aries_cloudcontroller.models.presentation_request import PresentationRequest
+from aries_cloudcontroller.models.presentation_verification_result import (
+    PresentationVerificationResult,
+)
 from aries_cloudcontroller.models.profile_settings import ProfileSettings
+from aries_cloudcontroller.models.proof_result import ProofResult
 from aries_cloudcontroller.models.protocol_descriptor import ProtocolDescriptor
 from aries_cloudcontroller.models.prove_presentation_request import (
     ProvePresentationRequest,
@@ -290,6 +309,16 @@ from aries_cloudcontroller.models.prove_presentation_response import (
     ProvePresentationResponse,
 )
 from aries_cloudcontroller.models.publish_revocations import PublishRevocations
+from aries_cloudcontroller.models.publish_revocations_options import (
+    PublishRevocationsOptions,
+)
+from aries_cloudcontroller.models.publish_revocations_result import (
+    PublishRevocationsResult,
+)
+from aries_cloudcontroller.models.publish_revocations_schema_anoncreds import (
+    PublishRevocationsSchemaAnoncreds,
+)
+from aries_cloudcontroller.models.purpose_result import PurposeResult
 from aries_cloudcontroller.models.queries import Queries
 from aries_cloudcontroller.models.query import Query
 from aries_cloudcontroller.models.query_item import QueryItem
@@ -299,17 +328,45 @@ from aries_cloudcontroller.models.receive_invitation_request import (
 )
 from aries_cloudcontroller.models.remove_wallet_request import RemoveWalletRequest
 from aries_cloudcontroller.models.resolution_result import ResolutionResult
+from aries_cloudcontroller.models.rev_list import RevList
+from aries_cloudcontroller.models.rev_list_create_request import RevListCreateRequest
+from aries_cloudcontroller.models.rev_list_options import RevListOptions
+from aries_cloudcontroller.models.rev_list_result import RevListResult
+from aries_cloudcontroller.models.rev_list_state import RevListState
 from aries_cloudcontroller.models.rev_reg_create_request import RevRegCreateRequest
+from aries_cloudcontroller.models.rev_reg_create_request_schema_anoncreds import (
+    RevRegCreateRequestSchemaAnoncreds,
+)
+from aries_cloudcontroller.models.rev_reg_def import RevRegDef
+from aries_cloudcontroller.models.rev_reg_def_options import RevRegDefOptions
+from aries_cloudcontroller.models.rev_reg_def_result import RevRegDefResult
+from aries_cloudcontroller.models.rev_reg_def_state import RevRegDefState
+from aries_cloudcontroller.models.rev_reg_def_value import RevRegDefValue
 from aries_cloudcontroller.models.rev_reg_issued_result import RevRegIssuedResult
+from aries_cloudcontroller.models.rev_reg_issued_result_schema_anoncreds import (
+    RevRegIssuedResultSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.rev_reg_result import RevRegResult
+from aries_cloudcontroller.models.rev_reg_result_schema_anoncreds import (
+    RevRegResultSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.rev_reg_update_tails_file_uri import (
     RevRegUpdateTailsFileUri,
 )
 from aries_cloudcontroller.models.rev_reg_wallet_updated_result import (
     RevRegWalletUpdatedResult,
 )
+from aries_cloudcontroller.models.rev_reg_wallet_updated_result_schema_anoncreds import (
+    RevRegWalletUpdatedResultSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.rev_regs_created import RevRegsCreated
+from aries_cloudcontroller.models.rev_regs_created_schema_anoncreds import (
+    RevRegsCreatedSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.revoke_request import RevokeRequest
+from aries_cloudcontroller.models.revoke_request_schema_anoncreds import (
+    RevokeRequestSchemaAnoncreds,
+)
 from aries_cloudcontroller.models.rotate import Rotate
 from aries_cloudcontroller.models.route_record import RouteRecord
 from aries_cloudcontroller.models.schema_get_result import SchemaGetResult
