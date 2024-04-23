@@ -450,6 +450,9 @@ paths:
   /revocation/active-registry/{cred_def_id}:
     get:
       operationId: get_active_registry_for_cred_def
+  /revocation/active-registry/{cred_def_id}/rotate:
+    post:
+      operationId: rotate_rev_reg
   /revocation/clear-pending-revocations:
     post:
       operationId: clear_pending_revocations
@@ -465,6 +468,9 @@ paths:
   /revocation/registries/created:
     get:
       operationId: get_created_registries
+  /revocation/registry/delete-tails-file:
+    delete:
+      operationId: delete_tails_file
   /revocation/registry/{rev_reg_id}:
     get:
       operationId: get_registry
@@ -476,9 +482,18 @@ paths:
   /revocation/registry/{rev_reg_id}/entry:
     post:
       operationId: publish_rev_reg_entry
+  /revocation/registry/{rev_reg_id}/fix-revocation-entry-state:
+    put:
+      operationId: update_rev_reg_revoked_state
   /revocation/registry/{rev_reg_id}/issued:
     get:
-      operationId: get_registry_issued_credentials_count
+      operationId: get_rev_reg_issued_count
+  /revocation/registry/{rev_reg_id}/issued/details:
+    get:
+      operationId: get_rev_reg_issued_issued_details
+  /revocation/registry/{rev_reg_id}/issued/indy_recs:
+    get:
+      operationId: get_rev_reg_indy_recs
   /revocation/registry/{rev_reg_id}/set-state:
     patch:
       operationId: set_registry_state
