@@ -77,11 +77,33 @@ class OpenAPICleaner:
         for item in value:
             self.fix_content_types(item)
 
+    @singledispatchmethod
+    def fix_vc_api(self, value):
+        return value
+
+    @fix_vc_api.register
+    def _(self, value: dict):
+        for key, child in value.items():
+            value[key] = self.fix_vc_api(child)
+        return value
+
+    @fix_vc_api.register
+    def _(self, value: list):
+        return [self.fix_vc_api(item) for item in value]
+
+    @fix_vc_api.register
+    def _(self, value: str):
+        if "https" not in value:
+            return value.replace("vc-api", "vc")
+        else:
+            return value
+
     def clean(self, value):
         self.no_null_descriptions(value)
         self.no_missing_external_doc_urls(value)
         self.fix_refs(value)
         self.fix_content_types(value)
+        self.fix_vc_api(value)
 
 
 def merge_operation_ids():
