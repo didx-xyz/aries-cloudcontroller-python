@@ -94,9 +94,65 @@ def merge_operation_ids():
     return deepmerge.always_merger.merge(openapi, ops)
 
 
+def load_yaml_file(file_path):
+    with open(file_path, "r") as file:
+        return yaml.load(file, Loader=yaml.FullLoader)
+
+
+def save_yaml_file(data, file_path):
+    with open(file_path, "w") as file:
+        yaml.dump(data, file, sort_keys=False)
+
+
+def merge_operation_ids(openapi_path, ops_map_path):
+    openapi = load_yaml_file(openapi_path)
+    ops = load_yaml_file(ops_map_path)
+    return deepmerge.always_merger.merge(openapi, ops)
+
+
+def find_missing_operation_ids(openapi_path, ops_map_path):
+    openapi = load_yaml_file(openapi_path)
+    existing_ops = load_yaml_file(ops_map_path)
+
+    missing_ops = {"paths": {}}
+
+    for path, methods in openapi.get("paths", {}).items():
+        if path not in existing_ops.get("paths", {}):
+            missing_ops["paths"][path] = {}
+            for method, details in methods.items():
+                # Placeholder operationId can be a formatted string or a more sophisticated naming convention
+                path_r = path.replace("/", "_").replace("-", "_")
+                missing_ops["paths"][path][method] = {
+                    "operationId": f"{method}_{path_r.strip('_')}"
+                }
+        else:
+            for method in methods:
+                if method not in existing_ops["paths"][path]:
+                    if path not in missing_ops["paths"]:
+                        missing_ops["paths"][path] = {}
+                    # Adding default or placeholder operation ID for new methods in existing paths
+                    missing_ops["paths"][path][method] = {
+                        "operationId": f"{method}_{path.replace('/', '_').strip('_')}"
+                    }
+    if missing_ops["paths"]:
+        return missing_ops
+    else:
+        return None
+
+
 if __name__ == "__main__":
-    result = merge_operation_ids()
+    openapi_path = "/app/openapi.yml"
+    ops_map_path = "/app/operation-id-map.yml"
+    new_ops_map_path = "/app/operation-id-map-new.yml"
+
+    # Optionally merge and clean current specs
+    result = merge_operation_ids(openapi_path, ops_map_path)
     cleaner = OpenAPICleaner()
     cleaner.clean(result)
-    with open("/app/openapi.yml", "w") as openapi_file:
-        yaml.dump(result, openapi_file, sort_keys=False)
+    save_yaml_file(result, openapi_path)
+
+    # Find and save new operation IDs
+    new_ops = find_missing_operation_ids(openapi_path, ops_map_path)
+    if new_ops:
+        print("Missing operation ids detected")
+        save_yaml_file(new_ops, new_ops_map_path)
