@@ -162,10 +162,10 @@ from aries_cloudcontroller.models.get_did_endpoint_response import (
 )
 from aries_cloudcontroller.models.get_did_verkey_response import GetDIDVerkeyResponse
 from aries_cloudcontroller.models.get_nym_role_response import GetNymRoleResponse
-from aries_cloudcontroller.models.indy_attr_value import IndyAttrValue
 from aries_cloudcontroller.models.get_schema_result import GetSchemaResult
 from aries_cloudcontroller.models.get_schemas_response import GetSchemasResponse
 from aries_cloudcontroller.models.hangup import Hangup
+from aries_cloudcontroller.models.indy_attr_value import IndyAttrValue
 from aries_cloudcontroller.models.indy_cred_abstract import IndyCredAbstract
 from aries_cloudcontroller.models.indy_cred_info import IndyCredInfo
 from aries_cloudcontroller.models.indy_cred_precis import IndyCredPrecis

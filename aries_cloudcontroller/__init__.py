@@ -206,6 +206,7 @@ from aries_cloudcontroller.models import (
     IndyRevRegEntry,
     IndyRevRegEntryValue,
     InnerCredDef,
+    InnerRevRegDef,
     InputDescriptors,
     InvitationCreateRequest,
     InvitationMessage,
