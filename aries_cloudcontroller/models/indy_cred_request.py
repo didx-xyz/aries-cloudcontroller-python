@@ -19,7 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -40,7 +40,7 @@ class IndyCredRequest(BaseModel):
     nonce: Annotated[str, Field(strict=True)] = Field(
         description="Nonce in credential request"
     )
-    prover_did: Annotated[str, Field(strict=True)] = Field(description="Prover DID")
+    prover_did: StrictStr = Field(description="Prover DID/Random String/UUID")
     __properties: ClassVar[List[str]] = [
         "blinded_ms",
         "blinded_ms_correctness_proof",
@@ -66,18 +66,6 @@ class IndyCredRequest(BaseModel):
         """Validates the regular expression"""
         if not re.match(r"^[0-9]*$", value):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
-        return value
-
-    @field_validator("prover_did")
-    def prover_did_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(
-            r"^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
-            )
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
