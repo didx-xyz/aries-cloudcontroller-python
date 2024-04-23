@@ -1553,7 +1553,7 @@ class ConnectionApi:
         ] = None,
         invitation_msg_id: Annotated[
             Optional[StrictStr],
-            Field(description="Identifier of the associated Invitation Mesage"),
+            Field(description="Identifier of the associated Invitation Message"),
         ] = None,
         my_did: Annotated[
             Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")
@@ -1593,7 +1593,7 @@ class ConnectionApi:
         :type connection_protocol: str
         :param invitation_key: invitation key
         :type invitation_key: str
-        :param invitation_msg_id: Identifier of the associated Invitation Mesage
+        :param invitation_msg_id: Identifier of the associated Invitation Message
         :type invitation_msg_id: str
         :param my_did: My DID
         :type my_did: str
@@ -1648,7 +1648,7 @@ class ConnectionApi:
         ] = None,
         invitation_msg_id: Annotated[
             Optional[StrictStr],
-            Field(description="Identifier of the associated Invitation Mesage"),
+            Field(description="Identifier of the associated Invitation Message"),
         ] = None,
         my_did: Annotated[
             Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")
@@ -1688,7 +1688,7 @@ class ConnectionApi:
         :type connection_protocol: str
         :param invitation_key: invitation key
         :type invitation_key: str
-        :param invitation_msg_id: Identifier of the associated Invitation Mesage
+        :param invitation_msg_id: Identifier of the associated Invitation Message
         :type invitation_msg_id: str
         :param my_did: My DID
         :type my_did: str
@@ -1743,7 +1743,7 @@ class ConnectionApi:
         ] = None,
         invitation_msg_id: Annotated[
             Optional[StrictStr],
-            Field(description="Identifier of the associated Invitation Mesage"),
+            Field(description="Identifier of the associated Invitation Message"),
         ] = None,
         my_did: Annotated[
             Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")
@@ -1783,7 +1783,7 @@ class ConnectionApi:
         :type connection_protocol: str
         :param invitation_key: invitation key
         :type invitation_key: str
-        :param invitation_msg_id: Identifier of the associated Invitation Mesage
+        :param invitation_msg_id: Identifier of the associated Invitation Message
         :type invitation_msg_id: str
         :param my_did: My DID
         :type my_did: str
