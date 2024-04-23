@@ -199,6 +199,9 @@ paths:
   /issue-credential-2.0/create:
     post:
       operationId: create_credential
+  /issue-credential-2.0/create-offer:
+    post:
+      operationId: create_offer
   /issue-credential-2.0/records:
     get:
       operationId: get_records
