@@ -178,6 +178,9 @@ paths:
   /didexchange/{conn_id}/accept-request:
     post:
       operationId: accept_request
+  /didexchange/{conn_id}/reject:
+    post:
+      operationId: reject
   /features:
     get:
       operationId: get_features
