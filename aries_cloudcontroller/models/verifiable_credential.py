@@ -41,7 +41,9 @@ class VerifiableCredential(BaseModel):
     expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The expiration date", alias="expirationDate"
     )
-    id: Optional[Annotated[str, Field(strict=True)]] = None
+    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The ID of the credential"
+    )
     issuance_date: Annotated[str, Field(strict=True)] = Field(
         description="The issuance date", alias="issuanceDate"
     )

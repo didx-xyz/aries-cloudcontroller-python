@@ -40,7 +40,7 @@ class V20PresRequest(BaseModel):
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"
     )
-    formats: List[V20PresFormat]
+    formats: List[V20PresFormat] = Field(description="Acceptable attachment formats")
     request_presentationsattach: List[AttachDecorator] = Field(
         description="Attachment per acceptable format on corresponding identifier",
         alias="request_presentations~attach",

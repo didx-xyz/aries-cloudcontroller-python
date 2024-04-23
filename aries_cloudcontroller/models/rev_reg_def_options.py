@@ -31,11 +31,11 @@ class RevRegDefOptions(BaseModel):
 
     create_transaction_for_endorser: Optional[StrictBool] = Field(
         default=None,
-        description="     Create transaction for endorser (optional, default false).      Use this for agents who don't specify an author role but want to      create a transaction for an endorser to sign.",
+        description="Create transaction for endorser (optional, default false). Use this for agents who don't specify an author role but want to create a transaction for an endorser to sign.",
     )
     endorser_connection_id: Optional[StrictStr] = Field(
         default=None,
-        description="     Connection identifier (optional) (this is an example)     You can set this is you know the endorsers connection id you want to use.     If not specified then the agent will attempt to find an endorser connection.",
+        description="Connection identifier (optional) (this is an example). You can set this if you know the endorser's connection id you want to use. If not specified then the agent will attempt to find an endorser connection.",
     )
     __properties: ClassVar[List[str]] = [
         "create_transaction_for_endorser",

@@ -38,7 +38,9 @@ class VerifiablePresentation(BaseModel):
         default=None,
         description="The JSON-LD Verifiable Credential Holder. Either string of object with id field.",
     )
-    id: Optional[Annotated[str, Field(strict=True)]] = None
+    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The ID of the presentation"
+    )
     proof: LinkedDataProof = Field(description="The proof of the presentation")
     type: List[StrictStr] = Field(description="The JSON-LD type of the presentation")
     verifiable_credential: Optional[List[Dict[str, Any]]] = Field(

@@ -42,7 +42,7 @@ class CredDef(BaseModel):
     )
     tag: Optional[StrictStr] = Field(
         default=None,
-        description="The tag value passed in by the Issuer to          an AnonCred's Credential Definition create and store implementation.",
+        description="The tag value passed in by the Issuer to an AnonCred's Credential Definition create and store implementation.",
     )
     type: Optional[StrictStr] = None
     value: Optional[CredDefValueSchemaAnoncreds] = None

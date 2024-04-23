@@ -31,7 +31,7 @@ class RemoveWalletRequest(BaseModel):
 
     wallet_key: Optional[StrictStr] = Field(
         default=None,
-        description="Master key used for key derivation. Only required for         unmanaged wallets.",
+        description="Master key used for key derivation. Only required for unmanaged wallets.",
     )
     __properties: ClassVar[List[str]] = ["wallet_key"]
 

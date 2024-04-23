@@ -40,7 +40,7 @@ class V20PresProposal(BaseModel):
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"
     )
-    formats: List[V20PresFormat]
+    formats: List[V20PresFormat] = Field(description="Acceptable attachment formats")
     proposalsattach: List[AttachDecorator] = Field(
         description="Attachment per acceptable format on corresponding identifier",
         alias="proposals~attach",

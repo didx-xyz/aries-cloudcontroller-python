@@ -34,15 +34,15 @@ class UpdateWalletRequest(BaseModel):
     )
     image_url: Optional[StrictStr] = Field(
         default=None,
-        description="Image url for this wallet. This image url is publicized        (self-attested) to other agents as part of forming a connection.",
+        description="Image url for this wallet. This image url is publicized (self-attested) to other agents as part of forming a connection.",
     )
     label: Optional[StrictStr] = Field(
         default=None,
-        description="Label for this wallet. This label is publicized        (self-attested) to other agents as part of forming a connection.",
+        description="Label for this wallet. This label is publicized (self-attested) to other agents as part of forming a connection.",
     )
     wallet_dispatch_type: Optional[StrictStr] = Field(
         default=None,
-        description="Webhook target dispatch type for this wallet.         default - Dispatch only to webhooks associated with this wallet.         base - Dispatch only to webhooks associated with the base wallet.         both - Dispatch to both webhook targets.",
+        description="Webhook target dispatch type for this wallet. default: Dispatch only to webhooks associated with this wallet. base: Dispatch only to webhooks associated with the base wallet. both: Dispatch to both webhook targets.",
     )
     wallet_webhook_urls: Optional[List[StrictStr]] = Field(
         default=None, description="List of Webhook URLs associated with this subwallet"
