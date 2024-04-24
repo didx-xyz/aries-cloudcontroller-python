@@ -2,12 +2,18 @@
 
 # import apis into api package
 from aries_cloudcontroller.api.action_menu_api import ActionMenuApi
+from aries_cloudcontroller.api.anoncreds_credential_definitions_api import (
+    AnoncredsCredentialDefinitionsApi,
+)
+from aries_cloudcontroller.api.anoncreds_revocation_api import AnoncredsRevocationApi
+from aries_cloudcontroller.api.anoncreds_schemas_api import AnoncredsSchemasApi
 from aries_cloudcontroller.api.basicmessage_api import BasicmessageApi
 from aries_cloudcontroller.api.connection_api import ConnectionApi
 from aries_cloudcontroller.api.credential_definition_api import CredentialDefinitionApi
 from aries_cloudcontroller.api.credentials_api import CredentialsApi
 from aries_cloudcontroller.api.default_api import DefaultApi
 from aries_cloudcontroller.api.did_exchange_api import DidExchangeApi
+from aries_cloudcontroller.api.did_rotate_api import DidRotateApi
 from aries_cloudcontroller.api.discover_features_api import DiscoverFeaturesApi
 from aries_cloudcontroller.api.discover_features_v20_api import DiscoverFeaturesV20Api
 from aries_cloudcontroller.api.endorse_transaction_api import EndorseTransactionApi
@@ -27,4 +33,5 @@ from aries_cloudcontroller.api.schema_api import SchemaApi
 from aries_cloudcontroller.api.server_api import ServerApi
 from aries_cloudcontroller.api.settings_api import SettingsApi
 from aries_cloudcontroller.api.trustping_api import TrustpingApi
+from aries_cloudcontroller.api.vc_api import VcApi
 from aries_cloudcontroller.api.wallet_api import WalletApi

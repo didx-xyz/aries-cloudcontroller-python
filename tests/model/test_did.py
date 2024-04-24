@@ -9,43 +9,41 @@ from tests.util.compare_dicts import equal_dicts
 LOGGER = logging.getLogger(__name__)
 
 sample_did = {
+    "did": "VB7JqRgCM1szpGB3GL8vyb",
+    "verkey": "GMeQ9PpqWn7esNJ1gL96v8AzchbU83wQPUFqtDqPuwa1",
+    "posture": "wallet_only",
     "key_type": "ed25519",
     "method": "sov",
-    "posture": "public",
 }
 
-invalid_did_key_type = {
-    "key_type": "invalidKeyType",  # invalid key type
-    "method": "sov",
-    "posture": "public",
-}
+invalid_did_key_type = sample_did.copy()
+invalid_did_key_type["key_type"] = "invalidKeyType"  # invalid key type
 
-invalid_did_method = {
-    "key_type": "ed25519",
-    "method": "invalidMethod",  # invalid method
-    "posture": "public",
-}
+invalid_did_method = sample_did.copy()
+invalid_did_method["method"] = "invalidMethod"  # invalid method
 
-invalid_did_posture = {
-    "key_type": "ed25519",
-    "method": "sov",
-    "posture": "invalidPosture",  # invalid posture
-}
+invalid_did_posture = sample_did.copy()
+invalid_did_posture["posture"] = "invalidPosture"  # invalid posture
 
-sample_did_with_ed25519_verkey = {
-    "key_type": "ed25519",  # ED25519 key type
-    "verkey": "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijk",  # 44 base58 characters
-}
+invalid_did_with_verkey = sample_did.copy()
+invalid_did_with_verkey["verkey"] = "invalidVerkey"  # invalid verkey format
 
-sample_did_with_bbs_verkey = {
-    "key_type": "bls12381g2",  # BBS+ key type
-    "verkey": "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789ABCD"
-    "EFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789ABCDEFG",  # 132 characters
-}
+sample_did_with_ed25519_verkey = sample_did.copy()
+sample_did_with_ed25519_verkey.update(
+    {
+        "key_type": "ed25519",  # ED25519 key type
+        "verkey": "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijk",  # 44 base58 characters
+    }
+)
 
-invalid_did_with_verkey = {
-    "verkey": "invalidVerkey",  # invalid verkey format
-}
+sample_did_with_bbs_verkey = sample_did.copy()
+sample_did_with_bbs_verkey.update(
+    {
+        "key_type": "bls12381g2",  # BBS+ key type
+        "verkey": "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789ABCD"
+        "EFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789ABCDEFG",  # 132 characters
+    }
+)
 
 
 def test_valid_did():

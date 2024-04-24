@@ -14,6 +14,75 @@ paths:
   /action-menu/{conn_id}/send-menu:
     post:
       operationId: send_menu
+  /anoncreds/credential-definition:
+    post:
+      operationId: create_credential_definition
+  /anoncreds/credential-definition/{cred_def_id}:
+    get:
+      operationId: get_credential_definition
+  /anoncreds/credential-definitions:
+    get:
+      operationId: get_credential_definitions
+  /anoncreds/registry/{rev_reg_id}/active:
+    put:
+      operationId: set_active_registry
+  /anoncreds/registry/{rev_reg_id}/tails-file:
+    put:
+      operationId: upload_tails_file
+  /anoncreds/revocation-list:
+    post:
+      operationId: post_revocation_list
+  /anoncreds/revocation-registry-definition:
+    post:
+      operationId: create_rev_reg_definition
+  /anoncreds/revocation/active-registry/{cred_def_id}:
+    get:
+      operationId: get_active_revocation_registry
+  /anoncreds/revocation/active-registry/{cred_def_id}/rotate:
+    post:
+      operationId: rotate_active_revocation_registry
+  /anoncreds/revocation/credential-record:
+    get:
+      operationId: get_cred_rev_record
+  /anoncreds/revocation/publish-revocations:
+    post:
+      operationId: publish_revocations
+  /anoncreds/revocation/registries:
+    get:
+      operationId: get_revocation_registries
+  /anoncreds/revocation/registry/{rev_reg_id}:
+    get:
+      operationId: get_revocation_registry
+  /anoncreds/revocation/registry/{rev_reg_id}/fix-revocation-entry-state:
+    put:
+      operationId: update_rev_reg_revoked_state
+  /anoncreds/revocation/registry/{rev_reg_id}/issued:
+    get:
+      operationId: get_rev_reg_issued_count
+  /anoncreds/revocation/registry/{rev_reg_id}/issued/details:
+    get:
+      operationId: get_rev_reg_issued_details
+  /anoncreds/revocation/registry/{rev_reg_id}/issued/indy_recs:
+    get:
+      operationId: get_rev_reg_issued_indy_recs
+  /anoncreds/revocation/registry/{rev_reg_id}/set-state:
+    patch:
+      operationId: set_rev_reg_state
+  /anoncreds/revocation/registry/{rev_reg_id}/tails-file:
+    get:
+      operationId: get_tails_file
+  /anoncreds/revocation/revoke:
+    post:
+      operationId: revoke
+  /anoncreds/schema:
+    post:
+      operationId: create_schema
+  /anoncreds/schema/{schema_id}:
+    get:
+      operationId: get_schema
+  /anoncreds/schemas:
+    get:
+      operationId: get_schemas
   /connections:
     get:
       operationId: get_connections
@@ -66,6 +135,9 @@ paths:
   /credential-definitions/{cred_def_id}:
     get:
       operationId: get_cred_def
+  /credential-definitions/{cred_def_id}/write_record:
+    post:
+      operationId: fix_cred_def_wallet_record
   /credential/mime-types/{credential_id}:
     get:
       operationId: get_credential_mime_types
@@ -88,6 +160,12 @@ paths:
   /credentials/w3c:
     post:
       operationId: get_w3c_credentials
+  /did-rotate/{conn_id}/hangup:
+    post:
+      operationId: hangup
+  /did-rotate/{conn_id}/rotate:
+    post:
+      operationId: rotate
   /didexchange/create-request:
     post:
       operationId: create_request
@@ -100,12 +178,30 @@ paths:
   /didexchange/{conn_id}/accept-request:
     post:
       operationId: accept_request
+  /didexchange/{conn_id}/reject:
+    post:
+      operationId: reject
+  /discover-features-2.0/queries:
+    get:
+      operationId: query_features
+  /discover-features-2.0/records:
+    get:
+      operationId: query_records
+  /discover-features/query:
+    get:
+      operationId: query_features
+  /discover-features/records:
+    get:
+      operationId: query_records
   /features:
     get:
       operationId: get_features
   /issue-credential-2.0/create:
     post:
       operationId: create_credential
+  /issue-credential-2.0/create-offer:
+    post:
+      operationId: create_offer
   /issue-credential-2.0/records:
     get:
       operationId: get_records
@@ -185,6 +281,9 @@ paths:
   /jsonld/verify:
     post:
       operationId: verify
+  /ledger/config:
+    get:
+      operationId: get_config
   /ledger/did-endpoint:
     get:
       operationId: get_did_endpoint
@@ -194,12 +293,21 @@ paths:
   /ledger/get-nym-role:
     get:
       operationId: get_did_nym_role
+  /ledger/get-write-ledger:
+    get:
+      operationId: get_write_ledger
+  /ledger/get-write-ledgers:
+    get:
+      operationId: get_write_ledgers
   /ledger/register-nym:
     post:
       operationId: register_nym
   /ledger/rotate-public-did-keypair:
     patch:
       operationId: rotate_public_did_keypair
+  /ledger/{ledger_id}/set-write-ledger:
+    put:
+      operationId: set_write_ledger
   /ledger/taa:
     get:
       operationId: fetch_taa
@@ -237,6 +345,9 @@ paths:
   /mediation/requests/{mediation_id}/grant:
     post:
       operationId: grant_mediation_request
+  /mediation/update-keylist/{conn_id}:
+    post:
+      operationId: update_keylist_for_connection
   /mediation/{mediation_id}/default-mediator:
     put:
       operationId: set_default_mediator
@@ -260,6 +371,9 @@ paths:
   /out-of-band/create-invitation:
     post:
       operationId: create_invitation
+  /out-of-band/invitations/{invi_msg_id}:
+    delete:
+      operationId: remove_invitation_record
   /out-of-band/receive-invitation:
     post:
       operationId: receive_invitation
@@ -336,6 +450,9 @@ paths:
   /revocation/active-registry/{cred_def_id}:
     get:
       operationId: get_active_registry_for_cred_def
+  /revocation/active-registry/{cred_def_id}/rotate:
+    post:
+      operationId: rotate_rev_reg
   /revocation/clear-pending-revocations:
     post:
       operationId: clear_pending_revocations
@@ -351,6 +468,9 @@ paths:
   /revocation/registries/created:
     get:
       operationId: get_created_registries
+  /revocation/registry/delete-tails-file:
+    delete:
+      operationId: delete_tails_file
   /revocation/registry/{rev_reg_id}:
     get:
       operationId: get_registry
@@ -362,9 +482,18 @@ paths:
   /revocation/registry/{rev_reg_id}/entry:
     post:
       operationId: publish_rev_reg_entry
+  /revocation/registry/{rev_reg_id}/fix-revocation-entry-state:
+    put:
+      operationId: update_rev_reg_revoked_state
   /revocation/registry/{rev_reg_id}/issued:
     get:
-      operationId: get_registry_issued_credentials_count
+      operationId: get_rev_reg_issued_count
+  /revocation/registry/{rev_reg_id}/issued/details:
+    get:
+      operationId: get_rev_reg_issued_issued_details
+  /revocation/registry/{rev_reg_id}/issued/indy_recs:
+    get:
+      operationId: get_rev_reg_indy_recs
   /revocation/registry/{rev_reg_id}/set-state:
     patch:
       operationId: set_registry_state
@@ -388,6 +517,11 @@ paths:
   /schemas/{schema_id}/write_record:
     post:
       operationId: write_record
+  /settings:
+    get:
+      operationId: get_settings
+    put:
+      operationId: update_settings
   /shutdown:
     get:
       operationId: shutdown_server
@@ -436,6 +570,27 @@ paths:
   /transactions/{tran_id}/write:
     post:
       operationId: write_transaction
+  /vc/credentials:
+    get:
+      operationId: list_credentials
+  /vc/credentials/issue:
+    post:
+      operationId: issue_credential
+  /vc/credentials/store:
+    post:
+      operationId: store_credential
+  /vc/credentials/verify:
+    post:
+      operationId: verify_credential
+  /vc/credentials/{credential_id}:
+    get:
+      operationId: get_credential
+  /vc/presentations/prove:
+    post:
+      operationId: prove_presentation
+  /vc/presentations/verify:
+    post:
+      operationId: verify_presentation
   /wallet/did:
     get:
       operationId: get_dids
@@ -450,9 +605,21 @@ paths:
       operationId: get_public_did
     post:
       operationId: set_public_did
+  /wallet/jwt/sign:
+    post:
+      operationId: sign_jwt
+  /wallet/jwt/verify:
+    post:
+      operationId: verify_jwt
   /wallet/get-did-endpoint:
     get:
       operationId: get_did_endpoint
   /wallet/set-did-endpoint:
     post:
       operationId: set_did_endpoint
+  /wallet/sd-jwt/sign:
+    post:
+      operationId: sign_sd_jwt
+  /wallet/sd-jwt/verify:
+    post:
+      operationId: verify_sd_jwt

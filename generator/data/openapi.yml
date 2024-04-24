@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.11.0
+  version: v0.12.0
 servers:
 - url: /
 security:
@@ -9,6 +9,21 @@ security:
 tags:
 - name: action-menu
   description: Menu interaction over connection
+- name: anoncreds - credential definitions
+  description: Anoncreds credential definition management
+  externalDocs:
+    description: Specification
+    url: https://hyperledger.github.io/anoncreds-spec
+- name: anoncreds - revocation
+  description: Revocation registry management
+  externalDocs:
+    description: Overview
+    url: https://github.com/hyperledger/indy-hipe/tree/master/text/0011-cred-revocation
+- name: anoncreds - schemas
+  description: Anoncreds schema management
+  externalDocs:
+    description: Specification
+    url: https://hyperledger.github.io/anoncreds-spec
 - name: basicmessage
   description: Simple messaging
   externalDocs:
@@ -34,6 +49,11 @@ tags:
   externalDocs:
     description: Specification
     url: https://github.com/hyperledger/aries-rfcs/tree/25464a5c8f8a17b14edaa4310393df6094ace7b0/features/0023-did-exchange
+- name: did-rotate
+  description: Rotate a DID
+  externalDocs:
+    description: Specification
+    url: https://github.com/hyperledger/aries-rfcs/tree/main/features/0794-did-rotate
 - name: discover-features
   description: Feature discovery
   externalDocs:
@@ -93,8 +113,8 @@ tags:
 - name: resolver
   description: did resolver interface.
   externalDocs:
-    description: Specification
-    url: https://example.com/replace/me
+    description: DID Resolution Specification
+    url: https://www.w3.org/TR/did-core/#resolution
 - name: revocation
   description: Revocation registry management
   externalDocs:
@@ -112,6 +132,11 @@ tags:
   externalDocs:
     description: Specification
     url: https://github.com/hyperledger/aries-rfcs/tree/527849ec3aa2a8fd47a7bb6c57f918ff8bcb5e8c/features/0048-trust-ping
+- name: vc-api
+  description: Endpoints for managing w3c credentials and presentations
+  externalDocs:
+    description: Specification
+    url: https://w3c-ccg.github.io/vc-api/
 - name: wallet
   description: DID and tag policy management
   externalDocs:
@@ -128,6 +153,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -148,6 +175,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -168,6 +197,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -195,6 +226,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -215,6 +248,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -232,6 +267,609 @@ paths:
                 $ref: '#/components/schemas/ActionMenuModulesResult'
       x-codegen-request-body-name: body
       operationId: send_menu
+  /anoncreds/credential-definition:
+    post:
+      tags:
+      - anoncreds - credential definitions
+      summary: Create a credential definition on the connected ledger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredDefPostRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredDefResult'
+      x-codegen-request-body-name: body
+      operationId: create_credential_definition
+  /anoncreds/credential-definition/{cred_def_id}:
+    get:
+      tags:
+      - anoncreds - credential definitions
+      summary: Retrieve an individual credential definition details
+      parameters:
+      - name: cred_def_id
+        in: path
+        description: Credential definition identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCredDefResult'
+      operationId: get_credential_definition
+  /anoncreds/credential-definitions:
+    get:
+      tags:
+      - anoncreds - credential definitions
+      summary: Retrieve all credential definition ids
+      parameters:
+      - name: issuer_id
+        in: query
+        description: Issuer Identifier of the credential definition
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: schema_id
+        in: query
+        description: Schema identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: schema_name
+        in: query
+        description: Schema name
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: schema_version
+        in: query
+        description: Schema version
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCredDefsResponse'
+      operationId: get_credential_definitions
+  /anoncreds/registry/{rev_reg_id}/active:
+    put:
+      tags:
+      - anoncreds - revocation
+      summary: Update the active registry
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevocationModuleResponse'
+      operationId: set_active_registry
+  /anoncreds/registry/{rev_reg_id}/tails-file:
+    put:
+      tags:
+      - anoncreds - revocation
+      summary: Upload local tails file to server
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevocationModuleResponse'
+      operationId: upload_tails_file
+  /anoncreds/revocation-list:
+    post:
+      tags:
+      - anoncreds - revocation
+      summary: Create and publish a revocation status list on the connected ledger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevListCreateRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevListResult'
+      x-codegen-request-body-name: body
+      operationId: post_revocation_list
+  /anoncreds/revocation-registry-definition:
+    post:
+      tags:
+      - anoncreds - revocation
+      summary: Create and publish a registration revocation on the connected ledger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevRegCreateRequestSchemaAnoncreds'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegDefResult'
+      x-codegen-request-body-name: body
+      operationId: create_rev_reg_definition
+  /anoncreds/revocation/active-registry/{cred_def_id}:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Get current active revocation registry by credential definition id
+      parameters:
+      - name: cred_def_id
+        in: path
+        description: Credential definition identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegResultSchemaAnoncreds'
+      operationId: get_active_revocation_registry
+  /anoncreds/revocation/active-registry/{cred_def_id}/rotate:
+    post:
+      tags:
+      - anoncreds - revocation
+      summary: Rotate revocation registry
+      parameters:
+      - name: cred_def_id
+        in: path
+        description: Credential definition identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegsCreatedSchemaAnoncreds'
+      operationId: rotate_active_revocation_registry
+  /anoncreds/revocation/credential-record:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Get credential revocation status
+      parameters:
+      - name: cred_ex_id
+        in: query
+        description: Credential exchange identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
+          type: string
+      - name: cred_rev_id
+        in: query
+        description: Credential revocation identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          pattern: ^[1-9][0-9]*$
+          type: string
+      - name: rev_reg_id
+        in: query
+        description: Revocation registry identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredRevRecordResult'
+      operationId: get_cred_rev_record
+  /anoncreds/revocation/publish-revocations:
+    post:
+      tags:
+      - anoncreds - revocation
+      summary: Publish pending revocations to ledger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishRevocations'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishRevocationsResult'
+      x-codegen-request-body-name: body
+      operationId: publish_revocations
+  /anoncreds/revocation/registries:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Search for matching revocation registries that current agent created
+      parameters:
+      - name: cred_def_id
+        in: query
+        description: Credential definition identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+      - name: state
+        in: query
+        description: Revocation registry state
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - finished
+          - failed
+          - action
+          - wait
+          - decommissioned
+          - full
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegsCreatedSchemaAnoncreds'
+      operationId: get_revocation_registries
+  /anoncreds/revocation/registry/{rev_reg_id}:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Get revocation registry by revocation registry id
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegResultSchemaAnoncreds'
+      operationId: get_revocation_registry
+  /anoncreds/revocation/registry/{rev_reg_id}/fix-revocation-entry-state:
+    put:
+      tags:
+      - anoncreds - revocation
+      summary: Fix revocation state in wallet and return number of updated entries
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      - name: apply_ledger_update
+        in: query
+        description: Apply updated accumulator transaction to ledger
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegWalletUpdatedResultSchemaAnoncreds'
+      operationId: update_rev_reg_revoked_state
+  /anoncreds/revocation/registry/{rev_reg_id}/issued:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Get number of credentials issued against revocation registry
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegIssuedResultSchemaAnoncreds'
+      operationId: get_rev_reg_issued_count
+  /anoncreds/revocation/registry/{rev_reg_id}/issued/details:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Get details of credentials issued against revocation registry
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredRevRecordDetailsResultSchemaAnoncreds'
+      operationId: get_rev_reg_issued_details
+  /anoncreds/revocation/registry/{rev_reg_id}/issued/indy_recs:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Get details of revoked credentials from ledger
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredRevIndyRecordsResultSchemaAnoncreds'
+      operationId: get_rev_reg_issued_indy_recs
+  /anoncreds/revocation/registry/{rev_reg_id}/set-state:
+    patch:
+      tags:
+      - anoncreds - revocation
+      summary: Set revocation registry state manually
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      - name: state
+        in: query
+        description: Revocation registry state to set
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - finished
+          - failed
+          - action
+          - wait
+          - decommissioned
+          - full
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevRegResultSchemaAnoncreds'
+      operationId: set_rev_reg_state
+  /anoncreds/revocation/registry/{rev_reg_id}/tails-file:
+    get:
+      tags:
+      - anoncreds - revocation
+      summary: Download tails file
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+      responses:
+        '200':
+          description: tails file
+          content:
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/RevocationAnoncredsModuleResponse'
+      operationId: get_tails_file
+  /anoncreds/revocation/revoke:
+    post:
+      tags:
+      - anoncreds - revocation
+      summary: Revoke an issued credential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevokeRequestSchemaAnoncreds'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevocationAnoncredsModuleResponse'
+      x-codegen-request-body-name: body
+      operationId: revoke
+  /anoncreds/schema:
+    post:
+      tags:
+      - anoncreds - schemas
+      summary: Create a schema on the connected ledger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaPostRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaResult'
+      x-codegen-request-body-name: body
+      operationId: create_schema
+  /anoncreds/schema/{schema_id}:
+    get:
+      tags:
+      - anoncreds - schemas
+      summary: Retrieve an individual schemas details
+      parameters:
+      - name: schema_id
+        in: path
+        description: Schema identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSchemaResult'
+      operationId: get_schema
+  /anoncreds/schemas:
+    get:
+      tags:
+      - anoncreds - schemas
+      summary: Retrieve all schema ids
+      parameters:
+      - name: schema_issuer_id
+        in: query
+        description: Schema issuer identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: schema_name
+        in: query
+        description: Schema name
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: schema_version
+        in: query
+        description: Schema version
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSchemasResponse'
+      operationId: get_schemas
   /connections:
     get:
       tags:
@@ -241,64 +879,91 @@ paths:
       - name: alias
         in: query
         description: Alias
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: connection_protocol
         in: query
         description: Connection protocol used
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
           - connections/1.0
           - didexchange/1.0
+          - didexchange/1.1
       - name: invitation_key
         in: query
         description: invitation key
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
       - name: invitation_msg_id
         in: query
-        description: Identifier of the associated Invitation Mesage
+        description: Identifier of the associated Invitation Message
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       - name: my_did
         in: query
         description: My DID
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: state
         in: query
         description: Connection state
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
-          - invitation
-          - start
-          - init
           - abandoned
           - active
-          - request
-          - response
           - completed
           - error
+          - init
+          - invitation
+          - request
+          - response
+          - start
       - name: their_did
         in: query
         description: Their DID
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: their_public_did
         in: query
         description: Their Public DID
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: their_role
         in: query
         description: Their role in the connection protocol
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -323,21 +988,33 @@ paths:
       - name: alias
         in: query
         description: Alias
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: multi_use
         in: query
         description: Create invitation for multiple use (default false)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: public
         in: query
         description: Create invitation from public DID (default false)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       requestBody:
@@ -353,6 +1030,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvitationResult'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: create_invitation
   /connections/create-static:
@@ -384,16 +1062,25 @@ paths:
       - name: alias
         in: query
         description: Alias
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -410,6 +1097,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: receive_invitation
   /connections/{conn_id}:
@@ -422,6 +1110,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -441,6 +1131,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -461,23 +1153,34 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
         description: Label for connection
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -487,6 +1190,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
+      deprecated: true
       operationId: accept_invitation
   /connections/{conn_id}/accept-request:
     post:
@@ -498,11 +1202,16 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
@@ -513,6 +1222,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
+      deprecated: true
       operationId: accept_request
   /connections/{conn_id}/endpoints:
     get:
@@ -524,6 +1234,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -544,11 +1256,16 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: key
         in: query
         description: Key to retrieve.
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -568,6 +1285,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -595,6 +1314,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -622,6 +1343,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -649,17 +1372,24 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: target_connection_id
         in: query
         description: Target connection identifier
         required: true
+        style: form
+        explode: true
         schema:
           type: string
       - name: message
         in: query
         description: Message
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -679,11 +1409,17 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       requestBody:
@@ -710,35 +1446,53 @@ paths:
       - name: cred_def_id
         in: query
         description: Credential definition id
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
       - name: issuer_did
         in: query
         description: Issuer DID
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: schema_id
         in: query
         description: Schema identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
       - name: schema_issuer_did
         in: query
         description: Schema issuer DID
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: schema_name
         in: query
         description: Schema name
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: schema_version
         in: query
         description: Schema version
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9.]+$
           type: string
@@ -760,6 +1514,8 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -781,6 +1537,8 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -791,6 +1549,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredentialDefinitionGetResult'
+      operationId: fix_cred_def_wallet_record
   /credential/mime-types/{credential_id}:
     get:
       tags:
@@ -801,6 +1560,8 @@ paths:
         in: path
         description: Credential identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -821,17 +1582,25 @@ paths:
         in: path
         description: Credential identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: from
         in: query
         description: Earliest epoch of revocation status interval of interest
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
       - name: to
         in: query
         description: Latest epoch of revocation status interval of interest
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
@@ -853,6 +1622,8 @@ paths:
         in: path
         description: Credential identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -872,6 +1643,8 @@ paths:
         in: path
         description: Credential identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -892,6 +1665,8 @@ paths:
         in: path
         description: Credential identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -911,6 +1686,8 @@ paths:
         in: path
         description: Credential identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -930,18 +1707,27 @@ paths:
       - name: count
         in: query
         description: Maximum number to retrieve
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: start
         in: query
         description: Start index
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
       - name: wql
         in: query
         description: (JSON) WQL query
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^{.*}$
           type: string
@@ -962,18 +1748,27 @@ paths:
       - name: count
         in: query
         description: Maximum number to retrieve
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: start
         in: query
         description: Start index
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
       - name: wql
         in: query
         description: (JSON) WQL query
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^{.*}$
           type: string
@@ -992,6 +1787,57 @@ paths:
                 $ref: '#/components/schemas/VCRecordList'
       x-codegen-request-body-name: body
       operationId: get_w3c_credentials
+  /did-rotate/{conn_id}/hangup:
+    post:
+      tags:
+      - did-rotate
+      summary: Send hangup of DID rotation as a rotator
+      parameters:
+      - name: conn_id
+        in: path
+        description: Connection identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Hangup agent message for observer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hangup'
+      operationId: hangup
+  /did-rotate/{conn_id}/rotate:
+    post:
+      tags:
+      - did-rotate
+      summary: Begin rotation of a DID as a rotator
+      parameters:
+      - name: conn_id
+        in: path
+        description: Connection identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DIDRotateRequestJSON'
+        required: false
+      responses:
+        '200':
+          description: Rotate agent message for observer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rotate'
+      x-codegen-request-body-name: body
+      operationId: rotate
   /didexchange/create-request:
     post:
       tags:
@@ -1002,46 +1848,107 @@ paths:
         in: query
         description: Qualified public DID to which to request connection
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: alias
         in: query
         description: Alias for connection
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
+      - name: auto_accept
+        in: query
+        description: Auto-accept connection (defaults to configuration)
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
       - name: goal
         in: query
         description: A self-attested string that the receiver may want to display
           to the user about the context-specific goal of the out-of-band message
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: goal_code
         in: query
         description: A self-attested code the receiver may want to display to the
           user or use in automatically deciding what to do with the out-of-band message
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
         description: Label for connection request
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
+      - name: protocol
+        in: query
+        description: Which DID Exchange Protocol version to use
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - didexchange/1.0
+          - didexchange/1.1
+      - name: use_did
+        in: query
+        description: The DID to use to for this connection
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: use_did_method
+        in: query
+        description: The DID method to use to generate a DID for this connection
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - did:peer:2
+          - did:peer:4
       - name: use_public_did
         in: query
         description: Use public DID for this connection
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       responses:
@@ -1061,22 +1968,34 @@ paths:
       - name: alias
         in: query
         description: Alias for connection
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
@@ -1093,6 +2012,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: receive_request
   /didexchange/{conn_id}/accept-invitation:
@@ -1105,19 +2025,46 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
         description: Label for connection request
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
+      - name: use_did
+        in: query
+        description: The DID to use to for this connection
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: use_did_method
+        in: query
+        description: The DID method to use to generate a DID for this connection
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - did:peer:2
+          - did:peer:4
       responses:
         '200':
           description: ''
@@ -1136,23 +2083,34 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: use_public_did
         in: query
         description: Use public DID for this connection
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       responses:
@@ -1173,6 +2131,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -1189,6 +2149,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnRecord'
       x-codegen-request-body-name: body
+      operationId: reject
   /discover-features-2.0/queries:
     get:
       tags:
@@ -1199,16 +2160,25 @@ paths:
         in: query
         description: Connection identifier, if none specified, then the query will
           provide features for this agent.
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: query_goal_code
         in: query
         description: Goal-code feature-type query
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: query_protocol
         in: query
         description: Protocol feature-type query
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -1218,6 +2188,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20DiscoveryExchangeResult'
+      operationId: query_features
   /discover-features-2.0/records:
     get:
       tags:
@@ -1227,6 +2198,9 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -1236,6 +2210,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V20DiscoveryExchangeListResult'
+      operationId: query_records
   /discover-features/query:
     get:
       tags:
@@ -1245,17 +2220,26 @@ paths:
       - name: comment
         in: query
         description: Comment
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: connection_id
         in: query
         description: Connection identifier, if none specified, then the query will
           provide features for this agent.
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: query
         in: query
         description: Protocol feature query
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -1265,6 +2249,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10DiscoveryRecord'
+      operationId: query_features
   /discover-features/records:
     get:
       tags:
@@ -1274,6 +2259,9 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -1283,6 +2271,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10DiscoveryExchangeListResult'
+      operationId: query_records
   /issue-credential-2.0/create:
     post:
       tags:
@@ -1323,6 +2312,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/V20CredExRecord'
       x-codegen-request-body-name: body
+      operationId: create_offer
   /issue-credential-2.0/records:
     get:
       tags:
@@ -1332,12 +2322,17 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       - name: role
         in: query
         description: Role assigned in credential exchange
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -1346,6 +2341,9 @@ paths:
       - name: state
         in: query
         description: Credential exchange state
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -1363,9 +2361,11 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       responses:
         '200':
           description: ''
@@ -1384,6 +2384,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1404,6 +2406,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1425,6 +2429,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1453,6 +2459,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1481,6 +2489,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1509,6 +2519,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1537,6 +2549,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1655,6 +2669,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: create_credential
   /issue-credential/create-offer:
@@ -1675,6 +2690,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: create_offer
   /issue-credential/records:
@@ -1686,12 +2702,17 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       - name: role
         in: query
         description: Role assigned in credential exchange
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -1700,6 +2721,9 @@ paths:
       - name: state
         in: query
         description: Credential exchange state
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -1717,9 +2741,11 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       responses:
         '200':
           description: ''
@@ -1727,6 +2753,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchangeListResult'
+      deprecated: true
       operationId: get_records
   /issue-credential/records/{cred_ex_id}:
     get:
@@ -1738,6 +2765,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1748,6 +2777,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       operationId: get_record
     delete:
       tags:
@@ -1758,6 +2788,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1768,6 +2800,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IssueCredentialModuleResponse'
+      deprecated: true
       operationId: delete_record
   /issue-credential/records/{cred_ex_id}/issue:
     post:
@@ -1779,6 +2812,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1795,6 +2830,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: issue_credential
   /issue-credential/records/{cred_ex_id}/problem-report:
@@ -1807,6 +2843,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1823,6 +2861,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IssueCredentialModuleResponse'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: report_problem
   /issue-credential/records/{cred_ex_id}/send-offer:
@@ -1835,6 +2874,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1851,6 +2892,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_offer
   /issue-credential/records/{cred_ex_id}/send-request:
@@ -1863,6 +2905,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1879,6 +2923,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_request
   /issue-credential/records/{cred_ex_id}/store:
@@ -1891,6 +2936,8 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1907,6 +2954,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: store_credential
   /issue-credential/send:
@@ -1927,6 +2975,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: issue_credential_automated
   /issue-credential/send-offer:
@@ -1947,6 +2996,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_offer_free
   /issue-credential/send-proposal:
@@ -1967,6 +3017,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10CredentialExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_proposal
   /jsonld/sign:
@@ -1987,6 +3038,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignResponse'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: sign
   /jsonld/verify:
@@ -2007,6 +3059,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VerifyResponse'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: verify
   /ledger/config:
@@ -2021,6 +3074,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LedgerConfigList'
+      operationId: get_config
   /ledger/did-endpoint:
     get:
       tags:
@@ -2031,12 +3085,17 @@ paths:
         in: query
         description: DID of interest
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: endpoint_type
         in: query
         description: Endpoint type of interest (default 'Endpoint')
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -2061,6 +3120,8 @@ paths:
         in: query
         description: DID of interest
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -2082,6 +3143,8 @@ paths:
         in: query
         description: DID of interest
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -2105,6 +3168,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WriteLedger'
+      operationId: get_write_ledger
   /ledger/get-write-ledgers:
     get:
       tags:
@@ -2117,6 +3181,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfigurableWriteLedgers'
+      operationId: get_write_ledgers
   /ledger/register-nym:
     post:
       tags:
@@ -2127,6 +3192,8 @@ paths:
         in: query
         description: DID to register
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -2134,27 +3201,41 @@ paths:
         in: query
         description: Verification key
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
       - name: alias
         in: query
         description: Alias
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: role
         in: query
         description: Role
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -2226,6 +3307,8 @@ paths:
       - name: ledger_id
         in: path
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -2235,6 +3318,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WriteLedger'
+      operationId: set_write_ledger
   /mediation/default-mediator:
     get:
       tags:
@@ -2269,13 +3353,18 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier (optional)
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       - name: role
         in: query
-        description: Filer on role, 'client' for keys     mediated by other agents,
-          'server' for keys     mediated by this agent
+        description: Filer on role, 'client' for keys mediated by other agents, 'server'
+          for keys mediated by this agent
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           default: server
@@ -2300,12 +3389,16 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
-          format: uuid
       - name: paginate_limit
         in: query
         description: limit number of results
+        required: false
+        style: form
+        explode: true
         schema:
           type: integer
           format: int32
@@ -2313,6 +3406,9 @@ paths:
       - name: paginate_offset
         in: query
         description: offset to use in pagination
+        required: false
+        style: form
+        explode: true
         schema:
           type: integer
           format: int32
@@ -2342,9 +3438,10 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
-          format: uuid
       requestBody:
         content:
           application/json:
@@ -2370,6 +3467,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -2396,12 +3495,17 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier (optional)
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       - name: state
         in: query
         description: Mediation state (optional)
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -2426,9 +3530,10 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
-          format: uuid
       responses:
         '200':
           description: ''
@@ -2446,9 +3551,10 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
-          format: uuid
       responses:
         '200':
           description: ''
@@ -2467,9 +3573,10 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
-          format: uuid
       requestBody:
         content:
           application/json:
@@ -2495,9 +3602,10 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
-          format: uuid
       responses:
         '201':
           description: ''
@@ -2516,6 +3624,8 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -2532,6 +3642,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeylistUpdate'
       x-codegen-request-body-name: body
+      operationId: update_keylist_for_connection
   /mediation/{mediation_id}/default-mediator:
     put:
       tags:
@@ -2542,9 +3653,10 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
-          format: uuid
       responses:
         '201':
           description: ''
@@ -2583,6 +3695,8 @@ paths:
         in: path
         description: Subwallet identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -2602,6 +3716,8 @@ paths:
         in: path
         description: Subwallet identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -2629,6 +3745,8 @@ paths:
         in: path
         description: Subwallet identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -2655,6 +3773,8 @@ paths:
       - name: wallet_id
         in: path
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       requestBody:
@@ -2681,6 +3801,9 @@ paths:
       - name: wallet_name
         in: query
         description: Wallet name
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -2700,11 +3823,25 @@ paths:
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      - name: create_unique_did
+        in: query
+        description: Create unique DID for this invitation (default false)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: multi_use
         in: query
         description: Create invitation for multiple use (default false)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       requestBody:
@@ -2722,6 +3859,29 @@ paths:
                 $ref: '#/components/schemas/InvitationRecord'
       x-codegen-request-body-name: body
       operationId: create_invitation
+  /out-of-band/invitations/{invi_msg_id}:
+    delete:
+      tags:
+      - out-of-band
+      summary: Delete records associated with invitation
+      parameters:
+      - name: invi_msg_id
+        in: path
+        description: Invitation Message identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitationRecordResponse'
+      operationId: remove_invitation_record
   /out-of-band/receive-invitation:
     post:
       tags:
@@ -2731,22 +3891,34 @@ paths:
       - name: alias
         in: query
         description: Alias for connection
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: use_existing_connection
         in: query
         description: Use an existing connection, if possible
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       requestBody:
@@ -2806,12 +3978,17 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       - name: role
         in: query
         description: Role assigned in presentation exchange
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -2820,6 +3997,9 @@ paths:
       - name: state
         in: query
         description: Presentation exchange state
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -2834,9 +4014,11 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       responses:
         '200':
           description: ''
@@ -2855,6 +4037,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2875,6 +4059,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2896,29 +4082,43 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: count
         in: query
         description: Maximum number to retrieve
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: extra_query
         in: query
         description: (JSON) object mapping referents to extra WQL queries
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^{\s*".*?"\s*:\s*{.*?}\s*(,\s*".*?"\s*:\s*{.*?}\s*)*\s*}$
           type: string
       - name: referent
         in: query
         description: Proof request referents of interest, comma-separated
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: start
         in: query
         description: Start index
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
@@ -2942,6 +4142,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2970,6 +4172,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2998,6 +4202,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3026,6 +4232,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3095,6 +4303,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: create_proof_request
   /present-proof/records:
@@ -3106,12 +4315,17 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       - name: role
         in: query
         description: Role assigned in presentation exchange
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -3120,6 +4334,9 @@ paths:
       - name: state
         in: query
         description: Presentation exchange state
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -3135,9 +4352,11 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
-          format: uuid
       responses:
         '200':
           description: ''
@@ -3145,6 +4364,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchangeList'
+      deprecated: true
       operationId: get_records
   /present-proof/records/{pres_ex_id}:
     get:
@@ -3156,6 +4376,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3166,6 +4388,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
+      deprecated: true
       operationId: get_record
     delete:
       tags:
@@ -3176,6 +4399,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3186,6 +4411,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentProofModuleResponse'
+      deprecated: true
       operationId: delete_record
   /present-proof/records/{pres_ex_id}/credentials:
     get:
@@ -3197,29 +4423,43 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: count
         in: query
         description: Maximum number to retrieve
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: extra_query
         in: query
         description: (JSON) object mapping referents to extra WQL queries
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^{\s*".*?"\s*:\s*{.*?}\s*(,\s*".*?"\s*:\s*{.*?}\s*)*\s*}$
           type: string
       - name: referent
         in: query
         description: Proof request referents of interest, comma-separated
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: start
         in: query
         description: Start index
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
@@ -3232,6 +4472,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/IndyCredPrecis'
+      deprecated: true
       operationId: get_matching_credentials
   /present-proof/records/{pres_ex_id}/problem-report:
     post:
@@ -3243,6 +4484,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3259,6 +4502,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentProofModuleResponse'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: report_problem
   /present-proof/records/{pres_ex_id}/send-presentation:
@@ -3271,6 +4515,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3287,6 +4533,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_presentation
   /present-proof/records/{pres_ex_id}/send-request:
@@ -3299,6 +4546,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3315,6 +4564,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_request
   /present-proof/records/{pres_ex_id}/verify-presentation:
@@ -3327,6 +4577,8 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3337,6 +4589,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
+      deprecated: true
       operationId: verify_presentation
   /present-proof/send-proposal:
     post:
@@ -3356,6 +4609,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_proposal
   /present-proof/send-request:
@@ -3376,6 +4630,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/V10PresentationExchange'
+      deprecated: true
       x-codegen-request-body-name: body
       operationId: send_request_free
   /resolver/resolve/{did}:
@@ -3388,6 +4643,8 @@ paths:
         in: path
         description: DID
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^did:([a-z0-9]+):((?:[a-zA-Z0-9._%-]*:)*[a-zA-Z0-9._%-]+)$
           type: string
@@ -3409,6 +4666,8 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -3430,6 +4689,8 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -3440,6 +4701,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegsCreated'
+      operationId: rotate_rev_reg
   /revocation/clear-pending-revocations:
     post:
       tags:
@@ -3457,7 +4719,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PublishRevocations'
+                $ref: '#/components/schemas/PublishRevocationsSchemaAnoncreds'
       x-codegen-request-body-name: body
       operationId: clear_pending_revocations
   /revocation/create-registry:
@@ -3489,18 +4751,27 @@ paths:
       - name: cred_ex_id
         in: query
         description: Credential exchange identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: cred_rev_id
         in: query
         description: Credential revocation identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: rev_reg_id
         in: query
         description: Revocation registry identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3510,18 +4781,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CredRevRecordResult'
+                $ref: '#/components/schemas/CredRevRecordResultSchemaAnoncreds'
       operationId: get_revocation_status
   /revocation/publish-revocations:
     post:
       tags:
       - revocation
       summary: Publish pending revocations to ledger
+      parameters:
+      - name: conn_id
+        in: query
+        description: Connection identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: create_transaction_for_endorser
+        in: query
+        description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PublishRevocations'
+              $ref: '#/components/schemas/PublishRevocationsSchemaAnoncreds'
         required: false
       responses:
         '200':
@@ -3541,12 +4829,18 @@ paths:
       - name: cred_def_id
         in: query
         description: Credential definition identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
       - name: state
         in: query
         description: Revocation registry state
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -3573,12 +4867,18 @@ paths:
       - name: cred_def_id
         in: query
         description: Credential definition identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
       - name: rev_reg_id
         in: query
         description: Revocation registry identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3589,6 +4889,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TailsDeleteResponse'
+      operationId: delete_tails_file
   /revocation/registry/{rev_reg_id}:
     get:
       tags:
@@ -3599,6 +4900,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3619,6 +4922,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3647,17 +4952,25 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       responses:
@@ -3678,17 +4991,25 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       responses:
@@ -3709,6 +5030,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3716,6 +5039,8 @@ paths:
         in: query
         description: Apply updated accumulator transaction to ledger
         required: true
+        style: form
+        explode: true
         schema:
           type: boolean
       responses:
@@ -3725,6 +5050,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegWalletUpdatedResult'
+      operationId: update_rev_reg_revoked_state
   /revocation/registry/{rev_reg_id}/issued:
     get:
       tags:
@@ -3735,6 +5061,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3745,7 +5073,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevRegIssuedResult'
-      operationId: get_registry_issued_credentials_count
+      operationId: get_rev_reg_issued_count
   /revocation/registry/{rev_reg_id}/issued/details:
     get:
       tags:
@@ -3756,6 +5084,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3766,6 +5096,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredRevRecordDetailsResult'
+      operationId: get_rev_reg_issued_issued_details
   /revocation/registry/{rev_reg_id}/issued/indy_recs:
     get:
       tags:
@@ -3776,6 +5107,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3786,6 +5119,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredRevIndyRecordsResult'
+      operationId: get_rev_reg_indy_recs
   /revocation/registry/{rev_reg_id}/set-state:
     patch:
       tags:
@@ -3796,6 +5130,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3803,6 +5139,8 @@ paths:
         in: query
         description: Revocation registry state to set
         required: true
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -3829,6 +5167,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3850,6 +5190,8 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -3866,6 +5208,23 @@ paths:
       tags:
       - revocation
       summary: Revoke an issued credential
+      parameters:
+      - name: conn_id
+        in: query
+        description: Connection identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: create_transaction_for_endorser
+        in: query
+        description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
       requestBody:
         content:
           application/json:
@@ -3890,11 +5249,17 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       requestBody:
@@ -3921,23 +5286,35 @@ paths:
       - name: schema_id
         in: query
         description: Schema identifier
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
       - name: schema_issuer_did
         in: query
         description: Schema issuer DID
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: schema_name
         in: query
         description: Schema name
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: schema_version
         in: query
         description: Schema version
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[0-9.]+$
           type: string
@@ -3959,6 +5336,8 @@ paths:
         in: path
         description: Schema identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^[1-9][0-9]*|[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
@@ -3980,6 +5359,8 @@ paths:
         in: path
         description: Schema identifier
         required: true
+        style: simple
+        explode: false
         schema:
           pattern: ^[1-9][0-9]*|[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
@@ -4003,6 +5384,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProfileSettings'
+      operationId: get_settings
     put:
       tags:
       - settings
@@ -4021,6 +5403,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProfileSettings'
       x-codegen-request-body-name: body
+      operationId: update_settings
   /shutdown:
     get:
       tags:
@@ -4109,6 +5492,8 @@ paths:
         in: path
         description: Transaction identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -4142,13 +5527,10 @@ paths:
         in: query
         description: Transaction identifier
         required: true
+        style: form
+        explode: true
         schema:
           type: string
-      - name: endorser_write_txn
-        in: query
-        description: Endorser will write the transaction after endorsing it
-        schema:
-          type: boolean
       requestBody:
         content:
           application/json:
@@ -4174,17 +5556,24 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: endorser_did
         in: query
         description: Endorser DID
         required: true
+        style: form
+        explode: true
         schema:
           type: string
       - name: endorser_name
         in: query
         description: Endorser Name
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -4205,11 +5594,16 @@ paths:
         in: path
         description: Connection identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: transaction_my_job
         in: query
         description: Transaction related jobs
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -4234,6 +5628,8 @@ paths:
         in: path
         description: Transaction identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -4254,6 +5650,8 @@ paths:
         in: path
         description: Transaction identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -4274,11 +5672,16 @@ paths:
         in: path
         description: Transaction identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       - name: endorser_did
         in: query
         description: Endorser DID
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -4299,6 +5702,8 @@ paths:
         in: path
         description: Transaction identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -4319,6 +5724,8 @@ paths:
         in: path
         description: Transaction identifier
         required: true
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
@@ -4329,6 +5736,126 @@ paths:
               schema:
                 $ref: '#/components/schemas/TransactionRecord'
       operationId: write_transaction
+  /vc/credentials:
+    get:
+      tags:
+      - vc-api
+      summary: List credentials
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCredentialsResponse'
+      operationId: list_credentials
+  /vc/credentials/issue:
+    post:
+      tags:
+      - vc-api
+      summary: Issue a credential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueCredentialRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueCredentialResponse'
+      x-codegen-request-body-name: body
+      operationId: issue_credential
+  /vc/credentials/store:
+    post:
+      tags:
+      - vc-api
+      summary: Store a credential
+      operationId: store_credential
+  /vc/credentials/verify:
+    post:
+      tags:
+      - vc-api
+      summary: Verify a credential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyCredentialRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyCredentialResponse'
+      x-codegen-request-body-name: body
+      operationId: verify_credential
+  /vc/credentials/{credential_id}:
+    get:
+      tags:
+      - vc-api
+      summary: Fetch credential by ID
+      parameters:
+      - name: credential_id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchCredentialResponse'
+      operationId: get_credential
+  /vc/presentations/prove:
+    post:
+      tags:
+      - vc-api
+      summary: Prove a presentation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvePresentationRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvePresentationResponse'
+      x-codegen-request-body-name: body
+      operationId: prove_presentation
+  /vc/presentations/verify:
+    post:
+      tags:
+      - vc-api
+      summary: Verify a Presentation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyPresentationRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyPresentationResponse'
+      x-codegen-request-body-name: body
+      operationId: verify_presentation
   /wallet/did:
     get:
       tags:
@@ -4338,12 +5865,18 @@ paths:
       - name: did
         in: query
         description: DID of interest
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: key_type
         in: query
         description: Key type to query for.
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -4352,15 +5885,23 @@ paths:
       - name: method
         in: query
         description: DID method to query for. e.g. sov to only fetch indy/sov DIDs
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
           - key
           - sov
+          - did:peer:2
+          - did:peer:4
       - name: posture
         in: query
         description: Whether DID is current public DID, posted to ledger but current
           public DID, or local to the wallet
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
           enum:
@@ -4370,6 +5911,9 @@ paths:
       - name: verkey
         in: query
         description: Verification key of interest
+        required: false
+        style: form
+        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
@@ -4411,6 +5955,8 @@ paths:
         in: query
         description: DID of interest
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
@@ -4444,22 +5990,33 @@ paths:
         in: query
         description: DID of interest
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Mediation identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -4480,6 +6037,8 @@ paths:
         in: query
         description: DID of interest
         required: true
+        style: form
+        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
@@ -4510,6 +6069,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WalletModuleResponse'
       x-codegen-request-body-name: body
+      operationId: sign_jwt
   /wallet/jwt/verify:
     post:
       tags:
@@ -4529,6 +6089,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/JWSVerifyResponse'
       x-codegen-request-body-name: body
+      operationId: verify_jwt
   /wallet/sd-jwt/sign:
     post:
       tags:
@@ -4548,6 +6109,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WalletModuleResponse'
       x-codegen-request-body-name: body
+      operationId: sign_sd_jwt
   /wallet/sd-jwt/verify:
     post:
       tags:
@@ -4568,6 +6130,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/SDJWSVerifyResponse'
       x-codegen-request-body-name: body
+      operationId: verify_sd_jwt
   /wallet/set-did-endpoint:
     post:
       tags:
@@ -4577,11 +6140,17 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
+        required: false
+        style: form
+        explode: true
         schema:
           type: boolean
       requestBody:
@@ -4629,6 +6198,8 @@ components:
     ActionMenuModulesResult:
       type: object
     AdminConfig:
+      required:
+      - config
       type: object
       properties:
         config:
@@ -4682,6 +6253,28 @@ components:
           type: boolean
           description: Readiness status
           example: true
+    AnonCredsSchema:
+      type: object
+      properties:
+        attrNames:
+          type: array
+          description: Schema attribute names
+          items:
+            type: string
+            description: Attribute name
+            example: score
+        issuerId:
+          type: string
+          description: Issuer Identifier of the credential definition or schema
+          example: WgWxqztrNooG92RXvxSTWv
+        name:
+          type: string
+          description: Schema name
+          example: Example schema
+        version:
+          type: string
+          description: Schema version
+          example: '1.0'
     AttachDecorator:
       required:
       - data
@@ -4861,6 +6454,8 @@ components:
             type: string
             description: Ledgers identifiers
     ConnRecord:
+      required:
+      - connection_id
       type: object
       properties:
         accept:
@@ -4885,6 +6480,7 @@ components:
           enum:
           - connections/1.0
           - didexchange/1.0
+          - didexchange/1.1
         created_at:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
           type: string
@@ -4916,10 +6512,10 @@ components:
           description: ID of out-of-band invitation message
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         my_did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: Our DID for connection
-          example: WgWxqztrNooG92RXvxSTWv
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         request_id:
           type: string
           description: Connection request identifier
@@ -4934,10 +6530,10 @@ components:
           description: Current record state
           example: active
         their_did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: Their DID for connection
-          example: WgWxqztrNooG92RXvxSTWv
+          example: did:peer:WgWxqztrNooG92RXvxSTWv
         their_label:
           type: string
           description: Their label for connection
@@ -4970,7 +6566,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
@@ -5008,6 +6603,8 @@ components:
           description: Service endpoint at which to reach this agent
           example: http://192.168.56.101:8020
     ConnectionList:
+      required:
+      - results
       type: object
       properties:
         results:
@@ -5187,7 +6784,7 @@ components:
           description: Agent config key-value pairs
         image_url:
           type: string
-          description: Image url for this wallet. This image url is publicized        (self-attested)
+          description: Image url for this wallet. This image url is publicized (self-attested)
             to other agents as part of forming a connection.
           example: https://aries.ca/images/sample.png
         key_management_mode:
@@ -5198,15 +6795,14 @@ components:
           - managed
         label:
           type: string
-          description: Label for this wallet. This label is publicized        (self-attested)
+          description: Label for this wallet. This label is publicized (self-attested)
             to other agents as part of forming a connection.
           example: Alice
         wallet_dispatch_type:
           type: string
-          description: Webhook target dispatch type for this wallet.         default
-            - Dispatch only to webhooks associated with this wallet.         base
-            - Dispatch only to webhooks associated with the base wallet.         both
-            - Dispatch to both webhook targets.
+          description: 'Webhook target dispatch type for this wallet. default: Dispatch
+            only to webhooks associated with this wallet. base: Dispatch only to webhooks
+            associated with the base wallet. both: Dispatch to both webhook targets.'
           example: default
           enum:
           - default
@@ -5230,10 +6826,11 @@ components:
           example: MyNewWallet
         wallet_type:
           type: string
-          description: Type of the wallet to create
-          example: indy
+          description: Type of the wallet to create. Must be same as base wallet.
+          example: askar
           enum:
           - askar
+          - askar-anoncreds
           - in_memory
           - indy
         wallet_webhook_urls:
@@ -5286,7 +6883,7 @@ components:
       properties:
         wallet_key:
           type: string
-          description: Master key used for key derivation. Only required for         unamanged
+          description: Master key used for key derivation. Only required for unmanaged
             wallets.
           example: MySecretKey123
     CreateWalletTokenResponse:
@@ -5315,6 +6912,91 @@ components:
           type: string
           description: 'Attribute value: base64-encode if MIME type is present'
           example: martini
+    CredDef:
+      type: object
+      properties:
+        issuerId:
+          type: string
+          description: Issuer Identifier of the credential definition or schema
+          example: WgWxqztrNooG92RXvxSTWv
+        schemaId:
+          type: string
+          description: Schema identifier
+          example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+        tag:
+          type: string
+          description: The tag value passed in by the Issuer to an AnonCred's Credential
+            Definition create and store implementation.
+          example: default
+        type:
+          type: string
+          enum:
+          - CL
+        value:
+          $ref: '#/components/schemas/CredDefValueSchemaAnoncreds'
+    CredDefPostOptions:
+      type: object
+      properties:
+        create_transaction_for_endorser:
+          type: boolean
+          description: Create transaction for endorser (optional, default false).
+            Use this for agents who don't specify an author role but want to create
+            a transaction for an endorser to sign.
+          example: false
+        endorser_connection_id:
+          type: string
+          description: Connection identifier (optional) (this is an example). You
+            can set this if you know the endorser's connection id you want to use.
+            If not specified then the agent will attempt to find an endorser connection.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        revocation_registry_size:
+          type: integer
+          description: Maximum number of credential revocations per registry
+          format: int32
+          example: 1000
+        support_revocation:
+          type: boolean
+          description: Support credential revocation
+    CredDefPostRequest:
+      type: object
+      properties:
+        credential_definition:
+          $ref: '#/components/schemas/InnerCredDef'
+        options:
+          $ref: '#/components/schemas/CredDefPostOptions'
+    CredDefResult:
+      type: object
+      properties:
+        credential_definition_metadata:
+          type: object
+          properties: {}
+        credential_definition_state:
+          $ref: '#/components/schemas/CredDefState'
+        job_id:
+          type: string
+        registration_metadata:
+          type: object
+          properties: {}
+    CredDefState:
+      type: object
+      properties:
+        credential_definition:
+          type: object
+          description: credential definition
+          allOf:
+          - $ref: '#/components/schemas/CredDef'
+        credential_definition_id:
+          type: string
+          description: credential definition id
+          nullable: true
+          example: WgWxqztrNooG92RXvxSTWv:3:CL:20:tag
+        state:
+          type: string
+          enum:
+          - finished
+          - failed
+          - action
+          - wait
     CredDefValue:
       type: object
       properties:
@@ -5337,6 +7019,28 @@ components:
           example: '0'
         r:
           $ref: '#/components/schemas/Generated'
+        rctxt:
+          pattern: ^[0-9]*$
+          type: string
+          example: '0'
+        s:
+          pattern: ^[0-9]*$
+          type: string
+          example: '0'
+        z:
+          pattern: ^[0-9]*$
+          type: string
+          example: '0'
+    CredDefValuePrimarySchemaAnoncreds:
+      type: object
+      properties:
+        n:
+          pattern: ^[0-9]*$
+          type: string
+          example: '0'
+        r:
+          type: object
+          properties: {}
         rctxt:
           pattern: ^[0-9]*$
           type: string
@@ -5385,6 +7089,55 @@ components:
         y:
           type: string
           example: 1 153558BD903312 2 095E45DDF417D 1 0000000000000000
+    CredDefValueRevocationSchemaAnoncreds:
+      type: object
+      properties:
+        g:
+          type: string
+          example: 1 1F14F&ECB578F 2 095E45DDF417D
+        g_dash:
+          type: string
+          example: 1 1D64716fCDC00C 1 0C781960FA66E3D3 2 095E45DDF417D
+        h:
+          type: string
+          example: 1 16675DAE54BFAE8 2 095E45DD417D
+        h0:
+          type: string
+          example: 1 21E5EF9476EAF18 2 095E45DDF417D
+        h1:
+          type: string
+          example: 1 236D1D99236090 2 095E45DDF417D
+        h2:
+          type: string
+          example: 1 1C3AE8D1F1E277 2 095E45DDF417D
+        h_cap:
+          type: string
+          example: 1 1B2A32CF3167 1 2490FEBF6EE55 1 0000000000000000
+        htilde:
+          type: string
+          example: 1 1D8549E8C0F8 2 095E45DDF417D
+        pk:
+          type: string
+          example: 1 142CD5E5A7DC 1 153885BD903312 2 095E45DDF417D
+        u:
+          type: string
+          example: 1 0C430AAB2B4710 1 1CB3A0932EE7E 1 0000000000000000
+        y:
+          type: string
+          example: 1 153558BD903312 2 095E45DDF417D 1 0000000000000000
+    CredDefValueSchemaAnoncreds:
+      type: object
+      properties:
+        primary:
+          type: object
+          description: Primary value for credential definition
+          allOf:
+          - $ref: '#/components/schemas/CredDefValuePrimarySchemaAnoncreds'
+        revocation:
+          type: object
+          description: Revocation value for credential definition
+          allOf:
+          - $ref: '#/components/schemas/CredDefValueRevocationSchemaAnoncreds'
     CredInfoList:
       type: object
       properties:
@@ -5399,6 +7152,13 @@ components:
           type: object
           properties: {}
           description: Indy revocation registry delta
+    CredRevIndyRecordsResultSchemaAnoncreds:
+      type: object
+      properties:
+        rev_reg_delta:
+          type: object
+          properties: {}
+          description: Indy revocation registry delta
     CredRevRecordDetailsResult:
       type: object
       properties:
@@ -5406,7 +7166,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IssuerCredRevRecord'
+    CredRevRecordDetailsResultSchemaAnoncreds:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuerCredRevRecordSchemaAnoncreds'
     CredRevRecordResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IssuerCredRevRecordSchemaAnoncreds'
+    CredRevRecordResultSchemaAnoncreds:
       type: object
       properties:
         result:
@@ -5434,6 +7206,9 @@ components:
           - https://www.w3.org/2018/credentials/examples/v1
           items:
             type: object
+        credentialStatus:
+          type: object
+          example: ''
         credentialSubject:
           type: object
           example: ''
@@ -5445,6 +7220,7 @@ components:
         id:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
+          description: The ID of the credential
           example: http://example.edu/credentials/1872
         issuanceDate:
           pattern: ^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$
@@ -5533,6 +7309,8 @@ components:
           description: Credential definition identifier tag
           example: default
     CredentialDefinitionSendResult:
+      required:
+      - credential_definition_id
       type: object
       properties:
         credential_definition_id:
@@ -5562,7 +7340,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -5597,7 +7374,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -5639,6 +7415,12 @@ components:
             Registry
           example: CredentialStatusList2017
     DID:
+      required:
+      - did
+      - key_type
+      - method
+      - posture
+      - verkey
       type: object
       properties:
         did:
@@ -5653,6 +7435,10 @@ components:
           enum:
           - ed25519
           - bls12381g2
+        metadata:
+          type: object
+          properties: {}
+          description: Additional metadata associated with the DID
         method:
           type: string
           description: Did method associated with the DID
@@ -5686,7 +7472,7 @@ components:
           - $ref: '#/components/schemas/DIDCreateOptions'
         seed:
           type: string
-          description: Optional seed to use for DID, Must beenabled in configuration
+          description: Optional seed to use for DID, Must be enabled in configuration
             before use.
           example: 000000000000000000000000Trustee1
     DIDCreateOptions:
@@ -5760,6 +7546,15 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/DID'
+    DIDRotateRequestJSON:
+      required:
+      - to_did
+      type: object
+      properties:
+        to_did:
+          type: string
+          description: The DID the rotating party is rotating to
+          example: did:web:example.com
     DIDXRejectRequest:
       type: object
       properties:
@@ -5779,7 +7574,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
@@ -5939,7 +7733,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         protocols:
           type: array
@@ -5958,7 +7751,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         disclosures:
           type: array
@@ -5980,6 +7772,24 @@ components:
           description: Signature options
           allOf:
           - $ref: '#/components/schemas/SignatureOptions'
+    DocumentVerificationResult:
+      required:
+      - verified
+      type: object
+      properties:
+        document:
+          type: object
+          properties: {}
+        errors:
+          type: array
+          items:
+            type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProofResult'
+        verified:
+          type: boolean
     EndorserInfo:
       required:
       - endorser_did
@@ -6004,6 +7814,11 @@ components:
           type: string
           description: Their endpoint
           example: https://myhost:8021
+    FetchCredentialResponse:
+      type: object
+      properties:
+        results:
+          $ref: '#/components/schemas/VerifiableCredential'
     Filter:
       type: object
       properties:
@@ -6065,6 +7880,33 @@ components:
           pattern: ^[0-9]*$
           type: string
           example: '0'
+    GetCredDefResult:
+      type: object
+      properties:
+        credential_definition:
+          type: object
+          description: credential definition
+          allOf:
+          - $ref: '#/components/schemas/CredDef'
+        credential_definition_id:
+          type: string
+          description: credential definition id
+          example: WgWxqztrNooG92RXvxSTWv:3:CL:20:tag
+        credential_definitions_metadata:
+          type: object
+          properties: {}
+        resolution_metadata:
+          type: object
+          properties: {}
+    GetCredDefsResponse:
+      type: object
+      properties:
+        credential_definition_ids:
+          type: array
+          items:
+            type: string
+            description: credential definition identifiers
+            example: GvLGiRogTJubmj5B36qhYz:3:CL:8:faber.agent.degree_schema
     GetDIDEndpointResponse:
       type: object
       properties:
@@ -6097,6 +7939,41 @@ components:
           - NETWORK_MONITOR
           - USER
           - ROLE_REMOVE
+    GetSchemaResult:
+      type: object
+      properties:
+        resolution_metadata:
+          type: object
+          properties: {}
+        schema:
+          $ref: '#/components/schemas/AnonCredsSchema'
+        schema_id:
+          type: string
+          description: Schema identifier
+          example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+        schema_metadata:
+          type: object
+          properties: {}
+    GetSchemasResponse:
+      type: object
+      properties:
+        schema_ids:
+          type: array
+          items:
+            type: string
+            description: Schema identifiers
+            example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+    Hangup:
+      type: object
+      properties:
+        '@id':
+          type: string
+          description: Message identifier
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        '@type':
+          type: string
+          description: Message type
+          example: https://didcomm.org/my-family/1.0/my-message-type
     HolderModuleResponse:
       type: object
     IndyAttrValue:
@@ -6177,6 +8054,8 @@ components:
           description: Schema identifier
           example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
     IndyCredPrecis:
+      required:
+      - cred_info
       type: object
       properties:
         cred_info:
@@ -6223,10 +8102,9 @@ components:
           description: Nonce in credential request
           example: '0'
         prover_did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
-          description: Prover DID
-          example: WgWxqztrNooG92RXvxSTWv
+          description: Prover DID/Random String/UUID
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     IndyCredential:
       required:
       - cred_def_id
@@ -6475,7 +8353,7 @@ components:
         '@type':
           type: string
           description: Message type identifier
-          example: did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/present-proof/1.0/presentation-preview
+          example: https://didcomm.org/present-proof/1.0/presentation-preview
         attributes:
           type: array
           items:
@@ -6519,11 +8397,7 @@ components:
       type: object
       properties:
         eq_proof:
-          type: object
-          description: Indy equality proof
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyEQProof'
+          $ref: '#/components/schemas/IndyPrimaryProof_eq_proof'
         ge_proofs:
           type: array
           description: Indy GE proofs
@@ -6606,11 +8480,7 @@ components:
       type: object
       properties:
         non_revoc_proof:
-          type: object
-          description: Indy non-revocation proof
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyNonRevocProof'
+          $ref: '#/components/schemas/IndyProofProofProofsProof_non_revoc_proof'
         primary_proof:
           type: object
           description: Indy primary proof
@@ -6630,10 +8500,7 @@ components:
             type: string
             example: age
         non_revoked:
-          type: object
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyProofReqAttrSpecNonRevoked'
+          $ref: '#/components/schemas/IndyProofReqAttrSpec_non_revoked'
         restrictions:
           type: array
           description: 'If present, credential must satisfy one of given restrictions:
@@ -6674,10 +8541,7 @@ components:
           description: Attribute name
           example: index
         non_revoked:
-          type: object
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyProofReqPredSpecNonRevoked'
+          $ref: '#/components/schemas/IndyProofReqPredSpec_non_revoked'
         p_type:
           type: string
           description: Predicate type ('<', '<=', '>=', or '>')
@@ -6730,10 +8594,7 @@ components:
           description: Proof request name
           example: Proof request
         non_revoked:
-          type: object
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyProofRequestNonRevoked'
+          $ref: '#/components/schemas/IndyProofRequest_non_revoked'
         nonce:
           pattern: ^[1-9][0-9]*$
           type: string
@@ -6965,6 +8826,45 @@ components:
           items:
             type: integer
             format: int32
+    InnerCredDef:
+      required:
+      - issuerId
+      - schemaId
+      - tag
+      type: object
+      properties:
+        issuerId:
+          type: string
+          description: Issuer Identifier of the credential definition
+          example: WgWxqztrNooG92RXvxSTWv
+        schemaId:
+          type: string
+          description: Schema identifier
+          example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+        tag:
+          type: string
+          description: Credential definition tag
+          example: default
+    InnerRevRegDef:
+      type: object
+      properties:
+        credDefId:
+          type: string
+          description: Credential definition identifier
+          example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+        issuerId:
+          type: string
+          description: Issuer Identifier of the credential definition or schema
+          example: WgWxqztrNooG92RXvxSTWv
+        maxCredNum:
+          type: integer
+          description: Maximum number of credential revocations per registry
+          format: int32
+          example: 777
+        tag:
+          type: string
+          description: tag for revocation registry
+          example: default
     InputDescriptors:
       type: object
       properties:
@@ -7040,7 +8940,7 @@ components:
           items:
             type: string
             description: Handshake protocol to specify in invitation
-            example: did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/didexchange/1.0
+            example: https://didcomm.org/didexchange/1.0
         mediation_id:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -7059,6 +8959,17 @@ components:
           type: string
           description: OOB protocol version
           example: '1.1'
+        use_did:
+          type: string
+          description: DID to use in invitation
+          example: did:example:123
+        use_did_method:
+          type: string
+          description: DID method to use in invitation
+          example: did:peer:2
+          enum:
+          - did:peer:2
+          - did:peer:4
         use_public_did:
           type: boolean
           description: Whether to use public DID in invitation
@@ -7098,7 +9009,7 @@ components:
           items:
             type: string
             description: Handshake protocol
-            example: did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/didexchange/1.0
+            example: https://didcomm.org/didexchange/1.0
         imageUrl:
           type: string
           description: Optional image URL for out-of-band invitation
@@ -7171,7 +9082,13 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+    InvitationRecordResponse:
+      type: object
     InvitationResult:
+      required:
+      - connection_id
+      - invitation
+      - invitation_url
       type: object
       properties:
         connection_id:
@@ -7186,6 +9103,18 @@ components:
           example: http://192.168.56.101:8020/invite?c_i=eyJAdHlwZSI6Li4ufQ==
     IssueCredentialModuleResponse:
       type: object
+    IssueCredentialRequest:
+      type: object
+      properties:
+        credential:
+          $ref: '#/components/schemas/Credential'
+        options:
+          $ref: '#/components/schemas/LDProofVCOptions'
+    IssueCredentialResponse:
+      type: object
+      properties:
+        verifiableCredential:
+          $ref: '#/components/schemas/VerifiableCredential'
     IssuerCredRevRecord:
       type: object
       properties:
@@ -7220,6 +9149,43 @@ components:
           type: string
           description: Revocation registry identifier
           example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+        state:
+          type: string
+          description: Issue credential revocation record state
+          example: issued
+        updated_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of last record update
+          example: 2021-12-31 23:59:59+00:00
+    IssuerCredRevRecordSchemaAnoncreds:
+      type: object
+      properties:
+        created_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of record creation
+          example: 2021-12-31 23:59:59+00:00
+        cred_def_id:
+          type: string
+          description: Credential definition identifier
+        cred_ex_id:
+          type: string
+          description: Credential exchange record identifier at credential issue
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_ex_version:
+          type: string
+          description: Credential exchange version
+        cred_rev_id:
+          type: string
+          description: Credential revocation identifier
+        record_id:
+          type: string
+          description: Issuer credential revocation record identifier
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        rev_reg_id:
+          type: string
+          description: Revocation registry identifier
         state:
           type: string
           description: Issue credential revocation record state
@@ -7381,7 +9347,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         filter:
           type: object
@@ -7424,7 +9389,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         updates:
           type: array
@@ -7492,10 +9456,8 @@ components:
           example:
             proofType: Ed25519Signature2018
           allOf:
-          - $ref: '#/components/schemas/LDProofVCDetailOptions'
-    LDProofVCDetailOptions:
-      required:
-      - proofType
+          - $ref: '#/components/schemas/LDProofVCOptions'
+    LDProofVCOptions:
       type: object
       properties:
         challenge:
@@ -7530,6 +9492,11 @@ components:
           description: The proof type used for the proof. Should match suites registered
             in the Linked Data Cryptographic Suite Registry
           example: Ed25519Signature2018
+        verificationMethod:
+          type: string
+          description: The verification method to use for the proof. Should match
+            a verification method in the wallet
+          example: did:example:123456#key-1
     LedgerConfigInstance:
       type: object
       properties:
@@ -7582,7 +9549,7 @@ components:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
           description: A string value specifying the restricted domain of the signature.
-          example: example.com
+          example: https://example.com
         jws:
           type: string
           description: Associates a Detached Json Web Signature with a proof
@@ -7609,6 +9576,8 @@ components:
           type: string
           description: Information used for proof verification
           example: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+    ListCredentialsResponse:
+      type: object
     MediationCreateRequest:
       type: object
     MediationDeny:
@@ -7621,7 +9590,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
     MediationGrant:
       type: object
@@ -7633,7 +9601,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         endpoint:
           type: string
@@ -7645,14 +9612,17 @@ components:
             type: string
             description: Keys to use for forward message packaging
     MediationIdMatchInfo:
+      required:
+      - mediation_id
       type: object
       properties:
         mediation_id:
           type: string
           description: Mediation record identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     MediationList:
+      required:
+      - results
       type: object
       properties:
         results:
@@ -7714,7 +9684,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         description:
           type: string
@@ -7861,6 +9830,10 @@ components:
           description: Out of band invitation message
           allOf:
           - $ref: '#/components/schemas/InvitationMessage'
+        multi_use:
+          type: boolean
+          description: Allow for multiple uses of the oob invitation
+          example: true
         oob_id:
           type: string
           description: Oob record identifier
@@ -7924,6 +9897,52 @@ components:
         thread_id:
           type: string
           description: Thread ID of the ping message
+    Presentation:
+      required:
+      - '@context'
+      - type
+      type: object
+      properties:
+        '@context':
+          type: array
+          description: The JSON-LD context of the presentation
+          example:
+          - https://www.w3.org/2018/credentials/v1
+          items:
+            type: object
+        holder:
+          type: object
+          description: The JSON-LD Verifiable Credential Holder. Either string of
+            object with id field.
+          example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
+        id:
+          pattern: \w+:(\/?\/?)[^\s]+
+          type: string
+          description: The ID of the presentation
+          example: http://example.edu/presentations/1872
+        proof:
+          type: object
+          description: The proof of the presentation
+          example:
+            created: 2019-12-11 03:50:55
+            jws: eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ
+            proofPurpose: assertionMethod
+            type: Ed25519Signature2018
+            verificationMethod: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+          allOf:
+          - $ref: '#/components/schemas/LinkedDataProof'
+        type:
+          type: array
+          description: The JSON-LD type of the presentation
+          example:
+          - VerifiablePresentation
+          items:
+            type: string
+        verifiableCredential:
+          type: array
+          items:
+            type: object
+            properties: {}
     PresentationDefinition:
       type: object
       properties:
@@ -7962,7 +9981,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -7982,7 +10000,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -7992,6 +10009,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AttachDecorator'
+    PresentationVerificationResult:
+      required:
+      - verified
+      type: object
+      properties:
+        credential_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentVerificationResult'
+        errors:
+          type: array
+          items:
+            type: string
+        presentation_result:
+          $ref: '#/components/schemas/DocumentVerificationResult'
+        verified:
+          type: boolean
     ProfileSettings:
       type: object
       properties:
@@ -8003,6 +10037,18 @@ components:
             debug.invite_public: true
             log.level: INFO
             public_invites: false
+    ProofResult:
+      type: object
+      properties:
+        error:
+          type: string
+        proof:
+          type: object
+          properties: {}
+        purpose_result:
+          $ref: '#/components/schemas/PurposeResult'
+        verified:
+          type: boolean
     ProtocolDescriptor:
       required:
       - pid
@@ -8018,7 +10064,49 @@ components:
             type: string
             description: 'Role: requester or responder'
             example: requester
+    ProvePresentationRequest:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/LDProofVCOptions'
+        presentation:
+          $ref: '#/components/schemas/Presentation'
+    ProvePresentationResponse:
+      type: object
+      properties:
+        verifiablePresentation:
+          $ref: '#/components/schemas/VerifiablePresentation'
     PublishRevocations:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/PublishRevocationsOptions'
+        rrid2crid:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              pattern: ^[1-9][0-9]*$
+              type: string
+              description: Credential revocation identifier
+              example: '12345'
+          description: Credential revocation ids by revocation registry id
+    PublishRevocationsOptions:
+      type: object
+      properties:
+        create_transaction_for_endorser:
+          type: boolean
+          description: Create transaction for endorser (optional, default false).
+            Use this for agents who don't specify an author role but want to create
+            a transaction for an endorser to sign.
+          example: false
+        endorser_connection_id:
+          type: string
+          description: Connection identifier (optional) (this is an example). You
+            can set this if you know the endorser's connection id you want to use.
+            If not specified then the agent will attempt to find an endorser connection.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    PublishRevocationsResult:
       type: object
       properties:
         rrid2crid:
@@ -8031,6 +10119,29 @@ components:
               description: Credential revocation identifier
               example: '12345'
           description: Credential revocation ids by revocation registry id
+    PublishRevocationsSchemaAnoncreds:
+      type: object
+      properties:
+        rrid2crid:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              pattern: ^[1-9][0-9]*$
+              type: string
+              description: Credential revocation identifier
+              example: '12345'
+          description: Credential revocation ids by revocation registry id
+    PurposeResult:
+      type: object
+      properties:
+        controller:
+          type: object
+          properties: {}
+        error:
+          type: string
+        valid:
+          type: boolean
     Queries:
       type: object
       properties:
@@ -8041,7 +10152,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         queries:
           type: array
@@ -8059,7 +10169,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -8102,7 +10211,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
@@ -8144,7 +10252,7 @@ components:
       properties:
         wallet_key:
           type: string
-          description: Master key used for key derivation. Only required for         unmanaged
+          description: Master key used for key derivation. Only required for unmanaged
             wallets.
           example: MySecretKey123
     ResolutionResult:
@@ -8161,6 +10269,88 @@ components:
           type: object
           properties: {}
           description: Resolution metadata
+    RevList:
+      type: object
+      properties:
+        currentAccumulator:
+          type: string
+          description: The current accumulator value
+          example: 21 118...1FB
+        issuerId:
+          type: string
+          description: Issuer Identifier of the credential definition or schema
+          example: WgWxqztrNooG92RXvxSTWv
+        revRegDefId:
+          type: string
+          description: The ID of the revocation registry definition
+          example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+        revocationList:
+          type: array
+          description: Bit list representing revoked credentials
+          example:
+          - 0
+          - 1
+          - 1
+          - 0
+          items:
+            type: integer
+            format: int32
+        timestamp:
+          type: integer
+          description: Timestamp at which revocation list is applicable
+          format: int32
+    RevListCreateRequest:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/RevListOptions'
+        rev_reg_def_id:
+          type: string
+          description: Revocation registry definition identifier
+          example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+    RevListOptions:
+      type: object
+      properties:
+        create_transaction_for_endorser:
+          type: boolean
+          description: Create transaction for endorser (optional, default false).
+            Use this for agents who don't specify an author role but want to create
+            a transaction for an endorser to sign.
+          example: false
+        endorser_connection_id:
+          type: string
+          description: Connection identifier (optional) (this is an example). You
+            can set this if you know the endorser's connection id you want to use.
+            If not specified then the agent will attempt to find an endorser connection.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    RevListResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+        registration_metadata:
+          type: object
+          properties: {}
+        revocation_list_metadata:
+          type: object
+          properties: {}
+        revocation_list_state:
+          $ref: '#/components/schemas/RevListState'
+    RevListState:
+      type: object
+      properties:
+        revocation_list:
+          type: object
+          description: revocation list
+          allOf:
+          - $ref: '#/components/schemas/RevList'
+        state:
+          type: string
+          enum:
+          - finished
+          - failed
+          - action
+          - wait
     RevRegCreateRequest:
       type: object
       properties:
@@ -8176,6 +10366,98 @@ components:
           description: Revocation registry size
           format: int32
           example: 1000
+    RevRegCreateRequestSchemaAnoncreds:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/RevRegDefOptions'
+        revocation_registry_definition:
+          $ref: '#/components/schemas/InnerRevRegDef'
+    RevRegDef:
+      type: object
+      properties:
+        credDefId:
+          type: string
+          description: Credential definition identifier
+          example: WgWxqztrNooG92RXvxSTWv:3:CL:20:tag
+        issuerId:
+          type: string
+          description: Issuer Identifier of the credential definition or schema
+          example: WgWxqztrNooG92RXvxSTWv
+        revocDefType:
+          type: string
+        tag:
+          type: string
+          description: tag for the revocation registry definition
+          example: default
+        value:
+          $ref: '#/components/schemas/RevRegDefValue'
+    RevRegDefOptions:
+      type: object
+      properties:
+        create_transaction_for_endorser:
+          type: boolean
+          description: Create transaction for endorser (optional, default false).
+            Use this for agents who don't specify an author role but want to create
+            a transaction for an endorser to sign.
+          example: false
+        endorser_connection_id:
+          type: string
+          description: Connection identifier (optional) (this is an example). You
+            can set this if you know the endorser's connection id you want to use.
+            If not specified then the agent will attempt to find an endorser connection.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    RevRegDefResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+        registration_metadata:
+          type: object
+          properties: {}
+        revocation_registry_definition_metadata:
+          type: object
+          properties: {}
+        revocation_registry_definition_state:
+          $ref: '#/components/schemas/RevRegDefState'
+    RevRegDefState:
+      type: object
+      properties:
+        revocation_registry_definition:
+          type: object
+          description: revocation registry definition
+          allOf:
+          - $ref: '#/components/schemas/RevRegDef'
+        revocation_registry_definition_id:
+          type: string
+          description: revocation registry definition id
+          example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+        state:
+          type: string
+          enum:
+          - finished
+          - failed
+          - action
+          - wait
+          - decommissioned
+          - full
+    RevRegDefValue:
+      type: object
+      properties:
+        maxCredNum:
+          type: integer
+          format: int32
+          example: 777
+        publicKeys:
+          type: object
+          properties: {}
+          example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
+        tailsHash:
+          type: string
+          example: 7Qen9RDyemMuV7xGQvp7NjwMSpyHieJyBakycxN7dX7P
+        tailsLocation:
+          type: string
+          example: https://tails-server.com/hash/7Qen9RDyemMuV7xGQvp7NjwMSpyHieJyBakycxN7dX7P
     RevRegIssuedResult:
       type: object
       properties:
@@ -8185,7 +10467,21 @@ components:
           description: Number of credentials issued against revocation registry
           format: int32
           example: 0
+    RevRegIssuedResultSchemaAnoncreds:
+      type: object
+      properties:
+        result:
+          minimum: 0
+          type: integer
+          description: Number of credentials issued against revocation registry
+          format: int32
+          example: 0
     RevRegResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IssuerRevRegRecord'
+    RevRegResultSchemaAnoncreds:
       type: object
       properties:
         result:
@@ -8215,6 +10511,21 @@ components:
           type: object
           properties: {}
           description: Indy revocation registry delta
+    RevRegWalletUpdatedResultSchemaAnoncreds:
+      type: object
+      properties:
+        accum_calculated:
+          type: object
+          properties: {}
+          description: Calculated accumulator for phantom revocations
+        accum_fixed:
+          type: object
+          properties: {}
+          description: Applied ledger transaction to fix revocations
+        rev_reg_delta:
+          type: object
+          properties: {}
+          description: Indy revocation registry delta
     RevRegsCreated:
       type: object
       properties:
@@ -8225,6 +10536,18 @@ components:
             type: string
             description: Revocation registry identifiers
             example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+    RevRegsCreatedSchemaAnoncreds:
+      type: object
+      properties:
+        rev_reg_ids:
+          type: array
+          items:
+            pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+            type: string
+            description: Revocation registry identifiers
+            example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+    RevocationAnoncredsModuleResponse:
+      type: object
     RevocationModuleResponse:
       type: object
     RevokeRequest:
@@ -8272,6 +10595,68 @@ components:
           type: string
           description: Thread ID of the credential exchange message thread resulting
             in the credential now being revoked; required if notify is true
+    RevokeRequestSchemaAnoncreds:
+      type: object
+      properties:
+        comment:
+          type: string
+          description: Optional comment to include in revocation notification
+        connection_id:
+          pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
+          type: string
+          description: Connection ID to which the revocation notification will be
+            sent; required if notify is true
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_ex_id:
+          pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
+          type: string
+          description: Credential exchange identifier
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_rev_id:
+          pattern: ^[1-9][0-9]*$
+          type: string
+          description: Credential revocation identifier
+          example: '12345'
+        notify:
+          type: boolean
+          description: Send a notification to the credential recipient
+        notify_version:
+          type: string
+          description: Specify which version of the revocation notification should
+            be sent
+          enum:
+          - v1_0
+          - v2_0
+        publish:
+          type: boolean
+          description: (True) publish revocation to ledger immediately, or (default,
+            False) mark it pending
+        rev_reg_id:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          type: string
+          description: Revocation registry identifier
+          example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+        thread_id:
+          type: string
+          description: Thread ID of the credential exchange message thread resulting
+            in the credential now being revoked; required if notify is true
+    Rotate:
+      required:
+      - to_did
+      type: object
+      properties:
+        '@id':
+          type: string
+          description: Message identifier
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        '@type':
+          type: string
+          description: Message type
+          example: https://didcomm.org/my-family/1.0/my-message-type
+        to_did:
+          type: string
+          description: The DID the rotating party is rotating to
+          example: did:example:newdid
     RouteRecord:
       required:
       - recipient_key
@@ -8423,6 +10808,41 @@ components:
         uri:
           type: string
           description: URI
+    SchemaPostOption:
+      type: object
+      properties:
+        create_transaction_for_endorser:
+          type: boolean
+          description: Create transaction for endorser (optional, default false).
+            Use this for agents who don't specify an author role but want to create
+            a transaction for an endorser to sign.
+          example: false
+        endorser_connection_id:
+          type: string
+          description: Connection identifier (optional) (this is an example). You
+            can set this if you know the endorser's connection id you want to use.
+            If not specified then the agent will attempt to find an endorser connection.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    SchemaPostRequest:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/SchemaPostOption'
+        schema:
+          $ref: '#/components/schemas/AnonCredsSchema'
+    SchemaResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+        registration_metadata:
+          type: object
+          properties: {}
+        schema_metadata:
+          type: object
+          properties: {}
+        schema_state:
+          $ref: '#/components/schemas/SchemaState'
     SchemaSendRequest:
       required:
       - attributes
@@ -8461,6 +10881,22 @@ components:
           type: string
           description: Schema identifier
           example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+    SchemaState:
+      type: object
+      properties:
+        schema:
+          $ref: '#/components/schemas/AnonCredsSchema'
+        schema_id:
+          type: string
+          description: Schema identifier
+          example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+        state:
+          type: string
+          enum:
+          - finished
+          - failed
+          - action
+          - wait
     SchemasCreatedResult:
       type: object
       properties:
@@ -8694,7 +11130,7 @@ components:
           example: '101'
         connection_id:
           type: string
-          description: The connection identifier for thie particular transaction record
+          description: The connection identifier for this particular transaction record
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         created_at:
           pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
@@ -8703,9 +11139,9 @@ components:
           example: 2021-12-31 23:59:59+00:00
         endorser_write_txn:
           type: boolean
-          description: If True, Endorser will write the transaction after endorsing
-            it
-          example: true
+          description: Request Endorser to write the ledger transaction, this parameter
+            is deprecated and no longer supported.
+          example: false
         formats:
           type: array
           items:
@@ -8749,7 +11185,7 @@ components:
               author_goal_code: aries.transaction.ledger.write
               context: did:sov
               method: add-signature
-              signature_type: <requested signature type>
+              signature_type: default
               signer_goal_code: aries.transaction.endorse
         signature_response:
           type: array
@@ -8800,7 +11236,7 @@ components:
       type: object
       properties:
         sent:
-          $ref: '#/components/schemas/PublishRevocations'
+          $ref: '#/components/schemas/PublishRevocationsSchemaAnoncreds'
         txn:
           type: object
           description: Revocation registry revocations transaction to endorse
@@ -8861,20 +11297,19 @@ components:
           description: Agent config key-value pairs
         image_url:
           type: string
-          description: Image url for this wallet. This image url is publicized        (self-attested)
+          description: Image url for this wallet. This image url is publicized (self-attested)
             to other agents as part of forming a connection.
           example: https://aries.ca/images/sample.png
         label:
           type: string
-          description: Label for this wallet. This label is publicized        (self-attested)
+          description: Label for this wallet. This label is publicized (self-attested)
             to other agents as part of forming a connection.
           example: Alice
         wallet_dispatch_type:
           type: string
-          description: Webhook target dispatch type for this wallet.         default
-            - Dispatch only to webhooks associated with this wallet.         base
-            - Dispatch only to webhooks associated with the base wallet.         both
-            - Dispatch to both webhook targets.
+          description: 'Webhook target dispatch type for this wallet. default: Dispatch
+            only to webhooks associated with this wallet. base: Dispatch only to webhooks
+            associated with the base wallet. both: Dispatch to both webhook targets.'
           example: default
           enum:
           - default
@@ -9128,7 +11563,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
@@ -9171,7 +11605,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
@@ -9223,7 +11656,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
@@ -9470,7 +11902,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         presentation_proposal:
           $ref: '#/components/schemas/IndyPresPreview'
@@ -9533,7 +11964,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         proof_request:
           $ref: '#/components/schemas/IndyProofRequest'
@@ -9605,7 +12035,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         credential_preview:
           $ref: '#/components/schemas/V20CredPreview'
@@ -9926,7 +12355,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -9973,7 +12401,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -10048,7 +12475,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         credential_preview:
           $ref: '#/components/schemas/V20CredPreview'
@@ -10091,7 +12517,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -10125,7 +12550,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -10158,7 +12582,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         filter:
           type: object
@@ -10294,7 +12717,6 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
@@ -10488,13 +12910,13 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
           description: Human-readable comment
         formats:
           type: array
+          description: Acceptable attachment formats
           items:
             $ref: '#/components/schemas/V20PresFormat'
         proposals~attach:
@@ -10536,7 +12958,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         presentation_proposal:
           $ref: '#/components/schemas/V20PresProposalByFormat'
@@ -10557,13 +12978,13 @@ components:
         '@type':
           type: string
           description: Message type
-          readOnly: true
           example: https://didcomm.org/my-family/1.0/my-message-type
         comment:
           type: string
           description: Human-readable comment
         formats:
           type: array
+          description: Acceptable attachment formats
           items:
             $ref: '#/components/schemas/V20PresFormat'
         request_presentations~attach:
@@ -10607,7 +13028,6 @@ components:
         connection_id:
           type: string
           description: Connection identifier
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         presentation_request:
           $ref: '#/components/schemas/V20PresRequestByFormat'
@@ -10625,7 +13045,7 @@ components:
         dif:
           type: object
           description: Optional Presentation specification for DIF, overrides the
-            PresentionExchange record's PresRequest
+            PresentationExchange record's PresRequest
           allOf:
           - $ref: '#/components/schemas/DIFPresSpec'
         indy:
@@ -10715,6 +13135,140 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VCRecord'
+    VerifiableCredential:
+      required:
+      - '@context'
+      - credentialSubject
+      - issuanceDate
+      - issuer
+      - proof
+      - type
+      type: object
+      properties:
+        '@context':
+          type: array
+          description: The JSON-LD context of the credential
+          example:
+          - https://www.w3.org/2018/credentials/v1
+          - https://www.w3.org/2018/credentials/examples/v1
+          items:
+            type: object
+        credentialStatus:
+          type: object
+          example: ''
+        credentialSubject:
+          type: object
+          example: ''
+        expirationDate:
+          pattern: ^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$
+          type: string
+          description: The expiration date
+          example: 2010-01-01 19:23:24+00:00
+        id:
+          pattern: \w+:(\/?\/?)[^\s]+
+          type: string
+          description: The ID of the credential
+          example: http://example.edu/credentials/1872
+        issuanceDate:
+          pattern: ^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$
+          type: string
+          description: The issuance date
+          example: 2010-01-01 19:23:24+00:00
+        issuer:
+          type: object
+          description: The JSON-LD Verifiable Credential Issuer. Either string of
+            object with id field.
+          example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
+        proof:
+          type: object
+          description: The proof of the credential
+          example:
+            created: 2019-12-11 03:50:55
+            jws: eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ
+            proofPurpose: assertionMethod
+            type: Ed25519Signature2018
+            verificationMethod: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+          allOf:
+          - $ref: '#/components/schemas/LinkedDataProof'
+        type:
+          type: array
+          description: The JSON-LD type of the credential
+          example:
+          - VerifiableCredential
+          - AlumniCredential
+          items:
+            type: string
+    VerifiablePresentation:
+      required:
+      - '@context'
+      - proof
+      - type
+      type: object
+      properties:
+        '@context':
+          type: array
+          description: The JSON-LD context of the presentation
+          example:
+          - https://www.w3.org/2018/credentials/v1
+          items:
+            type: object
+        holder:
+          type: object
+          description: The JSON-LD Verifiable Credential Holder. Either string of
+            object with id field.
+          example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
+        id:
+          pattern: \w+:(\/?\/?)[^\s]+
+          type: string
+          description: The ID of the presentation
+          example: http://example.edu/presentations/1872
+        proof:
+          type: object
+          description: The proof of the presentation
+          example:
+            created: 2019-12-11 03:50:55
+            jws: eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ
+            proofPurpose: assertionMethod
+            type: Ed25519Signature2018
+            verificationMethod: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+          allOf:
+          - $ref: '#/components/schemas/LinkedDataProof'
+        type:
+          type: array
+          description: The JSON-LD type of the presentation
+          example:
+          - VerifiablePresentation
+          items:
+            type: string
+        verifiableCredential:
+          type: array
+          items:
+            type: object
+            properties: {}
+    VerifyCredentialRequest:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/LDProofVCOptions'
+        verifiableCredential:
+          $ref: '#/components/schemas/VerifiableCredential'
+    VerifyCredentialResponse:
+      type: object
+      properties:
+        results:
+          $ref: '#/components/schemas/PresentationVerificationResult'
+    VerifyPresentationRequest:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/LDProofVCOptions'
+        verifiablePresentation:
+          $ref: '#/components/schemas/VerifiablePresentation'
+    VerifyPresentationResponse:
+      type: object
+      properties:
+        results:
+          $ref: '#/components/schemas/PresentationVerificationResult'
     VerifyRequest:
       required:
       - doc
@@ -10840,10 +13394,37 @@ components:
       properties:
         ledger_id:
           type: string
+    IndyPrimaryProof_eq_proof:
+      type: object
+      description: Indy equality proof
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/IndyEQProof'
+    IndyProofProofProofsProof_non_revoc_proof:
+      type: object
+      description: Indy non-revocation proof
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/IndyNonRevocProof'
+    IndyProofReqAttrSpec_non_revoked:
+      type: object
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/IndyProofReqAttrSpecNonRevoked'
+    IndyProofReqPredSpec_non_revoked:
+      type: object
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/IndyProofReqPredSpecNonRevoked'
+    IndyProofRequest_non_revoked:
+      type: object
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/IndyProofRequestNonRevoked'
   securitySchemes:
     AuthorizationHeader:
       type: apiKey
-      description: Bearer token. Be sure to preprend token with 'Bearer '
+      description: Bearer token. Be sure to prepend token with 'Bearer '
       name: Authorization
       in: header
 x-original-swagger-version: '2.0'
