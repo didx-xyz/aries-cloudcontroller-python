@@ -312,8 +312,8 @@ from aries_cloudcontroller.models.publish_revocations import PublishRevocations
 from aries_cloudcontroller.models.publish_revocations_options import (
     PublishRevocationsOptions,
 )
-from aries_cloudcontroller.models.publish_revocations_result import (
-    PublishRevocationsResult,
+from aries_cloudcontroller.models.publish_revocations_result_schema_anoncreds import (
+    PublishRevocationsResultSchemaAnoncreds,
 )
 from aries_cloudcontroller.models.publish_revocations_schema_anoncreds import (
     PublishRevocationsSchemaAnoncreds,

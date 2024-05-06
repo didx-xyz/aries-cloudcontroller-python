@@ -260,7 +260,7 @@ from aries_cloudcontroller.models import (
     ProvePresentationResponse,
     PublishRevocations,
     PublishRevocationsOptions,
-    PublishRevocationsResult,
+    PublishRevocationsResultSchemaAnoncreds,
     PublishRevocationsSchemaAnoncreds,
     PurposeResult,
     Queries,

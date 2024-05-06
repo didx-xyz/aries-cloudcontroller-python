@@ -26,8 +26,8 @@ from aries_cloudcontroller.models.cred_rev_record_details_result_schema_anoncred
 from aries_cloudcontroller.models.cred_rev_record_result_schema_anoncreds import (
     CredRevRecordResultSchemaAnoncreds,
 )
-from aries_cloudcontroller.models.publish_revocations_result import (
-    PublishRevocationsResult,
+from aries_cloudcontroller.models.publish_revocations_result_schema_anoncreds import (
+    PublishRevocationsResultSchemaAnoncreds,
 )
 from aries_cloudcontroller.models.publish_revocations_schema_anoncreds import (
     PublishRevocationsSchemaAnoncreds,
@@ -1109,7 +1109,7 @@ class AnoncredsRevocationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PublishRevocationsResult:
+    ) -> PublishRevocationsResultSchemaAnoncreds:
         """Publish pending revocations to ledger
 
 
@@ -1127,7 +1127,7 @@ class AnoncredsRevocationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "PublishRevocationsResult",
+            "200": "PublishRevocationsResultSchemaAnoncreds",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
