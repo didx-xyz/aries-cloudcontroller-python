@@ -29,14 +29,13 @@ class ServiceDecorator(BaseModel):
     ServiceDecorator
     """  # noqa: E501
 
-    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
-        default=None, description="List of recipient keys", alias="recipientKeys"
+    recipient_keys: List[Annotated[str, Field(strict=True)]] = Field(
+        description="List of recipient keys", alias="recipientKeys"
     )
     routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
         default=None, description="List of routing keys", alias="routingKeys"
     )
-    service_endpoint: Optional[StrictStr] = Field(
-        default=None,
+    service_endpoint: StrictStr = Field(
         description="Service endpoint at which to reach this agent",
         alias="serviceEndpoint",
     )
