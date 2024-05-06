@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.12.0
+  version: v0.12.1
 servers:
 - url: /
 security:
@@ -132,7 +132,7 @@ tags:
   externalDocs:
     description: Specification
     url: https://github.com/hyperledger/aries-rfcs/tree/527849ec3aa2a8fd47a7bb6c57f918ff8bcb5e8c/features/0048-trust-ping
-- name: vc-api
+- name: vc
   description: Endpoints for managing w3c credentials and presentations
   externalDocs:
     description: Specification
@@ -153,8 +153,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -175,8 +173,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -197,8 +193,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -226,8 +220,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -248,8 +240,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -297,8 +287,6 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -318,33 +306,21 @@ paths:
       - name: issuer_id
         in: query
         description: Issuer Identifier of the credential definition
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: schema_id
         in: query
         description: Schema identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: schema_name
         in: query
         description: Schema name
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: schema_version
         in: query
         description: Schema version
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -365,8 +341,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -388,8 +362,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -451,8 +423,6 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -474,8 +444,6 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -496,27 +464,18 @@ paths:
       - name: cred_ex_id
         in: query
         description: Credential exchange identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: cred_rev_id
         in: query
         description: Credential revocation identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: rev_reg_id
         in: query
         description: Revocation registry identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -526,7 +485,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CredRevRecordResult'
+                $ref: '#/components/schemas/CredRevRecordResultSchemaAnoncreds'
       operationId: get_cred_rev_record
   /anoncreds/revocation/publish-revocations:
     post:
@@ -537,7 +496,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PublishRevocations'
+              $ref: '#/components/schemas/PublishRevocationsSchemaAnoncreds'
         required: false
       responses:
         '200':
@@ -545,7 +504,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PublishRevocationsResult'
+                $ref: '#/components/schemas/PublishRevocationsResultSchemaAnoncreds'
       x-codegen-request-body-name: body
       operationId: publish_revocations
   /anoncreds/revocation/registries:
@@ -557,18 +516,12 @@ paths:
       - name: cred_def_id
         in: query
         description: Credential definition identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
       - name: state
         in: query
         description: Revocation registry state
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -596,8 +549,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -619,8 +570,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -628,8 +577,6 @@ paths:
         in: query
         description: Apply updated accumulator transaction to ledger
         required: true
-        style: form
-        explode: true
         schema:
           type: boolean
       responses:
@@ -650,8 +597,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -673,8 +618,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -696,8 +639,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -719,8 +660,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -728,8 +667,6 @@ paths:
         in: query
         description: Revocation registry state to set
         required: true
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -757,8 +694,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -820,8 +755,6 @@ paths:
         in: path
         description: Schema identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -841,25 +774,16 @@ paths:
       - name: schema_issuer_id
         in: query
         description: Schema issuer identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: schema_name
         in: query
         description: Schema name
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: schema_version
         in: query
         description: Schema version
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -879,17 +803,11 @@ paths:
       - name: alias
         in: query
         description: Alias
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: connection_protocol
         in: query
         description: Connection protocol used
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -899,35 +817,23 @@ paths:
       - name: invitation_key
         in: query
         description: invitation key
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
       - name: invitation_msg_id
         in: query
         description: Identifier of the associated Invitation Message
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: my_did
         in: query
         description: My DID
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: state
         in: query
         description: Connection state
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -943,27 +849,18 @@ paths:
       - name: their_did
         in: query
         description: Their DID
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: their_public_did
         in: query
         description: Their Public DID
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: their_role
         in: query
         description: Their role in the connection protocol
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -988,33 +885,21 @@ paths:
       - name: alias
         in: query
         description: Alias
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: multi_use
         in: query
         description: Create invitation for multiple use (default false)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: public
         in: query
         description: Create invitation from public DID (default false)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
@@ -1062,25 +947,16 @@ paths:
       - name: alias
         in: query
         description: Alias
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -1110,8 +986,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1131,8 +1005,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1153,34 +1025,23 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
         description: Label for connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -1202,16 +1063,11 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
@@ -1234,8 +1090,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1256,16 +1110,11 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: key
         in: query
         description: Key to retrieve.
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -1285,8 +1134,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -1314,8 +1161,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -1343,8 +1188,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -1372,24 +1215,17 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: target_connection_id
         in: query
         description: Target connection identifier
         required: true
-        style: form
-        explode: true
         schema:
           type: string
       - name: message
         in: query
         description: Message
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -1409,17 +1245,11 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
@@ -1446,53 +1276,35 @@ paths:
       - name: cred_def_id
         in: query
         description: Credential definition id
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
       - name: issuer_did
         in: query
         description: Issuer DID
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: schema_id
         in: query
         description: Schema identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
       - name: schema_issuer_did
         in: query
         description: Schema issuer DID
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: schema_name
         in: query
         description: Schema name
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: schema_version
         in: query
         description: Schema version
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9.]+$
           type: string
@@ -1514,8 +1326,6 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -1537,8 +1347,6 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -1560,8 +1368,6 @@ paths:
         in: path
         description: Credential identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1582,25 +1388,17 @@ paths:
         in: path
         description: Credential identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: from
         in: query
         description: Earliest epoch of revocation status interval of interest
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
       - name: to
         in: query
         description: Latest epoch of revocation status interval of interest
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
@@ -1622,8 +1420,6 @@ paths:
         in: path
         description: Credential identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1643,8 +1439,6 @@ paths:
         in: path
         description: Credential identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1665,8 +1459,6 @@ paths:
         in: path
         description: Credential identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1686,8 +1478,6 @@ paths:
         in: path
         description: Credential identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1707,27 +1497,18 @@ paths:
       - name: count
         in: query
         description: Maximum number to retrieve
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: start
         in: query
         description: Start index
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
       - name: wql
         in: query
         description: (JSON) WQL query
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^{.*}$
           type: string
@@ -1748,27 +1529,18 @@ paths:
       - name: count
         in: query
         description: Maximum number to retrieve
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: start
         in: query
         description: Start index
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
       - name: wql
         in: query
         description: (JSON) WQL query
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^{.*}$
           type: string
@@ -1797,8 +1569,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -1819,8 +1589,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -1848,77 +1616,51 @@ paths:
         in: query
         description: Qualified public DID to which to request connection
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: alias
         in: query
         description: Alias for connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: goal
         in: query
         description: A self-attested string that the receiver may want to display
           to the user about the context-specific goal of the out-of-band message
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: goal_code
         in: query
         description: A self-attested code the receiver may want to display to the
           user or use in automatically deciding what to do with the out-of-band message
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
         description: Label for connection request
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: protocol
         in: query
         description: Which DID Exchange Protocol version to use
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -1927,17 +1669,11 @@ paths:
       - name: use_did
         in: query
         description: The DID to use to for this connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: use_did_method
         in: query
         description: The DID method to use to generate a DID for this connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -1946,9 +1682,6 @@ paths:
       - name: use_public_did
         in: query
         description: Use public DID for this connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       responses:
@@ -1968,34 +1701,22 @@ paths:
       - name: alias
         in: query
         description: Alias for connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
@@ -2025,41 +1746,27 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: my_label
         in: query
         description: Label for connection request
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: use_did
         in: query
         description: The DID to use to for this connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: use_did_method
         in: query
         description: The DID method to use to generate a DID for this connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -2083,34 +1790,23 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: my_endpoint
         in: query
         description: My URL endpoint
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
           type: string
       - name: use_public_did
         in: query
         description: Use public DID for this connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       responses:
@@ -2131,8 +1827,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -2160,25 +1854,16 @@ paths:
         in: query
         description: Connection identifier, if none specified, then the query will
           provide features for this agent.
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: query_goal_code
         in: query
         description: Goal-code feature-type query
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: query_protocol
         in: query
         description: Protocol feature-type query
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -2198,9 +1883,6 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -2220,26 +1902,17 @@ paths:
       - name: comment
         in: query
         description: Comment
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: connection_id
         in: query
         description: Connection identifier, if none specified, then the query will
           provide features for this agent.
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: query
         in: query
         description: Protocol feature query
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -2259,9 +1932,6 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -2322,17 +1992,11 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: role
         in: query
         description: Role assigned in credential exchange
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -2341,9 +2005,6 @@ paths:
       - name: state
         in: query
         description: Credential exchange state
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -2361,9 +2022,6 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -2384,8 +2042,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2406,8 +2062,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2429,8 +2083,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2459,8 +2111,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2489,8 +2139,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2519,8 +2167,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2549,8 +2195,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2702,17 +2346,11 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: role
         in: query
         description: Role assigned in credential exchange
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -2721,9 +2359,6 @@ paths:
       - name: state
         in: query
         description: Credential exchange state
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -2741,9 +2376,6 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -2765,8 +2397,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2788,8 +2418,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2812,8 +2440,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2843,8 +2469,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2874,8 +2498,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2905,8 +2527,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -2936,8 +2556,6 @@ paths:
         in: path
         description: Credential exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3085,17 +2703,12 @@ paths:
         in: query
         description: DID of interest
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: endpoint_type
         in: query
         description: Endpoint type of interest (default 'Endpoint')
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -3120,8 +2733,6 @@ paths:
         in: query
         description: DID of interest
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -3143,8 +2754,6 @@ paths:
         in: query
         description: DID of interest
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -3192,8 +2801,6 @@ paths:
         in: query
         description: DID to register
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
@@ -3201,41 +2808,27 @@ paths:
         in: query
         description: Verification key
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
       - name: alias
         in: query
         description: Alias
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: role
         in: query
         description: Role
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -3307,8 +2900,6 @@ paths:
       - name: ledger_id
         in: path
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -3353,18 +2944,12 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier (optional)
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: role
         in: query
         description: Filer on role, 'client' for keys mediated by other agents, 'server'
           for keys mediated by this agent
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           default: server
@@ -3389,16 +2974,11 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: paginate_limit
         in: query
         description: limit number of results
-        required: false
-        style: form
-        explode: true
         schema:
           type: integer
           format: int32
@@ -3406,9 +2986,6 @@ paths:
       - name: paginate_offset
         in: query
         description: offset to use in pagination
-        required: false
-        style: form
-        explode: true
         schema:
           type: integer
           format: int32
@@ -3438,8 +3015,6 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -3467,8 +3042,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -3495,17 +3068,11 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier (optional)
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: state
         in: query
         description: Mediation state (optional)
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -3530,8 +3097,6 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -3551,8 +3116,6 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -3573,8 +3136,6 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -3602,8 +3163,6 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -3624,8 +3183,6 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -3653,8 +3210,6 @@ paths:
         in: path
         description: Mediation record identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -3695,8 +3250,6 @@ paths:
         in: path
         description: Subwallet identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -3716,8 +3269,6 @@ paths:
         in: path
         description: Subwallet identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -3745,8 +3296,6 @@ paths:
         in: path
         description: Subwallet identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -3773,8 +3322,6 @@ paths:
       - name: wallet_id
         in: path
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       requestBody:
@@ -3801,9 +3348,6 @@ paths:
       - name: wallet_name
         in: query
         description: Wallet name
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -3823,25 +3367,16 @@ paths:
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: create_unique_did
         in: query
         description: Create unique DID for this invitation (default false)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: multi_use
         in: query
         description: Create invitation for multiple use (default false)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
@@ -3869,8 +3404,6 @@ paths:
         in: path
         description: Invitation Message identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -3891,34 +3424,22 @@ paths:
       - name: alias
         in: query
         description: Alias for connection
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: auto_accept
         in: query
         description: Auto-accept connection (defaults to configuration)
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Identifier for active mediation record to be used
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: use_existing_connection
         in: query
         description: Use an existing connection, if possible
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
@@ -3978,17 +3499,11 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: role
         in: query
         description: Role assigned in presentation exchange
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -3997,9 +3512,6 @@ paths:
       - name: state
         in: query
         description: Presentation exchange state
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -4014,9 +3526,6 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -4037,8 +3546,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4059,8 +3566,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4082,43 +3587,29 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: count
         in: query
         description: Maximum number to retrieve
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: extra_query
         in: query
         description: (JSON) object mapping referents to extra WQL queries
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^{\s*".*?"\s*:\s*{.*?}\s*(,\s*".*?"\s*:\s*{.*?}\s*)*\s*}$
           type: string
       - name: referent
         in: query
         description: Proof request referents of interest, comma-separated
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: start
         in: query
         description: Start index
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
@@ -4142,8 +3633,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4172,8 +3661,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4202,8 +3689,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4232,8 +3717,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4315,17 +3798,11 @@ paths:
       - name: connection_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: role
         in: query
         description: Role assigned in presentation exchange
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -4334,9 +3811,6 @@ paths:
       - name: state
         in: query
         description: Presentation exchange state
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -4352,9 +3826,6 @@ paths:
       - name: thread_id
         in: query
         description: Thread identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -4376,8 +3847,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4399,8 +3868,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4423,43 +3890,29 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: count
         in: query
         description: Maximum number to retrieve
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: extra_query
         in: query
         description: (JSON) object mapping referents to extra WQL queries
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^{\s*".*?"\s*:\s*{.*?}\s*(,\s*".*?"\s*:\s*{.*?}\s*)*\s*}$
           type: string
       - name: referent
         in: query
         description: Proof request referents of interest, comma-separated
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: start
         in: query
         description: Start index
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9]*$
           type: string
@@ -4484,8 +3937,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4515,8 +3966,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4546,8 +3995,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4577,8 +4024,6 @@ paths:
         in: path
         description: Presentation exchange identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
@@ -4643,8 +4088,6 @@ paths:
         in: path
         description: DID
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^did:([a-z0-9]+):((?:[a-zA-Z0-9._%-]*:)*[a-zA-Z0-9._%-]+)$
           type: string
@@ -4666,8 +4109,6 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -4689,8 +4130,6 @@ paths:
         in: path
         description: Credential definition identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
@@ -4719,7 +4158,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PublishRevocationsSchemaAnoncreds'
+                $ref: '#/components/schemas/PublishRevocations'
       x-codegen-request-body-name: body
       operationId: clear_pending_revocations
   /revocation/create-registry:
@@ -4751,27 +4190,18 @@ paths:
       - name: cred_ex_id
         in: query
         description: Credential exchange identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
           type: string
       - name: cred_rev_id
         in: query
         description: Credential revocation identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
       - name: rev_reg_id
         in: query
         description: Revocation registry identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -4781,7 +4211,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CredRevRecordResultSchemaAnoncreds'
+                $ref: '#/components/schemas/CredRevRecordResult'
       operationId: get_revocation_status
   /revocation/publish-revocations:
     post:
@@ -4792,24 +4222,18 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PublishRevocationsSchemaAnoncreds'
+              $ref: '#/components/schemas/PublishRevocations'
         required: false
       responses:
         '200':
@@ -4829,18 +4253,12 @@ paths:
       - name: cred_def_id
         in: query
         description: Credential definition identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
       - name: state
         in: query
         description: Revocation registry state
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -4867,18 +4285,12 @@ paths:
       - name: cred_def_id
         in: query
         description: Credential definition identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
           type: string
       - name: rev_reg_id
         in: query
         description: Revocation registry identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -4900,8 +4312,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -4922,8 +4332,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -4952,25 +4360,17 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       responses:
@@ -4991,25 +4391,17 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       responses:
@@ -5030,8 +4422,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -5039,8 +4429,6 @@ paths:
         in: query
         description: Apply updated accumulator transaction to ledger
         required: true
-        style: form
-        explode: true
         schema:
           type: boolean
       responses:
@@ -5061,8 +4449,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -5084,8 +4470,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -5107,8 +4491,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -5130,8 +4512,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -5139,8 +4519,6 @@ paths:
         in: query
         description: Revocation registry state to set
         required: true
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -5167,8 +4545,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -5190,8 +4566,6 @@ paths:
         in: path
         description: Revocation Registry identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
           type: string
@@ -5212,17 +4586,11 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
@@ -5249,17 +4617,11 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
@@ -5286,35 +4648,23 @@ paths:
       - name: schema_id
         in: query
         description: Schema identifier
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
       - name: schema_issuer_did
         in: query
         description: Schema issuer DID
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
           type: string
       - name: schema_name
         in: query
         description: Schema name
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: schema_version
         in: query
         description: Schema version
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[0-9.]+$
           type: string
@@ -5336,8 +4686,6 @@ paths:
         in: path
         description: Schema identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^[1-9][0-9]*|[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
@@ -5359,8 +4707,6 @@ paths:
         in: path
         description: Schema identifier
         required: true
-        style: simple
-        explode: false
         schema:
           pattern: ^[1-9][0-9]*|[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
           type: string
@@ -5492,8 +4838,6 @@ paths:
         in: path
         description: Transaction identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -5527,8 +4871,6 @@ paths:
         in: query
         description: Transaction identifier
         required: true
-        style: form
-        explode: true
         schema:
           type: string
       requestBody:
@@ -5556,24 +4898,17 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: endorser_did
         in: query
         description: Endorser DID
         required: true
-        style: form
-        explode: true
         schema:
           type: string
       - name: endorser_name
         in: query
         description: Endorser Name
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -5594,16 +4929,11 @@ paths:
         in: path
         description: Connection identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: transaction_my_job
         in: query
         description: Transaction related jobs
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -5628,8 +4958,6 @@ paths:
         in: path
         description: Transaction identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -5650,8 +4978,6 @@ paths:
         in: path
         description: Transaction identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -5672,16 +4998,11 @@ paths:
         in: path
         description: Transaction identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       - name: endorser_did
         in: query
         description: Endorser DID
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -5702,8 +5023,6 @@ paths:
         in: path
         description: Transaction identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -5724,8 +5043,6 @@ paths:
         in: path
         description: Transaction identifier
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -5739,7 +5056,7 @@ paths:
   /vc/credentials:
     get:
       tags:
-      - vc-api
+      - vc
       summary: List credentials
       responses:
         '200':
@@ -5752,7 +5069,7 @@ paths:
   /vc/credentials/issue:
     post:
       tags:
-      - vc-api
+      - vc
       summary: Issue a credential
       requestBody:
         content:
@@ -5772,13 +5089,13 @@ paths:
   /vc/credentials/store:
     post:
       tags:
-      - vc-api
+      - vc
       summary: Store a credential
       operationId: store_credential
   /vc/credentials/verify:
     post:
       tags:
-      - vc-api
+      - vc
       summary: Verify a credential
       requestBody:
         content:
@@ -5798,14 +5115,12 @@ paths:
   /vc/credentials/{credential_id}:
     get:
       tags:
-      - vc-api
+      - vc
       summary: Fetch credential by ID
       parameters:
       - name: credential_id
         in: path
         required: true
-        style: simple
-        explode: false
         schema:
           type: string
       responses:
@@ -5819,7 +5134,7 @@ paths:
   /vc/presentations/prove:
     post:
       tags:
-      - vc-api
+      - vc
       summary: Prove a presentation
       requestBody:
         content:
@@ -5839,7 +5154,7 @@ paths:
   /vc/presentations/verify:
     post:
       tags:
-      - vc-api
+      - vc
       summary: Verify a Presentation
       requestBody:
         content:
@@ -5865,18 +5180,12 @@ paths:
       - name: did
         in: query
         description: DID of interest
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: key_type
         in: query
         description: Key type to query for.
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -5885,9 +5194,6 @@ paths:
       - name: method
         in: query
         description: DID method to query for. e.g. sov to only fetch indy/sov DIDs
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -5899,9 +5205,6 @@ paths:
         in: query
         description: Whether DID is current public DID, posted to ledger but current
           public DID, or local to the wallet
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
           enum:
@@ -5911,9 +5214,6 @@ paths:
       - name: verkey
         in: query
         description: Verification key of interest
-        required: false
-        style: form
-        explode: true
         schema:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
           type: string
@@ -5955,8 +5255,6 @@ paths:
         in: query
         description: DID of interest
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
@@ -5990,33 +5288,22 @@ paths:
         in: query
         description: DID of interest
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       - name: mediation_id
         in: query
         description: Mediation identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       responses:
@@ -6037,8 +5324,6 @@ paths:
         in: query
         description: DID of interest
         required: true
-        style: form
-        explode: true
         schema:
           pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
@@ -6140,17 +5425,11 @@ paths:
       - name: conn_id
         in: query
         description: Connection identifier
-        required: false
-        style: form
-        explode: true
         schema:
           type: string
       - name: create_transaction_for_endorser
         in: query
         description: Create Transaction For Endorser's signature
-        required: false
-        style: form
-        explode: true
         schema:
           type: boolean
       requestBody:
@@ -7177,12 +6456,12 @@ components:
       type: object
       properties:
         result:
-          $ref: '#/components/schemas/IssuerCredRevRecordSchemaAnoncreds'
+          $ref: '#/components/schemas/IssuerCredRevRecord'
     CredRevRecordResultSchemaAnoncreds:
       type: object
       properties:
         result:
-          $ref: '#/components/schemas/IssuerCredRevRecord'
+          $ref: '#/components/schemas/IssuerCredRevRecordSchemaAnoncreds'
     CredRevokedResult:
       type: object
       properties:
@@ -8397,7 +7676,11 @@ components:
       type: object
       properties:
         eq_proof:
-          $ref: '#/components/schemas/IndyPrimaryProof_eq_proof'
+          type: object
+          description: Indy equality proof
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/IndyEQProof'
         ge_proofs:
           type: array
           description: Indy GE proofs
@@ -8480,7 +7763,11 @@ components:
       type: object
       properties:
         non_revoc_proof:
-          $ref: '#/components/schemas/IndyProofProofProofsProof_non_revoc_proof'
+          type: object
+          description: Indy non-revocation proof
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/IndyNonRevocProof'
         primary_proof:
           type: object
           description: Indy primary proof
@@ -8500,7 +7787,10 @@ components:
             type: string
             example: age
         non_revoked:
-          $ref: '#/components/schemas/IndyProofReqAttrSpec_non_revoked'
+          type: object
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/IndyProofReqAttrSpecNonRevoked'
         restrictions:
           type: array
           description: 'If present, credential must satisfy one of given restrictions:
@@ -8541,7 +7831,10 @@ components:
           description: Attribute name
           example: index
         non_revoked:
-          $ref: '#/components/schemas/IndyProofReqPredSpec_non_revoked'
+          type: object
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/IndyProofReqPredSpecNonRevoked'
         p_type:
           type: string
           description: Predicate type ('<', '<=', '>=', or '>')
@@ -8594,7 +7887,10 @@ components:
           description: Proof request name
           example: Proof request
         non_revoked:
-          $ref: '#/components/schemas/IndyProofRequest_non_revoked'
+          type: object
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/IndyProofRequestNonRevoked'
         nonce:
           pattern: ^[1-9][0-9]*$
           type: string
@@ -10079,8 +9375,6 @@ components:
     PublishRevocations:
       type: object
       properties:
-        options:
-          $ref: '#/components/schemas/PublishRevocationsOptions'
         rrid2crid:
           type: object
           additionalProperties:
@@ -10106,7 +9400,7 @@ components:
             can set this if you know the endorser's connection id you want to use.
             If not specified then the agent will attempt to find an endorser connection.
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-    PublishRevocationsResult:
+    PublishRevocationsResultSchemaAnoncreds:
       type: object
       properties:
         rrid2crid:
@@ -10122,6 +9416,8 @@ components:
     PublishRevocationsSchemaAnoncreds:
       type: object
       properties:
+        options:
+          $ref: '#/components/schemas/PublishRevocationsOptions'
         rrid2crid:
           type: object
           additionalProperties:
@@ -11236,7 +10532,7 @@ components:
       type: object
       properties:
         sent:
-          $ref: '#/components/schemas/PublishRevocationsSchemaAnoncreds'
+          $ref: '#/components/schemas/PublishRevocations'
         txn:
           type: object
           description: Revocation registry revocations transaction to endorse
@@ -13394,33 +12690,6 @@ components:
       properties:
         ledger_id:
           type: string
-    IndyPrimaryProof_eq_proof:
-      type: object
-      description: Indy equality proof
-      nullable: true
-      allOf:
-      - $ref: '#/components/schemas/IndyEQProof'
-    IndyProofProofProofsProof_non_revoc_proof:
-      type: object
-      description: Indy non-revocation proof
-      nullable: true
-      allOf:
-      - $ref: '#/components/schemas/IndyNonRevocProof'
-    IndyProofReqAttrSpec_non_revoked:
-      type: object
-      nullable: true
-      allOf:
-      - $ref: '#/components/schemas/IndyProofReqAttrSpecNonRevoked'
-    IndyProofReqPredSpec_non_revoked:
-      type: object
-      nullable: true
-      allOf:
-      - $ref: '#/components/schemas/IndyProofReqPredSpecNonRevoked'
-    IndyProofRequest_non_revoked:
-      type: object
-      nullable: true
-      allOf:
-      - $ref: '#/components/schemas/IndyProofRequestNonRevoked'
   securitySchemes:
     AuthorizationHeader:
       type: apiKey
