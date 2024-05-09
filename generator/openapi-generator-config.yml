@@ -4,4 +4,4 @@ inputSpec: data/openapi.yml
 additionalProperties:
   library: asyncio
   packageName: aries_cloudcontroller
-  packageVersion: 0.12.0
+  packageVersion: 0.12.1

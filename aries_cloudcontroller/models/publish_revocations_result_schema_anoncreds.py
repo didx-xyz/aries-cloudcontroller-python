@@ -18,29 +18,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, Field, StrictBool, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, Field
+from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class PublishRevocationsOptions(BaseModel):
+class PublishRevocationsResultSchemaAnoncreds(BaseModel):
     """
-    PublishRevocationsOptions
+    PublishRevocationsResultSchemaAnoncreds
     """  # noqa: E501
 
-    create_transaction_for_endorser: Optional[StrictBool] = Field(
-        default=None,
-        description="Create transaction for endorser (optional, default false). Use this for agents who don't specify an author role but want to create a transaction for an endorser to sign.",
+    rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
+        default=None, description="Credential revocation ids by revocation registry id"
     )
-    endorser_connection_id: Optional[StrictStr] = Field(
-        default=None,
-        description="Connection identifier (optional) (this is an example). You can set this if you know the endorser's connection id you want to use. If not specified then the agent will attempt to find an endorser connection.",
-    )
-    __properties: ClassVar[List[str]] = [
-        "create_transaction_for_endorser",
-        "endorser_connection_id",
-    ]
+    __properties: ClassVar[List[str]] = ["rrid2crid"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -54,7 +46,7 @@ class PublishRevocationsOptions(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PublishRevocationsOptions from a JSON string"""
+        """Create an instance of PublishRevocationsResultSchemaAnoncreds from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,19 +70,12 @@ class PublishRevocationsOptions(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PublishRevocationsOptions from a dict"""
+        """Create an instance of PublishRevocationsResultSchemaAnoncreds from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "create_transaction_for_endorser": obj.get(
-                    "create_transaction_for_endorser"
-                ),
-                "endorser_connection_id": obj.get("endorser_connection_id"),
-            }
-        )
+        _obj = cls.model_validate({"rrid2crid": obj.get("rrid2crid")})
         return _obj
