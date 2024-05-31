@@ -474,6 +474,12 @@ class MultitenancyApi:
         wallet_name: Annotated[
             Optional[StrictStr], Field(description="Wallet name")
         ] = None,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="limit number of results")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="offset to use in pagination")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -496,6 +502,8 @@ class MultitenancyApi:
 
         _param = self._get_wallets_serialize(
             wallet_name=wallet_name,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -517,6 +525,8 @@ class MultitenancyApi:
     def _get_wallets_serialize(
         self,
         wallet_name,
+        limit,
+        offset,
         _request_auth,
         _content_type,
         _headers,
@@ -539,6 +549,14 @@ class MultitenancyApi:
         if wallet_name is not None:
 
             _query_params.append(("wallet_name", wallet_name))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
 
         # process the header parameters
         # process the form parameters
@@ -577,6 +595,12 @@ class MultitenancyApi:
             Optional[StrictStr],
             Field(description="Group id (additional field from ACA-Py plugin)"),
         ] = None,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="limit number of results")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="offset to use in pagination")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -601,6 +625,8 @@ class MultitenancyApi:
 
         _param = self._get_wallets_serialize(
             wallet_name=wallet_name,
+            limit=limit,
+            offset=offset,
             group_id=group_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -624,6 +650,8 @@ class MultitenancyApi:
         self,
         wallet_name,
         group_id,
+        limit,
+        offset,
         _request_auth,
         _content_type,
         _headers,
@@ -650,6 +678,14 @@ class MultitenancyApi:
         if group_id is not None:
 
             _query_params.append(("group_id", group_id))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
 
         # process the header parameters
         # process the form parameters
