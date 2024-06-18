@@ -461,6 +461,12 @@ class IssueCredentialV20Api:
     @validate_call
     async def get_records(
         self,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="limit number of results")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="offset to use in pagination")
+        ] = None,
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
         ] = None,
@@ -501,6 +507,8 @@ class IssueCredentialV20Api:
         """  # noqa: E501
 
         _param = self._get_records_serialize(
+            limit=limit,
+            offset=offset,
             connection_id=connection_id,
             role=role,
             state=state,
@@ -525,6 +533,8 @@ class IssueCredentialV20Api:
 
     def _get_records_serialize(
         self,
+        limit,
+        offset,
         connection_id,
         role,
         state,
@@ -548,6 +558,14 @@ class IssueCredentialV20Api:
 
         # process the path parameters
         # process the query parameters
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
+
         if connection_id is not None:
 
             _query_params.append(("connection_id", connection_id))

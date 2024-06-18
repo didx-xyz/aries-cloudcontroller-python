@@ -841,6 +841,12 @@ class ConnectionApi:
     @validate_call
     async def get_connections(
         self,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="limit number of results")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="offset to use in pagination")
+        ] = None,
         alias: Annotated[Optional[StrictStr], Field(description="Alias")] = None,
         connection_protocol: Annotated[
             Optional[StrictStr], Field(description="Connection protocol used")
@@ -907,6 +913,8 @@ class ConnectionApi:
         """  # noqa: E501
 
         _param = self._get_connections_serialize(
+            limit=limit,
+            offset=offset,
             alias=alias,
             connection_protocol=connection_protocol,
             invitation_key=invitation_key,
@@ -936,6 +944,8 @@ class ConnectionApi:
 
     def _get_connections_serialize(
         self,
+        limit,
+        offset,
         alias,
         connection_protocol,
         invitation_key,
@@ -964,6 +974,14 @@ class ConnectionApi:
 
         # process the path parameters
         # process the query parameters
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
+
         if alias is not None:
 
             _query_params.append(("alias", alias))
