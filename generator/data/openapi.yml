@@ -24,6 +24,11 @@ tags:
   externalDocs:
     description: Specification
     url: https://hyperledger.github.io/anoncreds-spec
+- name: anoncreds - wallet upgrade
+  description: Anoncreds wallet upgrade
+  externalDocs:
+    description: Specification
+    url: https://hyperledger.github.io/anoncreds-spec
 - name: basicmessage
   description: Simple messaging
   externalDocs:
@@ -794,6 +799,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetSchemasResponse'
       operationId: get_schemas
+  /anoncreds/wallet/upgrade:
+    post:
+      tags:
+      - anoncreds - wallet upgrade
+      summary: "\n        Upgrade the wallet from askar to anoncreds - Be very careful\
+        \ with this! You \n        cannot go back! See migration guide for more information.\n\
+        \    "
+      parameters:
+      - name: wallet_name
+        in: query
+        description: Name of wallet to upgrade to anoncreds
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpgradeResult'
   /connections:
     get:
       tags:
@@ -2981,14 +3007,12 @@ paths:
         description: limit number of results
         schema:
           type: integer
-          format: int32
           default: -1
       - name: paginate_offset
         in: query
         description: offset to use in pagination
         schema:
           type: integer
-          format: int32
           default: 0
       requestBody:
         content:
@@ -3345,6 +3369,18 @@ paths:
       - multitenancy
       summary: Query subwallets
       parameters:
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 100
+      - name: offset
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          default: 0
       - name: wallet_name
         in: query
         description: Wallet name
@@ -5566,7 +5602,6 @@ components:
         byte_count:
           type: integer
           description: Byte count of data included by reference
-          format: int32
           example: 1234
         data:
           $ref: '#/components/schemas/AttachDecoratorData'
@@ -6111,7 +6146,6 @@ components:
           - askar
           - askar-anoncreds
           - in_memory
-          - indy
         wallet_webhook_urls:
           type: array
           description: List of Webhook URLs associated with this subwallet
@@ -6231,7 +6265,6 @@ components:
         revocation_registry_size:
           type: integer
           description: Maximum number of credential revocations per registry
-          format: int32
           example: 1000
         support_revocation:
           type: boolean
@@ -6530,6 +6563,7 @@ components:
           - AlumniCredential
           items:
             type: string
+      additionalProperties: true
     CredentialDefinition:
       type: object
       properties:
@@ -6573,7 +6607,6 @@ components:
           minimum: 4
           type: integer
           description: Revocation registry size
-          format: int32
           example: 1000
         schema_id:
           pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
@@ -6693,6 +6726,7 @@ components:
             match status method registered in the Verifiable Credential Extension
             Registry
           example: CredentialStatusList2017
+      additionalProperties: true
     DID:
       required:
       - did
@@ -6990,6 +7024,7 @@ components:
           $ref: '#/components/schemas/DIFOptions'
         presentation_definition:
           $ref: '#/components/schemas/PresentationDefinition'
+      additionalProperties: true
     Date:
       required:
       - expires_time
@@ -7121,7 +7156,6 @@ components:
         maxLength:
           type: integer
           description: Max Length
-          format: int32
           example: 1234
         maximum:
           type: object
@@ -7129,7 +7163,6 @@ components:
         minLength:
           type: integer
           description: Min Length
-          format: int32
           example: 1234
         minimum:
           type: object
@@ -7514,7 +7547,6 @@ components:
         value:
           type: integer
           description: Predicate threshold value
-          format: int32
     IndyKeyCorrectnessProof:
       required:
       - c
@@ -7560,14 +7592,12 @@ components:
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
     IndyPresAttrSpec:
       required:
@@ -7622,7 +7652,6 @@ components:
         threshold:
           type: integer
           description: Threshold value
-          format: int32
     IndyPresPreview:
       required:
       - attributes
@@ -7729,7 +7758,6 @@ components:
           minimum: 0
           type: integer
           description: Timestamp epoch
-          format: int32
           nullable: true
           example: 1640995199
     IndyProofProof:
@@ -7758,7 +7786,6 @@ components:
             type: array
             items:
               type: integer
-              format: int32
     IndyProofProofProofsProof:
       type: object
       properties:
@@ -7787,10 +7814,7 @@ components:
             type: string
             example: age
         non_revoked:
-          type: object
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyProofReqAttrSpecNonRevoked'
+          $ref: '#/components/schemas/IndyProofReqAttrSpecNonRevoked'
         restrictions:
           type: array
           description: 'If present, credential must satisfy one of given restrictions:
@@ -7810,14 +7834,12 @@ components:
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
     IndyProofReqPredSpec:
       required:
@@ -7831,10 +7853,7 @@ components:
           description: Attribute name
           example: index
         non_revoked:
-          type: object
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyProofReqPredSpecNonRevoked'
+          $ref: '#/components/schemas/IndyProofReqPredSpecNonRevoked'
         p_type:
           type: string
           description: Predicate type ('<', '<=', '>=', or '>')
@@ -7847,7 +7866,6 @@ components:
         p_value:
           type: integer
           description: Threshold value
-          format: int32
         restrictions:
           type: array
           description: 'If present, credential must satisfy one of given restrictions:
@@ -7867,14 +7885,12 @@ components:
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
     IndyProofRequest:
       required:
@@ -7887,10 +7903,7 @@ components:
           description: Proof request name
           example: Proof request
         non_revoked:
-          type: object
-          nullable: true
-          allOf:
-          - $ref: '#/components/schemas/IndyProofRequestNonRevoked'
+          $ref: '#/components/schemas/IndyProofRequestNonRevoked'
         nonce:
           pattern: ^[1-9][0-9]*$
           type: string
@@ -7919,14 +7932,12 @@ components:
           minimum: 0
           type: integer
           description: Earliest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
         to:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
-          format: int32
           example: 1640995199
     IndyProofRequestedProof:
       type: object
@@ -7962,7 +7973,6 @@ components:
         sub_proof_index:
           type: integer
           description: Sub-proof index
-          format: int32
     IndyProofRequestedProofRevealedAttr:
       type: object
       properties:
@@ -7977,14 +7987,12 @@ components:
         sub_proof_index:
           type: integer
           description: Sub-proof index
-          format: int32
     IndyProofRequestedProofRevealedAttrGroup:
       type: object
       properties:
         sub_proof_index:
           type: integer
           description: Sub-proof index
-          format: int32
         values:
           type: object
           additionalProperties:
@@ -8018,7 +8026,6 @@ components:
           minimum: 0
           type: integer
           description: Epoch timestamp of interest for non-revocation proof
-          format: int32
           example: 1640995199
     IndyRevRegDef:
       type: object
@@ -8065,7 +8072,6 @@ components:
           minimum: 1
           type: integer
           description: Maximum number of credentials; registry size
-          format: int32
           example: 10
         publicKeys:
           type: object
@@ -8121,7 +8127,6 @@ components:
           description: Revoked credential revocation identifiers
           items:
             type: integer
-            format: int32
     InnerCredDef:
       required:
       - issuerId
@@ -8155,7 +8160,6 @@ components:
         maxCredNum:
           type: integer
           description: Maximum number of credential revocations per registry
-          format: int32
           example: 777
         tag:
           type: string
@@ -8516,7 +8520,6 @@ components:
         max_cred_num:
           type: integer
           description: Maximum number of credentials for revocation registry
-          format: int32
           example: 1000
         pending_pub:
           type: array
@@ -8668,12 +8671,10 @@ components:
         limit:
           type: integer
           description: Limit for keylist query
-          format: int32
           example: 30
         offset:
           type: integer
           description: Offset value for query
-          format: int32
           example: 0
     KeylistUpdate:
       type: object
@@ -8753,6 +8754,7 @@ components:
             proofType: Ed25519Signature2018
           allOf:
           - $ref: '#/components/schemas/LDProofVCOptions'
+      additionalProperties: true
     LDProofVCOptions:
       type: object
       properties:
@@ -8793,6 +8795,7 @@ components:
           description: The verification method to use for the proof. Should match
             a verification method in the wallet
           example: did:example:123456#key-1
+      additionalProperties: true
     LedgerConfigInstance:
       type: object
       properties:
@@ -8842,7 +8845,6 @@ components:
             generated by the Signature Algorithm
           example: 2021-12-31 23:59:59+00:00
         domain:
-          pattern: \w+:(\/?\/?)[^\s]+
           type: string
           description: A string value specifying the restricted domain of the signature.
           example: https://example.com
@@ -8872,6 +8874,7 @@ components:
           type: string
           description: Information used for proof verification
           example: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+      additionalProperties: true
     ListCredentialsResponse:
       type: object
     MediationCreateRequest:
@@ -9239,6 +9242,7 @@ components:
           items:
             type: object
             properties: {}
+      additionalProperties: true
     PresentationDefinition:
       type: object
       properties:
@@ -9590,11 +9594,9 @@ components:
           - 0
           items:
             type: integer
-            format: int32
         timestamp:
           type: integer
           description: Timestamp at which revocation list is applicable
-          format: int32
     RevListCreateRequest:
       type: object
       properties:
@@ -9660,7 +9662,6 @@ components:
           minimum: 4
           type: integer
           description: Revocation registry size
-          format: int32
           example: 1000
     RevRegCreateRequestSchemaAnoncreds:
       type: object
@@ -9742,7 +9743,6 @@ components:
       properties:
         maxCredNum:
           type: integer
-          format: int32
           example: 777
         publicKeys:
           type: object
@@ -9761,7 +9761,6 @@ components:
           minimum: 0
           type: integer
           description: Number of credentials issued against revocation registry
-          format: int32
           example: 0
     RevRegIssuedResultSchemaAnoncreds:
       type: object
@@ -9770,7 +9769,6 @@ components:
           minimum: 0
           type: integer
           description: Number of credentials issued against revocation registry
-          format: int32
           example: 0
     RevRegResult:
       type: object
@@ -10078,7 +10076,6 @@ components:
           minimum: 1
           type: integer
           description: Schema sequence number
-          format: int32
           example: 10
         ver:
           pattern: ^[0-9.]+$
@@ -10305,13 +10302,13 @@ components:
           description: Linked data proof
           allOf:
           - $ref: '#/components/schemas/SignatureOptions'
+      additionalProperties: true
     SubmissionRequirements:
       type: object
       properties:
         count:
           type: integer
           description: Count Value
-          format: int32
           example: 1234
         from:
           type: string
@@ -10323,12 +10320,10 @@ components:
         max:
           type: integer
           description: Max Value
-          format: int32
           example: 1234
         min:
           type: integer
           description: Min Value
-          format: int32
           example: 1234
         name:
           type: string
@@ -10360,7 +10355,6 @@ components:
           maximum: 18446744073709551615
           minimum: 0
           type: integer
-          format: int32
           example: 1640995199
     TAAInfo:
       type: object
@@ -10618,6 +10612,8 @@ components:
             type: string
             description: Optional webhook URL to receive webhook messages
             example: http://localhost:8022/webhooks
+    UpgradeResult:
+      type: object
     V10CredentialBoundOfferRequest:
       type: object
       properties:
@@ -11489,6 +11485,8 @@ components:
           $ref: '#/components/schemas/V20CredExRecordIndy'
         ld_proof:
           $ref: '#/components/schemas/V20CredExRecordLDProof'
+        vc_di:
+          $ref: '#/components/schemas/V20CredExRecord'
     V20CredExRecordIndy:
       type: object
       properties:
@@ -11582,6 +11580,11 @@ components:
           description: Credential filter for linked data proof
           allOf:
           - $ref: '#/components/schemas/LDProofVCDetail'
+        vc_di:
+          type: object
+          description: Credential filter for vc_di
+          allOf:
+          - $ref: '#/components/schemas/V20CredFilterVCDI'
     V20CredFilterIndy:
       type: object
       properties:
@@ -11624,6 +11627,38 @@ components:
           description: Credential filter for linked data proof
           allOf:
           - $ref: '#/components/schemas/LDProofVCDetail'
+    V20CredFilterVCDI:
+      type: object
+      properties:
+        cred_def_id:
+          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          type: string
+          description: Credential definition identifier
+          example: WgWxqztrNooG92RXvxSTWv:3:CL:20:tag
+        issuer_did:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          type: string
+          description: Credential issuer DID
+          example: WgWxqztrNooG92RXvxSTWv
+        schema_id:
+          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$
+          type: string
+          description: Schema identifier
+          example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
+        schema_issuer_did:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          type: string
+          description: Schema issuer DID
+          example: WgWxqztrNooG92RXvxSTWv
+        schema_name:
+          type: string
+          description: Schema name
+          example: preferences
+        schema_version:
+          pattern: ^[0-9.]+$
+          type: string
+          description: Schema version
+          example: '1.0'
     V20CredFormat:
       required:
       - attach_id
@@ -12494,6 +12529,7 @@ components:
           - AlumniCredential
           items:
             type: string
+      additionalProperties: true
     VerifiablePresentation:
       required:
       - '@context'
@@ -12541,6 +12577,7 @@ components:
           items:
             type: object
             properties: {}
+      additionalProperties: true
     VerifyCredentialRequest:
       type: object
       properties:
@@ -12607,7 +12644,6 @@ components:
         max_results:
           type: integer
           description: Maximum number of results to return
-          format: int32
         proof_types:
           type: array
           items:
