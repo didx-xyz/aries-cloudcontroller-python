@@ -112,9 +112,9 @@ class CreateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["askar", "askar-anoncreds", "in_memory", "indy"]):
+        if value not in set(["askar", "askar-anoncreds", "in_memory"]):
             raise ValueError(
-                "must be one of enum values ('askar', 'askar-anoncreds', 'in_memory', 'indy')"
+                "must be one of enum values ('askar', 'askar-anoncreds', 'in_memory')"
             )
         return value
 
