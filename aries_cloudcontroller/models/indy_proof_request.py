@@ -127,11 +127,6 @@ class IndyProofRequest(BaseModel):
                 if self.requested_predicates[_key]:
                     _field_dict[_key] = self.requested_predicates[_key].to_dict()
             _dict["requested_predicates"] = _field_dict
-        # set to None if non_revoked (nullable) is None
-        # and model_fields_set contains the field
-        if self.non_revoked is None and "non_revoked" in self.model_fields_set:
-            _dict["non_revoked"] = None
-
         return _dict
 
     @classmethod

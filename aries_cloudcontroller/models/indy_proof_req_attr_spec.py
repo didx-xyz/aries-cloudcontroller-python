@@ -78,11 +78,6 @@ class IndyProofReqAttrSpec(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of non_revoked
         if self.non_revoked:
             _dict["non_revoked"] = self.non_revoked.to_dict()
-        # set to None if non_revoked (nullable) is None
-        # and model_fields_set contains the field
-        if self.non_revoked is None and "non_revoked" in self.model_fields_set:
-            _dict["non_revoked"] = None
-
         return _dict
 
     @classmethod
