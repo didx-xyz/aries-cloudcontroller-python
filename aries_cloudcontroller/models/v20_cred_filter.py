@@ -23,6 +23,7 @@ from typing_extensions import Self
 
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
+from aries_cloudcontroller.models.v20_cred_filter_vcdi import V20CredFilterVCDI
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
@@ -37,7 +38,10 @@ class V20CredFilter(BaseModel):
     ld_proof: Optional[LDProofVCDetail] = Field(
         default=None, description="Credential filter for linked data proof"
     )
-    __properties: ClassVar[List[str]] = ["indy", "ld_proof"]
+    vc_di: Optional[V20CredFilterVCDI] = Field(
+        default=None, description="Credential filter for vc_di"
+    )
+    __properties: ClassVar[List[str]] = ["indy", "ld_proof", "vc_di"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -77,6 +81,9 @@ class V20CredFilter(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of ld_proof
         if self.ld_proof:
             _dict["ld_proof"] = self.ld_proof.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of vc_di
+        if self.vc_di:
+            _dict["vc_di"] = self.vc_di.to_dict()
         return _dict
 
     @classmethod
@@ -98,6 +105,11 @@ class V20CredFilter(BaseModel):
                 "ld_proof": (
                     LDProofVCDetail.from_dict(obj["ld_proof"])
                     if obj.get("ld_proof") is not None
+                    else None
+                ),
+                "vc_di": (
+                    V20CredFilterVCDI.from_dict(obj["vc_di"])
+                    if obj.get("vc_di") is not None
                     else None
                 ),
             }

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.12.1"
+__version__ = "0.12.2b0"
 
 from aries_cloudcontroller.acapy_client import AcaPyClient
 
@@ -24,6 +24,7 @@ from aries_cloudcontroller.api import (
     AnoncredsCredentialDefinitionsApi,
     AnoncredsRevocationApi,
     AnoncredsSchemasApi,
+    AnoncredsWalletUpgradeApi,
     BasicmessageApi,
     ConnectionApi,
     CredentialDefinitionApi,
@@ -366,6 +367,7 @@ from aries_cloudcontroller.models import (
     V20CredFilter,
     V20CredFilterIndy,
     V20CredFilterLDProof,
+    V20CredFilterVCDI,
     V20CredFormat,
     V20CredIssue,
     V20CredIssueProblemReportRequest,
