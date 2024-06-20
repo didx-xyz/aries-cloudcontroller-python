@@ -494,6 +494,7 @@ from aries_cloudcontroller.models.v20_cred_ex_record_list_result import (
 from aries_cloudcontroller.models.v20_cred_filter import V20CredFilter
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
 from aries_cloudcontroller.models.v20_cred_filter_ld_proof import V20CredFilterLDProof
+from aries_cloudcontroller.models.v20_cred_filter_vcdi import V20CredFilterVCDI
 from aries_cloudcontroller.models.v20_cred_format import V20CredFormat
 from aries_cloudcontroller.models.v20_cred_issue import V20CredIssue
 from aries_cloudcontroller.models.v20_cred_issue_problem_report_request import (

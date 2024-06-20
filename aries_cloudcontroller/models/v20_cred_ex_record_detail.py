@@ -39,7 +39,8 @@ class V20CredExRecordDetail(BaseModel):
     )
     indy: Optional[V20CredExRecordIndy] = None
     ld_proof: Optional[V20CredExRecordLDProof] = None
-    __properties: ClassVar[List[str]] = ["cred_ex_record", "indy", "ld_proof"]
+    vc_di: Optional[V20CredExRecord] = None
+    __properties: ClassVar[List[str]] = ["cred_ex_record", "indy", "ld_proof", "vc_di"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -82,6 +83,9 @@ class V20CredExRecordDetail(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of ld_proof
         if self.ld_proof:
             _dict["ld_proof"] = self.ld_proof.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of vc_di
+        if self.vc_di:
+            _dict["vc_di"] = self.vc_di.to_dict()
         return _dict
 
     @classmethod
@@ -108,6 +112,11 @@ class V20CredExRecordDetail(BaseModel):
                 "ld_proof": (
                     V20CredExRecordLDProof.from_dict(obj["ld_proof"])
                     if obj.get("ld_proof") is not None
+                    else None
+                ),
+                "vc_di": (
+                    V20CredExRecord.from_dict(obj["vc_di"])
+                    if obj.get("vc_di") is not None
                     else None
                 ),
             }

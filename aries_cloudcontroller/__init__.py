@@ -366,6 +366,7 @@ from aries_cloudcontroller.models import (
     V20CredFilter,
     V20CredFilterIndy,
     V20CredFilterLDProof,
+    V20CredFilterVCDI,
     V20CredFormat,
     V20CredIssue,
     V20CredIssueProblemReportRequest,
