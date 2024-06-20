@@ -7,6 +7,9 @@ from aries_cloudcontroller.api.anoncreds_credential_definitions_api import (
 )
 from aries_cloudcontroller.api.anoncreds_revocation_api import AnoncredsRevocationApi
 from aries_cloudcontroller.api.anoncreds_schemas_api import AnoncredsSchemasApi
+from aries_cloudcontroller.api.anoncreds_wallet_upgrade_api import (
+    AnoncredsWalletUpgradeApi,
+)
 from aries_cloudcontroller.api.basicmessage_api import BasicmessageApi
 from aries_cloudcontroller.api.connection_api import ConnectionApi
 from aries_cloudcontroller.api.credential_definition_api import CredentialDefinitionApi
