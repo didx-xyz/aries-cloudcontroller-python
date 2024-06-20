@@ -471,6 +471,12 @@ class MultitenancyApi:
     @validate_call
     async def get_wallets(
         self,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="Number of results to return")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="Offset for pagination")
+        ] = None,
         wallet_name: Annotated[
             Optional[StrictStr], Field(description="Wallet name")
         ] = None,
@@ -489,12 +495,18 @@ class MultitenancyApi:
         """Query subwallets
 
 
+        :param limit: Number of results to return
+        :type limit: int
+        :param offset: Offset for pagination
+        :type offset: int
         :param wallet_name: Wallet name
         :type wallet_name: str
         ...
         """  # noqa: E501
 
         _param = self._get_wallets_serialize(
+            limit=limit,
+            offset=offset,
             wallet_name=wallet_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -516,6 +528,8 @@ class MultitenancyApi:
 
     def _get_wallets_serialize(
         self,
+        limit,
+        offset,
         wallet_name,
         _request_auth,
         _content_type,
@@ -536,6 +550,14 @@ class MultitenancyApi:
 
         # process the path parameters
         # process the query parameters
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
+
         if wallet_name is not None:
 
             _query_params.append(("wallet_name", wallet_name))
