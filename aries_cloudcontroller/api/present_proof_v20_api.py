@@ -502,6 +502,12 @@ class PresentProofV20Api:
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
         ] = None,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="Number of results to return")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="Offset for pagination")
+        ] = None,
         role: Annotated[
             Optional[StrictStr],
             Field(description="Role assigned in presentation exchange"),
@@ -529,6 +535,10 @@ class PresentProofV20Api:
 
         :param connection_id: Connection identifier
         :type connection_id: str
+        :param limit: Number of results to return
+        :type limit: int
+        :param offset: Offset for pagination
+        :type offset: int
         :param role: Role assigned in presentation exchange
         :type role: str
         :param state: Presentation exchange state
@@ -540,6 +550,8 @@ class PresentProofV20Api:
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
+            limit=limit,
+            offset=offset,
             role=role,
             state=state,
             thread_id=thread_id,
@@ -564,6 +576,8 @@ class PresentProofV20Api:
     def _get_records_serialize(
         self,
         connection_id,
+        limit,
+        offset,
         role,
         state,
         thread_id,
@@ -589,6 +603,14 @@ class PresentProofV20Api:
         if connection_id is not None:
 
             _query_params.append(("connection_id", connection_id))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
 
         if role is not None:
 
