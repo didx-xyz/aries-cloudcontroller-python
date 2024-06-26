@@ -31,6 +31,7 @@ class DID(BaseModel):
     DID
     """  # noqa: E501
 
+    # keep custom changes
     did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
     key_type: Literal["ed25519", "bls12381g2"] = Field(
         description="Key type associated with the DID"

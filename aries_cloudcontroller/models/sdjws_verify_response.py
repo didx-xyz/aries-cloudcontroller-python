@@ -29,6 +29,7 @@ class SDJWSVerifyResponse(BaseModel):
     SDJWSVerifyResponse
     """  # noqa: E501
 
+    # keep custom changes
     disclosures: Optional[List[List[Union[str, Dict[str, Any]]]]] = Field(
         default=None, description="Disclosure arrays associated with the SD-JWT"
     )

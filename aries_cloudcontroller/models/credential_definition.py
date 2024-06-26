@@ -31,6 +31,7 @@ class CredentialDefinition(BaseModel):
     CredentialDefinition
     """  # noqa: E501
 
+    # keep custom changes
     id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Credential definition identifier"
     )

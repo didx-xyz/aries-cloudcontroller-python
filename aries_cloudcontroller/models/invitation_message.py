@@ -30,6 +30,7 @@ class InvitationMessage(BaseModel):
     InvitationMessage
     """  # noqa: E501
 
+    # keep custom changes
     id: Optional[StrictStr] = Field(
         default=None, description="Message identifier", alias="@id"
     )
