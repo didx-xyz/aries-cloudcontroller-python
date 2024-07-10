@@ -32,6 +32,7 @@ class UpdateWalletRequest(BaseModel):
     extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
     )
+    group_id: Optional[str] = Field(None, examples=["SomeGroupId"])
     image_url: Optional[StrictStr] = Field(
         default=None,
         description="Image url for this wallet. This image url is publicized (self-attested) to other agents as part of forming a connection.",
@@ -49,6 +50,7 @@ class UpdateWalletRequest(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "extra_settings",
+        "group_id",
         "image_url",
         "label",
         "wallet_dispatch_type",
@@ -111,6 +113,7 @@ class UpdateWalletRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "extra_settings": obj.get("extra_settings"),
+                "group_id": obj.get("group_id"),
                 "image_url": obj.get("image_url"),
                 "label": obj.get("label"),
                 "wallet_dispatch_type": obj.get("wallet_dispatch_type"),
