@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v0.12.1
+  version: v1.0.0rc4
 servers:
 - url: /
 security:
@@ -88,6 +88,11 @@ tags:
   externalDocs:
     description: Specification
     url: https://tools.ietf.org/html/rfc7515
+- name: ledger
+  description: Interaction with ledger
+  externalDocs:
+    description: Overview
+    url: https://hyperledger-indy.readthedocs.io/projects/plenum/en/latest/storage.html#ledger
 - name: mediation
   description: Mediation management
   externalDocs:
@@ -2737,6 +2742,236 @@ paths:
       deprecated: true
       x-codegen-request-body-name: body
       operationId: verify
+  /ledger/config:
+    get:
+      tags:
+      - ledger
+      summary: Fetch the multiple ledger configuration currently in use
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerConfigList'
+      operationId: get_config
+  /ledger/did-endpoint:
+    get:
+      tags:
+      - ledger
+      summary: Get the endpoint for a DID from the ledger.
+      parameters:
+      - name: did
+        in: query
+        description: DID of interest
+        required: true
+        schema:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          type: string
+      - name: endpoint_type
+        in: query
+        description: Endpoint type of interest (default 'Endpoint')
+        schema:
+          type: string
+          enum:
+          - Endpoint
+          - Profile
+          - LinkedDomains
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDIDEndpointResponse'
+      operationId: get_did_endpoint
+  /ledger/did-verkey:
+    get:
+      tags:
+      - ledger
+      summary: Get the verkey for a DID from the ledger.
+      parameters:
+      - name: did
+        in: query
+        description: DID of interest
+        required: true
+        schema:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDIDVerkeyResponse'
+      operationId: get_did_verkey
+  /ledger/get-nym-role:
+    get:
+      tags:
+      - ledger
+      summary: Get the role from the NYM registration of a public DID.
+      parameters:
+      - name: did
+        in: query
+        description: DID of interest
+        required: true
+        schema:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetNymRoleResponse'
+      operationId: get_did_nym_role
+  /ledger/get-write-ledger:
+    get:
+      tags:
+      - ledger
+      summary: Fetch the current write ledger
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteLedger'
+      operationId: get_write_ledger
+  /ledger/get-write-ledgers:
+    get:
+      tags:
+      - ledger
+      summary: Fetch list of available write ledgers
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigurableWriteLedgers'
+      operationId: get_write_ledgers
+  /ledger/register-nym:
+    post:
+      tags:
+      - ledger
+      summary: Send a NYM registration to the ledger.
+      parameters:
+      - name: did
+        in: query
+        description: DID to register
+        required: true
+        schema:
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$
+          type: string
+      - name: verkey
+        in: query
+        description: Verification key
+        required: true
+        schema:
+          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+          type: string
+      - name: alias
+        in: query
+        description: Alias
+        schema:
+          type: string
+      - name: conn_id
+        in: query
+        description: Connection identifier
+        schema:
+          type: string
+      - name: create_transaction_for_endorser
+        in: query
+        description: Create Transaction For Endorser's signature
+        schema:
+          type: boolean
+      - name: role
+        in: query
+        description: Role
+        schema:
+          type: string
+          enum:
+          - STEWARD
+          - TRUSTEE
+          - ENDORSER
+          - NETWORK_MONITOR
+          - reset
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TxnOrRegisterLedgerNymResponse'
+      operationId: register_nym
+  /ledger/rotate-public-did-keypair:
+    patch:
+      tags:
+      - ledger
+      summary: Rotate key pair for public DID.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerModulesResult'
+      operationId: rotate_public_did_keypair
+  /ledger/taa:
+    get:
+      tags:
+      - ledger
+      summary: Fetch the current transaction author agreement, if any
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TAAResult'
+      operationId: fetch_taa
+  /ledger/taa/accept:
+    post:
+      tags:
+      - ledger
+      summary: Accept the transaction author agreement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TAAAccept'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerModulesResult'
+      x-codegen-request-body-name: body
+      operationId: accept_taa
+  /ledger/{ledger_id}/set-write-ledger:
+    put:
+      tags:
+      - ledger
+      summary: Set write ledger
+      parameters:
+      - name: ledger_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteLedger'
+      operationId: set_write_ledger
   /mediation/default-mediator:
     get:
       tags:
@@ -5314,41 +5549,19 @@ paths:
   /features:
     get:
       operationId: get_features
-  /ledger/config:
-    get:
-      operationId: get_config
-  /ledger/did-endpoint:
-    get:
-      operationId: get_did_endpoint
-  /ledger/did-verkey:
-    get:
-      operationId: get_did_verkey
-  /ledger/get-nym-role:
-    get:
-      operationId: get_did_nym_role
-  /ledger/get-write-ledger:
-    get:
-      operationId: get_write_ledger
-  /ledger/get-write-ledgers:
-    get:
-      operationId: get_write_ledgers
-  /ledger/register-nym:
-    post:
-      operationId: register_nym
-  /ledger/rotate-public-did-keypair:
-    patch:
-      operationId: rotate_public_did_keypair
-  /ledger/{ledger_id}/set-write-ledger:
-    put:
-      operationId: set_write_ledger
-  /ledger/taa:
-    get:
-      operationId: fetch_taa
-  /ledger/taa/accept:
-    post:
-      operationId: accept_taa
 components:
   schemas:
+    AMLRecord:
+      type: object
+      properties:
+        aml:
+          type: object
+          additionalProperties:
+            type: string
+        amlContext:
+          type: string
+        version:
+          type: string
     ActionMenuFetchResult:
       type: object
       properties:
@@ -5605,6 +5818,15 @@ components:
               example: '12345'
           description: 'Credential revocation ids by revocation registry id: omit
             for all, specify null or empty list for all pending per revocation registry'
+    ConfigurableWriteLedgers:
+      type: object
+      properties:
+        write_ledgers:
+          type: array
+          description: List of configurable write ledgers identifiers
+          items:
+            type: string
+            description: Ledgers identifiers
     ConnRecord:
       required:
       - connection_id
@@ -7057,6 +7279,38 @@ components:
             type: string
             description: credential definition identifiers
             example: GvLGiRogTJubmj5B36qhYz:3:CL:8:faber.agent.degree_schema
+    GetDIDEndpointResponse:
+      type: object
+      properties:
+        endpoint:
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          type: string
+          description: Full verification key
+          nullable: true
+          example: https://myhost:8021
+    GetDIDVerkeyResponse:
+      type: object
+      properties:
+        verkey:
+          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+          type: string
+          description: Full verification key
+          nullable: true
+          example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
+    GetNymRoleResponse:
+      type: object
+      properties:
+        role:
+          type: string
+          description: Ledger role
+          example: ENDORSER
+          enum:
+          - STEWARD
+          - TRUSTEE
+          - ENDORSER
+          - NETWORK_MONITOR
+          - USER
+          - ROLE_REMOVE
     GetSchemaResult:
       type: object
       properties:
@@ -7264,10 +7518,7 @@ components:
         values:
           type: object
           additionalProperties:
-            type: object
-            description: Attribute value
-            allOf:
-            - $ref: '#/components/schemas/IndyAttrValue'
+            $ref: '#/components/schemas/IndyAttrValue'
           description: Credential attributes
         witness:
           type: object
@@ -8602,6 +8853,35 @@ components:
             a verification method in the wallet
           example: did:example:123456#key-1
       additionalProperties: true
+    LedgerConfigInstance:
+      type: object
+      properties:
+        genesis_file:
+          type: string
+          description: genesis_file
+        genesis_transactions:
+          type: string
+          description: genesis_transactions
+        genesis_url:
+          type: string
+          description: genesis_url
+        id:
+          type: string
+          description: ledger_id
+        is_production:
+          type: boolean
+          description: is_production
+    LedgerConfigList:
+      required:
+      - ledger_config_list
+      type: object
+      properties:
+        ledger_config_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/LedgerConfigInstance'
+    LedgerModulesResult:
+      type: object
     LinkedDataProof:
       required:
       - created
@@ -10114,6 +10394,50 @@ components:
           enum:
           - all
           - pick
+    TAAAccept:
+      type: object
+      properties:
+        mechanism:
+          type: string
+        text:
+          type: string
+        version:
+          type: string
+    TAAAcceptance:
+      type: object
+      properties:
+        mechanism:
+          type: string
+        time:
+          maximum: 18446744073709551615
+          minimum: 0
+          type: integer
+          example: 1640995199
+    TAAInfo:
+      type: object
+      properties:
+        aml_record:
+          $ref: '#/components/schemas/AMLRecord'
+        taa_accepted:
+          $ref: '#/components/schemas/TAAAcceptance'
+        taa_record:
+          $ref: '#/components/schemas/TAARecord'
+        taa_required:
+          type: boolean
+    TAARecord:
+      type: object
+      properties:
+        digest:
+          type: string
+        text:
+          type: string
+        version:
+          type: string
+    TAAResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/TAAInfo'
     TailsDeleteResponse:
       type: object
       properties:
@@ -10263,6 +10587,18 @@ components:
         txn:
           type: object
           description: Revocation registry revocations transaction to endorse
+          allOf:
+          - $ref: '#/components/schemas/TransactionRecord'
+    TxnOrRegisterLedgerNymResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Success of nym registration operation
+          example: true
+        txn:
+          type: object
+          description: DID transaction to endorse
           allOf:
           - $ref: '#/components/schemas/TransactionRecord'
     TxnOrRevRegResult:
@@ -12442,6 +12778,11 @@ components:
           type: string
           description: Wallet record ID
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    WriteLedger:
+      type: object
+      properties:
+        ledger_id:
+          type: string
   securitySchemes:
     AuthorizationHeader:
       type: apiKey
