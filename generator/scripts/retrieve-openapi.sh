@@ -10,7 +10,7 @@ cd "$(dirname "$0")/../" || exit
 ##########################################################################################
 # Global Defaults and Constants
 ##########################################################################################
-ACA_PY_DOCKER_IMAGE_TAG="py3.9-${ACA_PY_VERSION}"
+ACA_PY_DOCKER_IMAGE_TAG="py3.12-${ACA_PY_VERSION}"
 ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/hyperledger/aries-cloudagent-python:${ACA_PY_DOCKER_IMAGE_TAG}"
 
 ACA_PY_ADMIN_PORT="8305"
