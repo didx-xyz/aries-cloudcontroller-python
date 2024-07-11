@@ -186,9 +186,6 @@ from aries_cloudcontroller.models.indy_pres_pred_spec import IndyPresPredSpec
 from aries_cloudcontroller.models.indy_pres_preview import IndyPresPreview
 from aries_cloudcontroller.models.indy_pres_spec import IndyPresSpec
 from aries_cloudcontroller.models.indy_primary_proof import IndyPrimaryProof
-from aries_cloudcontroller.models.indy_primary_proof_eq_proof import (
-    IndyPrimaryProofEqProof,
-)
 from aries_cloudcontroller.models.indy_proof import IndyProof
 from aries_cloudcontroller.models.indy_proof_identifier import IndyProofIdentifier
 from aries_cloudcontroller.models.indy_proof_proof import IndyProofProof
@@ -197,9 +194,6 @@ from aries_cloudcontroller.models.indy_proof_proof_aggregated_proof import (
 )
 from aries_cloudcontroller.models.indy_proof_proof_proofs_proof import (
     IndyProofProofProofsProof,
-)
-from aries_cloudcontroller.models.indy_proof_proof_proofs_proof_non_revoc_proof import (
-    IndyProofProofProofsProofNonRevocProof,
 )
 from aries_cloudcontroller.models.indy_proof_req_attr_spec import IndyProofReqAttrSpec
 from aries_cloudcontroller.models.indy_proof_req_attr_spec_non_revoked import (

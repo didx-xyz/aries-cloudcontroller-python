@@ -21,10 +21,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, Field
 from typing_extensions import Self
 
+from aries_cloudcontroller.models.indy_non_revoc_proof import IndyNonRevocProof
 from aries_cloudcontroller.models.indy_primary_proof import IndyPrimaryProof
-from aries_cloudcontroller.models.indy_proof_proof_proofs_proof_non_revoc_proof import (
-    IndyProofProofProofsProofNonRevocProof,
-)
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
@@ -33,7 +31,9 @@ class IndyProofProofProofsProof(BaseModel):
     IndyProofProofProofsProof
     """  # noqa: E501
 
-    non_revoc_proof: Optional[IndyProofProofProofsProofNonRevocProof] = None
+    non_revoc_proof: Optional[IndyNonRevocProof] = Field(
+        default=None, description="Indy non-revocation proof"
+    )
     primary_proof: Optional[IndyPrimaryProof] = Field(
         default=None, description="Indy primary proof"
     )
@@ -96,9 +96,7 @@ class IndyProofProofProofsProof(BaseModel):
         _obj = cls.model_validate(
             {
                 "non_revoc_proof": (
-                    IndyProofProofProofsProofNonRevocProof.from_dict(
-                        obj["non_revoc_proof"]
-                    )
+                    IndyNonRevocProof.from_dict(obj["non_revoc_proof"])
                     if obj.get("non_revoc_proof") is not None
                     else None
                 ),
