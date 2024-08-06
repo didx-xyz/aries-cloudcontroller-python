@@ -8,7 +8,7 @@ Currently to generate the client you need to use the DIDx fork of OpenAPI genera
 # Clone projects
 git clone https://github.com/didx-xyz/aries-cloudcontroller-python
 
-git clone https://github.com/didx-xyz/openapi-generator
+git clone https://github.com/OpenAPITools/openapi-generator
 
 # Build OpenAPI generator JAR
 cd openapi-generator
@@ -23,5 +23,5 @@ mvn -B --no-snapshot-updates clean package -DskipTests=true -Dmaven.javadoc.skip
 cd aries-cloudcontroller-python
 pip install -r requirements.txt -r requirements.dev.txt --upgrade
 
-./generator/scripts/generate-client.sh 1.0.0rc4 # Or other ACA-Py version
+./generator/scripts/generate-client.sh 1.0.0rc5 # Or other ACA-Py version
 ```

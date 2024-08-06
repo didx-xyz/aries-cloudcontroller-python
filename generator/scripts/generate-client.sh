@@ -6,8 +6,8 @@ cd "$(dirname "$0")/../" || exit
 # Remove old generated code
 rm -rf ../generated/
 
-# Read ACA_PY_VERSION from input arg or default to 1.0.0rc4
-ACA_PY_VERSION=${1:-"1.0.0rc4"}
+# Read ACA_PY_VERSION from input arg or default to 1.0.0rc5
+ACA_PY_VERSION=${1:-"1.0.0rc5"}
 
 export ACA_PY_VERSION # Set env for openapi-config-template'
 
