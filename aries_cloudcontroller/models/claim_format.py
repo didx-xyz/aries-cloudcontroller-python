@@ -29,6 +29,7 @@ class ClaimFormat(BaseModel):
     ClaimFormat
     """  # noqa: E501
 
+    di_vc: Optional[Dict[str, Any]] = None
     jwt: Optional[Dict[str, Any]] = None
     jwt_vc: Optional[Dict[str, Any]] = None
     jwt_vp: Optional[Dict[str, Any]] = None
@@ -36,6 +37,7 @@ class ClaimFormat(BaseModel):
     ldp_vc: Optional[Dict[str, Any]] = None
     ldp_vp: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = [
+        "di_vc",
         "jwt",
         "jwt_vc",
         "jwt_vp",
@@ -89,6 +91,7 @@ class ClaimFormat(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "di_vc": obj.get("di_vc"),
                 "jwt": obj.get("jwt"),
                 "jwt_vc": obj.get("jwt_vc"),
                 "jwt_vp": obj.get("jwt_vp"),
