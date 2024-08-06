@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v1.0.0rc4
+  version: v1.0.0rc5
 servers:
 - url: /
 security:
@@ -5786,6 +5786,9 @@ components:
     ClaimFormat:
       type: object
       properties:
+        di_vc:
+          type: object
+          properties: {}
         jwt:
           type: object
           properties: {}
@@ -8884,7 +8887,6 @@ components:
       type: object
     LinkedDataProof:
       required:
-      - created
       - proofPurpose
       - type
       - verificationMethod
