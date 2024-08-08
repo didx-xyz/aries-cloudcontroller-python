@@ -47,7 +47,7 @@ For legacy versions, please review our release history to found the version comp
 Aries CloudController Python provides a robust client for interacting with Aries Cloud Agents (ACA-Py).
 
 - **Fully Typed**: Offers a strongly-typed wrapper around the Aries Cloud Agent Python, enhancing developer experience and reducing errors.
-- **Up-to-Date Support**: Compatible with the latest ACA-Py version (1.0.0rc5), ensuring access to the most recent features and improvements.
+- **Up-to-Date Support**: Compatible with the latest ACA-Py version (1.0.0rc6), ensuring access to the most recent features and improvements.
 - **Auto-Generated Client**: Utilizes OpenAPI definitions for automatic generation, ensuring timely updates in line with new ACA-Py releases.
 - **Multi-Tenancy and Authentication Support**: Facilitates working with multi-tenant APIs and integrates various authentication mechanisms.
 - **Asynchronous API**: Supports asynchronous operations, enabling efficient handling of I/O-bound tasks.
