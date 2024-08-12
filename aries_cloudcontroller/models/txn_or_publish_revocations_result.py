@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.publish_revocations import PublishRevocations
@@ -32,10 +32,7 @@ class TxnOrPublishRevocationsResult(BaseModel):
     """  # noqa: E501
 
     sent: Optional[PublishRevocations] = None
-    txn: Optional[TransactionRecord] = Field(
-        default=None,
-        description="Revocation registry revocations transaction to endorse",
-    )
+    txn: Optional[List[TransactionRecord]] = None
     __properties: ClassVar[List[str]] = ["sent", "txn"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -73,9 +70,13 @@ class TxnOrPublishRevocationsResult(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of sent
         if self.sent:
             _dict["sent"] = self.sent.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of txn
+        # override the default output from pydantic by calling `to_dict()` of each item in txn (list)
+        _items = []
         if self.txn:
-            _dict["txn"] = self.txn.to_dict()
+            for _item in self.txn:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["txn"] = _items
         return _dict
 
     @classmethod
@@ -95,7 +96,7 @@ class TxnOrPublishRevocationsResult(BaseModel):
                     else None
                 ),
                 "txn": (
-                    TransactionRecord.from_dict(obj["txn"])
+                    [TransactionRecord.from_dict(_item) for _item in obj["txn"]]
                     if obj.get("txn") is not None
                     else None
                 ),
