@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v1.0.0rc5
+  version: v1.0.0
 servers:
 - url: /
 security:
@@ -10584,13 +10584,23 @@ components:
     TxnOrPublishRevocationsResult:
       type: object
       properties:
-        sent:
-          $ref: '#/components/schemas/PublishRevocations'
-        txn:
+        rrid2crid:
           type: object
-          description: Revocation registry revocations transaction to endorse
-          allOf:
-          - $ref: '#/components/schemas/TransactionRecord'
+          additionalProperties:
+            type: array
+            items:
+              pattern: ^[1-9][0-9]*$
+              type: string
+              description: Credential revocation identifier
+              example: '12345'
+          description: Credential revocation ids by revocation registry id
+        txn:
+          type: array
+          items:
+            type: object
+            description: Revocation registry revocations transaction to endorse
+            allOf:
+            - $ref: '#/components/schemas/TransactionRecord'
     TxnOrRegisterLedgerNymResponse:
       type: object
       properties:
