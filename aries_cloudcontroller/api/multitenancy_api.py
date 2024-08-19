@@ -13,7 +13,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
@@ -474,6 +474,10 @@ class MultitenancyApi:
     @validate_call
     async def get_wallets(
         self,
+        descending: Annotated[
+            Optional[StrictBool],
+            Field(description="Order results in descending order if true"),
+        ] = None,
         limit: Annotated[
             Optional[StrictInt], Field(description="Number of results to return")
         ] = None,
@@ -502,6 +506,8 @@ class MultitenancyApi:
         """Query subwallets
 
 
+        :param descending: Order results in descending order if true
+        :type descending: bool
         :param limit: Number of results to return
         :type limit: int
         :param offset: Offset for pagination
@@ -514,6 +520,7 @@ class MultitenancyApi:
         """  # noqa: E501
 
         _param = self._get_wallets_serialize(
+            descending=descending,
             limit=limit,
             offset=offset,
             wallet_name=wallet_name,
@@ -538,6 +545,7 @@ class MultitenancyApi:
 
     def _get_wallets_serialize(
         self,
+        descending,
         limit,
         offset,
         wallet_name,
@@ -561,6 +569,10 @@ class MultitenancyApi:
 
         # process the path parameters
         # process the query parameters
+        if descending is not None:
+
+            _query_params.append(("descending", descending))
+
         if limit is not None:
 
             _query_params.append(("limit", limit))

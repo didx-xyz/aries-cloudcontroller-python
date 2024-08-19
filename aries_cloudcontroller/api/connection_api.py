@@ -852,6 +852,10 @@ class ConnectionApi:
         connection_protocol: Annotated[
             Optional[StrictStr], Field(description="Connection protocol used")
         ] = None,
+        descending: Annotated[
+            Optional[StrictBool],
+            Field(description="Order results in descending order if true"),
+        ] = None,
         invitation_key: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
             Field(description="invitation key"),
@@ -902,6 +906,8 @@ class ConnectionApi:
         :type alias: str
         :param connection_protocol: Connection protocol used
         :type connection_protocol: str
+        :param descending: Order results in descending order if true
+        :type descending: bool
         :param invitation_key: invitation key
         :type invitation_key: str
         :param invitation_msg_id: Identifier of the associated Invitation Message
@@ -926,6 +932,7 @@ class ConnectionApi:
         _param = self._get_connections_serialize(
             alias=alias,
             connection_protocol=connection_protocol,
+            descending=descending,
             invitation_key=invitation_key,
             invitation_msg_id=invitation_msg_id,
             limit=limit,
@@ -957,6 +964,7 @@ class ConnectionApi:
         self,
         alias,
         connection_protocol,
+        descending,
         invitation_key,
         invitation_msg_id,
         limit,
@@ -992,6 +1000,10 @@ class ConnectionApi:
         if connection_protocol is not None:
 
             _query_params.append(("connection_protocol", connection_protocol))
+
+        if descending is not None:
+
+            _query_params.append(("descending", descending))
 
         if invitation_key is not None:
 

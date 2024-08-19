@@ -840,6 +840,12 @@ paths:
           - connections/1.0
           - didexchange/1.0
           - didexchange/1.1
+      - name: descending
+        in: query
+        description: Order results in descending order if true
+        schema:
+          type: boolean
+          default: false
       - name: invitation_key
         in: query
         description: invitation key
@@ -2032,6 +2038,12 @@ paths:
         description: Connection identifier
         schema:
           type: string
+      - name: descending
+        in: query
+        description: Order results in descending order if true
+        schema:
+          type: boolean
+          default: false
       - name: limit
         in: query
         description: Number of results to return
@@ -2398,6 +2410,12 @@ paths:
         description: Connection identifier
         schema:
           type: string
+      - name: descending
+        in: query
+        description: Order results in descending order if true
+        schema:
+          type: boolean
+          default: false
       - name: limit
         in: query
         description: Number of results to return
@@ -3405,6 +3423,12 @@ paths:
       - multitenancy
       summary: Query subwallets
       parameters:
+      - name: descending
+        in: query
+        description: Order results in descending order if true
+        schema:
+          type: boolean
+          default: false
       - name: limit
         in: query
         description: Number of results to return
@@ -3573,6 +3597,12 @@ paths:
         description: Connection identifier
         schema:
           type: string
+      - name: descending
+        in: query
+        description: Order results in descending order if true
+        schema:
+          type: boolean
+          default: false
       - name: limit
         in: query
         description: Number of results to return
@@ -3884,6 +3914,12 @@ paths:
         description: Connection identifier
         schema:
           type: string
+      - name: descending
+        in: query
+        description: Order results in descending order if true
+        schema:
+          type: boolean
+          default: false
       - name: limit
         in: query
         description: Number of results to return

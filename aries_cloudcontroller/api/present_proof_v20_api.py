@@ -13,7 +13,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
@@ -506,6 +506,10 @@ class PresentProofV20Api:
         connection_id: Annotated[
             Optional[StrictStr], Field(description="Connection identifier")
         ] = None,
+        descending: Annotated[
+            Optional[StrictBool],
+            Field(description="Order results in descending order if true"),
+        ] = None,
         limit: Annotated[
             Optional[StrictInt], Field(description="Number of results to return")
         ] = None,
@@ -539,6 +543,8 @@ class PresentProofV20Api:
 
         :param connection_id: Connection identifier
         :type connection_id: str
+        :param descending: Order results in descending order if true
+        :type descending: bool
         :param limit: Number of results to return
         :type limit: int
         :param offset: Offset for pagination
@@ -554,6 +560,7 @@ class PresentProofV20Api:
 
         _param = self._get_records_serialize(
             connection_id=connection_id,
+            descending=descending,
             limit=limit,
             offset=offset,
             role=role,
@@ -580,6 +587,7 @@ class PresentProofV20Api:
     def _get_records_serialize(
         self,
         connection_id,
+        descending,
         limit,
         offset,
         role,
@@ -607,6 +615,10 @@ class PresentProofV20Api:
         if connection_id is not None:
 
             _query_params.append(("connection_id", connection_id))
+
+        if descending is not None:
+
+            _query_params.append(("descending", descending))
 
         if limit is not None:
 
