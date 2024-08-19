@@ -14422,16 +14422,29 @@
     },
     "TxnOrPublishRevocationsResult": {
       "properties": {
-        "sent": {
-          "$ref": "#/definitions/PublishRevocations"
+        "rrid2crid": {
+          "additionalProperties": {
+            "items": {
+              "description": "Credential revocation identifier",
+              "example": "12345",
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": "Credential revocation ids by revocation registry id",
+          "type": "object"
         },
         "txn": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/TransactionRecord"
-            }
-          ],
-          "description": "Revocation registry revocations transaction to endorse"
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/TransactionRecord"
+              }
+            ],
+            "description": "Revocation registry revocations transaction to endorse"
+          },
+          "type": "array"
         }
       },
       "type": "object"
