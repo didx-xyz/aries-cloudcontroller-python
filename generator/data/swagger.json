@@ -7715,7 +7715,7 @@
   },
   "info": {
     "title": "Aries Cloud Agent",
-    "version": "v1.0.0rc5"
+    "version": "v1.0.0"
   },
   "swagger": "2.0",
   "definitions": {
