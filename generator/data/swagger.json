@@ -1128,6 +1128,15 @@
             "default": 0
           },
           {
+            "name": "order_by",
+            "in": "query",
+            "description": "The column to order results by. Only \"id\" is currently supported.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": ["id"]
+          },
+          {
             "name": "state",
             "in": "query",
             "description": "Connection state",
@@ -2583,6 +2592,15 @@
             "default": 0
           },
           {
+            "name": "order_by",
+            "in": "query",
+            "description": "The column to order results by. Only \"id\" is currently supported.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": ["id"]
+          },
+          {
             "name": "role",
             "in": "query",
             "description": "Role assigned in credential exchange",
@@ -3029,6 +3047,15 @@
             "required": false,
             "type": "integer",
             "default": 0
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "The column to order results by. Only \"id\" is currently supported.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": ["id"]
           },
           {
             "name": "role",
@@ -4244,6 +4271,15 @@
             "default": 0
           },
           {
+            "name": "order_by",
+            "in": "query",
+            "description": "The column to order results by. Only \"id\" is currently supported.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": ["id"]
+          },
+          {
             "name": "wallet_name",
             "in": "query",
             "description": "Wallet name",
@@ -4463,6 +4499,15 @@
             "required": false,
             "type": "integer",
             "default": 0
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "The column to order results by. Only \"id\" is currently supported.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": ["id"]
           },
           {
             "name": "role",
@@ -4850,6 +4895,15 @@
             "required": false,
             "type": "integer",
             "default": 0
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "The column to order results by. Only \"id\" is currently supported.",
+            "required": false,
+            "type": "string",
+            "default": "id",
+            "enum": ["id"]
           },
           {
             "name": "role",

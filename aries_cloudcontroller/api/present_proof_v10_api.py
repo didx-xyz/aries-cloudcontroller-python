@@ -535,6 +535,12 @@ class PresentProofV10Api:
         offset: Annotated[
             Optional[StrictInt], Field(description="Offset for pagination")
         ] = None,
+        order_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='The column to order results by. Only "id" is currently supported.'
+            ),
+        ] = None,
         role: Annotated[
             Optional[StrictStr],
             Field(description="Role assigned in presentation exchange"),
@@ -568,6 +574,8 @@ class PresentProofV10Api:
         :type limit: int
         :param offset: Offset for pagination
         :type offset: int
+        :param order_by: The column to order results by. Only \"id\" is currently supported.
+        :type order_by: str
         :param role: Role assigned in presentation exchange
         :type role: str
         :param state: Presentation exchange state
@@ -583,6 +591,7 @@ class PresentProofV10Api:
             descending=descending,
             limit=limit,
             offset=offset,
+            order_by=order_by,
             role=role,
             state=state,
             thread_id=thread_id,
@@ -610,6 +619,7 @@ class PresentProofV10Api:
         descending,
         limit,
         offset,
+        order_by,
         role,
         state,
         thread_id,
@@ -647,6 +657,10 @@ class PresentProofV10Api:
         if offset is not None:
 
             _query_params.append(("offset", offset))
+
+        if order_by is not None:
+
+            _query_params.append(("order_by", order_by))
 
         if role is not None:
 

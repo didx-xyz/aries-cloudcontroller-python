@@ -873,6 +873,12 @@ class ConnectionApi:
         offset: Annotated[
             Optional[StrictInt], Field(description="Offset for pagination")
         ] = None,
+        order_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='The column to order results by. Only "id" is currently supported.'
+            ),
+        ] = None,
         state: Annotated[
             Optional[StrictStr], Field(description="Connection state")
         ] = None,
@@ -918,6 +924,8 @@ class ConnectionApi:
         :type my_did: str
         :param offset: Offset for pagination
         :type offset: int
+        :param order_by: The column to order results by. Only \"id\" is currently supported.
+        :type order_by: str
         :param state: Connection state
         :type state: str
         :param their_did: Their DID
@@ -938,6 +946,7 @@ class ConnectionApi:
             limit=limit,
             my_did=my_did,
             offset=offset,
+            order_by=order_by,
             state=state,
             their_did=their_did,
             their_public_did=their_public_did,
@@ -970,6 +979,7 @@ class ConnectionApi:
         limit,
         my_did,
         offset,
+        order_by,
         state,
         their_did,
         their_public_did,
@@ -1024,6 +1034,10 @@ class ConnectionApi:
         if offset is not None:
 
             _query_params.append(("offset", offset))
+
+        if order_by is not None:
+
+            _query_params.append(("order_by", order_by))
 
         if state is not None:
 

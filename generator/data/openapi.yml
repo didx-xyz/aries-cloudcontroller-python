@@ -875,6 +875,14 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: order_by
+        in: query
+        description: The column to order results by. Only "id" is currently supported.
+        schema:
+          type: string
+          default: id
+          enum:
+          - id
       - name: state
         in: query
         description: Connection state
@@ -2056,6 +2064,14 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: order_by
+        in: query
+        description: The column to order results by. Only "id" is currently supported.
+        schema:
+          type: string
+          default: id
+          enum:
+          - id
       - name: role
         in: query
         description: Role assigned in credential exchange
@@ -2428,6 +2444,14 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: order_by
+        in: query
+        description: The column to order results by. Only "id" is currently supported.
+        schema:
+          type: string
+          default: id
+          enum:
+          - id
       - name: role
         in: query
         description: Role assigned in credential exchange
@@ -3441,6 +3465,14 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: order_by
+        in: query
+        description: The column to order results by. Only "id" is currently supported.
+        schema:
+          type: string
+          default: id
+          enum:
+          - id
       - name: wallet_name
         in: query
         description: Wallet name
@@ -3615,6 +3647,14 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: order_by
+        in: query
+        description: The column to order results by. Only "id" is currently supported.
+        schema:
+          type: string
+          default: id
+          enum:
+          - id
       - name: role
         in: query
         description: Role assigned in presentation exchange
@@ -3932,6 +3972,14 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: order_by
+        in: query
+        description: The column to order results by. Only "id" is currently supported.
+        schema:
+          type: string
+          default: id
+          enum:
+          - id
       - name: role
         in: query
         description: Role assigned in presentation exchange

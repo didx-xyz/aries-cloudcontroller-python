@@ -484,6 +484,12 @@ class MultitenancyApi:
         offset: Annotated[
             Optional[StrictInt], Field(description="Offset for pagination")
         ] = None,
+        order_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='The column to order results by. Only "id" is currently supported.'
+            ),
+        ] = None,
         wallet_name: Annotated[
             Optional[StrictStr], Field(description="Wallet name")
         ] = None,
@@ -512,6 +518,8 @@ class MultitenancyApi:
         :type limit: int
         :param offset: Offset for pagination
         :type offset: int
+        :param order_by: The column to order results by. Only \"id\" is currently supported.
+        :type order_by: str
         :param wallet_name: Wallet name
         :type wallet_name: str
         :param group_id: Group id (additional field from ACA-Py plugin)
@@ -523,6 +531,7 @@ class MultitenancyApi:
             descending=descending,
             limit=limit,
             offset=offset,
+            order_by=order_by,
             wallet_name=wallet_name,
             group_id=group_id,
             _request_auth=_request_auth,
@@ -548,6 +557,7 @@ class MultitenancyApi:
         descending,
         limit,
         offset,
+        order_by,
         wallet_name,
         group_id,
         _request_auth,
@@ -580,6 +590,10 @@ class MultitenancyApi:
         if offset is not None:
 
             _query_params.append(("offset", offset))
+
+        if order_by is not None:
+
+            _query_params.append(("order_by", order_by))
 
         if wallet_name is not None:
 
