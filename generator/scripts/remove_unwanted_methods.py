@@ -6,7 +6,6 @@ def clean_file(file_path):
     """This method cleans up API modules by removing specific methods and their decorators"""
     modified_lines = []
     ignore_block = False
-    method_indentation = None
 
     with open(file_path, "r") as file:
         lines = file.readlines()
