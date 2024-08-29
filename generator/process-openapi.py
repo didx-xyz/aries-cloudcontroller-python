@@ -106,16 +106,6 @@ class OpenAPICleaner:
         self.fix_vc_api(value)
 
 
-def merge_operation_ids():
-    with open("/app/openapi.yml") as openapi_file, open(
-        "/app/operation-id-map.yml"
-    ) as ops_file:
-        openapi = yaml.load(openapi_file, Loader=yaml.FullLoader)
-        ops = yaml.load(ops_file, Loader=yaml.FullLoader)
-
-    return deepmerge.always_merger.merge(openapi, ops)
-
-
 def load_yaml_file(file_path):
     with open(file_path, "r") as file:
         return yaml.load(file, Loader=yaml.FullLoader)
@@ -126,10 +116,10 @@ def save_yaml_file(data, file_path):
         yaml.dump(data, file, sort_keys=False)
 
 
-# def merge_operation_ids(openapi_path, ops_map_path):
-#     openapi = load_yaml_file(openapi_path)
-#     ops = load_yaml_file(ops_map_path)
-#     return deepmerge.always_merger.merge(openapi, ops)
+def merge_operation_ids(openapi_path, ops_map_path):
+    openapi = load_yaml_file(openapi_path)
+    ops = load_yaml_file(ops_map_path)
+    return deepmerge.always_merger.merge(openapi, ops)
 
 
 def find_missing_operation_ids(openapi_path, ops_map_path):
