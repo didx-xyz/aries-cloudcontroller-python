@@ -24,9 +24,9 @@ def replace_bool_w_strings(d):
     """
 
     def replace_bools(v):
-        if v == False:
+        if v is False:
             return "false"
-        if v == True:
+        if v is True:
             return "true"
         return v
 

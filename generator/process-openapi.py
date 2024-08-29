@@ -126,10 +126,10 @@ def save_yaml_file(data, file_path):
         yaml.dump(data, file, sort_keys=False)
 
 
-def merge_operation_ids(openapi_path, ops_map_path):
-    openapi = load_yaml_file(openapi_path)
-    ops = load_yaml_file(ops_map_path)
-    return deepmerge.always_merger.merge(openapi, ops)
+# def merge_operation_ids(openapi_path, ops_map_path):
+#     openapi = load_yaml_file(openapi_path)
+#     ops = load_yaml_file(ops_map_path)
+#     return deepmerge.always_merger.merge(openapi, ops)
 
 
 def find_missing_operation_ids(openapi_path, ops_map_path):
