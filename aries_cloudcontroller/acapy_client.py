@@ -9,6 +9,7 @@ from aries_cloudcontroller.api import (
     CredentialsApi,
     DefaultApi,
     DidExchangeApi,
+    DidRotateApi,
     DiscoverFeaturesApi,
     DiscoverFeaturesV20Api,
     EndorseTransactionApi,
@@ -42,6 +43,7 @@ class AcaPyClient(AbstractAsyncContextManager):
     credentials: CredentialsApi
     default: DefaultApi
     did_exchange: DidExchangeApi
+    did_rotate: DidRotateApi
     discover_features: DiscoverFeaturesApi
     discover_features_v2_0: DiscoverFeaturesV20Api
     endorse_transaction: EndorseTransactionApi
