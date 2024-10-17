@@ -33,13 +33,13 @@ class DID(BaseModel):
 
     # keep custom changes
     did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
-    key_type: Literal["ed25519", "bls12381g2"] = Field(
-        description="Key type associated with the DID"
-    )
+    key_type: Literal[
+        "ed25519", "x25519", "bls12381g1", "bls12381g2", "bls12381g1g2"
+    ] = Field(description="Key type associated with the DID")
     metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Additional metadata associated with the DID"
     )
-    method: Literal["sov", "key"] = Field(
+    method: Literal["sov", "key", "web", "did:peer:2", "did:peer:4"] = Field(
         description="Did method associated with the DID"
     )
     posture: Literal["public", "posted", "wallet_only"] = Field(
