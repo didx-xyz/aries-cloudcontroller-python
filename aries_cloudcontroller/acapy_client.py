@@ -100,6 +100,7 @@ class AcaPyClient(AbstractAsyncContextManager):
         self.credentials = CredentialsApi(self.api_client)
         self.default = DefaultApi(self.api_client)
         self.did_exchange = DidExchangeApi(self.api_client)
+        self.did_rotate = DidRotateApi(self.api_client)
         self.discover_features = DiscoverFeaturesApi(self.api_client)
         self.discover_features_v2_0 = DiscoverFeaturesV20Api(self.api_client)
         self.endorse_transaction = EndorseTransactionApi(self.api_client)
