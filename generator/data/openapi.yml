@@ -5311,6 +5311,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/FetchCredentialResponse'
       operationId: get_credential
+  /vc/di/add-proof:
+    post:
+      tags:
+      - vc
+      summary: Add a DataIntegrityProof to a document.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddProof'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddProofResponse'
+      x-codegen-request-body-name: body
+  /vc/di/verify:
+    post:
+      tags:
+      - vc
+      summary: Verify a document secured with a data integrity proof.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyDiRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyDiResponse'
+      x-codegen-request-body-name: body
   /vc/presentations/prove:
     post:
       tags:
@@ -5555,6 +5593,61 @@ paths:
                 $ref: '#/components/schemas/JWSVerifyResponse'
       x-codegen-request-body-name: body
       operationId: verify_jwt
+  /wallet/keys:
+    put:
+      tags:
+      - wallet
+      summary: Update a key pair's kid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateKeyRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateKeyResponse'
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - wallet
+      summary: Create a key pair
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateKeyRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateKeyResponse'
+      x-codegen-request-body-name: body
+  /wallet/keys/{multikey}:
+    get:
+      tags:
+      - wallet
+      summary: Fetch key info.
+      parameters:
+      - name: multikey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchKeyResponse'
   /wallet/sd-jwt/sign:
     post:
       tags:
@@ -5656,6 +5749,35 @@ components:
           - $ref: '#/components/schemas/Menu'
     ActionMenuModulesResult:
       type: object
+    AddProof:
+      required:
+      - document
+      type: object
+      properties:
+        document:
+          type: object
+          properties: {}
+          example:
+            hello: world
+        options:
+          type: object
+          example:
+            cryptosuite: eddsa-jcs-2022
+            proofPurpose: assertionMethod
+            type: DataIntegrityProof
+            verificationMethod: did:web:example.com#key-01
+          allOf:
+          - $ref: '#/components/schemas/DataIntegrityProofOptions'
+    AddProofResponse:
+      required:
+      - secured_document
+      type: object
+      properties:
+        secured_document:
+          type: object
+          properties: {}
+          example:
+            hello: world
     AdminConfig:
       required:
       - config
@@ -6236,6 +6358,34 @@ components:
           type: string
           description: Connection endpoint
           example: http://192.168.56.102:8020
+    CreateKeyRequest:
+      type: object
+      properties:
+        alg:
+          type: string
+          description: Which key algorithm to use.
+          example: ed25519
+        kid:
+          type: string
+          description: Optional kid to bind to the keypair,                 such as
+            a verificationMethod.
+          example: did:web:example.com#key-01
+        seed:
+          type: string
+          description: Optional seed to generate the key pair.                 Must
+            enable insecure wallet mode.
+          example: '00000000000000000000000000000000'
+    CreateKeyResponse:
+      type: object
+      properties:
+        kid:
+          type: string
+          description: The associated kid
+          example: did:web:example.com#key-01
+        multikey:
+          type: string
+          description: The Public Key Multibase format (multikey)
+          example: z6MkgKA7yrw5kYSiDuQFcye4bMaJpcfHFry3Bx45pdWh3s8i
     CreateWalletRequest:
       type: object
       properties:
@@ -6993,6 +7143,11 @@ components:
           - Endpoint
           - Profile
           - LinkedDomains
+        mediation_id:
+          pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
+          type: string
+          description: Mediation ID to use for endpoint information.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     DIDList:
       type: object
       properties:
@@ -7172,6 +7327,79 @@ components:
         presentation_definition:
           $ref: '#/components/schemas/PresentationDefinition'
       additionalProperties: true
+    DataIntegrityProofOptions:
+      required:
+      - cryptosuite
+      - proofPurpose
+      - type
+      - verificationMethod
+      type: object
+      properties:
+        challenge:
+          type: string
+          description: The value is used once for a particular domain and window of
+            time.                     This value is used to mitigate replay attacks.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        created:
+          type: string
+          description: The date and time the proof was created is OPTIONAL and, if                     included,
+            MUST be specified as an [XMLSCHEMA11-2]                         dateTimeStamp
+            string
+          example: 2010-01-01 19:23:24+00:00
+        cryptosuite:
+          type: string
+          description: An identifier for the cryptographic suite that can be used
+            to                     verify the proof.
+          example: eddsa-jcs-2022
+        domain:
+          type: string
+          description: It conveys one or more security domains in which the proof
+            is                     meant to be used.
+          example: example.com
+        expires:
+          type: string
+          description: The expires property is OPTIONAL and, if present, specifies
+            when                     the proof expires. If present, it MUST be an
+            [XMLSCHEMA11-2]                         dateTimeStamp string
+          example: 2010-01-01 19:23:24+00:00
+        id:
+          type: string
+          description: An optional identifier for the proof, which MUST be a URL [URL],                     such
+            as a UUID as a URN
+          example: urn:uuid:6a1676b8-b51f-11ed-937b-d76685a20ff5
+        nonce:
+          type: string
+          description: One use of this field is to increase privacy by decreasing                 linkability
+            that is the result of deterministically                     generated
+            signatures.
+          example: CF69iO3nfvqRsRBNElE8b4wO39SyJHPM7Gg1nExltW5vSfQA1lvDCR/zXX1To0/4NLo==
+        previousProof:
+          type: string
+          description: Each value identifies another data integrity proof that                 MUST
+            verify before the current proof is processed.
+          example: urn:uuid:6a1676b8-b51f-11ed-937b-d76685a20ff5
+        proofPurpose:
+          type: string
+          description: The proof purpose acts as a safeguard to prevent the                 proof
+            from being misused by being applied to a purpose other than                     the
+            one that was intended.
+          example: assertionMethod
+        proofValue:
+          type: string
+          description: The value of the proof signature.
+          example: zsy1AahqbzJQ63n9RtekmwzqZeVj494VppdAVJBnMYrTwft6cLJJGeTSSxCCJ6HKnRtwE7jjDh6sB2z2AAiZY9BBnCD8wUVgwqH3qchGRCuC2RugA4eQ9fUrR4Yuycac3caiaaay
+        type:
+          type: string
+          description: The specific type of proof MUST be specified as a string that
+            maps                     to a URL [URL].
+          example: DataIntegrityProof
+        verificationMethod:
+          pattern: \w+:(\/?\/?)[^\s]+
+          type: string
+          description: 'A verification method is the means and information                 needed
+            to verify the proof. '
+          example: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
+      additionalProperties: true
     Date:
       required:
       - expires_time
@@ -7280,6 +7508,17 @@ components:
       properties:
         results:
           $ref: '#/components/schemas/VerifiableCredential'
+    FetchKeyResponse:
+      type: object
+      properties:
+        kid:
+          type: string
+          description: The associated kid
+          example: did:web:example.com#key-01
+        multikey:
+          type: string
+          description: The Public Key Multibase format (multikey)
+          example: z6MkgKA7yrw5kYSiDuQFcye4bMaJpcfHFry3Bx45pdWh3s8i
     Filter:
       type: object
       properties:
@@ -10720,6 +10959,32 @@ components:
           description: Schema transaction to endorse
           allOf:
           - $ref: '#/components/schemas/TransactionRecord'
+    UpdateKeyRequest:
+      required:
+      - kid
+      - multikey
+      type: object
+      properties:
+        kid:
+          type: string
+          description: New kid to bind to the key pair,                 such as a
+            verificationMethod.
+          example: did:web:example.com#key-02
+        multikey:
+          type: string
+          description: Multikey of the key pair to update
+          example: z6MkgKA7yrw5kYSiDuQFcye4bMaJpcfHFry3Bx45pdWh3s8i
+    UpdateKeyResponse:
+      type: object
+      properties:
+        kid:
+          type: string
+          description: The associated kid
+          example: did:web:example.com#key-02
+        multikey:
+          type: string
+          description: The Public Key Multibase format (multikey)
+          example: z6MkgKA7yrw5kYSiDuQFcye4bMaJpcfHFry3Bx45pdWh3s8i
     UpdateProfileSettings:
       type: object
       properties:
@@ -12743,6 +13008,29 @@ components:
       properties:
         results:
           $ref: '#/components/schemas/PresentationVerificationResult'
+    VerifyDiRequest:
+      required:
+      - securedDocument
+      type: object
+      properties:
+        securedDocument:
+          type: object
+          properties: {}
+          example:
+            hello: world
+            proof:
+            - cryptosuite: eddsa-jcs-2022
+              proofPurpose: assertionMethod
+              type: DataIntegrityProof
+              verificationMethod: 'did:key:                            z6MksxraKwH8GR7NKeQ4HVZAeRKvD76kfd6G7jm8MscbDmy8#                                z6MksxraKwH8GR7NKeQ4HVZAeRKvD76kfd6G7jm8MscbDmy8'
+              proofValue: zHtda8vV7kJQUPfSKiTGSQDhZfhkgtpnVziT7cdEzhu                            fjPjbeRmysHvizMJEox1eHR7xUGzNUj1V4yaKiLw7UA6E
+    VerifyDiResponse:
+      type: object
+      properties:
+        verified:
+          type: boolean
+          description: Verified
+          example: true
     VerifyPresentationRequest:
       type: object
       properties:
