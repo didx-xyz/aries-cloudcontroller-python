@@ -38,7 +38,15 @@ class DIDEndpointWithType(BaseModel):
         default=None,
         description="Endpoint type to set (default 'Endpoint'); affects only public or posted DIDs",
     )
-    __properties: ClassVar[List[str]] = ["did", "endpoint", "endpoint_type"]
+    mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Mediation ID to use for endpoint information."
+    )
+    __properties: ClassVar[List[str]] = [
+        "did",
+        "endpoint",
+        "endpoint_type",
+        "mediation_id",
+    ]
 
     @field_validator("did")
     def did_validate_regular_expression(cls, value):
@@ -76,6 +84,21 @@ class DIDEndpointWithType(BaseModel):
         if value not in set(["Endpoint", "Profile", "LinkedDomains"]):
             raise ValueError(
                 "must be one of enum values ('Endpoint', 'Profile', 'LinkedDomains')"
+            )
+        return value
+
+    @field_validator("mediation_id")
+    def mediation_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(
+            r"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/"
             )
         return value
 
@@ -127,6 +150,7 @@ class DIDEndpointWithType(BaseModel):
                 "did": obj.get("did"),
                 "endpoint": obj.get("endpoint"),
                 "endpoint_type": obj.get("endpoint_type"),
+                "mediation_id": obj.get("mediation_id"),
             }
         )
         return _obj
