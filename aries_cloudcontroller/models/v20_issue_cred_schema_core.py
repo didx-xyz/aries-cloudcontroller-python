@@ -14,10 +14,10 @@
 
 from __future__ import annotations
 
-import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
+import orjson
 from pydantic import BaseModel, Field, StrictBool, StrictStr
 from typing_extensions import Self
 
@@ -72,7 +72,7 @@ class V20IssueCredSchemaCore(BaseModel):
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V20IssueCredSchemaCore from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
         """Return the dictionary representation of the model using alias.

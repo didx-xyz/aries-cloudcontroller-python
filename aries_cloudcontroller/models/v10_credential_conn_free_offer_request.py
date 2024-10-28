@@ -14,11 +14,11 @@
 
 from __future__ import annotations
 
-import json
 import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
+import orjson
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
@@ -84,7 +84,7 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of V10CredentialConnFreeOfferRequest from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
         """Return the dictionary representation of the model using alias.
