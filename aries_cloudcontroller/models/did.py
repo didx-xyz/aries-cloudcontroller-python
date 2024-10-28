@@ -14,11 +14,11 @@
 
 from __future__ import annotations
 
-import orjson
 import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Literal, Optional, Set
 
+import orjson
 from pydantic import BaseModel, Field, field_validator
 from typing_extensions import Annotated, Self
 

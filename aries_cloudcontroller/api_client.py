@@ -14,7 +14,6 @@
 
 import datetime
 import decimal
-import orjson
 import mimetypes
 import os
 import re
@@ -23,6 +22,7 @@ from enum import Enum
 from typing import Dict, List, Optional, Tuple, Union
 from urllib.parse import quote
 
+import orjson
 from dateutil.parser import parse
 from pydantic import SecretStr
 
