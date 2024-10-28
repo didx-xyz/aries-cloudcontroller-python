@@ -14,7 +14,7 @@
 
 import datetime
 import decimal
-import json
+import orjson
 import mimetypes
 import os
 import re
@@ -389,7 +389,7 @@ class ApiClient:
         # fetch data from response object
         if content_type is None:
             try:
-                data = json.loads(response_text)
+                data = orjson.loads(response_text)
             except ValueError:
                 data = response_text
         elif re.match(
@@ -400,7 +400,7 @@ class ApiClient:
             if response_text == "":
                 data = ""
             else:
-                data = json.loads(response_text)
+                data = orjson.loads(response_text)
         elif re.match(r"^text\/[a-z.+-]+\s*(;|$)", content_type, re.IGNORECASE):
             data = response_text
         else:
@@ -500,7 +500,7 @@ class ApiClient:
             if isinstance(v, (int, float)):
                 v = str(v)
             if isinstance(v, dict):
-                v = json.dumps(v)
+                v = orjson.dumps(v).decode()
 
             if k in collection_formats:
                 collection_format = collection_formats[k]

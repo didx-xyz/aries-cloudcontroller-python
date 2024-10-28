@@ -13,7 +13,7 @@
 
 
 import io
-import json
+import orjson
 import re
 import ssl
 from typing import Optional, Union
@@ -152,7 +152,7 @@ class RESTClientObject:
         if method in ["POST", "PUT", "PATCH", "OPTIONS", "DELETE"]:
             if re.search("json", headers["Content-Type"], re.IGNORECASE):
                 if body is not None:
-                    body = json.dumps(body)
+                    body = orjson.dumps(body).decode()
                 args["data"] = body
             elif headers["Content-Type"] == "application/x-www-form-urlencoded":
                 args["data"] = aiohttp.FormData(post_params)
@@ -168,7 +168,7 @@ class RESTClientObject:
                     else:
                         # Ensures that dict objects are serialized
                         if isinstance(v, dict):
-                            v = json.dumps(v)
+                            v = orjson.dumps(v).decode()
                         elif isinstance(v, int):
                             v = str(v)
                         data.add_field(k, v)

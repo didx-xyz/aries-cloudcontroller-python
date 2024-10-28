@@ -1,5 +1,6 @@
 aiohttp>=3.9.4,<4.0
 aiohttp_retry~=2.8.3
+orjson>=3.10.10
 pydantic>=2.6,<3.0
 python-dateutil>=2
 typing-extensions>=4,<5.0
