@@ -109,16 +109,16 @@ class PresentationDefinition(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in input_descriptors (list)
         _items = []
         if self.input_descriptors:
-            for _item in self.input_descriptors:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_input_descriptors in self.input_descriptors:
+                if _item_input_descriptors:
+                    _items.append(_item_input_descriptors.to_dict())
             _dict["input_descriptors"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in submission_requirements (list)
         _items = []
         if self.submission_requirements:
-            for _item in self.submission_requirements:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_submission_requirements in self.submission_requirements:
+                if _item_submission_requirements:
+                    _items.append(_item_submission_requirements.to_dict())
             _dict["submission_requirements"] = _items
         return _dict
 

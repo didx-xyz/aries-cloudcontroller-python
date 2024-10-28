@@ -81,9 +81,9 @@ class IndyProofProof(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in proofs (list)
         _items = []
         if self.proofs:
-            for _item in self.proofs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_proofs in self.proofs:
+                if _item_proofs:
+                    _items.append(_item_proofs.to_dict())
             _dict["proofs"] = _items
         return _dict
 

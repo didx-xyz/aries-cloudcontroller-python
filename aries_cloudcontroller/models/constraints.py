@@ -133,16 +133,16 @@ class Constraints(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in fields (list)
         _items = []
         if self.fields:
-            for _item in self.fields:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_fields in self.fields:
+                if _item_fields:
+                    _items.append(_item_fields.to_dict())
             _dict["fields"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in is_holder (list)
         _items = []
         if self.is_holder:
-            for _item in self.is_holder:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_is_holder in self.is_holder:
+                if _item_is_holder:
+                    _items.append(_item_is_holder.to_dict())
             _dict["is_holder"] = _items
         return _dict
 

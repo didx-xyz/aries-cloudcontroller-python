@@ -92,16 +92,16 @@ class V20PresRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in formats (list)
         _items = []
         if self.formats:
-            for _item in self.formats:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_formats in self.formats:
+                if _item_formats:
+                    _items.append(_item_formats.to_dict())
             _dict["formats"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in request_presentationsattach (list)
         _items = []
         if self.request_presentationsattach:
-            for _item in self.request_presentationsattach:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_request_presentationsattach in self.request_presentationsattach:
+                if _item_request_presentationsattach:
+                    _items.append(_item_request_presentationsattach.to_dict())
             _dict["request_presentations~attach"] = _items
         return _dict
 

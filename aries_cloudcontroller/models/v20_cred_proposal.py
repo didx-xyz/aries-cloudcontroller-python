@@ -96,16 +96,16 @@ class V20CredProposal(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in filtersattach (list)
         _items = []
         if self.filtersattach:
-            for _item in self.filtersattach:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_filtersattach in self.filtersattach:
+                if _item_filtersattach:
+                    _items.append(_item_filtersattach.to_dict())
             _dict["filters~attach"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in formats (list)
         _items = []
         if self.formats:
-            for _item in self.formats:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_formats in self.formats:
+                if _item_formats:
+                    _items.append(_item_formats.to_dict())
             _dict["formats"] = _items
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field

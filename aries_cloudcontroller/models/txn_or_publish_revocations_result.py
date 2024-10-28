@@ -71,9 +71,9 @@ class TxnOrPublishRevocationsResult(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in txn (list)
         _items = []
         if self.txn:
-            for _item in self.txn:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_txn in self.txn:
+                if _item_txn:
+                    _items.append(_item_txn.to_dict())
             _dict["txn"] = _items
         return _dict
 

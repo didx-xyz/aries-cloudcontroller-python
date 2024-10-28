@@ -78,9 +78,9 @@ class PresentationVerificationResult(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in credential_results (list)
         _items = []
         if self.credential_results:
-            for _item in self.credential_results:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_credential_results in self.credential_results:
+                if _item_credential_results:
+                    _items.append(_item_credential_results.to_dict())
             _dict["credential_results"] = _items
         # override the default output from pydantic by calling `to_dict()` of presentation_result
         if self.presentation_result:

@@ -70,9 +70,9 @@ class DIFProofProposal(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in input_descriptors (list)
         _items = []
         if self.input_descriptors:
-            for _item in self.input_descriptors:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_input_descriptors in self.input_descriptors:
+                if _item_input_descriptors:
+                    _items.append(_item_input_descriptors.to_dict())
             _dict["input_descriptors"] = _items
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:

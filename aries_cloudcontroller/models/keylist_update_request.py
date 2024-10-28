@@ -68,9 +68,9 @@ class KeylistUpdateRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in updates (list)
         _items = []
         if self.updates:
-            for _item in self.updates:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_updates in self.updates:
+                if _item_updates:
+                    _items.append(_item_updates.to_dict())
             _dict["updates"] = _items
         return _dict
 

@@ -74,9 +74,9 @@ class Queries(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in queries (list)
         _items = []
         if self.queries:
-            for _item in self.queries:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_queries in self.queries:
+                if _item_queries:
+                    _items.append(_item_queries.to_dict())
             _dict["queries"] = _items
         return _dict
 

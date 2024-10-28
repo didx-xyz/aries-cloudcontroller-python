@@ -76,9 +76,9 @@ class Disclose(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in protocols (list)
         _items = []
         if self.protocols:
-            for _item in self.protocols:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_protocols in self.protocols:
+                if _item_protocols:
+                    _items.append(_item_protocols.to_dict())
             _dict["protocols"] = _items
         return _dict
 

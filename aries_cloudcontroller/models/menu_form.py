@@ -84,9 +84,9 @@ class MenuForm(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in params (list)
         _items = []
         if self.params:
-            for _item in self.params:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_params in self.params:
+                if _item_params:
+                    _items.append(_item_params.to_dict())
             _dict["params"] = _items
         return _dict
 

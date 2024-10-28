@@ -111,9 +111,9 @@ class AttachDecoratorDataJWS(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in signatures (list)
         _items = []
         if self.signatures:
-            for _item in self.signatures:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_signatures in self.signatures:
+                if _item_signatures:
+                    _items.append(_item_signatures.to_dict())
             _dict["signatures"] = _items
         return _dict
 

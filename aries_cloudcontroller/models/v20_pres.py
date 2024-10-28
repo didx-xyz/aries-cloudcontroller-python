@@ -85,16 +85,16 @@ class V20Pres(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in formats (list)
         _items = []
         if self.formats:
-            for _item in self.formats:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_formats in self.formats:
+                if _item_formats:
+                    _items.append(_item_formats.to_dict())
             _dict["formats"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in presentationsattach (list)
         _items = []
         if self.presentationsattach:
-            for _item in self.presentationsattach:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_presentationsattach in self.presentationsattach:
+                if _item_presentationsattach:
+                    _items.append(_item_presentationsattach.to_dict())
             _dict["presentations~attach"] = _items
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field

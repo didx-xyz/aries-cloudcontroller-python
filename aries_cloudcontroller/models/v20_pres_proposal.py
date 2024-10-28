@@ -88,16 +88,16 @@ class V20PresProposal(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in formats (list)
         _items = []
         if self.formats:
-            for _item in self.formats:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_formats in self.formats:
+                if _item_formats:
+                    _items.append(_item_formats.to_dict())
             _dict["formats"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in proposalsattach (list)
         _items = []
         if self.proposalsattach:
-            for _item in self.proposalsattach:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_proposalsattach in self.proposalsattach:
+                if _item_proposalsattach:
+                    _items.append(_item_proposalsattach.to_dict())
             _dict["proposals~attach"] = _items
         return _dict
 

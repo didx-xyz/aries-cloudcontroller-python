@@ -95,9 +95,9 @@ class SubmissionRequirements(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in from_nested (list)
         _items = []
         if self.from_nested:
-            for _item in self.from_nested:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_from_nested in self.from_nested:
+                if _item_from_nested:
+                    _items.append(_item_from_nested.to_dict())
             _dict["from_nested"] = _items
         return _dict
 

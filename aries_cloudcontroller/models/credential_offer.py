@@ -88,9 +88,9 @@ class CredentialOffer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in offersattach (list)
         _items = []
         if self.offersattach:
-            for _item in self.offersattach:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_offersattach in self.offersattach:
+                if _item_offersattach:
+                    _items.append(_item_offersattach.to_dict())
             _dict["offers~attach"] = _items
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field

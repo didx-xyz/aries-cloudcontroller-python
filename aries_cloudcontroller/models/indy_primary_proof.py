@@ -77,9 +77,9 @@ class IndyPrimaryProof(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in ge_proofs (list)
         _items = []
         if self.ge_proofs:
-            for _item in self.ge_proofs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_ge_proofs in self.ge_proofs:
+                if _item_ge_proofs:
+                    _items.append(_item_ge_proofs.to_dict())
             _dict["ge_proofs"] = _items
         # set to None if eq_proof (nullable) is None
         # and model_fields_set contains the field

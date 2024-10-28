@@ -92,16 +92,16 @@ class V20CredIssue(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in credentialsattach (list)
         _items = []
         if self.credentialsattach:
-            for _item in self.credentialsattach:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_credentialsattach in self.credentialsattach:
+                if _item_credentialsattach:
+                    _items.append(_item_credentialsattach.to_dict())
             _dict["credentials~attach"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in formats (list)
         _items = []
         if self.formats:
-            for _item in self.formats:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_formats in self.formats:
+                if _item_formats:
+                    _items.append(_item_formats.to_dict())
             _dict["formats"] = _items
         # set to None if comment (nullable) is None
         # and model_fields_set contains the field
