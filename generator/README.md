@@ -12,7 +12,7 @@ git clone https://github.com/OpenAPITools/openapi-generator
 
 # Build OpenAPI generator JAR
 cd openapi-generator
-git checkout v7.7.0  # A tag of the openapi-generator version used to generate cloudcontroller
+git checkout v7.9.0  # A tag of the openapi-generator version used to generate cloudcontroller
 
 mvn -B --no-snapshot-updates clean package -DskipTests=true -Dmaven.javadoc.skip=true -Djacoco.skip=true
 ```
@@ -23,5 +23,5 @@ mvn -B --no-snapshot-updates clean package -DskipTests=true -Dmaven.javadoc.skip
 cd aries-cloudcontroller-python
 pip install -r requirements.txt -r requirements.dev.txt --upgrade
 
-./generator/scripts/generate-client.sh 1.0.0 # Or other ACA-Py version
+./generator/scripts/generate-client.sh 1.1.0 # Or other ACA-Py version
 ```
