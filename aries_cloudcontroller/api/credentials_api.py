@@ -786,18 +786,6 @@ class CredentialsApi:
     @validate_call
     async def get_w3c_credentials(
         self,
-        count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Maximum number to retrieve"),
-        ] = None,
-        start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Start index"),
-        ] = None,
-        wql: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="(JSON) WQL query"),
-        ] = None,
         body: Optional[W3CCredentialsListRequest] = None,
         _request_timeout: Union[
             None,
@@ -814,21 +802,12 @@ class CredentialsApi:
         """Fetch W3C credentials from wallet
 
 
-        :param count: Maximum number to retrieve
-        :type count: str
-        :param start: Start index
-        :type start: str
-        :param wql: (JSON) WQL query
-        :type wql: str
         :param body:
         :type body: W3CCredentialsListRequest
         ...
         """  # noqa: E501
 
         _param = self._get_w3c_credentials_serialize(
-            count=count,
-            start=start,
-            wql=wql,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -850,9 +829,6 @@ class CredentialsApi:
 
     def _get_w3c_credentials_serialize(
         self,
-        count,
-        start,
-        wql,
         body,
         _request_auth,
         _content_type,
@@ -875,18 +851,6 @@ class CredentialsApi:
 
         # process the path parameters
         # process the query parameters
-        if count is not None:
-
-            _query_params.append(("count", count))
-
-        if start is not None:
-
-            _query_params.append(("start", start))
-
-        if wql is not None:
-
-            _query_params.append(("wql", wql))
-
         # process the header parameters
         # process the form parameters
         # process the body parameter
