@@ -30,7 +30,7 @@ class UpdateKeyRequest(BaseModel):
     """  # noqa: E501
 
     kid: StrictStr = Field(
-        description="New kid to bind to the key pair,                 such as a verificationMethod."
+        description="New kid to bind to the key pair, such as a verificationMethod."
     )
     multikey: StrictStr = Field(description="Multikey of the key pair to update")
     __properties: ClassVar[List[str]] = ["kid", "multikey"]

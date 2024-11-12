@@ -34,11 +34,11 @@ class CreateKeyRequest(BaseModel):
     )
     kid: Optional[StrictStr] = Field(
         default=None,
-        description="Optional kid to bind to the keypair,                 such as a verificationMethod.",
+        description="Optional kid to bind to the keypair, such as a verificationMethod.",
     )
     seed: Optional[StrictStr] = Field(
         default=None,
-        description="Optional seed to generate the key pair.                 Must enable insecure wallet mode.",
+        description="Optional seed to generate the key pair. Must enable insecure wallet mode.",
     )
     __properties: ClassVar[List[str]] = ["alg", "kid", "seed"]
 
