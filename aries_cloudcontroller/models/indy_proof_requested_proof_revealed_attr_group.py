@@ -74,9 +74,9 @@ class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each value in values (dict)
         _field_dict = {}
         if self.values:
-            for _key in self.values:
-                if self.values[_key]:
-                    _field_dict[_key] = self.values[_key].to_dict()
+            for _key_values in self.values:
+                if self.values[_key_values]:
+                    _field_dict[_key_values] = self.values[_key_values].to_dict()
             _dict["values"] = _field_dict
         return _dict
 

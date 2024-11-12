@@ -69,12 +69,12 @@ class SchemasInputDescriptorFilter(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in uri_groups (list of list)
         _items = []
         if self.uri_groups:
-            for _item in self.uri_groups:
-                if _item:
+            for _item_uri_groups in self.uri_groups:
+                if _item_uri_groups:
                     _items.append(
                         [
                             _inner_item.to_dict()
-                            for _inner_item in _item
+                            for _inner_item in _item_uri_groups
                             if _inner_item is not None
                         ]
                     )

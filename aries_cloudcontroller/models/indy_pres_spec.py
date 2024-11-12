@@ -89,16 +89,20 @@ class IndyPresSpec(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each value in requested_attributes (dict)
         _field_dict = {}
         if self.requested_attributes:
-            for _key in self.requested_attributes:
-                if self.requested_attributes[_key]:
-                    _field_dict[_key] = self.requested_attributes[_key].to_dict()
+            for _key_requested_attributes in self.requested_attributes:
+                if self.requested_attributes[_key_requested_attributes]:
+                    _field_dict[_key_requested_attributes] = self.requested_attributes[
+                        _key_requested_attributes
+                    ].to_dict()
             _dict["requested_attributes"] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in requested_predicates (dict)
         _field_dict = {}
         if self.requested_predicates:
-            for _key in self.requested_predicates:
-                if self.requested_predicates[_key]:
-                    _field_dict[_key] = self.requested_predicates[_key].to_dict()
+            for _key_requested_predicates in self.requested_predicates:
+                if self.requested_predicates[_key_requested_predicates]:
+                    _field_dict[_key_requested_predicates] = self.requested_predicates[
+                        _key_requested_predicates
+                    ].to_dict()
             _dict["requested_predicates"] = _field_dict
         return _dict
 
