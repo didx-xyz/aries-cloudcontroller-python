@@ -112,10 +112,8 @@ class CreateWalletRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["askar", "askar-anoncreds", "in_memory"]):
-            raise ValueError(
-                "must be one of enum values ('askar', 'askar-anoncreds', 'in_memory')"
-            )
+        if value not in set(["askar", "askar-anoncreds"]):
+            raise ValueError("must be one of enum values ('askar', 'askar-anoncreds')")
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
