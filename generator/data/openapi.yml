@@ -1548,16 +1548,28 @@ paths:
       parameters:
       - name: count
         in: query
-        description: Maximum number to retrieve
+        description: Maximum number to retrieve (DEPRECATED - use limit instead)
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
+          default: '10'
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
       - name: start
         in: query
-        description: Start index
+        description: Start index (DEPRECATED - use offset instead)
         schema:
           pattern: ^[0-9]*$
           type: string
+          default: '0'
       - name: wql
         in: query
         description: (JSON) WQL query
@@ -1577,25 +1589,6 @@ paths:
       tags:
       - credentials
       summary: Fetch W3C credentials from wallet
-      parameters:
-      - name: count
-        in: query
-        description: Maximum number to retrieve
-        schema:
-          pattern: ^[1-9][0-9]*$
-          type: string
-      - name: start
-        in: query
-        description: Start index
-        schema:
-          pattern: ^[0-9]*$
-          type: string
-      - name: wql
-        in: query
-        description: (JSON) WQL query
-        schema:
-          pattern: ^{.*}$
-          type: string
       requestBody:
         content:
           application/json:
@@ -3746,16 +3739,27 @@ paths:
           type: string
       - name: count
         in: query
-        description: Maximum number to retrieve
+        description: Maximum number to retrieve (DEPRECATED - use limit instead)
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
+          default: '10'
       - name: extra_query
         in: query
         description: (JSON) object mapping referents to extra WQL queries
         schema:
           pattern: ^{\s*".*?"\s*:\s*{.*?}\s*(,\s*".*?"\s*:\s*{.*?}\s*)*\s*}$
           type: string
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
       - name: referent
         in: query
         description: Proof request referents of interest, comma-separated
@@ -3763,10 +3767,11 @@ paths:
           type: string
       - name: start
         in: query
-        description: Start index
+        description: Start index (DEPRECATED - use offset instead)
         schema:
           pattern: ^[0-9]*$
           type: string
+          default: '0'
       responses:
         '200':
           description: ''
@@ -4075,16 +4080,27 @@ paths:
           type: string
       - name: count
         in: query
-        description: Maximum number to retrieve
+        description: Maximum number to retrieve (DEPRECATED - use limit instead)
         schema:
           pattern: ^[1-9][0-9]*$
           type: string
+          default: '10'
       - name: extra_query
         in: query
         description: (JSON) object mapping referents to extra WQL queries
         schema:
           pattern: ^{\s*".*?"\s*:\s*{.*?}\s*(,\s*".*?"\s*:\s*{.*?}\s*)*\s*}$
           type: string
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
       - name: referent
         in: query
         description: Proof request referents of interest, comma-separated
@@ -4092,10 +4108,11 @@ paths:
           type: string
       - name: start
         in: query
-        description: Start index
+        description: Start index (DEPRECATED - use offset instead)
         schema:
           pattern: ^[0-9]*$
           type: string
+          default: '0'
       responses:
         '200':
           description: ''
@@ -6367,13 +6384,12 @@ components:
           example: ed25519
         kid:
           type: string
-          description: Optional kid to bind to the keypair,                 such as
-            a verificationMethod.
+          description: Optional kid to bind to the keypair, such as a verificationMethod.
           example: did:web:example.com#key-01
         seed:
           type: string
-          description: Optional seed to generate the key pair.                 Must
-            enable insecure wallet mode.
+          description: Optional seed to generate the key pair. Must enable insecure
+            wallet mode.
           example: '00000000000000000000000000000000'
     CreateKeyResponse:
       type: object
@@ -6442,7 +6458,6 @@ components:
           enum:
           - askar
           - askar-anoncreds
-          - in_memory
         wallet_webhook_urls:
           type: array
           description: List of Webhook URLs associated with this subwallet
@@ -7338,51 +7353,49 @@ components:
         challenge:
           type: string
           description: The value is used once for a particular domain and window of
-            time.                     This value is used to mitigate replay attacks.
+            time. This value is used to mitigate replay attacks.
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         created:
           type: string
-          description: The date and time the proof was created is OPTIONAL and, if                     included,
-            MUST be specified as an [XMLSCHEMA11-2]                         dateTimeStamp
-            string
+          description: The date and time the proof was created is OPTIONAL and, if
+            included, MUST be specified as an [XMLSCHEMA11-2] dateTimeStamp string
           example: 2010-01-01 19:23:24+00:00
         cryptosuite:
           type: string
           description: An identifier for the cryptographic suite that can be used
-            to                     verify the proof.
+            to verify the proof.
           example: eddsa-jcs-2022
         domain:
           type: string
           description: It conveys one or more security domains in which the proof
-            is                     meant to be used.
+            is meant to be used.
           example: example.com
         expires:
           type: string
           description: The expires property is OPTIONAL and, if present, specifies
-            when                     the proof expires. If present, it MUST be an
-            [XMLSCHEMA11-2]                         dateTimeStamp string
+            when the proof expires. If present, it MUST be an [XMLSCHEMA11-2] dateTimeStamp
+            string
           example: 2010-01-01 19:23:24+00:00
         id:
           type: string
-          description: An optional identifier for the proof, which MUST be a URL [URL],                     such
-            as a UUID as a URN
+          description: An optional identifier for the proof, which MUST be a URL [URL],
+            such as a UUID as a URN
           example: urn:uuid:6a1676b8-b51f-11ed-937b-d76685a20ff5
         nonce:
           type: string
-          description: One use of this field is to increase privacy by decreasing                 linkability
-            that is the result of deterministically                     generated
-            signatures.
+          description: One use of this field is to increase privacy by decreasing
+            linkability that is the result of deterministically generated signatures.
           example: CF69iO3nfvqRsRBNElE8b4wO39SyJHPM7Gg1nExltW5vSfQA1lvDCR/zXX1To0/4NLo==
         previousProof:
           type: string
-          description: Each value identifies another data integrity proof that                 MUST
+          description: Each value identifies another data integrity proof that MUST
             verify before the current proof is processed.
           example: urn:uuid:6a1676b8-b51f-11ed-937b-d76685a20ff5
         proofPurpose:
           type: string
-          description: The proof purpose acts as a safeguard to prevent the                 proof
-            from being misused by being applied to a purpose other than                     the
-            one that was intended.
+          description: The proof purpose acts as a safeguard to prevent the proof
+            from being misused by being applied to a purpose other than the one that
+            was intended.
           example: assertionMethod
         proofValue:
           type: string
@@ -7391,13 +7404,13 @@ components:
         type:
           type: string
           description: The specific type of proof MUST be specified as a string that
-            maps                     to a URL [URL].
+            maps to a URL [URL].
           example: DataIntegrityProof
         verificationMethod:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
-          description: 'A verification method is the means and information                 needed
-            to verify the proof. '
+          description: A verification method is the means and information needed to
+            verify the proof.
           example: did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL
       additionalProperties: true
     Date:
@@ -10967,8 +10980,7 @@ components:
       properties:
         kid:
           type: string
-          description: New kid to bind to the key pair,                 such as a
-            verificationMethod.
+          description: New kid to bind to the key pair, such as a verificationMethod.
           example: did:web:example.com#key-02
         multikey:
           type: string
