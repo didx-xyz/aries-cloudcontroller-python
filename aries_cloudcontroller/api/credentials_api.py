@@ -439,11 +439,19 @@ class CredentialsApi:
         self,
         count: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Maximum number to retrieve"),
+            Field(
+                description="Maximum number to retrieve (DEPRECATED - use limit instead)"
+            ),
+        ] = None,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="Number of results to return")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="Offset for pagination")
         ] = None,
         start: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Start index"),
+            Field(description="Start index (DEPRECATED - use offset instead)"),
         ] = None,
         wql: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
@@ -464,9 +472,13 @@ class CredentialsApi:
         """Fetch credentials from wallet
 
 
-        :param count: Maximum number to retrieve
+        :param count: Maximum number to retrieve (DEPRECATED - use limit instead)
         :type count: str
-        :param start: Start index
+        :param limit: Number of results to return
+        :type limit: int
+        :param offset: Offset for pagination
+        :type offset: int
+        :param start: Start index (DEPRECATED - use offset instead)
         :type start: str
         :param wql: (JSON) WQL query
         :type wql: str
@@ -475,6 +487,8 @@ class CredentialsApi:
 
         _param = self._get_records_serialize(
             count=count,
+            limit=limit,
+            offset=offset,
             start=start,
             wql=wql,
             _request_auth=_request_auth,
@@ -498,6 +512,8 @@ class CredentialsApi:
     def _get_records_serialize(
         self,
         count,
+        limit,
+        offset,
         start,
         wql,
         _request_auth,
@@ -524,6 +540,14 @@ class CredentialsApi:
         if count is not None:
 
             _query_params.append(("count", count))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
 
         if start is not None:
 

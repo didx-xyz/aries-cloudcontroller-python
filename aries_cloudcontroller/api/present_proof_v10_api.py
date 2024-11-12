@@ -280,11 +280,19 @@ class PresentProofV10Api:
         ],
         count: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Maximum number to retrieve"),
+            Field(
+                description="Maximum number to retrieve (DEPRECATED - use limit instead)"
+            ),
         ] = None,
         extra_query: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
             Field(description="(JSON) object mapping referents to extra WQL queries"),
+        ] = None,
+        limit: Annotated[
+            Optional[StrictInt], Field(description="Number of results to return")
+        ] = None,
+        offset: Annotated[
+            Optional[StrictInt], Field(description="Offset for pagination")
         ] = None,
         referent: Annotated[
             Optional[StrictStr],
@@ -292,7 +300,7 @@ class PresentProofV10Api:
         ] = None,
         start: Annotated[
             Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Start index"),
+            Field(description="Start index (DEPRECATED - use offset instead)"),
         ] = None,
         _request_timeout: Union[
             None,
@@ -311,13 +319,17 @@ class PresentProofV10Api:
 
         :param pres_ex_id: Presentation exchange identifier (required)
         :type pres_ex_id: str
-        :param count: Maximum number to retrieve
+        :param count: Maximum number to retrieve (DEPRECATED - use limit instead)
         :type count: str
         :param extra_query: (JSON) object mapping referents to extra WQL queries
         :type extra_query: str
+        :param limit: Number of results to return
+        :type limit: int
+        :param offset: Offset for pagination
+        :type offset: int
         :param referent: Proof request referents of interest, comma-separated
         :type referent: str
-        :param start: Start index
+        :param start: Start index (DEPRECATED - use offset instead)
         :type start: str
         ...
         """  # noqa: E501
@@ -330,6 +342,8 @@ class PresentProofV10Api:
             pres_ex_id=pres_ex_id,
             count=count,
             extra_query=extra_query,
+            limit=limit,
+            offset=offset,
             referent=referent,
             start=start,
             _request_auth=_request_auth,
@@ -355,6 +369,8 @@ class PresentProofV10Api:
         pres_ex_id,
         count,
         extra_query,
+        limit,
+        offset,
         referent,
         start,
         _request_auth,
@@ -387,6 +403,14 @@ class PresentProofV10Api:
         if extra_query is not None:
 
             _query_params.append(("extra_query", extra_query))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
 
         if referent is not None:
 
