@@ -6644,25 +6644,6 @@
       },
       "type": "object"
     },
-    "AnoncredsPresentationRequestNonRevoked": {
-      "properties": {
-        "from": {
-          "description": "Earliest time of interest in non-revocation interval",
-          "example": 1640995199,
-          "maximum": 18446744073709551615,
-          "minimum": 0,
-          "type": "integer"
-        },
-        "to": {
-          "description": "Latest time of interest in non-revocation interval",
-          "example": 1640995199,
-          "maximum": 18446744073709551615,
-          "minimum": 0,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "AnoncredsPresentationReqAttrSpec": {
       "properties": {
         "name": {
@@ -6803,6 +6784,25 @@
         }
       },
       "required": ["requested_attributes", "requested_predicates"],
+      "type": "object"
+    },
+    "AnoncredsPresentationRequestNonRevoked": {
+      "properties": {
+        "from": {
+          "description": "Earliest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "to": {
+          "description": "Latest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "AttachDecorator": {
@@ -13524,22 +13524,32 @@
       "properties": {
         "cred_def_id": {
           "description": "Credential definition identifier",
-          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
-          "type": "string"
-        },
-        "epoch": {
-          "description": "Credential epoch time",
-          "example": "2021-08-24",
+          "example": "did:(method):3:CL:20:tag",
           "type": "string"
         },
         "issuer_id": {
-          "description": "Credential issuer DID",
+          "description": "Credential issuer ID",
           "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
           "type": "string"
         },
         "schema_id": {
           "description": "Schema identifier",
           "example": "did:(method):2:schema_name:1.0",
+          "type": "string"
+        },
+        "schema_issuer_id": {
+          "description": "Schema issuer ID",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
+          "type": "string"
+        },
+        "schema_name": {
+          "description": "Schema name",
+          "example": "preferences",
+          "type": "string"
+        },
+        "schema_version": {
+          "description": "Schema version",
+          "example": "1.0",
           "type": "string"
         }
       },

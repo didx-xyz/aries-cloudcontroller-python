@@ -5873,21 +5873,6 @@ components:
           type: string
           description: Schema version
           example: '1.0'
-    AnoncredsPresentationRequestNonRevoked:
-      type: object
-      properties:
-        from:
-          maximum: 18446744073709551615
-          minimum: 0
-          type: integer
-          description: Earliest time of interest in non-revocation interval
-          example: 1640995199
-        to:
-          maximum: 18446744073709551615
-          minimum: 0
-          type: integer
-          description: Latest time of interest in non-revocation interval
-          example: 1640995199
     AnoncredsPresentationReqAttrSpec:
       type: object
       properties:
@@ -6012,6 +5997,21 @@ components:
           type: string
           description: Proof request version
           example: '1.0'
+    AnoncredsPresentationRequestNonRevoked:
+      type: object
+      properties:
+        from:
+          maximum: 18446744073709551615
+          minimum: 0
+          type: integer
+          description: Earliest time of interest in non-revocation interval
+          example: 1640995199
+        to:
+          maximum: 18446744073709551615
+          minimum: 0
+          type: integer
+          description: Latest time of interest in non-revocation interval
+          example: 1640995199
     AttachDecorator:
       required:
       - data
@@ -12165,19 +12165,27 @@ components:
         cred_def_id:
           type: string
           description: Credential definition identifier
-          example: did:(method):WgWxqztrNooG92RXvxSTWv
-        epoch:
-          type: string
-          description: Credential epoch time
-          example: 2021-08-24
+          example: did:(method):3:CL:20:tag
         issuer_id:
           type: string
-          description: Credential issuer DID
+          description: Credential issuer ID
           example: did:(method):WgWxqztrNooG92RXvxSTWv
         schema_id:
           type: string
           description: Schema identifier
           example: did:(method):2:schema_name:1.0
+        schema_issuer_id:
+          type: string
+          description: Schema issuer ID
+          example: did:(method):WgWxqztrNooG92RXvxSTWv
+        schema_name:
+          type: string
+          description: Schema name
+          example: preferences
+        schema_version:
+          type: string
+          description: Schema version
+          example: '1.0'
     V20CredFilterIndy:
       type: object
       properties:
