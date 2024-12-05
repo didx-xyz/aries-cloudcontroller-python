@@ -144,7 +144,7 @@
           }
         ],
         "tags": ["anoncreds - credential definitions"],
-        "summary": "Create a credential definition on the connected ledger",
+        "summary": "Create a credential definition on the connected datastore",
         "produces": ["application/json"]
       }
     },
@@ -162,7 +162,7 @@
             "name": "cred_def_id",
             "type": "string",
             "description": "Credential definition identifier",
-            "example": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "example": "did:(method):3:CL:20:tag",
             "required": true
           }
         ],
@@ -185,7 +185,7 @@
             "name": "issuer_id",
             "type": "string",
             "description": "Issuer Identifier of the credential definition",
-            "example": "WgWxqztrNooG92RXvxSTWv",
+            "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
             "required": false
           },
           {
@@ -193,7 +193,7 @@
             "name": "schema_id",
             "type": "string",
             "description": "Schema identifier",
-            "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+            "example": "did:(method):2:schema_name:1.0",
             "required": false
           },
           {
@@ -283,7 +283,7 @@
           }
         ],
         "tags": ["anoncreds - revocation"],
-        "summary": "Create and publish a revocation status list on the connected ledger",
+        "summary": "Create and publish a revocation status list on the connected datastore",
         "produces": ["application/json"]
       }
     },
@@ -306,7 +306,7 @@
           }
         ],
         "tags": ["anoncreds - revocation"],
-        "summary": "Create and publish a registration revocation on the connected ledger",
+        "summary": "Create and publish a registration revocation on the connected datastore",
         "produces": ["application/json"]
       }
     },
@@ -706,7 +706,7 @@
           }
         ],
         "tags": ["anoncreds - schemas"],
-        "summary": "Create a schema on the connected ledger",
+        "summary": "Create a schema on the connected datastore",
         "produces": ["application/json"]
       }
     },
@@ -724,7 +724,7 @@
             "name": "schema_id",
             "type": "string",
             "description": "Schema identifier",
-            "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+            "example": "did:(method):2:schema_name:1.0",
             "required": true
           }
         ],
@@ -747,7 +747,7 @@
             "name": "schema_issuer_id",
             "type": "string",
             "description": "Schema issuer identifier",
-            "example": "WgWxqztrNooG92RXvxSTWv",
+            "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
             "required": false
           },
           {
@@ -6628,7 +6628,7 @@
         },
         "issuerId": {
           "description": "Issuer Identifier of the credential definition or schema",
-          "example": "WgWxqztrNooG92RXvxSTWv",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
           "type": "string"
         },
         "name": {
@@ -6642,6 +6642,167 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AnoncredsPresentationRequestNonRevoked": {
+      "properties": {
+        "from": {
+          "description": "Earliest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "to": {
+          "description": "Latest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AnoncredsPresentationReqAttrSpec": {
+      "properties": {
+        "name": {
+          "description": "Attribute name",
+          "example": "favouriteDrink",
+          "type": "string"
+        },
+        "names": {
+          "description": "Attribute name group",
+          "items": { "example": "age", "type": "string" },
+          "type": "array"
+        },
+        "non_revoked": {
+          "$ref": "#/definitions/AnoncredsPresentationReqAttrSpecNonRevoked",
+          "x-nullable": true
+        },
+        "restrictions": {
+          "description": "If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
+          "items": {
+            "additionalProperties": {
+              "example": "did:(method):3:CL:20:tag",
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AnoncredsPresentationReqAttrSpecNonRevoked": {
+      "properties": {
+        "from": {
+          "description": "Earliest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "to": {
+          "description": "Latest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AnoncredsPresentationReqPredSpec": {
+      "properties": {
+        "name": {
+          "description": "Attribute name",
+          "example": "index",
+          "type": "string"
+        },
+        "non_revoked": {
+          "$ref": "#/definitions/AnoncredsPresentationReqPredSpecNonRevoked",
+          "x-nullable": true
+        },
+        "p_type": {
+          "description": "Predicate type ('<', '<=', '>=', or '>')",
+          "enum": ["<", "<=", ">=", ">"],
+          "example": ">=",
+          "type": "string"
+        },
+        "p_value": { "description": "Threshold value", "type": "integer" },
+        "restrictions": {
+          "description": "If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
+          "items": {
+            "additionalProperties": {
+              "example": "did:(method):3:CL:20:tag",
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": ["name", "p_type", "p_value"],
+      "type": "object"
+    },
+    "AnoncredsPresentationReqPredSpecNonRevoked": {
+      "properties": {
+        "from": {
+          "description": "Earliest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "to": {
+          "description": "Latest time of interest in non-revocation interval",
+          "example": 1640995199,
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AnoncredsPresentationRequest": {
+      "properties": {
+        "name": {
+          "description": "Proof request name",
+          "example": "Proof request",
+          "type": "string"
+        },
+        "non_revoked": {
+          "$ref": "#/definitions/AnoncredsPresentationRequestNonRevoked",
+          "x-nullable": true
+        },
+        "nonce": {
+          "description": "Nonce",
+          "example": "1",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "string"
+        },
+        "requested_attributes": {
+          "additionalProperties": {
+            "$ref": "#/definitions/AnoncredsPresentationReqAttrSpec"
+          },
+          "description": "Requested attribute specifications of proof request",
+          "type": "object"
+        },
+        "requested_predicates": {
+          "additionalProperties": {
+            "$ref": "#/definitions/AnoncredsPresentationReqPredSpec"
+          },
+          "description": "Requested predicate specifications of proof request",
+          "type": "object"
+        },
+        "version": {
+          "description": "Proof request version",
+          "example": "1.0",
+          "pattern": "^[0-9.]+$",
+          "type": "string"
+        }
+      },
+      "required": ["requested_attributes", "requested_predicates"],
       "type": "object"
     },
     "AttachDecorator": {
@@ -7387,12 +7548,12 @@
       "properties": {
         "issuerId": {
           "description": "Issuer Identifier of the credential definition or schema",
-          "example": "WgWxqztrNooG92RXvxSTWv",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
           "type": "string"
         },
         "schemaId": {
           "description": "Schema identifier",
-          "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+          "example": "did:(method):2:schema_name:1.0",
           "type": "string"
         },
         "tag": {
@@ -7453,7 +7614,7 @@
         },
         "credential_definition_id": {
           "description": "credential definition id",
-          "example": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+          "example": "did:(method):3:CL:20:tag",
           "type": "string",
           "x-nullable": true
         },
@@ -8503,7 +8664,7 @@
         },
         "credential_definition_id": {
           "description": "credential definition id",
-          "example": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+          "example": "did:(method):3:CL:20:tag",
           "type": "string"
         },
         "credential_definitions_metadata": { "type": "object" },
@@ -8572,7 +8733,7 @@
         "schema": { "$ref": "#/definitions/AnonCredsSchema" },
         "schema_id": {
           "description": "Schema identifier",
-          "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+          "example": "did:(method):2:schema_name:1.0",
           "type": "string"
         },
         "schema_metadata": { "type": "object" }
@@ -8584,7 +8745,7 @@
         "schema_ids": {
           "items": {
             "description": "Schema identifiers",
-            "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+            "example": "did:(method):2:schema_name:1.0",
             "type": "string"
           },
           "type": "array"
@@ -9552,12 +9713,12 @@
       "properties": {
         "issuerId": {
           "description": "Issuer Identifier of the credential definition",
-          "example": "WgWxqztrNooG92RXvxSTWv",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
           "type": "string"
         },
         "schemaId": {
           "description": "Schema identifier",
-          "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+          "example": "did:(method):2:schema_name:1.0",
           "type": "string"
         },
         "tag": {
@@ -9573,12 +9734,12 @@
       "properties": {
         "credDefId": {
           "description": "Credential definition identifier",
-          "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+          "example": "did:(method):2:schema_name:1.0",
           "type": "string"
         },
         "issuerId": {
           "description": "Issuer Identifier of the credential definition or schema",
-          "example": "WgWxqztrNooG92RXvxSTWv",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
           "type": "string"
         },
         "maxCredNum": {
@@ -11143,12 +11304,12 @@
         },
         "issuerId": {
           "description": "Issuer Identifier of the credential definition or schema",
-          "example": "WgWxqztrNooG92RXvxSTWv",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
           "type": "string"
         },
         "revRegDefId": {
           "description": "The ID of the revocation registry definition",
-          "example": "WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+          "example": "did:(method):4:did:<method>:3:CL:20:tag:CL_ACCUM:0",
           "type": "string"
         },
         "revocationList": {
@@ -11170,7 +11331,7 @@
         "options": { "$ref": "#/definitions/RevListOptions" },
         "rev_reg_def_id": {
           "description": "Revocation registry definition identifier",
-          "example": "WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+          "example": "did:(method):4:did:<method>:3:CL:20:tag:CL_ACCUM:0",
           "type": "string"
         }
       },
@@ -11244,12 +11405,12 @@
       "properties": {
         "credDefId": {
           "description": "Credential definition identifier",
-          "example": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+          "example": "did:(method):3:CL:20:tag",
           "type": "string"
         },
         "issuerId": {
           "description": "Issuer Identifier of the credential definition or schema",
-          "example": "WgWxqztrNooG92RXvxSTWv",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
           "type": "string"
         },
         "revocDefType": { "type": "string" },
@@ -11296,7 +11457,7 @@
         },
         "revocation_registry_definition_id": {
           "description": "revocation registry definition id",
-          "example": "WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+          "example": "did:(method):4:did:<method>:3:CL:20:tag:CL_ACCUM:0",
           "type": "string"
         },
         "state": {
@@ -11795,7 +11956,7 @@
         "schema": { "$ref": "#/definitions/AnonCredsSchema" },
         "schema_id": {
           "description": "Schema identifier",
-          "example": "WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+          "example": "did:(method):2:schema_name:1.0",
           "type": "string"
         },
         "state": {
@@ -13340,6 +13501,10 @@
     },
     "V20CredFilter": {
       "properties": {
+        "anoncreds": {
+          "allOf": [{ "$ref": "#/definitions/V20CredFilterAnoncreds" }],
+          "description": "Credential filter for anoncreds"
+        },
         "indy": {
           "allOf": [{ "$ref": "#/definitions/V20CredFilterIndy" }],
           "description": "Credential filter for indy"
@@ -13351,6 +13516,31 @@
         "vc_di": {
           "allOf": [{ "$ref": "#/definitions/V20CredFilterVCDI" }],
           "description": "Credential filter for vc_di"
+        }
+      },
+      "type": "object"
+    },
+    "V20CredFilterAnoncreds": {
+      "properties": {
+        "cred_def_id": {
+          "description": "Credential definition identifier",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
+          "type": "string"
+        },
+        "epoch": {
+          "description": "Credential epoch time",
+          "example": "2021-08-24",
+          "type": "string"
+        },
+        "issuer_id": {
+          "description": "Credential issuer DID",
+          "example": "did:(method):WgWxqztrNooG92RXvxSTWv",
+          "type": "string"
+        },
+        "schema_id": {
+          "description": "Schema identifier",
+          "example": "did:(method):2:schema_name:1.0",
+          "type": "string"
         }
       },
       "type": "object"
@@ -14095,6 +14285,10 @@
     },
     "V20PresProposalByFormat": {
       "properties": {
+        "anoncreds": {
+          "allOf": [{ "$ref": "#/definitions/AnoncredsPresentationRequest" }],
+          "description": "Presentation proposal for anoncreds"
+        },
         "dif": {
           "allOf": [{ "$ref": "#/definitions/DIFProofProposal" }],
           "description": "Presentation proposal for DIF"
@@ -14174,6 +14368,10 @@
     },
     "V20PresRequestByFormat": {
       "properties": {
+        "anoncreds": {
+          "allOf": [{ "$ref": "#/definitions/AnoncredsPresentationRequest" }],
+          "description": "Presentation proposal for anoncreds"
+        },
         "dif": {
           "allOf": [{ "$ref": "#/definitions/DIFProofRequest" }],
           "description": "Presentation request for DIF"
@@ -14216,6 +14414,10 @@
     },
     "V20PresSpecByFormatRequest": {
       "properties": {
+        "anoncreds": {
+          "allOf": [{ "$ref": "#/definitions/IndyPresSpec" }],
+          "description": "Presentation specification for anoncreds"
+        },
         "auto_remove": {
           "description": "Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
           "type": "boolean"
