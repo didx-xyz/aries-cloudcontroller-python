@@ -6509,7 +6509,7 @@
       }
     }
   },
-  "info": { "title": "Aries Cloud Agent", "version": "v1.1.1b3" },
+  "info": { "title": "Aries Cloud Agent", "version": "v1.2.0.post20241205" },
   "swagger": "2.0",
   "definitions": {
     "AMLRecord": {
