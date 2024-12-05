@@ -51,7 +51,7 @@ class AnoncredsCredentialDefinitionsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CredDefResult:
-        """Create a credential definition on the connected ledger
+        """Create a credential definition on the connected datastore
 
 
         :param body:

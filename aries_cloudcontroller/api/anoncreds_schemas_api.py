@@ -51,7 +51,7 @@ class AnoncredsSchemasApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> SchemaResult:
-        """Create a schema on the connected ledger
+        """Create a schema on the connected datastore
 
 
         :param body:

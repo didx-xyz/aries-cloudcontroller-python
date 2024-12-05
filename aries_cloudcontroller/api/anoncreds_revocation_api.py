@@ -83,7 +83,7 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RevRegDefResult:
-        """Create and publish a registration revocation on the connected ledger
+        """Create and publish a registration revocation on the connected datastore
 
 
         :param body:
@@ -1032,7 +1032,7 @@ class AnoncredsRevocationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RevListResult:
-        """Create and publish a revocation status list on the connected ledger
+        """Create and publish a revocation status list on the connected datastore
 
 
         :param body:
