@@ -32,20 +32,26 @@ class V20CredFilterAnoncreds(BaseModel):
     cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
-    epoch: Optional[StrictStr] = Field(
-        default=None, description="Credential epoch time"
-    )
     issuer_id: Optional[StrictStr] = Field(
-        default=None, description="Credential issuer DID"
+        default=None, description="Credential issuer ID"
     )
     schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
+    schema_issuer_id: Optional[StrictStr] = Field(
+        default=None, description="Schema issuer ID"
+    )
+    schema_name: Optional[StrictStr] = Field(default=None, description="Schema name")
+    schema_version: Optional[StrictStr] = Field(
+        default=None, description="Schema version"
+    )
     __properties: ClassVar[List[str]] = [
         "cred_def_id",
-        "epoch",
         "issuer_id",
         "schema_id",
+        "schema_issuer_id",
+        "schema_name",
+        "schema_version",
     ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -94,9 +100,11 @@ class V20CredFilterAnoncreds(BaseModel):
         _obj = cls.model_validate(
             {
                 "cred_def_id": obj.get("cred_def_id"),
-                "epoch": obj.get("epoch"),
                 "issuer_id": obj.get("issuer_id"),
                 "schema_id": obj.get("schema_id"),
+                "schema_issuer_id": obj.get("schema_issuer_id"),
+                "schema_name": obj.get("schema_name"),
+                "schema_version": obj.get("schema_version"),
             }
         )
         return _obj
