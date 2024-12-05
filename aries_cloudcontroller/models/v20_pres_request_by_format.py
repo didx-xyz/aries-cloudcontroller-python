@@ -21,6 +21,9 @@ import orjson
 from pydantic import BaseModel, Field
 from typing_extensions import Self
 
+from aries_cloudcontroller.models.anoncreds_presentation_request import (
+    AnoncredsPresentationRequest,
+)
 from aries_cloudcontroller.models.dif_proof_request import DIFProofRequest
 from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -31,13 +34,16 @@ class V20PresRequestByFormat(BaseModel):
     V20PresRequestByFormat
     """  # noqa: E501
 
+    anoncreds: Optional[AnoncredsPresentationRequest] = Field(
+        default=None, description="Presentation proposal for anoncreds"
+    )
     dif: Optional[DIFProofRequest] = Field(
         default=None, description="Presentation request for DIF"
     )
     indy: Optional[IndyProofRequest] = Field(
         default=None, description="Presentation request for indy"
     )
-    __properties: ClassVar[List[str]] = ["dif", "indy"]
+    __properties: ClassVar[List[str]] = ["anoncreds", "dif", "indy"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -71,6 +77,9 @@ class V20PresRequestByFormat(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of anoncreds
+        if self.anoncreds:
+            _dict["anoncreds"] = self.anoncreds.to_dict()
         # override the default output from pydantic by calling `to_dict()` of dif
         if self.dif:
             _dict["dif"] = self.dif.to_dict()
@@ -90,6 +99,11 @@ class V20PresRequestByFormat(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "anoncreds": (
+                    AnoncredsPresentationRequest.from_dict(obj["anoncreds"])
+                    if obj.get("anoncreds") is not None
+                    else None
+                ),
                 "dif": (
                     DIFProofRequest.from_dict(obj["dif"])
                     if obj.get("dif") is not None

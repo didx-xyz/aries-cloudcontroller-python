@@ -22,6 +22,9 @@ from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
+from aries_cloudcontroller.models.v20_cred_filter_anoncreds import (
+    V20CredFilterAnoncreds,
+)
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
 from aries_cloudcontroller.models.v20_cred_filter_vcdi import V20CredFilterVCDI
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -32,6 +35,9 @@ class V20CredFilter(BaseModel):
     V20CredFilter
     """  # noqa: E501
 
+    anoncreds: Optional[V20CredFilterAnoncreds] = Field(
+        default=None, description="Credential filter for anoncreds"
+    )
     indy: Optional[V20CredFilterIndy] = Field(
         default=None, description="Credential filter for indy"
     )
@@ -41,7 +47,7 @@ class V20CredFilter(BaseModel):
     vc_di: Optional[V20CredFilterVCDI] = Field(
         default=None, description="Credential filter for vc_di"
     )
-    __properties: ClassVar[List[str]] = ["indy", "ld_proof", "vc_di"]
+    __properties: ClassVar[List[str]] = ["anoncreds", "indy", "ld_proof", "vc_di"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -75,6 +81,9 @@ class V20CredFilter(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of anoncreds
+        if self.anoncreds:
+            _dict["anoncreds"] = self.anoncreds.to_dict()
         # override the default output from pydantic by calling `to_dict()` of indy
         if self.indy:
             _dict["indy"] = self.indy.to_dict()
@@ -97,6 +106,11 @@ class V20CredFilter(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "anoncreds": (
+                    V20CredFilterAnoncreds.from_dict(obj["anoncreds"])
+                    if obj.get("anoncreds") is not None
+                    else None
+                ),
                 "indy": (
                     V20CredFilterIndy.from_dict(obj["indy"])
                     if obj.get("indy") is not None

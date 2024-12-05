@@ -31,6 +31,9 @@ class V20PresSpecByFormatRequest(BaseModel):
     V20PresSpecByFormatRequest
     """  # noqa: E501
 
+    anoncreds: Optional[IndyPresSpec] = Field(
+        default=None, description="Presentation specification for anoncreds"
+    )
     auto_remove: Optional[StrictBool] = Field(
         default=None,
         description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
@@ -46,7 +49,13 @@ class V20PresSpecByFormatRequest(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    __properties: ClassVar[List[str]] = ["auto_remove", "dif", "indy", "trace"]
+    __properties: ClassVar[List[str]] = [
+        "anoncreds",
+        "auto_remove",
+        "dif",
+        "indy",
+        "trace",
+    ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -80,6 +89,9 @@ class V20PresSpecByFormatRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of anoncreds
+        if self.anoncreds:
+            _dict["anoncreds"] = self.anoncreds.to_dict()
         # override the default output from pydantic by calling `to_dict()` of dif
         if self.dif:
             _dict["dif"] = self.dif.to_dict()
@@ -99,6 +111,11 @@ class V20PresSpecByFormatRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "anoncreds": (
+                    IndyPresSpec.from_dict(obj["anoncreds"])
+                    if obj.get("anoncreds") is not None
+                    else None
+                ),
                 "auto_remove": obj.get("auto_remove"),
                 "dif": (
                     DIFPresSpec.from_dict(obj["dif"])

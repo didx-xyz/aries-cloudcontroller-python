@@ -25,6 +25,24 @@ from aries_cloudcontroller.models.admin_status_readiness import AdminStatusReadi
 # import models into model package
 from aries_cloudcontroller.models.aml_record import AMLRecord
 from aries_cloudcontroller.models.anon_creds_schema import AnonCredsSchema
+from aries_cloudcontroller.models.anoncreds_presentation_req_attr_spec import (
+    AnoncredsPresentationReqAttrSpec,
+)
+from aries_cloudcontroller.models.anoncreds_presentation_req_attr_spec_non_revoked import (
+    AnoncredsPresentationReqAttrSpecNonRevoked,
+)
+from aries_cloudcontroller.models.anoncreds_presentation_req_pred_spec import (
+    AnoncredsPresentationReqPredSpec,
+)
+from aries_cloudcontroller.models.anoncreds_presentation_req_pred_spec_non_revoked import (
+    AnoncredsPresentationReqPredSpecNonRevoked,
+)
+from aries_cloudcontroller.models.anoncreds_presentation_request import (
+    AnoncredsPresentationRequest,
+)
+from aries_cloudcontroller.models.anoncreds_presentation_request_non_revoked import (
+    AnoncredsPresentationRequestNonRevoked,
+)
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
 from aries_cloudcontroller.models.attach_decorator_data import AttachDecoratorData
 from aries_cloudcontroller.models.attach_decorator_data1_jws import (
@@ -496,6 +514,9 @@ from aries_cloudcontroller.models.v20_cred_ex_record_list_result import (
     V20CredExRecordListResult,
 )
 from aries_cloudcontroller.models.v20_cred_filter import V20CredFilter
+from aries_cloudcontroller.models.v20_cred_filter_anoncreds import (
+    V20CredFilterAnoncreds,
+)
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
 from aries_cloudcontroller.models.v20_cred_filter_ld_proof import V20CredFilterLDProof
 from aries_cloudcontroller.models.v20_cred_filter_vcdi import V20CredFilterVCDI

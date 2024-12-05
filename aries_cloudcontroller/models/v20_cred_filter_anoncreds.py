@@ -18,32 +18,35 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.anoncreds_presentation_request import (
-    AnoncredsPresentationRequest,
-)
-from aries_cloudcontroller.models.dif_proof_proposal import DIFProofProposal
-from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class V20PresProposalByFormat(BaseModel):
+class V20CredFilterAnoncreds(BaseModel):
     """
-    V20PresProposalByFormat
+    V20CredFilterAnoncreds
     """  # noqa: E501
 
-    anoncreds: Optional[AnoncredsPresentationRequest] = Field(
-        default=None, description="Presentation proposal for anoncreds"
+    cred_def_id: Optional[StrictStr] = Field(
+        default=None, description="Credential definition identifier"
     )
-    dif: Optional[DIFProofProposal] = Field(
-        default=None, description="Presentation proposal for DIF"
+    epoch: Optional[StrictStr] = Field(
+        default=None, description="Credential epoch time"
     )
-    indy: Optional[IndyProofRequest] = Field(
-        default=None, description="Presentation proposal for indy"
+    issuer_id: Optional[StrictStr] = Field(
+        default=None, description="Credential issuer DID"
     )
-    __properties: ClassVar[List[str]] = ["anoncreds", "dif", "indy"]
+    schema_id: Optional[StrictStr] = Field(
+        default=None, description="Schema identifier"
+    )
+    __properties: ClassVar[List[str]] = [
+        "cred_def_id",
+        "epoch",
+        "issuer_id",
+        "schema_id",
+    ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -57,7 +60,7 @@ class V20PresProposalByFormat(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of V20PresProposalByFormat from a JSON string"""
+        """Create an instance of V20CredFilterAnoncreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,20 +80,11 @@ class V20PresProposalByFormat(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of anoncreds
-        if self.anoncreds:
-            _dict["anoncreds"] = self.anoncreds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of dif
-        if self.dif:
-            _dict["dif"] = self.dif.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of indy
-        if self.indy:
-            _dict["indy"] = self.indy.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of V20PresProposalByFormat from a dict"""
+        """Create an instance of V20CredFilterAnoncreds from a dict"""
         if obj is None:
             return None
 
@@ -99,21 +93,10 @@ class V20PresProposalByFormat(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "anoncreds": (
-                    AnoncredsPresentationRequest.from_dict(obj["anoncreds"])
-                    if obj.get("anoncreds") is not None
-                    else None
-                ),
-                "dif": (
-                    DIFProofProposal.from_dict(obj["dif"])
-                    if obj.get("dif") is not None
-                    else None
-                ),
-                "indy": (
-                    IndyProofRequest.from_dict(obj["indy"])
-                    if obj.get("indy") is not None
-                    else None
-                ),
+                "cred_def_id": obj.get("cred_def_id"),
+                "epoch": obj.get("epoch"),
+                "issuer_id": obj.get("issuer_id"),
+                "schema_id": obj.get("schema_id"),
             }
         )
         return _obj

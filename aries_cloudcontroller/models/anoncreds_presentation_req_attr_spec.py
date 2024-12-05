@@ -18,32 +18,30 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.anoncreds_presentation_request import (
-    AnoncredsPresentationRequest,
+from aries_cloudcontroller.models.anoncreds_presentation_req_attr_spec_non_revoked import (
+    AnoncredsPresentationReqAttrSpecNonRevoked,
 )
-from aries_cloudcontroller.models.dif_proof_proposal import DIFProofProposal
-from aries_cloudcontroller.models.indy_proof_request import IndyProofRequest
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class V20PresProposalByFormat(BaseModel):
+class AnoncredsPresentationReqAttrSpec(BaseModel):
     """
-    V20PresProposalByFormat
+    AnoncredsPresentationReqAttrSpec
     """  # noqa: E501
 
-    anoncreds: Optional[AnoncredsPresentationRequest] = Field(
-        default=None, description="Presentation proposal for anoncreds"
+    name: Optional[StrictStr] = Field(default=None, description="Attribute name")
+    names: Optional[List[StrictStr]] = Field(
+        default=None, description="Attribute name group"
     )
-    dif: Optional[DIFProofProposal] = Field(
-        default=None, description="Presentation proposal for DIF"
+    non_revoked: Optional[AnoncredsPresentationReqAttrSpecNonRevoked] = None
+    restrictions: Optional[List[Dict[str, StrictStr]]] = Field(
+        default=None,
+        description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
     )
-    indy: Optional[IndyProofRequest] = Field(
-        default=None, description="Presentation proposal for indy"
-    )
-    __properties: ClassVar[List[str]] = ["anoncreds", "dif", "indy"]
+    __properties: ClassVar[List[str]] = ["name", "names", "non_revoked", "restrictions"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -57,7 +55,7 @@ class V20PresProposalByFormat(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of V20PresProposalByFormat from a JSON string"""
+        """Create an instance of AnoncredsPresentationReqAttrSpec from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,20 +75,14 @@ class V20PresProposalByFormat(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of anoncreds
-        if self.anoncreds:
-            _dict["anoncreds"] = self.anoncreds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of dif
-        if self.dif:
-            _dict["dif"] = self.dif.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of indy
-        if self.indy:
-            _dict["indy"] = self.indy.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of non_revoked
+        if self.non_revoked:
+            _dict["non_revoked"] = self.non_revoked.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of V20PresProposalByFormat from a dict"""
+        """Create an instance of AnoncredsPresentationReqAttrSpec from a dict"""
         if obj is None:
             return None
 
@@ -99,21 +91,16 @@ class V20PresProposalByFormat(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "anoncreds": (
-                    AnoncredsPresentationRequest.from_dict(obj["anoncreds"])
-                    if obj.get("anoncreds") is not None
+                "name": obj.get("name"),
+                "names": obj.get("names"),
+                "non_revoked": (
+                    AnoncredsPresentationReqAttrSpecNonRevoked.from_dict(
+                        obj["non_revoked"]
+                    )
+                    if obj.get("non_revoked") is not None
                     else None
                 ),
-                "dif": (
-                    DIFProofProposal.from_dict(obj["dif"])
-                    if obj.get("dif") is not None
-                    else None
-                ),
-                "indy": (
-                    IndyProofRequest.from_dict(obj["indy"])
-                    if obj.get("indy") is not None
-                    else None
-                ),
+                "restrictions": obj.get("restrictions"),
             }
         )
         return _obj
