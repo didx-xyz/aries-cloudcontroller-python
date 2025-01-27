@@ -3,6 +3,10 @@ from typing import Optional
 
 from aries_cloudcontroller.api import (
     ActionMenuApi,
+    AnoncredsCredentialDefinitionsApi,
+    AnoncredsRevocationApi,
+    AnoncredsSchemasApi,
+    AnoncredsWalletUpgradeApi,
     BasicmessageApi,
     ConnectionApi,
     CredentialDefinitionApi,
@@ -37,6 +41,10 @@ from aries_cloudcontroller.configuration import Configuration
 
 class AcaPyClient(AbstractAsyncContextManager):
     action_menu: ActionMenuApi
+    anoncreds_credential_definitions: AnoncredsCredentialDefinitionsApi
+    anoncreds_revocation: AnoncredsRevocationApi
+    anoncreds_schemas: AnoncredsSchemasApi
+    anoncreds_wallet_upgrade: AnoncredsWalletUpgradeApi
     basicmessage: BasicmessageApi
     connection: ConnectionApi
     credential_definition: CredentialDefinitionApi
@@ -94,6 +102,12 @@ class AcaPyClient(AbstractAsyncContextManager):
 
         # Initialize the API modules
         self.action_menu = ActionMenuApi(self.api_client)
+        self.anoncreds_credential_definitions = AnoncredsCredentialDefinitionsApi(
+            self.api_client
+        )
+        self.anoncreds_revocation = AnoncredsRevocationApi(self.api_client)
+        self.anoncreds_schemas = AnoncredsSchemasApi(self.api_client)
+        self.anoncreds_wallet_upgrade = AnoncredsWalletUpgradeApi(self.api_client)
         self.basicmessage = BasicmessageApi(self.api_client)
         self.connection = ConnectionApi(self.api_client)
         self.credential_definition = CredentialDefinitionApi(self.api_client)
