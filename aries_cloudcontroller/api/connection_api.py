@@ -879,13 +879,15 @@ class ConnectionApi:
             Field(description="Identifier of the associated Invitation Message"),
         ] = None,
         limit: Annotated[
-            Optional[StrictInt], Field(description="Number of results to return")
+            Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]],
+            Field(description="Number of results to return"),
         ] = None,
         my_did: Annotated[
             Optional[Annotated[str, Field(strict=True)]], Field(description="My DID")
         ] = None,
         offset: Annotated[
-            Optional[StrictInt], Field(description="Offset for pagination")
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(description="Offset for pagination"),
         ] = None,
         order_by: Annotated[
             Optional[StrictStr],

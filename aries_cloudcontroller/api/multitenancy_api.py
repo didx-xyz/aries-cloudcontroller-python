@@ -487,10 +487,12 @@ class MultitenancyApi:
             Field(description="Order results in descending order if true"),
         ] = None,
         limit: Annotated[
-            Optional[StrictInt], Field(description="Number of results to return")
+            Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]],
+            Field(description="Number of results to return"),
         ] = None,
         offset: Annotated[
-            Optional[StrictInt], Field(description="Offset for pagination")
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(description="Offset for pagination"),
         ] = None,
         order_by: Annotated[
             Optional[StrictStr],
