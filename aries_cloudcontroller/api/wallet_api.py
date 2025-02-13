@@ -885,7 +885,7 @@ class WalletApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Create a EdDSA jws using did keys with a given payload
+        """Create a jws using did keys with a given payload
 
 
         :param body:
@@ -993,7 +993,7 @@ class WalletApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Create a EdDSA sd-jws using did keys with a given payload
+        """Create an sd-jws using did keys with a given payload
 
 
         :param body:
@@ -1101,7 +1101,7 @@ class WalletApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> JWSVerifyResponse:
-        """Verify a EdDSA jws using did keys with a given JWS
+        """Verify a jws using did keys with a given JWS
 
 
         :param body:
@@ -1209,7 +1209,7 @@ class WalletApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> SDJWSVerifyResponse:
-        """Verify a EdDSA sd-jws using did keys with a given SD-JWS with optional key binding
+        """Verify an sd-jws using did keys with a given SD-JWS with optional key binding
 
 
         :param body:
