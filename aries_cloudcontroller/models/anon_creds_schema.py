@@ -29,16 +29,15 @@ class AnonCredsSchema(BaseModel):
     AnonCredsSchema
     """  # noqa: E501
 
-    attr_names: Optional[List[StrictStr]] = Field(
-        default=None, description="Schema attribute names", alias="attrNames"
+    attr_names: List[StrictStr] = Field(
+        description="Schema attribute names", alias="attrNames"
     )
-    issuer_id: Optional[StrictStr] = Field(
-        default=None,
+    issuer_id: StrictStr = Field(
         description="Issuer Identifier of the credential definition or schema",
         alias="issuerId",
     )
-    name: Optional[StrictStr] = Field(default=None, description="Schema name")
-    version: Optional[StrictStr] = Field(default=None, description="Schema version")
+    name: StrictStr = Field(description="Schema name")
+    version: StrictStr = Field(description="Schema version")
     __properties: ClassVar[List[str]] = ["attrNames", "issuerId", "name", "version"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
