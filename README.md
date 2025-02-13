@@ -113,6 +113,7 @@ The client encompasses various APIs, each corresponding to ACA-Py Swagger UI top
 - `anoncreds_credential_definitions`
 - `anoncreds_revocation`
 - `anoncreds_schemas`
+- `anoncreds_wallet_upgrade`
 - `basicmessage`
 - `connection`
 - `credential_definition`
