@@ -31,8 +31,8 @@ class RevListCreateRequest(BaseModel):
     """  # noqa: E501
 
     options: Optional[RevListOptions] = None
-    rev_reg_def_id: Optional[StrictStr] = Field(
-        default=None, description="Revocation registry definition identifier"
+    rev_reg_def_id: StrictStr = Field(
+        description="Revocation registry definition identifier"
     )
     __properties: ClassVar[List[str]] = ["options", "rev_reg_def_id"]
 

@@ -29,22 +29,18 @@ class InnerRevRegDef(BaseModel):
     InnerRevRegDef
     """  # noqa: E501
 
-    cred_def_id: Optional[StrictStr] = Field(
-        default=None, description="Credential definition identifier", alias="credDefId"
+    cred_def_id: StrictStr = Field(
+        description="Credential definition identifier", alias="credDefId"
     )
-    issuer_id: Optional[StrictStr] = Field(
-        default=None,
+    issuer_id: StrictStr = Field(
         description="Issuer Identifier of the credential definition or schema",
         alias="issuerId",
     )
-    max_cred_num: Optional[StrictInt] = Field(
-        default=None,
+    max_cred_num: StrictInt = Field(
         description="Maximum number of credential revocations per registry",
         alias="maxCredNum",
     )
-    tag: Optional[StrictStr] = Field(
-        default=None, description="tag for revocation registry"
-    )
+    tag: StrictStr = Field(description="tag for revocation registry")
     __properties: ClassVar[List[str]] = ["credDefId", "issuerId", "maxCredNum", "tag"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
