@@ -57,8 +57,10 @@ class DIDCreateOptions(BaseModel):
     @field_validator("key_type")
     def key_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["ed25519", "bls12381g2"]):
-            raise ValueError("must be one of enum values ('ed25519', 'bls12381g2')")
+        if value not in set(["ed25519", "bls12381g2", "p256"]):
+            raise ValueError(
+                "must be one of enum values ('ed25519', 'bls12381g2', 'p256')"
+            )
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
