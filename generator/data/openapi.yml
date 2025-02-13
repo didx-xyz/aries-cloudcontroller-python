@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v1.2.0.post20241205
+  version: v1.2.1.post20250213
 servers:
 - url: /
 security:
@@ -347,7 +347,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -355,7 +355,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RevocationModuleResponse'
+                $ref: '#/components/schemas/AnoncredsRevocationModuleResponse'
       operationId: set_active_registry
   /anoncreds/registry/{rev_reg_id}/tails-file:
     put:
@@ -368,7 +368,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -376,7 +376,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RevocationModuleResponse'
+                $ref: '#/components/schemas/AnoncredsRevocationModuleResponse'
       operationId: upload_tails_file
   /anoncreds/revocation-list:
     post:
@@ -429,7 +429,7 @@ paths:
         description: Credential definition identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -450,7 +450,7 @@ paths:
         description: Credential definition identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -482,7 +482,7 @@ paths:
         in: query
         description: Revocation registry identifier
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -522,7 +522,7 @@ paths:
         in: query
         description: Credential definition identifier
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
+          pattern: ^(.+$)
           type: string
       - name: state
         in: query
@@ -555,7 +555,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -576,7 +576,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       - name: apply_ledger_update
         in: query
@@ -603,7 +603,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -624,7 +624,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -645,7 +645,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -666,7 +666,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       - name: state
         in: query
@@ -700,7 +700,7 @@ paths:
         description: Revocation Registry identifier
         required: true
         schema:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
       responses:
         '200':
@@ -708,7 +708,7 @@ paths:
           content:
             application/octet-stream:
               schema:
-                $ref: '#/components/schemas/RevocationAnoncredsModuleResponse'
+                $ref: '#/components/schemas/AnoncredsRevocationModuleResponse'
       operationId: get_tails_file
   /anoncreds/revocation/revoke:
     post:
@@ -727,7 +727,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RevocationAnoncredsModuleResponse'
+                $ref: '#/components/schemas/AnoncredsRevocationModuleResponse'
       x-codegen-request-body-name: body
       operationId: revoke
   /anoncreds/schema:
@@ -861,18 +861,21 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
           default: 100
       - name: my_did
         in: query
         description: My DID
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
           default: 0
       - name: order_by
@@ -902,13 +905,13 @@ paths:
         in: query
         description: Their DID
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: their_public_did
         in: query
         description: Their Public DID
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: their_role
         in: query
@@ -1557,11 +1560,14 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
       - name: start
         in: query
@@ -1662,7 +1668,7 @@ paths:
         description: Qualified public DID to which to request connection
         required: true
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: alias
         in: query
@@ -2049,12 +2055,15 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
           default: 100
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
           default: 0
       - name: order_by
@@ -2429,12 +2438,15 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
           default: 100
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
           default: 0
       - name: order_by
@@ -3450,12 +3462,15 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
           default: 100
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
           default: 0
       - name: order_by
@@ -3632,12 +3647,15 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
           default: 100
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
           default: 0
       - name: order_by
@@ -3754,11 +3772,14 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
       - name: referent
         in: query
@@ -3969,12 +3990,15 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
           default: 100
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
           default: 0
       - name: order_by
@@ -4095,11 +4119,14 @@ paths:
         in: query
         description: Number of results to return
         schema:
+          maximum: 10000
+          minimum: 1
           type: integer
       - name: offset
         in: query
         description: Offset for pagination
         schema:
+          minimum: 0
           type: integer
       - name: referent
         in: query
@@ -5288,6 +5315,20 @@ paths:
       tags:
       - vc
       summary: Store a credential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreCredentialRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreCredentialResponse'
+      x-codegen-request-body-name: body
       operationId: store_credential
   /vc/credentials/verify:
     post:
@@ -5416,7 +5457,7 @@ paths:
         in: query
         description: DID of interest
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: key_type
         in: query
@@ -5426,16 +5467,12 @@ paths:
           enum:
           - ed25519
           - bls12381g2
+          - p256
       - name: method
         in: query
         description: DID method to query for. e.g. sov to only fetch indy/sov DIDs
         schema:
           type: string
-          enum:
-          - key
-          - sov
-          - did:peer:2
-          - did:peer:4
       - name: posture
         in: query
         description: Whether DID is current public DID, posted to ledger but current
@@ -5491,7 +5528,7 @@ paths:
         description: DID of interest
         required: true
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       responses:
         '200':
@@ -5524,7 +5561,7 @@ paths:
         description: DID of interest
         required: true
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       - name: conn_id
         in: query
@@ -5560,7 +5597,7 @@ paths:
         description: DID of interest
         required: true
         schema:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
       responses:
         '200':
@@ -5574,7 +5611,7 @@ paths:
     post:
       tags:
       - wallet
-      summary: Create a EdDSA jws using did keys with a given payload
+      summary: Create a jws using did keys with a given payload
       requestBody:
         content:
           application/json:
@@ -5594,7 +5631,7 @@ paths:
     post:
       tags:
       - wallet
-      summary: Verify a EdDSA jws using did keys with a given JWS
+      summary: Verify a jws using did keys with a given JWS
       requestBody:
         content:
           application/json:
@@ -5669,7 +5706,7 @@ paths:
     post:
       tags:
       - wallet
-      summary: Create a EdDSA sd-jws using did keys with a given payload
+      summary: Create an sd-jws using did keys with a given payload
       requestBody:
         content:
           application/json:
@@ -5689,8 +5726,8 @@ paths:
     post:
       tags:
       - wallet
-      summary: Verify a EdDSA sd-jws using did keys with a given SD-JWS with optional
-        key binding
+      summary: Verify an sd-jws using did keys with a given SD-JWS with optional key
+        binding
       requestBody:
         content:
           application/json:
@@ -5773,7 +5810,8 @@ components:
       properties:
         document:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           example:
             hello: world
         options:
@@ -5792,7 +5830,8 @@ components:
       properties:
         secured_document:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           example:
             hello: world
     AdminConfig:
@@ -5802,7 +5841,8 @@ components:
       properties:
         config:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Configuration settings
     AdminMediationDeny:
       type: object
@@ -5824,7 +5864,8 @@ components:
       properties:
         conductor:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Conductor statistics
         label:
           type: string
@@ -5832,7 +5873,8 @@ components:
           nullable: true
         timing:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Timing results
         version:
           type: string
@@ -5852,6 +5894,11 @@ components:
           description: Readiness status
           example: true
     AnonCredsSchema:
+      required:
+      - attrNames
+      - issuerId
+      - name
+      - version
       type: object
       properties:
         attrNames:
@@ -6012,6 +6059,8 @@ components:
           type: integer
           description: Latest time of interest in non-revocation interval
           example: 1640995199
+    AnoncredsRevocationModuleResponse:
+      type: object
     AttachDecorator:
       required:
       - data
@@ -6150,25 +6199,32 @@ components:
       properties:
         di_vc:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         jwt:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         jwt_vc:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         jwt_vp:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         ldp:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         ldp_vc:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         ldp_vp:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
     ClearPendingRevocationsRequest:
       type: object
       properties:
@@ -6251,7 +6307,7 @@ components:
           description: ID of out-of-band invitation message
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         my_did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: Our DID for connection
           example: did:peer:WgWxqztrNooG92RXvxSTWv
@@ -6269,7 +6325,7 @@ components:
           description: Current record state
           example: active
         their_did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: Their DID for connection
           example: did:peer:WgWxqztrNooG92RXvxSTWv
@@ -6307,7 +6363,7 @@ components:
           description: Message type
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID for connection invitation
           example: did:peer:WgWxqztrNooG92RXvxSTWv
@@ -6356,7 +6412,8 @@ components:
       properties:
         results:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Dictionary of metadata associated with connection.
     ConnectionMetadataSetRequest:
       required:
@@ -6365,7 +6422,8 @@ components:
       properties:
         metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Dictionary of metadata to set for connection.
     ConnectionModuleResponse:
       type: object
@@ -6487,7 +6545,8 @@ components:
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Optional metadata to attach to the connection created with
             the invitation
         my_label:
@@ -6546,7 +6605,8 @@ components:
       properties:
         extra_settings:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Agent config key-value pairs
         image_url:
           type: string
@@ -6623,7 +6683,8 @@ components:
           - unmanaged
         settings:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Settings for this wallet.
         state:
           type: string
@@ -6732,14 +6793,16 @@ components:
       properties:
         credential_definition_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         credential_definition_state:
           $ref: '#/components/schemas/CredDefState'
         job_id:
           type: string
         registration_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
     CredDefState:
       type: object
       properties:
@@ -6803,7 +6866,8 @@ components:
           example: '0'
         r:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         rctxt:
           pattern: ^[0-9]*$
           type: string
@@ -6913,14 +6977,16 @@ components:
       properties:
         rev_reg_delta:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Indy revocation registry delta
     CredRevIndyRecordsResultSchemaAnoncreds:
       type: object
       properties:
         rev_reg_delta:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Indy revocation registry delta
     CredRevRecordDetailsResult:
       type: object
@@ -7188,7 +7254,7 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID of interest
           example: did:peer:WgWxqztrNooG92RXvxSTWv
@@ -7199,9 +7265,11 @@ components:
           enum:
           - ed25519
           - bls12381g2
+          - p256
         metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Additional metadata associated with the DID
         method:
           type: string
@@ -7245,7 +7313,7 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: 'Specify final value of the did (including did:<method>: prefix)if
             the method supports or requires so.'
@@ -7258,6 +7326,7 @@ components:
           enum:
           - ed25519
           - bls12381g2
+          - p256
     DIDEndpoint:
       required:
       - did
@@ -7345,7 +7414,7 @@ components:
           description: Message type
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID of exchange
           example: did:peer:WgWxqztrNooG92RXvxSTWv
@@ -7430,7 +7499,8 @@ components:
           $ref: '#/components/schemas/PresentationDefinition'
         record_ids:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Mapping of input_descriptor id to list of stored W3C credential
             record_id
           example:
@@ -7441,7 +7511,8 @@ components:
             - <record id>
         reveal_doc:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: reveal doc [JSON-LD frame] dict used to derive the credential
             when selective disclosure is required
           example:
@@ -7606,7 +7677,8 @@ components:
       properties:
         credential:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Credential to sign
         options:
           type: object
@@ -7620,7 +7692,8 @@ components:
       properties:
         document:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         errors:
           type: array
           items:
@@ -7744,10 +7817,12 @@ components:
           example: did:(method):3:CL:20:tag
         credential_definitions_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         resolution_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
     GetCredDefsResponse:
       type: object
       properties:
@@ -7794,7 +7869,8 @@ components:
       properties:
         resolution_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         schema:
           $ref: '#/components/schemas/AnonCredsSchema'
         schema_id:
@@ -7803,7 +7879,8 @@ components:
           example: did:(method):2:schema_name:1.0
         schema_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
     GetSchemasResponse:
       type: object
       properties:
@@ -7935,11 +8012,13 @@ components:
       properties:
         blinded_ms:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Blinded master secret
         blinded_ms_correctness_proof:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Blinded master secret correctness proof
         cred_def_id:
           pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$
@@ -7971,7 +8050,8 @@ components:
           example: WgWxqztrNooG92RXvxSTWv:3:CL:20:tag
         rev_reg:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Revocation registry state
           nullable: true
         rev_reg_id:
@@ -7987,11 +8067,13 @@ components:
           example: WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0
         signature:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Credential signature
         signature_correctness_proof:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Credential signature correctness proof
         values:
           type: object
@@ -8000,7 +8082,8 @@ components:
           description: Credential attributes
         witness:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Witness for revocation proof
           nullable: true
     IndyEQProof:
@@ -8496,11 +8579,13 @@ components:
           nullable: true
         self_attested_attrs:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Proof requested proof self-attested attributes
         unrevealed_attrs:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Unrevealed attributes
     IndyProofRequestedProofPredicate:
       type: object
@@ -8682,6 +8767,11 @@ components:
           description: Credential definition tag
           example: default
     InnerRevRegDef:
+      required:
+      - credDefId
+      - issuerId
+      - maxCredNum
+      - tag
       type: object
       properties:
         credDefId:
@@ -8715,7 +8805,8 @@ components:
           description: ID
         metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Metadata dictionary
         name:
           type: string
@@ -8783,7 +8874,8 @@ components:
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Optional metadata to attach to the connection created with
             the invitation
         my_label:
@@ -9117,16 +9209,18 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID of interest
           example: did:peer:WgWxqztrNooG92RXvxSTWv
         headers:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         payload:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         verificationMethod:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
@@ -9152,14 +9246,16 @@ components:
           description: Error text
         headers:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Headers from verified JWT.
         kid:
           type: string
           description: kid of signer
         payload:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Payload from verified JWT
         valid:
           type: boolean
@@ -9184,7 +9280,8 @@ components:
           example: https://didcomm.org/my-family/1.0/my-message-type
         filter:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Query dictionary object
           example:
             filter: {}
@@ -9198,7 +9295,8 @@ components:
       properties:
         filter:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Filter for keylist query
     KeylistQueryPaginate:
       type: object
@@ -9411,6 +9509,11 @@ components:
       additionalProperties: true
     ListCredentialsResponse:
       type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiableCredential'
     MediationCreateRequest:
       type: object
     MediationDeny:
@@ -9775,7 +9878,8 @@ components:
           type: array
           items:
             type: object
-            properties: {}
+            additionalProperties:
+              type: object
       additionalProperties: true
     PresentationDefinition:
       type: object
@@ -9865,7 +9969,8 @@ components:
       properties:
         settings:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Profile settings dict
           example:
             debug.invite_public: true
@@ -9878,7 +9983,8 @@ components:
           type: string
         proof:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         purpose_result:
           $ref: '#/components/schemas/PurposeResult'
         verified:
@@ -9971,7 +10077,8 @@ components:
       properties:
         controller:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         error:
           type: string
         valid:
@@ -10047,7 +10154,7 @@ components:
           description: Message type
           example: https://didcomm.org/my-family/1.0/my-message-type
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID for connection invitation
           example: did:peer:WgWxqztrNooG92RXvxSTWv
@@ -10097,11 +10204,13 @@ components:
       properties:
         did_document:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: DID Document
         metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Resolution metadata
     RevList:
       type: object
@@ -10132,6 +10241,8 @@ components:
           type: integer
           description: Timestamp at which revocation list is applicable
     RevListCreateRequest:
+      required:
+      - rev_reg_def_id
       type: object
       properties:
         options:
@@ -10162,10 +10273,12 @@ components:
           type: string
         registration_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         revocation_list_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         revocation_list_state:
           $ref: '#/components/schemas/RevListState'
     RevListState:
@@ -10245,10 +10358,12 @@ components:
           type: string
         registration_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         revocation_registry_definition_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         revocation_registry_definition_state:
           $ref: '#/components/schemas/RevRegDefState'
     RevRegDefState:
@@ -10280,7 +10395,8 @@ components:
           example: 777
         publicKeys:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
         tailsHash:
           type: string
@@ -10329,30 +10445,36 @@ components:
       properties:
         accum_calculated:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Calculated accumulator for phantom revocations
         accum_fixed:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Applied ledger transaction to fix revocations
         rev_reg_delta:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Indy revocation registry delta
     RevRegWalletUpdatedResultSchemaAnoncreds:
       type: object
       properties:
         accum_calculated:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Calculated accumulator for phantom revocations
         accum_fixed:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Applied ledger transaction to fix revocations
         rev_reg_delta:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Indy revocation registry delta
     RevRegsCreated:
       type: object
@@ -10370,12 +10492,10 @@ components:
         rev_reg_ids:
           type: array
           items:
-            pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+            pattern: ^(.+$)
             type: string
             description: Revocation registry identifiers
-            example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
-    RevocationAnoncredsModuleResponse:
-      type: object
+            example: did:(method):4:did:<method>:3:CL:20:tag:CL_ACCUM:0
     RevocationModuleResponse:
       type: object
     RevokeRequest:
@@ -10460,10 +10580,10 @@ components:
           description: (True) publish revocation to ledger immediately, or (default,
             False) mark it pending
         rev_reg_id:
-          pattern: ^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)
+          pattern: ^(.+$)
           type: string
           description: Revocation registry identifier
-          example: WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0
+          example: did:(method):4:did:<method>:3:CL:20:tag:CL_ACCUM:0
         thread_id:
           type: string
           description: Thread ID of the credential exchange message thread resulting
@@ -10520,13 +10640,14 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          pattern: ^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
           type: string
           description: DID of interest
           example: did:peer:WgWxqztrNooG92RXvxSTWv
         headers:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         non_sd_list:
           type: array
           items:
@@ -10535,7 +10656,8 @@ components:
             example: ''
         payload:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         verificationMethod:
           pattern: \w+:(\/?\/?)[^\s]+
           type: string
@@ -10576,14 +10698,16 @@ components:
           description: Error text
         headers:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Headers from verified JWT.
         kid:
           type: string
           description: kid of signer
         payload:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Payload from verified JWT
         valid:
           type: boolean
@@ -10664,10 +10788,12 @@ components:
           type: string
         registration_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         schema_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         schema_state:
           $ref: '#/components/schemas/SchemaState'
     SchemaSendRequest:
@@ -10808,7 +10934,8 @@ components:
           description: Error text
         signed_doc:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Signed document
     SignatureOptions:
       required:
@@ -10837,6 +10964,16 @@ components:
           allOf:
           - $ref: '#/components/schemas/SignatureOptions'
       additionalProperties: true
+    StoreCredentialRequest:
+      type: object
+      properties:
+        verifiableCredential:
+          $ref: '#/components/schemas/VerifiableCredential'
+    StoreCredentialResponse:
+      type: object
+      properties:
+        credentialId:
+          type: string
     SubmissionRequirements:
       type: object
       properties:
@@ -10979,7 +11116,8 @@ components:
           type: array
           items:
             type: object
-            properties: {}
+            additionalProperties:
+              type: object
             example:
               '@id': 143c458d-1b1c-40c7-ab85-4d16808ddf0a
               data:
@@ -10992,7 +11130,8 @@ components:
               mime-type: application/json
         meta_data:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           example:
             context:
               param1: param1_value
@@ -11004,7 +11143,8 @@ components:
           type: array
           items:
             type: object
-            properties: {}
+            additionalProperties:
+              type: object
             example:
               author_goal_code: aries.transaction.ledger.write
               context: did:sov
@@ -11015,7 +11155,8 @@ components:
           type: array
           items:
             type: object
-            properties: {}
+            additionalProperties:
+              type: object
             example:
               context: did:sov
               message_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -11031,7 +11172,8 @@ components:
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         timing:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           example:
             expires_time: 2020-12-13T17:29:06+0000
         trace:
@@ -11141,7 +11283,8 @@ components:
       properties:
         extra_settings:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Agent config key-value pairs
           example:
             ACAPY_INVITE_PUBLIC: true
@@ -11152,7 +11295,8 @@ components:
       properties:
         extra_settings:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Agent config key-value pairs
         image_url:
           type: string
@@ -11331,7 +11475,8 @@ components:
           - $ref: '#/components/schemas/IndyCredRequest'
         credential_request_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: (Indy) credential request metadata
         error_msg:
           type: string
@@ -12032,16 +12177,20 @@ components:
       properties:
         cred_issue:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         cred_offer:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         cred_proposal:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         cred_request:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
     V20CredExRecordDetail:
       type: object
       properties:
@@ -12078,7 +12227,8 @@ components:
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         cred_request_metadata:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Credential request metadata for indy holder
         cred_rev_id:
           pattern: ^[1-9][0-9]*$
@@ -12793,13 +12943,16 @@ components:
       properties:
         pres:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         pres_proposal:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
         pres_request:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
     V20PresExRecordList:
       type: object
       properties:
@@ -13037,7 +13190,8 @@ components:
             description: Retrieval tag value
         cred_value:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: (JSON-serializable) credential value
         expanded_types:
           type: array
@@ -13192,7 +13346,8 @@ components:
           type: array
           items:
             type: object
-            properties: {}
+            additionalProperties:
+              type: object
       additionalProperties: true
     VerifyCredentialRequest:
       type: object
@@ -13213,7 +13368,8 @@ components:
       properties:
         securedDocument:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           example:
             hello: world
             proof:
@@ -13345,7 +13501,8 @@ components:
           - unmanaged
         settings:
           type: object
-          properties: {}
+          additionalProperties:
+            type: object
           description: Settings for this wallet.
         state:
           type: string
