@@ -35,6 +35,10 @@ from aries_cloudcontroller.models.prove_presentation_request import (
 from aries_cloudcontroller.models.prove_presentation_response import (
     ProvePresentationResponse,
 )
+from aries_cloudcontroller.models.store_credential_request import StoreCredentialRequest
+from aries_cloudcontroller.models.store_credential_response import (
+    StoreCredentialResponse,
+)
 from aries_cloudcontroller.models.verify_credential_request import (
     VerifyCredentialRequest,
 )
@@ -471,6 +475,7 @@ class VcApi:
     @validate_call
     async def store_credential(
         self,
+        body: Optional[StoreCredentialRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -482,21 +487,26 @@ class VcApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> StoreCredentialResponse:
         """Store a credential
 
 
+        :param body:
+        :type body: StoreCredentialRequest
         ...
         """  # noqa: E501
 
         _param = self._store_credential_serialize(
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {}
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "StoreCredentialResponse",
+        }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
         )
@@ -508,6 +518,7 @@ class VcApi:
 
     def _store_credential_serialize(
         self,
+        body,
         _request_auth,
         _content_type,
         _headers,
@@ -532,6 +543,24 @@ class VcApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if body is not None:
+            _body_params = body
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json"]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = ["AuthorizationHeader"]

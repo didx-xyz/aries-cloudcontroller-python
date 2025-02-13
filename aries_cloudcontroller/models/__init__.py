@@ -414,6 +414,10 @@ from aries_cloudcontroller.models.sign_request import SignRequest
 from aries_cloudcontroller.models.sign_response import SignResponse
 from aries_cloudcontroller.models.signature_options import SignatureOptions
 from aries_cloudcontroller.models.signed_doc import SignedDoc
+from aries_cloudcontroller.models.store_credential_request import StoreCredentialRequest
+from aries_cloudcontroller.models.store_credential_response import (
+    StoreCredentialResponse,
+)
 from aries_cloudcontroller.models.submission_requirements import SubmissionRequirements
 from aries_cloudcontroller.models.taa_accept import TAAAccept
 from aries_cloudcontroller.models.taa_acceptance import TAAAcceptance

@@ -327,6 +327,8 @@ from aries_cloudcontroller.models import (
     SignedDoc,
     SignRequest,
     SignResponse,
+    StoreCredentialRequest,
+    StoreCredentialResponse,
     SubmissionRequirements,
     TAAAccept,
     TAAAcceptance,
