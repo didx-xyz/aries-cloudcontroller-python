@@ -296,6 +296,9 @@ from aries_cloudcontroller.models.ld_proof_vc_options import LDProofVCOptions
 from aries_cloudcontroller.models.ledger_config_instance import LedgerConfigInstance
 from aries_cloudcontroller.models.ledger_config_list import LedgerConfigList
 from aries_cloudcontroller.models.linked_data_proof import LinkedDataProof
+from aries_cloudcontroller.models.list_credentials_response import (
+    ListCredentialsResponse,
+)
 from aries_cloudcontroller.models.mediation_deny import MediationDeny
 from aries_cloudcontroller.models.mediation_grant import MediationGrant
 from aries_cloudcontroller.models.mediation_id_match_info import MediationIdMatchInfo

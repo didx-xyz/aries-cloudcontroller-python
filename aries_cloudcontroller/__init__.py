@@ -243,6 +243,7 @@ from aries_cloudcontroller.models import (
     LedgerConfigInstance,
     LedgerConfigList,
     LinkedDataProof,
+    ListCredentialsResponse,
     MediationDeny,
     MediationGrant,
     MediationIdMatchInfo,

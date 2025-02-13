@@ -26,6 +26,9 @@ from aries_cloudcontroller.models.issue_credential_request import IssueCredentia
 from aries_cloudcontroller.models.issue_credential_response import (
     IssueCredentialResponse,
 )
+from aries_cloudcontroller.models.list_credentials_response import (
+    ListCredentialsResponse,
+)
 from aries_cloudcontroller.models.prove_presentation_request import (
     ProvePresentationRequest,
 )
@@ -280,7 +283,7 @@ class VcApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ListCredentialsResponse:
         """List credentials
 
 
@@ -295,7 +298,7 @@ class VcApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
+            "200": "ListCredentialsResponse",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
