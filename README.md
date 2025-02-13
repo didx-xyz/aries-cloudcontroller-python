@@ -33,12 +33,17 @@
   <a href="#license">License</a>
 </p>
 
-The Aries CloudController is a Python-based client library for interacting with an instance of [Aries Cloud Agent](https://github.com/hyperledger/aries-cloudagent-python) (ACA-Py). It leverages the OpenAPI definition from ACA-Py to provide a fully-typed, rich API experience for cloud agent interaction.
+The Aries CloudController is a Python-based client library for interacting with an instance of
+[Aries Cloud Agent](https://github.com/hyperledger/aries-cloudagent-python) (ACA-Py). It leverages
+the OpenAPI definition from ACA-Py to provide a fully-typed, rich API experience for cloud agent interaction.
 
 **Versioning Update:**
-As of version 0.8.0, the Aries CloudController has aligned its versioning with ACA-Py. This means that each new version of ACA-Py will correspond directly to the same version of the Aries CloudController. This change ensures a more straightforward and predictable upgrade path for users.
+As of version 0.8.0, the Aries CloudController has aligned its versioning with ACA-Py.
+This means that each new version of ACA-Py will correspond directly to the same version of the
+Aries CloudController. This change ensures a more straightforward and predictable upgrade path for users.
 
-In other words, CloudController 0.8.0 is compatible with ACA-Py 0.8.0, CloudController 0.9.0 is compatible with ACA-Py 0.9.0, etc.
+In other words, CloudController 0.8.0 is compatible with ACA-Py 0.8.0,
+CloudController 0.9.0 is compatible with ACA-Py 0.9.0, etc.
 
 For legacy versions, please review our release history to found the version compatible with ACA-Py pre-0.8.0.
 
@@ -46,10 +51,14 @@ For legacy versions, please review our release history to found the version comp
 
 Aries CloudController Python provides a robust client for interacting with Aries Cloud Agents (ACA-Py).
 
-- **Fully Typed**: Offers a strongly-typed wrapper around the Aries Cloud Agent Python, enhancing developer experience and reducing errors.
-- **Up-to-Date Support**: Compatible with the latest ACA-Py version (1.1.0), ensuring access to the most recent features and improvements.
-- **Auto-Generated Client**: Utilizes OpenAPI definitions for automatic generation, ensuring timely updates in line with new ACA-Py releases.
-- **Multi-Tenancy and Authentication Support**: Facilitates working with multi-tenant APIs and integrates various authentication mechanisms.
+- **Fully Typed**: Offers a strongly-typed wrapper around the Aries Cloud Agent Python,
+  enhancing developer experience and reducing errors.
+- **Up-to-Date Support**: Compatible with the latest ACA-Py version (1.1.0),
+  ensuring access to the most recent features and improvements.
+- **Auto-Generated Client**: Utilizes OpenAPI definitions for automatic generation,
+  ensuring timely updates in line with new ACA-Py releases.
+- **Multi-Tenancy and Authentication Support**: Facilitates working with multi-tenant APIs
+  and integrates various authentication mechanisms.
 - **Asynchronous API**: Supports asynchronous operations, enabling efficient handling of I/O-bound tasks.
 
 ## Usage
@@ -93,7 +102,8 @@ client = AcaPyClient(
 
 ### Interacting with the Client
 
-The API, being fully typed, is best explored through the ACA-Py Swagger UI, which mirrors the available client properties.
+The API, being fully typed, is best explored through the ACA-Py Swagger UI,
+which mirrors the available client properties.
 
 **Example**: Creating and receiving an invitation:
 
@@ -113,6 +123,7 @@ The client encompasses various APIs, each corresponding to ACA-Py Swagger UI top
 - `anoncreds_credential_definitions`
 - `anoncreds_revocation`
 - `anoncreds_schemas`
+- `anoncreds_wallet_upgrade`
 - `basicmessage`
 - `connection`
 - `credential_definition`
@@ -144,7 +155,8 @@ The client encompasses various APIs, each corresponding to ACA-Py Swagger UI top
 
 ## Contributing
 
-Contributions are welcome! Please see our [CONTRIBUTING](/CONTRIBUTING.md) guidelines for more information on how to get involved.
+Contributions are welcome! Please see our [CONTRIBUTING](/CONTRIBUTING.md) guidelines
+for more information on how to get involved.
 
 ## License
 
