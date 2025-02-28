@@ -45,8 +45,8 @@ class Credential(BaseModel):
     id: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The ID of the credential"
     )
-    issuance_date: Annotated[str, Field(strict=True)] = Field(
-        description="The issuance date", alias="issuanceDate"
+    issuance_date: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The issuance date", alias="issuanceDate"
     )
     issuer: Union[str, Dict[str, Any]] = Field(
         description="The JSON-LD Verifiable Credential Issuer. Either string of object with id field."
@@ -55,6 +55,12 @@ class Credential(BaseModel):
         default=None, description="The proof of the credential"
     )
     type: List[StrictStr] = Field(description="The JSON-LD type of the credential")
+    valid_from: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The valid from date", alias="validFrom"
+    )
+    valid_until: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The valid until date", alias="validUntil"
+    )
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = [
         "@context",
@@ -66,6 +72,8 @@ class Credential(BaseModel):
         "issuer",
         "proof",
         "type",
+        "validFrom",
+        "validUntil",
     ]
 
     @field_validator("expiration_date")
@@ -98,6 +106,39 @@ class Credential(BaseModel):
     @field_validator("issuance_date")
     def issuance_date_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(
+            r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$/"
+            )
+        return value
+
+    @field_validator("valid_from")
+    def valid_from_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(
+            r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$/"
+            )
+        return value
+
+    @field_validator("valid_until")
+    def valid_until_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
         if not re.match(
             r"^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
             value,
@@ -178,6 +219,8 @@ class Credential(BaseModel):
                     else None
                 ),
                 "type": obj.get("type"),
+                "validFrom": obj.get("validFrom"),
+                "validUntil": obj.get("validUntil"),
             }
         )
         # store additional fields in additional_properties
