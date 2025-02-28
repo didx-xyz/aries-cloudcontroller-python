@@ -7102,7 +7102,7 @@
   },
   "info": {
     "title": "Aries Cloud Agent",
-    "version": "v1.2.1.post20250213"
+    "version": "v1.2.1.post20250228"
   },
   "swagger": "2.0",
   "definitions": {
@@ -8709,15 +8709,21 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "validFrom": {
+          "description": "The valid from date",
+          "example": "2010-01-01T19:23:24Z",
+          "pattern": "^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+          "type": "string"
+        },
+        "validUntil": {
+          "description": "The valid until date",
+          "example": "2010-01-01T19:23:24Z",
+          "pattern": "^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+          "type": "string"
         }
       },
-      "required": [
-        "@context",
-        "credentialSubject",
-        "issuanceDate",
-        "issuer",
-        "type"
-      ],
+      "required": ["@context", "credentialSubject", "issuer", "type"],
       "type": "object"
     },
     "CredentialDefinition": {
@@ -16557,16 +16563,21 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "validFrom": {
+          "description": "The valid from date",
+          "example": "2010-01-01T19:23:24Z",
+          "pattern": "^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+          "type": "string"
+        },
+        "validUntil": {
+          "description": "The valid until date",
+          "example": "2010-01-01T19:23:24Z",
+          "pattern": "^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
+          "type": "string"
         }
       },
-      "required": [
-        "@context",
-        "credentialSubject",
-        "issuanceDate",
-        "issuer",
-        "proof",
-        "type"
-      ],
+      "required": ["@context", "credentialSubject", "issuer", "proof", "type"],
       "type": "object"
     },
     "VerifiablePresentation": {
