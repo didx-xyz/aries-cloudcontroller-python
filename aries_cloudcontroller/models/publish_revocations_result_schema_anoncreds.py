@@ -29,7 +29,7 @@ class PublishRevocationsResultSchemaAnoncreds(BaseModel):
     PublishRevocationsResultSchemaAnoncreds
     """  # noqa: E501
 
-    rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
+    rrid2crid: Optional[Dict[str, List[Annotated[int, Field(strict=True)]]]] = Field(
         default=None, description="Credential revocation ids by revocation registry id"
     )
     __properties: ClassVar[List[str]] = ["rrid2crid"]
