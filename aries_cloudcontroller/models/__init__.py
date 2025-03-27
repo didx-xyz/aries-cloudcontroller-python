@@ -25,6 +25,7 @@ from aries_cloudcontroller.models.admin_status_readiness import AdminStatusReadi
 # import models into model package
 from aries_cloudcontroller.models.aml_record import AMLRecord
 from aries_cloudcontroller.models.anon_creds_schema import AnonCredsSchema
+from aries_cloudcontroller.models.anoncreds_pres_spec import AnoncredsPresSpec
 from aries_cloudcontroller.models.anoncreds_presentation_req_attr_spec import (
     AnoncredsPresentationReqAttrSpec,
 )
@@ -42,6 +43,12 @@ from aries_cloudcontroller.models.anoncreds_presentation_request import (
 )
 from aries_cloudcontroller.models.anoncreds_presentation_request_non_revoked import (
     AnoncredsPresentationRequestNonRevoked,
+)
+from aries_cloudcontroller.models.anoncreds_requested_creds_requested_attr import (
+    AnoncredsRequestedCredsRequestedAttr,
+)
+from aries_cloudcontroller.models.anoncreds_requested_creds_requested_pred import (
+    AnoncredsRequestedCredsRequestedPred,
 )
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
 from aries_cloudcontroller.models.attach_decorator_data import AttachDecoratorData

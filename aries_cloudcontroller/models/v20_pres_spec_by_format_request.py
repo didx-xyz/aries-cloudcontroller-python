@@ -21,6 +21,7 @@ import orjson
 from pydantic import BaseModel, Field, StrictBool
 from typing_extensions import Self
 
+from aries_cloudcontroller.models.anoncreds_pres_spec import AnoncredsPresSpec
 from aries_cloudcontroller.models.dif_pres_spec import DIFPresSpec
 from aries_cloudcontroller.models.indy_pres_spec import IndyPresSpec
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -31,7 +32,7 @@ class V20PresSpecByFormatRequest(BaseModel):
     V20PresSpecByFormatRequest
     """  # noqa: E501
 
-    anoncreds: Optional[IndyPresSpec] = Field(
+    anoncreds: Optional[AnoncredsPresSpec] = Field(
         default=None, description="Presentation specification for anoncreds"
     )
     auto_remove: Optional[StrictBool] = Field(
@@ -112,7 +113,7 @@ class V20PresSpecByFormatRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "anoncreds": (
-                    IndyPresSpec.from_dict(obj["anoncreds"])
+                    AnoncredsPresSpec.from_dict(obj["anoncreds"])
                     if obj.get("anoncreds") is not None
                     else None
                 ),
