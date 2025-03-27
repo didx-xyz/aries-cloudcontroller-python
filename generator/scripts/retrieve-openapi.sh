@@ -15,7 +15,7 @@ if [[ $ACA_PY_VERSION == 0.* ]]; then
 else
   ACA_PY_DOCKER_IMAGE_TAG="py3.12-${ACA_PY_VERSION}"
 fi
-ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/didx-xyz/acapy-agent-bbs:${ACA_PY_DOCKER_IMAGE_TAG}"
+ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/didx-xyz/acapy-agent:${ACA_PY_DOCKER_IMAGE_TAG}"
 
 ACA_PY_ADMIN_PORT="8305"
 ACA_PY_INBOUND_PORT="8307"
