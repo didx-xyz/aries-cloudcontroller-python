@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v1.2.1.post20250319
+  version: v1.2.1.post20250327
 servers:
 - url: /
 security:
@@ -5920,6 +5920,37 @@ components:
           type: string
           description: Schema version
           example: '1.0'
+    AnoncredsPresSpec:
+      required:
+      - requested_attributes
+      - requested_predicates
+      - self_attested_attributes
+      type: object
+      properties:
+        requested_attributes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AnoncredsRequestedCredsRequestedAttr'
+          description: Nested object mapping proof request attribute referents to
+            requested-attribute specifiers
+        requested_predicates:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AnoncredsRequestedCredsRequestedPred'
+          description: Nested object mapping proof request predicate referents to
+            requested-predicate specifiers
+        self_attested_attributes:
+          type: object
+          additionalProperties:
+            type: string
+            description: Self-attested attribute values to use in requested-credentials
+              structure for proof construction
+            example: self_attested_value
+          description: Self-attested attributes to build into proof
+        trace:
+          type: boolean
+          description: Whether to trace event (default false)
+          example: false
     AnoncredsPresentationReqAttrSpec:
       type: object
       properties:
@@ -6058,6 +6089,35 @@ components:
           minimum: 0
           type: integer
           description: Latest time of interest in non-revocation interval
+          example: 1640995199
+    AnoncredsRequestedCredsRequestedAttr:
+      required:
+      - cred_id
+      type: object
+      properties:
+        cred_id:
+          type: string
+          description: Wallet credential identifier (typically but not necessarily
+            a UUID)
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        revealed:
+          type: boolean
+          description: Whether to reveal attribute in proof (default true)
+    AnoncredsRequestedCredsRequestedPred:
+      required:
+      - cred_id
+      type: object
+      properties:
+        cred_id:
+          type: string
+          description: Wallet credential identifier (typically but not necessarily
+            a UUID)
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        timestamp:
+          maximum: 18446744073709551615
+          minimum: 0
+          type: integer
+          description: Epoch timestamp of interest for non-revocation proof
           example: 1640995199
     AnoncredsRevocationModuleResponse:
       type: object
@@ -13146,7 +13206,7 @@ components:
           type: object
           description: Presentation specification for anoncreds
           allOf:
-          - $ref: '#/components/schemas/IndyPresSpec'
+          - $ref: '#/components/schemas/AnoncredsPresSpec'
         auto_remove:
           type: boolean
           description: Whether to remove the presentation exchange record on completion
