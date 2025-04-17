@@ -18,7 +18,7 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
 from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -29,21 +29,44 @@ class LedgerConfigInstance(BaseModel):
     LedgerConfigInstance
     """  # noqa: E501
 
-    genesis_file: Optional[StrictStr] = Field(default=None, description="genesis_file")
-    genesis_transactions: Optional[StrictStr] = Field(
-        default=None, description="genesis_transactions"
+    endorser_alias: Optional[StrictStr] = Field(
+        default=None, description="Endorser service alias (optional)"
     )
-    genesis_url: Optional[StrictStr] = Field(default=None, description="genesis_url")
-    id: Optional[StrictStr] = Field(default=None, description="ledger_id")
-    is_production: Optional[StrictBool] = Field(
-        default=None, description="is_production"
+    endorser_did: Optional[StrictStr] = Field(
+        default=None, description="Endorser DID (optional)"
+    )
+    id: StrictStr = Field(
+        description="Ledger identifier. Auto-generated UUID4 if not provided"
+    )
+    is_production: StrictBool = Field(
+        description="Production-grade ledger (true/false)"
+    )
+    is_write: Optional[StrictBool] = Field(
+        default=None, description="Write capability enabled (default: False)"
+    )
+    keepalive: Optional[StrictInt] = Field(
+        default=None, description="Keep-alive timeout in seconds for idle connections"
+    )
+    pool_name: Optional[StrictStr] = Field(
+        default=None,
+        description="Ledger pool name (defaults to ledger ID if not specified)",
+    )
+    read_only: Optional[StrictBool] = Field(
+        default=None, description="Read-only access (default: False)"
+    )
+    socks_proxy: Optional[StrictStr] = Field(
+        default=None, description="SOCKS proxy URL (optional)"
     )
     __properties: ClassVar[List[str]] = [
-        "genesis_file",
-        "genesis_transactions",
-        "genesis_url",
+        "endorser_alias",
+        "endorser_did",
         "id",
         "is_production",
+        "is_write",
+        "keepalive",
+        "pool_name",
+        "read_only",
+        "socks_proxy",
     ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -91,11 +114,15 @@ class LedgerConfigInstance(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "genesis_file": obj.get("genesis_file"),
-                "genesis_transactions": obj.get("genesis_transactions"),
-                "genesis_url": obj.get("genesis_url"),
+                "endorser_alias": obj.get("endorser_alias"),
+                "endorser_did": obj.get("endorser_did"),
                 "id": obj.get("id"),
                 "is_production": obj.get("is_production"),
+                "is_write": obj.get("is_write"),
+                "keepalive": obj.get("keepalive"),
+                "pool_name": obj.get("pool_name"),
+                "read_only": obj.get("read_only"),
+                "socks_proxy": obj.get("socks_proxy"),
             }
         )
         return _obj
