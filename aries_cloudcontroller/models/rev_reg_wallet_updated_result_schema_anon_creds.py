@@ -19,24 +19,30 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
-from aries_cloudcontroller.models.publish_revocations_options import (
-    PublishRevocationsOptions,
-)
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class PublishRevocationsSchemaAnoncreds(BaseModel):
+class RevRegWalletUpdatedResultSchemaAnonCreds(BaseModel):
     """
-    PublishRevocationsSchemaAnoncreds
+    RevRegWalletUpdatedResultSchemaAnonCreds
     """  # noqa: E501
 
-    options: Optional[PublishRevocationsOptions] = None
-    rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
-        default=None, description="Credential revocation ids by revocation registry id"
+    accum_calculated: Optional[Dict[str, Any]] = Field(
+        default=None, description="Calculated accumulator for phantom revocations"
     )
-    __properties: ClassVar[List[str]] = ["options", "rrid2crid"]
+    accum_fixed: Optional[Dict[str, Any]] = Field(
+        default=None, description="Applied ledger transaction to fix revocations"
+    )
+    rev_reg_delta: Optional[Dict[str, Any]] = Field(
+        default=None, description="Indy revocation registry delta"
+    )
+    __properties: ClassVar[List[str]] = [
+        "accum_calculated",
+        "accum_fixed",
+        "rev_reg_delta",
+    ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -50,7 +56,7 @@ class PublishRevocationsSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PublishRevocationsSchemaAnoncreds from a JSON string"""
+        """Create an instance of RevRegWalletUpdatedResultSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,14 +76,11 @@ class PublishRevocationsSchemaAnoncreds(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of options
-        if self.options:
-            _dict["options"] = self.options.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PublishRevocationsSchemaAnoncreds from a dict"""
+        """Create an instance of RevRegWalletUpdatedResultSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
@@ -86,12 +89,9 @@ class PublishRevocationsSchemaAnoncreds(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    PublishRevocationsOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
-                "rrid2crid": obj.get("rrid2crid"),
+                "accum_calculated": obj.get("accum_calculated"),
+                "accum_fixed": obj.get("accum_fixed"),
+                "rev_reg_delta": obj.get("rev_reg_delta"),
             }
         )
         return _obj

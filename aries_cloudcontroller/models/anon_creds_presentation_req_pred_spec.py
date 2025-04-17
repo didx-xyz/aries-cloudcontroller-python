@@ -21,19 +21,19 @@ import orjson
 from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.anoncreds_presentation_req_pred_spec_non_revoked import (
-    AnoncredsPresentationReqPredSpecNonRevoked,
+from aries_cloudcontroller.models.anon_creds_presentation_req_pred_spec_non_revoked import (
+    AnonCredsPresentationReqPredSpecNonRevoked,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class AnoncredsPresentationReqPredSpec(BaseModel):
+class AnonCredsPresentationReqPredSpec(BaseModel):
     """
-    AnoncredsPresentationReqPredSpec
+    AnonCredsPresentationReqPredSpec
     """  # noqa: E501
 
     name: StrictStr = Field(description="Attribute name")
-    non_revoked: Optional[AnoncredsPresentationReqPredSpecNonRevoked] = None
+    non_revoked: Optional[AnonCredsPresentationReqPredSpecNonRevoked] = None
     p_type: StrictStr = Field(description="Predicate type ('<', '<=', '>=', or '>')")
     p_value: StrictInt = Field(description="Threshold value")
     restrictions: Optional[List[Dict[str, StrictStr]]] = Field(
@@ -67,7 +67,7 @@ class AnoncredsPresentationReqPredSpec(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationReqPredSpec from a JSON string"""
+        """Create an instance of AnonCredsPresentationReqPredSpec from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -94,7 +94,7 @@ class AnoncredsPresentationReqPredSpec(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationReqPredSpec from a dict"""
+        """Create an instance of AnonCredsPresentationReqPredSpec from a dict"""
         if obj is None:
             return None
 
@@ -105,7 +105,7 @@ class AnoncredsPresentationReqPredSpec(BaseModel):
             {
                 "name": obj.get("name"),
                 "non_revoked": (
-                    AnoncredsPresentationReqPredSpecNonRevoked.from_dict(
+                    AnonCredsPresentationReqPredSpecNonRevoked.from_dict(
                         obj["non_revoked"]
                     )
                     if obj.get("non_revoked") is not None

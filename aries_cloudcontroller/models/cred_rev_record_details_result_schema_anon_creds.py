@@ -18,41 +18,22 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel
 from typing_extensions import Self
 
+from aries_cloudcontroller.models.issuer_cred_rev_record_schema_anon_creds import (
+    IssuerCredRevRecordSchemaAnonCreds,
+)
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class V20CredFilterAnoncreds(BaseModel):
+class CredRevRecordDetailsResultSchemaAnonCreds(BaseModel):
     """
-    V20CredFilterAnoncreds
+    CredRevRecordDetailsResultSchemaAnonCreds
     """  # noqa: E501
 
-    cred_def_id: Optional[StrictStr] = Field(
-        default=None, description="Credential definition identifier"
-    )
-    issuer_id: Optional[StrictStr] = Field(
-        default=None, description="Credential issuer ID"
-    )
-    schema_id: Optional[StrictStr] = Field(
-        default=None, description="Schema identifier"
-    )
-    schema_issuer_id: Optional[StrictStr] = Field(
-        default=None, description="Schema issuer ID"
-    )
-    schema_name: Optional[StrictStr] = Field(default=None, description="Schema name")
-    schema_version: Optional[StrictStr] = Field(
-        default=None, description="Schema version"
-    )
-    __properties: ClassVar[List[str]] = [
-        "cred_def_id",
-        "issuer_id",
-        "schema_id",
-        "schema_issuer_id",
-        "schema_name",
-        "schema_version",
-    ]
+    results: Optional[List[IssuerCredRevRecordSchemaAnonCreds]] = None
+    __properties: ClassVar[List[str]] = ["results"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -66,7 +47,7 @@ class V20CredFilterAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of V20CredFilterAnoncreds from a JSON string"""
+        """Create an instance of CredRevRecordDetailsResultSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,11 +67,18 @@ class V20CredFilterAnoncreds(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
+        _items = []
+        if self.results:
+            for _item_results in self.results:
+                if _item_results:
+                    _items.append(_item_results.to_dict())
+            _dict["results"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of V20CredFilterAnoncreds from a dict"""
+        """Create an instance of CredRevRecordDetailsResultSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
@@ -99,12 +87,14 @@ class V20CredFilterAnoncreds(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cred_def_id": obj.get("cred_def_id"),
-                "issuer_id": obj.get("issuer_id"),
-                "schema_id": obj.get("schema_id"),
-                "schema_issuer_id": obj.get("schema_issuer_id"),
-                "schema_name": obj.get("schema_name"),
-                "schema_version": obj.get("schema_version"),
+                "results": (
+                    [
+                        IssuerCredRevRecordSchemaAnonCreds.from_dict(_item)
+                        for _item in obj["results"]
+                    ]
+                    if obj.get("results") is not None
+                    else None
+                )
             }
         )
         return _obj

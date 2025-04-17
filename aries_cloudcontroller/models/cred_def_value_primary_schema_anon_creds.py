@@ -25,9 +25,9 @@ from typing_extensions import Annotated, Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class CredDefValuePrimarySchemaAnoncreds(BaseModel):
+class CredDefValuePrimarySchemaAnonCreds(BaseModel):
     """
-    CredDefValuePrimarySchemaAnoncreds
+    CredDefValuePrimarySchemaAnonCreds
     """  # noqa: E501
 
     n: Optional[Annotated[str, Field(strict=True)]] = None
@@ -89,7 +89,7 @@ class CredDefValuePrimarySchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CredDefValuePrimarySchemaAnoncreds from a JSON string"""
+        """Create an instance of CredDefValuePrimarySchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -113,7 +113,7 @@ class CredDefValuePrimarySchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CredDefValuePrimarySchemaAnoncreds from a dict"""
+        """Create an instance of CredDefValuePrimarySchemaAnonCreds from a dict"""
         if obj is None:
             return None
 

@@ -24,25 +24,15 @@ from typing_extensions import Annotated, Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class AnoncredsPresentationRequestNonRevoked(BaseModel):
+class PublishRevocationsResultSchemaAnonCreds(BaseModel):
     """
-    AnoncredsPresentationRequestNonRevoked
+    PublishRevocationsResultSchemaAnonCreds
     """  # noqa: E501
 
-    var_from: Optional[
-        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
-    ] = Field(
-        default=None,
-        description="Earliest time of interest in non-revocation interval",
-        alias="from",
+    rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
+        default=None, description="Credential revocation ids by revocation registry id"
     )
-    to: Optional[Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]] = (
-        Field(
-            default=None,
-            description="Latest time of interest in non-revocation interval",
-        )
-    )
-    __properties: ClassVar[List[str]] = ["from", "to"]
+    __properties: ClassVar[List[str]] = ["rrid2crid"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -56,7 +46,7 @@ class AnoncredsPresentationRequestNonRevoked(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationRequestNonRevoked from a JSON string"""
+        """Create an instance of PublishRevocationsResultSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,12 +70,12 @@ class AnoncredsPresentationRequestNonRevoked(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationRequestNonRevoked from a dict"""
+        """Create an instance of PublishRevocationsResultSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"from": obj.get("from"), "to": obj.get("to")})
+        _obj = cls.model_validate({"rrid2crid": obj.get("rrid2crid")})
         return _obj

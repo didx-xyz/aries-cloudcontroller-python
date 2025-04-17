@@ -22,8 +22,8 @@ from pydantic import BaseModel, Field
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.ld_proof_vc_detail import LDProofVCDetail
-from aries_cloudcontroller.models.v20_cred_filter_anoncreds import (
-    V20CredFilterAnoncreds,
+from aries_cloudcontroller.models.v20_cred_filter_anon_creds import (
+    V20CredFilterAnonCreds,
 )
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
 from aries_cloudcontroller.models.v20_cred_filter_vcdi import V20CredFilterVCDI
@@ -35,7 +35,7 @@ class V20CredFilter(BaseModel):
     V20CredFilter
     """  # noqa: E501
 
-    anoncreds: Optional[V20CredFilterAnoncreds] = Field(
+    anoncreds: Optional[V20CredFilterAnonCreds] = Field(
         default=None, description="Credential filter for anoncreds"
     )
     indy: Optional[V20CredFilterIndy] = Field(
@@ -107,7 +107,7 @@ class V20CredFilter(BaseModel):
         _obj = cls.model_validate(
             {
                 "anoncreds": (
-                    V20CredFilterAnoncreds.from_dict(obj["anoncreds"])
+                    V20CredFilterAnonCreds.from_dict(obj["anoncreds"])
                     if obj.get("anoncreds") is not None
                     else None
                 ),

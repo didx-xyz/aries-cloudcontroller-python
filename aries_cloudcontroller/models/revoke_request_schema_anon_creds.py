@@ -25,9 +25,9 @@ from typing_extensions import Annotated, Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class RevokeRequestSchemaAnoncreds(BaseModel):
+class RevokeRequestSchemaAnonCreds(BaseModel):
     """
-    RevokeRequestSchemaAnoncreds
+    RevokeRequestSchemaAnonCreds
     """  # noqa: E501
 
     comment: Optional[StrictStr] = Field(
@@ -129,6 +129,9 @@ class RevokeRequestSchemaAnoncreds(BaseModel):
         """Validates the regular expression"""
         if value is None:
             return value
+
+        if not re.match(r"^(.+$)", value):
+            raise ValueError(r"must validate the regular expression /^(.+$)/")
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -143,7 +146,7 @@ class RevokeRequestSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RevokeRequestSchemaAnoncreds from a JSON string"""
+        """Create an instance of RevokeRequestSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -167,7 +170,7 @@ class RevokeRequestSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RevokeRequestSchemaAnoncreds from a dict"""
+        """Create an instance of RevokeRequestSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 

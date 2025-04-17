@@ -18,22 +18,24 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, StrictBool, StrictStr
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.issuer_cred_rev_record_schema_anoncreds import (
-    IssuerCredRevRecordSchemaAnoncreds,
-)
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class CredRevRecordResultSchemaAnoncreds(BaseModel):
+class AnonCredsRequestedCredsRequestedAttr(BaseModel):
     """
-    CredRevRecordResultSchemaAnoncreds
+    AnonCredsRequestedCredsRequestedAttr
     """  # noqa: E501
 
-    result: Optional[IssuerCredRevRecordSchemaAnoncreds] = None
-    __properties: ClassVar[List[str]] = ["result"]
+    cred_id: StrictStr = Field(
+        description="Wallet credential identifier (typically but not necessarily a UUID)"
+    )
+    revealed: Optional[StrictBool] = Field(
+        default=None, description="Whether to reveal attribute in proof (default true)"
+    )
+    __properties: ClassVar[List[str]] = ["cred_id", "revealed"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -47,7 +49,7 @@ class CredRevRecordResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CredRevRecordResultSchemaAnoncreds from a JSON string"""
+        """Create an instance of AnonCredsRequestedCredsRequestedAttr from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -67,14 +69,11 @@ class CredRevRecordResultSchemaAnoncreds(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of result
-        if self.result:
-            _dict["result"] = self.result.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CredRevRecordResultSchemaAnoncreds from a dict"""
+        """Create an instance of AnonCredsRequestedCredsRequestedAttr from a dict"""
         if obj is None:
             return None
 
@@ -82,12 +81,6 @@ class CredRevRecordResultSchemaAnoncreds(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "result": (
-                    IssuerCredRevRecordSchemaAnoncreds.from_dict(obj["result"])
-                    if obj.get("result") is not None
-                    else None
-                )
-            }
+            {"cred_id": obj.get("cred_id"), "revealed": obj.get("revealed")}
         )
         return _obj

@@ -18,26 +18,19 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field
 from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class AnoncredsRequestedCredsRequestedPred(BaseModel):
+class RevRegsCreatedSchemaAnonCreds(BaseModel):
     """
-    AnoncredsRequestedCredsRequestedPred
+    RevRegsCreatedSchemaAnonCreds
     """  # noqa: E501
 
-    cred_id: StrictStr = Field(
-        description="Wallet credential identifier (typically but not necessarily a UUID)"
-    )
-    timestamp: Optional[
-        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
-    ] = Field(
-        default=None, description="Epoch timestamp of interest for non-revocation proof"
-    )
-    __properties: ClassVar[List[str]] = ["cred_id", "timestamp"]
+    rev_reg_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    __properties: ClassVar[List[str]] = ["rev_reg_ids"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -51,7 +44,7 @@ class AnoncredsRequestedCredsRequestedPred(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AnoncredsRequestedCredsRequestedPred from a JSON string"""
+        """Create an instance of RevRegsCreatedSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,14 +68,12 @@ class AnoncredsRequestedCredsRequestedPred(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AnoncredsRequestedCredsRequestedPred from a dict"""
+        """Create an instance of RevRegsCreatedSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"cred_id": obj.get("cred_id"), "timestamp": obj.get("timestamp")}
-        )
+        _obj = cls.model_validate({"rev_reg_ids": obj.get("rev_reg_ids")})
         return _obj

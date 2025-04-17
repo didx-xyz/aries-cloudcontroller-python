@@ -18,30 +18,25 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, Field
+from typing_extensions import Annotated, Self
 
-from aries_cloudcontroller.models.anoncreds_presentation_req_attr_spec_non_revoked import (
-    AnoncredsPresentationReqAttrSpecNonRevoked,
+from aries_cloudcontroller.models.publish_revocations_options import (
+    PublishRevocationsOptions,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class AnoncredsPresentationReqAttrSpec(BaseModel):
+class PublishRevocationsSchemaAnonCreds(BaseModel):
     """
-    AnoncredsPresentationReqAttrSpec
+    PublishRevocationsSchemaAnonCreds
     """  # noqa: E501
 
-    name: Optional[StrictStr] = Field(default=None, description="Attribute name")
-    names: Optional[List[StrictStr]] = Field(
-        default=None, description="Attribute name group"
+    options: Optional[PublishRevocationsOptions] = None
+    rrid2crid: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
+        default=None, description="Credential revocation ids by revocation registry id"
     )
-    non_revoked: Optional[AnoncredsPresentationReqAttrSpecNonRevoked] = None
-    restrictions: Optional[List[Dict[str, StrictStr]]] = Field(
-        default=None,
-        description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
-    )
-    __properties: ClassVar[List[str]] = ["name", "names", "non_revoked", "restrictions"]
+    __properties: ClassVar[List[str]] = ["options", "rrid2crid"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -55,7 +50,7 @@ class AnoncredsPresentationReqAttrSpec(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationReqAttrSpec from a JSON string"""
+        """Create an instance of PublishRevocationsSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,14 +70,14 @@ class AnoncredsPresentationReqAttrSpec(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of non_revoked
-        if self.non_revoked:
-            _dict["non_revoked"] = self.non_revoked.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of options
+        if self.options:
+            _dict["options"] = self.options.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationReqAttrSpec from a dict"""
+        """Create an instance of PublishRevocationsSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
@@ -91,16 +86,12 @@ class AnoncredsPresentationReqAttrSpec(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "name": obj.get("name"),
-                "names": obj.get("names"),
-                "non_revoked": (
-                    AnoncredsPresentationReqAttrSpecNonRevoked.from_dict(
-                        obj["non_revoked"]
-                    )
-                    if obj.get("non_revoked") is not None
+                "options": (
+                    PublishRevocationsOptions.from_dict(obj["options"])
+                    if obj.get("options") is not None
                     else None
                 ),
-                "restrictions": obj.get("restrictions"),
+                "rrid2crid": obj.get("rrid2crid"),
             }
         )
         return _obj

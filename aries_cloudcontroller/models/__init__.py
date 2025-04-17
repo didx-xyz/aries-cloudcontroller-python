@@ -24,32 +24,32 @@ from aries_cloudcontroller.models.admin_status_readiness import AdminStatusReadi
 
 # import models into model package
 from aries_cloudcontroller.models.aml_record import AMLRecord
+from aries_cloudcontroller.models.anon_creds_pres_spec import AnonCredsPresSpec
+from aries_cloudcontroller.models.anon_creds_presentation_req_attr_spec import (
+    AnonCredsPresentationReqAttrSpec,
+)
+from aries_cloudcontroller.models.anon_creds_presentation_req_attr_spec_non_revoked import (
+    AnonCredsPresentationReqAttrSpecNonRevoked,
+)
+from aries_cloudcontroller.models.anon_creds_presentation_req_pred_spec import (
+    AnonCredsPresentationReqPredSpec,
+)
+from aries_cloudcontroller.models.anon_creds_presentation_req_pred_spec_non_revoked import (
+    AnonCredsPresentationReqPredSpecNonRevoked,
+)
+from aries_cloudcontroller.models.anon_creds_presentation_request import (
+    AnonCredsPresentationRequest,
+)
+from aries_cloudcontroller.models.anon_creds_presentation_request_non_revoked import (
+    AnonCredsPresentationRequestNonRevoked,
+)
+from aries_cloudcontroller.models.anon_creds_requested_creds_requested_attr import (
+    AnonCredsRequestedCredsRequestedAttr,
+)
+from aries_cloudcontroller.models.anon_creds_requested_creds_requested_pred import (
+    AnonCredsRequestedCredsRequestedPred,
+)
 from aries_cloudcontroller.models.anon_creds_schema import AnonCredsSchema
-from aries_cloudcontroller.models.anoncreds_pres_spec import AnoncredsPresSpec
-from aries_cloudcontroller.models.anoncreds_presentation_req_attr_spec import (
-    AnoncredsPresentationReqAttrSpec,
-)
-from aries_cloudcontroller.models.anoncreds_presentation_req_attr_spec_non_revoked import (
-    AnoncredsPresentationReqAttrSpecNonRevoked,
-)
-from aries_cloudcontroller.models.anoncreds_presentation_req_pred_spec import (
-    AnoncredsPresentationReqPredSpec,
-)
-from aries_cloudcontroller.models.anoncreds_presentation_req_pred_spec_non_revoked import (
-    AnoncredsPresentationReqPredSpecNonRevoked,
-)
-from aries_cloudcontroller.models.anoncreds_presentation_request import (
-    AnoncredsPresentationRequest,
-)
-from aries_cloudcontroller.models.anoncreds_presentation_request_non_revoked import (
-    AnoncredsPresentationRequestNonRevoked,
-)
-from aries_cloudcontroller.models.anoncreds_requested_creds_requested_attr import (
-    AnoncredsRequestedCredsRequestedAttr,
-)
-from aries_cloudcontroller.models.anoncreds_requested_creds_requested_pred import (
-    AnoncredsRequestedCredsRequestedPred,
-)
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
 from aries_cloudcontroller.models.attach_decorator_data import AttachDecoratorData
 from aries_cloudcontroller.models.attach_decorator_data1_jws import (
@@ -105,34 +105,34 @@ from aries_cloudcontroller.models.cred_def_result import CredDefResult
 from aries_cloudcontroller.models.cred_def_state import CredDefState
 from aries_cloudcontroller.models.cred_def_value import CredDefValue
 from aries_cloudcontroller.models.cred_def_value_primary import CredDefValuePrimary
-from aries_cloudcontroller.models.cred_def_value_primary_schema_anoncreds import (
-    CredDefValuePrimarySchemaAnoncreds,
+from aries_cloudcontroller.models.cred_def_value_primary_schema_anon_creds import (
+    CredDefValuePrimarySchemaAnonCreds,
 )
 from aries_cloudcontroller.models.cred_def_value_revocation import (
     CredDefValueRevocation,
 )
-from aries_cloudcontroller.models.cred_def_value_revocation_schema_anoncreds import (
-    CredDefValueRevocationSchemaAnoncreds,
+from aries_cloudcontroller.models.cred_def_value_revocation_schema_anon_creds import (
+    CredDefValueRevocationSchemaAnonCreds,
 )
-from aries_cloudcontroller.models.cred_def_value_schema_anoncreds import (
-    CredDefValueSchemaAnoncreds,
+from aries_cloudcontroller.models.cred_def_value_schema_anon_creds import (
+    CredDefValueSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.cred_info_list import CredInfoList
 from aries_cloudcontroller.models.cred_rev_indy_records_result import (
     CredRevIndyRecordsResult,
 )
-from aries_cloudcontroller.models.cred_rev_indy_records_result_schema_anoncreds import (
-    CredRevIndyRecordsResultSchemaAnoncreds,
+from aries_cloudcontroller.models.cred_rev_indy_records_result_schema_anon_creds import (
+    CredRevIndyRecordsResultSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.cred_rev_record_details_result import (
     CredRevRecordDetailsResult,
 )
-from aries_cloudcontroller.models.cred_rev_record_details_result_schema_anoncreds import (
-    CredRevRecordDetailsResultSchemaAnoncreds,
+from aries_cloudcontroller.models.cred_rev_record_details_result_schema_anon_creds import (
+    CredRevRecordDetailsResultSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.cred_rev_record_result import CredRevRecordResult
-from aries_cloudcontroller.models.cred_rev_record_result_schema_anoncreds import (
-    CredRevRecordResultSchemaAnoncreds,
+from aries_cloudcontroller.models.cred_rev_record_result_schema_anon_creds import (
+    CredRevRecordResultSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.cred_revoked_result import CredRevokedResult
 from aries_cloudcontroller.models.credential import Credential
@@ -282,8 +282,8 @@ from aries_cloudcontroller.models.issue_credential_response import (
     IssueCredentialResponse,
 )
 from aries_cloudcontroller.models.issuer_cred_rev_record import IssuerCredRevRecord
-from aries_cloudcontroller.models.issuer_cred_rev_record_schema_anoncreds import (
-    IssuerCredRevRecordSchemaAnoncreds,
+from aries_cloudcontroller.models.issuer_cred_rev_record_schema_anon_creds import (
+    IssuerCredRevRecordSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.issuer_rev_reg_record import IssuerRevRegRecord
 from aries_cloudcontroller.models.jws_create import JWSCreate
@@ -342,11 +342,11 @@ from aries_cloudcontroller.models.publish_revocations import PublishRevocations
 from aries_cloudcontroller.models.publish_revocations_options import (
     PublishRevocationsOptions,
 )
-from aries_cloudcontroller.models.publish_revocations_result_schema_anoncreds import (
-    PublishRevocationsResultSchemaAnoncreds,
+from aries_cloudcontroller.models.publish_revocations_result_schema_anon_creds import (
+    PublishRevocationsResultSchemaAnonCreds,
 )
-from aries_cloudcontroller.models.publish_revocations_schema_anoncreds import (
-    PublishRevocationsSchemaAnoncreds,
+from aries_cloudcontroller.models.publish_revocations_schema_anon_creds import (
+    PublishRevocationsSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.purpose_result import PurposeResult
 from aries_cloudcontroller.models.queries import Queries
@@ -364,8 +364,8 @@ from aries_cloudcontroller.models.rev_list_options import RevListOptions
 from aries_cloudcontroller.models.rev_list_result import RevListResult
 from aries_cloudcontroller.models.rev_list_state import RevListState
 from aries_cloudcontroller.models.rev_reg_create_request import RevRegCreateRequest
-from aries_cloudcontroller.models.rev_reg_create_request_schema_anoncreds import (
-    RevRegCreateRequestSchemaAnoncreds,
+from aries_cloudcontroller.models.rev_reg_create_request_schema_anon_creds import (
+    RevRegCreateRequestSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.rev_reg_def import RevRegDef
 from aries_cloudcontroller.models.rev_reg_def_options import RevRegDefOptions
@@ -373,12 +373,12 @@ from aries_cloudcontroller.models.rev_reg_def_result import RevRegDefResult
 from aries_cloudcontroller.models.rev_reg_def_state import RevRegDefState
 from aries_cloudcontroller.models.rev_reg_def_value import RevRegDefValue
 from aries_cloudcontroller.models.rev_reg_issued_result import RevRegIssuedResult
-from aries_cloudcontroller.models.rev_reg_issued_result_schema_anoncreds import (
-    RevRegIssuedResultSchemaAnoncreds,
+from aries_cloudcontroller.models.rev_reg_issued_result_schema_anon_creds import (
+    RevRegIssuedResultSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.rev_reg_result import RevRegResult
-from aries_cloudcontroller.models.rev_reg_result_schema_anoncreds import (
-    RevRegResultSchemaAnoncreds,
+from aries_cloudcontroller.models.rev_reg_result_schema_anon_creds import (
+    RevRegResultSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.rev_reg_update_tails_file_uri import (
     RevRegUpdateTailsFileUri,
@@ -386,16 +386,16 @@ from aries_cloudcontroller.models.rev_reg_update_tails_file_uri import (
 from aries_cloudcontroller.models.rev_reg_wallet_updated_result import (
     RevRegWalletUpdatedResult,
 )
-from aries_cloudcontroller.models.rev_reg_wallet_updated_result_schema_anoncreds import (
-    RevRegWalletUpdatedResultSchemaAnoncreds,
+from aries_cloudcontroller.models.rev_reg_wallet_updated_result_schema_anon_creds import (
+    RevRegWalletUpdatedResultSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.rev_regs_created import RevRegsCreated
-from aries_cloudcontroller.models.rev_regs_created_schema_anoncreds import (
-    RevRegsCreatedSchemaAnoncreds,
+from aries_cloudcontroller.models.rev_regs_created_schema_anon_creds import (
+    RevRegsCreatedSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.revoke_request import RevokeRequest
-from aries_cloudcontroller.models.revoke_request_schema_anoncreds import (
-    RevokeRequestSchemaAnoncreds,
+from aries_cloudcontroller.models.revoke_request_schema_anon_creds import (
+    RevokeRequestSchemaAnonCreds,
 )
 from aries_cloudcontroller.models.rotate import Rotate
 from aries_cloudcontroller.models.route_record import RouteRecord
@@ -528,8 +528,8 @@ from aries_cloudcontroller.models.v20_cred_ex_record_list_result import (
     V20CredExRecordListResult,
 )
 from aries_cloudcontroller.models.v20_cred_filter import V20CredFilter
-from aries_cloudcontroller.models.v20_cred_filter_anoncreds import (
-    V20CredFilterAnoncreds,
+from aries_cloudcontroller.models.v20_cred_filter_anon_creds import (
+    V20CredFilterAnonCreds,
 )
 from aries_cloudcontroller.models.v20_cred_filter_indy import V20CredFilterIndy
 from aries_cloudcontroller.models.v20_cred_filter_ld_proof import V20CredFilterLDProof

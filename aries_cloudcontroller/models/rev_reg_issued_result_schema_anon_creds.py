@@ -24,16 +24,16 @@ from typing_extensions import Annotated, Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class PublishRevocationsResultSchemaAnoncreds(BaseModel):
+class RevRegIssuedResultSchemaAnonCreds(BaseModel):
     """
-    PublishRevocationsResultSchemaAnoncreds
+    RevRegIssuedResultSchemaAnonCreds
     """  # noqa: E501
 
-    # keep custom changes
-    rrid2crid: Optional[Dict[str, List[Annotated[int, Field(strict=True)]]]] = Field(
-        default=None, description="Credential revocation ids by revocation registry id"
+    result: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="Number of credentials issued against revocation registry",
     )
-    __properties: ClassVar[List[str]] = ["rrid2crid"]
+    __properties: ClassVar[List[str]] = ["result"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -47,7 +47,7 @@ class PublishRevocationsResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PublishRevocationsResultSchemaAnoncreds from a JSON string"""
+        """Create an instance of RevRegIssuedResultSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +71,12 @@ class PublishRevocationsResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PublishRevocationsResultSchemaAnoncreds from a dict"""
+        """Create an instance of RevRegIssuedResultSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"rrid2crid": obj.get("rrid2crid")})
+        _obj = cls.model_validate({"result": obj.get("result")})
         return _obj

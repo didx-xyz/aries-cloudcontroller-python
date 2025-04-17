@@ -18,21 +18,41 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class CredRevIndyRecordsResultSchemaAnoncreds(BaseModel):
+class V20CredFilterAnonCreds(BaseModel):
     """
-    CredRevIndyRecordsResultSchemaAnoncreds
+    V20CredFilterAnonCreds
     """  # noqa: E501
 
-    rev_reg_delta: Optional[Dict[str, Any]] = Field(
-        default=None, description="Indy revocation registry delta"
+    cred_def_id: Optional[StrictStr] = Field(
+        default=None, description="Credential definition identifier"
     )
-    __properties: ClassVar[List[str]] = ["rev_reg_delta"]
+    issuer_id: Optional[StrictStr] = Field(
+        default=None, description="Credential issuer ID"
+    )
+    schema_id: Optional[StrictStr] = Field(
+        default=None, description="Schema identifier"
+    )
+    schema_issuer_id: Optional[StrictStr] = Field(
+        default=None, description="Schema issuer ID"
+    )
+    schema_name: Optional[StrictStr] = Field(default=None, description="Schema name")
+    schema_version: Optional[StrictStr] = Field(
+        default=None, description="Schema version"
+    )
+    __properties: ClassVar[List[str]] = [
+        "cred_def_id",
+        "issuer_id",
+        "schema_id",
+        "schema_issuer_id",
+        "schema_name",
+        "schema_version",
+    ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -46,7 +66,7 @@ class CredRevIndyRecordsResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CredRevIndyRecordsResultSchemaAnoncreds from a JSON string"""
+        """Create an instance of V20CredFilterAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,12 +90,21 @@ class CredRevIndyRecordsResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CredRevIndyRecordsResultSchemaAnoncreds from a dict"""
+        """Create an instance of V20CredFilterAnonCreds from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"rev_reg_delta": obj.get("rev_reg_delta")})
+        _obj = cls.model_validate(
+            {
+                "cred_def_id": obj.get("cred_def_id"),
+                "issuer_id": obj.get("issuer_id"),
+                "schema_id": obj.get("schema_id"),
+                "schema_issuer_id": obj.get("schema_issuer_id"),
+                "schema_name": obj.get("schema_name"),
+                "schema_version": obj.get("schema_version"),
+            }
+        )
         return _obj

@@ -18,24 +18,22 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel
 from typing_extensions import Self
 
+from aries_cloudcontroller.models.inner_rev_reg_def import InnerRevRegDef
+from aries_cloudcontroller.models.rev_reg_def_options import RevRegDefOptions
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class AnoncredsRequestedCredsRequestedAttr(BaseModel):
+class RevRegCreateRequestSchemaAnonCreds(BaseModel):
     """
-    AnoncredsRequestedCredsRequestedAttr
+    RevRegCreateRequestSchemaAnonCreds
     """  # noqa: E501
 
-    cred_id: StrictStr = Field(
-        description="Wallet credential identifier (typically but not necessarily a UUID)"
-    )
-    revealed: Optional[StrictBool] = Field(
-        default=None, description="Whether to reveal attribute in proof (default true)"
-    )
-    __properties: ClassVar[List[str]] = ["cred_id", "revealed"]
+    options: Optional[RevRegDefOptions] = None
+    revocation_registry_definition: Optional[InnerRevRegDef] = None
+    __properties: ClassVar[List[str]] = ["options", "revocation_registry_definition"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -49,7 +47,7 @@ class AnoncredsRequestedCredsRequestedAttr(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AnoncredsRequestedCredsRequestedAttr from a JSON string"""
+        """Create an instance of RevRegCreateRequestSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,11 +67,19 @@ class AnoncredsRequestedCredsRequestedAttr(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of options
+        if self.options:
+            _dict["options"] = self.options.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of revocation_registry_definition
+        if self.revocation_registry_definition:
+            _dict["revocation_registry_definition"] = (
+                self.revocation_registry_definition.to_dict()
+            )
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AnoncredsRequestedCredsRequestedAttr from a dict"""
+        """Create an instance of RevRegCreateRequestSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
@@ -81,6 +87,17 @@ class AnoncredsRequestedCredsRequestedAttr(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"cred_id": obj.get("cred_id"), "revealed": obj.get("revealed")}
+            {
+                "options": (
+                    RevRegDefOptions.from_dict(obj["options"])
+                    if obj.get("options") is not None
+                    else None
+                ),
+                "revocation_registry_definition": (
+                    InnerRevRegDef.from_dict(obj["revocation_registry_definition"])
+                    if obj.get("revocation_registry_definition") is not None
+                    else None
+                ),
+            }
         )
         return _obj

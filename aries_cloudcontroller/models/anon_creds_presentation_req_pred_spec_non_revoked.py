@@ -19,29 +19,30 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
 from pydantic import BaseModel, Field
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
-from aries_cloudcontroller.models.cred_def_value_primary_schema_anoncreds import (
-    CredDefValuePrimarySchemaAnoncreds,
-)
-from aries_cloudcontroller.models.cred_def_value_revocation_schema_anoncreds import (
-    CredDefValueRevocationSchemaAnoncreds,
-)
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class CredDefValueSchemaAnoncreds(BaseModel):
+class AnonCredsPresentationReqPredSpecNonRevoked(BaseModel):
     """
-    CredDefValueSchemaAnoncreds
+    AnonCredsPresentationReqPredSpecNonRevoked
     """  # noqa: E501
 
-    primary: Optional[CredDefValuePrimarySchemaAnoncreds] = Field(
-        default=None, description="Primary value for credential definition"
+    var_from: Optional[
+        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
+    ] = Field(
+        default=None,
+        description="Earliest time of interest in non-revocation interval",
+        alias="from",
     )
-    revocation: Optional[CredDefValueRevocationSchemaAnoncreds] = Field(
-        default=None, description="Revocation value for credential definition"
+    to: Optional[Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]] = (
+        Field(
+            default=None,
+            description="Latest time of interest in non-revocation interval",
+        )
     )
-    __properties: ClassVar[List[str]] = ["primary", "revocation"]
+    __properties: ClassVar[List[str]] = ["from", "to"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -55,7 +56,7 @@ class CredDefValueSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CredDefValueSchemaAnoncreds from a JSON string"""
+        """Create an instance of AnonCredsPresentationReqPredSpecNonRevoked from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,35 +76,16 @@ class CredDefValueSchemaAnoncreds(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of primary
-        if self.primary:
-            _dict["primary"] = self.primary.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of revocation
-        if self.revocation:
-            _dict["revocation"] = self.revocation.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CredDefValueSchemaAnoncreds from a dict"""
+        """Create an instance of AnonCredsPresentationReqPredSpecNonRevoked from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "primary": (
-                    CredDefValuePrimarySchemaAnoncreds.from_dict(obj["primary"])
-                    if obj.get("primary") is not None
-                    else None
-                ),
-                "revocation": (
-                    CredDefValueRevocationSchemaAnoncreds.from_dict(obj["revocation"])
-                    if obj.get("revocation") is not None
-                    else None
-                ),
-            }
-        )
+        _obj = cls.model_validate({"from": obj.get("from"), "to": obj.get("to")})
         return _obj

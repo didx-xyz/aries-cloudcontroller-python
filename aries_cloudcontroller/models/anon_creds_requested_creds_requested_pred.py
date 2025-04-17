@@ -18,20 +18,26 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel
-from typing_extensions import Self
+from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Annotated, Self
 
-from aries_cloudcontroller.models.issuer_rev_reg_record import IssuerRevRegRecord
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class RevRegResultSchemaAnoncreds(BaseModel):
+class AnonCredsRequestedCredsRequestedPred(BaseModel):
     """
-    RevRegResultSchemaAnoncreds
+    AnonCredsRequestedCredsRequestedPred
     """  # noqa: E501
 
-    result: Optional[IssuerRevRegRecord] = None
-    __properties: ClassVar[List[str]] = ["result"]
+    cred_id: StrictStr = Field(
+        description="Wallet credential identifier (typically but not necessarily a UUID)"
+    )
+    timestamp: Optional[
+        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
+    ] = Field(
+        default=None, description="Epoch timestamp of interest for non-revocation proof"
+    )
+    __properties: ClassVar[List[str]] = ["cred_id", "timestamp"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -45,7 +51,7 @@ class RevRegResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RevRegResultSchemaAnoncreds from a JSON string"""
+        """Create an instance of AnonCredsRequestedCredsRequestedPred from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -65,14 +71,11 @@ class RevRegResultSchemaAnoncreds(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of result
-        if self.result:
-            _dict["result"] = self.result.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RevRegResultSchemaAnoncreds from a dict"""
+        """Create an instance of AnonCredsRequestedCredsRequestedPred from a dict"""
         if obj is None:
             return None
 
@@ -80,12 +83,6 @@ class RevRegResultSchemaAnoncreds(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "result": (
-                    IssuerRevRegRecord.from_dict(obj["result"])
-                    if obj.get("result") is not None
-                    else None
-                )
-            }
+            {"cred_id": obj.get("cred_id"), "timestamp": obj.get("timestamp")}
         )
         return _obj

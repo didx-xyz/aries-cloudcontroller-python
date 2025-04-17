@@ -15,44 +15,72 @@ Do not edit the class manually.
 from __future__ import annotations
 
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictBool, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
-from aries_cloudcontroller.models.anoncreds_requested_creds_requested_attr import (
-    AnoncredsRequestedCredsRequestedAttr,
+from aries_cloudcontroller.models.anon_creds_presentation_req_attr_spec import (
+    AnonCredsPresentationReqAttrSpec,
 )
-from aries_cloudcontroller.models.anoncreds_requested_creds_requested_pred import (
-    AnoncredsRequestedCredsRequestedPred,
+from aries_cloudcontroller.models.anon_creds_presentation_req_pred_spec import (
+    AnonCredsPresentationReqPredSpec,
+)
+from aries_cloudcontroller.models.anon_creds_presentation_request_non_revoked import (
+    AnonCredsPresentationRequestNonRevoked,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class AnoncredsPresSpec(BaseModel):
+class AnonCredsPresentationRequest(BaseModel):
     """
-    AnoncredsPresSpec
+    AnonCredsPresentationRequest
     """  # noqa: E501
 
-    requested_attributes: Dict[str, AnoncredsRequestedCredsRequestedAttr] = Field(
-        description="Nested object mapping proof request attribute referents to requested-attribute specifiers"
+    name: Optional[StrictStr] = Field(default=None, description="Proof request name")
+    non_revoked: Optional[AnonCredsPresentationRequestNonRevoked] = None
+    nonce: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Nonce"
     )
-    requested_predicates: Dict[str, AnoncredsRequestedCredsRequestedPred] = Field(
-        description="Nested object mapping proof request predicate referents to requested-predicate specifiers"
+    requested_attributes: Dict[str, AnonCredsPresentationReqAttrSpec] = Field(
+        description="Requested attribute specifications of proof request"
     )
-    self_attested_attributes: Dict[str, StrictStr] = Field(
-        description="Self-attested attributes to build into proof"
+    requested_predicates: Dict[str, AnonCredsPresentationReqPredSpec] = Field(
+        description="Requested predicate specifications of proof request"
     )
-    trace: Optional[StrictBool] = Field(
-        default=None, description="Whether to trace event (default false)"
+    version: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Proof request version"
     )
     __properties: ClassVar[List[str]] = [
+        "name",
+        "non_revoked",
+        "nonce",
         "requested_attributes",
         "requested_predicates",
-        "self_attested_attributes",
-        "trace",
+        "version",
     ]
+
+    @field_validator("nonce")
+    def nonce_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[1-9][0-9]*$", value):
+            raise ValueError(r"must validate the regular expression /^[1-9][0-9]*$/")
+        return value
+
+    @field_validator("version")
+    def version_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[0-9.]+$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
+        return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -66,7 +94,7 @@ class AnoncredsPresSpec(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AnoncredsPresSpec from a JSON string"""
+        """Create an instance of AnonCredsPresentationRequest from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,6 +114,9 @@ class AnoncredsPresSpec(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of non_revoked
+        if self.non_revoked:
+            _dict["non_revoked"] = self.non_revoked.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each value in requested_attributes (dict)
         _field_dict = {}
         if self.requested_attributes:
@@ -108,7 +139,7 @@ class AnoncredsPresSpec(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AnoncredsPresSpec from a dict"""
+        """Create an instance of AnonCredsPresentationRequest from a dict"""
         if obj is None:
             return None
 
@@ -117,9 +148,16 @@ class AnoncredsPresSpec(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "name": obj.get("name"),
+                "non_revoked": (
+                    AnonCredsPresentationRequestNonRevoked.from_dict(obj["non_revoked"])
+                    if obj.get("non_revoked") is not None
+                    else None
+                ),
+                "nonce": obj.get("nonce"),
                 "requested_attributes": (
                     dict(
-                        (_k, AnoncredsRequestedCredsRequestedAttr.from_dict(_v))
+                        (_k, AnonCredsPresentationReqAttrSpec.from_dict(_v))
                         for _k, _v in obj["requested_attributes"].items()
                     )
                     if obj.get("requested_attributes") is not None
@@ -127,14 +165,13 @@ class AnoncredsPresSpec(BaseModel):
                 ),
                 "requested_predicates": (
                     dict(
-                        (_k, AnoncredsRequestedCredsRequestedPred.from_dict(_v))
+                        (_k, AnonCredsPresentationReqPredSpec.from_dict(_v))
                         for _k, _v in obj["requested_predicates"].items()
                     )
                     if obj.get("requested_predicates") is not None
                     else None
                 ),
-                "self_attested_attributes": obj.get("self_attested_attributes"),
-                "trace": obj.get("trace"),
+                "version": obj.get("version"),
             }
         )
         return _obj

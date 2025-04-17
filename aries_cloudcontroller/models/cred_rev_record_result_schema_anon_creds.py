@@ -18,31 +18,22 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel
+from typing_extensions import Self
 
+from aries_cloudcontroller.models.issuer_cred_rev_record_schema_anon_creds import (
+    IssuerCredRevRecordSchemaAnonCreds,
+)
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class AnoncredsPresentationReqAttrSpecNonRevoked(BaseModel):
+class CredRevRecordResultSchemaAnonCreds(BaseModel):
     """
-    AnoncredsPresentationReqAttrSpecNonRevoked
+    CredRevRecordResultSchemaAnonCreds
     """  # noqa: E501
 
-    var_from: Optional[
-        Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]
-    ] = Field(
-        default=None,
-        description="Earliest time of interest in non-revocation interval",
-        alias="from",
-    )
-    to: Optional[Annotated[int, Field(le=18446744073709551615, strict=True, ge=0)]] = (
-        Field(
-            default=None,
-            description="Latest time of interest in non-revocation interval",
-        )
-    )
-    __properties: ClassVar[List[str]] = ["from", "to"]
+    result: Optional[IssuerCredRevRecordSchemaAnonCreds] = None
+    __properties: ClassVar[List[str]] = ["result"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -56,7 +47,7 @@ class AnoncredsPresentationReqAttrSpecNonRevoked(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationReqAttrSpecNonRevoked from a JSON string"""
+        """Create an instance of CredRevRecordResultSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,16 +67,27 @@ class AnoncredsPresentationReqAttrSpecNonRevoked(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of result
+        if self.result:
+            _dict["result"] = self.result.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AnoncredsPresentationReqAttrSpecNonRevoked from a dict"""
+        """Create an instance of CredRevRecordResultSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"from": obj.get("from"), "to": obj.get("to")})
+        _obj = cls.model_validate(
+            {
+                "result": (
+                    IssuerCredRevRecordSchemaAnonCreds.from_dict(obj["result"])
+                    if obj.get("result") is not None
+                    else None
+                )
+            }
+        )
         return _obj

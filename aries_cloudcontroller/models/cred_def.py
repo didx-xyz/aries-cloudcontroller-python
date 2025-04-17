@@ -21,8 +21,8 @@ import orjson
 from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.cred_def_value_schema_anoncreds import (
-    CredDefValueSchemaAnoncreds,
+from aries_cloudcontroller.models.cred_def_value_schema_anon_creds import (
+    CredDefValueSchemaAnonCreds,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -45,7 +45,7 @@ class CredDef(BaseModel):
         description="The tag value passed in by the Issuer to an AnonCred's Credential Definition create and store implementation.",
     )
     type: Optional[StrictStr] = None
-    value: Optional[CredDefValueSchemaAnoncreds] = None
+    value: Optional[CredDefValueSchemaAnonCreds] = None
     __properties: ClassVar[List[str]] = ["issuerId", "schemaId", "tag", "type", "value"]
 
     @field_validator("type")
@@ -111,7 +111,7 @@ class CredDef(BaseModel):
                 "tag": obj.get("tag"),
                 "type": obj.get("type"),
                 "value": (
-                    CredDefValueSchemaAnoncreds.from_dict(obj["value"])
+                    CredDefValueSchemaAnonCreds.from_dict(obj["value"])
                     if obj.get("value") is not None
                     else None
                 ),

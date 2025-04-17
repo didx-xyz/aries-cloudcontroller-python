@@ -18,22 +18,30 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.issuer_cred_rev_record_schema_anoncreds import (
-    IssuerCredRevRecordSchemaAnoncreds,
+from aries_cloudcontroller.models.cred_def_value_primary_schema_anon_creds import (
+    CredDefValuePrimarySchemaAnonCreds,
+)
+from aries_cloudcontroller.models.cred_def_value_revocation_schema_anon_creds import (
+    CredDefValueRevocationSchemaAnonCreds,
 )
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class CredRevRecordDetailsResultSchemaAnoncreds(BaseModel):
+class CredDefValueSchemaAnonCreds(BaseModel):
     """
-    CredRevRecordDetailsResultSchemaAnoncreds
+    CredDefValueSchemaAnonCreds
     """  # noqa: E501
 
-    results: Optional[List[IssuerCredRevRecordSchemaAnoncreds]] = None
-    __properties: ClassVar[List[str]] = ["results"]
+    primary: Optional[CredDefValuePrimarySchemaAnonCreds] = Field(
+        default=None, description="Primary value for credential definition"
+    )
+    revocation: Optional[CredDefValueRevocationSchemaAnonCreds] = Field(
+        default=None, description="Revocation value for credential definition"
+    )
+    __properties: ClassVar[List[str]] = ["primary", "revocation"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -47,7 +55,7 @@ class CredRevRecordDetailsResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CredRevRecordDetailsResultSchemaAnoncreds from a JSON string"""
+        """Create an instance of CredDefValueSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -67,18 +75,17 @@ class CredRevRecordDetailsResultSchemaAnoncreds(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
-        _items = []
-        if self.results:
-            for _item_results in self.results:
-                if _item_results:
-                    _items.append(_item_results.to_dict())
-            _dict["results"] = _items
+        # override the default output from pydantic by calling `to_dict()` of primary
+        if self.primary:
+            _dict["primary"] = self.primary.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of revocation
+        if self.revocation:
+            _dict["revocation"] = self.revocation.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CredRevRecordDetailsResultSchemaAnoncreds from a dict"""
+        """Create an instance of CredDefValueSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
@@ -87,14 +94,16 @@ class CredRevRecordDetailsResultSchemaAnoncreds(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "results": (
-                    [
-                        IssuerCredRevRecordSchemaAnoncreds.from_dict(_item)
-                        for _item in obj["results"]
-                    ]
-                    if obj.get("results") is not None
+                "primary": (
+                    CredDefValuePrimarySchemaAnonCreds.from_dict(obj["primary"])
+                    if obj.get("primary") is not None
                     else None
-                )
+                ),
+                "revocation": (
+                    CredDefValueRevocationSchemaAnonCreds.from_dict(obj["revocation"])
+                    if obj.get("revocation") is not None
+                    else None
+                ),
             }
         )
         return _obj

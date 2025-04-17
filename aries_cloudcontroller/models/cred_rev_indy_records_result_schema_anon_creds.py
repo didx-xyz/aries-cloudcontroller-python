@@ -19,21 +19,20 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class RevRegIssuedResultSchemaAnoncreds(BaseModel):
+class CredRevIndyRecordsResultSchemaAnonCreds(BaseModel):
     """
-    RevRegIssuedResultSchemaAnoncreds
+    CredRevIndyRecordsResultSchemaAnonCreds
     """  # noqa: E501
 
-    result: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
-        default=None,
-        description="Number of credentials issued against revocation registry",
+    rev_reg_delta: Optional[Dict[str, Any]] = Field(
+        default=None, description="Indy revocation registry delta"
     )
-    __properties: ClassVar[List[str]] = ["result"]
+    __properties: ClassVar[List[str]] = ["rev_reg_delta"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -47,7 +46,7 @@ class RevRegIssuedResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RevRegIssuedResultSchemaAnoncreds from a JSON string"""
+        """Create an instance of CredRevIndyRecordsResultSchemaAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +70,12 @@ class RevRegIssuedResultSchemaAnoncreds(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RevRegIssuedResultSchemaAnoncreds from a dict"""
+        """Create an instance of CredRevIndyRecordsResultSchemaAnonCreds from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"result": obj.get("result")})
+        _obj = cls.model_validate({"rev_reg_delta": obj.get("rev_reg_delta")})
         return _obj
