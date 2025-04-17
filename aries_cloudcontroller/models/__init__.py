@@ -73,7 +73,6 @@ from aries_cloudcontroller.models.configurable_write_ledgers import (
     ConfigurableWriteLedgers,
 )
 from aries_cloudcontroller.models.conn_record import ConnRecord
-from aries_cloudcontroller.models.connection_invitation import ConnectionInvitation
 from aries_cloudcontroller.models.connection_list import ConnectionList
 from aries_cloudcontroller.models.connection_metadata import ConnectionMetadata
 from aries_cloudcontroller.models.connection_metadata_set_request import (
@@ -84,9 +83,6 @@ from aries_cloudcontroller.models.connection_static_request import (
 )
 from aries_cloudcontroller.models.connection_static_result import ConnectionStaticResult
 from aries_cloudcontroller.models.constraints import Constraints
-from aries_cloudcontroller.models.create_invitation_request import (
-    CreateInvitationRequest,
-)
 from aries_cloudcontroller.models.create_key_request import CreateKeyRequest
 from aries_cloudcontroller.models.create_key_response import CreateKeyResponse
 from aries_cloudcontroller.models.create_request import CreateRequest
@@ -278,7 +274,6 @@ from aries_cloudcontroller.models.invitation_create_request import (
 )
 from aries_cloudcontroller.models.invitation_message import InvitationMessage
 from aries_cloudcontroller.models.invitation_record import InvitationRecord
-from aries_cloudcontroller.models.invitation_result import InvitationResult
 from aries_cloudcontroller.models.issue_credential_request import IssueCredentialRequest
 from aries_cloudcontroller.models.issue_credential_response import (
     IssueCredentialResponse,
@@ -355,9 +350,6 @@ from aries_cloudcontroller.models.queries import Queries
 from aries_cloudcontroller.models.query import Query
 from aries_cloudcontroller.models.query_item import QueryItem
 from aries_cloudcontroller.models.raw_encoded import RawEncoded
-from aries_cloudcontroller.models.receive_invitation_request import (
-    ReceiveInvitationRequest,
-)
 from aries_cloudcontroller.models.remove_wallet_request import RemoveWalletRequest
 from aries_cloudcontroller.models.resolution_result import ResolutionResult
 from aries_cloudcontroller.models.rev_list import RevList
