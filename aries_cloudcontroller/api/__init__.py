@@ -15,6 +15,7 @@ from aries_cloudcontroller.api.connection_api import ConnectionApi
 from aries_cloudcontroller.api.credential_definition_api import CredentialDefinitionApi
 from aries_cloudcontroller.api.credentials_api import CredentialsApi
 from aries_cloudcontroller.api.default_api import DefaultApi
+from aries_cloudcontroller.api.did_api import DidApi
 from aries_cloudcontroller.api.did_exchange_api import DidExchangeApi
 from aries_cloudcontroller.api.did_rotate_api import DidRotateApi
 from aries_cloudcontroller.api.discover_features_api import DiscoverFeaturesApi

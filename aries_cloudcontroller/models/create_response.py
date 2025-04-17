@@ -15,53 +15,23 @@ Do not edit the class manually.
 from __future__ import annotations
 
 import pprint
-import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class DIDEndpoint(BaseModel):
+class CreateResponse(BaseModel):
     """
-    DIDEndpoint
+    CreateResponse
     """  # noqa: E501
 
-    did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
-    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Endpoint to set (omit to delete)"
-    )
-    __properties: ClassVar[List[str]] = ["did", "endpoint"]
-
-    @field_validator("did")
-    def did_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(
-            r"^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
-            )
-        return value
-
-    @field_validator("endpoint")
-    def endpoint_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(
-            r"^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^[A-Za-z0-9\.\-\+]+:\/\/([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(\/[^?&#]+)?$/"
-            )
-        return value
+    did: Optional[StrictStr] = Field(default=None, description="DID created")
+    verkey: Optional[StrictStr] = Field(default=None, description="Verification key")
+    __properties: ClassVar[List[str]] = ["did", "verkey"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -75,7 +45,7 @@ class DIDEndpoint(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DIDEndpoint from a JSON string"""
+        """Create an instance of CreateResponse from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -99,14 +69,12 @@ class DIDEndpoint(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DIDEndpoint from a dict"""
+        """Create an instance of CreateResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"did": obj.get("did"), "endpoint": obj.get("endpoint")}
-        )
+        _obj = cls.model_validate({"did": obj.get("did"), "verkey": obj.get("verkey")})
         return _obj

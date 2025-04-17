@@ -15,53 +15,27 @@ Do not edit the class manually.
 from __future__ import annotations
 
 import pprint
-import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, Field
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class DIDCreateOptions(BaseModel):
+class CreateRequest(BaseModel):
     """
-    DIDCreateOptions
+    CreateRequest
     """  # noqa: E501
 
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None,
-        description="Specify final value of the did (including did:<method>: prefix)if the method supports or requires so.",
+    features: Optional[Dict[str, Any]] = Field(
+        default=None, description="Additional features to enable for the did."
     )
-    key_type: StrictStr = Field(
-        description="Key type to use for the DID keypair. Validated with the chosen DID method's supported key types."
+    options: Optional[Dict[str, Any]] = Field(
+        default=None, description="Additional configuration options"
     )
-    __properties: ClassVar[List[str]] = ["did", "key_type"]
-
-    @field_validator("did")
-    def did_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(
-            r"^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$/"
-            )
-        return value
-
-    @field_validator("key_type")
-    def key_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["ed25519", "bls12381g2", "p256"]):
-            raise ValueError(
-                "must be one of enum values ('ed25519', 'bls12381g2', 'p256')"
-            )
-        return value
+    __properties: ClassVar[List[str]] = ["features", "options"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -75,7 +49,7 @@ class DIDCreateOptions(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DIDCreateOptions from a JSON string"""
+        """Create an instance of CreateRequest from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -99,7 +73,7 @@ class DIDCreateOptions(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DIDCreateOptions from a dict"""
+        """Create an instance of CreateRequest from a dict"""
         if obj is None:
             return None
 
@@ -107,6 +81,6 @@ class DIDCreateOptions(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"did": obj.get("did"), "key_type": obj.get("key_type")}
+            {"features": obj.get("features"), "options": obj.get("options")}
         )
         return _obj

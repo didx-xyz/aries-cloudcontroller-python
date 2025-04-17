@@ -89,6 +89,8 @@ from aries_cloudcontroller.models.create_invitation_request import (
 )
 from aries_cloudcontroller.models.create_key_request import CreateKeyRequest
 from aries_cloudcontroller.models.create_key_response import CreateKeyResponse
+from aries_cloudcontroller.models.create_request import CreateRequest
+from aries_cloudcontroller.models.create_response import CreateResponse
 from aries_cloudcontroller.models.create_wallet_request import CreateWalletRequest
 from aries_cloudcontroller.models.create_wallet_response import CreateWalletResponse
 from aries_cloudcontroller.models.create_wallet_token_request import (
