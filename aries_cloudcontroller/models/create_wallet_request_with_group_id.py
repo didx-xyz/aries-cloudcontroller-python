@@ -32,7 +32,7 @@ class CreateWalletRequestWithGroupId(BaseModel):
     extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
     )
-    group_id_field: Optional[StrictStr] = Field(
+    group_id: Optional[StrictStr] = Field(
         default=None, description="Wallet group identifier."
     )
     image_url: Optional[StrictStr] = Field(
@@ -66,7 +66,7 @@ class CreateWalletRequestWithGroupId(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "extra_settings",
-        "group_id_field",
+        "group_id",
         "image_url",
         "key_management_mode",
         "label",
@@ -166,7 +166,7 @@ class CreateWalletRequestWithGroupId(BaseModel):
         _obj = cls.model_validate(
             {
                 "extra_settings": obj.get("extra_settings"),
-                "group_id_field": obj.get("group_id_field"),
+                "group_id": obj.get("group_id"),
                 "image_url": obj.get("image_url"),
                 "key_management_mode": obj.get("key_management_mode"),
                 "label": obj.get("label"),

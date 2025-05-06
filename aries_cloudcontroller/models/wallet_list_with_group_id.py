@@ -30,13 +30,13 @@ class WalletListWithGroupId(BaseModel):
     WalletListWithGroupId
     """  # noqa: E501
 
-    group_id_field: Optional[StrictStr] = Field(
+    group_id: Optional[StrictStr] = Field(
         default=None, description="Wallet group identifier."
     )
     results: Optional[List[WalletRecord]] = Field(
         default=None, description="List of wallet records"
     )
-    __properties: ClassVar[List[str]] = ["group_id_field", "results"]
+    __properties: ClassVar[List[str]] = ["group_id", "results"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -90,7 +90,7 @@ class WalletListWithGroupId(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "group_id_field": obj.get("group_id_field"),
+                "group_id": obj.get("group_id"),
                 "results": (
                     [WalletRecord.from_dict(_item) for _item in obj["results"]]
                     if obj.get("results") is not None

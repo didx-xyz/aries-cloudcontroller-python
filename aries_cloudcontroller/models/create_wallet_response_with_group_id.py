@@ -33,7 +33,7 @@ class CreateWalletResponseWithGroupId(BaseModel):
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
     )
-    group_id_field: Optional[StrictStr] = Field(
+    group_id: Optional[StrictStr] = Field(
         default=None, description="Wallet group identifier."
     )
     key_management_mode: StrictStr = Field(
@@ -52,7 +52,7 @@ class CreateWalletResponseWithGroupId(BaseModel):
     wallet_id: StrictStr = Field(description="Wallet record ID")
     __properties: ClassVar[List[str]] = [
         "created_at",
-        "group_id_field",
+        "group_id",
         "key_management_mode",
         "settings",
         "state",
@@ -144,7 +144,7 @@ class CreateWalletResponseWithGroupId(BaseModel):
         _obj = cls.model_validate(
             {
                 "created_at": obj.get("created_at"),
-                "group_id_field": obj.get("group_id_field"),
+                "group_id": obj.get("group_id"),
                 "key_management_mode": obj.get("key_management_mode"),
                 "settings": obj.get("settings"),
                 "state": obj.get("state"),

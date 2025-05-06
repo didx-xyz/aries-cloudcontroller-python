@@ -494,7 +494,7 @@ class MultitenancyApi:
             Optional[StrictBool],
             Field(description="Order results in descending order if true"),
         ] = None,
-        group_id_field: Annotated[
+        group_id: Annotated[
             Optional[StrictStr], Field(description="Wallet group identifier.")
         ] = None,
         limit: Annotated[
@@ -531,8 +531,8 @@ class MultitenancyApi:
 
         :param descending: Order results in descending order if true
         :type descending: bool
-        :param group_id_field: Wallet group identifier.
-        :type group_id_field: str
+        :param group_id: Wallet group identifier.
+        :type group_id: str
         :param limit: Number of results to return
         :type limit: int
         :param offset: Offset for pagination
@@ -546,7 +546,7 @@ class MultitenancyApi:
 
         _param = self._get_wallets_serialize(
             descending=descending,
-            group_id_field=group_id_field,
+            group_id=group_id,
             limit=limit,
             offset=offset,
             order_by=order_by,
@@ -572,7 +572,7 @@ class MultitenancyApi:
     def _get_wallets_serialize(
         self,
         descending,
-        group_id_field,
+        group_id,
         limit,
         offset,
         order_by,
@@ -602,9 +602,9 @@ class MultitenancyApi:
 
             _query_params.append(("descending", descending))
 
-        if group_id_field is not None:
+        if group_id is not None:
 
-            _query_params.append(("group_id_field", group_id_field))
+            _query_params.append(("group_id", group_id))
 
         if limit is not None:
 

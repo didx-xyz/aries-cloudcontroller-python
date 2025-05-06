@@ -3334,7 +3334,7 @@ paths:
         schema:
           type: boolean
           default: false
-      - name: group_id_field
+      - name: group_id
         in: query
         description: Wallet group identifier.
         schema:
@@ -6590,7 +6590,7 @@ components:
           additionalProperties:
             type: object
           description: Agent config key-value pairs
-        group_id_field:
+        group_id:
           type: string
           description: Wallet group identifier.
           example: some_group_id
@@ -6700,7 +6700,7 @@ components:
           type: string
           description: Time of record creation
           example: 2021-12-31 23:59:59+00:00
-        group_id_field:
+        group_id:
           type: string
           description: Wallet group identifier.
           example: some_group_id
@@ -11332,7 +11332,7 @@ components:
           additionalProperties:
             type: object
           description: Agent config key-value pairs
-        group_id_field:
+        group_id:
           type: string
           description: Wallet group identifier.
           example: some_group_id
@@ -13530,7 +13530,7 @@ components:
     WalletListWithGroupId:
       type: object
       properties:
-        group_id_field:
+        group_id:
           type: string
           description: Wallet group identifier.
           example: some_group_id
@@ -13587,7 +13587,7 @@ components:
           type: string
           description: Time of record creation
           example: 2021-12-31 23:59:59+00:00
-        group_id_field:
+        group_id:
           type: string
           description: Wallet group identifier.
           example: some_group_id
