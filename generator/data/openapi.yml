@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v1.3.0rc1.post20250417
+  version: v1.3.0.post20250505
 servers:
 - url: /
 security:
@@ -46,6 +46,11 @@ tags:
   externalDocs:
     description: Overview
     url: https://w3c.github.io/vc-data-model/#credentials
+- name: did
+  description: Endpoints for managing dids
+  externalDocs:
+    description: Specification
+    url: https://www.w3.org/TR/did-core/
 - name: did
   description: Endpoints for managing dids
   externalDocs:
@@ -100,6 +105,8 @@ tags:
   externalDocs:
     description: Specification
     url: https://github.com/hyperledger/aries-rfcs/tree/fa8dc4ea1e667eb07db8f9ffeaf074a4455697c0/features/0211-route-coordination
+- name: multitenancy
+  description: Multitenant wallet management
 - name: multitenancy
   description: Multitenant wallet management
 - name: out-of-band
@@ -1512,6 +1519,63 @@ paths:
                 $ref: '#/components/schemas/Rotate'
       x-codegen-request-body-name: body
       operationId: rotate
+  /did/cheqd/create:
+    post:
+      tags:
+      - did
+      summary: Create a did:cheqd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCheqdDIDRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCheqdDIDResponse'
+      x-codegen-request-body-name: body
+  /did/cheqd/deactivate:
+    post:
+      tags:
+      - did
+      summary: Deactivate a did:cheqd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeactivateCheqdDIDRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivateCheqdDIDResponse'
+      x-codegen-request-body-name: body
+  /did/cheqd/update:
+    post:
+      tags:
+      - did
+      summary: Update a did:cheqd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCheqdDIDRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCheqdDIDResponse'
+      x-codegen-request-body-name: body
   /did/indy/create:
     post:
       tags:
@@ -1521,7 +1585,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateRequest'
+              $ref: '#/components/schemas/CreateDidIndyRequest'
         required: false
       responses:
         '200':
@@ -1529,7 +1593,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateResponse'
+                $ref: '#/components/schemas/CreateDidIndyResponse'
       x-codegen-request-body-name: body
   /didexchange/create-request:
     post:
@@ -3210,7 +3274,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateWalletRequest'
+              $ref: '#/components/schemas/CreateWalletRequestWithGroupId'
         required: false
       responses:
         '200':
@@ -3218,7 +3282,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateWalletResponse'
+                $ref: '#/components/schemas/CreateWalletResponseWithGroupId'
       x-codegen-request-body-name: body
       operationId: create_wallet
   /multitenancy/wallet/{wallet_id}:
@@ -3239,7 +3303,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WalletRecord'
+                $ref: '#/components/schemas/WalletRecordWithGroupId'
       operationId: get_wallet
     put:
       tags:
@@ -3256,7 +3320,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateWalletRequest'
+              $ref: '#/components/schemas/UpdateWalletRequestWithGroupId'
         required: false
       responses:
         '200':
@@ -3264,7 +3328,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WalletRecord'
+                $ref: '#/components/schemas/WalletRecordWithGroupId'
       x-codegen-request-body-name: body
       operationId: update_wallet
   /multitenancy/wallet/{wallet_id}/remove:
@@ -3332,6 +3396,11 @@ paths:
         schema:
           type: boolean
           default: false
+      - name: group_id
+        in: query
+        description: Wallet group identifier.
+        schema:
+          type: string
       - name: limit
         in: query
         description: Number of results to return
@@ -3366,7 +3435,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WalletList'
+                $ref: '#/components/schemas/WalletListWithGroupId'
       operationId: get_wallets
   /out-of-band/create-invitation:
     post:
@@ -6454,6 +6523,92 @@ components:
           enum:
           - required
           - preferred
+    CreateCheqdDIDRequest:
+      type: object
+      properties:
+        features:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional features to enable for the did.
+          example: '{}'
+        options:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional configuration options
+          example:
+            key_type: ed25519
+            method_specific_id_algo: uuid
+            network: testnet
+    CreateCheqdDIDResponse:
+      type: object
+      properties:
+        did:
+          type: string
+          description: DID created
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didState:
+          type: object
+          additionalProperties:
+            type: object
+          description: The published didState
+          example:
+            did: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+            didDocument:
+              authentication:
+              - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+              controller:
+              - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+              id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+              verificationMethod:
+              - id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+                type: Ed25519VerificationKey2020
+                controller: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+                publicKeyMultibase: z6Mk...
+            secret:
+              signingResponse:
+              - kid: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+                signature: SHFz...
+            state: finished
+        success:
+          type: boolean
+          description: Flag to denote if the operation was successful
+          example: true
+        verkey:
+          type: string
+          description: Verification key
+          example: BnSWTUQmdYCewSGFrRUhT6LmKdcCcSzRGqWXMPnEP168
+    CreateDidIndyRequest:
+      type: object
+      properties:
+        features:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional features to enable for the did.
+          example: '{}'
+        options:
+          type: object
+          additionalProperties:
+            type: object
+          description: 'Additional configuration options. Supported options: did,
+            seed, key_type. Default key_type is ed25519.'
+          example:
+            did: did:indy:WRfXPg8dantKVubE3HX8pw
+            key_type: ed25519
+            seed: 000000000000000000000000Trustee1
+    CreateDidIndyResponse:
+      type: object
+      properties:
+        did:
+          type: string
+          description: DID created
+          example: did:indy:DFZgMggBEXcZFVQ2ZBTwdr
+        verkey:
+          type: string
+          description: Verification key
+          example: BnSWTUQmdYCewSGFrRUhT6LmKdcCcSzRGqWXMPnEP168
     CreateKeyRequest:
       type: object
       properties:
@@ -6481,35 +6636,6 @@ components:
           type: string
           description: The Public Key Multibase format (multikey)
           example: z6MkgKA7yrw5kYSiDuQFcye4bMaJpcfHFry3Bx45pdWh3s8i
-    CreateRequest:
-      type: object
-      properties:
-        features:
-          type: object
-          additionalProperties:
-            type: object
-          description: Additional features to enable for the did.
-          example: '{}'
-        options:
-          type: object
-          additionalProperties:
-            type: object
-          description: Additional configuration options
-          example:
-            did: did:indy:WRfXPg8dantKVubE3HX8pw
-            key_type: ed25519
-            seed: 000000000000000000000000Trustee1
-    CreateResponse:
-      type: object
-      properties:
-        did:
-          type: string
-          description: DID created
-          example: did:indy:DFZgMggBEXcZFVQ2ZBTwdr
-        verkey:
-          type: string
-          description: Verification key
-          example: BnSWTUQmdYCewSGFrRUhT6LmKdcCcSzRGqWXMPnEP168
     CreateWalletRequest:
       type: object
       properties:
@@ -6518,6 +6644,75 @@ components:
           additionalProperties:
             type: object
           description: Agent config key-value pairs
+        image_url:
+          type: string
+          description: Image url for this wallet. This image url is publicized (self-attested)
+            to other agents as part of forming a connection.
+          example: https://aries.ca/images/sample.png
+        key_management_mode:
+          type: string
+          description: Key management method to use for this wallet.
+          example: managed
+          enum:
+          - managed
+        label:
+          type: string
+          description: Label for this wallet. This label is publicized (self-attested)
+            to other agents as part of forming a connection.
+          example: Alice
+        wallet_dispatch_type:
+          type: string
+          description: 'Webhook target dispatch type for this wallet. default: Dispatch
+            only to webhooks associated with this wallet. base: Dispatch only to webhooks
+            associated with the base wallet. both: Dispatch to both webhook targets.'
+          example: default
+          enum:
+          - default
+          - both
+          - base
+        wallet_key:
+          type: string
+          description: Master key used for key derivation.
+          example: MySecretKey123
+        wallet_key_derivation:
+          type: string
+          description: Key derivation
+          example: RAW
+          enum:
+          - ARGON2I_MOD
+          - ARGON2I_INT
+          - RAW
+        wallet_name:
+          type: string
+          description: Wallet name
+          example: MyNewWallet
+        wallet_type:
+          type: string
+          description: Type of the wallet to create. Must be same as base wallet.
+          example: askar
+          enum:
+          - askar
+          - askar-anoncreds
+        wallet_webhook_urls:
+          type: array
+          description: List of Webhook URLs associated with this subwallet
+          items:
+            type: string
+            description: Optional webhook URL to receive webhook messages
+            example: http://localhost:8022/webhooks
+    CreateWalletRequestWithGroupId:
+      type: object
+      properties:
+        extra_settings:
+          type: object
+          additionalProperties:
+            type: object
+          description: Agent config key-value pairs
+        group_id:
+          type: string
+          description: An optional group identifier. Useful with `get_tenants` to
+            fetch wallets by group id.
+          example: some_group_id
         image_url:
           type: string
           description: Image url for this wallet. This image url is publicized (self-attested)
@@ -6585,6 +6780,49 @@ components:
           type: string
           description: Time of record creation
           example: 2021-12-31 23:59:59+00:00
+        key_management_mode:
+          type: string
+          description: Mode regarding management of wallet key
+          enum:
+          - managed
+          - unmanaged
+        settings:
+          type: object
+          additionalProperties:
+            type: object
+          description: Settings for this wallet.
+        state:
+          type: string
+          description: Current record state
+          example: active
+        token:
+          type: string
+          description: Authorization token to authenticate wallet requests
+          example: eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+        updated_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of last record update
+          example: 2021-12-31 23:59:59+00:00
+        wallet_id:
+          type: string
+          description: Wallet record ID
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    CreateWalletResponseWithGroupId:
+      required:
+      - key_management_mode
+      - wallet_id
+      type: object
+      properties:
+        created_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of record creation
+          example: 2021-12-31 23:59:59+00:00
+        group_id:
+          type: string
+          description: Wallet group identifier.
+          example: some_group_id
         key_management_mode:
           type: string
           description: Mode regarding management of wallet key
@@ -7246,6 +7484,43 @@ components:
           - ed25519
           - bls12381g2
           - p256
+    DIDDocument:
+      required:
+      - authentication
+      - controller
+      - id
+      - verificationMethod
+      type: object
+      properties:
+        assertionMethod:
+          type: array
+          description: Assertion Methods
+          items:
+            type: string
+        authentication:
+          type: array
+          description: Authentication Methods
+          items:
+            type: string
+        controller:
+          type: array
+          description: DID Document controllers
+          items:
+            type: string
+        id:
+          type: string
+          description: DID ID
+          example: did:example:123
+        service:
+          type: array
+          description: Services
+          items:
+            $ref: '#/components/schemas/Service'
+        verificationMethod:
+          type: array
+          description: Verification Methods
+          items:
+            $ref: '#/components/schemas/VerificationMethod'
     DIDEndpoint:
       required:
       - did
@@ -7552,6 +7827,41 @@ components:
           description: Expiry Date
           format: date-time
           example: 2021-03-29 05:22:19+00:00
+    DeactivateCheqdDIDRequest:
+      required:
+      - did
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
+          type: string
+          description: DID to deactivate
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        options:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional configuration options
+          example:
+            network: testnet
+    DeactivateCheqdDIDResponse:
+      required:
+      - didState
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
+          type: string
+          description: DID that has been deactivated
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didState:
+          type: string
+          description: State of the did update
+          example: ''
+        success:
+          type: boolean
+          description: Flag to denote if the operation was successful
+          example: true
     Disclose:
       required:
       - protocols
@@ -10769,6 +11079,27 @@ components:
           type: string
           description: Message content
           example: Hello
+    Service:
+      required:
+      - id
+      - serviceEndpoint
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Service ID
+          example: did:example:123#service-1
+        serviceEndpoint:
+          type: array
+          description: Array of Service endpoints
+          items:
+            type: string
+            description: Service endpoint URL
+        type:
+          type: string
+          description: Service Type
+          example: MessagingService
     ServiceDecorator:
       required:
       - recipientKeys
@@ -11133,6 +11464,63 @@ components:
           description: Schema transaction to endorse
           allOf:
           - $ref: '#/components/schemas/TransactionRecord'
+    UpdateCheqdDIDRequest:
+      required:
+      - did
+      - didDocument
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
+          type: string
+          description: DID to update
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didDocument:
+          type: object
+          description: DID Document to update
+          example:
+            authentication:
+            - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+            controller:
+            - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+            id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+            service:
+            - id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#service-1
+              type: MessagingService
+              serviceEndpoint:
+              - https://example.com/service
+            verificationMethod:
+            - id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+              type: Ed25519VerificationKey2018
+              controller: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+              publicKeyMultibase: z6Mk...
+          allOf:
+          - $ref: '#/components/schemas/DIDDocument'
+        options:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional configuration options
+          example:
+            network: testnet
+    UpdateCheqdDIDResponse:
+      required:
+      - didState
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
+          type: string
+          description: DID that has been updated
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didState:
+          type: string
+          description: State of the did update
+          example: ''
+        success:
+          type: boolean
+          description: Flag to denote if the operation was successful
+          example: true
     UpdateKeyRequest:
       required:
       - kid
@@ -11178,6 +11566,45 @@ components:
           additionalProperties:
             type: object
           description: Agent config key-value pairs
+        image_url:
+          type: string
+          description: Image url for this wallet. This image url is publicized (self-attested)
+            to other agents as part of forming a connection.
+          example: https://aries.ca/images/sample.png
+        label:
+          type: string
+          description: Label for this wallet. This label is publicized (self-attested)
+            to other agents as part of forming a connection.
+          example: Alice
+        wallet_dispatch_type:
+          type: string
+          description: 'Webhook target dispatch type for this wallet. default: Dispatch
+            only to webhooks associated with this wallet. base: Dispatch only to webhooks
+            associated with the base wallet. both: Dispatch to both webhook targets.'
+          example: default
+          enum:
+          - default
+          - both
+          - base
+        wallet_webhook_urls:
+          type: array
+          description: List of Webhook URLs associated with this subwallet
+          items:
+            type: string
+            description: Optional webhook URL to receive webhook messages
+            example: http://localhost:8022/webhooks
+    UpdateWalletRequestWithGroupId:
+      type: object
+      properties:
+        extra_settings:
+          type: object
+          additionalProperties:
+            type: object
+          description: Agent config key-value pairs
+        group_id:
+          type: string
+          description: Wallet group identifier.
+          example: some_group_id
         image_url:
           type: string
           description: Image url for this wallet. This image url is publicized (self-attested)
@@ -13238,6 +13665,41 @@ components:
             additionalProperties:
               type: object
       additionalProperties: true
+    VerificationMethod:
+      required:
+      - controller
+      - id
+      - type
+      type: object
+      properties:
+        controller:
+          type: string
+          description: Verification controller DID
+        id:
+          type: string
+          description: Verification Method ID
+          example: did:example:123#key-1
+        publicKeyBase58:
+          type: string
+          description: Public Key in base58 format
+          example: B12NYF8RZ5Zk..
+        publicKeyJwk:
+          type: object
+          additionalProperties:
+            type: object
+          description: Public Key in Jwk format
+          example:
+            crv: Ed25519
+            kty: OKP
+            x: G6t3iUB8...
+        publicKeyMultibase:
+          type: string
+          description: Public Key in multibase format
+          example: z6Mk...
+        type:
+          type: string
+          description: Type of Verification Method
+          example: Ed25519VerificationKey2018
     VerifyCredentialRequest:
       type: object
       properties:
@@ -13369,6 +13831,14 @@ components:
           description: List of wallet records
           items:
             $ref: '#/components/schemas/WalletRecord'
+    WalletListWithGroupId:
+      type: object
+      properties:
+        results:
+          type: array
+          description: List of wallet records
+          items:
+            $ref: '#/components/schemas/WalletRecordWithGroupId'
     WalletModuleResponse:
       type: object
     WalletRecord:
@@ -13382,6 +13852,45 @@ components:
           type: string
           description: Time of record creation
           example: 2021-12-31 23:59:59+00:00
+        key_management_mode:
+          type: string
+          description: Mode regarding management of wallet key
+          enum:
+          - managed
+          - unmanaged
+        settings:
+          type: object
+          additionalProperties:
+            type: object
+          description: Settings for this wallet.
+        state:
+          type: string
+          description: Current record state
+          example: active
+        updated_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of last record update
+          example: 2021-12-31 23:59:59+00:00
+        wallet_id:
+          type: string
+          description: Wallet record ID
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    WalletRecordWithGroupId:
+      required:
+      - key_management_mode
+      - wallet_id
+      type: object
+      properties:
+        created_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of record creation
+          example: 2021-12-31 23:59:59+00:00
+        group_id:
+          type: string
+          description: Wallet group identifier.
+          example: some_group_id
         key_management_mode:
           type: string
           description: Mode regarding management of wallet key
