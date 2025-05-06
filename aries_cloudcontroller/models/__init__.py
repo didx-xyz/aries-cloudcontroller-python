@@ -83,10 +83,10 @@ from aries_cloudcontroller.models.connection_static_request import (
 )
 from aries_cloudcontroller.models.connection_static_result import ConnectionStaticResult
 from aries_cloudcontroller.models.constraints import Constraints
+from aries_cloudcontroller.models.create_did_indy_request import CreateDidIndyRequest
+from aries_cloudcontroller.models.create_did_indy_response import CreateDidIndyResponse
 from aries_cloudcontroller.models.create_key_request import CreateKeyRequest
 from aries_cloudcontroller.models.create_key_response import CreateKeyResponse
-from aries_cloudcontroller.models.create_request import CreateRequest
-from aries_cloudcontroller.models.create_response import CreateResponse
 from aries_cloudcontroller.models.create_wallet_request import CreateWalletRequest
 from aries_cloudcontroller.models.create_wallet_request_with_group_id import (
     CreateWalletRequestWithGroupId,

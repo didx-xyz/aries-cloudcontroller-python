@@ -17,8 +17,8 @@ from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.api_client import ApiClient, RequestSerialized
-from aries_cloudcontroller.models.create_request import CreateRequest
-from aries_cloudcontroller.models.create_response import CreateResponse
+from aries_cloudcontroller.models.create_did_indy_request import CreateDidIndyRequest
+from aries_cloudcontroller.models.create_did_indy_response import CreateDidIndyResponse
 
 
 class DidApi:
@@ -36,7 +36,7 @@ class DidApi:
     @validate_call
     async def did_indy_create_post(
         self,
-        body: Optional[CreateRequest] = None,
+        body: Optional[CreateDidIndyRequest] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -48,12 +48,12 @@ class DidApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CreateResponse:
+    ) -> CreateDidIndyResponse:
         """Create a did:indy
 
 
         :param body:
-        :type body: CreateRequest
+        :type body: CreateDidIndyRequest
         ...
         """  # noqa: E501
 
@@ -66,7 +66,7 @@ class DidApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CreateResponse",
+            "200": "CreateDidIndyResponse",
         }
         response_data = await self.api_client.call_api(
             *_param, _request_timeout=_request_timeout

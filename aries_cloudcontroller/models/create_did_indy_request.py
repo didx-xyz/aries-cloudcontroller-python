@@ -24,16 +24,17 @@ from typing_extensions import Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class CreateRequest(BaseModel):
+class CreateDidIndyRequest(BaseModel):
     """
-    CreateRequest
+    CreateDidIndyRequest
     """  # noqa: E501
 
     features: Optional[Dict[str, Any]] = Field(
         default=None, description="Additional features to enable for the did."
     )
     options: Optional[Dict[str, Any]] = Field(
-        default=None, description="Additional configuration options"
+        default=None,
+        description="Additional configuration options. Supported options: did, seed, key_type. Default key_type is ed25519.",
     )
     __properties: ClassVar[List[str]] = ["features", "options"]
 
@@ -49,7 +50,7 @@ class CreateRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateRequest from a JSON string"""
+        """Create an instance of CreateDidIndyRequest from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,7 +74,7 @@ class CreateRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateRequest from a dict"""
+        """Create an instance of CreateDidIndyRequest from a dict"""
         if obj is None:
             return None
 

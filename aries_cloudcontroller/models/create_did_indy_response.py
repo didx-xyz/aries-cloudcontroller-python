@@ -24,9 +24,9 @@ from typing_extensions import Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class CreateResponse(BaseModel):
+class CreateDidIndyResponse(BaseModel):
     """
-    CreateResponse
+    CreateDidIndyResponse
     """  # noqa: E501
 
     did: Optional[StrictStr] = Field(default=None, description="DID created")
@@ -45,7 +45,7 @@ class CreateResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateResponse from a JSON string"""
+        """Create an instance of CreateDidIndyResponse from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,7 +69,7 @@ class CreateResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateResponse from a dict"""
+        """Create an instance of CreateDidIndyResponse from a dict"""
         if obj is None:
             return None
 
