@@ -7833,7 +7833,7 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
           type: string
           description: DID to deactivate
           example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
@@ -7850,7 +7850,7 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
           type: string
           description: DID that has been deactivated
           example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
@@ -11471,7 +11471,7 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
           type: string
           description: DID to update
           example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
@@ -11509,7 +11509,7 @@ components:
       type: object
       properties:
         did:
-          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
           type: string
           description: DID that has been updated
           example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86

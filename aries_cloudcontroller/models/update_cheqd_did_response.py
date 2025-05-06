@@ -48,11 +48,11 @@ class UpdateCheqdDIDResponse(BaseModel):
             return value
 
         if not re.match(
-            r"^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)\/resources\/([a-z,0-9,-]{36,36})([?][^#]*)?)$",
+            r"^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)\/resources\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$",
             value,
         ):
             raise ValueError(
-                r"must validate the regular expression /^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)\/resources\/([a-z,0-9,-]{36,36})([?][^#]*)?)$/"
+                r"must validate the regular expression /^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)\/resources\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$/"
             )
         return value
 
