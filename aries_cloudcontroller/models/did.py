@@ -39,7 +39,7 @@ class DID(BaseModel):
     metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Additional metadata associated with the DID"
     )
-    method: Literal["sov", "key", "web", "did:peer:2", "did:peer:4"] = Field(
+    method: Literal["sov", "key", "web", "did:peer:2", "did:peer:4", "cheqd"] = Field(
         description="Did method associated with the DID"
     )
     posture: Literal["public", "posted", "wallet_only"] = Field(
