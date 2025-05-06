@@ -33,7 +33,8 @@ class CreateWalletRequestWithGroupId(BaseModel):
         default=None, description="Agent config key-value pairs"
     )
     group_id: Optional[StrictStr] = Field(
-        default=None, description="Wallet group identifier."
+        default=None,
+        description="An optional group identifier. Useful with `get_tenants` to fetch wallets by group id.",
     )
     image_url: Optional[StrictStr] = Field(
         default=None,
