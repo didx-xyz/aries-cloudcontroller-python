@@ -10,12 +10,7 @@ cd "$(dirname "$0")/../" || exit
 ##########################################################################################
 # Global Defaults and Constants
 ##########################################################################################
-if [[ $ACA_PY_VERSION == 0.* ]]; then
-  ACA_PY_DOCKER_IMAGE_TAG="py3.9-${ACA_PY_VERSION}"
-else
-  ACA_PY_DOCKER_IMAGE_TAG="py3.12-${ACA_PY_VERSION}"
-fi
-ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/didx-xyz/acapy-agent:${ACA_PY_DOCKER_IMAGE_TAG}"
+ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/didx-xyz/acapy-cloud/agent:latest"
 
 ACA_PY_ADMIN_PORT="8305"
 ACA_PY_INBOUND_PORT="8307"
@@ -34,7 +29,8 @@ ACA_PY_CMD_OPTIONS=" \
   --multitenant \
   --multitenant-admin \
   --jwt-secret test \
-  --no-ledger"
+  --no-ledger \
+  --plugin acapy_wallet_groups_plugin"
 
 # Print an indication of script reaching a processing
 # milestone in a noticable way
