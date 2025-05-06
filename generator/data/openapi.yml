@@ -51,6 +51,11 @@ tags:
   externalDocs:
     description: Specification
     url: https://www.w3.org/TR/did-core/
+- name: did
+  description: Endpoints for managing dids
+  externalDocs:
+    description: Specification
+    url: https://www.w3.org/TR/did-core/
 - name: did-exchange
   description: Connection management via DID exchange
   externalDocs:
@@ -1514,6 +1519,63 @@ paths:
                 $ref: '#/components/schemas/Rotate'
       x-codegen-request-body-name: body
       operationId: rotate
+  /did/cheqd/create:
+    post:
+      tags:
+      - did
+      summary: Create a did:cheqd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCheqdDIDRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCheqdDIDResponse'
+      x-codegen-request-body-name: body
+  /did/cheqd/deactivate:
+    post:
+      tags:
+      - did
+      summary: Deactivate a did:cheqd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeactivateCheqdDIDRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivateCheqdDIDResponse'
+      x-codegen-request-body-name: body
+  /did/cheqd/update:
+    post:
+      tags:
+      - did
+      summary: Update a did:cheqd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCheqdDIDRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCheqdDIDResponse'
+      x-codegen-request-body-name: body
   /did/indy/create:
     post:
       tags:
@@ -6461,6 +6523,62 @@ components:
           enum:
           - required
           - preferred
+    CreateCheqdDIDRequest:
+      type: object
+      properties:
+        features:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional features to enable for the did.
+          example: '{}'
+        options:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional configuration options
+          example:
+            key_type: ed25519
+            method_specific_id_algo: uuid
+            network: testnet
+    CreateCheqdDIDResponse:
+      type: object
+      properties:
+        did:
+          type: string
+          description: DID created
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didState:
+          type: object
+          additionalProperties:
+            type: object
+          description: The published didState
+          example:
+            did: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+            didDocument:
+              authentication:
+              - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+              controller:
+              - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+              id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+              verificationMethod:
+              - id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+                type: Ed25519VerificationKey2020
+                controller: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+                publicKeyMultibase: z6Mk...
+            secret:
+              signingResponse:
+              - kid: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+                signature: SHFz...
+            state: finished
+        success:
+          type: boolean
+          description: Flag to denote if the operation was successful
+          example: true
+        verkey:
+          type: string
+          description: Verification key
+          example: BnSWTUQmdYCewSGFrRUhT6LmKdcCcSzRGqWXMPnEP168
     CreateDidIndyRequest:
       type: object
       properties:
@@ -7366,6 +7484,43 @@ components:
           - ed25519
           - bls12381g2
           - p256
+    DIDDocument:
+      required:
+      - authentication
+      - controller
+      - id
+      - verificationMethod
+      type: object
+      properties:
+        assertionMethod:
+          type: array
+          description: Assertion Methods
+          items:
+            type: string
+        authentication:
+          type: array
+          description: Authentication Methods
+          items:
+            type: string
+        controller:
+          type: array
+          description: DID Document controllers
+          items:
+            type: string
+        id:
+          type: string
+          description: DID ID
+          example: did:example:123
+        service:
+          type: array
+          description: Services
+          items:
+            $ref: '#/components/schemas/Service'
+        verificationMethod:
+          type: array
+          description: Verification Methods
+          items:
+            $ref: '#/components/schemas/VerificationMethod'
     DIDEndpoint:
       required:
       - did
@@ -7672,6 +7827,41 @@ components:
           description: Expiry Date
           format: date-time
           example: 2021-03-29 05:22:19+00:00
+    DeactivateCheqdDIDRequest:
+      required:
+      - did
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          type: string
+          description: DID to deactivate
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        options:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional configuration options
+          example:
+            network: testnet
+    DeactivateCheqdDIDResponse:
+      required:
+      - didState
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          type: string
+          description: DID that has been deactivated
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didState:
+          type: string
+          description: State of the did update
+          example: ''
+        success:
+          type: boolean
+          description: Flag to denote if the operation was successful
+          example: true
     Disclose:
       required:
       - protocols
@@ -10889,6 +11079,27 @@ components:
           type: string
           description: Message content
           example: Hello
+    Service:
+      required:
+      - id
+      - serviceEndpoint
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Service ID
+          example: did:example:123#service-1
+        serviceEndpoint:
+          type: array
+          description: Array of Service endpoints
+          items:
+            type: string
+            description: Service endpoint URL
+        type:
+          type: string
+          description: Service Type
+          example: MessagingService
     ServiceDecorator:
       required:
       - recipientKeys
@@ -11253,6 +11464,63 @@ components:
           description: Schema transaction to endorse
           allOf:
           - $ref: '#/components/schemas/TransactionRecord'
+    UpdateCheqdDIDRequest:
+      required:
+      - did
+      - didDocument
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          type: string
+          description: DID to update
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didDocument:
+          type: object
+          description: DID Document to update
+          example:
+            authentication:
+            - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+            controller:
+            - did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+            id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+            service:
+            - id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#service-1
+              type: MessagingService
+              serviceEndpoint:
+              - https://example.com/service
+            verificationMethod:
+            - id: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86#key-1
+              type: Ed25519VerificationKey2018
+              controller: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+              publicKeyMultibase: z6Mk...
+          allOf:
+          - $ref: '#/components/schemas/DIDDocument'
+        options:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional configuration options
+          example:
+            network: testnet
+    UpdateCheqdDIDResponse:
+      required:
+      - didState
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))*:)*((?:[a-zA-Z0-9]{21,22}|([a-z,0-9,-]{36,36}))+)/resources/([a-z,0-9,-]{36,36})([?][^#]*)?)$
+          type: string
+          description: DID that has been updated
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        didState:
+          type: string
+          description: State of the did update
+          example: ''
+        success:
+          type: boolean
+          description: Flag to denote if the operation was successful
+          example: true
     UpdateKeyRequest:
       required:
       - kid
@@ -13397,6 +13665,41 @@ components:
             additionalProperties:
               type: object
       additionalProperties: true
+    VerificationMethod:
+      required:
+      - controller
+      - id
+      - type
+      type: object
+      properties:
+        controller:
+          type: string
+          description: Verification controller DID
+        id:
+          type: string
+          description: Verification Method ID
+          example: did:example:123#key-1
+        publicKeyBase58:
+          type: string
+          description: Public Key in base58 format
+          example: B12NYF8RZ5Zk..
+        publicKeyJwk:
+          type: object
+          additionalProperties:
+            type: object
+          description: Public Key in Jwk format
+          example:
+            crv: Ed25519
+            kty: OKP
+            x: G6t3iUB8...
+        publicKeyMultibase:
+          type: string
+          description: Public Key in multibase format
+          example: z6Mk...
+        type:
+          type: string
+          description: Type of Verification Method
+          example: Ed25519VerificationKey2018
     VerifyCredentialRequest:
       type: object
       properties:
