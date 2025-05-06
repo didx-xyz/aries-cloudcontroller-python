@@ -24,17 +24,23 @@ from typing_extensions import Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class UpdateWalletRequest(BaseModel):
+class CreateWalletRequestWithGroupId(BaseModel):
     """
-    UpdateWalletRequest
+    CreateWalletRequestWithGroupId
     """  # noqa: E501
 
     extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
     )
+    group_id_field: Optional[StrictStr] = Field(
+        default=None, description="Wallet group identifier."
+    )
     image_url: Optional[StrictStr] = Field(
         default=None,
         description="Image url for this wallet. This image url is publicized (self-attested) to other agents as part of forming a connection.",
+    )
+    key_management_mode: Optional[StrictStr] = Field(
+        default=None, description="Key management method to use for this wallet."
     )
     label: Optional[StrictStr] = Field(
         default=None,
@@ -44,16 +50,43 @@ class UpdateWalletRequest(BaseModel):
         default=None,
         description="Webhook target dispatch type for this wallet. default: Dispatch only to webhooks associated with this wallet. base: Dispatch only to webhooks associated with the base wallet. both: Dispatch to both webhook targets.",
     )
+    wallet_key: Optional[StrictStr] = Field(
+        default=None, description="Master key used for key derivation."
+    )
+    wallet_key_derivation: Optional[StrictStr] = Field(
+        default=None, description="Key derivation"
+    )
+    wallet_name: Optional[StrictStr] = Field(default=None, description="Wallet name")
+    wallet_type: Optional[StrictStr] = Field(
+        default=None,
+        description="Type of the wallet to create. Must be same as base wallet.",
+    )
     wallet_webhook_urls: Optional[List[StrictStr]] = Field(
         default=None, description="List of Webhook URLs associated with this subwallet"
     )
     __properties: ClassVar[List[str]] = [
         "extra_settings",
+        "group_id_field",
         "image_url",
+        "key_management_mode",
         "label",
         "wallet_dispatch_type",
+        "wallet_key",
+        "wallet_key_derivation",
+        "wallet_name",
+        "wallet_type",
         "wallet_webhook_urls",
     ]
+
+    @field_validator("key_management_mode")
+    def key_management_mode_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["managed"]):
+            raise ValueError("must be one of enum values ('managed')")
+        return value
 
     @field_validator("wallet_dispatch_type")
     def wallet_dispatch_type_validate_enum(cls, value):
@@ -63,6 +96,28 @@ class UpdateWalletRequest(BaseModel):
 
         if value not in set(["default", "both", "base"]):
             raise ValueError("must be one of enum values ('default', 'both', 'base')")
+        return value
+
+    @field_validator("wallet_key_derivation")
+    def wallet_key_derivation_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["ARGON2I_MOD", "ARGON2I_INT", "RAW"]):
+            raise ValueError(
+                "must be one of enum values ('ARGON2I_MOD', 'ARGON2I_INT', 'RAW')"
+            )
+        return value
+
+    @field_validator("wallet_type")
+    def wallet_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["askar", "askar-anoncreds"]):
+            raise ValueError("must be one of enum values ('askar', 'askar-anoncreds')")
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -77,7 +132,7 @@ class UpdateWalletRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateWalletRequest from a JSON string"""
+        """Create an instance of CreateWalletRequestWithGroupId from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -101,7 +156,7 @@ class UpdateWalletRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateWalletRequest from a dict"""
+        """Create an instance of CreateWalletRequestWithGroupId from a dict"""
         if obj is None:
             return None
 
@@ -111,9 +166,15 @@ class UpdateWalletRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "extra_settings": obj.get("extra_settings"),
+                "group_id_field": obj.get("group_id_field"),
                 "image_url": obj.get("image_url"),
+                "key_management_mode": obj.get("key_management_mode"),
                 "label": obj.get("label"),
                 "wallet_dispatch_type": obj.get("wallet_dispatch_type"),
+                "wallet_key": obj.get("wallet_key"),
+                "wallet_key_derivation": obj.get("wallet_key_derivation"),
+                "wallet_name": obj.get("wallet_name"),
+                "wallet_type": obj.get("wallet_type"),
                 "wallet_webhook_urls": obj.get("wallet_webhook_urls"),
             }
         )

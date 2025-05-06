@@ -24,13 +24,16 @@ from typing_extensions import Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class UpdateWalletRequest(BaseModel):
+class UpdateWalletRequestWithGroupId(BaseModel):
     """
-    UpdateWalletRequest
+    UpdateWalletRequestWithGroupId
     """  # noqa: E501
 
     extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
+    )
+    group_id_field: Optional[StrictStr] = Field(
+        default=None, description="Wallet group identifier."
     )
     image_url: Optional[StrictStr] = Field(
         default=None,
@@ -49,6 +52,7 @@ class UpdateWalletRequest(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "extra_settings",
+        "group_id_field",
         "image_url",
         "label",
         "wallet_dispatch_type",
@@ -77,7 +81,7 @@ class UpdateWalletRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateWalletRequest from a JSON string"""
+        """Create an instance of UpdateWalletRequestWithGroupId from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -101,7 +105,7 @@ class UpdateWalletRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateWalletRequest from a dict"""
+        """Create an instance of UpdateWalletRequestWithGroupId from a dict"""
         if obj is None:
             return None
 
@@ -111,6 +115,7 @@ class UpdateWalletRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "extra_settings": obj.get("extra_settings"),
+                "group_id_field": obj.get("group_id_field"),
                 "image_url": obj.get("image_url"),
                 "label": obj.get("label"),
                 "wallet_dispatch_type": obj.get("wallet_dispatch_type"),

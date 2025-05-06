@@ -88,7 +88,13 @@ from aries_cloudcontroller.models.create_key_response import CreateKeyResponse
 from aries_cloudcontroller.models.create_request import CreateRequest
 from aries_cloudcontroller.models.create_response import CreateResponse
 from aries_cloudcontroller.models.create_wallet_request import CreateWalletRequest
+from aries_cloudcontroller.models.create_wallet_request_with_group_id import (
+    CreateWalletRequestWithGroupId,
+)
 from aries_cloudcontroller.models.create_wallet_response import CreateWalletResponse
+from aries_cloudcontroller.models.create_wallet_response_with_group_id import (
+    CreateWalletResponseWithGroupId,
+)
 from aries_cloudcontroller.models.create_wallet_token_request import (
     CreateWalletTokenRequest,
 )
@@ -444,6 +450,9 @@ from aries_cloudcontroller.models.update_key_request import UpdateKeyRequest
 from aries_cloudcontroller.models.update_key_response import UpdateKeyResponse
 from aries_cloudcontroller.models.update_profile_settings import UpdateProfileSettings
 from aries_cloudcontroller.models.update_wallet_request import UpdateWalletRequest
+from aries_cloudcontroller.models.update_wallet_request_with_group_id import (
+    UpdateWalletRequestWithGroupId,
+)
 from aries_cloudcontroller.models.v10_credential_bound_offer_request import (
     V10CredentialBoundOfferRequest,
 )
@@ -612,9 +621,9 @@ from aries_cloudcontroller.models.w3_c_credentials_list_request import (
     W3CCredentialsListRequest,
 )
 from aries_cloudcontroller.models.wallet_list import WalletList
-from aries_cloudcontroller.models.wallet_list_with_groups import WalletListWithGroups
+from aries_cloudcontroller.models.wallet_list_with_group_id import WalletListWithGroupId
 from aries_cloudcontroller.models.wallet_record import WalletRecord
-from aries_cloudcontroller.models.wallet_record_with_groups import (
-    WalletRecordWithGroups,
+from aries_cloudcontroller.models.wallet_record_with_group_id import (
+    WalletRecordWithGroupId,
 )
 from aries_cloudcontroller.models.write_ledger import WriteLedger
