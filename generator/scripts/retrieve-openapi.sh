@@ -30,7 +30,8 @@ ACA_PY_CMD_OPTIONS=" \
   --multitenant-admin \
   --jwt-secret test \
   --no-ledger \
-  --plugin acapy_wallet_groups_plugin"
+  --plugin acapy_wallet_groups_plugin \
+  --plugin cheqd"
 
 # Print an indication of script reaching a processing
 # milestone in a noticeable way
