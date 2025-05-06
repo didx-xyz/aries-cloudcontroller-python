@@ -6592,7 +6592,8 @@ components:
           description: Agent config key-value pairs
         group_id:
           type: string
-          description: Wallet group identifier.
+          description: An optional group identifier. Useful with `get_tenants` to
+            fetch wallets by group id.
           example: some_group_id
         image_url:
           type: string
@@ -13530,15 +13531,11 @@ components:
     WalletListWithGroupId:
       type: object
       properties:
-        group_id:
-          type: string
-          description: Wallet group identifier.
-          example: some_group_id
         results:
           type: array
           description: List of wallet records
           items:
-            $ref: '#/components/schemas/WalletRecord'
+            $ref: '#/components/schemas/WalletRecordWithGroupId'
     WalletModuleResponse:
       type: object
     WalletRecord:
