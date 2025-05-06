@@ -34,14 +34,9 @@ done
 # Deduplication for __init__.py -- just helps get SonarCloud duplication report to be under threshold!
 sed -i -E 's/from aries_cloudcontroller\.(\w+)\.\w+ /from aries_cloudcontroller.\1 /g' aries_cloudcontroller/__init__.py
 
-# Append custom models to our init file:
-{
-    echo "from aries_cloudcontroller.models.wallet_list_with_groups import WalletListWithGroups"
-    echo "from aries_cloudcontroller.models.wallet_record_with_groups import WalletRecordWithGroups"
-} >>aries_cloudcontroller/models/__init__.py
+# Append custom additional imports to our init file:
 {
     echo "from aries_cloudcontroller.acapy_client import AcaPyClient"
-    echo "from aries_cloudcontroller.models import WalletListWithGroups, WalletRecordWithGroups"
     echo "from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG"
 } >>aries_cloudcontroller/__init__.py
 
