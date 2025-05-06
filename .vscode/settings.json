@@ -12,6 +12,7 @@
         "cafile",
         "Camenisch",
         "canonicalized",
+        "cheqd",
         "cloudcontroller",
         "codegen",
         "conn",
@@ -67,6 +68,7 @@
         "subwallets",
         "tran",
         "Trustping",
+        "VCDI",
         "Verkey"
     ]
 }

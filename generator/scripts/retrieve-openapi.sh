@@ -33,7 +33,7 @@ ACA_PY_CMD_OPTIONS=" \
   --plugin acapy_wallet_groups_plugin"
 
 # Print an indication of script reaching a processing
-# milestone in a noticable way
+# milestone in a noticeable way
 # $1 : Message string to print
 function printMilestone() {
   echo -e "\n\n##########################################################################################"
@@ -43,8 +43,8 @@ function printMilestone() {
   echo -e "##########################################################################################\n"
 }
 
-# Wait for a web server to provide a funcitoning interface we can use
-# $1 : Url to poll that indicates webserver initialsation complete
+# Wait for a web server to provide a functioning interface we can use
+# $1 : Url to poll that indicates webserver initialization complete
 # $2 : maximum number of seconds to wait
 function waitActiveWebInterface() {
   for ((i = 1; i < ${2}; i++)); do
@@ -60,12 +60,12 @@ function waitActiveWebInterface() {
 }
 
 # Start an ACA-py docker image
-# A simplified version of aries-cloudagent-python/scripts/run_docker
+# A simplified version of acapy/scripts/run_docker
 # needed to run without tty or interactive.
 # $1: The ACA-py docker image to use (i.e either from a repo or local)
 # $2: The port mapping from docker to local host in format "docker1:local1 docker2:local2"
-# $3: The ACA-py command line arguements
-# $4: The name of a variable to return the continer ID to
+# $3: The ACA-py command line arguments
+# $4: The name of a variable to return the container ID to
 function runACAPy() {
   local acaPyImage="${1}"
   local ports="${2}"
@@ -109,4 +109,4 @@ printMilestone "ACA-Py Admin interface active\n\t Docker Id '${ACA_PY_CONTAINER_
 
 curl --output ./data/swagger.json http://localhost:${ACA_PY_ADMIN_PORT}/api/docs/swagger.json
 
-printMilestone "Sucessfully wrote ACA-Py open api file to ./data/swagger.json"
+printMilestone "Successfully wrote ACA-Py open api file to ./data/swagger.json"
