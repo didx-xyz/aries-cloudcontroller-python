@@ -83,6 +83,10 @@ from aries_cloudcontroller.models.connection_static_request import (
 )
 from aries_cloudcontroller.models.connection_static_result import ConnectionStaticResult
 from aries_cloudcontroller.models.constraints import Constraints
+from aries_cloudcontroller.models.create_cheqd_did_request import CreateCheqdDIDRequest
+from aries_cloudcontroller.models.create_cheqd_did_response import (
+    CreateCheqdDIDResponse,
+)
 from aries_cloudcontroller.models.create_did_indy_request import CreateDidIndyRequest
 from aries_cloudcontroller.models.create_did_indy_response import CreateDidIndyResponse
 from aries_cloudcontroller.models.create_key_request import CreateKeyRequest
@@ -162,9 +166,16 @@ from aries_cloudcontroller.models.credential_status_options import (
 from aries_cloudcontroller.models.data_integrity_proof_options import (
     DataIntegrityProofOptions,
 )
+from aries_cloudcontroller.models.deactivate_cheqd_did_request import (
+    DeactivateCheqdDIDRequest,
+)
+from aries_cloudcontroller.models.deactivate_cheqd_did_response import (
+    DeactivateCheqdDIDResponse,
+)
 from aries_cloudcontroller.models.did import DID
 from aries_cloudcontroller.models.did_create import DIDCreate
 from aries_cloudcontroller.models.did_create_options import DIDCreateOptions
+from aries_cloudcontroller.models.did_document import DIDDocument
 from aries_cloudcontroller.models.did_endpoint import DIDEndpoint
 from aries_cloudcontroller.models.did_endpoint_with_type import DIDEndpointWithType
 from aries_cloudcontroller.models.did_list import DIDList
@@ -416,6 +427,7 @@ from aries_cloudcontroller.models.sdjws_verify import SDJWSVerify
 from aries_cloudcontroller.models.sdjws_verify_response import SDJWSVerifyResponse
 from aries_cloudcontroller.models.send_menu import SendMenu
 from aries_cloudcontroller.models.send_message import SendMessage
+from aries_cloudcontroller.models.service import Service
 from aries_cloudcontroller.models.service_decorator import ServiceDecorator
 from aries_cloudcontroller.models.sign_request import SignRequest
 from aries_cloudcontroller.models.sign_response import SignResponse
@@ -446,6 +458,10 @@ from aries_cloudcontroller.models.txn_or_register_ledger_nym_response import (
 )
 from aries_cloudcontroller.models.txn_or_rev_reg_result import TxnOrRevRegResult
 from aries_cloudcontroller.models.txn_or_schema_send_result import TxnOrSchemaSendResult
+from aries_cloudcontroller.models.update_cheqd_did_request import UpdateCheqdDIDRequest
+from aries_cloudcontroller.models.update_cheqd_did_response import (
+    UpdateCheqdDIDResponse,
+)
 from aries_cloudcontroller.models.update_key_request import UpdateKeyRequest
 from aries_cloudcontroller.models.update_key_response import UpdateKeyResponse
 from aries_cloudcontroller.models.update_profile_settings import UpdateProfileSettings
@@ -601,6 +617,7 @@ from aries_cloudcontroller.models.vc_record import VCRecord
 from aries_cloudcontroller.models.vc_record_list import VCRecordList
 from aries_cloudcontroller.models.verifiable_credential import VerifiableCredential
 from aries_cloudcontroller.models.verifiable_presentation import VerifiablePresentation
+from aries_cloudcontroller.models.verification_method import VerificationMethod
 from aries_cloudcontroller.models.verify_credential_request import (
     VerifyCredentialRequest,
 )
