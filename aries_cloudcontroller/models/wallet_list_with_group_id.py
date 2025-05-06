@@ -18,10 +18,12 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.wallet_record import WalletRecord
+from aries_cloudcontroller.models.wallet_record_with_group_id import (
+    WalletRecordWithGroupId,
+)
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
@@ -30,13 +32,10 @@ class WalletListWithGroupId(BaseModel):
     WalletListWithGroupId
     """  # noqa: E501
 
-    group_id: Optional[StrictStr] = Field(
-        default=None, description="Wallet group identifier."
-    )
-    results: Optional[List[WalletRecord]] = Field(
+    results: Optional[List[WalletRecordWithGroupId]] = Field(
         default=None, description="List of wallet records"
     )
-    __properties: ClassVar[List[str]] = ["group_id", "results"]
+    __properties: ClassVar[List[str]] = ["results"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -90,12 +89,14 @@ class WalletListWithGroupId(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "group_id": obj.get("group_id"),
                 "results": (
-                    [WalletRecord.from_dict(_item) for _item in obj["results"]]
+                    [
+                        WalletRecordWithGroupId.from_dict(_item)
+                        for _item in obj["results"]
+                    ]
                     if obj.get("results") is not None
                     else None
-                ),
+                )
             }
         )
         return _obj
