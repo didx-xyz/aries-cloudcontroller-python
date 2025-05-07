@@ -387,6 +387,7 @@ from aries_cloudcontroller.models import (
     V20CredBoundOfferRequest,
     V20CredExFree,
     V20CredExRecord,
+    V20CredExRecordAnonCreds,
     V20CredExRecordByFormat,
     V20CredExRecordDetail,
     V20CredExRecordIndy,

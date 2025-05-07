@@ -535,6 +535,9 @@ from aries_cloudcontroller.models.v20_cred_bound_offer_request import (
 )
 from aries_cloudcontroller.models.v20_cred_ex_free import V20CredExFree
 from aries_cloudcontroller.models.v20_cred_ex_record import V20CredExRecord
+from aries_cloudcontroller.models.v20_cred_ex_record_anon_creds import (
+    V20CredExRecordAnonCreds,
+)
 from aries_cloudcontroller.models.v20_cred_ex_record_by_format import (
     V20CredExRecordByFormat,
 )
