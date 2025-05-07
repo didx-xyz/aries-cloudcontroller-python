@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v1.3.0.post20250505
+  version: v1.3.0.post20250507
 servers:
 - url: /
 security:

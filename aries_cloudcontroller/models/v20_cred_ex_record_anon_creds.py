@@ -25,34 +25,46 @@ from typing_extensions import Annotated, Self
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class MediationRecord(BaseModel):
+class V20CredExRecordAnonCreds(BaseModel):
     """
-    MediationRecord
+    V20CredExRecordAnonCreds
     """  # noqa: E501
 
-    connection_id: StrictStr
     created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of record creation"
     )
-    endpoint: Optional[StrictStr] = None
-    mediation_id: Optional[StrictStr] = None
-    mediator_terms: Optional[List[StrictStr]] = None
-    recipient_terms: Optional[List[StrictStr]] = None
-    role: StrictStr
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    cred_ex_anoncreds_id: Optional[StrictStr] = Field(
+        default=None, description="Record identifier"
+    )
+    cred_ex_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Corresponding v2.0 credential exchange record identifier",
+    )
+    cred_id_stored: Optional[StrictStr] = Field(
+        default=None, description="Credential identifier stored in wallet"
+    )
+    cred_request_metadata: Optional[Dict[str, Any]] = Field(
+        default=None, description="Credential request metadata for anoncreds holder"
+    )
+    cred_rev_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Credential revocation identifier within revocation registry",
+    )
+    rev_reg_id: Optional[StrictStr] = Field(
+        default=None, description="Revocation registry identifier"
+    )
     state: Optional[StrictStr] = Field(default=None, description="Current record state")
     updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [
-        "connection_id",
         "created_at",
-        "endpoint",
-        "mediation_id",
-        "mediator_terms",
-        "recipient_terms",
-        "role",
-        "routing_keys",
+        "cred_ex_anoncreds_id",
+        "cred_ex_id",
+        "cred_id_stored",
+        "cred_request_metadata",
+        "cred_rev_id",
+        "rev_reg_id",
         "state",
         "updated_at",
     ]
@@ -99,7 +111,7 @@ class MediationRecord(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MediationRecord from a JSON string"""
+        """Create an instance of V20CredExRecordAnonCreds from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -123,7 +135,7 @@ class MediationRecord(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MediationRecord from a dict"""
+        """Create an instance of V20CredExRecordAnonCreds from a dict"""
         if obj is None:
             return None
 
@@ -132,14 +144,13 @@ class MediationRecord(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
-                "endpoint": obj.get("endpoint"),
-                "mediation_id": obj.get("mediation_id"),
-                "mediator_terms": obj.get("mediator_terms"),
-                "recipient_terms": obj.get("recipient_terms"),
-                "role": obj.get("role"),
-                "routing_keys": obj.get("routing_keys"),
+                "cred_ex_anoncreds_id": obj.get("cred_ex_anoncreds_id"),
+                "cred_ex_id": obj.get("cred_ex_id"),
+                "cred_id_stored": obj.get("cred_id_stored"),
+                "cred_request_metadata": obj.get("cred_request_metadata"),
+                "cred_rev_id": obj.get("cred_rev_id"),
+                "rev_reg_id": obj.get("rev_reg_id"),
                 "state": obj.get("state"),
                 "updated_at": obj.get("updated_at"),
             }
