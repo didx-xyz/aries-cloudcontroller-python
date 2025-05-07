@@ -43,7 +43,7 @@ class V20CredExRecordAnonCreds(BaseModel):
     cred_id_stored: Optional[StrictStr] = Field(
         default=None, description="Credential identifier stored in wallet"
     )
-    cred_request_metadata: Optional[Dict[str, Dict[str, Any]]] = Field(
+    cred_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="Credential request metadata for anoncreds holder"
     )
     cred_rev_id: Optional[StrictStr] = Field(
