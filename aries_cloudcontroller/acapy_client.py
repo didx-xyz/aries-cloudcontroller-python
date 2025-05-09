@@ -117,6 +117,7 @@ class AcaPyClient(AbstractAsyncContextManager):
         self.credential_definition = CredentialDefinitionApi(self.api_client)
         self.credentials = CredentialsApi(self.api_client)
         self.default = DefaultApi(self.api_client)
+        self.did = DidApi(self.api_client)
         self.did_exchange = DidExchangeApi(self.api_client)
         self.did_rotate = DidRotateApi(self.api_client)
         self.discover_features = DiscoverFeaturesApi(self.api_client)
@@ -138,6 +139,7 @@ class AcaPyClient(AbstractAsyncContextManager):
         self.server = ServerApi(self.api_client)
         self.settings = SettingsApi(self.api_client)
         self.trustping = TrustpingApi(self.api_client)
+        self.vc = VcApi(self.api_client)
         self.wallet = WalletApi(self.api_client)
 
     async def __aenter__(self):
