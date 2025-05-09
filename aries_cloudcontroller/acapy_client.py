@@ -12,6 +12,7 @@ from aries_cloudcontroller.api import (
     CredentialDefinitionApi,
     CredentialsApi,
     DefaultApi,
+    DidApi,
     DidExchangeApi,
     DidRotateApi,
     DiscoverFeaturesApi,
@@ -33,6 +34,7 @@ from aries_cloudcontroller.api import (
     ServerApi,
     SettingsApi,
     TrustpingApi,
+    VcApi,
     WalletApi,
 )
 from aries_cloudcontroller.api_client import ApiClient
@@ -50,6 +52,7 @@ class AcaPyClient(AbstractAsyncContextManager):
     credential_definition: CredentialDefinitionApi
     credentials: CredentialsApi
     default: DefaultApi
+    did: DidApi
     did_exchange: DidExchangeApi
     did_rotate: DidRotateApi
     discover_features: DiscoverFeaturesApi
@@ -71,6 +74,7 @@ class AcaPyClient(AbstractAsyncContextManager):
     server: ServerApi
     settings: SettingsApi
     trustping: TrustpingApi
+    vc: VcApi
     wallet: WalletApi
 
     def __init__(
