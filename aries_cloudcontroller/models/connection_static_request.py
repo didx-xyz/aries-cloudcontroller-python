@@ -65,36 +65,6 @@ class ConnectionStaticRequest(BaseModel):
         "their_verkey",
     ]
 
-    @field_validator("my_did")
-    def my_did_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(
-            r"^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
-            )
-        return value
-
-    @field_validator("their_did")
-    def their_did_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(
-            r"^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
-            )
-        return value
-
     @field_validator("their_endpoint")
     def their_endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""

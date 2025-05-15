@@ -15,11 +15,10 @@ Do not edit the class manually.
 from __future__ import annotations
 
 import pprint
-import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr, field_validator
+from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.models.attach_decorator import AttachDecorator
@@ -63,21 +62,6 @@ class DIDXRequest(BaseModel):
         "goal_code",
         "label",
     ]
-
-    @field_validator("did")
-    def did_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(
-            r"^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$/"
-            )
-        return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 

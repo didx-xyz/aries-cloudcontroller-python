@@ -15,11 +15,10 @@ Do not edit the class manually.
 from __future__ import annotations
 
 import pprint
-import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr, field_validator
+from pydantic import BaseModel, Field, StrictStr
 from typing_extensions import Annotated, Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -36,13 +35,6 @@ class SchemaSendRequest(BaseModel):
         description="Schema version"
     )
     __properties: ClassVar[List[str]] = ["attributes", "schema_name", "schema_version"]
-
-    @field_validator("schema_version")
-    def schema_version_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[0-9.]+$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9.]+$/")
-        return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
