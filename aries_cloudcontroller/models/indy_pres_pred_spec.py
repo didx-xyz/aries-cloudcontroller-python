@@ -15,7 +15,6 @@ Do not edit the class manually.
 from __future__ import annotations
 
 import pprint
-import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
@@ -42,21 +41,6 @@ class IndyPresPredSpec(BaseModel):
         "predicate",
         "threshold",
     ]
-
-    @field_validator("cred_def_id")
-    def cred_def_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(
-            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
-            )
-        return value
 
     @field_validator("predicate")
     def predicate_validate_enum(cls, value):

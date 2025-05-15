@@ -48,18 +48,6 @@ class DIDEndpointWithType(BaseModel):
         "mediation_id",
     ]
 
-    @field_validator("did")
-    def did_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(
-            r"^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$/"
-            )
-        return value
-
     @field_validator("endpoint")
     def endpoint_validate_regular_expression(cls, value):
         """Validates the regular expression"""
