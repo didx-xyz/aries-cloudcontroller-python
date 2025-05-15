@@ -52,35 +52,11 @@ class IndyCredAbstract(BaseModel):
         "schema_id",
     ]
 
-    @field_validator("cred_def_id")
-    def cred_def_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(
-            r"^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$/"
-            )
-        return value
-
     @field_validator("nonce")
     def nonce_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^[0-9]*$", value):
             raise ValueError(r"must validate the regular expression /^[0-9]*$/")
-        return value
-
-    @field_validator("schema_id")
-    def schema_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(
-            r"^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$/"
-            )
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
