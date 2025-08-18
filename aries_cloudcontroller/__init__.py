@@ -158,6 +158,8 @@ from aries_cloudcontroller.models import (
     DIDDocument,
     DIDEndpoint,
     DIDEndpointWithType,
+    DIDImport,
+    DIDImportResponse,
     DIDList,
     DIDResult,
     DIDRotateRequestJSON,

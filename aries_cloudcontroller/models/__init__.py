@@ -178,6 +178,8 @@ from aries_cloudcontroller.models.did_create_options import DIDCreateOptions
 from aries_cloudcontroller.models.did_document import DIDDocument
 from aries_cloudcontroller.models.did_endpoint import DIDEndpoint
 from aries_cloudcontroller.models.did_endpoint_with_type import DIDEndpointWithType
+from aries_cloudcontroller.models.did_import import DIDImport
+from aries_cloudcontroller.models.did_import_response import DIDImportResponse
 from aries_cloudcontroller.models.did_list import DIDList
 from aries_cloudcontroller.models.did_result import DIDResult
 from aries_cloudcontroller.models.did_rotate_request_json import DIDRotateRequestJSON
