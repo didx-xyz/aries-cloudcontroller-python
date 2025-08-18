@@ -18,7 +18,7 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -29,12 +29,35 @@ class Service(BaseModel):
     Service
     """  # noqa: E501
 
+    accept: Optional[List[StrictStr]] = Field(
+        default=None, description="Array of supported media types"
+    )
     id: StrictStr = Field(description="Service ID")
-    service_endpoint: List[StrictStr] = Field(
-        description="Array of Service endpoints", alias="serviceEndpoint"
+    priority: Optional[StrictInt] = Field(
+        default=None, description="Priority of the service endpoint"
+    )
+    recipient_keys: List[StrictStr] = Field(
+        description="Array of did key references to denote the default recipients",
+        alias="recipientKeys",
+    )
+    routing_keys: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="Array of did key references to denote individual routing hops",
+        alias="routingKeys",
+    )
+    service_endpoint: StrictStr = Field(
+        description="Service endpoint URL", alias="serviceEndpoint"
     )
     type: StrictStr = Field(description="Service Type")
-    __properties: ClassVar[List[str]] = ["id", "serviceEndpoint", "type"]
+    __properties: ClassVar[List[str]] = [
+        "accept",
+        "id",
+        "priority",
+        "recipientKeys",
+        "routingKeys",
+        "serviceEndpoint",
+        "type",
+    ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -81,7 +104,11 @@ class Service(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "accept": obj.get("accept"),
                 "id": obj.get("id"),
+                "priority": obj.get("priority"),
+                "recipientKeys": obj.get("recipientKeys"),
+                "routingKeys": obj.get("routingKeys"),
                 "serviceEndpoint": obj.get("serviceEndpoint"),
                 "type": obj.get("type"),
             }
