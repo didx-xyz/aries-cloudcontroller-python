@@ -150,6 +150,7 @@ from aries_cloudcontroller.models import (
     CredRevRecordDetailsResultSchemaAnonCreds,
     CredRevRecordResult,
     CredRevRecordResultSchemaAnonCreds,
+    CustomDIDEndpointWithType,
     DataIntegrityProofOptions,
     DeactivateCheqdDIDRequest,
     DeactivateCheqdDIDResponse,

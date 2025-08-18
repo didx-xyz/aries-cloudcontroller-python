@@ -163,6 +163,9 @@ from aries_cloudcontroller.models.credential_proposal import CredentialProposal
 from aries_cloudcontroller.models.credential_status_options import (
     CredentialStatusOptions,
 )
+from aries_cloudcontroller.models.custom_did_endpoint_with_type import (
+    CustomDIDEndpointWithType,
+)
 from aries_cloudcontroller.models.data_integrity_proof_options import (
     DataIntegrityProofOptions,
 )
