@@ -6,8 +6,8 @@ cd "$(dirname "$0")/../" || exit
 # Remove old generated code
 rm -rf ../generated/
 
-# Read ACA_PY_VERSION from input arg or default to 1.3.0rc1-20250417
-ACA_PY_VERSION=${1:-"1.3.0rc1-20250417"}
+# Read ACA_PY_VERSION from input arg or default to 1.3.2rc0-20250822
+ACA_PY_VERSION=${1:-"1.3.2rc0-20250822"}
 
 export ACA_PY_VERSION # Set env for openapi-config-template'
 
@@ -34,5 +34,5 @@ cp -r ./generated/aries_cloudcontroller/ .
 # autoflake again to remove newly unused imports
 autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
 # Black format and optimise imports
-black aries_cloudcontroller
-isort aries_cloudcontroller --profile black
+ruff format aries_cloudcontroller
+ruff check --fix aries_cloudcontroller

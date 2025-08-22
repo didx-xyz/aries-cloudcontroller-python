@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Aries Cloud Agent
-  version: v1.3.0.post20250507
+  version: v1.3.2rc0.post20250822
 servers:
 - url: /
 security:
@@ -33,14 +33,14 @@ tags:
   description: Simple messaging
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/527849ec3aa2a8fd47a7bb6c57f918ff8bcb5e8c/features/0095-basic-message
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/527849ec3aa2a8fd47a7bb6c57f918ff8bcb5e8c/features/0095-basic-message
 - name: connection
   description: Connection management
 - name: credential-definition
   description: Credential definition operations
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/indy-node/blob/master/design/anoncreds.md#cred_def
+    url: https://github.com/hyperledger/indy-node/blob/main/design/anoncreds.md#cred_def
 - name: credentials
   description: Holder credential management
   externalDocs:
@@ -60,22 +60,22 @@ tags:
   description: Connection management via DID exchange
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/25464a5c8f8a17b14edaa4310393df6094ace7b0/features/0023-did-exchange
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/25464a5c8f8a17b14edaa4310393df6094ace7b0/features/0023-did-exchange
 - name: did-rotate
   description: Rotate a DID
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/main/features/0794-did-rotate
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/main/features/0794-did-rotate
 - name: discover-features
   description: Feature discovery
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/b3a3942ef052039e73cd23d847f42947f8287da2/features/0031-discover-features
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/b3a3942ef052039e73cd23d847f42947f8287da2/features/0031-discover-features
 - name: discover-features v2.0
   description: Feature discovery v2
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/b3a3942ef052039e73cd23d847f42947f8287da2/features/0557-discover-features-v2
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/b3a3942ef052039e73cd23d847f42947f8287da2/features/0557-discover-features-v2
 - name: endorse-transaction
   description: Endorse a Transaction
 - name: introduction
@@ -84,12 +84,12 @@ tags:
   description: Credential issue v1.0
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/bb42a6c35e0d5543718fb36dd099551ab192f7b0/features/0036-issue-credential
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/bb42a6c35e0d5543718fb36dd099551ab192f7b0/features/0036-issue-credential
 - name: issue-credential v2.0
   description: Credential issue v2.0
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/cd27fc64aa2805f756a118043d7c880354353047/features/0453-issue-credential-v2
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/cd27fc64aa2805f756a118043d7c880354353047/features/0453-issue-credential-v2
 - name: jsonld
   description: Sign and verify json-ld data
   externalDocs:
@@ -104,7 +104,7 @@ tags:
   description: Mediation management
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/fa8dc4ea1e667eb07db8f9ffeaf074a4455697c0/features/0211-route-coordination
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/fa8dc4ea1e667eb07db8f9ffeaf074a4455697c0/features/0211-route-coordination
 - name: multitenancy
   description: Multitenant wallet management
 - name: multitenancy
@@ -113,17 +113,17 @@ tags:
   description: Out-of-band connections
   externalDocs:
     description: Design
-    url: https://github.com/hyperledger/aries-rfcs/tree/2da7fc4ee043effa3a9960150e7ba8c9a4628b68/features/0434-outofband
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/2da7fc4ee043effa3a9960150e7ba8c9a4628b68/features/0434-outofband
 - name: present-proof v1.0
   description: Proof presentation v1.0
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/4fae574c03f9f1013db30bf2c0c676b1122f7149/features/0037-present-proof
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/4fae574c03f9f1013db30bf2c0c676b1122f7149/features/0037-present-proof
 - name: present-proof v2.0
   description: Proof presentation v2.0
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/eace815c3e8598d4a8dd7881d8c731fdb2bcc0aa/features/0454-present-proof-v2
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/eace815c3e8598d4a8dd7881d8c731fdb2bcc0aa/features/0454-present-proof-v2
 - name: resolver
   description: did resolver interface.
   externalDocs:
@@ -138,14 +138,14 @@ tags:
   description: Schema operations
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/indy-node/blob/master/design/anoncreds.md#schema
+    url: https://github.com/hyperledger/indy-node/blob/main/design/anoncreds.md#schema
 - name: settings
   description: Agent settings interface.
 - name: trustping
   description: Trust-ping over connection
   externalDocs:
     description: Specification
-    url: https://github.com/hyperledger/aries-rfcs/tree/527849ec3aa2a8fd47a7bb6c57f918ff8bcb5e8c/features/0048-trust-ping
+    url: https://github.com/decentralized-identity/aries-rfcs/tree/527849ec3aa2a8fd47a7bb6c57f918ff8bcb5e8c/features/0048-trust-ping
 - name: vc
   description: Endpoints for managing w3c credentials and presentations
   externalDocs:
@@ -1575,6 +1575,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateCheqdDIDResponse'
+      x-codegen-request-body-name: body
+  /did/import:
+    post:
+      tags:
+      - did
+      summary: Import an existing DID into the wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DIDImport'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DIDImportResponse'
       x-codegen-request-body-name: body
   /did/indy/create:
     post:
@@ -5410,6 +5429,25 @@ paths:
                 $ref: '#/components/schemas/VerifyPresentationResponse'
       x-codegen-request-body-name: body
       operationId: verify_presentation
+  /wallet/cheqd/set-did-endpoint:
+    post:
+      tags:
+      - wallet
+      summary: Update the endpoint in the wallet and on ledger if posted
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDIDEndpointWithType'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletModuleResponse'
+      x-codegen-request-body-name: body
   /wallet/did:
     get:
       tags:
@@ -7401,6 +7439,35 @@ components:
             Registry
           example: CredentialStatusList2017
       additionalProperties: true
+    CustomDIDEndpointWithType:
+      required:
+      - did
+      type: object
+      properties:
+        did:
+          pattern: ^(did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)([?][^#]*)?|did:cheqd:(testnet|mainnet):(?:(?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*:)*((?:[a-zA-Z0-9]{21,22}|([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))+)/resources/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})([?][^#]*)?)$
+          type: string
+          description: DID of interest
+          example: did:cheqd:testnet:099be283-4302-40cc-9850-22016bcd1d86
+        endpoint:
+          pattern: ^[A-Za-z0-9\.\-\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$
+          type: string
+          description: Endpoint to set (omit to delete)
+          example: https://myhost:8021
+        endpoint_type:
+          type: string
+          description: Endpoint type to set (default 'Endpoint'); affects only public
+            or posted DIDs
+          example: Endpoint
+          enum:
+          - Endpoint
+          - Profile
+          - LinkedDomains
+        mediation_id:
+          pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
+          type: string
+          description: Mediation ID to use for endpoint information.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     DID:
       required:
       - did
@@ -7565,6 +7632,25 @@ components:
           type: string
           description: Mediation ID to use for endpoint information.
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    DIDImport:
+      required:
+      - did_document
+      type: object
+      properties:
+        did_document:
+          type: object
+          description: The DID document to import
+          example: ''
+        metadata:
+          type: object
+          additionalProperties:
+            type: object
+          description: Additional metadata to associate with the imported DID
+    DIDImportResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/DID'
     DIDList:
       type: object
       properties:
@@ -11082,20 +11168,39 @@ components:
     Service:
       required:
       - id
+      - recipientKeys
       - serviceEndpoint
       - type
       type: object
       properties:
+        accept:
+          type: array
+          description: Array of supported media types
+          items:
+            type: string
+            description: Media types
         id:
           type: string
           description: Service ID
           example: did:example:123#service-1
-        serviceEndpoint:
+        priority:
+          type: integer
+          description: Priority of the service endpoint
+        recipientKeys:
           type: array
-          description: Array of Service endpoints
+          description: Array of did key references to denote the default recipients
           items:
             type: string
-            description: Service endpoint URL
+            description: Did key reference
+        routingKeys:
+          type: array
+          description: Array of did key references to denote individual routing hops
+          items:
+            type: string
+            description: Did key reference
+        serviceEndpoint:
+          type: string
+          description: Service endpoint URL
         type:
           type: string
           description: Service Type
@@ -12479,6 +12584,48 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+    V20CredExRecordAnonCreds:
+      type: object
+      properties:
+        created_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of record creation
+          example: 2021-12-31 23:59:59+00:00
+        cred_ex_anoncreds_id:
+          type: string
+          description: Record identifier
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_ex_id:
+          type: string
+          description: Corresponding v2.0 credential exchange record identifier
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_id_stored:
+          type: string
+          description: Credential identifier stored in wallet
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        cred_request_metadata:
+          type: object
+          additionalProperties:
+            type: object
+          description: Credential request metadata for anoncreds holder
+        cred_rev_id:
+          type: string
+          description: Credential revocation identifier within revocation registry
+          example: did:(method):3:CL:20:tag
+        rev_reg_id:
+          type: string
+          description: Revocation registry identifier
+          example: did:(method):4:did:<method>:3:CL:20:tag:CL_ACCUM:0
+        state:
+          type: string
+          description: Current record state
+          example: active
+        updated_at:
+          pattern: ^\d{4}-\d\d-\d\d[T ]\d\d:\d\d(?:\:(?:\d\d(?:\.\d{1,6})?))?(?:[+-]\d\d:?\d\d|Z|)$
+          type: string
+          description: Time of last record update
+          example: 2021-12-31 23:59:59+00:00
     V20CredExRecordByFormat:
       type: object
       properties:
@@ -12501,6 +12648,8 @@ components:
     V20CredExRecordDetail:
       type: object
       properties:
+        anoncreds:
+          $ref: '#/components/schemas/V20CredExRecordAnonCreds'
         cred_ex_record:
           type: object
           description: Credential exchange record
