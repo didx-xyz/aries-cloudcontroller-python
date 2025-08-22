@@ -34,5 +34,5 @@ cp -r ./generated/aries_cloudcontroller/ .
 # autoflake again to remove newly unused imports
 autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
 # Black format and optimise imports
-black aries_cloudcontroller
-isort aries_cloudcontroller --profile black
+ruff format aries_cloudcontroller
+ruff check --fix aries_cloudcontroller
