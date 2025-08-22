@@ -101,7 +101,6 @@ class DidApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -209,7 +208,6 @@ class DidApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -317,7 +315,6 @@ class DidApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -425,7 +422,6 @@ class DidApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -533,7 +529,6 @@ class DidApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}

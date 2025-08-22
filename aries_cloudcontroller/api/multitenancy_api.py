@@ -103,7 +103,6 @@ class MultitenancyApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -216,7 +215,6 @@ class MultitenancyApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -331,7 +329,6 @@ class MultitenancyApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -441,7 +438,6 @@ class MultitenancyApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -582,7 +578,6 @@ class MultitenancyApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -599,27 +594,21 @@ class MultitenancyApi:
         # process the path parameters
         # process the query parameters
         if descending is not None:
-
             _query_params.append(("descending", descending))
 
         if group_id is not None:
-
             _query_params.append(("group_id", group_id))
 
         if limit is not None:
-
             _query_params.append(("limit", limit))
 
         if offset is not None:
-
             _query_params.append(("offset", offset))
 
         if order_by is not None:
-
             _query_params.append(("order_by", order_by))
 
         if wallet_name is not None:
-
             _query_params.append(("wallet_name", wallet_name))
 
         # process the header parameters
@@ -707,7 +696,6 @@ class MultitenancyApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}

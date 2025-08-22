@@ -102,7 +102,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -210,7 +209,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -227,7 +225,6 @@ class WalletApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
-
             _query_params.append(("did", did))
 
         # process the header parameters
@@ -348,7 +345,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -365,23 +361,18 @@ class WalletApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
-
             _query_params.append(("did", did))
 
         if key_type is not None:
-
             _query_params.append(("key_type", key_type))
 
         if method is not None:
-
             _query_params.append(("method", method))
 
         if posture is not None:
-
             _query_params.append(("posture", posture))
 
         if verkey is not None:
-
             _query_params.append(("verkey", verkey))
 
         # process the header parameters
@@ -459,7 +450,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -555,7 +545,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -572,7 +561,6 @@ class WalletApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
-
             _query_params.append(("did", did))
 
         # process the header parameters
@@ -670,7 +658,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -687,11 +674,9 @@ class WalletApi:
         # process the path parameters
         # process the query parameters
         if conn_id is not None:
-
             _query_params.append(("conn_id", conn_id))
 
         if create_transaction_for_endorser is not None:
-
             _query_params.append(
                 ("create_transaction_for_endorser", create_transaction_for_endorser)
             )
@@ -810,7 +795,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -827,21 +811,17 @@ class WalletApi:
         # process the path parameters
         # process the query parameters
         if did is not None:
-
             _query_params.append(("did", did))
 
         if conn_id is not None:
-
             _query_params.append(("conn_id", conn_id))
 
         if create_transaction_for_endorser is not None:
-
             _query_params.append(
                 ("create_transaction_for_endorser", create_transaction_for_endorser)
             )
 
         if mediation_id is not None:
-
             _query_params.append(("mediation_id", mediation_id))
 
         # process the header parameters
@@ -924,7 +904,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1032,7 +1011,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1140,7 +1118,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1248,7 +1225,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1356,7 +1332,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1464,7 +1439,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1562,7 +1536,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1670,7 +1643,6 @@ class WalletApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}

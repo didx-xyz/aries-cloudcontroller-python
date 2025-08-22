@@ -87,7 +87,6 @@ class AnonCredsSchemasApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -195,7 +194,6 @@ class AnonCredsSchemasApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -309,7 +307,6 @@ class AnonCredsSchemasApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -326,15 +323,12 @@ class AnonCredsSchemasApi:
         # process the path parameters
         # process the query parameters
         if schema_issuer_id is not None:
-
             _query_params.append(("schema_issuer_id", schema_issuer_id))
 
         if schema_name is not None:
-
             _query_params.append(("schema_name", schema_name))
 
         if schema_version is not None:
-
             _query_params.append(("schema_version", schema_version))
 
         # process the header parameters

@@ -87,7 +87,6 @@ class AnonCredsCredentialDefinitionsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -197,7 +196,6 @@ class AnonCredsCredentialDefinitionsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -319,7 +317,6 @@ class AnonCredsCredentialDefinitionsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
-
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -336,19 +333,15 @@ class AnonCredsCredentialDefinitionsApi:
         # process the path parameters
         # process the query parameters
         if issuer_id is not None:
-
             _query_params.append(("issuer_id", issuer_id))
 
         if schema_id is not None:
-
             _query_params.append(("schema_id", schema_id))
 
         if schema_name is not None:
-
             _query_params.append(("schema_name", schema_name))
 
         if schema_version is not None:
-
             _query_params.append(("schema_version", schema_version))
 
         # process the header parameters
