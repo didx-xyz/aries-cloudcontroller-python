@@ -10,7 +10,7 @@ cd "$(dirname "$0")/../" || exit
 ##########################################################################################
 # Global Defaults and Constants
 ##########################################################################################
-ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/didx-xyz/acapy-cloud/agent:pr-1799"
+ACA_PY_DOCKER_IMAGE_DEFAULT="ghcr.io/didx-xyz/acapy-cloud/agent:pr-1923"
 
 ACA_PY_ADMIN_PORT="8305"
 ACA_PY_INBOUND_PORT="8307"
