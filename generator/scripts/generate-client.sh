@@ -35,4 +35,4 @@ cp -r ./generated/aries_cloudcontroller/ .
 autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
 # Black format and optimise imports
 ruff format aries_cloudcontroller
-ruff check --fix aries_cloudcontroller
+ruff check --fix --select I aries_cloudcontroller
