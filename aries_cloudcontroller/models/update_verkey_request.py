@@ -17,22 +17,21 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, Field, StrictStr
+from typing_extensions import Self
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class ClearPendingRevocationsRequest(BaseModel):
+class UpdateVerkeyRequest(BaseModel):
     """
-    ClearPendingRevocationsRequest
+    UpdateVerkeyRequest
     """  # noqa: E501
 
-    purge: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
-        default=None,
-        description="Credential revocation ids by revocation registry id: omit for all, specify null or empty list for all pending per revocation registry",
+    new_verkey: StrictStr = Field(
+        description="New verification key to assign to the DID"
     )
-    __properties: ClassVar[List[str]] = ["purge"]
+    __properties: ClassVar[List[str]] = ["new_verkey"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -46,7 +45,7 @@ class ClearPendingRevocationsRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClearPendingRevocationsRequest from a JSON string"""
+        """Create an instance of UpdateVerkeyRequest from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,12 +69,12 @@ class ClearPendingRevocationsRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClearPendingRevocationsRequest from a dict"""
+        """Create an instance of UpdateVerkeyRequest from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"purge": obj.get("purge")})
+        _obj = cls.model_validate({"new_verkey": obj.get("new_verkey")})
         return _obj
