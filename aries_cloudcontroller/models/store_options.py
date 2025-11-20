@@ -17,24 +17,23 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictBool
 from typing_extensions import Self
 
-from aries_cloudcontroller.models.store_options import StoreOptions
-from aries_cloudcontroller.models.verifiable_credential import VerifiableCredential
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
 
-class StoreCredentialRequest(BaseModel):
+class StoreOptions(BaseModel):
     """
-    StoreCredentialRequest
+    StoreOptions
     """  # noqa: E501
 
-    options: Optional[StoreOptions] = None
-    verifiable_credential: Optional[VerifiableCredential] = Field(
-        default=None, alias="verifiableCredential"
+    skip_verification: Optional[StrictBool] = Field(
+        default=False,
+        description="Skip proof verification when storing the credential. Default is false (proof will be verified).",
+        alias="skipVerification",
     )
-    __properties: ClassVar[List[str]] = ["options", "verifiableCredential"]
+    __properties: ClassVar[List[str]] = ["skipVerification"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -48,7 +47,7 @@ class StoreCredentialRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StoreCredentialRequest from a JSON string"""
+        """Create an instance of StoreOptions from a JSON string"""
         return cls.from_dict(orjson.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,17 +67,11 @@ class StoreCredentialRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of options
-        if self.options:
-            _dict["options"] = self.options.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of verifiable_credential
-        if self.verifiable_credential:
-            _dict["verifiableCredential"] = self.verifiable_credential.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StoreCredentialRequest from a dict"""
+        """Create an instance of StoreOptions from a dict"""
         if obj is None:
             return None
 
@@ -87,14 +80,9 @@ class StoreCredentialRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": StoreOptions.from_dict(obj["options"])
-                if obj.get("options") is not None
-                else None,
-                "verifiableCredential": VerifiableCredential.from_dict(
-                    obj["verifiableCredential"]
-                )
-                if obj.get("verifiableCredential") is not None
-                else None,
+                "skipVerification": obj.get("skipVerification")
+                if obj.get("skipVerification") is not None
+                else False
             }
         )
         return _obj

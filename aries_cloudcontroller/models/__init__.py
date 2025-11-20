@@ -440,6 +440,7 @@ from aries_cloudcontroller.models.store_credential_request import StoreCredentia
 from aries_cloudcontroller.models.store_credential_response import (
     StoreCredentialResponse,
 )
+from aries_cloudcontroller.models.store_options import StoreOptions
 from aries_cloudcontroller.models.submission_requirements import SubmissionRequirements
 from aries_cloudcontroller.models.taa_accept import TAAAccept
 from aries_cloudcontroller.models.taa_acceptance import TAAAcceptance
