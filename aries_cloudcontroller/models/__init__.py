@@ -468,6 +468,7 @@ from aries_cloudcontroller.models.update_cheqd_did_response import (
 from aries_cloudcontroller.models.update_key_request import UpdateKeyRequest
 from aries_cloudcontroller.models.update_key_response import UpdateKeyResponse
 from aries_cloudcontroller.models.update_profile_settings import UpdateProfileSettings
+from aries_cloudcontroller.models.update_verkey_request import UpdateVerkeyRequest
 from aries_cloudcontroller.models.update_wallet_request import UpdateWalletRequest
 from aries_cloudcontroller.models.update_wallet_request_with_group_id import (
     UpdateWalletRequestWithGroupId,
