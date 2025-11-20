@@ -13,6 +13,11 @@ tags:
     description: Specification
     url: https://hyperledger.github.io/anoncreds-spec
 - name: AnonCreds - Revocation
+  description: AnonCreds revocation registry management
+  externalDocs:
+    description: Overview
+    url: https://github.com/hyperledger/indy-hipe/tree/master/text/0011-cred-revocation
+- name: AnonCreds - Revocation
   description: Revocation registry management
   externalDocs:
     description: Overview
@@ -365,6 +370,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnonCredsRevocationModuleResponse'
+      deprecated: true
       operationId: set_active_registry
   /anoncreds/registry/{rev_reg_id}/tails-file:
     put:
@@ -386,6 +392,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnonCredsRevocationModuleResponse'
+      deprecated: true
       operationId: upload_tails_file
   /anoncreds/revocation-list:
     post:
@@ -411,7 +418,8 @@ paths:
     post:
       tags:
       - AnonCreds - Revocation
-      summary: Create and publish a registration revocation on the connected datastore
+      summary: Create and publish a revocation registry definition on the connected
+        datastore
       requestBody:
         content:
           application/json:
@@ -574,6 +582,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/RevRegResultSchemaAnonCreds'
       operationId: get_revocation_registry
+  /anoncreds/revocation/registry/{rev_reg_id}/active:
+    put:
+      tags:
+      - AnonCreds - Revocation
+      summary: Update the active registry
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        schema:
+          pattern: ^(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnonCredsRevocationModuleResponse'
   /anoncreds/revocation/registry/{rev_reg_id}/fix-revocation-entry-state:
     put:
       tags:
@@ -719,6 +747,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/AnonCredsRevocationModuleResponse'
       operationId: get_tails_file
+    put:
+      tags:
+      - AnonCreds - Revocation
+      summary: Upload local tails file to server
+      parameters:
+      - name: rev_reg_id
+        in: path
+        description: Revocation Registry identifier
+        required: true
+        schema:
+          pattern: ^(.+$)
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnonCredsRevocationModuleResponse'
   /anoncreds/revocation/revoke:
     post:
       tags:
@@ -812,8 +859,9 @@ paths:
     post:
       tags:
       - AnonCreds - Wallet Upgrade
-      summary: Upgrade the wallet from askar to askar-anoncreds. Be very careful with
-        this! You cannot go back! See migration guide for more information.
+      summary: Upgrade the wallet from askar to askar-anoncreds OR kanon to kanon-anoncreds.
+        Be very careful with this! You cannot go back! See migration guide for more
+        information.
       parameters:
       - name: wallet_name
         in: query
@@ -5539,6 +5587,72 @@ paths:
               schema:
                 $ref: '#/components/schemas/WalletModuleResponse'
       operationId: rotate_keypair
+  /wallet/did/local/update-verkey:
+    patch:
+      tags:
+      - wallet
+      summary: Update verkey for a local DID
+      parameters:
+      - name: did
+        in: query
+        description: DID of interest
+        required: true
+        schema:
+          pattern: ^(did:(sov|indy):)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+)(:[a-zA-Z0-9_.%-]+)?:([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\/[^#?]*)?([?][^#]*)?(\#.*)?$$
+          type: string
+      - name: key_type
+        in: query
+        description: Key type associated with the DID
+        required: true
+        schema:
+          type: string
+          enum:
+          - ed25519
+          - bls12381g2
+          - p256
+      - name: method
+        in: query
+        description: Did method associated with the DID
+        required: true
+        schema:
+          type: string
+      - name: posture
+        in: query
+        description: Whether DID is current public DID, posted to ledger but not current
+          public DID, or local to the wallet
+        required: true
+        schema:
+          type: string
+          enum:
+          - public
+          - posted
+          - wallet_only
+      - name: verkey
+        in: query
+        description: Public verification key
+        required: true
+        schema:
+          pattern: ^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$
+          type: string
+      - name: metadata
+        in: query
+        description: Additional metadata associated with the DID
+        schema:
+          type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVerkeyRequest'
+        required: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DIDResult'
+      x-codegen-request-body-name: body
   /wallet/did/public:
     get:
       tags:
@@ -5978,6 +6092,7 @@ components:
           type: integer
           description: Latest time of interest in non-revocation interval
           example: 1640995199
+      additionalProperties: false
     AnonCredsPresentationReqPredSpec:
       required:
       - name
@@ -6029,6 +6144,7 @@ components:
           type: integer
           description: Latest time of interest in non-revocation interval
           example: 1640995199
+      additionalProperties: false
     AnonCredsPresentationRequest:
       required:
       - requested_attributes
@@ -6076,6 +6192,7 @@ components:
           type: integer
           description: Latest time of interest in non-revocation interval
           example: 1640995199
+      additionalProperties: false
     AnonCredsRequestedCredsRequestedAttr:
       required:
       - cred_id
@@ -6423,6 +6540,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     ConnectionList:
       required:
       - results
@@ -6731,6 +6849,7 @@ components:
           enum:
           - askar
           - askar-anoncreds
+          - kanon-anoncreds
         wallet_webhook_urls:
           type: array
           description: List of Webhook URLs associated with this subwallet
@@ -6800,6 +6919,7 @@ components:
           enum:
           - askar
           - askar-anoncreds
+          - kanon-anoncreds
         wallet_webhook_urls:
           type: array
           description: List of Webhook URLs associated with this subwallet
@@ -6974,6 +7094,10 @@ components:
           $ref: '#/components/schemas/InnerCredDef'
         options:
           $ref: '#/components/schemas/CredDefPostOptions'
+        wait_for_revocation_setup:
+          type: boolean
+          description: Wait for revocation registry setup to complete before returning
+          default: true
     CredDefResult:
       type: object
       properties:
@@ -7332,6 +7456,10 @@ components:
           type: string
           description: Credential definition identifier tag
           example: default
+        wait_for_revocation_setup:
+          type: boolean
+          description: Wait for revocation registry setup to complete before returning
+          default: true
     CredentialDefinitionSendResult:
       required:
       - credential_definition_id
@@ -7588,6 +7716,7 @@ components:
           description: Verification Methods
           items:
             $ref: '#/components/schemas/VerificationMethod'
+      additionalProperties: false
     DIDEndpoint:
       required:
       - did
@@ -8019,6 +8148,7 @@ components:
             $ref: '#/components/schemas/ProofResult'
         verified:
           type: boolean
+      additionalProperties: false
     EndorserInfo:
       required:
       - endorser_did
@@ -8118,6 +8248,7 @@ components:
           pattern: ^[0-9]*$
           type: string
           example: '0'
+      additionalProperties: false
     GetCredDefResult:
       type: object
       properties:
@@ -8774,6 +8905,7 @@ components:
           type: integer
           description: Latest time of interest in non-revocation interval
           example: 1640995199
+      additionalProperties: false
     IndyProofReqPredSpec:
       required:
       - name
@@ -8825,6 +8957,7 @@ components:
           type: integer
           description: Latest time of interest in non-revocation interval
           example: 1640995199
+      additionalProperties: false
     IndyProofRequest:
       required:
       - requested_attributes
@@ -8872,6 +9005,7 @@ components:
           type: integer
           description: Latest time of interest in non-revocation interval
           example: 1640995199
+      additionalProperties: false
     IndyProofRequestedProof:
       type: object
       properties:
@@ -9324,6 +9458,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     InvitationRecordResponse:
       type: object
     IssueCredentialModuleResponse:
@@ -9383,6 +9518,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     IssuerCredRevRecordSchemaAnonCreds:
       type: object
       properties:
@@ -9420,6 +9556,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     IssuerRevRegRecord:
       type: object
       properties:
@@ -9501,6 +9638,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     JWSCreate:
       required:
       - payload
@@ -9588,6 +9726,7 @@ components:
           description: Pagination info
           allOf:
           - $ref: '#/components/schemas/KeylistQueryPaginate'
+      additionalProperties: false
     KeylistQueryFilterRequest:
       type: object
       properties:
@@ -9607,6 +9746,7 @@ components:
           type: integer
           description: Offset value for query
           example: 0
+      additionalProperties: false
     KeylistUpdate:
       type: object
       properties:
@@ -9623,6 +9763,7 @@ components:
           description: List of update rules
           items:
             $ref: '#/components/schemas/KeylistUpdateRule'
+      additionalProperties: false
     KeylistUpdateRequest:
       type: object
       properties:
@@ -9648,6 +9789,7 @@ components:
           type: string
           description: Key to remove or add
           example: did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
+      additionalProperties: false
     LDProofVCDetail:
       required:
       - credential
@@ -9849,6 +9991,7 @@ components:
           type: string
           description: Message type
           example: https://didcomm.org/my-family/1.0/my-message-type
+      additionalProperties: false
     MediationGrant:
       type: object
       properties:
@@ -9869,6 +10012,7 @@ components:
           items:
             type: string
             description: Keys to use for forward message packaging
+      additionalProperties: false
     MediationIdMatchInfo:
       required:
       - mediation_id
@@ -10129,6 +10273,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     PerformRequest:
       type: object
       properties:
@@ -10286,6 +10431,7 @@ components:
           $ref: '#/components/schemas/DocumentVerificationResult'
         verified:
           type: boolean
+      additionalProperties: false
     ProfileSettings:
       type: object
       properties:
@@ -10311,6 +10457,7 @@ components:
           $ref: '#/components/schemas/PurposeResult'
         verified:
           type: boolean
+      additionalProperties: false
     ProtocolDescriptor:
       required:
       - pid
@@ -10326,6 +10473,7 @@ components:
             type: string
             description: 'Role: requester or responder'
             example: requester
+      additionalProperties: false
     ProvePresentationRequest:
       type: object
       properties:
@@ -10405,6 +10553,7 @@ components:
           type: string
         valid:
           type: boolean
+      additionalProperties: false
     Queries:
       type: object
       properties:
@@ -10475,6 +10624,7 @@ components:
     ResolutionResult:
       required:
       - did_document
+      - document_metadata
       - metadata
       type: object
       properties:
@@ -10483,6 +10633,11 @@ components:
           additionalProperties:
             type: object
           description: DID Document
+        document_metadata:
+          type: object
+          additionalProperties:
+            type: object
+          description: DID Document metadata
         metadata:
           type: object
           additionalProperties:
@@ -11072,6 +11227,7 @@ components:
             type: object
         schema_state:
           $ref: '#/components/schemas/SchemaState'
+      additionalProperties: false
     SchemaSendRequest:
       required:
       - attributes
@@ -11126,6 +11282,7 @@ components:
           - failed
           - action
           - wait
+      additionalProperties: false
     SchemasCreatedResult:
       type: object
       properties:
@@ -11205,6 +11362,7 @@ components:
           type: string
           description: Service Type
           example: MessagingService
+      additionalProperties: false
     ServiceDecorator:
       required:
       - recipientKeys
@@ -11269,6 +11427,7 @@ components:
           type: string
         verificationMethod:
           type: string
+      additionalProperties: false
     SignedDoc:
       required:
       - proof
@@ -11283,6 +11442,8 @@ components:
     StoreCredentialRequest:
       type: object
       properties:
+        options:
+          $ref: '#/components/schemas/StoreOptions'
         verifiableCredential:
           $ref: '#/components/schemas/VerifiableCredential'
     StoreCredentialResponse:
@@ -11290,6 +11451,14 @@ components:
       properties:
         credentialId:
           type: string
+    StoreOptions:
+      type: object
+      properties:
+        skipVerification:
+          type: boolean
+          description: Skip proof verification when storing the credential. Default
+            is false (proof will be verified).
+          default: false
     SubmissionRequirements:
       type: object
       properties:
@@ -11504,6 +11673,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     TxnOrCredentialDefinitionSendResult:
       type: object
       properties:
@@ -11663,6 +11833,15 @@ components:
             ACAPY_INVITE_PUBLIC: true
             log-level: INFO
             public-invites: false
+    UpdateVerkeyRequest:
+      required:
+      - new_verkey
+      type: object
+      properties:
+        new_verkey:
+          type: string
+          description: New verification key to assign to the DID
+          example: H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV
     UpdateWalletRequest:
       type: object
       properties:
@@ -11944,6 +12123,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     V10CredentialExchangeAutoRemoveRequest:
       type: object
       properties:
@@ -12166,6 +12346,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     V10PresentProofModuleResponse:
       type: object
     V10PresentationCreateRequestRequest:
@@ -12284,6 +12465,7 @@ components:
           items:
             type: string
             description: Proof verification warning or error information
+      additionalProperties: false
     V10PresentationExchangeList:
       type: object
       properties:
@@ -12584,6 +12766,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     V20CredExRecordAnonCreds:
       type: object
       properties:
@@ -12645,6 +12828,7 @@ components:
           type: object
           additionalProperties:
             type: object
+      additionalProperties: false
     V20CredExRecordDetail:
       type: object
       properties:
@@ -13212,6 +13396,7 @@ components:
           type: string
           description: Time of last record update
           example: 2021-12-31 23:59:59+00:00
+      additionalProperties: false
     V20IssueCredSchemaCore:
       required:
       - filter
@@ -13394,6 +13579,7 @@ components:
           items:
             type: string
             description: Proof verification warning or error information
+      additionalProperties: false
     V20PresExRecordByFormat:
       type: object
       properties:
@@ -13409,6 +13595,7 @@ components:
           type: object
           additionalProperties:
             type: object
+      additionalProperties: false
     V20PresExRecordList:
       type: object
       properties:
@@ -13849,6 +14036,7 @@ components:
           type: string
           description: Type of Verification Method
           example: Ed25519VerificationKey2018
+      additionalProperties: false
     VerifyCredentialRequest:
       type: object
       properties:
