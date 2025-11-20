@@ -84,11 +84,9 @@ class AddProof(BaseModel):
         _obj = cls.model_validate(
             {
                 "document": obj.get("document"),
-                "options": (
-                    DataIntegrityProofOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
+                "options": DataIntegrityProofOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
             }
         )
         return _obj

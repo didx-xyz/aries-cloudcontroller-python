@@ -97,20 +97,18 @@ class PresentationVerificationResult(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "credential_results": (
-                    [
-                        DocumentVerificationResult.from_dict(_item)
-                        for _item in obj["credential_results"]
-                    ]
-                    if obj.get("credential_results") is not None
-                    else None
-                ),
+                "credential_results": [
+                    DocumentVerificationResult.from_dict(_item)
+                    for _item in obj["credential_results"]
+                ]
+                if obj.get("credential_results") is not None
+                else None,
                 "errors": obj.get("errors"),
-                "presentation_result": (
-                    DocumentVerificationResult.from_dict(obj["presentation_result"])
-                    if obj.get("presentation_result") is not None
-                    else None
-                ),
+                "presentation_result": DocumentVerificationResult.from_dict(
+                    obj["presentation_result"]
+                )
+                if obj.get("presentation_result") is not None
+                else None,
                 "verified": obj.get("verified"),
             }
         )

@@ -88,11 +88,11 @@ class V20CredPreview(BaseModel):
         _obj = cls.model_validate(
             {
                 "@type": obj.get("@type"),
-                "attributes": (
-                    [V20CredAttrSpec.from_dict(_item) for _item in obj["attributes"]]
-                    if obj.get("attributes") is not None
-                    else None
-                ),
+                "attributes": [
+                    V20CredAttrSpec.from_dict(_item) for _item in obj["attributes"]
+                ]
+                if obj.get("attributes") is not None
+                else None,
             }
         )
         return _obj

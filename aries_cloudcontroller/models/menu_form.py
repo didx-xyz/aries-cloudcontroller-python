@@ -101,11 +101,9 @@ class MenuForm(BaseModel):
         _obj = cls.model_validate(
             {
                 "description": obj.get("description"),
-                "params": (
-                    [MenuFormParam.from_dict(_item) for _item in obj["params"]]
-                    if obj.get("params") is not None
-                    else None
-                ),
+                "params": [MenuFormParam.from_dict(_item) for _item in obj["params"]]
+                if obj.get("params") is not None
+                else None,
                 "submit-label": obj.get("submit-label"),
                 "title": obj.get("title"),
             }

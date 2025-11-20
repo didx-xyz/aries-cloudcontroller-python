@@ -100,11 +100,9 @@ class UpdateCheqdDIDRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "did": obj.get("did"),
-                "didDocument": (
-                    DIDDocument.from_dict(obj["didDocument"])
-                    if obj.get("didDocument") is not None
-                    else None
-                ),
+                "didDocument": DIDDocument.from_dict(obj["didDocument"])
+                if obj.get("didDocument") is not None
+                else None,
                 "options": obj.get("options"),
             }
         )

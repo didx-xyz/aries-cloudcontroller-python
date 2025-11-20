@@ -111,22 +111,16 @@ class V20PresSpecByFormatRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "anoncreds": (
-                    AnonCredsPresSpec.from_dict(obj["anoncreds"])
-                    if obj.get("anoncreds") is not None
-                    else None
-                ),
+                "anoncreds": AnonCredsPresSpec.from_dict(obj["anoncreds"])
+                if obj.get("anoncreds") is not None
+                else None,
                 "auto_remove": obj.get("auto_remove"),
-                "dif": (
-                    DIFPresSpec.from_dict(obj["dif"])
-                    if obj.get("dif") is not None
-                    else None
-                ),
-                "indy": (
-                    IndyPresSpec.from_dict(obj["indy"])
-                    if obj.get("indy") is not None
-                    else None
-                ),
+                "dif": DIFPresSpec.from_dict(obj["dif"])
+                if obj.get("dif") is not None
+                else None,
+                "indy": IndyPresSpec.from_dict(obj["indy"])
+                if obj.get("indy") is not None
+                else None,
                 "trace": obj.get("trace"),
             }
         )

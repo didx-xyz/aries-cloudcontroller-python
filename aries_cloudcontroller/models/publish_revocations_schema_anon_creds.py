@@ -85,11 +85,9 @@ class PublishRevocationsSchemaAnonCreds(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    PublishRevocationsOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
+                "options": PublishRevocationsOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
                 "rrid2crid": obj.get("rrid2crid"),
             }
         )

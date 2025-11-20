@@ -91,11 +91,9 @@ class GetSchemaResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "resolution_metadata": obj.get("resolution_metadata"),
-                "schema": (
-                    AnonCredsSchema.from_dict(obj["schema"])
-                    if obj.get("schema") is not None
-                    else None
-                ),
+                "schema": AnonCredsSchema.from_dict(obj["schema"])
+                if obj.get("schema") is not None
+                else None,
                 "schema_id": obj.get("schema_id"),
                 "schema_metadata": obj.get("schema_metadata"),
             }

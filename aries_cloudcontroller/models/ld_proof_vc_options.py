@@ -149,11 +149,11 @@ class LDProofVCOptions(BaseModel):
             {
                 "challenge": obj.get("challenge"),
                 "created": obj.get("created"),
-                "credentialStatus": (
-                    CredentialStatusOptions.from_dict(obj["credentialStatus"])
-                    if obj.get("credentialStatus") is not None
-                    else None
-                ),
+                "credentialStatus": CredentialStatusOptions.from_dict(
+                    obj["credentialStatus"]
+                )
+                if obj.get("credentialStatus") is not None
+                else None,
                 "domain": obj.get("domain"),
                 "proofPurpose": obj.get("proofPurpose"),
                 "proofType": obj.get("proofType"),

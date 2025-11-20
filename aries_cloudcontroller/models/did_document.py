@@ -112,19 +112,15 @@ class DIDDocument(BaseModel):
                 "authentication": obj.get("authentication"),
                 "controller": obj.get("controller"),
                 "id": obj.get("id"),
-                "service": (
-                    [Service.from_dict(_item) for _item in obj["service"]]
-                    if obj.get("service") is not None
-                    else None
-                ),
-                "verificationMethod": (
-                    [
-                        VerificationMethod.from_dict(_item)
-                        for _item in obj["verificationMethod"]
-                    ]
-                    if obj.get("verificationMethod") is not None
-                    else None
-                ),
+                "service": [Service.from_dict(_item) for _item in obj["service"]]
+                if obj.get("service") is not None
+                else None,
+                "verificationMethod": [
+                    VerificationMethod.from_dict(_item)
+                    for _item in obj["verificationMethod"]
+                ]
+                if obj.get("verificationMethod") is not None
+                else None,
             }
         )
         return _obj

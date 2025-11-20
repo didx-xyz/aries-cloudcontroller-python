@@ -85,16 +85,12 @@ class SchemaPostRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    SchemaPostOption.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
-                "schema": (
-                    AnonCredsSchema.from_dict(obj["schema"])
-                    if obj.get("schema") is not None
-                    else None
-                ),
+                "options": SchemaPostOption.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
+                "schema": AnonCredsSchema.from_dict(obj["schema"])
+                if obj.get("schema") is not None
+                else None,
             }
         )
         return _obj

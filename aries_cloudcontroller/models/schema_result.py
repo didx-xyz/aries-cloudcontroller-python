@@ -91,11 +91,9 @@ class SchemaResult(BaseModel):
                 "job_id": obj.get("job_id"),
                 "registration_metadata": obj.get("registration_metadata"),
                 "schema_metadata": obj.get("schema_metadata"),
-                "schema_state": (
-                    SchemaState.from_dict(obj["schema_state"])
-                    if obj.get("schema_state") is not None
-                    else None
-                ),
+                "schema_state": SchemaState.from_dict(obj["schema_state"])
+                if obj.get("schema_state") is not None
+                else None,
             }
         )
         return _obj

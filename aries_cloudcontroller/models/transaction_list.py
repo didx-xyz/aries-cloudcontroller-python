@@ -86,11 +86,11 @@ class TransactionList(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "results": (
-                    [TransactionRecord.from_dict(_item) for _item in obj["results"]]
-                    if obj.get("results") is not None
-                    else None
-                )
+                "results": [
+                    TransactionRecord.from_dict(_item) for _item in obj["results"]
+                ]
+                if obj.get("results") is not None
+                else None
             }
         )
         return _obj

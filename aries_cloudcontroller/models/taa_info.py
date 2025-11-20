@@ -96,21 +96,15 @@ class TAAInfo(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "aml_record": (
-                    AMLRecord.from_dict(obj["aml_record"])
-                    if obj.get("aml_record") is not None
-                    else None
-                ),
-                "taa_accepted": (
-                    TAAAcceptance.from_dict(obj["taa_accepted"])
-                    if obj.get("taa_accepted") is not None
-                    else None
-                ),
-                "taa_record": (
-                    TAARecord.from_dict(obj["taa_record"])
-                    if obj.get("taa_record") is not None
-                    else None
-                ),
+                "aml_record": AMLRecord.from_dict(obj["aml_record"])
+                if obj.get("aml_record") is not None
+                else None,
+                "taa_accepted": TAAAcceptance.from_dict(obj["taa_accepted"])
+                if obj.get("taa_accepted") is not None
+                else None,
+                "taa_record": TAARecord.from_dict(obj["taa_record"])
+                if obj.get("taa_record") is not None
+                else None,
                 "taa_required": obj.get("taa_required"),
             }
         )

@@ -82,11 +82,9 @@ class Doc(BaseModel):
         _obj = cls.model_validate(
             {
                 "credential": obj.get("credential"),
-                "options": (
-                    SignatureOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
+                "options": SignatureOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
             }
         )
         return _obj

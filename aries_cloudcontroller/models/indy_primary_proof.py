@@ -103,16 +103,14 @@ class IndyPrimaryProof(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "eq_proof": (
-                    IndyEQProof.from_dict(obj["eq_proof"])
-                    if obj.get("eq_proof") is not None
-                    else None
-                ),
-                "ge_proofs": (
-                    [IndyGEProof.from_dict(_item) for _item in obj["ge_proofs"]]
-                    if obj.get("ge_proofs") is not None
-                    else None
-                ),
+                "eq_proof": IndyEQProof.from_dict(obj["eq_proof"])
+                if obj.get("eq_proof") is not None
+                else None,
+                "ge_proofs": [
+                    IndyGEProof.from_dict(_item) for _item in obj["ge_proofs"]
+                ]
+                if obj.get("ge_proofs") is not None
+                else None,
             }
         )
         return _obj

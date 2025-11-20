@@ -108,14 +108,12 @@ class PresentationRequest(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "request_presentations~attach": (
-                    [
-                        AttachDecorator.from_dict(_item)
-                        for _item in obj["request_presentations~attach"]
-                    ]
-                    if obj.get("request_presentations~attach") is not None
-                    else None
-                ),
+                "request_presentations~attach": [
+                    AttachDecorator.from_dict(_item)
+                    for _item in obj["request_presentations~attach"]
+                ]
+                if obj.get("request_presentations~attach") is not None
+                else None,
             }
         )
         return _obj

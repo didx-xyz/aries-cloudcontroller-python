@@ -87,16 +87,14 @@ class VerifyCredentialRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    LDProofVCOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
-                "verifiableCredential": (
-                    VerifiableCredential.from_dict(obj["verifiableCredential"])
-                    if obj.get("verifiableCredential") is not None
-                    else None
-                ),
+                "options": LDProofVCOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
+                "verifiableCredential": VerifiableCredential.from_dict(
+                    obj["verifiableCredential"]
+                )
+                if obj.get("verifiableCredential") is not None
+                else None,
             }
         )
         return _obj

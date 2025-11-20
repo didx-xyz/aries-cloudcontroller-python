@@ -102,11 +102,9 @@ class RevRegDef(BaseModel):
                 "issuerId": obj.get("issuerId"),
                 "revocDefType": obj.get("revocDefType"),
                 "tag": obj.get("tag"),
-                "value": (
-                    RevRegDefValue.from_dict(obj["value"])
-                    if obj.get("value") is not None
-                    else None
-                ),
+                "value": RevRegDefValue.from_dict(obj["value"])
+                if obj.get("value") is not None
+                else None,
             }
         )
         return _obj

@@ -87,16 +87,14 @@ class RevRegCreateRequestSchemaAnonCreds(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    RevRegDefOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
-                "revocation_registry_definition": (
-                    InnerRevRegDef.from_dict(obj["revocation_registry_definition"])
-                    if obj.get("revocation_registry_definition") is not None
-                    else None
-                ),
+                "options": RevRegDefOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
+                "revocation_registry_definition": InnerRevRegDef.from_dict(
+                    obj["revocation_registry_definition"]
+                )
+                if obj.get("revocation_registry_definition") is not None
+                else None,
             }
         )
         return _obj

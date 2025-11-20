@@ -87,16 +87,14 @@ class VerifyPresentationRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    LDProofVCOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
-                "verifiablePresentation": (
-                    VerifiablePresentation.from_dict(obj["verifiablePresentation"])
-                    if obj.get("verifiablePresentation") is not None
-                    else None
-                ),
+                "options": LDProofVCOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
+                "verifiablePresentation": VerifiablePresentation.from_dict(
+                    obj["verifiablePresentation"]
+                )
+                if obj.get("verifiablePresentation") is not None
+                else None,
             }
         )
         return _obj

@@ -85,11 +85,9 @@ class ProofResult(BaseModel):
             {
                 "error": obj.get("error"),
                 "proof": obj.get("proof"),
-                "purpose_result": (
-                    PurposeResult.from_dict(obj["purpose_result"])
-                    if obj.get("purpose_result") is not None
-                    else None
-                ),
+                "purpose_result": PurposeResult.from_dict(obj["purpose_result"])
+                if obj.get("purpose_result") is not None
+                else None,
                 "verified": obj.get("verified"),
             }
         )

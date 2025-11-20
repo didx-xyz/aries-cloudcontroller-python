@@ -82,11 +82,11 @@ class IssueCredentialResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "verifiableCredential": (
-                    VerifiableCredential.from_dict(obj["verifiableCredential"])
-                    if obj.get("verifiableCredential") is not None
-                    else None
+                "verifiableCredential": VerifiableCredential.from_dict(
+                    obj["verifiableCredential"]
                 )
+                if obj.get("verifiableCredential") is not None
+                else None
             }
         )
         return _obj

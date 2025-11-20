@@ -96,16 +96,14 @@ class DIFProofRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    DIFOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
-                "presentation_definition": (
-                    PresentationDefinition.from_dict(obj["presentation_definition"])
-                    if obj.get("presentation_definition") is not None
-                    else None
-                ),
+                "options": DIFOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
+                "presentation_definition": PresentationDefinition.from_dict(
+                    obj["presentation_definition"]
+                )
+                if obj.get("presentation_definition") is not None
+                else None,
             }
         )
         # store additional fields in additional_properties

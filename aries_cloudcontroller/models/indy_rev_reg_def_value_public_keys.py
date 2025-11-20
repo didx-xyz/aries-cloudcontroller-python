@@ -84,11 +84,11 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "accumKey": (
-                    IndyRevRegDefValuePublicKeysAccumKey.from_dict(obj["accumKey"])
-                    if obj.get("accumKey") is not None
-                    else None
+                "accumKey": IndyRevRegDefValuePublicKeysAccumKey.from_dict(
+                    obj["accumKey"]
                 )
+                if obj.get("accumKey") is not None
+                else None
             }
         )
         return _obj

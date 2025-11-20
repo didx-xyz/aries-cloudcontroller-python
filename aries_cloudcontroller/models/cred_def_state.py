@@ -110,11 +110,9 @@ class CredDefState(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "credential_definition": (
-                    CredDef.from_dict(obj["credential_definition"])
-                    if obj.get("credential_definition") is not None
-                    else None
-                ),
+                "credential_definition": CredDef.from_dict(obj["credential_definition"])
+                if obj.get("credential_definition") is not None
+                else None,
                 "credential_definition_id": obj.get("credential_definition_id"),
                 "state": obj.get("state"),
             }

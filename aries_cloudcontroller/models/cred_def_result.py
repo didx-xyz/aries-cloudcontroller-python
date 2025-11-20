@@ -93,11 +93,11 @@ class CredDefResult(BaseModel):
                 "credential_definition_metadata": obj.get(
                     "credential_definition_metadata"
                 ),
-                "credential_definition_state": (
-                    CredDefState.from_dict(obj["credential_definition_state"])
-                    if obj.get("credential_definition_state") is not None
-                    else None
-                ),
+                "credential_definition_state": CredDefState.from_dict(
+                    obj["credential_definition_state"]
+                )
+                if obj.get("credential_definition_state") is not None
+                else None,
                 "job_id": obj.get("job_id"),
                 "registration_metadata": obj.get("registration_metadata"),
             }

@@ -83,11 +83,9 @@ class RevListCreateRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "options": (
-                    RevListOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
+                "options": RevListOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
                 "rev_reg_def_id": obj.get("rev_reg_def_id"),
             }
         )

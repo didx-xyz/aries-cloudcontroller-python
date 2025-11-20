@@ -150,11 +150,9 @@ class InvitationRecord(BaseModel):
             {
                 "created_at": obj.get("created_at"),
                 "invi_msg_id": obj.get("invi_msg_id"),
-                "invitation": (
-                    InvitationMessage.from_dict(obj["invitation"])
-                    if obj.get("invitation") is not None
-                    else None
-                ),
+                "invitation": InvitationMessage.from_dict(obj["invitation"])
+                if obj.get("invitation") is not None
+                else None,
                 "invitation_id": obj.get("invitation_id"),
                 "invitation_url": obj.get("invitation_url"),
                 "oob_id": obj.get("oob_id"),

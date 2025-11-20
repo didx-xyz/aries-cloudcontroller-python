@@ -1,7 +1,6 @@
 # flake8: noqa
 
 # import apis into api package
-from aries_cloudcontroller.api.action_menu_api import ActionMenuApi
 from aries_cloudcontroller.api.anon_creds_credential_definitions_api import (
     AnonCredsCredentialDefinitionsApi,
 )
@@ -10,6 +9,7 @@ from aries_cloudcontroller.api.anon_creds_schemas_api import AnonCredsSchemasApi
 from aries_cloudcontroller.api.anon_creds_wallet_upgrade_api import (
     AnonCredsWalletUpgradeApi,
 )
+from aries_cloudcontroller.api.action_menu_api import ActionMenuApi
 from aries_cloudcontroller.api.basicmessage_api import BasicmessageApi
 from aries_cloudcontroller.api.connection_api import ConnectionApi
 from aries_cloudcontroller.api.credential_definition_api import CredentialDefinitionApi

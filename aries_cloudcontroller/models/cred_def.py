@@ -109,11 +109,9 @@ class CredDef(BaseModel):
                 "schemaId": obj.get("schemaId"),
                 "tag": obj.get("tag"),
                 "type": obj.get("type"),
-                "value": (
-                    CredDefValueSchemaAnonCreds.from_dict(obj["value"])
-                    if obj.get("value") is not None
-                    else None
-                ),
+                "value": CredDefValueSchemaAnonCreds.from_dict(obj["value"])
+                if obj.get("value") is not None
+                else None,
             }
         )
         return _obj

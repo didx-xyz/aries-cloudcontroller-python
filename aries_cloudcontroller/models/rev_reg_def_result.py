@@ -95,13 +95,11 @@ class RevRegDefResult(BaseModel):
                 "revocation_registry_definition_metadata": obj.get(
                     "revocation_registry_definition_metadata"
                 ),
-                "revocation_registry_definition_state": (
-                    RevRegDefState.from_dict(
-                        obj["revocation_registry_definition_state"]
-                    )
-                    if obj.get("revocation_registry_definition_state") is not None
-                    else None
-                ),
+                "revocation_registry_definition_state": RevRegDefState.from_dict(
+                    obj["revocation_registry_definition_state"]
+                )
+                if obj.get("revocation_registry_definition_state") is not None
+                else None,
             }
         )
         return _obj

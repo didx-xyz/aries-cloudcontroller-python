@@ -89,11 +89,9 @@ class DocumentVerificationResult(BaseModel):
             {
                 "document": obj.get("document"),
                 "errors": obj.get("errors"),
-                "results": (
-                    [ProofResult.from_dict(_item) for _item in obj["results"]]
-                    if obj.get("results") is not None
-                    else None
-                ),
+                "results": [ProofResult.from_dict(_item) for _item in obj["results"]]
+                if obj.get("results") is not None
+                else None,
                 "verified": obj.get("verified"),
             }
         )

@@ -96,11 +96,9 @@ class SchemaState(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "schema": (
-                    AnonCredsSchema.from_dict(obj["schema"])
-                    if obj.get("schema") is not None
-                    else None
-                ),
+                "schema": AnonCredsSchema.from_dict(obj["schema"])
+                if obj.get("schema") is not None
+                else None,
                 "schema_id": obj.get("schema_id"),
                 "state": obj.get("state"),
             }

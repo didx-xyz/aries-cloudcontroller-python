@@ -134,11 +134,9 @@ class IndyRevRegDefValue(BaseModel):
             {
                 "issuanceType": obj.get("issuanceType"),
                 "maxCredNum": obj.get("maxCredNum"),
-                "publicKeys": (
-                    IndyRevRegDefValuePublicKeys.from_dict(obj["publicKeys"])
-                    if obj.get("publicKeys") is not None
-                    else None
-                ),
+                "publicKeys": IndyRevRegDefValuePublicKeys.from_dict(obj["publicKeys"])
+                if obj.get("publicKeys") is not None
+                else None,
                 "tailsHash": obj.get("tailsHash"),
                 "tailsLocation": obj.get("tailsLocation"),
             }

@@ -144,28 +144,22 @@ class IndyProofRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "name": obj.get("name"),
-                "non_revoked": (
-                    IndyProofRequestNonRevoked.from_dict(obj["non_revoked"])
-                    if obj.get("non_revoked") is not None
-                    else None
-                ),
+                "non_revoked": IndyProofRequestNonRevoked.from_dict(obj["non_revoked"])
+                if obj.get("non_revoked") is not None
+                else None,
                 "nonce": obj.get("nonce"),
-                "requested_attributes": (
-                    dict(
-                        (_k, IndyProofReqAttrSpec.from_dict(_v))
-                        for _k, _v in obj["requested_attributes"].items()
-                    )
-                    if obj.get("requested_attributes") is not None
-                    else None
-                ),
-                "requested_predicates": (
-                    dict(
-                        (_k, IndyProofReqPredSpec.from_dict(_v))
-                        for _k, _v in obj["requested_predicates"].items()
-                    )
-                    if obj.get("requested_predicates") is not None
-                    else None
-                ),
+                "requested_attributes": dict(
+                    (_k, IndyProofReqAttrSpec.from_dict(_v))
+                    for _k, _v in obj["requested_attributes"].items()
+                )
+                if obj.get("requested_attributes") is not None
+                else None,
+                "requested_predicates": dict(
+                    (_k, IndyProofReqPredSpec.from_dict(_v))
+                    for _k, _v in obj["requested_predicates"].items()
+                )
+                if obj.get("requested_predicates") is not None
+                else None,
                 "version": obj.get("version"),
             }
         )

@@ -105,11 +105,9 @@ class V10PresentationCreateRequestRequest(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "auto_verify": obj.get("auto_verify"),
                 "comment": obj.get("comment"),
-                "proof_request": (
-                    IndyProofRequest.from_dict(obj["proof_request"])
-                    if obj.get("proof_request") is not None
-                    else None
-                ),
+                "proof_request": IndyProofRequest.from_dict(obj["proof_request"])
+                if obj.get("proof_request") is not None
+                else None,
                 "trace": obj.get("trace"),
             }
         )

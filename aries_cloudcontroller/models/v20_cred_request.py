@@ -118,19 +118,14 @@ class V20CredRequest(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
-                    if obj.get("formats") is not None
-                    else None
-                ),
-                "requests~attach": (
-                    [
-                        AttachDecorator.from_dict(_item)
-                        for _item in obj["requests~attach"]
-                    ]
-                    if obj.get("requests~attach") is not None
-                    else None
-                ),
+                "formats": [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
+                if obj.get("formats") is not None
+                else None,
+                "requests~attach": [
+                    AttachDecorator.from_dict(_item) for _item in obj["requests~attach"]
+                ]
+                if obj.get("requests~attach") is not None
+                else None,
             }
         )
         return _obj

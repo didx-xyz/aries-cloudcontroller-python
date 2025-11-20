@@ -123,19 +123,15 @@ class V20CredIssue(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "credentials~attach": (
-                    [
-                        AttachDecorator.from_dict(_item)
-                        for _item in obj["credentials~attach"]
-                    ]
-                    if obj.get("credentials~attach") is not None
-                    else None
-                ),
-                "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
-                    if obj.get("formats") is not None
-                    else None
-                ),
+                "credentials~attach": [
+                    AttachDecorator.from_dict(_item)
+                    for _item in obj["credentials~attach"]
+                ]
+                if obj.get("credentials~attach") is not None
+                else None,
+                "formats": [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
+                if obj.get("formats") is not None
+                else None,
                 "replacement_id": obj.get("replacement_id"),
             }
         )

@@ -98,21 +98,15 @@ class V20PresRequestByFormat(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "anoncreds": (
-                    AnonCredsPresentationRequest.from_dict(obj["anoncreds"])
-                    if obj.get("anoncreds") is not None
-                    else None
-                ),
-                "dif": (
-                    DIFProofRequest.from_dict(obj["dif"])
-                    if obj.get("dif") is not None
-                    else None
-                ),
-                "indy": (
-                    IndyProofRequest.from_dict(obj["indy"])
-                    if obj.get("indy") is not None
-                    else None
-                ),
+                "anoncreds": AnonCredsPresentationRequest.from_dict(obj["anoncreds"])
+                if obj.get("anoncreds") is not None
+                else None,
+                "dif": DIFProofRequest.from_dict(obj["dif"])
+                if obj.get("dif") is not None
+                else None,
+                "indy": IndyProofRequest.from_dict(obj["indy"])
+                if obj.get("indy") is not None
+                else None,
             }
         )
         return _obj

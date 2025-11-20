@@ -124,11 +124,9 @@ class AttachDecoratorData(BaseModel):
             {
                 "base64": obj.get("base64"),
                 "json": obj.get("json"),
-                "jws": (
-                    AttachDecoratorDataJWS.from_dict(obj["jws"])
-                    if obj.get("jws") is not None
-                    else None
-                ),
+                "jws": AttachDecoratorDataJWS.from_dict(obj["jws"])
+                if obj.get("jws") is not None
+                else None,
                 "links": obj.get("links"),
                 "sha256": obj.get("sha256"),
             }

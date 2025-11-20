@@ -216,16 +216,12 @@ class IssuerRevRegRecord(BaseModel):
                 "pending_pub": obj.get("pending_pub"),
                 "record_id": obj.get("record_id"),
                 "revoc_def_type": obj.get("revoc_def_type"),
-                "revoc_reg_def": (
-                    IndyRevRegDef.from_dict(obj["revoc_reg_def"])
-                    if obj.get("revoc_reg_def") is not None
-                    else None
-                ),
-                "revoc_reg_entry": (
-                    IndyRevRegEntry.from_dict(obj["revoc_reg_entry"])
-                    if obj.get("revoc_reg_entry") is not None
-                    else None
-                ),
+                "revoc_reg_def": IndyRevRegDef.from_dict(obj["revoc_reg_def"])
+                if obj.get("revoc_reg_def") is not None
+                else None,
+                "revoc_reg_entry": IndyRevRegEntry.from_dict(obj["revoc_reg_entry"])
+                if obj.get("revoc_reg_entry") is not None
+                else None,
                 "revoc_reg_id": obj.get("revoc_reg_id"),
                 "state": obj.get("state"),
                 "tag": obj.get("tag"),

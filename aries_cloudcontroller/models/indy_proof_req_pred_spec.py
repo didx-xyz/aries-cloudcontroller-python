@@ -103,11 +103,11 @@ class IndyProofReqPredSpec(BaseModel):
         _obj = cls.model_validate(
             {
                 "name": obj.get("name"),
-                "non_revoked": (
-                    IndyProofReqPredSpecNonRevoked.from_dict(obj["non_revoked"])
-                    if obj.get("non_revoked") is not None
-                    else None
-                ),
+                "non_revoked": IndyProofReqPredSpecNonRevoked.from_dict(
+                    obj["non_revoked"]
+                )
+                if obj.get("non_revoked") is not None
+                else None,
                 "p_type": obj.get("p_type"),
                 "p_value": obj.get("p_value"),
                 "restrictions": obj.get("restrictions"),

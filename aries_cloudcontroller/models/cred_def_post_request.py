@@ -85,16 +85,17 @@ class CredDefPostRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "credential_definition": (
-                    InnerCredDef.from_dict(obj["credential_definition"])
-                    if obj.get("credential_definition") is not None
-                    else None
-                ),
-                "options": (
-                    CredDefPostOptions.from_dict(obj["options"])
-                    if obj.get("options") is not None
-                    else None
-                ),
+                "credential_definition": InnerCredDef.from_dict(
+                    obj["credential_definition"]
+                )
+                if obj.get("credential_definition") is not None
+                else None,
+                "options": CredDefPostOptions.from_dict(obj["options"])
+                if obj.get("options") is not None
+                else None,
+                "wait_for_revocation_setup": obj.get("wait_for_revocation_setup")
+                if obj.get("wait_for_revocation_setup") is not None
+                else True,
             }
         )
         return _obj

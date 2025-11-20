@@ -82,11 +82,11 @@ class ProvePresentationResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "verifiablePresentation": (
-                    VerifiablePresentation.from_dict(obj["verifiablePresentation"])
-                    if obj.get("verifiablePresentation") is not None
-                    else None
+                "verifiablePresentation": VerifiablePresentation.from_dict(
+                    obj["verifiablePresentation"]
                 )
+                if obj.get("verifiablePresentation") is not None
+                else None
             }
         )
         return _obj

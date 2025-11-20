@@ -91,14 +91,11 @@ class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
         _obj = cls.model_validate(
             {
                 "sub_proof_index": obj.get("sub_proof_index"),
-                "values": (
-                    dict(
-                        (_k, RawEncoded.from_dict(_v))
-                        for _k, _v in obj["values"].items()
-                    )
-                    if obj.get("values") is not None
-                    else None
-                ),
+                "values": dict(
+                    (_k, RawEncoded.from_dict(_v)) for _k, _v in obj["values"].items()
+                )
+                if obj.get("values") is not None
+                else None,
             }
         )
         return _obj

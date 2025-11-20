@@ -84,11 +84,11 @@ class KeylistUpdateRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "updates": (
-                    [KeylistUpdateRule.from_dict(_item) for _item in obj["updates"]]
-                    if obj.get("updates") is not None
-                    else None
-                )
+                "updates": [
+                    KeylistUpdateRule.from_dict(_item) for _item in obj["updates"]
+                ]
+                if obj.get("updates") is not None
+                else None
             }
         )
         return _obj

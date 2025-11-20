@@ -80,11 +80,9 @@ class VerifyRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "doc": (
-                    SignedDoc.from_dict(obj["doc"])
-                    if obj.get("doc") is not None
-                    else None
-                ),
+                "doc": SignedDoc.from_dict(obj["doc"])
+                if obj.get("doc") is not None
+                else None,
                 "verkey": obj.get("verkey"),
             }
         )

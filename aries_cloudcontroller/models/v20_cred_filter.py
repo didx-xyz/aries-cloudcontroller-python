@@ -105,26 +105,18 @@ class V20CredFilter(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "anoncreds": (
-                    V20CredFilterAnonCreds.from_dict(obj["anoncreds"])
-                    if obj.get("anoncreds") is not None
-                    else None
-                ),
-                "indy": (
-                    V20CredFilterIndy.from_dict(obj["indy"])
-                    if obj.get("indy") is not None
-                    else None
-                ),
-                "ld_proof": (
-                    LDProofVCDetail.from_dict(obj["ld_proof"])
-                    if obj.get("ld_proof") is not None
-                    else None
-                ),
-                "vc_di": (
-                    V20CredFilterVCDI.from_dict(obj["vc_di"])
-                    if obj.get("vc_di") is not None
-                    else None
-                ),
+                "anoncreds": V20CredFilterAnonCreds.from_dict(obj["anoncreds"])
+                if obj.get("anoncreds") is not None
+                else None,
+                "indy": V20CredFilterIndy.from_dict(obj["indy"])
+                if obj.get("indy") is not None
+                else None,
+                "ld_proof": LDProofVCDetail.from_dict(obj["ld_proof"])
+                if obj.get("ld_proof") is not None
+                else None,
+                "vc_di": V20CredFilterVCDI.from_dict(obj["vc_di"])
+                if obj.get("vc_di") is not None
+                else None,
             }
         )
         return _obj

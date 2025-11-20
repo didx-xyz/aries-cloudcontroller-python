@@ -88,14 +88,11 @@ class V10PresentationExchangeList(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "results": (
-                    [
-                        V10PresentationExchange.from_dict(_item)
-                        for _item in obj["results"]
-                    ]
-                    if obj.get("results") is not None
-                    else None
-                )
+                "results": [
+                    V10PresentationExchange.from_dict(_item) for _item in obj["results"]
+                ]
+                if obj.get("results") is not None
+                else None
             }
         )
         return _obj

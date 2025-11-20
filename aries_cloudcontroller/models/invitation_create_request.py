@@ -164,11 +164,11 @@ class InvitationCreateRequest(BaseModel):
             {
                 "accept": obj.get("accept"),
                 "alias": obj.get("alias"),
-                "attachments": (
-                    [AttachmentDef.from_dict(_item) for _item in obj["attachments"]]
-                    if obj.get("attachments") is not None
-                    else None
-                ),
+                "attachments": [
+                    AttachmentDef.from_dict(_item) for _item in obj["attachments"]
+                ]
+                if obj.get("attachments") is not None
+                else None,
                 "goal": obj.get("goal"),
                 "goal_code": obj.get("goal_code"),
                 "handshake_protocols": obj.get("handshake_protocols"),

@@ -93,16 +93,14 @@ class CredDefValueSchemaAnonCreds(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "primary": (
-                    CredDefValuePrimarySchemaAnonCreds.from_dict(obj["primary"])
-                    if obj.get("primary") is not None
-                    else None
-                ),
-                "revocation": (
-                    CredDefValueRevocationSchemaAnonCreds.from_dict(obj["revocation"])
-                    if obj.get("revocation") is not None
-                    else None
-                ),
+                "primary": CredDefValuePrimarySchemaAnonCreds.from_dict(obj["primary"])
+                if obj.get("primary") is not None
+                else None,
+                "revocation": CredDefValueRevocationSchemaAnonCreds.from_dict(
+                    obj["revocation"]
+                )
+                if obj.get("revocation") is not None
+                else None,
             }
         )
         return _obj

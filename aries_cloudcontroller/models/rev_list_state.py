@@ -95,11 +95,9 @@ class RevListState(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "revocation_list": (
-                    RevList.from_dict(obj["revocation_list"])
-                    if obj.get("revocation_list") is not None
-                    else None
-                ),
+                "revocation_list": RevList.from_dict(obj["revocation_list"])
+                if obj.get("revocation_list") is not None
+                else None,
                 "state": obj.get("state"),
             }
         )

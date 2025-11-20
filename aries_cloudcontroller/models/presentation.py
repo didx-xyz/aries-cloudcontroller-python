@@ -130,11 +130,9 @@ class Presentation(BaseModel):
                 "@context": obj.get("@context"),
                 "holder": obj.get("holder"),
                 "id": obj.get("id"),
-                "proof": (
-                    LinkedDataProof.from_dict(obj["proof"])
-                    if obj.get("proof") is not None
-                    else None
-                ),
+                "proof": LinkedDataProof.from_dict(obj["proof"])
+                if obj.get("proof") is not None
+                else None,
                 "type": obj.get("type"),
                 "verifiableCredential": obj.get("verifiableCredential"),
             }

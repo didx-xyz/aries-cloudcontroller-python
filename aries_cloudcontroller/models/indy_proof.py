@@ -102,24 +102,19 @@ class IndyProof(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "identifiers": (
-                    [
-                        IndyProofIdentifier.from_dict(_item)
-                        for _item in obj["identifiers"]
-                    ]
-                    if obj.get("identifiers") is not None
-                    else None
-                ),
-                "proof": (
-                    IndyProofProof.from_dict(obj["proof"])
-                    if obj.get("proof") is not None
-                    else None
-                ),
-                "requested_proof": (
-                    IndyProofRequestedProof.from_dict(obj["requested_proof"])
-                    if obj.get("requested_proof") is not None
-                    else None
-                ),
+                "identifiers": [
+                    IndyProofIdentifier.from_dict(_item) for _item in obj["identifiers"]
+                ]
+                if obj.get("identifiers") is not None
+                else None,
+                "proof": IndyProofProof.from_dict(obj["proof"])
+                if obj.get("proof") is not None
+                else None,
+                "requested_proof": IndyProofRequestedProof.from_dict(
+                    obj["requested_proof"]
+                )
+                if obj.get("requested_proof") is not None
+                else None,
             }
         )
         return _obj

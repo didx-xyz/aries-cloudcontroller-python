@@ -107,11 +107,11 @@ class V20PresCreateRequestRequest(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "auto_verify": obj.get("auto_verify"),
                 "comment": obj.get("comment"),
-                "presentation_request": (
-                    V20PresRequestByFormat.from_dict(obj["presentation_request"])
-                    if obj.get("presentation_request") is not None
-                    else None
-                ),
+                "presentation_request": V20PresRequestByFormat.from_dict(
+                    obj["presentation_request"]
+                )
+                if obj.get("presentation_request") is not None
+                else None,
                 "trace": obj.get("trace"),
             }
         )

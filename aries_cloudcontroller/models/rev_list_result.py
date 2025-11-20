@@ -91,11 +91,11 @@ class RevListResult(BaseModel):
                 "job_id": obj.get("job_id"),
                 "registration_metadata": obj.get("registration_metadata"),
                 "revocation_list_metadata": obj.get("revocation_list_metadata"),
-                "revocation_list_state": (
-                    RevListState.from_dict(obj["revocation_list_state"])
-                    if obj.get("revocation_list_state") is not None
-                    else None
-                ),
+                "revocation_list_state": RevListState.from_dict(
+                    obj["revocation_list_state"]
+                )
+                if obj.get("revocation_list_state") is not None
+                else None,
             }
         )
         return _obj

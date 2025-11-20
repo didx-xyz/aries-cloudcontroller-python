@@ -92,11 +92,11 @@ class IndyProofReqAttrSpec(BaseModel):
             {
                 "name": obj.get("name"),
                 "names": obj.get("names"),
-                "non_revoked": (
-                    IndyProofReqAttrSpecNonRevoked.from_dict(obj["non_revoked"])
-                    if obj.get("non_revoked") is not None
-                    else None
-                ),
+                "non_revoked": IndyProofReqAttrSpecNonRevoked.from_dict(
+                    obj["non_revoked"]
+                )
+                if obj.get("non_revoked") is not None
+                else None,
                 "restrictions": obj.get("restrictions"),
             }
         )

@@ -189,21 +189,17 @@ class OobRecord(BaseModel):
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
                 "invi_msg_id": obj.get("invi_msg_id"),
-                "invitation": (
-                    InvitationMessage.from_dict(obj["invitation"])
-                    if obj.get("invitation") is not None
-                    else None
-                ),
+                "invitation": InvitationMessage.from_dict(obj["invitation"])
+                if obj.get("invitation") is not None
+                else None,
                 "multi_use": obj.get("multi_use"),
                 "oob_id": obj.get("oob_id"),
                 "our_recipient_key": obj.get("our_recipient_key"),
                 "role": obj.get("role"),
                 "state": obj.get("state"),
-                "their_service": (
-                    ServiceDecorator.from_dict(obj["their_service"])
-                    if obj.get("their_service") is not None
-                    else None
-                ),
+                "their_service": ServiceDecorator.from_dict(obj["their_service"])
+                if obj.get("their_service") is not None
+                else None,
                 "trace": obj.get("trace"),
                 "updated_at": obj.get("updated_at"),
             }

@@ -106,11 +106,11 @@ class RevRegDefState(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "revocation_registry_definition": (
-                    RevRegDef.from_dict(obj["revocation_registry_definition"])
-                    if obj.get("revocation_registry_definition") is not None
-                    else None
-                ),
+                "revocation_registry_definition": RevRegDef.from_dict(
+                    obj["revocation_registry_definition"]
+                )
+                if obj.get("revocation_registry_definition") is not None
+                else None,
                 "revocation_registry_definition_id": obj.get(
                     "revocation_registry_definition_id"
                 ),

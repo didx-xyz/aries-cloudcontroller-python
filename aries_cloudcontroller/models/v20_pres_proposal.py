@@ -114,19 +114,15 @@ class V20PresProposal(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "formats": (
-                    [V20PresFormat.from_dict(_item) for _item in obj["formats"]]
-                    if obj.get("formats") is not None
-                    else None
-                ),
-                "proposals~attach": (
-                    [
-                        AttachDecorator.from_dict(_item)
-                        for _item in obj["proposals~attach"]
-                    ]
-                    if obj.get("proposals~attach") is not None
-                    else None
-                ),
+                "formats": [V20PresFormat.from_dict(_item) for _item in obj["formats"]]
+                if obj.get("formats") is not None
+                else None,
+                "proposals~attach": [
+                    AttachDecorator.from_dict(_item)
+                    for _item in obj["proposals~attach"]
+                ]
+                if obj.get("proposals~attach") is not None
+                else None,
             }
         )
         return _obj

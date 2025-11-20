@@ -88,11 +88,9 @@ class TxnOrPublishRevocationsResult(BaseModel):
         _obj = cls.model_validate(
             {
                 "rrid2crid": obj.get("rrid2crid"),
-                "txn": (
-                    [TransactionRecord.from_dict(_item) for _item in obj["txn"]]
-                    if obj.get("txn") is not None
-                    else None
-                ),
+                "txn": [TransactionRecord.from_dict(_item) for _item in obj["txn"]]
+                if obj.get("txn") is not None
+                else None,
             }
         )
         return _obj

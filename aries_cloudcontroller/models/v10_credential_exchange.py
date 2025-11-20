@@ -294,43 +294,37 @@ class V10CredentialExchange(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "connection_id": obj.get("connection_id"),
                 "created_at": obj.get("created_at"),
-                "credential": (
-                    IndyCredInfo.from_dict(obj["credential"])
-                    if obj.get("credential") is not None
-                    else None
-                ),
+                "credential": IndyCredInfo.from_dict(obj["credential"])
+                if obj.get("credential") is not None
+                else None,
                 "credential_definition_id": obj.get("credential_definition_id"),
                 "credential_exchange_id": obj.get("credential_exchange_id"),
                 "credential_id": obj.get("credential_id"),
-                "credential_offer": (
-                    IndyCredAbstract.from_dict(obj["credential_offer"])
-                    if obj.get("credential_offer") is not None
-                    else None
-                ),
-                "credential_offer_dict": (
-                    CredentialOffer.from_dict(obj["credential_offer_dict"])
-                    if obj.get("credential_offer_dict") is not None
-                    else None
-                ),
-                "credential_proposal_dict": (
-                    CredentialProposal.from_dict(obj["credential_proposal_dict"])
-                    if obj.get("credential_proposal_dict") is not None
-                    else None
-                ),
-                "credential_request": (
-                    IndyCredRequest.from_dict(obj["credential_request"])
-                    if obj.get("credential_request") is not None
-                    else None
-                ),
+                "credential_offer": IndyCredAbstract.from_dict(obj["credential_offer"])
+                if obj.get("credential_offer") is not None
+                else None,
+                "credential_offer_dict": CredentialOffer.from_dict(
+                    obj["credential_offer_dict"]
+                )
+                if obj.get("credential_offer_dict") is not None
+                else None,
+                "credential_proposal_dict": CredentialProposal.from_dict(
+                    obj["credential_proposal_dict"]
+                )
+                if obj.get("credential_proposal_dict") is not None
+                else None,
+                "credential_request": IndyCredRequest.from_dict(
+                    obj["credential_request"]
+                )
+                if obj.get("credential_request") is not None
+                else None,
                 "credential_request_metadata": obj.get("credential_request_metadata"),
                 "error_msg": obj.get("error_msg"),
                 "initiator": obj.get("initiator"),
                 "parent_thread_id": obj.get("parent_thread_id"),
-                "raw_credential": (
-                    IndyCredential.from_dict(obj["raw_credential"])
-                    if obj.get("raw_credential") is not None
-                    else None
-                ),
+                "raw_credential": IndyCredential.from_dict(obj["raw_credential"])
+                if obj.get("raw_credential") is not None
+                else None,
                 "revoc_reg_id": obj.get("revoc_reg_id"),
                 "revocation_id": obj.get("revocation_id"),
                 "role": obj.get("role"),

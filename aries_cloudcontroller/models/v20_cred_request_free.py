@@ -117,11 +117,9 @@ class V20CredRequestFree(BaseModel):
                 "auto_remove": obj.get("auto_remove"),
                 "comment": obj.get("comment"),
                 "connection_id": obj.get("connection_id"),
-                "filter": (
-                    V20CredFilterLDProof.from_dict(obj["filter"])
-                    if obj.get("filter") is not None
-                    else None
-                ),
+                "filter": V20CredFilterLDProof.from_dict(obj["filter"])
+                if obj.get("filter") is not None
+                else None,
                 "holder_did": obj.get("holder_did"),
                 "trace": obj.get("trace"),
             }

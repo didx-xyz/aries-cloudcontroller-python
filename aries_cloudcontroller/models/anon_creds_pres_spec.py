@@ -116,22 +116,18 @@ class AnonCredsPresSpec(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "requested_attributes": (
-                    dict(
-                        (_k, AnonCredsRequestedCredsRequestedAttr.from_dict(_v))
-                        for _k, _v in obj["requested_attributes"].items()
-                    )
-                    if obj.get("requested_attributes") is not None
-                    else None
-                ),
-                "requested_predicates": (
-                    dict(
-                        (_k, AnonCredsRequestedCredsRequestedPred.from_dict(_v))
-                        for _k, _v in obj["requested_predicates"].items()
-                    )
-                    if obj.get("requested_predicates") is not None
-                    else None
-                ),
+                "requested_attributes": dict(
+                    (_k, AnonCredsRequestedCredsRequestedAttr.from_dict(_v))
+                    for _k, _v in obj["requested_attributes"].items()
+                )
+                if obj.get("requested_attributes") is not None
+                else None,
+                "requested_predicates": dict(
+                    (_k, AnonCredsRequestedCredsRequestedPred.from_dict(_v))
+                    for _k, _v in obj["requested_predicates"].items()
+                )
+                if obj.get("requested_predicates") is not None
+                else None,
                 "self_attested_attributes": obj.get("self_attested_attributes"),
                 "trace": obj.get("trace"),
             }

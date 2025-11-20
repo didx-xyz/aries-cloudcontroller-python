@@ -129,21 +129,19 @@ class V20CredOffer(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "credential_preview": (
-                    V20CredPreview.from_dict(obj["credential_preview"])
-                    if obj.get("credential_preview") is not None
-                    else None
-                ),
-                "formats": (
-                    [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
-                    if obj.get("formats") is not None
-                    else None
-                ),
-                "offers~attach": (
-                    [AttachDecorator.from_dict(_item) for _item in obj["offers~attach"]]
-                    if obj.get("offers~attach") is not None
-                    else None
-                ),
+                "credential_preview": V20CredPreview.from_dict(
+                    obj["credential_preview"]
+                )
+                if obj.get("credential_preview") is not None
+                else None,
+                "formats": [V20CredFormat.from_dict(_item) for _item in obj["formats"]]
+                if obj.get("formats") is not None
+                else None,
+                "offers~attach": [
+                    AttachDecorator.from_dict(_item) for _item in obj["offers~attach"]
+                ]
+                if obj.get("offers~attach") is not None
+                else None,
                 "replacement_id": obj.get("replacement_id"),
             }
         )

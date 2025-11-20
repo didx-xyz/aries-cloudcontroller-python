@@ -110,11 +110,9 @@ class IndyRevRegDef(BaseModel):
                 "id": obj.get("id"),
                 "revocDefType": obj.get("revocDefType"),
                 "tag": obj.get("tag"),
-                "value": (
-                    IndyRevRegDefValue.from_dict(obj["value"])
-                    if obj.get("value") is not None
-                    else None
-                ),
+                "value": IndyRevRegDefValue.from_dict(obj["value"])
+                if obj.get("value") is not None
+                else None,
                 "ver": obj.get("ver"),
             }
         )

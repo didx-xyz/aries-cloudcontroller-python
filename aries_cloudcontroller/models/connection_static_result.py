@@ -138,11 +138,9 @@ class ConnectionStaticResult(BaseModel):
                 "my_did": obj.get("my_did"),
                 "my_endpoint": obj.get("my_endpoint"),
                 "my_verkey": obj.get("my_verkey"),
-                "record": (
-                    ConnRecord.from_dict(obj["record"])
-                    if obj.get("record") is not None
-                    else None
-                ),
+                "record": ConnRecord.from_dict(obj["record"])
+                if obj.get("record") is not None
+                else None,
                 "their_did": obj.get("their_did"),
                 "their_verkey": obj.get("their_verkey"),
             }

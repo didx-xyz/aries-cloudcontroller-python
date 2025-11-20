@@ -136,14 +136,11 @@ class InvitationMessage(BaseModel):
                 "handshake_protocols": obj.get("handshake_protocols"),
                 "imageUrl": obj.get("imageUrl"),
                 "label": obj.get("label"),
-                "requests~attach": (
-                    [
-                        AttachDecorator.from_dict(_item)
-                        for _item in obj["requests~attach"]
-                    ]
-                    if obj.get("requests~attach") is not None
-                    else None
-                ),
+                "requests~attach": [
+                    AttachDecorator.from_dict(_item) for _item in obj["requests~attach"]
+                ]
+                if obj.get("requests~attach") is not None
+                else None,
                 "services": obj.get("services"),
             }
         )

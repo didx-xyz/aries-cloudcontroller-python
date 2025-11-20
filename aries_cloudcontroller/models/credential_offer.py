@@ -112,16 +112,16 @@ class CredentialOffer(BaseModel):
                 "@id": obj.get("@id"),
                 "@type": obj.get("@type"),
                 "comment": obj.get("comment"),
-                "credential_preview": (
-                    CredentialPreview.from_dict(obj["credential_preview"])
-                    if obj.get("credential_preview") is not None
-                    else None
-                ),
-                "offers~attach": (
-                    [AttachDecorator.from_dict(_item) for _item in obj["offers~attach"]]
-                    if obj.get("offers~attach") is not None
-                    else None
-                ),
+                "credential_preview": CredentialPreview.from_dict(
+                    obj["credential_preview"]
+                )
+                if obj.get("credential_preview") is not None
+                else None,
+                "offers~attach": [
+                    AttachDecorator.from_dict(_item) for _item in obj["offers~attach"]
+                ]
+                if obj.get("offers~attach") is not None
+                else None,
             }
         )
         return _obj

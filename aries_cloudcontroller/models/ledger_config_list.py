@@ -96,22 +96,18 @@ class LedgerConfigList(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "non_production_ledgers": (
-                    [
-                        LedgerConfigInstance.from_dict(_item)
-                        for _item in obj["non_production_ledgers"]
-                    ]
-                    if obj.get("non_production_ledgers") is not None
-                    else None
-                ),
-                "production_ledgers": (
-                    [
-                        LedgerConfigInstance.from_dict(_item)
-                        for _item in obj["production_ledgers"]
-                    ]
-                    if obj.get("production_ledgers") is not None
-                    else None
-                ),
+                "non_production_ledgers": [
+                    LedgerConfigInstance.from_dict(_item)
+                    for _item in obj["non_production_ledgers"]
+                ]
+                if obj.get("non_production_ledgers") is not None
+                else None,
+                "production_ledgers": [
+                    LedgerConfigInstance.from_dict(_item)
+                    for _item in obj["production_ledgers"]
+                ]
+                if obj.get("production_ledgers") is not None
+                else None,
             }
         )
         return _obj

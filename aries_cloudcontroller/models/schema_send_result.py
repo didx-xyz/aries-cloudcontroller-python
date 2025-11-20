@@ -85,11 +85,9 @@ class SchemaSendResult(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "schema": (
-                    ModelSchema.from_dict(obj["schema"])
-                    if obj.get("schema") is not None
-                    else None
-                ),
+                "schema": ModelSchema.from_dict(obj["schema"])
+                if obj.get("schema") is not None
+                else None,
                 "schema_id": obj.get("schema_id"),
             }
         )

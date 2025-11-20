@@ -91,11 +91,9 @@ class SignedDoc(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "proof": (
-                    SignatureOptions.from_dict(obj["proof"])
-                    if obj.get("proof") is not None
-                    else None
-                )
+                "proof": SignatureOptions.from_dict(obj["proof"])
+                if obj.get("proof") is not None
+                else None
             }
         )
         # store additional fields in additional_properties
