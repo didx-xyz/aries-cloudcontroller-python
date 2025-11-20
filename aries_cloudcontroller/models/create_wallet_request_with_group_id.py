@@ -116,8 +116,10 @@ class CreateWalletRequestWithGroupId(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["askar", "askar-anoncreds"]):
-            raise ValueError("must be one of enum values ('askar', 'askar-anoncreds')")
+        if value not in set(["askar", "askar-anoncreds", "kanon-anoncreds"]):
+            raise ValueError(
+                "must be one of enum values ('askar', 'askar-anoncreds', 'kanon-anoncreds')"
+            )
         return value
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

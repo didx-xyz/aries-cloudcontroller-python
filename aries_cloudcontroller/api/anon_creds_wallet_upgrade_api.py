@@ -49,7 +49,7 @@ class AnonCredsWalletUpgradeApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Upgrade the wallet from askar to askar-anoncreds. Be very careful with this! You cannot go back! See migration guide for more information.
+        """Upgrade the wallet from askar to askar-anoncreds OR kanon to kanon-anoncreds. Be very careful with this! You cannot go back! See migration guide for more information.
 
 
         :param wallet_name: Name of wallet to upgrade to anoncreds (required)
