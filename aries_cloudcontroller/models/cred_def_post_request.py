@@ -17,7 +17,7 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 import orjson
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, StrictBool
 from typing_extensions import Self
 
 from aries_cloudcontroller.models.cred_def_post_options import CredDefPostOptions
@@ -32,7 +32,15 @@ class CredDefPostRequest(BaseModel):
 
     credential_definition: Optional[InnerCredDef] = None
     options: Optional[CredDefPostOptions] = None
-    __properties: ClassVar[List[str]] = ["credential_definition", "options"]
+    wait_for_revocation_setup: Optional[StrictBool] = Field(
+        default=True,
+        description="Wait for revocation registry setup to complete before returning",
+    )
+    __properties: ClassVar[List[str]] = [
+        "credential_definition",
+        "options",
+        "wait_for_revocation_setup",
+    ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 

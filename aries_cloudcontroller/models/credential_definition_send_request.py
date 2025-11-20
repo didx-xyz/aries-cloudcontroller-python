@@ -40,11 +40,16 @@ class CredentialDefinitionSendRequest(BaseModel):
     tag: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier tag"
     )
+    wait_for_revocation_setup: Optional[StrictBool] = Field(
+        default=True,
+        description="Wait for revocation registry setup to complete before returning",
+    )
     __properties: ClassVar[List[str]] = [
         "revocation_registry_size",
         "schema_id",
         "support_revocation",
         "tag",
+        "wait_for_revocation_setup",
     ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -96,6 +101,9 @@ class CredentialDefinitionSendRequest(BaseModel):
                 "schema_id": obj.get("schema_id"),
                 "support_revocation": obj.get("support_revocation"),
                 "tag": obj.get("tag"),
+                "wait_for_revocation_setup": obj.get("wait_for_revocation_setup")
+                if obj.get("wait_for_revocation_setup") is not None
+                else True,
             }
         )
         return _obj
