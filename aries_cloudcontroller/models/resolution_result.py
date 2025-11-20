@@ -29,8 +29,13 @@ class ResolutionResult(BaseModel):
     """  # noqa: E501
 
     did_document: Dict[str, Any] = Field(description="DID Document")
+    document_metadata: Dict[str, Any] = Field(description="DID Document metadata")
     metadata: Dict[str, Any] = Field(description="Resolution metadata")
-    __properties: ClassVar[List[str]] = ["did_document", "metadata"]
+    __properties: ClassVar[List[str]] = [
+        "did_document",
+        "document_metadata",
+        "metadata",
+    ]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -76,6 +81,10 @@ class ResolutionResult(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"did_document": obj.get("did_document"), "metadata": obj.get("metadata")}
+            {
+                "did_document": obj.get("did_document"),
+                "document_metadata": obj.get("document_metadata"),
+                "metadata": obj.get("metadata"),
+            }
         )
         return _obj
